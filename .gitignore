@@ -1,0 +1,8 @@
+# 압축 해제 작업본
+*/_decompressed/
+
+# 파이썬
+__pycache__/
+*.pyc
+
+.DS_Store
