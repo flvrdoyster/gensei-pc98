@@ -114,7 +114,7 @@ async function load() {
     }
   }
   for (const entry of (data.ui || [])) {
-    rows.push({ type: 'ui', file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr });
+    rows.push({ type: 'ui', file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len });
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -128,19 +128,21 @@ async function load() {
   render();
 }
 
-function encodeByteLen(text) {
+function encodeByteLen(text, useGaiji) {
   let len = 0;
   for (const ch of text) {
     if (charmap[ch]) { len += 2; }
+    else if (useGaiji) { len += 2; }
     else if (ch.charCodeAt(0) < 0x80) { len += 1; }
     else { len += 2; }
   }
   return len;
 }
 
-function jpByteLen(text) {
+function getJpLen(r) {
+  if (r.jp_len) return r.jp_len;
   let len = 0;
-  for (const ch of text) {
+  for (const ch of r.jp) {
     if (ch.charCodeAt(0) < 0x80) len += 1;
     else len += 2;
   }
@@ -174,8 +176,9 @@ function render() {
     const tr = document.createElement('tr');
     const key = r.type + ':' + r.offset;
     const kr = key in modified ? modified[key] : (r.kr || '');
-    const jpLen = jpByteLen(r.jp);
-    const krLen = kr ? encodeByteLen(kr) : 0;
+    const isGaiji = r.type === 'ui';
+    const jpLen = getJpLen(r);
+    const krLen = kr ? encodeByteLen(kr, isGaiji) : 0;
 
     let lenClass = 'empty';
     let lenText = `${jpLen}`;
@@ -222,8 +225,9 @@ document.getElementById('tbody').addEventListener('input', e => {
     e.target.classList.add('modified');
   }
 
-  const jpLen = jpByteLen(row.jp);
-  const krLen = val ? encodeByteLen(val) : 0;
+  const isGaiji = row.type === 'ui';
+  const jpLen = getJpLen(row);
+  const krLen = val ? encodeByteLen(val, isGaiji) : 0;
   const lenTd = e.target.closest('tr').querySelector('.len');
   if (val) {
     lenTd.textContent = `${krLen}/${jpLen}`;
