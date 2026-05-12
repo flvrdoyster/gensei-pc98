@@ -13,7 +13,9 @@ Compile Inc. PC-98 **환세 시리즈** 한글화 프로젝트.
 ```
 tools/
   compile_lz.py        LZ 압축/해제 + SJIS 유틸 (공통)
-  hukyou_parser.py     환세풍광전 CMD 파서
+  hukyou_parser.py     환세풍광전 텍스트 추출
+  hukyou_inserter.py   환세풍광전 번역 재삽입
+  charmap.json         한글↔SJIS 매핑 (KS X 1001, 2350자)
   NOTES.md             역공학 분석 노트
 original/
   hukyou/              환세풍광전 원본
@@ -22,13 +24,21 @@ original/
 translation/
   hukyou/
     translation.json   환세풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
+build/                 (gitignore) 패치된 파일 출력
 ```
 
 ## 사용법
 
+프로젝트 루트(`gensei-pc98/`)에서 실행.
+
 ```bash
-# 환세풍광전 텍스트 추출
+# 1. 텍스트 추출 (translation.json 생성)
 python3 tools/hukyou_parser.py original/hukyou
+
+# 2. translation/hukyou/translation.json 의 kr 필드 편집
+
+# 3. 재삽입 (build/hukyou/ 에 패치된 파일 생성)
+python3 tools/hukyou_inserter.py original/hukyou
 
 # CMD 파일 압축 해제본 저장 (분석용)
 python3 tools/hukyou_parser.py original/hukyou dump
