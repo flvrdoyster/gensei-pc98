@@ -106,5 +106,23 @@ def is_sjis(data, i):
     return False
 
 
+_HW_KANA = (
+    '。「」、・ヲァィゥェォャュョッ'
+    'ーアイウエオカキクケコサシスセソ'
+    'タチツテトナニヌネノハヒフヘホマ'
+    'ミムメモヤユヨラリルレロワン゛゜'
+)
+
+
 def read_sjis_char(data, i):
+    s1, s2 = data[i], data[i + 1]
+    if s1 == 0x85:
+        if s2 < 0x9F:
+            j2 = (s2 - 0x1F) if s2 < 0x80 else (s2 - 0x20)
+            return chr(j2)
+        else:
+            j2 = s2 - 0x7E
+            idx = j2 - 0x21
+            if 0 <= idx < len(_HW_KANA):
+                return _HW_KANA[idx]
     return data[i:i + 2].decode('shift_jis', errors='replace')

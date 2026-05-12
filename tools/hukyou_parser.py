@@ -173,7 +173,7 @@ UI_RANGES = [
 
 
 def _is_valid_ui_text(text):
-    if any(ord(c) == 0xFFFD or 0xFF61 <= ord(c) <= 0xFF9F for c in text):
+    if any(ord(c) == 0xFFFD for c in text):
         return False
     if len(text) == 1 and text not in '炎氷雷毒':
         return False
