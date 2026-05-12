@@ -160,6 +160,49 @@ def extract_items(data):
 
 
 # ─────────────────────────────────────
+# UI 텍스트 파서 (GF2.COM)
+# ─────────────────────────────────────
+
+UI_RANGES = [
+    (0x70B6, 0x73C0, 'system'),
+    (0x9DF0, 0x9F00, 'status'),
+    (0xA1A4, 0xA3B0, 'names'),
+]
+
+
+def extract_ui(data):
+    ui = []
+    for start, end, category in UI_RANGES:
+        i = start
+        cur = ''
+        cur_off = 0
+        while i < end:
+            if is_sjis(data, i):
+                if not cur:
+                    cur_off = i
+                cur += read_sjis_char(data, i)
+                i += 2
+            else:
+                if cur:
+                    ui.append({
+                        'offset': cur_off,
+                        'category': category,
+                        'jp': cur,
+                        'kr': '',
+                    })
+                    cur = ''
+                i += 1
+        if cur:
+            ui.append({
+                'offset': cur_off,
+                'category': category,
+                'jp': cur,
+                'kr': '',
+            })
+    return ui
+
+
+# ─────────────────────────────────────
 # JSON 출력
 # ─────────────────────────────────────
 
@@ -168,10 +211,11 @@ DIALOG_FILES = [
     'STAGE4.CMD', 'STAGE5.CMD', 'STAGE6.CMD', 'STAGE7.CMD', 'ENDING.CMD',
 ]
 ITEM_FILE = 'MESSAGE.CMD'
+UI_FILE = 'GF2.COM'
 
 
 def generate_json(game_dir, out_path):
-    result = {'dialogs': [], 'items': []}
+    result = {'dialogs': [], 'items': [], 'ui': []}
 
     for fname in DIALOG_FILES:
         fpath = os.path.join(game_dir, fname)
@@ -195,6 +239,13 @@ def generate_json(game_dir, out_path):
         data = decompress(raw)
         result['items'] = extract_items(data)
 
+    fpath = os.path.join(game_dir, UI_FILE)
+    if os.path.exists(fpath):
+        with open(fpath, 'rb') as f:
+            raw = f.read()
+        data = decompress(raw)
+        result['ui'] = extract_ui(data)
+
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
@@ -202,8 +253,9 @@ def generate_json(game_dir, out_path):
     d = len(result['dialogs'])
     l = sum(len(e['lines']) for e in result['dialogs'])
     it = len(result['items'])
+    u = len(result['ui'])
     print(f'저장: {out_path}')
-    print(f'  대화 블록: {d}개 / 대사 줄: {l}줄 / 아이템: {it}개')
+    print(f'  대화 블록: {d}개 / 대사 줄: {l}줄 / 아이템: {it}개 / UI: {u}개')
 
 
 def dump_decompressed(game_dir, out_dir):

@@ -93,6 +93,10 @@ def collect_replacements(translation, charmap):
         for desc in item['desc']:
             add(fname, desc['offset'], desc['jp'], desc['kr'])
 
+    for entry in translation.get('ui', []):
+        fname = 'GF2.COM'
+        add(fname, entry['offset'], entry['jp'], entry['kr'])
+
     return by_file
 
 

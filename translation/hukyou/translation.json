@@ -8685,5 +8685,445 @@
         }
       ]
     }
+  ],
+  "ui": [
+    {
+      "offset": 28854,
+      "category": "system",
+      "jp": "ドライブ",
+      "kr": ""
+    },
+    {
+      "offset": 28867,
+      "category": "system",
+      "jp": "洗",
+      "kr": ""
+    },
+    {
+      "offset": 28888,
+      "category": "system",
+      "jp": "詠",
+      "kr": ""
+    },
+    {
+      "offset": 28892,
+      "category": "system",
+      "jp": "縒",
+      "kr": ""
+    },
+    {
+      "offset": 28896,
+      "category": "system",
+      "jp": "のディスクがライト・プロテクトされています。",
+      "kr": ""
+    },
+    {
+      "offset": 28941,
+      "category": "system",
+      "jp": "が使用できません。　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 28986,
+      "category": "system",
+      "jp": "の準備ができていません。　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29031,
+      "category": "system",
+      "jp": "に存在しないコマンドを実行しようとした。　　",
+      "kr": ""
+    },
+    {
+      "offset": 29076,
+      "category": "system",
+      "jp": "のＣＲＣエラー。　　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29121,
+      "category": "system",
+      "jp": "のシーク・エラー。　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29166,
+      "category": "system",
+      "jp": "がサポートしていないメディア・タイプ。　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29211,
+      "category": "system",
+      "jp": "セクタが見つかりません。　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29256,
+      "category": "system",
+      "jp": "プリンタの用紙切れです。　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29301,
+      "category": "system",
+      "jp": "書き込み不良。　　　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29346,
+      "category": "system",
+      "jp": "読み取り不良。　　　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29391,
+      "category": "system",
+      "jp": "ディスク・エラー。　　　　　　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29436,
+      "category": "system",
+      "jp": "のファイルが見つかりません。　　　　　　　　",
+      "kr": ""
+    },
+    {
+      "offset": 29489,
+      "category": "system",
+      "jp": "Ｆ・１０で強制終了",
+      "kr": ""
+    },
+    {
+      "offset": 29534,
+      "category": "system",
+      "jp": "��筋己実",
+      "kr": ""
+    },
+    {
+      "offset": 29552,
+      "category": "system",
+      "jp": "行",
+      "kr": ""
+    },
+    {
+      "offset": 29564,
+      "category": "system",
+      "jp": "変更",
+      "kr": ""
+    },
+    {
+      "offset": 29574,
+      "category": "system",
+      "jp": "��筋",
+      "kr": ""
+    },
+    {
+      "offset": 29597,
+      "category": "system",
+      "jp": "メモリが足りません（要５１８ＫＢ）",
+      "kr": ""
+    },
+    {
+      "offset": 40432,
+      "category": "status",
+      "jp": "レベル",
+      "kr": ""
+    },
+    {
+      "offset": 40442,
+      "category": "status",
+      "jp": "状　態",
+      "kr": ""
+    },
+    {
+      "offset": 40450,
+      "category": "status",
+      "jp": "生命力",
+      "kr": ""
+    },
+    {
+      "offset": 40458,
+      "category": "status",
+      "jp": "／",
+      "kr": ""
+    },
+    {
+      "offset": 40464,
+      "category": "status",
+      "jp": "／",
+      "kr": ""
+    },
+    {
+      "offset": 40470,
+      "category": "status",
+      "jp": "経験値",
+      "kr": ""
+    },
+    {
+      "offset": 40478,
+      "category": "status",
+      "jp": "／",
+      "kr": ""
+    },
+    {
+      "offset": 40484,
+      "category": "status",
+      "jp": "攻撃力",
+      "kr": ""
+    },
+    {
+      "offset": 40492,
+      "category": "status",
+      "jp": "素早さ",
+      "kr": ""
+    },
+    {
+      "offset": 40502,
+      "category": "status",
+      "jp": "防御力",
+      "kr": ""
+    },
+    {
+      "offset": 40510,
+      "category": "status",
+      "jp": "　運　",
+      "kr": ""
+    },
+    {
+      "offset": 40522,
+      "category": "status",
+      "jp": "武器",
+      "kr": ""
+    },
+    {
+      "offset": 40530,
+      "category": "status",
+      "jp": "防具",
+      "kr": ""
+    },
+    {
+      "offset": 40538,
+      "category": "status",
+      "jp": "道具",
+      "kr": ""
+    },
+    {
+      "offset": 40562,
+      "category": "status",
+      "jp": "精神力",
+      "kr": ""
+    },
+    {
+      "offset": 40582,
+      "category": "status",
+      "jp": "特技",
+      "kr": ""
+    },
+    {
+      "offset": 40604,
+      "category": "status",
+      "jp": "魔　力",
+      "kr": ""
+    },
+    {
+      "offset": 40624,
+      "category": "status",
+      "jp": "魔法",
+      "kr": ""
+    },
+    {
+      "offset": 40642,
+      "category": "status",
+      "jp": "魔　力",
+      "kr": ""
+    },
+    {
+      "offset": 40666,
+      "category": "status",
+      "jp": "魔　力",
+      "kr": ""
+    },
+    {
+      "offset": 40686,
+      "category": "status",
+      "jp": "魔法",
+      "kr": ""
+    },
+    {
+      "offset": 41380,
+      "category": "names",
+      "jp": "ダリオス",
+      "kr": ""
+    },
+    {
+      "offset": 41394,
+      "category": "names",
+      "jp": "エル",
+      "kr": ""
+    },
+    {
+      "offset": 41404,
+      "category": "names",
+      "jp": "キース",
+      "kr": ""
+    },
+    {
+      "offset": 41416,
+      "category": "names",
+      "jp": "ペトゥム",
+      "kr": ""
+    },
+    {
+      "offset": 41435,
+      "category": "names",
+      "jp": "排",
+      "kr": ""
+    },
+    {
+      "offset": 41495,
+      "category": "names",
+      "jp": "决",
+      "kr": ""
+    },
+    {
+      "offset": 41555,
+      "category": "names",
+      "jp": "柮",
+      "kr": ""
+    },
+    {
+      "offset": 41606,
+      "category": "names",
+      "jp": "正常",
+      "kr": ""
+    },
+    {
+      "offset": 41614,
+      "category": "names",
+      "jp": "毒",
+      "kr": ""
+    },
+    {
+      "offset": 41618,
+      "category": "names",
+      "jp": "気絶",
+      "kr": ""
+    },
+    {
+      "offset": 41630,
+      "category": "names",
+      "jp": "薬　草",
+      "kr": ""
+    },
+    {
+      "offset": 41642,
+      "category": "names",
+      "jp": "苦い薬草",
+      "kr": ""
+    },
+    {
+      "offset": 41656,
+      "category": "names",
+      "jp": "毒消し薬",
+      "kr": ""
+    },
+    {
+      "offset": 41668,
+      "category": "names",
+      "jp": "�ﾖ�ﾊ�ﾘ�ｭ�ｺ�ｫの水",
+      "kr": ""
+    },
+    {
+      "offset": 41688,
+      "category": "names",
+      "jp": "大打撃",
+      "kr": ""
+    },
+    {
+      "offset": 41700,
+      "category": "names",
+      "jp": "白刃一閃",
+      "kr": ""
+    },
+    {
+      "offset": 41714,
+      "category": "names",
+      "jp": "炎",
+      "kr": ""
+    },
+    {
+      "offset": 41722,
+      "category": "names",
+      "jp": "大　炎",
+      "kr": ""
+    },
+    {
+      "offset": 41734,
+      "category": "names",
+      "jp": "氷",
+      "kr": ""
+    },
+    {
+      "offset": 41742,
+      "category": "names",
+      "jp": "雷",
+      "kr": ""
+    },
+    {
+      "offset": 41750,
+      "category": "names",
+      "jp": "回　復",
+      "kr": ""
+    },
+    {
+      "offset": 41762,
+      "category": "names",
+      "jp": "大回復",
+      "kr": ""
+    },
+    {
+      "offset": 41774,
+      "category": "names",
+      "jp": "毒消し",
+      "kr": ""
+    },
+    {
+      "offset": 41788,
+      "category": "names",
+      "jp": "毒",
+      "kr": ""
+    },
+    {
+      "offset": 41794,
+      "category": "names",
+      "jp": "気絶",
+      "kr": ""
+    },
+    {
+      "offset": 41800,
+      "category": "names",
+      "jp": "消費�l�o�\\",
+      "kr": ""
+    },
+    {
+      "offset": 41812,
+      "category": "names",
+      "jp": "消費�r�o�\\",
+      "kr": ""
+    },
+    {
+      "offset": 41890,
+      "category": "names",
+      "jp": "魔法",
+      "kr": ""
+    },
+    {
+      "offset": 41896,
+      "category": "names",
+      "jp": "特技",
+      "kr": ""
+    }
   ]
 }
