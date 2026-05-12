@@ -1,5 +1,5 @@
-# 압축 해제 작업본
-*/_decompressed/
+# 빌드 출력
+build/
 
 # 파이썬
 __pycache__/

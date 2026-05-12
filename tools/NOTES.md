@@ -183,6 +183,6 @@ desc 진입: 64 02
 
 | 파일 | 역할 |
 |------|------|
-| `gf2_parser.py` | 메인 파서 (압축 해제 + 대화/아이템 추출 + JSON 생성) |
-| `translation.json` | 번역 파일 (오프셋 + JP/KR 쌍) |
-| `analysis_notes.md` | 역공학 분석 노트 (GF2.COM 디스어셈블 기록) |
+| `compile_lz.py` | LZ 압축/해제 + SJIS 유틸 (Compile社 공통) |
+| `hukyou_parser.py` | 환세풍광전 CMD 파서 (대화/아이템 추출 + JSON 생성) |
+| `translation/hukyou/translation.json` | 환세풍광전 번역 파일 (오프셋 + JP/KR 쌍) |
