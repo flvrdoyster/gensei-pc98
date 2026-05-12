@@ -8941,24 +8941,6 @@
       "kr": ""
     },
     {
-      "offset": 28867,
-      "category": "system",
-      "jp": "洗",
-      "kr": ""
-    },
-    {
-      "offset": 28888,
-      "category": "system",
-      "jp": "詠",
-      "kr": ""
-    },
-    {
-      "offset": 28892,
-      "category": "system",
-      "jp": "縒",
-      "kr": ""
-    },
-    {
       "offset": 28896,
       "category": "system",
       "jp": "のディスクがライト・プロテクトされています。",
@@ -9043,27 +9025,9 @@
       "kr": ""
     },
     {
-      "offset": 29534,
-      "category": "system",
-      "jp": "��筋己実",
-      "kr": ""
-    },
-    {
-      "offset": 29552,
-      "category": "system",
-      "jp": "行",
-      "kr": ""
-    },
-    {
       "offset": 29564,
       "category": "system",
       "jp": "変更",
-      "kr": ""
-    },
-    {
-      "offset": 29574,
-      "category": "system",
-      "jp": "��筋",
       "kr": ""
     },
     {
@@ -9091,27 +9055,9 @@
       "kr": ""
     },
     {
-      "offset": 40458,
-      "category": "status",
-      "jp": "／",
-      "kr": ""
-    },
-    {
-      "offset": 40464,
-      "category": "status",
-      "jp": "／",
-      "kr": ""
-    },
-    {
       "offset": 40470,
       "category": "status",
       "jp": "経験値",
-      "kr": ""
-    },
-    {
-      "offset": 40478,
-      "category": "status",
-      "jp": "／",
       "kr": ""
     },
     {
@@ -9223,24 +9169,6 @@
       "kr": ""
     },
     {
-      "offset": 41435,
-      "category": "names",
-      "jp": "排",
-      "kr": ""
-    },
-    {
-      "offset": 41495,
-      "category": "names",
-      "jp": "决",
-      "kr": ""
-    },
-    {
-      "offset": 41555,
-      "category": "names",
-      "jp": "柮",
-      "kr": ""
-    },
-    {
       "offset": 41606,
       "category": "names",
       "jp": "正常",
@@ -9274,12 +9202,6 @@
       "offset": 41656,
       "category": "names",
       "jp": "毒消し薬",
-      "kr": ""
-    },
-    {
-      "offset": 41668,
-      "category": "names",
-      "jp": "�ﾖ�ﾊ�ﾘ�ｭ�ｺ�ｫの水",
       "kr": ""
     },
     {
@@ -9346,18 +9268,6 @@
       "offset": 41794,
       "category": "names",
       "jp": "気絶",
-      "kr": ""
-    },
-    {
-      "offset": 41800,
-      "category": "names",
-      "jp": "消費�l�o�\\",
-      "kr": ""
-    },
-    {
-      "offset": 41812,
-      "category": "names",
-      "jp": "消費�r�o�\\",
       "kr": ""
     },
     {
