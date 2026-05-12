@@ -26,34 +26,42 @@ HTML = r"""<!DOCTYPE html>
 <title>환세풍광전 번역 에디터</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Malgun Gothic', sans-serif; background: #1a1a2e; color: #eee; padding: 16px; }
-h1 { font-size: 18px; margin-bottom: 12px; color: #e94560; }
-.toolbar { display: flex; gap: 8px; margin-bottom: 12px; align-items: center; flex-wrap: wrap; }
-.toolbar select, .toolbar input { background: #16213e; color: #eee; border: 1px solid #0f3460; padding: 6px 10px; border-radius: 4px; font-size: 14px; }
-.toolbar .stats { margin-left: auto; font-size: 13px; color: #888; }
-table { width: 100%; border-collapse: collapse; font-size: 14px; }
-th { background: #16213e; padding: 8px; text-align: left; position: sticky; top: 0; z-index: 1; }
-td { padding: 6px 8px; border-bottom: 1px solid #16213e; vertical-align: top; }
-tr:hover { background: #16213e44; }
-.type { width: 80px; font-size: 12px; color: #0f3460; }
-.file { width: 120px; font-size: 12px; color: #888; }
-.jp { width: 35%; color: #ccc; white-space: pre-wrap; }
+body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; }
+.topbar { position: sticky; top: 0; z-index: 10; background: #f5f5f5; padding: 12px 0 8px; border-bottom: 2px solid #ddd; margin-bottom: 8px; }
+h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
+.toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
+.toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
+.toolbar .stats { margin-left: auto; font-size: 12px; color: #888; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; }
+th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+tr:hover { background: #f0f0f0; }
+.type { width: 70px; }
+.type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.type-dialog span { background: #dbeafe; color: #1d4ed8; }
+.type-item span { background: #dcfce7; color: #15803d; }
+.type-ui span { background: #fef9c3; color: #854d0e; }
+.file { width: 110px; font-size: 12px; color: #666; }
+.jp { width: 35%; color: #444; white-space: pre-wrap; }
 .kr-cell { width: 35%; }
-.kr-input { width: 100%; background: #0f3460; color: #eee; border: 1px solid #16213e; padding: 5px 7px; border-radius: 3px; font-size: 14px; font-family: inherit; }
-.kr-input:focus { border-color: #e94560; outline: none; }
-.kr-input.modified { border-color: #e9a045; }
-.kr-input.saved { border-color: #45e980; }
-.len { width: 70px; font-size: 12px; text-align: center; }
-.len.over { color: #e94560; font-weight: bold; }
-.len.ok { color: #45e980; }
-.len.empty { color: #555; }
-.save-btn { background: #e94560; color: white; border: none; padding: 8px 20px; border-radius: 4px; cursor: pointer; font-size: 14px; }
-.save-btn:hover { background: #c73650; }
-.save-btn:disabled { background: #555; cursor: default; }
-.toast { position: fixed; bottom: 20px; right: 20px; background: #45e980; color: #000; padding: 10px 20px; border-radius: 4px; display: none; font-weight: bold; }
+.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 3px; font-size: 13px; font-family: inherit; }
+.kr-input:focus { border-color: #555; outline: none; }
+.kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
+.kr-input.saved { border-color: #22c55e; }
+.len { width: 70px; font-size: 12px; text-align: center; color: #888; }
+.len.over { color: #dc2626; font-weight: bold; }
+.len.ok { color: #16a34a; }
+.len.empty { color: #bbb; }
+.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.save-btn:hover { background: #111; }
+.save-btn:disabled { background: #bbb; cursor: default; }
+.build-btn { background: #fff; color: #333; border: 1px solid #ccc; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.build-btn:hover { background: #f0f0f0; }
+.toast { position: fixed; bottom: 20px; right: 20px; background: #222; color: #fff; padding: 10px 18px; border-radius: 4px; display: none; font-size: 13px; }
 </style>
 </head>
 <body>
+<div class="topbar">
 <h1>환세풍광전 번역 에디터</h1>
 <div class="toolbar">
   <select id="filterType">
@@ -67,8 +75,9 @@ tr:hover { background: #16213e44; }
   </select>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
-  <button class="save-btn" id="buildBtn" style="background:#0f3460">빌드</button>
+  <button class="build-btn" id="buildBtn">빌드</button>
   <span class="stats" id="stats"></span>
+</div>
 </div>
 <table>
 <thead><tr>
@@ -153,8 +162,9 @@ function getJpLen(r) {
 }
 
 function typeLabel(t) {
-  const m = { dialog: '대화', item_name: '아이템명', item_stat: '수치', item_desc: '설명', ui: 'UI' };
-  return m[t] || t;
+  const labels = { dialog: '대화', item_name: '아이템명', item_stat: '수치', item_desc: '설명', ui: 'UI' };
+  const cls = t.startsWith('item') ? 'type-item' : t === 'ui' ? 'type-ui' : 'type-dialog';
+  return `<div class="${cls}"><span>${labels[t] || t}</span></div>`;
 }
 
 function render() {
