@@ -40,6 +40,55 @@ def decompress(data, start=0):
 
 
 # ─────────────────────────────────────
+# LZ 압축
+# ─────────────────────────────────────
+
+def compress(data):
+    """
+    decompress()의 역함수. 그리디 최장 매치.
+    윈도우: 256바이트, 매치 길이: 3~130, 리터럴 런: 1~127.
+    """
+    result = bytearray()
+    literals = bytearray()
+    i = 0
+
+    def flush_literals():
+        nonlocal literals
+        while literals:
+            chunk = literals[:0x7F]
+            literals = literals[len(chunk):]
+            result.append(len(chunk))
+            result.extend(chunk)
+
+    while i < len(data):
+        best_len = 0
+        best_dist = 0
+        max_dist = min(i, 256)
+        max_len = min(len(data) - i, 130)
+
+        for dist in range(1, max_dist + 1):
+            ml = 0
+            while ml < max_len and data[i + ml] == data[i - dist + (ml % dist)]:
+                ml += 1
+            if ml > best_len:
+                best_len = ml
+                best_dist = dist
+
+        if best_len >= 3:
+            flush_literals()
+            result.append(0x80 | (best_len - 3))
+            result.append(best_dist - 1)
+            i += best_len
+        else:
+            literals.append(data[i])
+            i += 1
+
+    flush_literals()
+    result.append(0x00)
+    return bytes(result)
+
+
+# ─────────────────────────────────────
 # Shift-JIS 유틸
 # ─────────────────────────────────────
 
