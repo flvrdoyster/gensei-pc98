@@ -258,6 +258,57 @@ def generate_json(game_dir, out_path):
         data = decompress(raw)
         result['ui'] = extract_ui(data)
 
+    if os.path.exists(out_path):
+        with open(out_path, encoding='utf-8') as f:
+            old = json.load(f)
+        kr_map = {}
+        for dialog in old.get('dialogs', []):
+            for line in dialog['lines']:
+                if line['kr']:
+                    kr_map[('dialog', line['offset'])] = line['kr']
+        for item in old.get('items', []):
+            if item['name']['kr']:
+                kr_map[('item_name', item['name']['offset'])] = item['name']['kr']
+            if 'stat' in item and item['stat']['kr']:
+                kr_map[('item_stat', item['stat']['offset'])] = item['stat']['kr']
+            for desc in item['desc']:
+                if desc['kr']:
+                    kr_map[('item_desc', desc['offset'])] = desc['kr']
+        for entry in old.get('ui', []):
+            if entry['kr']:
+                kr_map[('ui', entry['offset'])] = entry['kr']
+
+        restored = 0
+        for dialog in result['dialogs']:
+            for line in dialog['lines']:
+                kr = kr_map.get(('dialog', line['offset']), '')
+                if kr:
+                    line['kr'] = kr
+                    restored += 1
+        for item in result['items']:
+            kr = kr_map.get(('item_name', item['name']['offset']), '')
+            if kr:
+                item['name']['kr'] = kr
+                restored += 1
+            if 'stat' in item:
+                kr = kr_map.get(('item_stat', item['stat']['offset']), '')
+                if kr:
+                    item['stat']['kr'] = kr
+                    restored += 1
+            for desc in item['desc']:
+                kr = kr_map.get(('item_desc', desc['offset']), '')
+                if kr:
+                    desc['kr'] = kr
+                    restored += 1
+        for entry in result['ui']:
+            kr = kr_map.get(('ui', entry['offset']), '')
+            if kr:
+                entry['kr'] = kr
+                restored += 1
+
+        if restored:
+            print(f'  기존 번역 {restored}건 보존')
+
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, 'w', encoding='utf-8') as f:
         json.dump(result, f, ensure_ascii=False, indent=2)
