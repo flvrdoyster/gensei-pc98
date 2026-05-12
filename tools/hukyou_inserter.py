@@ -26,6 +26,17 @@ def load_charmap():
         return json.load(f)
 
 
+ASCII_TO_FULLWIDTH = {
+    ' ': b'\x81\x40',  #
+    '.': b'\x81\x44',  # ．
+    ',': b'\x81\x43',  # ，
+    '!': b'\x81\x49',  # ！
+    '?': b'\x81\x48',  # ？
+    '(': b'\x81\x69',  # （
+    ')': b'\x81\x6A',  # ）
+}
+
+
 def encode_korean(text, charmap, use_gaiji=False):
     """한국어 텍스트를 SJIS 바이트로 인코딩. 한글은 charmap, 나머지는 SJIS."""
     result = bytearray()
@@ -36,8 +47,8 @@ def encode_korean(text, charmap, use_gaiji=False):
             result.append(int(code[2:], 16))
         elif use_gaiji and encode_gaiji_char(ch):
             result.extend(encode_gaiji_char(ch))
-        elif ch == ' ':
-            result.extend(b'\x81\x40')
+        elif ch in ASCII_TO_FULLWIDTH:
+            result.extend(ASCII_TO_FULLWIDTH[ch])
         else:
             encoded = ch.encode('shift_jis', errors='strict')
             result.extend(encoded)
