@@ -35,7 +35,8 @@ build/                 (gitignore) 패치된 파일 출력
 # 1. 텍스트 추출 (translation.json 생성)
 python3 tools/hukyou_parser.py original/hukyou
 
-# 2. translation/hukyou/translation.json 의 kr 필드 편집
+# 2. 번역 에디터 (http://localhost:8421)
+python3 tools/editor.py
 
 # 3. 재삽입 (build/hukyou/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
