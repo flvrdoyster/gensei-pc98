@@ -7,12 +7,12 @@
         {
           "offset": 1366,
           "jp": "雨の島の南の平野に",
-          "kr": "비의 섬 남쪽 땅에"
+          "kr": "비의 섬 남쪽엔"
         },
         {
           "offset": 1386,
           "jp": "一つの村があった",
-          "kr": "한 마을이 있었다"
+          "kr": "마을이 있었다"
         }
       ]
     },
@@ -33,12 +33,12 @@
         {
           "offset": 1442,
           "jp": "温暖な気候と",
-          "kr": "온난한 기후,"
+          "kr": "온난한 기후"
         },
         {
           "offset": 1456,
           "jp": "肥沃な土地とに恵まれ",
-          "kr": "비옥한 토지로 가득해"
+          "kr": "비옥한 토지로"
         }
       ]
     },
@@ -70,12 +70,12 @@
         {
           "offset": 1534,
           "jp": "この年も実りの季節を迎え",
-          "kr": "올해도 결실의 계절이 와"
+          "kr": "올해도 결실의 계절"
         },
         {
           "offset": 1562,
           "jp": "村人たちが収穫作業に",
-          "kr": "마을 사람들이 수확에"
+          "kr": "마을 사람은 수확에"
         },
         {
           "offset": 1584,
@@ -96,12 +96,12 @@
         {
           "offset": 1626,
           "jp": "とんでもない災厄が",
-          "kr": "터무니 없는 재해가"
+          "kr": "터무니 없는 일이"
         },
         {
           "offset": 1646,
           "jp": "やって来た！",
-          "kr": "찾아왔다!"
+          "kr": "벌어졌다!"
         }
       ]
     },
@@ -159,7 +159,7 @@
         {
           "offset": 1816,
           "jp": "　うまそうな　ブタだ",
-          "kr": " 맛있어 뵈는 돼지군"
+          "kr": " 맛나 뵈는 돼지군"
         },
         {
           "offset": 1840,
@@ -169,12 +169,12 @@
         {
           "offset": 1858,
           "jp": "　こいつらも　遠慮なく",
-          "kr": " 이 녀석들도 사양 않고"
+          "kr": " 돼지들도 사양 않고"
         },
         {
           "offset": 1882,
           "jp": "　いただいてくぜ！",
-          "kr": " 가져가겠다!"
+          "kr": " 가져가주지!"
         }
       ]
     },
@@ -211,12 +211,12 @@
         {
           "offset": 1966,
           "jp": "この物語の主人公たちの",
-          "kr": "이 이야기의 주인공들이"
+          "kr": "이 이야기의 주인공이"
         },
         {
           "offset": 1990,
           "jp": "出番となったのである",
-          "kr": "나설 때가 온 것이다"
+          "kr": "나서게 된 것이다"
         }
       ]
     },
@@ -232,7 +232,7 @@
         {
           "offset": 18486,
           "jp": "　今日はどーしたの？",
-          "kr": " 오늘은 무슨 일이야?"
+          "kr": " 오늘은 무슨 일?"
         }
       ]
     },
@@ -15046,427 +15046,427 @@
       "category": "system",
       "jp": "ドライブ",
       "jp_len": 8,
-      "kr": ""
+      "kr": "드라이브"
     },
     {
       "offset": 28896,
       "category": "system",
       "jp": "のディスクがライト・プロテクトされています。",
       "jp_len": 44,
-      "kr": ""
+      "kr": "의 디스크가 쓰기 금지되어 있습니다."
     },
     {
       "offset": 28941,
       "category": "system",
       "jp": "が使用できません。　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "를 사용할 수 없습니다."
     },
     {
       "offset": 28986,
       "category": "system",
       "jp": "の準備ができていません。　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "의 준비가 되어있지 않습니다."
     },
     {
       "offset": 29031,
       "category": "system",
       "jp": "に存在しないコマンドを実行しようとした。　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "에 존재하지 않는 커맨드를 실행하려고 합니다."
     },
     {
       "offset": 29076,
       "category": "system",
       "jp": "のＣＲＣエラー。　　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "의 CRC 에러."
     },
     {
       "offset": 29121,
       "category": "system",
       "jp": "のシーク・エラー。　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "의 찾기 에러."
     },
     {
       "offset": 29166,
       "category": "system",
       "jp": "がサポートしていないメディア・タイプ。　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "가 서포트하지 않는 미디어 타입."
     },
     {
       "offset": 29211,
       "category": "system",
       "jp": "セクタが見つかりません。　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "섹터가 발견되지 않습니다."
     },
     {
       "offset": 29256,
       "category": "system",
       "jp": "プリンタの用紙切れです。　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "프린터의 용지 부족입니다."
     },
     {
       "offset": 29301,
       "category": "system",
       "jp": "書き込み不良。　　　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "쓰기 오류."
     },
     {
       "offset": 29346,
       "category": "system",
       "jp": "読み取り不良。　　　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "읽기 오류."
     },
     {
       "offset": 29391,
       "category": "system",
       "jp": "ディスク・エラー。　　　　　　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "디스크 에러."
     },
     {
       "offset": 29436,
       "category": "system",
       "jp": "のファイルが見つかりません。　　　　　　　　",
       "jp_len": 44,
-      "kr": ""
+      "kr": "의 파일을 찾을 수 없습니다."
     },
     {
       "offset": 29489,
       "category": "system",
       "jp": "Ｆ・１０で強制終了",
       "jp_len": 18,
-      "kr": ""
+      "kr": "F10으로 강제 종료"
     },
     {
       "offset": 29564,
       "category": "system",
       "jp": "変更",
       "jp_len": 4,
-      "kr": ""
+      "kr": "변경"
     },
     {
       "offset": 29597,
       "category": "system",
       "jp": "メモリが足りません（要５１８ＫＢ）",
       "jp_len": 34,
-      "kr": ""
+      "kr": "메모리가 부족합니다. (약 518KB)"
     },
     {
       "offset": 40432,
       "category": "status",
       "jp": "レベル",
       "jp_len": 6,
-      "kr": ""
+      "kr": "레벨"
     },
     {
       "offset": 40442,
       "category": "status",
       "jp": "状　態",
       "jp_len": 6,
-      "kr": ""
+      "kr": "상태"
     },
     {
       "offset": 40450,
       "category": "status",
       "jp": "生命力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "생명력"
     },
     {
       "offset": 40470,
       "category": "status",
       "jp": "経験値",
       "jp_len": 6,
-      "kr": ""
+      "kr": "경험치"
     },
     {
       "offset": 40484,
       "category": "status",
       "jp": "攻撃力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "공격력"
     },
     {
       "offset": 40492,
       "category": "status",
       "jp": "素早さ",
       "jp_len": 6,
-      "kr": ""
+      "kr": "민첩성"
     },
     {
       "offset": 40502,
       "category": "status",
       "jp": "防御力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "방어력"
     },
     {
       "offset": 40510,
       "category": "status",
       "jp": "　運　",
       "jp_len": 6,
-      "kr": ""
+      "kr": "운"
     },
     {
       "offset": 40522,
       "category": "status",
       "jp": "武器",
       "jp_len": 4,
-      "kr": ""
+      "kr": "무기"
     },
     {
       "offset": 40530,
       "category": "status",
       "jp": "防具",
       "jp_len": 4,
-      "kr": ""
+      "kr": "장비"
     },
     {
       "offset": 40538,
       "category": "status",
       "jp": "道具",
       "jp_len": 4,
-      "kr": ""
+      "kr": "도구"
     },
     {
       "offset": 40562,
       "category": "status",
       "jp": "精神力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "정신력"
     },
     {
       "offset": 40582,
       "category": "status",
       "jp": "特技",
       "jp_len": 4,
-      "kr": ""
+      "kr": "특기"
     },
     {
       "offset": 40604,
       "category": "status",
       "jp": "魔　力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "마력"
     },
     {
       "offset": 40624,
       "category": "status",
       "jp": "魔法",
       "jp_len": 4,
-      "kr": ""
+      "kr": "마법"
     },
     {
       "offset": 40642,
       "category": "status",
       "jp": "魔　力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "마력"
     },
     {
       "offset": 40666,
       "category": "status",
       "jp": "魔　力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "마력"
     },
     {
       "offset": 40686,
       "category": "status",
       "jp": "魔法",
       "jp_len": 4,
-      "kr": ""
+      "kr": "마법"
     },
     {
       "offset": 41380,
       "category": "names",
       "jp": "ダリオス",
       "jp_len": 8,
-      "kr": ""
+      "kr": "다리오스"
     },
     {
       "offset": 41394,
       "category": "names",
       "jp": "エル",
       "jp_len": 4,
-      "kr": ""
+      "kr": "엘"
     },
     {
       "offset": 41404,
       "category": "names",
       "jp": "キース",
       "jp_len": 6,
-      "kr": ""
+      "kr": "키스"
     },
     {
       "offset": 41416,
       "category": "names",
       "jp": "ペトゥム",
       "jp_len": 8,
-      "kr": ""
+      "kr": "페톰"
     },
     {
       "offset": 41606,
       "category": "names",
       "jp": "正常",
       "jp_len": 4,
-      "kr": ""
+      "kr": "정상"
     },
     {
       "offset": 41614,
       "category": "names",
       "jp": "毒",
       "jp_len": 2,
-      "kr": ""
+      "kr": "독"
     },
     {
       "offset": 41618,
       "category": "names",
       "jp": "気絶",
       "jp_len": 4,
-      "kr": ""
+      "kr": "기절"
     },
     {
       "offset": 41630,
       "category": "names",
       "jp": "薬　草",
       "jp_len": 6,
-      "kr": ""
+      "kr": "약초"
     },
     {
       "offset": 41642,
       "category": "names",
       "jp": "苦い薬草",
       "jp_len": 8,
-      "kr": ""
+      "kr": "쓴 약초"
     },
     {
       "offset": 41656,
       "category": "names",
       "jp": "毒消し薬",
       "jp_len": 8,
-      "kr": ""
+      "kr": "해독초"
     },
     {
       "offset": 41668,
       "category": "names",
       "jp": "リフレッシュの水",
       "jp_len": 16,
-      "kr": ""
+      "kr": "리프레시 워터"
     },
     {
       "offset": 41688,
       "category": "names",
       "jp": "大打撃",
       "jp_len": 6,
-      "kr": ""
+      "kr": "대타격"
     },
     {
       "offset": 41700,
       "category": "names",
       "jp": "白刃一閃",
       "jp_len": 8,
-      "kr": ""
+      "kr": "백인일섬"
     },
     {
       "offset": 41714,
       "category": "names",
       "jp": "炎",
       "jp_len": 2,
-      "kr": ""
+      "kr": "염"
     },
     {
       "offset": 41722,
       "category": "names",
       "jp": "大　炎",
       "jp_len": 6,
-      "kr": ""
+      "kr": "대염"
     },
     {
       "offset": 41734,
       "category": "names",
       "jp": "氷",
       "jp_len": 2,
-      "kr": ""
+      "kr": "빙"
     },
     {
       "offset": 41742,
       "category": "names",
       "jp": "雷",
       "jp_len": 2,
-      "kr": ""
+      "kr": "뢰"
     },
     {
       "offset": 41750,
       "category": "names",
       "jp": "回　復",
       "jp_len": 6,
-      "kr": ""
+      "kr": "회복"
     },
     {
       "offset": 41762,
       "category": "names",
       "jp": "大回復",
       "jp_len": 6,
-      "kr": ""
+      "kr": "대회복"
     },
     {
       "offset": 41774,
       "category": "names",
       "jp": "毒消し",
       "jp_len": 6,
-      "kr": ""
+      "kr": "해독"
     },
     {
       "offset": 41788,
       "category": "names",
       "jp": "毒",
       "jp_len": 2,
-      "kr": ""
+      "kr": "독"
     },
     {
       "offset": 41794,
       "category": "names",
       "jp": "気絶",
       "jp_len": 4,
-      "kr": ""
+      "kr": "기절"
     },
     {
       "offset": 41800,
       "category": "names",
       "jp": "消費MP=",
       "jp_len": 10,
-      "kr": ""
+      "kr": "소비MP="
     },
     {
       "offset": 41812,
       "category": "names",
       "jp": "消費SP=",
       "jp_len": 10,
-      "kr": ""
+      "kr": "소비SP="
     },
     {
       "offset": 41890,
       "category": "names",
       "jp": "魔法",
       "jp_len": 4,
-      "kr": ""
+      "kr": "마법"
     },
     {
       "offset": 41896,
       "category": "names",
       "jp": "特技",
       "jp_len": 4,
-      "kr": ""
+      "kr": "특기"
     }
   ]
 }
