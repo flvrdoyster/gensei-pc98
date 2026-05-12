@@ -205,6 +205,7 @@ def extract_ui(data):
                         'offset': cur_off,
                         'category': category,
                         'jp': cur,
+                        'jp_len': i - cur_off,
                         'kr': '',
                     })
                     cur = ''
@@ -216,6 +217,7 @@ def extract_ui(data):
                 'offset': cur_off,
                 'category': category,
                 'jp': cur,
+                'jp_len': i - cur_off,
                 'kr': '',
             })
     return ui

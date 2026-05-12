@@ -17,7 +17,7 @@ import json
 import os
 import sys
 
-from compile_lz import decompress, compress
+from compile_lz import decompress, compress, encode_gaiji_char
 
 
 def load_charmap():
@@ -26,7 +26,7 @@ def load_charmap():
         return json.load(f)
 
 
-def encode_korean(text, charmap):
+def encode_korean(text, charmap, use_gaiji=False):
     """한국어 텍스트를 SJIS 바이트로 인코딩. 한글은 charmap, 나머지는 SJIS."""
     result = bytearray()
     for ch in text:
@@ -34,6 +34,8 @@ def encode_korean(text, charmap):
             code = charmap[ch]
             result.append(int(code[:2], 16))
             result.append(int(code[2:], 16))
+        elif use_gaiji and encode_gaiji_char(ch):
+            result.extend(encode_gaiji_char(ch))
         else:
             encoded = ch.encode('shift_jis', errors='strict')
             result.extend(encoded)
@@ -80,6 +82,16 @@ def collect_replacements(translation, charmap):
             by_file[fname] = []
         by_file[fname].append((offset, old, new))
 
+    def add_ui(fname, offset, jp_len, kr):
+        if not kr:
+            return
+        new = encode_korean(kr, charmap, use_gaiji=True)
+        dummy_old = b'\x00' * jp_len
+        new = fit_length(dummy_old, new, context=f'{fname} 0x{offset:X}: {kr}')
+        if fname not in by_file:
+            by_file[fname] = []
+        by_file[fname].append((offset, jp_len, new))
+
     for dialog in translation['dialogs']:
         fname = dialog['file']
         for line in dialog['lines']:
@@ -95,7 +107,7 @@ def collect_replacements(translation, charmap):
 
     for entry in translation.get('ui', []):
         fname = 'GF2.COM'
-        add(fname, entry['offset'], entry['jp'], entry['kr'])
+        add_ui(fname, entry['offset'], entry.get('jp_len', len(entry['jp'].encode('shift_jis'))), entry['kr'])
 
     return by_file
 
@@ -105,14 +117,19 @@ def patch_data(data, replacements):
     buf = bytearray(data)
     replacements.sort(key=lambda r: r[0], reverse=True)
 
-    for offset, old, new in replacements:
-        actual = buf[offset:offset + len(old)]
-        if actual != old:
-            raise ValueError(
-                f'오프셋 0x{offset:X} 불일치: '
-                f'예상 {old.hex()} != 실제 {actual.hex()}'
-            )
-        buf[offset:offset + len(old)] = new
+    for entry in replacements:
+        if len(entry) == 3 and isinstance(entry[1], bytes):
+            offset, old, new = entry
+            actual = buf[offset:offset + len(old)]
+            if actual != old:
+                raise ValueError(
+                    f'오프셋 0x{offset:X} 불일치: '
+                    f'예상 {old.hex()} != 실제 {actual.hex()}'
+                )
+            buf[offset:offset + len(old)] = new
+        else:
+            offset, length, new = entry
+            buf[offset:offset + length] = new
 
     return bytes(buf)
 
