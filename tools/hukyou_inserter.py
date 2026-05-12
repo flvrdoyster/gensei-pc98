@@ -147,6 +147,10 @@ def patch_data(data, replacements):
     return bytes(buf)
 
 
+GF2_BOOTSTRAP_SIZE = 0x171  # x86 self-extractor stub; LZ data starts here
+GF2_PAD_SIZE = 837          # bytes output when parsing bootstrap as LZ (offset correction)
+
+
 def run(game_dir):
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     title = os.path.basename(os.path.normpath(game_dir))
@@ -174,9 +178,16 @@ def run(game_dir):
         with open(src_path, 'rb') as f:
             raw = f.read()
 
-        data = decompress(raw)
-        patched = patch_data(data, replacements)
-        compressed = compress(patched)
+        if fname == 'GF2.COM':
+            bootstrap = raw[:GF2_BOOTSTRAP_SIZE]
+            data = decompress(raw, start=GF2_BOOTSTRAP_SIZE)
+            adj = [(r[0] - GF2_PAD_SIZE,) + r[1:] for r in replacements]
+            patched = patch_data(data, adj)
+            compressed = bootstrap + compress(patched)
+        else:
+            data = decompress(raw)
+            patched = patch_data(data, replacements)
+            compressed = compress(patched)
 
         out_path = os.path.join(out_dir, fname)
         with open(out_path, 'wb') as f:
