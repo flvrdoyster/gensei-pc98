@@ -126,3 +126,27 @@ def read_sjis_char(data, i):
             if 0 <= idx < len(_HW_KANA):
                 return _HW_KANA[idx]
     return data[i:i + 2].decode('shift_jis', errors='replace')
+
+
+_GAIJI_REV = {}
+
+
+def _build_gaiji_rev():
+    if _GAIJI_REV:
+        return
+    for code in range(0x21, 0x7F):
+        if code < 0x80:
+            s2 = code + 0x1F
+        else:
+            s2 = code + 0x20
+        sjis = (0x85 << 8) | s2
+        _GAIJI_REV[chr(code)] = bytes([0x85, s2])
+    for idx, ch in enumerate(_HW_KANA):
+        j2 = idx + 0x21
+        s2 = j2 + 0x7E
+        _GAIJI_REV[ch] = bytes([0x85, s2])
+
+
+def encode_gaiji_char(ch):
+    _build_gaiji_rev()
+    return _GAIJI_REV.get(ch)

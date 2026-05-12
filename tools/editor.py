@@ -12,6 +12,7 @@ translation.json의 kr 필드를 브라우저에서 편집, 저장.
 import http.server
 import json
 import os
+import subprocess
 import urllib.parse
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -66,6 +67,7 @@ tr:hover { background: #16213e44; }
   </select>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
+  <button class="save-btn" id="buildBtn" style="background:#0f3460">빌드</button>
   <span class="stats" id="stats"></span>
 </div>
 <table>
@@ -267,6 +269,34 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   setTimeout(() => toast.style.display = 'none', 2000);
 });
 
+document.getElementById('buildBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('buildBtn');
+  btn.disabled = true;
+  btn.textContent = '빌드 중...';
+  btn.style.background = '#555';
+
+  try {
+    const res = await fetch('/api/build', { method: 'POST' });
+    const result = await res.json();
+    const toast = document.getElementById('toast');
+    if (result.ok) {
+      toast.style.background = '#45e980';
+      toast.textContent = result.message;
+    } else {
+      toast.style.background = '#e94560';
+      toast.textContent = result.message;
+    }
+    toast.style.display = 'block';
+    setTimeout(() => toast.style.display = 'none', 4000);
+  } catch (e) {
+    alert('빌드 실패: ' + e.message);
+  }
+
+  btn.disabled = false;
+  btn.textContent = '빌드';
+  btn.style.background = '#0f3460';
+});
+
 document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
@@ -311,6 +341,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps({'updated': updated}).encode())
+        elif self.path == '/api/build':
+            result = self.run_build()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(result).encode())
         else:
             self.send_error(404)
 
@@ -363,6 +399,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
             json.dump(data, f, ensure_ascii=False, indent=2)
 
         return updated
+
+    def run_build(self):
+        game_dir = os.path.join(PROJECT_ROOT, 'original', 'hukyou')
+        inserter = os.path.join(PROJECT_ROOT, 'tools', 'hukyou_inserter.py')
+        try:
+            proc = subprocess.run(
+                ['python3', inserter, game_dir],
+                capture_output=True, text=True, timeout=60,
+                cwd=PROJECT_ROOT,
+            )
+            output = (proc.stdout + proc.stderr).strip()
+            if proc.returncode == 0:
+                return {'ok': True, 'message': output or '빌드 완료'}
+            return {'ok': False, 'message': output or '빌드 실패'}
+        except Exception as e:
+            return {'ok': False, 'message': str(e)}
 
 
 if __name__ == '__main__':
