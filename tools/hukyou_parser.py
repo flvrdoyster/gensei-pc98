@@ -172,6 +172,14 @@ UI_RANGES = [
 ]
 
 
+def _is_valid_ui_text(text):
+    if any(ord(c) == 0xFFFD or 0xFF61 <= ord(c) <= 0xFF9F for c in text):
+        return False
+    if len(text) == 1 and text not in '炎氷雷毒':
+        return False
+    return True
+
+
 def extract_ui(data):
     ui = []
     for start, end, category in UI_RANGES:
@@ -185,7 +193,7 @@ def extract_ui(data):
                 cur += read_sjis_char(data, i)
                 i += 2
             else:
-                if cur:
+                if cur and _is_valid_ui_text(cur):
                     ui.append({
                         'offset': cur_off,
                         'category': category,
@@ -193,8 +201,10 @@ def extract_ui(data):
                         'kr': '',
                     })
                     cur = ''
+                elif cur:
+                    cur = ''
                 i += 1
-        if cur:
+        if cur and _is_valid_ui_text(cur):
             ui.append({
                 'offset': cur_off,
                 'category': category,
