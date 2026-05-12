@@ -153,6 +153,10 @@ def run(game_dir):
     os.makedirs(out_dir, exist_ok=True)
 
     for fname, replacements in by_file.items():
+        if fname.upper().endswith('.COM'):
+            print(f'{fname}: COM 실행파일 — 별도 패치 필요, 스킵')
+            continue
+
         src_path = os.path.join(game_dir, fname)
         with open(src_path, 'rb') as f:
             raw = f.read()
