@@ -35,8 +35,12 @@ def extract_dialogs(data):
     i = 0
 
     while i < len(data):
-        if (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] == 0x00
-                and (is_sjis_lead(data[i + 2]) or data[i + 2] == 0x68)):
+        is_65_start = (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] == 0x00
+                       and (is_sjis_lead(data[i + 2]) or data[i + 2] == 0x68))
+        is_68_start = (not is_65_start and i + 3 < len(data)
+                       and data[i] == 0x68 and is_sjis_lead(data[i + 2]))
+
+        if is_65_start or is_68_start:
             if in_dialog:
                 if cur_text.strip():
                     cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
@@ -45,8 +49,11 @@ def extract_dialogs(data):
             cur_lines = []
             cur_text = ''
             in_dialog = True
-            i += 2
-            if data[i] == 0x68:
+            if is_65_start:
+                i += 2
+                if data[i] == 0x68:
+                    i += 2
+            else:
                 i += 2
             cur_offset = i
             continue
