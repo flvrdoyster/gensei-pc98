@@ -133,6 +133,7 @@ function encodeByteLen(text, useGaiji) {
   for (const ch of text) {
     if (charmap[ch]) { len += 2; }
     else if (useGaiji) { len += 2; }
+    else if (ch === ' ') { len += 2; }
     else if (ch.charCodeAt(0) < 0x80) { len += 1; }
     else { len += 2; }
   }

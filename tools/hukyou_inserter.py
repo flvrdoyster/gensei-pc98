@@ -36,6 +36,8 @@ def encode_korean(text, charmap, use_gaiji=False):
             result.append(int(code[2:], 16))
         elif use_gaiji and encode_gaiji_char(ch):
             result.extend(encode_gaiji_char(ch))
+        elif ch == ' ':
+            result.extend(b'\x81\x40')
         else:
             encoded = ch.encode('shift_jis', errors='strict')
             result.extend(encoded)
