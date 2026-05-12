@@ -40,42 +40,59 @@ def encode_korean(text, charmap):
     return bytes(result)
 
 
+FULLWIDTH_SPACE = b'\x81\x40'
+
+
+def fit_length(old_bytes, new_bytes):
+    """new_bytes를 old_bytes와 동일한 길이로 맞춤. 짧으면 전각 공백 패딩, 길면 뒤에서 자름."""
+    diff = len(old_bytes) - len(new_bytes)
+    if diff == 0:
+        return new_bytes
+    if diff > 0:
+        pad = FULLWIDTH_SPACE * (diff // 2)
+        if diff % 2 == 1:
+            pad += b'\x20'
+        return new_bytes + pad
+    # 길면 2바이트 문자 경계에서 자름
+    target = len(old_bytes)
+    cut = new_bytes[:target]
+    if target >= 2 and is_sjis_lead_byte(cut[-2]):
+        pass  # 2바이트 문자가 정상 끝남
+    elif target >= 1 and is_sjis_lead_byte(cut[-1]):
+        cut = cut[:-1] + b'\x20'
+    return cut
+
+
+def is_sjis_lead_byte(b):
+    return 0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC
+
+
 def collect_replacements(translation, charmap):
-    """translation.json에서 파일별 교체 목록 생성."""
+    """translation.json에서 파일별 교체 목록 생성. 바이트 길이 자동 맞춤."""
     by_file = {}
+
+    def add(fname, offset, jp, kr):
+        if not kr:
+            return
+        old = jp.encode('shift_jis')
+        new = encode_korean(kr, charmap)
+        new = fit_length(old, new)
+        if fname not in by_file:
+            by_file[fname] = []
+        by_file[fname].append((offset, old, new))
 
     for dialog in translation['dialogs']:
         fname = dialog['file']
-        if fname not in by_file:
-            by_file[fname] = []
         for line in dialog['lines']:
-            if not line['kr']:
-                continue
-            old = line['jp'].encode('shift_jis')
-            new = encode_korean(line['kr'], charmap)
-            by_file[fname].append((line['offset'], old, new))
+            add(fname, line['offset'], line['jp'], line['kr'])
 
     for item in translation.get('items', []):
         fname = 'MESSAGE.CMD'
-        if fname not in by_file:
-            by_file[fname] = []
-
-        if item['name']['kr']:
-            old = item['name']['jp'].encode('shift_jis')
-            new = encode_korean(item['name']['kr'], charmap)
-            by_file[fname].append((item['name']['offset'], old, new))
-
-        if 'stat' in item and item['stat']['kr']:
-            old = item['stat']['jp'].encode('shift_jis')
-            new = encode_korean(item['stat']['kr'], charmap)
-            by_file[fname].append((item['stat']['offset'], old, new))
-
+        add(fname, item['name']['offset'], item['name']['jp'], item['name']['kr'])
+        if 'stat' in item:
+            add(fname, item['stat']['offset'], item['stat']['jp'], item['stat']['kr'])
         for desc in item['desc']:
-            if not desc['kr']:
-                continue
-            old = desc['jp'].encode('shift_jis')
-            new = encode_korean(desc['kr'], charmap)
-            by_file[fname].append((desc['offset'], old, new))
+            add(fname, desc['offset'], desc['jp'], desc['kr'])
 
     return by_file
 
