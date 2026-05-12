@@ -26,24 +26,24 @@ HTML = r"""<!DOCTYPE html>
 <title>환세풍광전 번역 에디터</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; }
+body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; max-width: 1240px; margin: 0 auto; }
 .topbar { position: sticky; top: 0; z-index: 10; background: #f5f5f5; padding: 12px 0 8px; border-bottom: 2px solid #ddd; margin-bottom: 8px; }
 h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
 .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
 .toolbar .stats { margin-left: auto; font-size: 12px; color: #888; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; }
+table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; }
+td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
 tr:hover { background: #f0f0f0; }
-.type { width: 70px; }
+.type { width: 88px; }
 .type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
 .type-dialog span { background: #dbeafe; color: #1d4ed8; }
 .type-item span { background: #dcfce7; color: #15803d; }
 .type-ui span { background: #fef9c3; color: #854d0e; }
-.file { width: 110px; font-size: 12px; color: #666; }
-.jp { width: 35%; color: #444; white-space: pre-wrap; }
-.kr-cell { width: 35%; }
+.file { width: 120px; font-size: 12px; color: #666; }
+.jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; }
+.kr-cell { width: 42%; }
 .kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 3px; font-size: 13px; font-family: inherit; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
