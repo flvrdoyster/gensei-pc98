@@ -43,7 +43,7 @@ def encode_korean(text, charmap):
 FULLWIDTH_SPACE = b'\x81\x40'
 
 
-def fit_length(old_bytes, new_bytes):
+def fit_length(old_bytes, new_bytes, context=''):
     """new_bytes를 old_bytes와 동일한 길이로 맞춤. 짧으면 전각 공백 패딩, 길면 뒤에서 자름."""
     diff = len(old_bytes) - len(new_bytes)
     if diff == 0:
@@ -53,12 +53,11 @@ def fit_length(old_bytes, new_bytes):
         if diff % 2 == 1:
             pad += b'\x20'
         return new_bytes + pad
-    # 길면 2바이트 문자 경계에서 자름
+    overflow = len(new_bytes) - len(old_bytes)
+    print(f'  ⚠ {overflow}바이트 초과, 잘림: {context}')
     target = len(old_bytes)
     cut = new_bytes[:target]
-    if target >= 2 and is_sjis_lead_byte(cut[-2]):
-        pass  # 2바이트 문자가 정상 끝남
-    elif target >= 1 and is_sjis_lead_byte(cut[-1]):
+    if target >= 1 and is_sjis_lead_byte(cut[-1]):
         cut = cut[:-1] + b'\x20'
     return cut
 
@@ -76,7 +75,7 @@ def collect_replacements(translation, charmap):
             return
         old = jp.encode('shift_jis')
         new = encode_korean(kr, charmap)
-        new = fit_length(old, new)
+        new = fit_length(old, new, context=f'{fname} 0x{offset:X}: {kr}')
         if fname not in by_file:
             by_file[fname] = []
         by_file[fname].append((offset, old, new))
