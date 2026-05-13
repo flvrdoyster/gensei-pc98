@@ -454,10 +454,13 @@ def generate_json(game_dir, out_path):
         with open(out_path, encoding='utf-8') as f:
             old = json.load(f)
         kr_map = {}
+        tag_map = {}
         for dialog in old.get('dialogs', []):
             for line in dialog['lines']:
                 if line['kr']:
                     kr_map[('dialog', line['offset'])] = line['kr']
+                if line.get('tag'):
+                    tag_map[(dialog['file'], line['offset'])] = line['tag']
         for item in old.get('items', []):
             if item['name']['kr']:
                 kr_map[('item_name', item['name']['offset'])] = item['name']['kr']
@@ -477,6 +480,9 @@ def generate_json(game_dir, out_path):
                 if kr:
                     line['kr'] = kr
                     restored += 1
+                tag = tag_map.get((fname, line['offset']))
+                if tag:
+                    line['tag'] = tag
         for item in result['items']:
             kr = kr_map.get(('item_name', item['name']['offset']), '')
             if kr:

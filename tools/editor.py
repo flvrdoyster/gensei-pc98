@@ -41,6 +41,12 @@ tr:hover { background: #f0f0f0; }
 .type-dialog span { background: #dbeafe; color: #1d4ed8; }
 .type-item span { background: #dcfce7; color: #15803d; }
 .type-ui span { background: #fef9c3; color: #854d0e; }
+.type span.taggable { cursor: pointer; position: relative; }
+.type span.taggable:hover { filter: brightness(0.9); }
+.tag-menu { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 20; min-width: 80px; padding: 2px 0; }
+.tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
+.tag-menu div:hover { background: #f0f0f0; }
+.tag-menu div.active { font-weight: 600; }
 .file { width: 120px; font-size: 12px; color: #666; }
 .jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
 .jp:hover { background: #f0f4ff; }
@@ -72,6 +78,8 @@ tr:hover { background: #f0f0f0; }
     <option value="dialog">대화</option>
     <option value="item">아이템</option>
     <option value="ui">UI</option>
+    <option value="system">시스템</option>
+    <option value="battle">전투</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
@@ -97,6 +105,7 @@ tr:hover { background: #f0f0f0; }
 <script>
 let rows = [];
 let modified = {};
+let tagChanges = {};
 let charmap = {};
 
 async function load() {
@@ -111,7 +120,7 @@ async function load() {
   for (const dialog of data.dialogs) {
     for (const line of dialog.lines) {
       rows.push({
-        type: 'dialog', file: dialog.file, index: dialog.index,
+        type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
         offset: line.offset, jp: line.jp, kr: line.kr,
       });
     }
@@ -164,10 +173,15 @@ function getJpLen(r) {
   return len;
 }
 
-function typeLabel(t) {
-  const labels = { dialog: '대화', item_name: '아이템명', item_stat: '수치', item_desc: '설명', ui: 'UI' };
-  const cls = t.startsWith('item') ? 'type-item' : t === 'ui' ? 'type-ui' : 'type-dialog';
-  return `<div class="${cls}"><span>${labels[t] || t}</span></div>`;
+const TAG_LABELS = { dialog: '대화', ui: 'UI', system: '시스템', battle: '전투', item_name: '아이템명', item_stat: '수치', item_desc: '설명' };
+const DIALOG_TAGS = ['dialog', 'ui', 'system', 'battle'];
+
+function typeLabel(r) {
+  const effective = r.tag || r.type;
+  const label = TAG_LABELS[effective] || effective;
+  const cls = effective.startsWith('item') ? 'type-item' : (effective === 'ui' || effective === 'system' || effective === 'battle') ? 'type-ui' : 'type-dialog';
+  const taggable = r.type === 'dialog' ? ' taggable' : '';
+  return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
 function render() {
@@ -177,8 +191,16 @@ function render() {
 
   const filtered = rows.filter(r => {
     if (filterType) {
-      if (filterType === 'item' && !r.type.startsWith('item')) return false;
-      if (filterType !== 'item' && r.type !== filterType && !(filterType === 'item' && r.type.startsWith('item'))) return false;
+      const effective = r.tag || r.type;
+      if (filterType === 'item') {
+        if (!r.type.startsWith('item')) return false;
+      } else if (filterType === 'dialog') {
+        if (r.type !== 'dialog' || r.tag) return false;
+      } else if (filterType === 'ui' || filterType === 'system' || filterType === 'battle') {
+        if (effective !== filterType && r.type !== filterType) return false;
+      } else {
+        if (r.type !== filterType) return false;
+      }
     }
     if (filterFile && r.file !== filterFile) return false;
     if (search && !r.jp.toLowerCase().includes(search) && !(r.kr || '').toLowerCase().includes(search)) return false;
@@ -204,7 +226,7 @@ function render() {
     }
 
     tr.innerHTML = `
-      <td class="type">${typeLabel(r.type)}</td>
+      <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${escHtml(r.jp)}</td>
       <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
@@ -223,8 +245,10 @@ function updateStats() {
   const total = rows.length;
   const done = rows.filter(r => (r.kr || '') || (modified[r.type+':'+r.offset] || '')).length;
   const mod = Object.keys(modified).length;
-  document.getElementById('stats').textContent = `번역: ${done}/${total} | 수정: ${mod}건`;
-  document.getElementById('saveBtn').disabled = mod === 0;
+  const tags = Object.keys(tagChanges).length;
+  const changes = mod + tags;
+  document.getElementById('stats').textContent = `번역: ${done}/${total} | 수정: ${mod}건` + (tags ? ` | 분류: ${tags}건` : '');
+  document.getElementById('saveBtn').disabled = changes === 0;
 }
 
 document.getElementById('tbody').addEventListener('input', e => {
@@ -264,7 +288,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   const res = await fetch('/api/save', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify(modified),
+    body: JSON.stringify({ translations: modified, tags: tagChanges }),
   });
   const result = await res.json();
 
@@ -273,6 +297,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     if (row) row.kr = val;
   }
   modified = {};
+  tagChanges = {};
 
   document.querySelectorAll('.kr-input.modified').forEach(el => {
     el.classList.remove('modified');
@@ -282,7 +307,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 
   btn.textContent = '저장';
   updateStats();
-  showToast(`${result.updated}건 저장됨`, 'save');
+  showToast(`${result.updated}건 저장됨`, 'ok');
 });
 
 let _toastTimer = null;
@@ -325,6 +350,38 @@ document.addEventListener('keydown', e => {
     const btn = document.getElementById('saveBtn');
     if (!btn.disabled) btn.click();
   }
+});
+
+document.getElementById('tbody').addEventListener('click', e => {
+  const span = e.target.closest('.taggable');
+  if (!span) return;
+  document.querySelectorAll('.tag-menu').forEach(m => m.remove());
+  const offset = parseInt(span.dataset.offset);
+  const file = span.dataset.file;
+  const row = rows.find(r => r.offset === offset && r.file === file && r.type === 'dialog');
+  if (!row) return;
+  const current = row.tag || 'dialog';
+  const menu = document.createElement('div');
+  menu.className = 'tag-menu';
+  for (const tag of DIALOG_TAGS) {
+    const div = document.createElement('div');
+    div.textContent = TAG_LABELS[tag];
+    if (tag === current) div.className = 'active';
+    div.addEventListener('click', () => {
+      row.tag = tag === 'dialog' ? null : tag;
+      tagChanges[file + ':' + offset] = row.tag;
+      menu.remove();
+      render();
+      updateStats();
+    });
+    menu.appendChild(div);
+  }
+  span.style.position = 'relative';
+  span.appendChild(menu);
+  setTimeout(() => {
+    const close = (ev) => { if (!menu.contains(ev.target)) { menu.remove(); document.removeEventListener('click', close); } };
+    document.addEventListener('click', close);
+  }, 0);
 });
 
 load();
@@ -376,12 +433,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(data)
 
-    def apply_changes(self, changes):
+    def apply_changes(self, body):
         with open(TRANS_PATH, encoding='utf-8') as f:
             data = json.load(f)
 
+        translations = body.get('translations', {})
+        tags = body.get('tags', {})
+
         updated = 0
-        for key, kr in changes.items():
+        for key, kr in translations.items():
             typ, offset_str = key.split(':', 1)
             offset = int(offset_str)
 
@@ -411,6 +471,20 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 for entry in data.get('ui', []):
                     if entry['offset'] == offset:
                         entry['kr'] = kr
+                        updated += 1
+
+        for key, tag in tags.items():
+            file_name, offset_str = key.split(':', 1)
+            offset = int(offset_str)
+            for dialog in data['dialogs']:
+                if dialog['file'] != file_name:
+                    continue
+                for line in dialog['lines']:
+                    if line['offset'] == offset:
+                        if tag:
+                            line['tag'] = tag
+                        else:
+                            line.pop('tag', None)
                         updated += 1
 
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
