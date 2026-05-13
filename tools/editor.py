@@ -311,7 +311,7 @@ document.getElementById('buildBtn').addEventListener('click', async () => {
 
   btn.disabled = false;
   btn.textContent = '빌드';
-  btn.style.background = '#0f3460';
+  btn.style.background = '';
 });
 
 document.getElementById('filterType').addEventListener('change', render);
