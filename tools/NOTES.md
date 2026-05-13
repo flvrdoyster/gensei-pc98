@@ -76,7 +76,8 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 
 ## 가이지 (外字, 0x85XX) 인코딩
 
-게임의 모든 텍스트는 표준 Shift-JIS 대신 **가이지 영역(0x85XX)** 으로 인코딩되어 있음.
+게임의 일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 Shift-JIS 대신 **가이지 영역(0x85XX)** 으로 인코딩되어 있음.  
+가이지 텍스트는 ASCII도 2바이트로 표현되므로, 인서터에서 `use_gaiji=True`로 인코딩해야 함.
 
 ### 매핑 구조 (`compile_lz.py`)
 
@@ -128,15 +129,25 @@ IN_DIALOG 내부:
   그 외    → 스킵
 ```
 
-각 라인 항목: `{offset, jp, jp_len, kr}`  
-`jp_len` = `cur_end - cur_offset` (실제 바이트 수, 가이지 불완전 디코딩 대응)
+각 라인 항목: `{offset, jp, jp_len, kr, gaiji?, tag?}`  
+`jp_len` = `cur_end - cur_offset` (실제 바이트 수, 가이지 불완전 디코딩 대응)  
+`gaiji` = 원본 바이트에 0x85XX 가이지 코드 포함 시 `true` (인서터가 가이지 인코딩 적용)  
+`tag` = 수동 분류 태그 (`"ui"`, `"system"`, `"battle"` 등, 에디터에서 변경)
 
 ### 메뉴 파서 (`extract_menus`)
 
 ```
 13 00 감지 → 포인터 테이블 읽기 → 각 포인터 위치의 항목 파싱
 항목: 64 00 [2B ID] [SJIS 텍스트] 65 00
-출력: dialog 배열에 index='menu1', 'menu2', … 로 병합
+출력: dialog 배열에 정수 index로 병합 (오프셋 순 정렬)
+```
+
+### 독립 메뉴 파서 (`extract_orphan_items`)
+
+```
+13 00 블록 밖에 존재하는 64 00 [2B ID] [SJIS text] 65 00 패턴 추출.
+extract_dialogs/extract_menus가 잡지 못한 항목 보완.
+FFFD(디코딩 실패) 포함 항목은 제외.
 ```
 
 ### 아이템 파서 (`extract_items`, MESSAGE.CMD)
@@ -160,8 +171,9 @@ desc 진입: 64 02
 
 ### 교체 방식
 
-- 정상 텍스트: `jp.encode('shift_jis')` 원본 바이트 검증 후 교체
-- 가이지 포함 텍스트: `jp_len` 기반 길이 교체 (바이트 검증 생략)
+- 정상 텍스트: `jp.encode('shift_jis')` 원본 바이트 검증 후 교체 (`use_gaiji=False`)
+- 가이지 포함 텍스트: `jp_len` 기반 길이 교체 + `use_gaiji=True` 인코딩  
+  (ASCII를 1바이트가 아닌 2바이트 가이지(0x85XX)로 인코딩 — 게임 렌더러가 반각 표시 불가)
 - GF2.COM: 부트스트랩 보존 후 LZ 재압축, `GF2_PAD_SIZE` 오프셋 보정
 
 ### 패치 순서
@@ -184,8 +196,9 @@ desc 진입: 64 02
       "file": "STAGE1.CMD",
       "index": 1,
       "lines": [
-        {"offset": 18462, "jp": "「あら　いらっしゃい！", "jp_len": 22, "kr": ""},
-        {"offset": 18484, "jp": "　今日はどーしたの？",   "jp_len": 20, "kr": ""}
+        {"offset": 18462, "jp": "「あら　いらっしゃい！", "jp_len": 22, "kr": "", "tag": "ui"},
+        {"offset": 18484, "jp": "　今日はどーしたの？",   "jp_len": 20, "kr": ""},
+        {"offset": 24724, "jp": "５０Gold", "jp_len": 12, "kr": "", "gaiji": true}
       ]
     },
     {
@@ -216,7 +229,9 @@ desc 진입: 64 02
 
 - `offset`: 압축 해제 후 바이트 오프셋
 - `jp_len`: 원본 바이트 수 (가이지 포함 항목의 정확한 길이 보장)
-- `index`: 정수(대화 블록) 또는 `"menuN"` (메뉴 선택지 블록)
+- `index`: 정수 (파일 내 오프셋 순, 대화/메뉴/독립항목 통합 번호)
+- `gaiji`: 원본 바이트에 0x85XX 포함 시 `true` (선택적)
+- `tag`: 수동 분류 태그 — `"ui"`, `"system"`, `"battle"` (선택적, 에디터에서 변경)
 - `stat` 키: 수치 없는 아이템은 키 자체 없음
 
 ---
