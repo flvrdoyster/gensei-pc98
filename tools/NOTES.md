@@ -46,7 +46,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 
 | 바이트 | 역할 |
 |--------|------|
-| `65 00 [SJIS lead]` | 대화 블록 시작 |
+| `65 00/01 [SJIS/ctrl]` | 대화 블록 시작 (01 = 이벤트, ctrl = 62/63/64/66/76) |
 | `72 XX` | 줄바꿈 (XX는 부가 파라미터) |
 | `6B` | 대화 블록 명시 종료 |
 | `65 00` (블록 내부) | 서브항목 종료자 |
@@ -68,8 +68,9 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 포인터 수 계산: `n = (first_ptr - current_pos) / 2`  
 유효성 검사: `n > 0 and n <= 10 and first_ptr > current_pos`
 
-핵심 판별 기준: `65 00` 다음 바이트가 Shift-JIS 선행 바이트 범위
-(`0x81~0x9F`, `0xE0~0xFC`)인지 여부로 대화/비대화 구분.
+핵심 판별 기준: `65 00/01` 다음 바이트가 Shift-JIS 선행 바이트 범위
+(`0x81~0x9F`, `0xE0~0xFC`) 또는 제어바이트(`62/63/64/66/76`)인지 여부로 대화/비대화 구분.
+제어바이트 확장은 `in_dialog=False`일 때만 적용 — 블록 내부 `65 00`은 서브항목 종료자로 유지.
 
 ---
 
@@ -115,7 +116,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 ```
 상태: OUT_OF_DIALOG / IN_DIALOG
 
-IN_DIALOG 진입: 65 00 [SJIS lead]
+IN_DIALOG 진입: 65 00/01 [SJIS lead 또는 제어바이트(62-76, out-of-dialog만)]
 IN_DIALOG 종료: 6B 또는 다음 65 00
 
 IN_DIALOG 내부:
@@ -247,6 +248,23 @@ for i in range(len(data)-1):
 
 5. 0x65, 0x6b, 0x72 등 동일 코드 쓸 가능성 높음 (같은 엔진이면)
 6. 차이가 있으면 새 파서로 분기
+
+---
+
+## 추출기 × 파일 교차 검증 결과
+
+모든 CMD 파일과 GF2.COM에 `extract_dialogs`, `extract_items`, `extract_menus`를 교차 실행하여 검증 완료.
+
+| 추출기 | MESSAGE.CMD | STAGE/OPEN/ENDING.CMD | GF2.COM |
+|--------|:-----------:|:---------------------:|:-------:|
+| `extract_dialogs` | O (속마음 독백) | O (메인 스크립트) | ✗ 바이너리 오탐 |
+| `extract_menus` | 해당 없음 | O | ✗ 바이너리 오탐 |
+| `extract_items` | O (아이템 데이터) | ✗ 바이너리 오탐 | ✗ 바이너리 오탐 |
+| `extract_ui` | 해당 없음 | 해당 없음 | O (하드코딩 오프셋) |
+
+- STAGE 파일의 `0F 03` 히트는 바이너리 데이터 — 실제 아이템 구조 아님
+- GF2.COM의 `65 00/01` 히트는 실행 코드 내 우연 일치 — DOS 에러 메시지(`メモリが足りません` 등)만 텍스트이나 번역 대상 아님
+- MESSAGE.CMD는 아이템(offset 98~2730)과 대화(offset 2928~)가 영역 분리됨 → 아이템 오프셋을 대화 추출에서 제외하여 중복 방지
 
 ---
 

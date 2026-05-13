@@ -7,9 +7,10 @@
   python hukyou_parser.py <game_dir> dump  각 CMD 압축 해제본 저장
 
 제어코드 (압축 해제 후):
-  65 00 [SJIS lead]  대화 블록 시작
+  65 00/01 [SJIS/ctrl]  대화 블록 시작 (01 = 이벤트/보물상자, ctrl = 62-76)
   72 XX              줄바꿈
   6b                 대화 블록 종료
+  64 00 [2B] [text]  메뉴/선택지 항목 (65 00으로 종료)
   0f 03              아이템 항목 시작 (MESSAGE.CMD)
   64 02              아이템 설명 줄 구분
   64 XX (XX!=02)     아이템 수치 구분
@@ -41,8 +42,10 @@ def extract_dialogs(data):
     i = 0
 
     while i < len(data):
-        is_65_start = (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] == 0x00
-                       and (is_sjis_lead(data[i + 2]) or data[i + 2] == 0x68))
+        is_65_start = (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] in (0x00, 0x01)
+                       and (is_sjis_lead(data[i + 2]) or data[i + 2] == 0x68
+                            or (not in_dialog
+                                and data[i + 2] in (0x62, 0x63, 0x64, 0x66, 0x76))))
         is_68_start = (not is_65_start and i + 3 < len(data)
                        and data[i] == 0x68 and is_sjis_lead(data[i + 2]))
 
@@ -203,6 +206,57 @@ def extract_menus(data):
 
 
 # ─────────────────────────────────────
+# 독립 메뉴 항목 파서 (13 00 블록 밖의 64 00 항목)
+# ─────────────────────────────────────
+
+def extract_orphan_items(data, captured_offsets):
+    """extract_dialogs/extract_menus가 잡지 못한 64 00 [2B ID] [SJIS text] 65 00 항목."""
+    items = []
+    cur_group = []
+    i = 0
+
+    while i < len(data) - 5:
+        if data[i] != 0x64 or data[i + 1] != 0x00:
+            if cur_group:
+                items.append(cur_group)
+                cur_group = []
+            i += 1
+            continue
+
+        j = i + 4
+        text = ''
+        text_off = j
+        text_end = j
+        while j < len(data) - 1:
+            if data[j] == 0x65 and j + 1 < len(data) and data[j + 1] == 0x00:
+                break
+            if is_sjis(data, j):
+                if not text:
+                    text_off = j
+                text += read_sjis_char(data, j)
+                j += 2
+                text_end = j
+            else:
+                j += 1
+
+        if (text.strip() and len(text) >= 2
+                and text_off not in captured_offsets
+                and not any(ord(c) == 0xFFFD for c in text)):
+            cur_group.append({'offset': text_off, 'jp': text,
+                              'jp_len': text_end - text_off, 'kr': ''})
+            i = j + 2 if j < len(data) - 1 else j
+        else:
+            if cur_group:
+                items.append(cur_group)
+                cur_group = []
+            i += 1
+
+    if cur_group:
+        items.append(cur_group)
+    return items
+
+
+# ─────────────────────────────────────
 # 아이템/장비 파서 (MESSAGE.CMD)
 # ─────────────────────────────────────
 
@@ -340,6 +394,7 @@ def extract_ui(data):
 DIALOG_FILES = [
     'OPEN.CMD', 'STAGE1.CMD', 'STAGE2.CMD', 'STAGE3.CMD',
     'STAGE4.CMD', 'STAGE5.CMD', 'STAGE6.CMD', 'STAGE7.CMD', 'ENDING.CMD',
+    'MESSAGE.CMD',
 ]
 ITEM_FILE = 'MESSAGE.CMD'
 UI_FILE = 'GF2.COM'
@@ -347,6 +402,21 @@ UI_FILE = 'GF2.COM'
 
 def generate_json(game_dir, out_path):
     result = {'dialogs': [], 'items': [], 'ui': []}
+
+    # 아이템을 먼저 추출 — MESSAGE.CMD 대화에서 아이템 오프셋 제외용
+    item_offsets = set()
+    fpath = os.path.join(game_dir, ITEM_FILE)
+    if os.path.exists(fpath):
+        with open(fpath, 'rb') as f:
+            raw = f.read()
+        data = decompress(raw)
+        result['items'] = extract_items(data)
+        for item in result['items']:
+            item_offsets.add(item['name']['offset'])
+            if 'stat' in item:
+                item_offsets.add(item['stat']['offset'])
+            for desc in item['desc']:
+                item_offsets.add(desc['offset'])
 
     for fname in DIALOG_FILES:
         fpath = os.path.join(game_dir, fname)
@@ -356,26 +426,33 @@ def generate_json(game_dir, out_path):
             raw = f.read()
         data = decompress(raw)
         dialogs = extract_dialogs(data)
-        for idx, lines in enumerate(dialogs):
-            result['dialogs'].append({
-                'file': fname,
-                'index': idx + 1,
-                'lines': lines,
-            })
         menus = extract_menus(data)
-        for idx, lines in enumerate(menus):
-            result['dialogs'].append({
-                'file': fname,
-                'index': f'menu{idx + 1}',
-                'lines': lines,
-            })
+        captured = set()
+        for lines in dialogs + menus:
+            for line in lines:
+                captured.add(line['offset'])
+        orphans = extract_orphan_items(data, captured)
 
-    fpath = os.path.join(game_dir, ITEM_FILE)
-    if os.path.exists(fpath):
-        with open(fpath, 'rb') as f:
-            raw = f.read()
-        data = decompress(raw)
-        result['items'] = extract_items(data)
+        # MESSAGE.CMD: 아이템과 중복되는 오프셋 제외
+        exclude = item_offsets if fname == ITEM_FILE else set()
+
+        file_idx = 0
+        all_blocks = dialogs + menus + orphans
+        # 오프셋 순 정렬
+        all_blocks.sort(key=lambda b: b[0]['offset'] if b else 0)
+        # 중복 오프셋 제거
+        seen = set()
+        for lines in all_blocks:
+            clean = [ln for ln in lines if ln['offset'] not in seen and ln['offset'] not in exclude]
+            if clean:
+                for ln in clean:
+                    seen.add(ln['offset'])
+                file_idx += 1
+                result['dialogs'].append({
+                    'file': fname,
+                    'index': file_idx,
+                    'lines': clean,
+                })
 
     fpath = os.path.join(game_dir, UI_FILE)
     if os.path.exists(fpath):
@@ -388,10 +465,13 @@ def generate_json(game_dir, out_path):
         with open(out_path, encoding='utf-8') as f:
             old = json.load(f)
         kr_map = {}
+        tag_map = {}
         for dialog in old.get('dialogs', []):
             for line in dialog['lines']:
                 if line['kr']:
                     kr_map[('dialog', line['offset'])] = line['kr']
+                if line.get('tag'):
+                    tag_map[(dialog['file'], line['offset'])] = line['tag']
         for item in old.get('items', []):
             if item['name']['kr']:
                 kr_map[('item_name', item['name']['offset'])] = item['name']['kr']
@@ -411,6 +491,9 @@ def generate_json(game_dir, out_path):
                 if kr:
                     line['kr'] = kr
                     restored += 1
+                tag = tag_map.get((fname, line['offset']))
+                if tag:
+                    line['tag'] = tag
         for item in result['items']:
             kr = kr_map.get(('item_name', item['name']['offset']), '')
             if kr:
