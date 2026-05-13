@@ -147,8 +147,8 @@ def patch_data(data, replacements):
     return bytes(buf)
 
 
-GF2_BOOTSTRAP_SIZE = 0x171  # x86 self-extractor stub; LZ data starts here
-GF2_PAD_SIZE = 837          # bytes output when parsing bootstrap as LZ (offset correction)
+GF2_BOOTSTRAP_SIZE = 0x71   # x86 self-extractor stub (0x000-0x070); LZ data starts here
+GF2_PAD_SIZE = 236          # bytes output before part71 data (offset correction)
 
 
 def run(game_dir):
