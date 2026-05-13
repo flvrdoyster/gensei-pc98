@@ -251,6 +251,23 @@ for i in range(len(data)-1):
 
 ---
 
+## 추출기 × 파일 교차 검증 결과
+
+모든 CMD 파일과 GF2.COM에 `extract_dialogs`, `extract_items`, `extract_menus`를 교차 실행하여 검증 완료.
+
+| 추출기 | MESSAGE.CMD | STAGE/OPEN/ENDING.CMD | GF2.COM |
+|--------|:-----------:|:---------------------:|:-------:|
+| `extract_dialogs` | O (속마음 독백) | O (메인 스크립트) | ✗ 바이너리 오탐 |
+| `extract_menus` | 해당 없음 | O | ✗ 바이너리 오탐 |
+| `extract_items` | O (아이템 데이터) | ✗ 바이너리 오탐 | ✗ 바이너리 오탐 |
+| `extract_ui` | 해당 없음 | 해당 없음 | O (하드코딩 오프셋) |
+
+- STAGE 파일의 `0F 03` 히트는 바이너리 데이터 — 실제 아이템 구조 아님
+- GF2.COM의 `65 00/01` 히트는 실행 코드 내 우연 일치 — DOS 에러 메시지(`メモリが足りません` 등)만 텍스트이나 번역 대상 아님
+- MESSAGE.CMD는 아이템(offset 98~2730)과 대화(offset 2928~)가 영역 분리됨 → 아이템 오프셋을 대화 추출에서 제외하여 중복 방지
+
+---
+
 ## 파일 목록
 
 | 파일 | 역할 |
