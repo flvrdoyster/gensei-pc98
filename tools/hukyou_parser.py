@@ -26,11 +26,17 @@ from compile_lz import decompress, is_sjis_lead, is_sjis, read_sjis_char
 # 대화 파서
 # ─────────────────────────────────────
 
+def _make_line(cur_offset, cur_end, cur_text):
+    return {'offset': cur_offset, 'jp': cur_text,
+            'jp_len': cur_end - cur_offset, 'kr': ''}
+
+
 def extract_dialogs(data):
     dialogs = []
     cur_lines = []
     cur_text = ''
     cur_offset = 0
+    cur_end = 0
     in_dialog = False
     i = 0
 
@@ -43,7 +49,7 @@ def extract_dialogs(data):
         if is_65_start or is_68_start:
             if in_dialog:
                 if cur_text.strip():
-                    cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                    cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
                 if cur_lines:
                     dialogs.append(cur_lines)
             cur_lines = []
@@ -55,7 +61,7 @@ def extract_dialogs(data):
                     i += 2
             else:
                 i += 2
-            cur_offset = i
+            cur_offset = cur_end = i
             continue
 
         if not in_dialog:
@@ -64,7 +70,7 @@ def extract_dialogs(data):
 
         if data[i] == 0x6b:
             if cur_text.strip():
-                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
             if cur_lines:
                 dialogs.append(cur_lines)
             cur_lines = []
@@ -74,25 +80,25 @@ def extract_dialogs(data):
 
         elif data[i] == 0x72:
             if cur_text.strip():
-                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
             cur_text = ''
             i += 2
-            cur_offset = i
+            cur_offset = cur_end = i
 
         elif data[i] == 0x64:
             # 0x64 N [제어바이트] [텍스트] 0x65 0x00 서브항목
             if cur_text.strip():
-                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
             cur_text = ''
             i += 2  # 0x64 + N 건너뜀
             while i < len(data) and data[i] < 0x81:
                 i += 1  # 제어바이트 건너뜀 (SJIS 시작 전까지)
-            cur_offset = i
+            cur_offset = cur_end = i
 
         elif data[i] == 0x45 and i + 1 < len(data) and data[i + 1] == 0x00:
             # 텍스트 서브항목 섹션 종료 마커 — 이후 0x64 블록은 바이너리 데이터
             if cur_text.strip():
-                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
             cur_text = ''
             i += 2
             # 0x6B(dialog end)까지 건너뜀
@@ -102,23 +108,24 @@ def extract_dialogs(data):
         elif data[i] == 0x65 and i + 1 < len(data) and data[i + 1] == 0x00:
             # 서브항목 종료자 (다이얼로그 내부 0x65 0x00)
             if cur_text.strip():
-                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
             cur_text = ''
             i += 2
-            cur_offset = i
+            cur_offset = cur_end = i
 
         elif is_sjis(data, i):
             if not cur_text:
                 cur_offset = i
             cur_text += read_sjis_char(data, i)
             i += 2
+            cur_end = i
 
         else:
             i += 1
 
     if in_dialog:
         if cur_text.strip():
-            cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+            cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
         if cur_lines:
             dialogs.append(cur_lines)
 
@@ -171,6 +178,7 @@ def extract_menus(data):
             j += 4  # 64 00 [2B ID] 건너뜀
             text = ''
             text_off = j
+            text_end = j
             while j < len(data) - 1:
                 if data[j] == 0x65 and data[j + 1] == 0x00:
                     break
@@ -179,10 +187,12 @@ def extract_menus(data):
                         text_off = j
                     text += read_sjis_char(data, j)
                     j += 2
+                    text_end = j
                 else:
                     j += 1
             if text.strip():
-                lines.append({'offset': text_off, 'jp': text, 'kr': ''})
+                lines.append({'offset': text_off, 'jp': text,
+                              'jp_len': text_end - text_off, 'kr': ''})
 
         if lines:
             menus.append(lines)
@@ -209,23 +219,24 @@ def extract_items(data):
         i += 2
 
         state = 'name'
-        name, name_off = '', 0
-        stat, stat_off = '', 0
+        name, name_off, name_end = '', 0, 0
+        stat, stat_off, stat_end = '', 0, 0
         desc_lines = []
-        cur, cur_off = '', 0
+        cur, cur_off, cur_end2 = '', 0, 0
 
         def flush():
-            nonlocal cur, name, stat, name_off, stat_off
+            nonlocal cur, name, stat, name_off, stat_off, name_end, stat_end, cur_end2
             s = cur.strip()
             cur = ''
             if not s:
                 return
             if state == 'name':
-                name = s; name_off = cur_off
+                name = s; name_off = cur_off; name_end = cur_end2
             elif state == 'stat':
-                stat = s; stat_off = cur_off
+                stat = s; stat_off = cur_off; stat_end = cur_end2
             else:
-                desc_lines.append({'offset': cur_off, 'jp': s, 'kr': ''})
+                desc_lines.append({'offset': cur_off, 'jp': s,
+                                   'jp_len': cur_end2 - cur_off, 'kr': ''})
 
         while i < len(data):
             b = data[i]
@@ -237,27 +248,30 @@ def extract_items(data):
             if b == 0x64:
                 flush()
                 state = 'desc' if nb == 0x02 else 'stat'
-                i += 2; cur_off = i; continue
+                i += 2; cur_off = cur_end2 = i; continue
 
             if b == 0x72:
                 flush()
-                i += 2; cur_off = i; continue
+                i += 2; cur_off = cur_end2 = i; continue
 
             if is_sjis(data, i):
                 if not cur: cur_off = i
                 cur += read_sjis_char(data, i)
                 i += 2
+                cur_end2 = i
             else:
                 i += 1
 
         if name:
             entry = {
                 'offset': item_start,
-                'name': {'offset': name_off, 'jp': name, 'kr': ''},
+                'name': {'offset': name_off, 'jp': name,
+                         'jp_len': name_end - name_off, 'kr': ''},
                 'desc': desc_lines,
             }
             if stat:
-                entry['stat'] = {'offset': stat_off, 'jp': stat, 'kr': ''}
+                entry['stat'] = {'offset': stat_off, 'jp': stat,
+                                 'jp_len': stat_end - stat_off, 'kr': ''}
             items.append(entry)
 
     return items

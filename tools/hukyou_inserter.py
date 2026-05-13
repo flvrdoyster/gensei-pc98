@@ -99,22 +99,22 @@ def collect_replacements(translation, charmap):
     """translation.json에서 파일별 교체 목록 생성. 바이트 길이 자동 맞춤."""
     by_file = {}
 
-    def add(fname, offset, jp, kr):
+    def add(fname, offset, jp, kr, jp_len=None):
         if not kr:
             return
-        old = jp.encode('shift_jis')
+        # jp_len이 있으면 길이 기반 교체 (가이지 등 불완전 디코딩 대응)
+        length = jp_len if jp_len is not None else len(jp.encode('shift_jis'))
         new = encode_korean(kr, charmap)
-        new = fit_length(old, new, context=f'{fname} 0x{offset:X}: {kr}')
+        new = fit_length(b'\x00' * length, new, context=f'{fname} 0x{offset:X}: {kr}')
         if fname not in by_file:
             by_file[fname] = []
-        by_file[fname].append((offset, old, new))
+        by_file[fname].append((offset, length, new))
 
     def add_ui(fname, offset, jp_len, kr):
         if not kr:
             return
         new = encode_korean(kr, charmap, use_gaiji=True)
-        dummy_old = b'\x00' * jp_len
-        new = fit_length(dummy_old, new, context=f'{fname} 0x{offset:X}: {kr}')
+        new = fit_length(b'\x00' * jp_len, new, context=f'{fname} 0x{offset:X}: {kr}')
         if fname not in by_file:
             by_file[fname] = []
         by_file[fname].append((offset, jp_len, new))
@@ -122,13 +122,16 @@ def collect_replacements(translation, charmap):
     for dialog in translation['dialogs']:
         fname = dialog['file']
         for line in dialog['lines']:
-            add(fname, line['offset'], line['jp'], line['kr'])
+            add(fname, line['offset'], line['jp'], line['kr'],
+                jp_len=line.get('jp_len'))
 
     for item in translation.get('items', []):
         fname = 'MESSAGE.CMD'
-        add(fname, item['name']['offset'], item['name']['jp'], item['name']['kr'])
+        n = item['name']
+        add(fname, n['offset'], n['jp'], n['kr'], jp_len=n.get('jp_len'))
         if 'stat' in item:
-            add(fname, item['stat']['offset'], item['stat']['jp'], item['stat']['kr'])
+            s = item['stat']
+            add(fname, s['offset'], s['jp'], s['kr'], jp_len=s.get('jp_len'))
         for desc in item['desc']:
             add(fname, desc['offset'], desc['jp'], desc['kr'])
 
