@@ -44,6 +44,7 @@ tr:hover { background: #f0f0f0; }
 .type-ui span { background: #fef9c3; color: #854d0e; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
+.gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
 .tag-menu { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 100; min-width: 80px; padding: 2px 0; }
 .tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
 .tag-menu div:hover { background: #f0f0f0; }
@@ -81,6 +82,7 @@ tr:hover { background: #f0f0f0; }
     <option value="ui">UI</option>
     <option value="system">시스템</option>
     <option value="battle">전투</option>
+    <option value="gaiji">외자(가이지)</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
@@ -122,21 +124,21 @@ async function load() {
     for (const line of dialog.lines) {
       rows.push({
         type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
-        offset: line.offset, jp: line.jp, kr: line.kr,
+        offset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
       });
     }
   }
   for (const item of (data.items || [])) {
-    rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, jp: item.name.jp, kr: item.name.kr });
+    rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
     if (item.stat) {
-      rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr });
+      rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
     }
     for (const desc of item.desc) {
-      rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr });
+      rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
     }
   }
   for (const entry of (data.ui || [])) {
-    rows.push({ type: 'ui', file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len });
+    rows.push({ type: 'ui', file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -192,15 +194,19 @@ function render() {
 
   const filtered = rows.filter(r => {
     if (filterType) {
-      const effective = r.tag || r.type;
-      if (filterType === 'item') {
-        if (!r.type.startsWith('item')) return false;
-      } else if (filterType === 'dialog') {
-        if (r.type !== 'dialog' || r.tag) return false;
-      } else if (filterType === 'ui' || filterType === 'system' || filterType === 'battle') {
-        if (effective !== filterType && r.type !== filterType) return false;
+      if (filterType === 'gaiji') {
+        if (!r.gaiji) return false;
       } else {
-        if (r.type !== filterType) return false;
+        const effective = r.tag || r.type;
+        if (filterType === 'item') {
+          if (!r.type.startsWith('item')) return false;
+        } else if (filterType === 'dialog') {
+          if (r.type !== 'dialog' || r.tag) return false;
+        } else if (filterType === 'ui' || filterType === 'system' || filterType === 'battle') {
+          if (effective !== filterType && r.type !== filterType) return false;
+        } else {
+          if (r.type !== filterType) return false;
+        }
       }
     }
     if (filterFile && r.file !== filterFile) return false;
@@ -215,7 +221,7 @@ function render() {
     const tr = document.createElement('tr');
     const key = r.type + ':' + r.file + ':' + r.offset;
     const kr = key in modified ? modified[key] : (r.kr || '');
-    const isGaiji = r.type === 'ui';
+    const isGaiji = r.gaiji || r.type === 'ui';
     const jpLen = getJpLen(r);
     const krLen = kr ? encodeByteLen(kr, isGaiji) : 0;
 
@@ -229,7 +235,7 @@ function render() {
     tr.innerHTML = `
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
-      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${escHtml(r.jp)}</td>
+      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
       <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
@@ -266,7 +272,7 @@ document.getElementById('tbody').addEventListener('input', e => {
     e.target.classList.add('modified');
   }
 
-  const isGaiji = row.type === 'ui';
+  const isGaiji = row.gaiji || row.type === 'ui';
   const jpLen = getJpLen(row);
   const krLen = val ? encodeByteLen(val, isGaiji) : 0;
   const lenTd = e.target.closest('tr').querySelector('.len');

@@ -27,9 +27,25 @@ from compile_lz import decompress, is_sjis_lead, is_sjis, read_sjis_char
 # 대화 파서
 # ─────────────────────────────────────
 
-def _make_line(cur_offset, cur_end, cur_text):
-    return {'offset': cur_offset, 'jp': cur_text,
+def _has_gaiji(data, start, end):
+    """바이트 범위에 가이지(0x85XX) 코드가 포함되어 있는지 확인."""
+    i = start
+    while i < end - 1:
+        if data[i] == 0x85:
+            return True
+        if is_sjis_lead(data[i]):
+            i += 2
+        else:
+            i += 1
+    return False
+
+
+def _make_line(cur_offset, cur_end, cur_text, data=None):
+    line = {'offset': cur_offset, 'jp': cur_text,
             'jp_len': cur_end - cur_offset, 'kr': ''}
+    if data is not None and _has_gaiji(data, cur_offset, cur_end):
+        line['gaiji'] = True
+    return line
 
 
 def extract_dialogs(data):
@@ -52,7 +68,7 @@ def extract_dialogs(data):
         if is_65_start or is_68_start:
             if in_dialog:
                 if cur_text.strip():
-                    cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                    cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
                 if cur_lines:
                     dialogs.append(cur_lines)
             cur_lines = []
@@ -73,7 +89,7 @@ def extract_dialogs(data):
 
         if data[i] == 0x6b:
             if cur_text.strip():
-                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
             if cur_lines:
                 dialogs.append(cur_lines)
             cur_lines = []
@@ -83,7 +99,7 @@ def extract_dialogs(data):
 
         elif data[i] == 0x72:
             if cur_text.strip():
-                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
             cur_text = ''
             i += 2
             cur_offset = cur_end = i
@@ -91,7 +107,7 @@ def extract_dialogs(data):
         elif data[i] == 0x64:
             # 0x64 N [제어바이트] [텍스트] 0x65 0x00 서브항목
             if cur_text.strip():
-                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
             cur_text = ''
             i += 2  # 0x64 + N 건너뜀
             while i < len(data) and data[i] < 0x81:
@@ -101,7 +117,7 @@ def extract_dialogs(data):
         elif data[i] == 0x45 and i + 1 < len(data) and data[i + 1] == 0x00:
             # 텍스트 서브항목 섹션 종료 마커 — 이후 0x64 블록은 바이너리 데이터
             if cur_text.strip():
-                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
             cur_text = ''
             i += 2
             # 0x6B(dialog end)까지 건너뜀
@@ -111,7 +127,7 @@ def extract_dialogs(data):
         elif data[i] == 0x65 and i + 1 < len(data) and data[i + 1] == 0x00:
             # 서브항목 종료자 (다이얼로그 내부 0x65 0x00)
             if cur_text.strip():
-                cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+                cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
             cur_text = ''
             i += 2
             cur_offset = cur_end = i
@@ -128,7 +144,7 @@ def extract_dialogs(data):
 
     if in_dialog:
         if cur_text.strip():
-            cur_lines.append(_make_line(cur_offset, cur_end, cur_text))
+            cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
         if cur_lines:
             dialogs.append(cur_lines)
 
@@ -194,8 +210,11 @@ def extract_menus(data):
                 else:
                     j += 1
             if text.strip():
-                lines.append({'offset': text_off, 'jp': text,
-                              'jp_len': text_end - text_off, 'kr': ''})
+                line = {'offset': text_off, 'jp': text,
+                        'jp_len': text_end - text_off, 'kr': ''}
+                if _has_gaiji(data, text_off, text_end):
+                    line['gaiji'] = True
+                lines.append(line)
 
         if lines:
             menus.append(lines)
@@ -242,8 +261,11 @@ def extract_orphan_items(data, captured_offsets):
         if (text.strip() and len(text) >= 2
                 and text_off not in captured_offsets
                 and not any(ord(c) == 0xFFFD for c in text)):
-            cur_group.append({'offset': text_off, 'jp': text,
-                              'jp_len': text_end - text_off, 'kr': ''})
+            line = {'offset': text_off, 'jp': text,
+                    'jp_len': text_end - text_off, 'kr': ''}
+            if _has_gaiji(data, text_off, text_end):
+                line['gaiji'] = True
+            cur_group.append(line)
             i = j + 2 if j < len(data) - 1 else j
         else:
             if cur_group:
@@ -289,8 +311,11 @@ def extract_items(data):
             elif state == 'stat':
                 stat = s; stat_off = cur_off; stat_end = cur_end2
             else:
-                desc_lines.append({'offset': cur_off, 'jp': s,
-                                   'jp_len': cur_end2 - cur_off, 'kr': ''})
+                dl = {'offset': cur_off, 'jp': s,
+                      'jp_len': cur_end2 - cur_off, 'kr': ''}
+                if _has_gaiji(data, cur_off, cur_end2):
+                    dl['gaiji'] = True
+                desc_lines.append(dl)
 
         while i < len(data):
             b = data[i]
@@ -317,15 +342,21 @@ def extract_items(data):
                 i += 1
 
         if name:
+            name_line = {'offset': name_off, 'jp': name,
+                         'jp_len': name_end - name_off, 'kr': ''}
+            if _has_gaiji(data, name_off, name_end):
+                name_line['gaiji'] = True
             entry = {
                 'offset': item_start,
-                'name': {'offset': name_off, 'jp': name,
-                         'jp_len': name_end - name_off, 'kr': ''},
+                'name': name_line,
                 'desc': desc_lines,
             }
             if stat:
-                entry['stat'] = {'offset': stat_off, 'jp': stat,
-                                 'jp_len': stat_end - stat_off, 'kr': ''}
+                stat_line = {'offset': stat_off, 'jp': stat,
+                             'jp_len': stat_end - stat_off, 'kr': ''}
+                if _has_gaiji(data, stat_off, stat_end):
+                    stat_line['gaiji'] = True
+                entry['stat'] = stat_line
             items.append(entry)
 
     return items
