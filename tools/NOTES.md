@@ -46,7 +46,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 
 | 바이트 | 역할 |
 |--------|------|
-| `65 00 [SJIS lead]` | 대화 블록 시작 |
+| `65 00/01 [SJIS lead]` | 대화 블록 시작 (01 = 이벤트/보물상자/재방문 NPC) |
 | `72 XX` | 줄바꿈 (XX는 부가 파라미터) |
 | `6B` | 대화 블록 명시 종료 |
 | `65 00` (블록 내부) | 서브항목 종료자 |
@@ -115,7 +115,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 ```
 상태: OUT_OF_DIALOG / IN_DIALOG
 
-IN_DIALOG 진입: 65 00 [SJIS lead]
+IN_DIALOG 진입: 65 00/01 [SJIS lead]
 IN_DIALOG 종료: 6B 또는 다음 65 00
 
 IN_DIALOG 내부:

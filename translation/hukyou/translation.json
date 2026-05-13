@@ -2057,6 +2057,18 @@
       "index": 89,
       "lines": [
         {
+          "offset": 23050,
+          "jp": "誰もいない",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 90,
+      "lines": [
+        {
           "offset": 23064,
           "jp": "ダリオス",
           "jp_len": 8,
@@ -2072,7 +2084,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 90,
+      "index": 91,
       "lines": [
         {
           "offset": 23098,
@@ -2090,7 +2102,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 91,
+      "index": 92,
       "lines": [
         {
           "offset": 23128,
@@ -2108,7 +2120,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 92,
+      "index": 93,
       "lines": [
         {
           "offset": 23162,
@@ -2126,7 +2138,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 93,
+      "index": 94,
       "lines": [
         {
           "offset": 23196,
@@ -2144,7 +2156,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 94,
+      "index": 95,
       "lines": [
         {
           "offset": 23250,
@@ -2168,7 +2180,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 95,
+      "index": 96,
       "lines": [
         {
           "offset": 23318,
@@ -2186,7 +2198,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 96,
+      "index": 97,
       "lines": [
         {
           "offset": 23362,
@@ -2204,7 +2216,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 97,
+      "index": 98,
       "lines": [
         {
           "offset": 23416,
@@ -2228,7 +2240,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 98,
+      "index": 99,
       "lines": [
         {
           "offset": 23488,
@@ -2246,7 +2258,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 99,
+      "index": 100,
       "lines": [
         {
           "offset": 23530,
@@ -2264,7 +2276,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 100,
+      "index": 101,
       "lines": [
         {
           "offset": 23574,
@@ -2282,7 +2294,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 101,
+      "index": 102,
       "lines": [
         {
           "offset": 23630,
@@ -2300,7 +2312,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 102,
+      "index": 103,
       "lines": [
         {
           "offset": 23674,
@@ -2330,7 +2342,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 103,
+      "index": 104,
       "lines": [
         {
           "offset": 23782,
@@ -2348,7 +2360,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 104,
+      "index": 105,
       "lines": [
         {
           "offset": 23830,
@@ -2372,7 +2384,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 105,
+      "index": 106,
       "lines": [
         {
           "offset": 23900,
@@ -2390,7 +2402,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 106,
+      "index": 107,
       "lines": [
         {
           "offset": 23944,
@@ -2402,7 +2414,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 107,
+      "index": 108,
       "lines": [
         {
           "offset": 23970,
@@ -2414,7 +2426,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 108,
+      "index": 109,
       "lines": [
         {
           "offset": 24026,
@@ -2426,7 +2438,19 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 109,
+      "index": 110,
+      "lines": [
+        {
+          "offset": 24052,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 111,
       "lines": [
         {
           "offset": 24082,
@@ -2438,7 +2462,19 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 110,
+      "index": 112,
+      "lines": [
+        {
+          "offset": 24112,
+          "jp": "【革のよろい】が入っていた！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 113,
       "lines": [
         {
           "offset": 24144,
@@ -2450,7 +2486,25 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 111,
+      "index": 114,
+      "lines": [
+        {
+          "offset": 24176,
+          "jp": "しかし【革のよろい】は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 24200,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 115,
       "lines": [
         {
           "offset": 24220,
@@ -2468,7 +2522,19 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 112,
+      "index": 116,
+      "lines": [
+        {
+          "offset": 24264,
+          "jp": "【地久の角】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 117,
       "lines": [
         {
           "offset": 24294,
@@ -2480,7 +2546,19 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 113,
+      "index": 118,
+      "lines": [
+        {
+          "offset": 24324,
+          "jp": "【つるはし】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 119,
       "lines": [
         {
           "offset": 24354,
@@ -2492,7 +2570,37 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 114,
+      "index": 120,
+      "lines": [
+        {
+          "offset": 24384,
+          "jp": "しかし　もう持ち切れない！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 24412,
+          "jp": "あきらめて宝箱に戻した",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 121,
+      "lines": [
+        {
+          "offset": 24438,
+          "jp": "【風霊石】が入っていた！",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 122,
       "lines": [
         {
           "offset": 24466,
@@ -2504,7 +2612,109 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 115,
+      "index": 123,
+      "lines": [
+        {
+          "offset": 24494,
+          "jp": "扉は開かない",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 124,
+      "lines": [
+        {
+          "offset": 24510,
+          "jp": "ダリオス",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 24520,
+          "jp": "「この　つるはしがあれば",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 24546,
+          "jp": "　こんな土砂なんか…",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 125,
+      "lines": [
+        {
+          "offset": 24570,
+          "jp": "　ま　こんなものよ",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 126,
+      "lines": [
+        {
+          "offset": 24592,
+          "jp": "土砂で道が塞がれている",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 127,
+      "lines": [
+        {
+          "offset": 24618,
+          "jp": "スイッチを引き下げた",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 128,
+      "lines": [
+        {
+          "offset": 24642,
+          "jp": "なにやら　重々しい音が",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 24666,
+          "jp": "ひびきわたる",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 129,
+      "lines": [
+        {
+          "offset": 24682,
+          "jp": "スイッチはすでに下がっている",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 130,
       "lines": [
         {
           "offset": 25005,
@@ -10313,6 +10523,18 @@
       "index": 175,
       "lines": [
         {
+          "offset": 23756,
+          "jp": "【燃える魔剣】が入っていた！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 176,
+      "lines": [
+        {
           "offset": 23788,
           "jp": "【燃える魔剣】を手に入れた！",
           "jp_len": 28,
@@ -10322,7 +10544,25 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 176,
+      "index": 177,
+      "lines": [
+        {
+          "offset": 23820,
+          "jp": "しかし【燃える魔剣】は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 23844,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 178,
       "lines": [
         {
           "offset": 23864,
@@ -10340,7 +10580,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 177,
+      "index": 179,
+      "lines": [
+        {
+          "offset": 23908,
+          "jp": "【リフレッシュの水】が入っていた！",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 180,
       "lines": [
         {
           "offset": 23946,
@@ -10352,7 +10604,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 178,
+      "index": 181,
+      "lines": [
+        {
+          "offset": 23984,
+          "jp": "【苦い薬草】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 182,
       "lines": [
         {
           "offset": 24014,
@@ -10364,7 +10628,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 179,
+      "index": 183,
       "lines": [
         {
           "offset": 24076,
@@ -10376,7 +10640,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 180,
+      "index": 184,
+      "lines": [
+        {
+          "offset": 24104,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 185,
       "lines": [
         {
           "offset": 24134,
@@ -10388,7 +10664,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 181,
+      "index": 186,
+      "lines": [
+        {
+          "offset": 24164,
+          "jp": "【リフレッシュの水】が入っていた！",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 187,
       "lines": [
         {
           "offset": 24202,
@@ -10400,7 +10688,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 182,
+      "index": 188,
+      "lines": [
+        {
+          "offset": 24240,
+          "jp": "【人寿の角】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 189,
       "lines": [
         {
           "offset": 24270,
@@ -10412,7 +10712,43 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 183,
+      "index": 190,
+      "lines": [
+        {
+          "offset": 24300,
+          "jp": "しかし　もう持ち切れない！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 24328,
+          "jp": "あきらめて宝箱に戻した",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 191,
+      "lines": [
+        {
+          "offset": 24354,
+          "jp": "「よく来たね",
+          "jp_len": 12,
+          "kr": "【곡괭이】를 얻었다!"
+        },
+        {
+          "offset": 24368,
+          "jp": "　何か入り用かの…？",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 192,
       "lines": [
         {
           "offset": 24392,
@@ -10430,7 +10766,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 184,
+      "index": 193,
       "lines": [
         {
           "offset": 24428,
@@ -10448,7 +10784,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 185,
+      "index": 194,
       "lines": [
         {
           "offset": 24466,
@@ -10460,7 +10796,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 186,
+      "index": 195,
       "lines": [
         {
           "offset": 24492,
@@ -10472,7 +10808,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 187,
+      "index": 196,
       "lines": [
         {
           "offset": 24512,
@@ -10490,7 +10826,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 188,
+      "index": 197,
       "lines": [
         {
           "offset": 24560,
@@ -10502,7 +10838,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 189,
+      "index": 198,
       "lines": [
         {
           "offset": 24578,
@@ -10520,7 +10856,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 190,
+      "index": 199,
       "lines": [
         {
           "offset": 24634,
@@ -10532,7 +10868,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 191,
+      "index": 200,
       "lines": [
         {
           "offset": 24652,
@@ -10544,7 +10880,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 192,
+      "index": 201,
       "lines": [
         {
           "offset": 24674,
@@ -10556,7 +10892,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 193,
+      "index": 202,
       "lines": [
         {
           "offset": 24696,
@@ -10568,7 +10904,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 194,
+      "index": 203,
       "lines": [
         {
           "offset": 24720,
@@ -10580,7 +10916,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 195,
+      "index": 204,
       "lines": [
         {
           "offset": 24750,
@@ -10604,7 +10940,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 196,
+      "index": 205,
       "lines": [
         {
           "offset": 24828,
@@ -10622,7 +10958,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 197,
+      "index": 206,
       "lines": [
         {
           "offset": 24876,
@@ -10646,7 +10982,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 198,
+      "index": 207,
       "lines": [
         {
           "offset": 24950,
@@ -10664,7 +11000,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 199,
+      "index": 208,
       "lines": [
         {
           "offset": 24990,
@@ -10682,7 +11018,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 200,
+      "index": 209,
       "lines": [
         {
           "offset": 25048,
@@ -10700,7 +11036,25 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 201,
+      "index": 210,
+      "lines": [
+        {
+          "offset": 25094,
+          "jp": "ダリオス",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 25104,
+          "jp": "「珠って　これだろ？",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 211,
       "lines": [
         {
           "offset": 25128,
@@ -10724,7 +11078,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 202,
+      "index": 212,
       "lines": [
         {
           "offset": 25192,
@@ -10742,7 +11096,19 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 203,
+      "index": 213,
+      "lines": [
+        {
+          "offset": 25232,
+          "jp": "　こうしちゃいましょ！",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE3.CMD",
+      "index": 214,
       "lines": [
         {
           "offset": 25549,
@@ -15629,6 +15995,18 @@
       "index": 89,
       "lines": [
         {
+          "offset": 25863,
+          "jp": "【噂のレザー】が入っていた！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 90,
+      "lines": [
+        {
           "offset": 25895,
           "jp": "【噂のレザー】を手に入れた！",
           "jp_len": 28,
@@ -15638,7 +16016,25 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 90,
+      "index": 91,
+      "lines": [
+        {
+          "offset": 25927,
+          "jp": "しかし【噂のレザー】は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 25951,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 92,
       "lines": [
         {
           "offset": 25971,
@@ -15656,7 +16052,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 91,
+      "index": 93,
+      "lines": [
+        {
+          "offset": 26015,
+          "jp": "【雲樹の杖】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 94,
       "lines": [
         {
           "offset": 26045,
@@ -15668,7 +16076,25 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 92,
+      "index": 95,
+      "lines": [
+        {
+          "offset": 26075,
+          "jp": "しかし【雲樹の杖】は",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 26097,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 96,
       "lines": [
         {
           "offset": 26117,
@@ -15686,7 +16112,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 93,
+      "index": 97,
+      "lines": [
+        {
+          "offset": 26161,
+          "jp": "【クイーンウィッ��】が入っていた！",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 98,
       "lines": [
         {
           "offset": 26199,
@@ -15698,7 +16136,25 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 94,
+      "index": 99,
+      "lines": [
+        {
+          "offset": 26237,
+          "jp": "しかし【クイーンウィッ��】は",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 26267,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 100,
       "lines": [
         {
           "offset": 26287,
@@ -15716,7 +16172,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 95,
+      "index": 101,
+      "lines": [
+        {
+          "offset": 26331,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 102,
       "lines": [
         {
           "offset": 26361,
@@ -15728,7 +16196,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 96,
+      "index": 103,
+      "lines": [
+        {
+          "offset": 26391,
+          "jp": "【毒消し薬】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 104,
       "lines": [
         {
           "offset": 26421,
@@ -15740,7 +16220,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 97,
+      "index": 105,
       "lines": [
         {
           "offset": 26483,
@@ -15752,7 +16232,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 98,
+      "index": 106,
+      "lines": [
+        {
+          "offset": 26511,
+          "jp": "【��レイツソー��】が入っていた！",
+          "jp_len": 32,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 107,
       "lines": [
         {
           "offset": 26547,
@@ -15764,7 +16256,25 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 99,
+      "index": 108,
+      "lines": [
+        {
+          "offset": 26583,
+          "jp": "しかし【��レイツソー��】は",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 26611,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 109,
       "lines": [
         {
           "offset": 26631,
@@ -15782,7 +16292,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 100,
+      "index": 110,
+      "lines": [
+        {
+          "offset": 26675,
+          "jp": "【リフレッシュの水】が入っていた！",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 111,
       "lines": [
         {
           "offset": 26713,
@@ -15794,7 +16316,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 101,
+      "index": 112,
+      "lines": [
+        {
+          "offset": 26751,
+          "jp": "【苦い薬草】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 113,
       "lines": [
         {
           "offset": 26781,
@@ -15806,7 +16340,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 102,
+      "index": 114,
       "lines": [
         {
           "offset": 26843,
@@ -15818,7 +16352,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 103,
+      "index": 115,
+      "lines": [
+        {
+          "offset": 26871,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 116,
       "lines": [
         {
           "offset": 26901,
@@ -15830,7 +16376,19 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 104,
+      "index": 117,
+      "lines": [
+        {
+          "offset": 26931,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 118,
       "lines": [
         {
           "offset": 26961,
@@ -15842,7 +16400,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 105,
+      "index": 119,
       "lines": [
         {
           "offset": 27021,
@@ -15854,11 +16412,29 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 106,
+      "index": 120,
       "lines": [
         {
           "offset": 27077,
           "jp": "５００Ｇを手に入れた！",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 121,
+      "lines": [
+        {
+          "offset": 27103,
+          "jp": "しかし　もう持ち切れない！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 27131,
+          "jp": "あきらめて宝箱に戻した",
           "jp_len": 22,
           "kr": ""
         }
@@ -16253,6 +16829,18 @@
       "index": 20,
       "lines": [
         {
+          "offset": 16504,
+          "jp": "【苦い薬草】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 21,
+      "lines": [
+        {
           "offset": 16534,
           "jp": "【苦い薬草】を手に入れた！",
           "jp_len": 26,
@@ -16262,7 +16850,7 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 21,
+      "index": 22,
       "lines": [
         {
           "offset": 16594,
@@ -16274,7 +16862,7 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 22,
+      "index": 23,
       "lines": [
         {
           "offset": 16650,
@@ -16286,7 +16874,19 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 23,
+      "index": 24,
+      "lines": [
+        {
+          "offset": 16676,
+          "jp": "【鎖かたびら】が入っていた！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 25,
       "lines": [
         {
           "offset": 16708,
@@ -16298,7 +16898,25 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 24,
+      "index": 26,
+      "lines": [
+        {
+          "offset": 16740,
+          "jp": "しかし【鎖かたびら】は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 16764,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 27,
       "lines": [
         {
           "offset": 16784,
@@ -16316,7 +16934,19 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 25,
+      "index": 28,
+      "lines": [
+        {
+          "offset": 16828,
+          "jp": "【導きの羽】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 29,
       "lines": [
         {
           "offset": 16858,
@@ -16328,7 +16958,19 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 26,
+      "index": 30,
+      "lines": [
+        {
+          "offset": 16888,
+          "jp": "【とげのムチ】が入っていた！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 31,
       "lines": [
         {
           "offset": 16920,
@@ -16340,7 +16982,25 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 27,
+      "index": 32,
+      "lines": [
+        {
+          "offset": 16952,
+          "jp": "しかし【とげのムチ】は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 16976,
+          "jp": "すでに持っている",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 33,
       "lines": [
         {
           "offset": 16996,
@@ -16358,7 +17018,19 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 28,
+      "index": 34,
+      "lines": [
+        {
+          "offset": 17040,
+          "jp": "【天長の角】が入っていた！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 35,
       "lines": [
         {
           "offset": 17070,
@@ -16370,7 +17042,25 @@
     },
     {
       "file": "STAGE6.CMD",
-      "index": 29,
+      "index": 36,
+      "lines": [
+        {
+          "offset": 17100,
+          "jp": "しかし　もう持ち切れない！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 17128,
+          "jp": "あきらめて宝箱に戻した",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 37,
       "lines": [
         {
           "offset": 17170,

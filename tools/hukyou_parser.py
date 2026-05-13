@@ -7,7 +7,7 @@
   python hukyou_parser.py <game_dir> dump  각 CMD 압축 해제본 저장
 
 제어코드 (압축 해제 후):
-  65 00 [SJIS lead]  대화 블록 시작
+  65 00/01 [SJIS lead]  대화 블록 시작 (01 = 이벤트/보물상자)
   72 XX              줄바꿈
   6b                 대화 블록 종료
   0f 03              아이템 항목 시작 (MESSAGE.CMD)
@@ -41,7 +41,7 @@ def extract_dialogs(data):
     i = 0
 
     while i < len(data):
-        is_65_start = (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] == 0x00
+        is_65_start = (i + 2 < len(data) and data[i] == 0x65 and data[i + 1] in (0x00, 0x01)
                        and (is_sjis_lead(data[i + 2]) or data[i + 2] == 0x68))
         is_68_start = (not is_65_start and i + 3 < len(data)
                        and data[i] == 0x68 and is_sjis_lead(data[i + 2]))
