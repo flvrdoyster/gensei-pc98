@@ -213,7 +213,7 @@ function render() {
 
   for (const r of filtered) {
     const tr = document.createElement('tr');
-    const key = r.type + ':' + r.offset;
+    const key = r.type + ':' + r.file + ':' + r.offset;
     const kr = key in modified ? modified[key] : (r.kr || '');
     const isGaiji = r.type === 'ui';
     const jpLen = getJpLen(r);
@@ -255,7 +255,7 @@ function updateStats() {
 document.getElementById('tbody').addEventListener('input', e => {
   if (!e.target.classList.contains('kr-input')) return;
   const key = e.target.dataset.key;
-  const row = rows.find(r => r.type + ':' + r.offset === key);
+  const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
   const val = e.target.value;
 
   if (val === (row.kr || '')) {
@@ -294,7 +294,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   const result = await res.json();
 
   for (const [key, val] of Object.entries(modified)) {
-    const row = rows.find(r => r.type + ':' + r.offset === key);
+    const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
     if (row) row.kr = val;
   }
   modified = {};
@@ -443,11 +443,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         updated = 0
         for key, kr in translations.items():
-            typ, offset_str = key.split(':', 1)
+            parts = key.split(':', 2)
+            typ, file_name, offset_str = parts[0], parts[1], parts[2]
             offset = int(offset_str)
 
             if typ == 'dialog':
                 for dialog in data['dialogs']:
+                    if dialog['file'] != file_name:
+                        continue
                     for line in dialog['lines']:
                         if line['offset'] == offset:
                             line['kr'] = kr
