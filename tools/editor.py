@@ -42,7 +42,9 @@ tr:hover { background: #f0f0f0; }
 .type-item span { background: #dcfce7; color: #15803d; }
 .type-ui span { background: #fef9c3; color: #854d0e; }
 .file { width: 120px; font-size: 12px; color: #666; }
-.jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; }
+.jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
+.jp:hover { background: #f0f4ff; }
+.jp.copied { background: #d4edda; transition: background 0.1s; }
 .kr-cell { width: 42%; }
 .kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 3px; font-size: 13px; font-family: inherit; }
 .kr-input:focus { border-color: #555; outline: none; }
@@ -203,7 +205,7 @@ function render() {
     tr.innerHTML = `
       <td class="type">${typeLabel(r.type)}</td>
       <td class="file">${r.file}</td>
-      <td class="jp">${escHtml(r.jp)}</td>
+      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${escHtml(r.jp)}</td>
       <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
