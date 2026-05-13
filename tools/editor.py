@@ -59,7 +59,8 @@ tr:hover { background: #f0f0f0; }
 .save-btn:disabled { background: #bbb; cursor: default; }
 .build-btn { background: #fff; color: #333; border: 1px solid #ccc; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
 .build-btn:hover { background: #f0f0f0; }
-.toast { position: fixed; bottom: 20px; right: 20px; background: #222; color: #fff; padding: 10px 18px; border-radius: 4px; display: none; font-size: 13px; }
+.toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.toast.show { opacity: 1; }
 </style>
 </head>
 <body>
@@ -91,7 +92,7 @@ tr:hover { background: #f0f0f0; }
 </tr></thead>
 <tbody id="tbody"></tbody>
 </table>
-<div class="toast" id="toast">저장 완료</div>
+<div class="toast" id="toast"></div>
 
 <script>
 let rows = [];
@@ -281,12 +282,19 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 
   btn.textContent = '저장';
   updateStats();
-
-  const toast = document.getElementById('toast');
-  toast.textContent = `${result.updated}건 저장 완료`;
-  toast.style.display = 'block';
-  setTimeout(() => toast.style.display = 'none', 2000);
+  showToast(`${result.updated}건 저장됨`, 'save');
 });
+
+let _toastTimer = null;
+function showToast(msg, type) {
+  const toast = document.getElementById('toast');
+  toast.textContent = msg;
+  toast.style.background = type === 'ok' ? '#2a9d5c' : type === 'err' ? '#c0392b' : '#333';
+  clearTimeout(_toastTimer);
+  toast.classList.add('show');
+  const dur = type === 'err' ? 6000 : 2500;
+  _toastTimer = setTimeout(() => toast.classList.remove('show'), dur);
+}
 
 document.getElementById('buildBtn').addEventListener('click', async () => {
   const btn = document.getElementById('buildBtn');
@@ -297,18 +305,9 @@ document.getElementById('buildBtn').addEventListener('click', async () => {
   try {
     const res = await fetch('/api/build', { method: 'POST' });
     const result = await res.json();
-    const toast = document.getElementById('toast');
-    if (result.ok) {
-      toast.style.background = '#45e980';
-      toast.textContent = result.message;
-    } else {
-      toast.style.background = '#e94560';
-      toast.textContent = result.message;
-    }
-    toast.style.display = 'block';
-    setTimeout(() => toast.style.display = 'none', 4000);
+    showToast(result.message, result.ok ? 'ok' : 'err');
   } catch (e) {
-    alert('빌드 실패: ' + e.message);
+    showToast('빌드 실패: ' + e.message, 'err');
   }
 
   btn.disabled = false;
@@ -430,8 +429,17 @@ class Handler(http.server.BaseHTTPRequestHandler):
             )
             output = (proc.stdout + proc.stderr).strip()
             if proc.returncode == 0:
-                return {'ok': True, 'message': output or '빌드 완료'}
-            return {'ok': False, 'message': output or '빌드 실패'}
+                lines = output.splitlines()
+                file_lines = [l for l in lines if '건 교체' in l]
+                if file_lines:
+                    n_files = len(file_lines)
+                    n_items = sum(int(l.split('건 교체')[0].split()[-1]) for l in file_lines)
+                    msg = f'빌드 완료 — {n_files}개 파일 {n_items}건 교체'
+                else:
+                    msg = '빌드 완료 (교체 항목 없음)'
+                return {'ok': True, 'message': msg}
+            last = output.splitlines()[-1] if output else '빌드 실패'
+            return {'ok': False, 'message': f'빌드 실패: {last}'}
         except Exception as e:
             return {'ok': False, 'message': str(e)}
 
