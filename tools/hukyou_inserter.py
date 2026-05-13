@@ -102,22 +102,26 @@ def collect_replacements(translation, charmap):
     def add(fname, offset, jp, kr, jp_len=None):
         if not kr:
             return
-        # jp_len이 있으면 길이 기반 교체 (가이지 등 불완전 디코딩 대응)
-        length = jp_len if jp_len is not None else len(jp.encode('shift_jis'))
         new = encode_korean(kr, charmap)
-        new = fit_length(b'\x00' * length, new, context=f'{fname} 0x{offset:X}: {kr}')
-        if fname not in by_file:
-            by_file[fname] = []
-        by_file[fname].append((offset, length, new))
+        try:
+            old = jp.encode('shift_jis')
+            # jp_len과 실제 인코딩 길이가 다르면 가이지 불완전 디코딩 → 길이 기반으로 전환
+            if jp_len is not None and len(old) != jp_len:
+                raise ValueError
+            new = fit_length(old, new, context=f'{fname} 0x{offset:X}: {kr}')
+            by_file.setdefault(fname, []).append((offset, old, new))
+        except (UnicodeEncodeError, ValueError):
+            # 가이지 등 round-trip 불가 문자 포함 → jp_len 기반 교체
+            length = jp_len if jp_len is not None else len(jp.encode('shift_jis', errors='replace'))
+            new = fit_length(b'\x00' * length, new, context=f'{fname} 0x{offset:X}: {kr}')
+            by_file.setdefault(fname, []).append((offset, length, new))
 
     def add_ui(fname, offset, jp_len, kr):
         if not kr:
             return
         new = encode_korean(kr, charmap, use_gaiji=True)
         new = fit_length(b'\x00' * jp_len, new, context=f'{fname} 0x{offset:X}: {kr}')
-        if fname not in by_file:
-            by_file[fname] = []
-        by_file[fname].append((offset, jp_len, new))
+        by_file.setdefault(fname, []).append((offset, jp_len, new))
 
     for dialog in translation['dialogs']:
         fname = dialog['file']
