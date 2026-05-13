@@ -46,7 +46,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 
 | 바이트 | 역할 |
 |--------|------|
-| `65 00/01 [SJIS lead]` | 대화 블록 시작 (01 = 이벤트/보물상자/재방문 NPC) |
+| `65 00/01 [SJIS/ctrl]` | 대화 블록 시작 (01 = 이벤트, ctrl = 62/63/64/66/76) |
 | `72 XX` | 줄바꿈 (XX는 부가 파라미터) |
 | `6B` | 대화 블록 명시 종료 |
 | `65 00` (블록 내부) | 서브항목 종료자 |
@@ -68,8 +68,9 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 포인터 수 계산: `n = (first_ptr - current_pos) / 2`  
 유효성 검사: `n > 0 and n <= 10 and first_ptr > current_pos`
 
-핵심 판별 기준: `65 00` 다음 바이트가 Shift-JIS 선행 바이트 범위
-(`0x81~0x9F`, `0xE0~0xFC`)인지 여부로 대화/비대화 구분.
+핵심 판별 기준: `65 00/01` 다음 바이트가 Shift-JIS 선행 바이트 범위
+(`0x81~0x9F`, `0xE0~0xFC`) 또는 제어바이트(`62/63/64/66/76`)인지 여부로 대화/비대화 구분.
+제어바이트 확장은 `in_dialog=False`일 때만 적용 — 블록 내부 `65 00`은 서브항목 종료자로 유지.
 
 ---
 
@@ -115,7 +116,7 @@ STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 �
 ```
 상태: OUT_OF_DIALOG / IN_DIALOG
 
-IN_DIALOG 진입: 65 00/01 [SJIS lead]
+IN_DIALOG 진입: 65 00/01 [SJIS lead 또는 제어바이트(62-76, out-of-dialog만)]
 IN_DIALOG 종료: 6B 또는 다음 65 00
 
 IN_DIALOG 내부:
