@@ -403,6 +403,21 @@ UI_FILE = 'GF2.COM'
 def generate_json(game_dir, out_path):
     result = {'dialogs': [], 'items': [], 'ui': []}
 
+    # 아이템을 먼저 추출 — MESSAGE.CMD 대화에서 아이템 오프셋 제외용
+    item_offsets = set()
+    fpath = os.path.join(game_dir, ITEM_FILE)
+    if os.path.exists(fpath):
+        with open(fpath, 'rb') as f:
+            raw = f.read()
+        data = decompress(raw)
+        result['items'] = extract_items(data)
+        for item in result['items']:
+            item_offsets.add(item['name']['offset'])
+            if 'stat' in item:
+                item_offsets.add(item['stat']['offset'])
+            for desc in item['desc']:
+                item_offsets.add(desc['offset'])
+
     for fname in DIALOG_FILES:
         fpath = os.path.join(game_dir, fname)
         if not os.path.exists(fpath):
@@ -418,6 +433,9 @@ def generate_json(game_dir, out_path):
                 captured.add(line['offset'])
         orphans = extract_orphan_items(data, captured)
 
+        # MESSAGE.CMD: 아이템과 중복되는 오프셋 제외
+        exclude = item_offsets if fname == ITEM_FILE else set()
+
         file_idx = 0
         all_blocks = dialogs + menus + orphans
         # 오프셋 순 정렬
@@ -425,7 +443,7 @@ def generate_json(game_dir, out_path):
         # 중복 오프셋 제거
         seen = set()
         for lines in all_blocks:
-            clean = [ln for ln in lines if ln['offset'] not in seen]
+            clean = [ln for ln in lines if ln['offset'] not in seen and ln['offset'] not in exclude]
             if clean:
                 for ln in clean:
                     seen.add(ln['offset'])
@@ -435,13 +453,6 @@ def generate_json(game_dir, out_path):
                     'index': file_idx,
                     'lines': clean,
                 })
-
-    fpath = os.path.join(game_dir, ITEM_FILE)
-    if os.path.exists(fpath):
-        with open(fpath, 'rb') as f:
-            raw = f.read()
-        data = decompress(raw)
-        result['items'] = extract_items(data)
 
     fpath = os.path.join(game_dir, UI_FILE)
     if os.path.exists(fpath):
