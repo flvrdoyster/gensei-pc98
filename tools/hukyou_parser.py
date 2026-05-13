@@ -126,6 +126,73 @@ def extract_dialogs(data):
 
 
 # ─────────────────────────────────────
+# 메뉴 파서 (13 00 선택지 블록)
+# ─────────────────────────────────────
+
+def extract_menus(data):
+    """13 00 [ptr...] [64 00 ID text 65 00] 형식의 메뉴 선택지 블록 추출."""
+    menus = []
+    i = 0
+
+    while i < len(data) - 1:
+        if data[i] != 0x13 or data[i + 1] != 0x00:
+            i += 1
+            continue
+
+        base = i + 2  # 포인터 테이블 시작
+        if base + 2 > len(data):
+            i += 1
+            continue
+
+        first_ptr = data[base] | (data[base + 1] << 8)
+        if first_ptr <= base or first_ptr >= len(data):
+            i += 1
+            continue
+
+        n_ptrs = (first_ptr - base) // 2
+        if n_ptrs <= 0 or n_ptrs > 10:
+            i += 1
+            continue
+
+        ptrs = []
+        p = base
+        for _ in range(n_ptrs):
+            ptr = data[p] | (data[p + 1] << 8)
+            ptrs.append(ptr)
+            p += 2
+
+        lines = []
+        for ptr in ptrs:
+            j = ptr
+            if j + 4 > len(data):
+                continue
+            if data[j] != 0x64 or data[j + 1] != 0x00:
+                continue
+            j += 4  # 64 00 [2B ID] 건너뜀
+            text = ''
+            text_off = j
+            while j < len(data) - 1:
+                if data[j] == 0x65 and data[j + 1] == 0x00:
+                    break
+                if is_sjis(data, j):
+                    if not text:
+                        text_off = j
+                    text += read_sjis_char(data, j)
+                    j += 2
+                else:
+                    j += 1
+            if text.strip():
+                lines.append({'offset': text_off, 'jp': text, 'kr': ''})
+
+        if lines:
+            menus.append(lines)
+
+        i += 1
+
+    return menus
+
+
+# ─────────────────────────────────────
 # 아이템/장비 파서 (MESSAGE.CMD)
 # ─────────────────────────────────────
 
@@ -279,6 +346,13 @@ def generate_json(game_dir, out_path):
             result['dialogs'].append({
                 'file': fname,
                 'index': idx + 1,
+                'lines': lines,
+            })
+        menus = extract_menus(data)
+        for idx, lines in enumerate(menus):
+            result['dialogs'].append({
+                'file': fname,
+                'index': f'menu{idx + 1}',
                 'lines': lines,
             })
 
