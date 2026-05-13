@@ -89,6 +89,16 @@ def extract_dialogs(data):
                 i += 1  # 제어바이트 건너뜀 (SJIS 시작 전까지)
             cur_offset = i
 
+        elif data[i] == 0x45 and i + 1 < len(data) and data[i + 1] == 0x00:
+            # 텍스트 서브항목 섹션 종료 마커 — 이후 0x64 블록은 바이너리 데이터
+            if cur_text.strip():
+                cur_lines.append({'offset': cur_offset, 'jp': cur_text, 'kr': ''})
+            cur_text = ''
+            i += 2
+            # 0x6B(dialog end)까지 건너뜀
+            while i < len(data) and data[i] != 0x6b:
+                i += 1
+
         elif data[i] == 0x65 and i + 1 < len(data) and data[i + 1] == 0x00:
             # 서브항목 종료자 (다이얼로그 내부 0x65 0x00)
             if cur_text.strip():
