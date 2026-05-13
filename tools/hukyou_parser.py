@@ -204,6 +204,7 @@ UI_RANGES = [
     (0x70B6, 0x73C0, 'system'),
     (0x9DF0, 0x9F00, 'status'),
     (0xA1A4, 0xA3B0, 'names'),
+    (0x0E980, 0x0EA00, 'battle'),  # アイテム, MISS 등 전투 UI
 ]
 
 
