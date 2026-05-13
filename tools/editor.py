@@ -35,6 +35,7 @@ h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
+td.type { overflow: visible; position: relative; }
 tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
 .type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
@@ -43,7 +44,7 @@ tr:hover { background: #f0f0f0; }
 .type-ui span { background: #fef9c3; color: #854d0e; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
-.tag-menu { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 20; min-width: 80px; padding: 2px 0; }
+.tag-menu { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 100; min-width: 80px; padding: 2px 0; }
 .tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
 .tag-menu div:hover { background: #f0f0f0; }
 .tag-menu div.active { font-weight: 600; }
