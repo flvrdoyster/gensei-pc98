@@ -48,18 +48,6 @@ python3 tools/hukyou_inserter.py original/hukyou
 python3 tools/hukyou_parser.py original/hukyou dump
 ```
 
-## 기술 개요
-
-- **LZ 압축**: Compile社 공통. COM 자가 압축 + CMD 런타임 압축 동일 알고리즘
-- **텍스트 인코딩**: Shift-JIS (가이지 0x85XX 영역 포함)
-- **대화 마커**: `65 00/01 [SJIS lead]` (시작, 01 = 이벤트/보물상자) / `6B` (종료)
-- **메뉴 마커**: `13 00 [포인터 테이블]` (선택지 블록)
-- **독립 메뉴**: `64 00 [2B ID] [SJIS text] 65 00` (13 00 밖의 항목)
-- **아이템 마커**: `0F 03` (시작)
-- **가이지**: 0x85XX 영역 텍스트는 `gaiji: true`로 표시, 인서터가 자동 감지하여 가이지 인코딩 적용
-
-자세한 내용은 `tools/NOTES.md` 참고.
-
 ## 라이선스
 
 번역 데이터 및 도구 코드: MIT  
