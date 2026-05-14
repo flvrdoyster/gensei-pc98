@@ -68,13 +68,13 @@
           "offset": 1366,
           "jp": "雨の島の南の平野に",
           "jp_len": 18,
-          "kr": "비의 섬 남쪽에는"
+          "kr": ""
         },
         {
           "offset": 1386,
           "jp": "一つの村があった",
           "jp_len": 16,
-          "kr": "한 마을이 있다"
+          "kr": ""
         }
       ]
     },
@@ -317,6 +317,18 @@
       "index": 1,
       "lines": [
         {
+          "offset": 6356,
+          "jp": "葬道馭",
+          "jp_len": 23,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 2,
+      "lines": [
+        {
           "offset": 6676,
           "jp": "ＧＡＭＥ　ＯＶＥＲ",
           "jp_len": 18,
@@ -363,30 +375,24 @@
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3"
-        },
-        {
-          "offset": 7030,
-          "jp": "�e",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE1.CMD",
-      "index": 2,
-      "lines": [
-        {
-          "offset": 13827,
-          "jp": "�e",
-          "jp_len": 2,
-          "kr": ""
         }
       ]
     },
     {
       "file": "STAGE1.CMD",
       "index": 3,
+      "lines": [
+        {
+          "offset": 10910,
+          "jp": "訖胆魯魯魯鵐魯",
+          "jp_len": 629,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE1.CMD",
+      "index": 4,
       "lines": [
         {
           "offset": 18462,
@@ -404,7 +410,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 4,
+      "index": 5,
       "lines": [
         {
           "offset": 18510,
@@ -416,7 +422,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 5,
+      "index": 6,
       "lines": [
         {
           "offset": 18534,
@@ -428,7 +434,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 6,
+      "index": 7,
       "lines": [
         {
           "offset": 18552,
@@ -440,7 +446,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 7,
+      "index": 8,
       "lines": [
         {
           "offset": 18574,
@@ -452,7 +458,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 18598,
@@ -470,7 +476,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 18644,
@@ -494,7 +500,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 18702,
@@ -512,7 +518,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 18744,
@@ -524,7 +530,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 18772,
@@ -542,7 +548,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 18812,
@@ -560,7 +566,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 18856,
@@ -572,7 +578,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 18876,
@@ -584,7 +590,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 18894,
@@ -602,7 +608,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 17,
+      "index": 18,
       "lines": [
         {
           "offset": 18932,
@@ -620,7 +626,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 18986,
@@ -644,7 +650,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 19066,
@@ -668,7 +674,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 20,
+      "index": 21,
       "lines": [
         {
           "offset": 19126,
@@ -686,7 +692,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 21,
+      "index": 22,
       "lines": [
         {
           "offset": 19178,
@@ -704,7 +710,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 22,
+      "index": 23,
       "lines": [
         {
           "offset": 19228,
@@ -728,7 +734,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 23,
+      "index": 24,
       "lines": [
         {
           "offset": 19304,
@@ -752,7 +758,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 24,
+      "index": 25,
       "lines": [
         {
           "offset": 19382,
@@ -770,7 +776,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 25,
+      "index": 26,
       "lines": [
         {
           "offset": 19420,
@@ -788,7 +794,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 26,
+      "index": 27,
       "lines": [
         {
           "offset": 19466,
@@ -812,7 +818,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 27,
+      "index": 28,
       "lines": [
         {
           "offset": 19540,
@@ -836,7 +842,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 28,
+      "index": 29,
       "lines": [
         {
           "offset": 19614,
@@ -854,7 +860,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 29,
+      "index": 30,
       "lines": [
         {
           "offset": 19662,
@@ -878,7 +884,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 30,
+      "index": 31,
       "lines": [
         {
           "offset": 19724,
@@ -896,7 +902,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 31,
+      "index": 32,
       "lines": [
         {
           "offset": 19772,
@@ -914,7 +920,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 32,
+      "index": 33,
       "lines": [
         {
           "offset": 19818,
@@ -932,7 +938,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 33,
+      "index": 34,
       "lines": [
         {
           "offset": 19872,
@@ -956,7 +962,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 34,
+      "index": 35,
       "lines": [
         {
           "offset": 19948,
@@ -974,7 +980,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 35,
+      "index": 36,
       "lines": [
         {
           "offset": 19994,
@@ -992,7 +998,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 36,
+      "index": 37,
       "lines": [
         {
           "offset": 20042,
@@ -1004,7 +1010,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 37,
+      "index": 38,
       "lines": [
         {
           "offset": 20074,
@@ -1028,7 +1034,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 38,
+      "index": 39,
       "lines": [
         {
           "offset": 20162,
@@ -1052,7 +1058,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 39,
+      "index": 40,
       "lines": [
         {
           "offset": 20248,
@@ -1076,7 +1082,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 40,
+      "index": 41,
       "lines": [
         {
           "offset": 20306,
@@ -1100,7 +1106,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 41,
+      "index": 42,
       "lines": [
         {
           "offset": 20368,
@@ -1124,7 +1130,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 42,
+      "index": 43,
       "lines": [
         {
           "offset": 20442,
@@ -1142,7 +1148,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 43,
+      "index": 44,
       "lines": [
         {
           "offset": 20490,
@@ -1166,7 +1172,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 44,
+      "index": 45,
       "lines": [
         {
           "offset": 20560,
@@ -1190,7 +1196,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 45,
+      "index": 46,
       "lines": [
         {
           "offset": 20620,
@@ -1202,7 +1208,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 46,
+      "index": 47,
       "lines": [
         {
           "offset": 20632,
@@ -1226,7 +1232,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 47,
+      "index": 48,
       "lines": [
         {
           "offset": 20696,
@@ -1250,7 +1256,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 48,
+      "index": 49,
       "lines": [
         {
           "offset": 20766,
@@ -1268,7 +1274,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 49,
+      "index": 50,
       "lines": [
         {
           "offset": 20806,
@@ -1286,7 +1292,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 50,
+      "index": 51,
       "lines": [
         {
           "offset": 20846,
@@ -1298,7 +1304,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 51,
+      "index": 52,
       "lines": [
         {
           "offset": 20874,
@@ -1322,7 +1328,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 52,
+      "index": 53,
       "lines": [
         {
           "offset": 20950,
@@ -1346,7 +1352,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 53,
+      "index": 54,
       "lines": [
         {
           "offset": 21016,
@@ -1370,7 +1376,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 54,
+      "index": 55,
       "lines": [
         {
           "offset": 21090,
@@ -1394,7 +1400,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 55,
+      "index": 56,
       "lines": [
         {
           "offset": 21160,
@@ -1412,7 +1418,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 56,
+      "index": 57,
       "lines": [
         {
           "offset": 21192,
@@ -1436,7 +1442,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 57,
+      "index": 58,
       "lines": [
         {
           "offset": 21246,
@@ -1454,7 +1460,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 58,
+      "index": 59,
       "lines": [
         {
           "offset": 21268,
@@ -1478,7 +1484,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 59,
+      "index": 60,
       "lines": [
         {
           "offset": 21350,
@@ -1502,7 +1508,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 60,
+      "index": 61,
       "lines": [
         {
           "offset": 21406,
@@ -1526,7 +1532,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 61,
+      "index": 62,
       "lines": [
         {
           "offset": 21466,
@@ -1550,7 +1556,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 62,
+      "index": 63,
       "lines": [
         {
           "offset": 21542,
@@ -1568,7 +1574,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 63,
+      "index": 64,
       "lines": [
         {
           "offset": 21580,
@@ -1592,7 +1598,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 64,
+      "index": 65,
       "lines": [
         {
           "offset": 21636,
@@ -1610,7 +1616,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 65,
+      "index": 66,
       "lines": [
         {
           "offset": 21656,
@@ -1634,7 +1640,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 66,
+      "index": 67,
       "lines": [
         {
           "offset": 21716,
@@ -1658,7 +1664,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 67,
+      "index": 68,
       "lines": [
         {
           "offset": 21794,
@@ -1676,7 +1682,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 68,
+      "index": 69,
       "lines": [
         {
           "offset": 21842,
@@ -1700,7 +1706,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 69,
+      "index": 70,
       "lines": [
         {
           "offset": 21908,
@@ -1724,7 +1730,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 70,
+      "index": 71,
       "lines": [
         {
           "offset": 21970,
@@ -1748,7 +1754,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 71,
+      "index": 72,
       "lines": [
         {
           "offset": 22028,
@@ -1766,7 +1772,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 72,
+      "index": 73,
       "lines": [
         {
           "offset": 22074,
@@ -1784,7 +1790,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 73,
+      "index": 74,
       "lines": [
         {
           "offset": 22118,
@@ -1802,7 +1808,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 74,
+      "index": 75,
       "lines": [
         {
           "offset": 22154,
@@ -1820,7 +1826,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 75,
+      "index": 76,
       "lines": [
         {
           "offset": 22204,
@@ -1844,7 +1850,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 76,
+      "index": 77,
       "lines": [
         {
           "offset": 22270,
@@ -1862,7 +1868,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 77,
+      "index": 78,
       "lines": [
         {
           "offset": 22306,
@@ -1874,7 +1880,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 78,
+      "index": 79,
       "lines": [
         {
           "offset": 22334,
@@ -1898,7 +1904,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 79,
+      "index": 80,
       "lines": [
         {
           "offset": 22392,
@@ -1922,7 +1928,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 80,
+      "index": 81,
       "lines": [
         {
           "offset": 22454,
@@ -1946,7 +1952,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 81,
+      "index": 82,
       "lines": [
         {
           "offset": 22516,
@@ -1970,7 +1976,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 82,
+      "index": 83,
       "lines": [
         {
           "offset": 22560,
@@ -1988,7 +1994,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 83,
+      "index": 84,
       "lines": [
         {
           "offset": 22610,
@@ -2012,7 +2018,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 84,
+      "index": 85,
       "lines": [
         {
           "offset": 22666,
@@ -2036,7 +2042,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 85,
+      "index": 86,
       "lines": [
         {
           "offset": 22732,
@@ -2054,7 +2060,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 86,
+      "index": 87,
       "lines": [
         {
           "offset": 22762,
@@ -2078,7 +2084,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 87,
+      "index": 88,
       "lines": [
         {
           "offset": 22816,
@@ -2102,7 +2108,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 88,
+      "index": 89,
       "lines": [
         {
           "offset": 22886,
@@ -2126,7 +2132,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 89,
+      "index": 90,
       "lines": [
         {
           "offset": 22956,
@@ -2144,7 +2150,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 90,
+      "index": 91,
       "lines": [
         {
           "offset": 23000,
@@ -2162,7 +2168,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 91,
+      "index": 92,
       "lines": [
         {
           "offset": 23050,
@@ -2174,7 +2180,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 92,
+      "index": 93,
       "lines": [
         {
           "offset": 23064,
@@ -2192,7 +2198,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 93,
+      "index": 94,
       "lines": [
         {
           "offset": 23098,
@@ -2210,7 +2216,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 94,
+      "index": 95,
       "lines": [
         {
           "offset": 23128,
@@ -2228,7 +2234,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 95,
+      "index": 96,
       "lines": [
         {
           "offset": 23162,
@@ -2246,7 +2252,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 96,
+      "index": 97,
       "lines": [
         {
           "offset": 23196,
@@ -2264,7 +2270,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 97,
+      "index": 98,
       "lines": [
         {
           "offset": 23250,
@@ -2288,7 +2294,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 98,
+      "index": 99,
       "lines": [
         {
           "offset": 23318,
@@ -2306,7 +2312,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 99,
+      "index": 100,
       "lines": [
         {
           "offset": 23362,
@@ -2324,7 +2330,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 100,
+      "index": 101,
       "lines": [
         {
           "offset": 23416,
@@ -2348,7 +2354,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 101,
+      "index": 102,
       "lines": [
         {
           "offset": 23488,
@@ -2366,7 +2372,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 102,
+      "index": 103,
       "lines": [
         {
           "offset": 23530,
@@ -2384,7 +2390,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 103,
+      "index": 104,
       "lines": [
         {
           "offset": 23574,
@@ -2402,7 +2408,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 104,
+      "index": 105,
       "lines": [
         {
           "offset": 23630,
@@ -2420,7 +2426,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 105,
+      "index": 106,
       "lines": [
         {
           "offset": 23674,
@@ -2450,7 +2456,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 106,
+      "index": 107,
       "lines": [
         {
           "offset": 23782,
@@ -2468,7 +2474,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 107,
+      "index": 108,
       "lines": [
         {
           "offset": 23830,
@@ -2492,7 +2498,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 108,
+      "index": 109,
       "lines": [
         {
           "offset": 23900,
@@ -2510,7 +2516,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 109,
+      "index": 110,
       "lines": [
         {
           "offset": 23944,
@@ -2522,7 +2528,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 110,
+      "index": 111,
       "lines": [
         {
           "offset": 23970,
@@ -2534,7 +2540,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 111,
+      "index": 112,
       "lines": [
         {
           "offset": 24000,
@@ -2546,7 +2552,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 112,
+      "index": 113,
       "lines": [
         {
           "offset": 24026,
@@ -2558,7 +2564,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 113,
+      "index": 114,
       "lines": [
         {
           "offset": 24052,
@@ -2570,7 +2576,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 114,
+      "index": 115,
       "lines": [
         {
           "offset": 24082,
@@ -2582,7 +2588,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 115,
+      "index": 116,
       "lines": [
         {
           "offset": 24112,
@@ -2594,7 +2600,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 116,
+      "index": 117,
       "lines": [
         {
           "offset": 24144,
@@ -2606,7 +2612,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 117,
+      "index": 118,
       "lines": [
         {
           "offset": 24176,
@@ -2624,7 +2630,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 118,
+      "index": 119,
       "lines": [
         {
           "offset": 24220,
@@ -2642,7 +2648,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 119,
+      "index": 120,
       "lines": [
         {
           "offset": 24264,
@@ -2654,7 +2660,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 120,
+      "index": 121,
       "lines": [
         {
           "offset": 24294,
@@ -2666,7 +2672,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 121,
+      "index": 122,
       "lines": [
         {
           "offset": 24324,
@@ -2678,7 +2684,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 122,
+      "index": 123,
       "lines": [
         {
           "offset": 24354,
@@ -2690,7 +2696,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 123,
+      "index": 124,
       "lines": [
         {
           "offset": 24384,
@@ -2708,7 +2714,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 124,
+      "index": 125,
       "lines": [
         {
           "offset": 24438,
@@ -2720,7 +2726,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 125,
+      "index": 126,
       "lines": [
         {
           "offset": 24466,
@@ -2732,7 +2738,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 126,
+      "index": 127,
       "lines": [
         {
           "offset": 24494,
@@ -2744,7 +2750,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 127,
+      "index": 128,
       "lines": [
         {
           "offset": 24510,
@@ -2768,7 +2774,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 128,
+      "index": 129,
       "lines": [
         {
           "offset": 24570,
@@ -2780,7 +2786,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 129,
+      "index": 130,
       "lines": [
         {
           "offset": 24592,
@@ -2792,7 +2798,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 130,
+      "index": 131,
       "lines": [
         {
           "offset": 24618,
@@ -2804,7 +2810,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 131,
+      "index": 132,
       "lines": [
         {
           "offset": 24642,
@@ -2822,7 +2828,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 132,
+      "index": 133,
       "lines": [
         {
           "offset": 24682,
@@ -2834,7 +2840,7 @@
     },
     {
       "file": "STAGE1.CMD",
-      "index": 133,
+      "index": 134,
       "lines": [
         {
           "offset": 24718,
@@ -3338,6 +3344,18 @@
       ]
     },
     {
+      "file": "STAGE1.CMD",
+      "index": 135,
+      "lines": [
+        {
+          "offset": 26119,
+          "jp": "臘歪臘歪柿鐫Ｃ暫喘稘",
+          "jp_len": 1165,
+          "kr": ""
+        }
+      ]
+    },
+    {
       "file": "STAGE2.CMD",
       "index": 1,
       "lines": [
@@ -3345,19 +3363,19 @@
           "offset": 6825,
           "jp": "「俺は　交易船の船員でな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "「나는 교역선 선원이야"
         },
         {
           "offset": 6851,
           "jp": "　３ヶ月ぶりに",
           "jp_len": 14,
-          "kr": ""
+          "kr": "3개월 만에"
         },
         {
           "offset": 6867,
           "jp": "　帰ってきた所なんだ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "돌아온 참이지"
         }
       ]
     },
@@ -3369,19 +3387,19 @@
           "offset": 6891,
           "jp": "　久し振りの故郷は",
           "jp_len": 18,
-          "kr": ""
+          "kr": "오랜만의 고향은"
         },
         {
           "offset": 6911,
           "jp": "　やっぱりイイね！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "역시 좋구나!"
         },
         {
           "offset": 6931,
           "jp": "　身も心も落ち着けるよ",
           "jp_len": 22,
-          "kr": ""
+          "kr": "몸도 마음도 진정돼"
         }
       ]
     },
@@ -3393,19 +3411,19 @@
           "offset": 6957,
           "jp": "「どこのバカ野郎が",
           "jp_len": 18,
-          "kr": ""
+          "kr": "「어느 바보놈이"
         },
         {
           "offset": 6977,
           "jp": "　食いモンを",
           "jp_len": 12,
-          "kr": ""
+          "kr": "먹을 것을"
         },
         {
           "offset": 6991,
           "jp": "　盗みやがったんだ！",
           "jp_len": 20,
-          "kr": ""
+          "kr": "훔쳐가 버린 거야!"
         }
       ]
     },
@@ -3417,19 +3435,19 @@
           "offset": 7015,
           "jp": "　ちくしょう！",
           "jp_len": 14,
-          "kr": ""
+          "kr": "젠장!"
         },
         {
           "offset": 7031,
           "jp": "　３ヶ月ぶりのカミさんの",
           "jp_len": 24,
-          "kr": ""
+          "kr": "3개월 만에 먹는"
         },
         {
           "offset": 7057,
           "jp": "　手料理がぁ〜",
           "jp_len": 14,
-          "kr": ""
+          "kr": "아내의 요리가"
         }
       ]
     },
@@ -3441,19 +3459,19 @@
           "offset": 7075,
           "jp": "「あんたたちか",
           "jp_len": 14,
-          "kr": ""
+          "kr": "「당신들이"
         },
         {
           "offset": 7091,
           "jp": "　この町を救ってくれた",
           "jp_len": 22,
-          "kr": ""
+          "kr": "이 마을을 구해준"
         },
         {
           "offset": 7115,
           "jp": "　英雄ってのは！",
           "jp_len": 16,
-          "kr": ""
+          "kr": "영웅이었다니!"
         }
       ]
     },
@@ -3465,13 +3483,13 @@
           "offset": 7135,
           "jp": "　ホントにありがとよ！",
           "jp_len": 22,
-          "kr": ""
+          "kr": "정말 고마워!"
         },
         {
           "offset": 7159,
           "jp": "　恩に着るぜ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "신세를 졌어"
         }
       ]
     },
@@ -3483,19 +3501,19 @@
           "offset": 7175,
           "jp": "「聞いたかい？",
           "jp_len": 14,
-          "kr": ""
+          "kr": "「들었는가?"
         },
         {
           "offset": 7191,
           "jp": "　雲の都のシーラ姫さまが",
           "jp_len": 24,
-          "kr": ""
+          "kr": "구름도시의 실라공주님이"
         },
         {
           "offset": 7217,
           "jp": "　行方不明なんだってさ",
           "jp_len": 22,
-          "kr": ""
+          "kr": "행방불명이라지"
         }
       ]
     },
@@ -7788,6 +7806,18 @@
       ]
     },
     {
+      "file": "STAGE2.CMD",
+      "index": 203,
+      "lines": [
+        {
+          "offset": 18640,
+          "jp": "烏扁烏扁烏扁烏祈僥薈撈撈棍棍沺沺鉗鉗韋韋鳬鳬韋韋劔劔囹囹屁屁惧惧",
+          "jp_len": 507,
+          "kr": ""
+        }
+      ]
+    },
+    {
       "file": "STAGE3.CMD",
       "index": 1,
       "lines": [
@@ -7805,8 +7835,8 @@
         },
         {
           "offset": 3251,
-          "jp": "衿臺�i",
-          "jp_len": 52,
+          "jp": "衿臺",
+          "jp_len": 48,
           "kr": ""
         },
         {
@@ -7846,508 +7876,17 @@
       "index": 2,
       "lines": [
         {
-          "offset": 5608,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
+          "offset": 7960,
+          "jp": "た杪色澁鶫伸年覩唹鶲蝋胆緞駛秦秦漏産Ф申馨蛙臣",
+          "jp_len": 2930,
+          "kr": "",
+          "gaiji": true
         }
       ]
     },
     {
       "file": "STAGE3.CMD",
       "index": 3,
-      "lines": [
-        {
-          "offset": 5635,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 4,
-      "lines": [
-        {
-          "offset": 5728,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 5,
-      "lines": [
-        {
-          "offset": 5755,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 6,
-      "lines": [
-        {
-          "offset": 5782,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 7,
-      "lines": [
-        {
-          "offset": 5885,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 8,
-      "lines": [
-        {
-          "offset": 5912,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 9,
-      "lines": [
-        {
-          "offset": 6005,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 10,
-      "lines": [
-        {
-          "offset": 6032,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 11,
-      "lines": [
-        {
-          "offset": 6059,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 12,
-      "lines": [
-        {
-          "offset": 6162,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 13,
-      "lines": [
-        {
-          "offset": 6189,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 14,
-      "lines": [
-        {
-          "offset": 6216,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 15,
-      "lines": [
-        {
-          "offset": 6319,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 16,
-      "lines": [
-        {
-          "offset": 6346,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 17,
-      "lines": [
-        {
-          "offset": 6439,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 18,
-      "lines": [
-        {
-          "offset": 6466,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 19,
-      "lines": [
-        {
-          "offset": 6559,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 20,
-      "lines": [
-        {
-          "offset": 6586,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 21,
-      "lines": [
-        {
-          "offset": 6616,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 22,
-      "lines": [
-        {
-          "offset": 6719,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 23,
-      "lines": [
-        {
-          "offset": 6746,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 24,
-      "lines": [
-        {
-          "offset": 6776,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 25,
-      "lines": [
-        {
-          "offset": 6879,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 26,
-      "lines": [
-        {
-          "offset": 6906,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 27,
-      "lines": [
-        {
-          "offset": 6933,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 28,
-      "lines": [
-        {
-          "offset": 7036,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 29,
-      "lines": [
-        {
-          "offset": 7066,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 30,
-      "lines": [
-        {
-          "offset": 7159,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 31,
-      "lines": [
-        {
-          "offset": 7186,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 32,
-      "lines": [
-        {
-          "offset": 7216,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 33,
-      "lines": [
-        {
-          "offset": 7319,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 34,
-      "lines": [
-        {
-          "offset": 7346,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 35,
-      "lines": [
-        {
-          "offset": 7373,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 36,
-      "lines": [
-        {
-          "offset": 7476,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 37,
-      "lines": [
-        {
-          "offset": 7506,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 38,
-      "lines": [
-        {
-          "offset": 7536,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 39,
-      "lines": [
-        {
-          "offset": 7639,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 40,
-      "lines": [
-        {
-          "offset": 7666,
-          "jp": "耕",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 41,
-      "lines": [
-        {
-          "offset": 7696,
-          "jp": "縮",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 42,
-      "lines": [
-        {
-          "offset": 7799,
-          "jp": "橘",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 43,
-      "lines": [
-        {
-          "offset": 12595,
-          "jp": "�e",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "STAGE3.CMD",
-      "index": 44,
       "lines": [
         {
           "offset": 17404,
@@ -8365,7 +7904,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 45,
+      "index": 4,
       "lines": [
         {
           "offset": 17444,
@@ -8383,7 +7922,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 46,
+      "index": 5,
       "lines": [
         {
           "offset": 17494,
@@ -8407,7 +7946,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 47,
+      "index": 6,
       "lines": [
         {
           "offset": 17564,
@@ -8425,7 +7964,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 48,
+      "index": 7,
       "lines": [
         {
           "offset": 17612,
@@ -8437,7 +7976,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 49,
+      "index": 8,
       "lines": [
         {
           "offset": 17632,
@@ -8455,7 +7994,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 50,
+      "index": 9,
       "lines": [
         {
           "offset": 17668,
@@ -8467,7 +8006,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 51,
+      "index": 10,
       "lines": [
         {
           "offset": 17688,
@@ -8485,7 +8024,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 52,
+      "index": 11,
       "lines": [
         {
           "offset": 17724,
@@ -8509,7 +8048,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 53,
+      "index": 12,
       "lines": [
         {
           "offset": 17792,
@@ -8527,7 +8066,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 54,
+      "index": 13,
       "lines": [
         {
           "offset": 17842,
@@ -8539,7 +8078,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 55,
+      "index": 14,
       "lines": [
         {
           "offset": 17874,
@@ -8551,7 +8090,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 56,
+      "index": 15,
       "lines": [
         {
           "offset": 17904,
@@ -8563,7 +8102,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 57,
+      "index": 16,
       "lines": [
         {
           "offset": 17936,
@@ -8575,7 +8114,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 58,
+      "index": 17,
       "lines": [
         {
           "offset": 17966,
@@ -8593,7 +8132,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 59,
+      "index": 18,
       "lines": [
         {
           "offset": 18012,
@@ -8611,7 +8150,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 60,
+      "index": 19,
       "lines": [
         {
           "offset": 18064,
@@ -8635,7 +8174,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 61,
+      "index": 20,
       "lines": [
         {
           "offset": 18116,
@@ -8647,7 +8186,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 62,
+      "index": 21,
       "lines": [
         {
           "offset": 18144,
@@ -8665,7 +8204,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 63,
+      "index": 22,
       "lines": [
         {
           "offset": 18182,
@@ -8683,7 +8222,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 64,
+      "index": 23,
       "lines": [
         {
           "offset": 18240,
@@ -8701,7 +8240,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 65,
+      "index": 24,
       "lines": [
         {
           "offset": 18292,
@@ -8719,7 +8258,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 66,
+      "index": 25,
       "lines": [
         {
           "offset": 18342,
@@ -8737,7 +8276,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 67,
+      "index": 26,
       "lines": [
         {
           "offset": 18372,
@@ -8761,7 +8300,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 68,
+      "index": 27,
       "lines": [
         {
           "offset": 18436,
@@ -8785,7 +8324,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 69,
+      "index": 28,
       "lines": [
         {
           "offset": 18484,
@@ -8809,7 +8348,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 70,
+      "index": 29,
       "lines": [
         {
           "offset": 18544,
@@ -8833,7 +8372,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 71,
+      "index": 30,
       "lines": [
         {
           "offset": 18614,
@@ -8851,7 +8390,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 72,
+      "index": 31,
       "lines": [
         {
           "offset": 18638,
@@ -8875,7 +8414,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 73,
+      "index": 32,
       "lines": [
         {
           "offset": 18706,
@@ -8893,7 +8432,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 74,
+      "index": 33,
       "lines": [
         {
           "offset": 18746,
@@ -8917,7 +8456,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 75,
+      "index": 34,
       "lines": [
         {
           "offset": 18812,
@@ -8935,7 +8474,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 76,
+      "index": 35,
       "lines": [
         {
           "offset": 18862,
@@ -8959,7 +8498,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 77,
+      "index": 36,
       "lines": [
         {
           "offset": 18922,
@@ -8977,7 +8516,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 78,
+      "index": 37,
       "lines": [
         {
           "offset": 18952,
@@ -8995,7 +8534,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 79,
+      "index": 38,
       "lines": [
         {
           "offset": 18990,
@@ -9019,7 +8558,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 80,
+      "index": 39,
       "lines": [
         {
           "offset": 19056,
@@ -9037,7 +8576,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 81,
+      "index": 40,
       "lines": [
         {
           "offset": 19108,
@@ -9055,7 +8594,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 82,
+      "index": 41,
       "lines": [
         {
           "offset": 19160,
@@ -9073,7 +8612,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 83,
+      "index": 42,
       "lines": [
         {
           "offset": 19218,
@@ -9097,7 +8636,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 84,
+      "index": 43,
       "lines": [
         {
           "offset": 19286,
@@ -9115,7 +8654,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 85,
+      "index": 44,
       "lines": [
         {
           "offset": 19324,
@@ -9133,7 +8672,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 86,
+      "index": 45,
       "lines": [
         {
           "offset": 19362,
@@ -9157,7 +8696,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 87,
+      "index": 46,
       "lines": [
         {
           "offset": 19428,
@@ -9175,7 +8714,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 88,
+      "index": 47,
       "lines": [
         {
           "offset": 19472,
@@ -9199,7 +8738,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 89,
+      "index": 48,
       "lines": [
         {
           "offset": 19550,
@@ -9223,7 +8762,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 90,
+      "index": 49,
       "lines": [
         {
           "offset": 19600,
@@ -9247,7 +8786,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 91,
+      "index": 50,
       "lines": [
         {
           "offset": 19668,
@@ -9259,7 +8798,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 92,
+      "index": 51,
       "lines": [
         {
           "offset": 19690,
@@ -9283,7 +8822,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 93,
+      "index": 52,
       "lines": [
         {
           "offset": 19760,
@@ -9307,7 +8846,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 94,
+      "index": 53,
       "lines": [
         {
           "offset": 19822,
@@ -9325,7 +8864,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 95,
+      "index": 54,
       "lines": [
         {
           "offset": 19848,
@@ -9349,7 +8888,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 96,
+      "index": 55,
       "lines": [
         {
           "offset": 19904,
@@ -9361,7 +8900,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 97,
+      "index": 56,
       "lines": [
         {
           "offset": 19932,
@@ -9385,7 +8924,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 98,
+      "index": 57,
       "lines": [
         {
           "offset": 19980,
@@ -9409,7 +8948,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 99,
+      "index": 58,
       "lines": [
         {
           "offset": 20048,
@@ -9433,7 +8972,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 100,
+      "index": 59,
       "lines": [
         {
           "offset": 20116,
@@ -9451,7 +8990,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 101,
+      "index": 60,
       "lines": [
         {
           "offset": 20150,
@@ -9469,7 +9008,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 102,
+      "index": 61,
       "lines": [
         {
           "offset": 20198,
@@ -9481,7 +9020,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 103,
+      "index": 62,
       "lines": [
         {
           "offset": 20214,
@@ -9499,7 +9038,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 104,
+      "index": 63,
       "lines": [
         {
           "offset": 20252,
@@ -9517,7 +9056,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 105,
+      "index": 64,
       "lines": [
         {
           "offset": 20298,
@@ -9535,7 +9074,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 106,
+      "index": 65,
       "lines": [
         {
           "offset": 20330,
@@ -9553,7 +9092,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 107,
+      "index": 66,
       "lines": [
         {
           "offset": 20378,
@@ -9571,7 +9110,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 108,
+      "index": 67,
       "lines": [
         {
           "offset": 20410,
@@ -9589,7 +9128,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 109,
+      "index": 68,
       "lines": [
         {
           "offset": 20458,
@@ -9607,7 +9146,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 110,
+      "index": 69,
       "lines": [
         {
           "offset": 20478,
@@ -9631,7 +9170,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 111,
+      "index": 70,
       "lines": [
         {
           "offset": 20554,
@@ -9649,7 +9188,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 112,
+      "index": 71,
       "lines": [
         {
           "offset": 20586,
@@ -9673,7 +9212,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 113,
+      "index": 72,
       "lines": [
         {
           "offset": 20654,
@@ -9685,7 +9224,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 114,
+      "index": 73,
       "lines": [
         {
           "offset": 20686,
@@ -9703,7 +9242,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 115,
+      "index": 74,
       "lines": [
         {
           "offset": 20720,
@@ -9727,7 +9266,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 116,
+      "index": 75,
       "lines": [
         {
           "offset": 20786,
@@ -9739,7 +9278,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 117,
+      "index": 76,
       "lines": [
         {
           "offset": 20816,
@@ -9757,7 +9296,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 118,
+      "index": 77,
       "lines": [
         {
           "offset": 20854,
@@ -9775,7 +9314,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 119,
+      "index": 78,
       "lines": [
         {
           "offset": 20910,
@@ -9793,7 +9332,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 120,
+      "index": 79,
       "lines": [
         {
           "offset": 20966,
@@ -9811,7 +9350,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 121,
+      "index": 80,
       "lines": [
         {
           "offset": 21014,
@@ -9835,7 +9374,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 122,
+      "index": 81,
       "lines": [
         {
           "offset": 21082,
@@ -9859,7 +9398,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 123,
+      "index": 82,
       "lines": [
         {
           "offset": 21144,
@@ -9877,7 +9416,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 124,
+      "index": 83,
       "lines": [
         {
           "offset": 21188,
@@ -9895,7 +9434,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 125,
+      "index": 84,
       "lines": [
         {
           "offset": 21230,
@@ -9913,7 +9452,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 126,
+      "index": 85,
       "lines": [
         {
           "offset": 21278,
@@ -9937,7 +9476,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 127,
+      "index": 86,
       "lines": [
         {
           "offset": 21344,
@@ -9955,7 +9494,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 128,
+      "index": 87,
       "lines": [
         {
           "offset": 21394,
@@ -9979,7 +9518,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 129,
+      "index": 88,
       "lines": [
         {
           "offset": 21468,
@@ -9997,7 +9536,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 130,
+      "index": 89,
       "lines": [
         {
           "offset": 21498,
@@ -10015,7 +9554,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 131,
+      "index": 90,
       "lines": [
         {
           "offset": 21540,
@@ -10027,7 +9566,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 132,
+      "index": 91,
       "lines": [
         {
           "offset": 21568,
@@ -10051,7 +9590,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 133,
+      "index": 92,
       "lines": [
         {
           "offset": 21628,
@@ -10075,7 +9614,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 134,
+      "index": 93,
       "lines": [
         {
           "offset": 21700,
@@ -10099,7 +9638,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 135,
+      "index": 94,
       "lines": [
         {
           "offset": 21760,
@@ -10117,7 +9656,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 136,
+      "index": 95,
       "lines": [
         {
           "offset": 21796,
@@ -10141,7 +9680,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 137,
+      "index": 96,
       "lines": [
         {
           "offset": 21860,
@@ -10159,7 +9698,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 138,
+      "index": 97,
       "lines": [
         {
           "offset": 21892,
@@ -10171,7 +9710,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 139,
+      "index": 98,
       "lines": [
         {
           "offset": 21926,
@@ -10189,7 +9728,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 140,
+      "index": 99,
       "lines": [
         {
           "offset": 21964,
@@ -10207,7 +9746,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 141,
+      "index": 100,
       "lines": [
         {
           "offset": 22002,
@@ -10225,7 +9764,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 142,
+      "index": 101,
       "lines": [
         {
           "offset": 22044,
@@ -10243,7 +9782,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 143,
+      "index": 102,
       "lines": [
         {
           "offset": 22090,
@@ -10261,7 +9800,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 144,
+      "index": 103,
       "lines": [
         {
           "offset": 22126,
@@ -10279,7 +9818,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 145,
+      "index": 104,
       "lines": [
         {
           "offset": 22176,
@@ -10303,7 +9842,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 146,
+      "index": 105,
       "lines": [
         {
           "offset": 22220,
@@ -10327,7 +9866,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 147,
+      "index": 106,
       "lines": [
         {
           "offset": 22282,
@@ -10351,7 +9890,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 148,
+      "index": 107,
       "lines": [
         {
           "offset": 22338,
@@ -10375,7 +9914,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 149,
+      "index": 108,
       "lines": [
         {
           "offset": 22390,
@@ -10399,7 +9938,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 150,
+      "index": 109,
       "lines": [
         {
           "offset": 22442,
@@ -10417,7 +9956,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 151,
+      "index": 110,
       "lines": [
         {
           "offset": 22480,
@@ -10441,7 +9980,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 152,
+      "index": 111,
       "lines": [
         {
           "offset": 22530,
@@ -10465,7 +10004,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 153,
+      "index": 112,
       "lines": [
         {
           "offset": 22586,
@@ -10477,7 +10016,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 154,
+      "index": 113,
       "lines": [
         {
           "offset": 22608,
@@ -10489,7 +10028,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 155,
+      "index": 114,
       "lines": [
         {
           "offset": 22630,
@@ -10507,7 +10046,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 156,
+      "index": 115,
       "lines": [
         {
           "offset": 22680,
@@ -10519,7 +10058,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 157,
+      "index": 116,
       "lines": [
         {
           "offset": 22708,
@@ -10531,7 +10070,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 158,
+      "index": 117,
       "lines": [
         {
           "offset": 22726,
@@ -10543,7 +10082,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 159,
+      "index": 118,
       "lines": [
         {
           "offset": 22746,
@@ -10561,7 +10100,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 160,
+      "index": 119,
       "lines": [
         {
           "offset": 22792,
@@ -10579,7 +10118,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 161,
+      "index": 120,
       "lines": [
         {
           "offset": 22842,
@@ -10603,7 +10142,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 162,
+      "index": 121,
       "lines": [
         {
           "offset": 22926,
@@ -10621,7 +10160,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 163,
+      "index": 122,
       "lines": [
         {
           "offset": 22978,
@@ -10645,7 +10184,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 164,
+      "index": 123,
       "lines": [
         {
           "offset": 23062,
@@ -10663,7 +10202,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 165,
+      "index": 124,
       "lines": [
         {
           "offset": 23106,
@@ -10687,7 +10226,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 166,
+      "index": 125,
       "lines": [
         {
           "offset": 23174,
@@ -10705,7 +10244,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 167,
+      "index": 126,
       "lines": [
         {
           "offset": 23210,
@@ -10729,7 +10268,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 168,
+      "index": 127,
       "lines": [
         {
           "offset": 23278,
@@ -10747,7 +10286,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 169,
+      "index": 128,
       "lines": [
         {
           "offset": 23304,
@@ -10771,7 +10310,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 170,
+      "index": 129,
       "lines": [
         {
           "offset": 23384,
@@ -10795,7 +10334,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 171,
+      "index": 130,
       "lines": [
         {
           "offset": 23462,
@@ -10813,7 +10352,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 172,
+      "index": 131,
       "lines": [
         {
           "offset": 23488,
@@ -10837,7 +10376,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 173,
+      "index": 132,
       "lines": [
         {
           "offset": 23548,
@@ -10855,7 +10394,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 174,
+      "index": 133,
       "lines": [
         {
           "offset": 23578,
@@ -10879,7 +10418,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 175,
+      "index": 134,
       "lines": [
         {
           "offset": 23650,
@@ -10897,7 +10436,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 176,
+      "index": 135,
       "lines": [
         {
           "offset": 23700,
@@ -10909,7 +10448,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 177,
+      "index": 136,
       "lines": [
         {
           "offset": 23728,
@@ -10921,7 +10460,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 178,
+      "index": 137,
       "lines": [
         {
           "offset": 23756,
@@ -10933,7 +10472,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 179,
+      "index": 138,
       "lines": [
         {
           "offset": 23788,
@@ -10945,7 +10484,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 180,
+      "index": 139,
       "lines": [
         {
           "offset": 23820,
@@ -10963,7 +10502,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 181,
+      "index": 140,
       "lines": [
         {
           "offset": 23864,
@@ -10981,7 +10520,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 182,
+      "index": 141,
       "lines": [
         {
           "offset": 23908,
@@ -10994,7 +10533,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 183,
+      "index": 142,
       "lines": [
         {
           "offset": 23946,
@@ -11007,7 +10546,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 184,
+      "index": 143,
       "lines": [
         {
           "offset": 23984,
@@ -11019,7 +10558,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 185,
+      "index": 144,
       "lines": [
         {
           "offset": 24014,
@@ -11031,7 +10570,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 186,
+      "index": 145,
       "lines": [
         {
           "offset": 24048,
@@ -11043,7 +10582,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 187,
+      "index": 146,
       "lines": [
         {
           "offset": 24076,
@@ -11055,7 +10594,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 188,
+      "index": 147,
       "lines": [
         {
           "offset": 24104,
@@ -11067,7 +10606,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 189,
+      "index": 148,
       "lines": [
         {
           "offset": 24134,
@@ -11079,7 +10618,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 190,
+      "index": 149,
       "lines": [
         {
           "offset": 24164,
@@ -11092,7 +10631,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 191,
+      "index": 150,
       "lines": [
         {
           "offset": 24202,
@@ -11105,7 +10644,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 192,
+      "index": 151,
       "lines": [
         {
           "offset": 24240,
@@ -11117,7 +10656,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 193,
+      "index": 152,
       "lines": [
         {
           "offset": 24270,
@@ -11129,7 +10668,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 194,
+      "index": 153,
       "lines": [
         {
           "offset": 24300,
@@ -11147,7 +10686,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 195,
+      "index": 154,
       "lines": [
         {
           "offset": 24354,
@@ -11165,7 +10704,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 196,
+      "index": 155,
       "lines": [
         {
           "offset": 24392,
@@ -11183,7 +10722,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 197,
+      "index": 156,
       "lines": [
         {
           "offset": 24428,
@@ -11201,7 +10740,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 198,
+      "index": 157,
       "lines": [
         {
           "offset": 24466,
@@ -11213,7 +10752,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 199,
+      "index": 158,
       "lines": [
         {
           "offset": 24492,
@@ -11225,7 +10764,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 200,
+      "index": 159,
       "lines": [
         {
           "offset": 24512,
@@ -11243,7 +10782,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 201,
+      "index": 160,
       "lines": [
         {
           "offset": 24560,
@@ -11255,7 +10794,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 202,
+      "index": 161,
       "lines": [
         {
           "offset": 24578,
@@ -11273,7 +10812,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 203,
+      "index": 162,
       "lines": [
         {
           "offset": 24634,
@@ -11285,7 +10824,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 204,
+      "index": 163,
       "lines": [
         {
           "offset": 24652,
@@ -11297,7 +10836,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 205,
+      "index": 164,
       "lines": [
         {
           "offset": 24674,
@@ -11309,7 +10848,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 206,
+      "index": 165,
       "lines": [
         {
           "offset": 24696,
@@ -11321,7 +10860,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 207,
+      "index": 166,
       "lines": [
         {
           "offset": 24720,
@@ -11333,7 +10872,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 208,
+      "index": 167,
       "lines": [
         {
           "offset": 24750,
@@ -11357,7 +10896,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 209,
+      "index": 168,
       "lines": [
         {
           "offset": 24828,
@@ -11375,7 +10914,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 210,
+      "index": 169,
       "lines": [
         {
           "offset": 24876,
@@ -11399,7 +10938,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 211,
+      "index": 170,
       "lines": [
         {
           "offset": 24950,
@@ -11417,7 +10956,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 212,
+      "index": 171,
       "lines": [
         {
           "offset": 24990,
@@ -11435,7 +10974,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 213,
+      "index": 172,
       "lines": [
         {
           "offset": 25048,
@@ -11453,7 +10992,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 214,
+      "index": 173,
       "lines": [
         {
           "offset": 25094,
@@ -11471,7 +11010,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 215,
+      "index": 174,
       "lines": [
         {
           "offset": 25128,
@@ -11495,7 +11034,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 216,
+      "index": 175,
       "lines": [
         {
           "offset": 25192,
@@ -11513,7 +11052,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 217,
+      "index": 176,
       "lines": [
         {
           "offset": 25232,
@@ -11525,7 +11064,7 @@
     },
     {
       "file": "STAGE3.CMD",
-      "index": 218,
+      "index": 177,
       "lines": [
         {
           "offset": 25262,
@@ -12214,6 +11753,18 @@
       ]
     },
     {
+      "file": "STAGE3.CMD",
+      "index": 178,
+      "lines": [
+        {
+          "offset": 27221,
+          "jp": "喩麋喩麋残臘壇訶憩麈Ｇ伺彷鑄進彿",
+          "jp_len": 493,
+          "kr": ""
+        }
+      ]
+    },
+    {
       "file": "STAGE4.CMD",
       "index": 1,
       "lines": [
@@ -12737,7 +12288,7 @@
           "offset": 6931,
           "jp": "　ああ見えても",
           "jp_len": 14,
-          "kr": ""
+          "kr": "몸도 마음도 진정돼"
         },
         {
           "offset": 6947,
@@ -12761,7 +12312,7 @@
           "offset": 6991,
           "jp": "ダリオス",
           "jp_len": 8,
-          "kr": ""
+          "kr": "훔쳐가 버린 거야!"
         },
         {
           "offset": 7001,
@@ -12797,7 +12348,7 @@
           "offset": 7075,
           "jp": "　例の物は",
           "jp_len": 10,
-          "kr": ""
+          "kr": "「당신들이"
         },
         {
           "offset": 7087,
@@ -12845,7 +12396,7 @@
           "offset": 7175,
           "jp": "　これで再び　あの魔獣を",
           "jp_len": 24,
-          "kr": ""
+          "kr": "「들었는가?"
         },
         {
           "offset": 7201,
@@ -14844,6 +14395,31 @@
       "index": 1,
       "lines": [
         {
+          "offset": 3565,
+          "jp": "拝拝拝",
+          "jp_len": 146,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 2,
+      "lines": [
+        {
+          "offset": 5268,
+          "jp": "拝拝拝拝拝拝拝拝揶揶捌捌揶u捌瑞u捌揶捌捌葬釘殍佝発僻徇",
+          "jp_len": 2797,
+          "kr": "",
+          "gaiji": true
+        }
+      ]
+    },
+    {
+      "file": "STAGE5.CMD",
+      "index": 3,
+      "lines": [
+        {
           "offset": 8310,
           "jp": "ＧＡＭＥ　ＯＶＥＲ",
           "jp_len": 18,
@@ -14857,8 +14433,8 @@
         },
         {
           "offset": 8363,
-          "jp": "欽駘�l",
-          "jp_len": 52,
+          "jp": "欽駘",
+          "jp_len": 48,
           "kr": ""
         },
         {
@@ -14892,32 +14468,14 @@
           "kr": ""
         },
         {
-          "offset": 8716,
-          "jp": "�@",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
           "offset": 8744,
           "jp": "窟",
           "jp_len": 2,
           "kr": ""
         },
         {
-          "offset": 8813,
-          "jp": "�B",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
           "offset": 8828,
           "jp": "Д",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
-          "offset": 8849,
-          "jp": "�D",
           "jp_len": 2,
           "kr": ""
         },
@@ -14936,12 +14494,6 @@
         {
           "offset": 9047,
           "jp": "廖",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
-          "offset": 9180,
-          "jp": "�@",
           "jp_len": 2,
           "kr": ""
         },
@@ -14972,18 +14524,6 @@
         {
           "offset": 9300,
           "jp": "任",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
-          "offset": 9328,
-          "jp": "�@",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
-          "offset": 9348,
-          "jp": "�E",
           "jp_len": 2,
           "kr": ""
         },
@@ -15060,28 +14600,28 @@
           "kr": ""
         },
         {
-          "offset": 10727,
-          "jp": "�G�m知�G確芭徇枸羽�m�j知羽確�j芭羽稽�j卜Ｎ徇枸�m�j知確�j芭徇枸�m�j知確�j芭稽�j卜Ｎ徇枸�m",
-          "jp_len": 563,
+          "offset": 10739,
+          "jp": "知確芭徇枸羽知羽確芭羽稽卜Ｎ徇枸知確芭徇枸知確芭稽卜Ｎ徇枸",
+          "jp_len": 519,
           "kr": ""
         }
       ]
     },
     {
       "file": "STAGE5.CMD",
-      "index": 2,
+      "index": 4,
       "lines": [
         {
-          "offset": 16017,
-          "jp": "�e",
-          "jp_len": 2,
+          "offset": 14598,
+          "jp": "嘘轍嘘嘘",
+          "jp_len": 105,
           "kr": ""
         }
       ]
     },
     {
       "file": "STAGE5.CMD",
-      "index": 3,
+      "index": 5,
       "lines": [
         {
           "offset": 21539,
@@ -15105,7 +14645,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 4,
+      "index": 6,
       "lines": [
         {
           "offset": 21601,
@@ -15129,7 +14669,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 5,
+      "index": 7,
       "lines": [
         {
           "offset": 21671,
@@ -15153,7 +14693,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 6,
+      "index": 8,
       "lines": [
         {
           "offset": 21725,
@@ -15171,7 +14711,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 7,
+      "index": 9,
       "lines": [
         {
           "offset": 21771,
@@ -15183,7 +14723,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 8,
+      "index": 10,
       "lines": [
         {
           "offset": 21793,
@@ -15207,7 +14747,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 9,
+      "index": 11,
       "lines": [
         {
           "offset": 21843,
@@ -15225,7 +14765,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 10,
+      "index": 12,
       "lines": [
         {
           "offset": 21875,
@@ -15249,7 +14789,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 11,
+      "index": 13,
       "lines": [
         {
           "offset": 21925,
@@ -15273,7 +14813,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 12,
+      "index": 14,
       "lines": [
         {
           "offset": 22001,
@@ -15297,7 +14837,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 13,
+      "index": 15,
       "lines": [
         {
           "offset": 22051,
@@ -15315,7 +14855,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 14,
+      "index": 16,
       "lines": [
         {
           "offset": 22103,
@@ -15339,7 +14879,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 15,
+      "index": 17,
       "lines": [
         {
           "offset": 22151,
@@ -15363,7 +14903,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 16,
+      "index": 18,
       "lines": [
         {
           "offset": 22221,
@@ -15381,7 +14921,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 17,
+      "index": 19,
       "lines": [
         {
           "offset": 22273,
@@ -15399,7 +14939,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 18,
+      "index": 20,
       "lines": [
         {
           "offset": 22325,
@@ -15411,7 +14951,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 19,
+      "index": 21,
       "lines": [
         {
           "offset": 22355,
@@ -15435,7 +14975,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 20,
+      "index": 22,
       "lines": [
         {
           "offset": 22407,
@@ -15459,7 +14999,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 21,
+      "index": 23,
       "lines": [
         {
           "offset": 22461,
@@ -15477,7 +15017,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 22,
+      "index": 24,
       "lines": [
         {
           "offset": 22505,
@@ -15495,7 +15035,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 23,
+      "index": 25,
       "lines": [
         {
           "offset": 22539,
@@ -15519,7 +15059,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 24,
+      "index": 26,
       "lines": [
         {
           "offset": 22595,
@@ -15537,7 +15077,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 25,
+      "index": 27,
       "lines": [
         {
           "offset": 22637,
@@ -15561,7 +15101,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 26,
+      "index": 28,
       "lines": [
         {
           "offset": 22701,
@@ -15579,7 +15119,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 27,
+      "index": 29,
       "lines": [
         {
           "offset": 22739,
@@ -15597,7 +15137,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 28,
+      "index": 30,
       "lines": [
         {
           "offset": 22769,
@@ -15615,7 +15155,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 29,
+      "index": 31,
       "lines": [
         {
           "offset": 22805,
@@ -15639,7 +15179,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 30,
+      "index": 32,
       "lines": [
         {
           "offset": 22857,
@@ -15657,7 +15197,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 31,
+      "index": 33,
       "lines": [
         {
           "offset": 22907,
@@ -15675,7 +15215,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 32,
+      "index": 34,
       "lines": [
         {
           "offset": 22939,
@@ -15693,7 +15233,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 33,
+      "index": 35,
       "lines": [
         {
           "offset": 22973,
@@ -15717,7 +15257,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 34,
+      "index": 36,
       "lines": [
         {
           "offset": 23035,
@@ -15735,7 +15275,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 35,
+      "index": 37,
       "lines": [
         {
           "offset": 23085,
@@ -15753,7 +15293,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 36,
+      "index": 38,
       "lines": [
         {
           "offset": 23121,
@@ -15771,7 +15311,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 37,
+      "index": 39,
       "lines": [
         {
           "offset": 23147,
@@ -15789,7 +15329,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 38,
+      "index": 40,
       "lines": [
         {
           "offset": 23169,
@@ -15807,7 +15347,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 39,
+      "index": 41,
       "lines": [
         {
           "offset": 23225,
@@ -15831,7 +15371,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 40,
+      "index": 42,
       "lines": [
         {
           "offset": 23293,
@@ -15849,7 +15389,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 41,
+      "index": 43,
       "lines": [
         {
           "offset": 23329,
@@ -15867,7 +15407,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 42,
+      "index": 44,
       "lines": [
         {
           "offset": 23359,
@@ -15891,7 +15431,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 43,
+      "index": 45,
       "lines": [
         {
           "offset": 23427,
@@ -15915,7 +15455,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 44,
+      "index": 46,
       "lines": [
         {
           "offset": 23497,
@@ -15939,7 +15479,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 45,
+      "index": 47,
       "lines": [
         {
           "offset": 23561,
@@ -15963,7 +15503,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 46,
+      "index": 48,
       "lines": [
         {
           "offset": 23643,
@@ -15975,7 +15515,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 47,
+      "index": 49,
       "lines": [
         {
           "offset": 23669,
@@ -15999,7 +15539,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 48,
+      "index": 50,
       "lines": [
         {
           "offset": 23719,
@@ -16023,7 +15563,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 49,
+      "index": 51,
       "lines": [
         {
           "offset": 23789,
@@ -16041,7 +15581,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 50,
+      "index": 52,
       "lines": [
         {
           "offset": 23849,
@@ -16065,7 +15605,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 51,
+      "index": 53,
       "lines": [
         {
           "offset": 23907,
@@ -16083,7 +15623,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 52,
+      "index": 54,
       "lines": [
         {
           "offset": 23939,
@@ -16101,7 +15641,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 53,
+      "index": 55,
       "lines": [
         {
           "offset": 23967,
@@ -16125,7 +15665,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 54,
+      "index": 56,
       "lines": [
         {
           "offset": 24035,
@@ -16149,7 +15689,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 55,
+      "index": 57,
       "lines": [
         {
           "offset": 24095,
@@ -16167,7 +15707,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 56,
+      "index": 58,
       "lines": [
         {
           "offset": 24129,
@@ -16191,7 +15731,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 57,
+      "index": 59,
       "lines": [
         {
           "offset": 24213,
@@ -16209,7 +15749,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 58,
+      "index": 60,
       "lines": [
         {
           "offset": 24261,
@@ -16227,7 +15767,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 59,
+      "index": 61,
       "lines": [
         {
           "offset": 24291,
@@ -16245,7 +15785,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 60,
+      "index": 62,
       "lines": [
         {
           "offset": 24349,
@@ -16269,7 +15809,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 61,
+      "index": 63,
       "lines": [
         {
           "offset": 24417,
@@ -16287,7 +15827,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 62,
+      "index": 64,
       "lines": [
         {
           "offset": 24449,
@@ -16311,7 +15851,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 63,
+      "index": 65,
       "lines": [
         {
           "offset": 24511,
@@ -16329,7 +15869,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 64,
+      "index": 66,
       "lines": [
         {
           "offset": 24567,
@@ -16353,7 +15893,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 65,
+      "index": 67,
       "lines": [
         {
           "offset": 24623,
@@ -16371,7 +15911,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 66,
+      "index": 68,
       "lines": [
         {
           "offset": 24657,
@@ -16395,7 +15935,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 67,
+      "index": 69,
       "lines": [
         {
           "offset": 24727,
@@ -16419,7 +15959,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 68,
+      "index": 70,
       "lines": [
         {
           "offset": 24783,
@@ -16431,7 +15971,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 69,
+      "index": 71,
       "lines": [
         {
           "offset": 24813,
@@ -16449,7 +15989,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 70,
+      "index": 72,
       "lines": [
         {
           "offset": 24843,
@@ -16467,7 +16007,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 71,
+      "index": 73,
       "lines": [
         {
           "offset": 24895,
@@ -16485,7 +16025,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 72,
+      "index": 74,
       "lines": [
         {
           "offset": 24915,
@@ -16509,7 +16049,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 73,
+      "index": 75,
       "lines": [
         {
           "offset": 24971,
@@ -16533,7 +16073,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 74,
+      "index": 76,
       "lines": [
         {
           "offset": 25031,
@@ -16557,7 +16097,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 75,
+      "index": 77,
       "lines": [
         {
           "offset": 25085,
@@ -16581,7 +16121,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 76,
+      "index": 78,
       "lines": [
         {
           "offset": 25145,
@@ -16599,7 +16139,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 77,
+      "index": 79,
       "lines": [
         {
           "offset": 25183,
@@ -16623,7 +16163,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 78,
+      "index": 80,
       "lines": [
         {
           "offset": 25265,
@@ -16641,7 +16181,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 79,
+      "index": 81,
       "lines": [
         {
           "offset": 25301,
@@ -16665,7 +16205,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 80,
+      "index": 82,
       "lines": [
         {
           "offset": 25361,
@@ -16677,7 +16217,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 81,
+      "index": 83,
       "lines": [
         {
           "offset": 25385,
@@ -16695,7 +16235,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 82,
+      "index": 84,
       "lines": [
         {
           "offset": 25439,
@@ -16719,7 +16259,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 83,
+      "index": 85,
       "lines": [
         {
           "offset": 25509,
@@ -16743,7 +16283,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 84,
+      "index": 86,
       "lines": [
         {
           "offset": 25579,
@@ -16767,7 +16307,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 85,
+      "index": 87,
       "lines": [
         {
           "offset": 25635,
@@ -16779,7 +16319,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 86,
+      "index": 88,
       "lines": [
         {
           "offset": 25657,
@@ -16803,7 +16343,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 87,
+      "index": 89,
       "lines": [
         {
           "offset": 25733,
@@ -16821,7 +16361,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 88,
+      "index": 90,
       "lines": [
         {
           "offset": 25765,
@@ -16833,7 +16373,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 89,
+      "index": 91,
       "lines": [
         {
           "offset": 25787,
@@ -16846,7 +16386,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 90,
+      "index": 92,
       "lines": [
         {
           "offset": 25825,
@@ -16859,7 +16399,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 91,
+      "index": 93,
       "lines": [
         {
           "offset": 25863,
@@ -16871,7 +16411,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 92,
+      "index": 94,
       "lines": [
         {
           "offset": 25895,
@@ -16883,7 +16423,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 93,
+      "index": 95,
       "lines": [
         {
           "offset": 25927,
@@ -16901,7 +16441,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 94,
+      "index": 96,
       "lines": [
         {
           "offset": 25971,
@@ -16919,7 +16459,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 95,
+      "index": 97,
       "lines": [
         {
           "offset": 26015,
@@ -16931,7 +16471,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 96,
+      "index": 98,
       "lines": [
         {
           "offset": 26045,
@@ -16943,7 +16483,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 97,
+      "index": 99,
       "lines": [
         {
           "offset": 26075,
@@ -16961,7 +16501,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 98,
+      "index": 100,
       "lines": [
         {
           "offset": 26117,
@@ -16979,7 +16519,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 99,
+      "index": 101,
       "lines": [
         {
           "offset": 26161,
@@ -16992,7 +16532,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 100,
+      "index": 102,
       "lines": [
         {
           "offset": 26199,
@@ -17005,7 +16545,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 101,
+      "index": 103,
       "lines": [
         {
           "offset": 26237,
@@ -17024,7 +16564,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 102,
+      "index": 104,
       "lines": [
         {
           "offset": 26287,
@@ -17042,7 +16582,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 103,
+      "index": 105,
       "lines": [
         {
           "offset": 26331,
@@ -17054,7 +16594,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 104,
+      "index": 106,
       "lines": [
         {
           "offset": 26361,
@@ -17066,7 +16606,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 105,
+      "index": 107,
       "lines": [
         {
           "offset": 26391,
@@ -17078,7 +16618,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 106,
+      "index": 108,
       "lines": [
         {
           "offset": 26421,
@@ -17090,7 +16630,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 107,
+      "index": 109,
       "lines": [
         {
           "offset": 26455,
@@ -17102,7 +16642,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 108,
+      "index": 110,
       "lines": [
         {
           "offset": 26483,
@@ -17114,7 +16654,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 109,
+      "index": 111,
       "lines": [
         {
           "offset": 26511,
@@ -17127,7 +16667,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 110,
+      "index": 112,
       "lines": [
         {
           "offset": 26547,
@@ -17140,7 +16680,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 111,
+      "index": 113,
       "lines": [
         {
           "offset": 26583,
@@ -17159,7 +16699,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 112,
+      "index": 114,
       "lines": [
         {
           "offset": 26631,
@@ -17177,7 +16717,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 113,
+      "index": 115,
       "lines": [
         {
           "offset": 26675,
@@ -17190,7 +16730,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 114,
+      "index": 116,
       "lines": [
         {
           "offset": 26713,
@@ -17203,7 +16743,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 115,
+      "index": 117,
       "lines": [
         {
           "offset": 26751,
@@ -17215,7 +16755,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 116,
+      "index": 118,
       "lines": [
         {
           "offset": 26781,
@@ -17227,7 +16767,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 117,
+      "index": 119,
       "lines": [
         {
           "offset": 26815,
@@ -17239,7 +16779,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 118,
+      "index": 120,
       "lines": [
         {
           "offset": 26843,
@@ -17251,7 +16791,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 119,
+      "index": 121,
       "lines": [
         {
           "offset": 26871,
@@ -17263,7 +16803,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 120,
+      "index": 122,
       "lines": [
         {
           "offset": 26901,
@@ -17275,7 +16815,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 121,
+      "index": 123,
       "lines": [
         {
           "offset": 26931,
@@ -17287,7 +16827,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 122,
+      "index": 124,
       "lines": [
         {
           "offset": 26961,
@@ -17299,7 +16839,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 123,
+      "index": 125,
       "lines": [
         {
           "offset": 26995,
@@ -17311,7 +16851,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 124,
+      "index": 126,
       "lines": [
         {
           "offset": 27021,
@@ -17323,7 +16863,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 125,
+      "index": 127,
       "lines": [
         {
           "offset": 27051,
@@ -17335,7 +16875,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 126,
+      "index": 128,
       "lines": [
         {
           "offset": 27077,
@@ -17347,7 +16887,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 127,
+      "index": 129,
       "lines": [
         {
           "offset": 27103,
@@ -17365,7 +16905,7 @@
     },
     {
       "file": "STAGE5.CMD",
-      "index": 128,
+      "index": 130,
       "lines": [
         {
           "offset": 27161,
@@ -17680,6 +17220,18 @@
       ]
     },
     {
+      "file": "STAGE5.CMD",
+      "index": 131,
+      "lines": [
+        {
+          "offset": 27958,
+          "jp": "ニ祝嬲徒疚浜",
+          "jp_len": 1208,
+          "kr": ""
+        }
+      ]
+    },
+    {
       "file": "STAGE6.CMD",
       "index": 1,
       "lines": [
@@ -17750,10 +17302,11 @@
       "index": 4,
       "lines": [
         {
-          "offset": 11367,
-          "jp": "�e",
-          "jp_len": 2,
-          "kr": ""
+          "offset": 10714,
+          "jp": "殖Ы=",
+          "jp_len": 97,
+          "kr": "",
+          "gaiji": true
         }
       ]
     },
@@ -18697,6 +18250,18 @@
           "offset": 17766,
           "jp": "丸太",
           "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "STAGE6.CMD",
+      "index": 47,
+      "lines": [
+        {
+          "offset": 17889,
+          "jp": "擦咾磴妊襯",
+          "jp_len": 267,
           "kr": ""
         }
       ]
@@ -19831,31 +19396,31 @@
           "offset": 2928,
           "jp": "俺のブタを魔獣のエサにされてた",
           "jp_len": 30,
-          "kr": "내 돼지를 마수 먹이로 삼게"
+          "kr": ""
         },
         {
           "offset": 2960,
           "jp": "まるかよ！　早い所、助け出さな",
           "jp_len": 30,
-          "kr": "둘까 보냐! 서둘러 구하러"
+          "kr": ""
         },
         {
           "offset": 2992,
           "jp": "ければ。",
           "jp_len": 8,
-          "kr": "가야해"
+          "kr": ""
         },
         {
           "offset": 3150,
           "jp": "ぬか床…あなたの仇は必ず取りま",
           "jp_len": 30,
-          "kr": "쌀겨독… 당신의 원수는 꼭"
+          "kr": ""
         },
         {
           "offset": 3182,
           "jp": "すわッ！",
           "jp_len": 8,
-          "kr": "갚겠어요"
+          "kr": ""
         },
         {
           "offset": 3266,
@@ -19873,7 +19438,7 @@
           "offset": 3330,
           "jp": "ね！",
           "jp_len": 4,
-          "kr": "야해"
+          "kr": ""
         }
       ]
     },
@@ -19885,19 +19450,19 @@
           "offset": 3336,
           "jp": "何としてでも、俺のブタを取り戻",
           "jp_len": 30,
-          "kr": "어떻게 해서든, 내 돼지를"
+          "kr": ""
         },
         {
           "offset": 3368,
           "jp": "してやるッ！　早いとこ、モンス",
           "jp_len": 30,
-          "kr": "되찾아 주겠어! 서둘러서"
+          "kr": ""
         },
         {
           "offset": 3400,
           "jp": "ターどものあとを追わなければ。",
           "jp_len": 30,
-          "kr": "몬스터의 뒤를 쫓아야 해"
+          "kr": ""
         }
       ]
     },
@@ -19909,7 +19474,7 @@
           "offset": 3432,
           "jp": "仲間、仲間！　誰か俺の仲間にな",
           "jp_len": 30,
-          "kr": "동료, 동료! 동료로 삼을"
+          "kr": ""
         },
         {
           "offset": 3464,
@@ -19927,13 +19492,13 @@
           "offset": 3494,
           "jp": "問題はあるが、何とか仲間ができ",
           "jp_len": 30,
-          "kr": "문제는 있지만 동료는 생겼다"
+          "kr": ""
         },
         {
           "offset": 3526,
           "jp": "た。これで村から出られるぞ。",
           "jp_len": 28,
-          "kr": "이제 마을을 나서자"
+          "kr": ""
         }
       ]
     },
@@ -19945,19 +19510,19 @@
           "offset": 3556,
           "jp": "心強い下僕も手に入ったことです",
           "jp_len": 30,
-          "kr": "든든한 하인도 손에 넣었으니"
+          "kr": ""
         },
         {
           "offset": 3588,
           "jp": "し、張り切ってモンスター退治に",
           "jp_len": 30,
-          "kr": "기운 차게 몬스터 퇴치에"
+          "kr": ""
         },
         {
           "offset": 3620,
           "jp": "いそしむとしましょう。",
           "jp_len": 22,
-          "kr": "힘쓰도록 하죠"
+          "kr": ""
         }
       ]
     },
@@ -19969,25 +19534,25 @@
           "offset": 3644,
           "jp": "モンスターどもは堺のトンネルに",
           "jp_len": 30,
-          "kr": "몬스터들은 경계터널로 갔다는"
+          "kr": ""
         },
         {
           "offset": 3676,
           "jp": "入った、という話だ。俺のかわい",
           "jp_len": 30,
-          "kr": "모양이다. 내 귀여운 돼지를"
+          "kr": ""
         },
         {
           "offset": 3708,
           "jp": "いブタを暗がりに連れ込んで、何",
           "jp_len": 30,
-          "kr": "어둠 속에 끌고 가선"
+          "kr": ""
         },
         {
           "offset": 3740,
           "jp": "をしようってんだッ！？",
           "jp_len": 22,
-          "kr": "뭘 하려는 거냐!?"
+          "kr": ""
         }
       ]
     },
@@ -19999,13 +19564,13 @@
           "offset": 3764,
           "jp": "堺のトンネルの本道は、潮の町に",
           "jp_len": 30,
-          "kr": "경계터널의 큰길은 바다마을로"
+          "kr": ""
         },
         {
           "offset": 3796,
           "jp": "通じています。でも、枝別れした",
           "jp_len": 30,
-          "kr": "이어져 있어요. 하지만"
+          "kr": ""
         },
         {
           "offset": 3828,
@@ -20017,7 +19582,7 @@
           "offset": 3860,
           "jp": "言われてますわ。",
           "jp_len": 16,
-          "kr": "마물이 산다네요"
+          "kr": ""
         }
       ]
     },
@@ -22188,6 +21753,13 @@
       "jp": "Ｆ・１０で強制終了",
       "jp_len": 18,
       "kr": "F10 강제 종료"
+    },
+    {
+      "offset": 29538,
+      "category": "system",
+      "jp": "己実",
+      "jp_len": 4,
+      "kr": ""
     },
     {
       "offset": 29564,

@@ -63,7 +63,8 @@ def extract_dialogs(data):
                             or (not in_dialog
                                 and data[i + 2] in (0x62, 0x63, 0x64, 0x66, 0x76))))
         is_68_start = (not is_65_start and i + 3 < len(data)
-                       and data[i] == 0x68 and is_sjis_lead(data[i + 2]))
+                       and data[i] == 0x68 and is_sjis_lead(data[i + 2])
+                       and data[i + 3] != 0x6b)
 
         if is_65_start or is_68_start:
             if in_dialog:

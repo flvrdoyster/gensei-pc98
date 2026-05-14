@@ -102,7 +102,15 @@ def is_sjis(data, i):
     b = data[i]
     if is_sjis_lead(b):
         b2 = data[i + 1]
-        return 0x40 <= b2 <= 0xFC and b2 != 0x7F
+        if not (0x40 <= b2 <= 0xFC and b2 != 0x7F):
+            return False
+        if b == 0x85:
+            return True  # 가이지 영역 — read_sjis_char에서 별도 디코딩
+        try:
+            data[i:i + 2].decode('shift_jis')
+            return True
+        except (UnicodeDecodeError, ValueError):
+            return False
     return False
 
 
