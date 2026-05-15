@@ -45,6 +45,7 @@ tr:hover { background: #f0f0f0; }
 .type-item span { background: #dcfce7; color: #15803d; }
 .type-menu span { background: #fef9c3; color: #854d0e; }
 .type-location span { background: #fed7aa; color: #9a3412; }
+.type-battle span { background: #fee2e2; color: #991b1b; }
 .type-system span { background: #e5e7eb; color: #374151; }
 .type-char span { background: #cffafe; color: #0e7490; }
 .type span.taggable { cursor: pointer; position: relative; }
@@ -89,6 +90,7 @@ tr:hover { background: #f0f0f0; }
     <option value="menu">메뉴/라벨</option>
     <option value="location">장소</option>
     <option value="char">캐릭터명</option>
+    <option value="battle">전투</option>
     <option value="system">시스템</option>
     <option value="gaiji">외자(가이지)</option>
   </select>
@@ -145,7 +147,7 @@ async function load() {
       rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
     }
   }
-  const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'menu' };
+  const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
   for (const entry of (data.ui || [])) {
     const tag = UI_CAT_TAG[entry.category] || 'menu';
     rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
@@ -189,13 +191,13 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
-const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'item', 'menu', 'location', 'system'];
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
+const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
   const taggable = (r.type === 'dialog' || r.type === 'ui') ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
