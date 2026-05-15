@@ -94,12 +94,12 @@ tr:hover { background: #f0f0f0; }
     <option value="battle">전투</option>
     <option value="system">시스템</option>
     <option value="ignore">제외</option>
-    <option value="gaiji">외자(가이지)</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
   </select>
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterUntranslated" style="vertical-align:middle"> 미번역만</label>
+  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterGaiji" style="vertical-align:middle"> 외자만</label>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
@@ -211,15 +211,14 @@ function render() {
   const filterFile = document.getElementById('filterFile').value;
   const search = document.getElementById('searchBox').value.toLowerCase();
   const untranslatedOnly = document.getElementById('filterUntranslated').checked;
+  const gaijiOnly = document.getElementById('filterGaiji').checked;
 
   const filtered = rows.filter(r => {
     if (untranslatedOnly) {
       if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
     }
+    if (gaijiOnly && !r.gaiji) return false;
     if (filterType) {
-      if (filterType === 'gaiji') {
-        if (!r.gaiji) return false;
-      } else {
         const effective = r.tag || r.type;
         if (filterType === 'item') {
           if (!r.type.startsWith('item') && effective !== 'item') return false;
@@ -369,6 +368,7 @@ document.getElementById('buildBtn').addEventListener('click', async () => {
 document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
 document.getElementById('filterUntranslated').addEventListener('change', render);
+document.getElementById('filterGaiji').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
 
 document.addEventListener('keydown', e => {
