@@ -292,6 +292,22 @@ for i in range(len(data)-1):
 
 ---
 
+## 에디터 태그 시스템
+
+translation.json의 각 텍스트 항목에 `tag` 필드로 분류 (10종, 시리즈 공통 — README.md 참조).
+
+**자동 분류 규칙** (STAGE1/2 수동 분류를 기반으로 나머지 파일에 적용):
+- 파일 기반: ENDING/OPEN.CMD→cutscene, MESSAGE.CMD→monolog
+- 정확 텍스트 매칭: STAGE1/2에서 태깅된 캐릭터명·메뉴·장소·아이템·전투를 다른 STAGE에서 동일 텍스트로 매칭
+- 패턴 매칭: 보물상자 메시지(「〜が入っていた！」등)→item, 파일 끝 적/기술 블록→battle, 쓰레기 데이터→ignore
+
+**에디터 필터 체계**:
+- 타입 드롭다운: 태그별 필터 (dialog/monolog/cutscene/char/battle/item/menu/location/system)
+- 파일 드롭다운: CMD 파일별 필터
+- 체크박스 (독립 조합 가능): 미번역만 / 외자만 / 제외 포함
+
+---
+
 ## 파일 목록
 
 | 파일 | 역할 |
