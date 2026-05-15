@@ -95,6 +95,7 @@ tr:hover { background: #f0f0f0; }
     <option value="system">시스템</option>
     <option value="ignore">제외</option>
     <option value="gaiji">외자(가이지)</option>
+    <option value="_untranslated">미번역</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
@@ -212,7 +213,9 @@ function render() {
 
   const filtered = rows.filter(r => {
     if (filterType) {
-      if (filterType === 'gaiji') {
+      if (filterType === '_untranslated') {
+        if ((r.kr || '').trim()) return false;
+      } else if (filterType === 'gaiji') {
         if (!r.gaiji) return false;
       } else {
         const effective = r.tag || r.type;
