@@ -452,11 +452,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if self.path == '/api/save':
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length))
-            updated = self.apply_changes(body)
+            result = self.apply_changes(body)
             self.send_response(200)
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
-            self.wfile.write(json.dumps({'updated': updated}).encode())
+            self.wfile.write(json.dumps(result).encode())
         elif self.path == '/api/build':
             result = self.run_build()
             self.send_response(200)
