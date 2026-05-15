@@ -219,12 +219,11 @@ function render() {
     }
     if (gaijiOnly && !r.gaiji) return false;
     if (filterType) {
-        const effective = r.tag || r.type;
-        if (filterType === 'item') {
-          if (!r.type.startsWith('item') && effective !== 'item') return false;
-        } else {
-          if (effective !== filterType) return false;
-        }
+      const effective = r.tag || r.type;
+      if (filterType === 'item') {
+        if (!r.type.startsWith('item') && effective !== 'item') return false;
+      } else {
+        if (effective !== filterType) return false;
       }
     }
     if (filterFile && r.file !== filterFile) return false;
