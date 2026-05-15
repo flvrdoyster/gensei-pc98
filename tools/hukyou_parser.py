@@ -523,7 +523,7 @@ def generate_json(game_dir, out_path):
                 if kr:
                     line['kr'] = kr
                     restored += 1
-                tag = tag_map.get((fname, line['offset']))
+                tag = tag_map.get((dialog['file'], line['offset']))
                 if tag:
                     line['tag'] = tag
         for item in result['items']:
