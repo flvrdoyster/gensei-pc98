@@ -103,7 +103,7 @@ tr:hover { background: #f0f0f0; }
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
-  <span class="stats" id="stats"></span>
+  <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-dashoffset="22" stroke-linecap="round"/></svg><span id="statsText"></span></span>
 </div>
 </div>
 <table>
@@ -269,11 +269,14 @@ function escAttr(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
 
 function updateStats() {
   const total = rows.length;
-  const done = rows.filter(r => (r.kr || '') || (modified[r.type+':'+r.offset] || '')).length;
+  const done = rows.filter(r => (r.kr || '') || (modified[r.type+':'+r.file+':'+r.offset] || '')).length;
   const mod = Object.keys(modified).length;
   const tags = Object.keys(tagChanges).length;
   const changes = mod + tags;
-  document.getElementById('stats').textContent = `번역: ${done}/${total} | 수정: ${mod}건` + (tags ? ` | 분류: ${tags}건` : '');
+  const pct = total ? Math.round(100 * done / total) : 0;
+  const circ = 2 * Math.PI * 14;
+  document.getElementById('donutArc').setAttribute('stroke-dasharray', `${circ * pct / 100} ${circ}`);
+  document.getElementById('statsText').textContent = `${pct}% (${done}/${total}) | 수정: ${mod}건` + (tags ? ` | 분류: ${tags}건` : '');
   document.getElementById('saveBtn').disabled = changes === 0;
 }
 
