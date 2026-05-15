@@ -95,11 +95,11 @@ tr:hover { background: #f0f0f0; }
     <option value="system">시스템</option>
     <option value="ignore">제외</option>
     <option value="gaiji">외자(가이지)</option>
-    <option value="_untranslated">미번역</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
   </select>
+  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterUntranslated" style="vertical-align:middle"> 미번역만</label>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
@@ -210,12 +210,14 @@ function render() {
   const filterType = document.getElementById('filterType').value;
   const filterFile = document.getElementById('filterFile').value;
   const search = document.getElementById('searchBox').value.toLowerCase();
+  const untranslatedOnly = document.getElementById('filterUntranslated').checked;
 
   const filtered = rows.filter(r => {
+    if (untranslatedOnly) {
+      if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
+    }
     if (filterType) {
-      if (filterType === '_untranslated') {
-        if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
-      } else if (filterType === 'gaiji') {
+      if (filterType === 'gaiji') {
         if (!r.gaiji) return false;
       } else {
         const effective = r.tag || r.type;
@@ -366,6 +368,7 @@ document.getElementById('buildBtn').addEventListener('click', async () => {
 
 document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
+document.getElementById('filterUntranslated').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
 
 document.addEventListener('keydown', e => {
