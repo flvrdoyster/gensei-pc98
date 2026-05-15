@@ -382,7 +382,7 @@ document.getElementById('tbody').addEventListener('click', e => {
   document.querySelectorAll('.tag-menu').forEach(m => m.remove());
   const offset = parseInt(span.dataset.offset);
   const file = span.dataset.file;
-  const row = rows.find(r => r.offset === offset && r.file === file && r.type === 'dialog');
+  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui'));
   if (!row) return;
   const current = row.tag || 'dialog';
   const menu = document.createElement('div');
