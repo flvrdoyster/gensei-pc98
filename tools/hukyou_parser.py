@@ -501,7 +501,7 @@ def generate_json(game_dir, out_path):
         for dialog in old.get('dialogs', []):
             for line in dialog['lines']:
                 if line['kr']:
-                    kr_map[('dialog', line['offset'])] = line['kr']
+                    kr_map[(dialog['file'], line['offset'])] = line['kr']
                 if line.get('tag'):
                     tag_map[(dialog['file'], line['offset'])] = line['tag']
         for item in old.get('items', []):
@@ -519,7 +519,7 @@ def generate_json(game_dir, out_path):
         restored = 0
         for dialog in result['dialogs']:
             for line in dialog['lines']:
-                kr = kr_map.get(('dialog', line['offset']), '')
+                kr = kr_map.get((dialog['file'], line['offset']), '')
                 if kr:
                     line['kr'] = kr
                     restored += 1

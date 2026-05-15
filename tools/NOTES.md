@@ -147,8 +147,9 @@ IN_DIALOG 내부:
 
 파서를 재실행하면 기존 `translation.json`에서 `kr`·`tag` 값을 오프셋 기반으로 복원.  
 복원 키: `kr_map = (type, offset)`, `tag_map = (dialog['file'], offset)`.  
-**주의:** `tag_map` 조회 시 반드시 `dialog['file']`을 사용할 것.  
-루프 잔류 변수(`fname`)를 쓰면 마지막 파일(MESSAGE.CMD) 항목만 복원됨.
+**주의:** `kr_map`·`tag_map` 키 모두 반드시 `(dialog['file'], offset)` 형태를 사용할 것.  
+파일명을 빼고 `('dialog', offset)`으로 키를 만들면 서로 다른 파일이 같은 오프셋을 공유할 때 번역이 덮어씌워짐.  
+`tag_map` 조회 시에도 루프 잔류 변수(`fname`)가 아니라 `dialog['file']`을 사용할 것.
 
 ### 메뉴 파서 (`extract_menus`)
 
