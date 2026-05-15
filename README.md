@@ -37,7 +37,7 @@ build/                 (gitignore) 패치된 파일 출력
 python3 tools/hukyou_parser.py original/hukyou
 
 # 2. 번역 에디터 (http://localhost:8421)
-#    - 타입 배지 클릭으로 대화/UI/시스템/전투 재분류
+#    - 태그 배지 클릭으로 분류 변경 (대사/독백/컷씬/아이템/메뉴/장소/시스템)
 #    - 가이지(외자) 항목은 '외' 배지로 표시
 python3 tools/editor.py
 

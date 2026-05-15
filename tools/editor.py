@@ -40,8 +40,12 @@ tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
 .type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
 .type-dialog span { background: #dbeafe; color: #1d4ed8; }
+.type-monolog span { background: #e0e7ff; color: #4338ca; }
+.type-cutscene span { background: #fce7f3; color: #9d174d; }
 .type-item span { background: #dcfce7; color: #15803d; }
-.type-ui span { background: #fef9c3; color: #854d0e; }
+.type-menu span { background: #fef9c3; color: #854d0e; }
+.type-location span { background: #fed7aa; color: #9a3412; }
+.type-system span { background: #e5e7eb; color: #374151; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
 .gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
@@ -77,11 +81,13 @@ tr:hover { background: #f0f0f0; }
 <div class="toolbar">
   <select id="filterType">
     <option value="">전체 타입</option>
-    <option value="dialog">대화</option>
+    <option value="dialog">대사</option>
+    <option value="monolog">독백</option>
+    <option value="cutscene">컷씬</option>
     <option value="item">아이템</option>
-    <option value="ui">UI</option>
+    <option value="menu">메뉴/라벨</option>
+    <option value="location">장소</option>
     <option value="system">시스템</option>
-    <option value="battle">전투</option>
     <option value="gaiji">외자(가이지)</option>
   </select>
   <select id="filterFile">
@@ -137,8 +143,10 @@ async function load() {
       rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
     }
   }
+  const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'menu' };
   for (const entry of (data.ui || [])) {
-    rows.push({ type: 'ui', file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
+    const tag = UI_CAT_TAG[entry.category] || 'menu';
+    rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -152,7 +160,10 @@ async function load() {
   render();
 }
 
-const ASCII_FULLWIDTH = new Set([' ', '.', ',', '!', '?', '(', ')']);
+const ASCII_FULLWIDTH = new Set([' ', '.', ',', '!', '?', '(', ')', '+', '=', '~',
+  '0','1','2','3','4','5','6','7','8','9',
+  'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
+  'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']);
 
 function encodeByteLen(text, useGaiji) {
   let len = 0;
@@ -176,14 +187,15 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대화', ui: 'UI', system: '시스템', battle: '전투', item_name: '아이템명', item_stat: '수치', item_desc: '설명' };
-const DIALOG_TAGS = ['dialog', 'ui', 'system', 'battle'];
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
+const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'item', 'menu', 'location', 'system'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const cls = effective.startsWith('item') ? 'type-item' : (effective === 'ui' || effective === 'system' || effective === 'battle') ? 'type-ui' : 'type-dialog';
-  const taggable = r.type === 'dialog' ? ' taggable' : '';
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
+  const cls = TYPE_CSS[effective] || 'type-dialog';
+  const taggable = (r.type === 'dialog' || r.type === 'ui') ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
@@ -199,13 +211,9 @@ function render() {
       } else {
         const effective = r.tag || r.type;
         if (filterType === 'item') {
-          if (!r.type.startsWith('item')) return false;
-        } else if (filterType === 'dialog') {
-          if (r.type !== 'dialog' || r.tag) return false;
-        } else if (filterType === 'ui' || filterType === 'system' || filterType === 'battle') {
-          if (effective !== filterType && r.type !== filterType) return false;
+          if (!r.type.startsWith('item') && effective !== 'item') return false;
         } else {
-          if (r.type !== filterType) return false;
+          if (effective !== filterType) return false;
         }
       }
     }
@@ -221,7 +229,7 @@ function render() {
     const tr = document.createElement('tr');
     const key = r.type + ':' + r.file + ':' + r.offset;
     const kr = key in modified ? modified[key] : (r.kr || '');
-    const isGaiji = r.gaiji || r.type === 'ui';
+    const isGaiji = r.gaiji || r.file === 'GF2.COM';
     const jpLen = getJpLen(r);
     const krLen = kr ? encodeByteLen(kr, isGaiji) : 0;
 
@@ -375,8 +383,8 @@ document.getElementById('tbody').addEventListener('click', e => {
     div.textContent = TAG_LABELS[tag];
     if (tag === current) div.className = 'active';
     div.addEventListener('click', () => {
-      row.tag = tag === 'dialog' ? null : tag;
-      tagChanges[file + ':' + offset] = row.tag;
+      row.tag = tag;
+      tagChanges[file + ':' + offset] = tag;
       menu.remove();
       render();
       updateStats();
@@ -486,16 +494,19 @@ class Handler(http.server.BaseHTTPRequestHandler):
         for key, tag in tags.items():
             file_name, offset_str = key.split(':', 1)
             offset = int(offset_str)
-            for dialog in data['dialogs']:
-                if dialog['file'] != file_name:
-                    continue
-                for line in dialog['lines']:
-                    if line['offset'] == offset:
-                        if tag:
-                            line['tag'] = tag
-                        else:
-                            line.pop('tag', None)
+            if file_name == 'GF2.COM':
+                for entry in data.get('ui', []):
+                    if entry['offset'] == offset:
+                        entry['tag'] = tag
                         updated += 1
+            else:
+                for dialog in data['dialogs']:
+                    if dialog['file'] != file_name:
+                        continue
+                    for line in dialog['lines']:
+                        if line['offset'] == offset:
+                            line['tag'] = tag
+                            updated += 1
 
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
