@@ -143,6 +143,13 @@ IN_DIALOG 내부:
 `gaiji` = 원본 바이트에 0x85XX 가이지 코드 포함 시 `true` (인서터가 가이지 인코딩 적용)  
 `tag` = 수동 분류 태그 (`"ui"`, `"system"`, `"battle"` 등, 에디터에서 변경)
 
+#### `generate_json()` 재실행 시 기존 데이터 보존
+
+파서를 재실행하면 기존 `translation.json`에서 `kr`·`tag` 값을 오프셋 기반으로 복원.  
+복원 키: `kr_map = (type, offset)`, `tag_map = (dialog['file'], offset)`.  
+**주의:** `tag_map` 조회 시 반드시 `dialog['file']`을 사용할 것.  
+루프 잔류 변수(`fname`)를 쓰면 마지막 파일(MESSAGE.CMD) 항목만 복원됨.
+
 ### 메뉴 파서 (`extract_menus`)
 
 ```
