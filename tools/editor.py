@@ -314,10 +314,16 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   btn.disabled = true;
   btn.textContent = '저장 중...';
 
+  // 저장 시 JP 텍스트도 함께 전송 — 서버에서 오프셋 일치 여부 검증용
+  const jps = {};
+  for (const key of Object.keys(modified)) {
+    const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
+    if (row) jps[key] = row.jp;
+  }
   const res = await fetch('/api/save', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ translations: modified, tags: tagChanges }),
+    body: JSON.stringify({ translations: modified, tags: tagChanges, jps }),
   });
   const result = await res.json();
 
@@ -336,7 +342,10 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
 
   btn.textContent = '저장';
   updateStats();
-  showToast(`${result.updated}건 저장됨`, 'ok');
+  const msg = result.skipped
+    ? `${result.updated}건 저장됨 (⚠ ${result.skipped}건 JP 불일치로 스킵 — 페이지 새로고침 필요)`
+    : `${result.updated}건 저장됨`;
+  showToast(msg, result.skipped ? 'err' : 'ok');
 });
 
 let _toastTimer = null;
@@ -471,12 +480,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         translations = body.get('translations', {})
         tags = body.get('tags', {})
+        jps = body.get('jps', {})  # JP 텍스트 검증용
 
-        updated = 0
+        updated = skipped = 0
         for key, kr in translations.items():
             parts = key.split(':', 2)
             typ, file_name, offset_str = parts[0], parts[1], parts[2]
             offset = int(offset_str)
+            expected_jp = jps.get(key)  # 에디터가 보낸 JP 텍스트
 
             if typ == 'dialog':
                 for dialog in data['dialogs']:
@@ -484,8 +495,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         continue
                     for line in dialog['lines']:
                         if line['offset'] == offset:
-                            line['kr'] = kr
-                            updated += 1
+                            # JP가 달라졌으면 오염 위험 — 저장 스킵
+                            if expected_jp and line['jp'] != expected_jp:
+                                skipped += 1
+                            else:
+                                line['kr'] = kr
+                                updated += 1
             elif typ == 'item_name':
                 for item in data.get('items', []):
                     if item['name']['offset'] == offset:
@@ -528,7 +543,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
 
-        return updated
+        return {'updated': updated, 'skipped': skipped}
 
     def run_build(self):
         game_dir = os.path.join(PROJECT_ROOT, 'original', 'hukyou')
