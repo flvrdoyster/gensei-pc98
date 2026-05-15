@@ -18,9 +18,30 @@
 
 import json
 import os
+import subprocess
 import sys
 
 from compile_lz import decompress, is_sjis_lead, is_sjis, read_sjis_char
+
+
+def _auto_backup(out_path, project_root):
+    """translation.json에 미커밋 변경이 있으면 파서 재실행 전 자동 백업."""
+    try:
+        rel = os.path.relpath(out_path, project_root)
+        status = subprocess.run(
+            ['git', 'status', '--porcelain', rel],
+            cwd=project_root, capture_output=True, text=True,
+        )
+        if status.stdout.strip():
+            subprocess.run(['git', 'add', rel], cwd=project_root, check=True,
+                           capture_output=True)
+            subprocess.run(
+                ['git', 'commit', '-m', f'파서 재실행 전 자동 백업'],
+                cwd=project_root, check=True, capture_output=True,
+            )
+            print('  자동 백업 커밋 완료')
+    except Exception as e:
+        print(f'  ⚠ 자동 백업 실패: {e}')
 
 
 # ─────────────────────────────────────
@@ -494,16 +515,42 @@ def generate_json(game_dir, out_path):
         result['ui'] = extract_ui(data)
 
     if os.path.exists(out_path):
+        # 미커밋 변경 자동 백업
+        _auto_backup(out_path, project_root)
+
         with open(out_path, encoding='utf-8') as f:
             old = json.load(f)
-        kr_map = {}
+
+        # 복원 키 전략:
+        #   1차: (file, offset) + JP 텍스트 일치 검증
+        #        — 오프셋이 같아도 JP가 다르면 적용 안 함 (오염 방지)
+        #   2차: (file, jp) 텍스트 fallback
+        #        — 단, 같은 파일 내 동일 JP 텍스트가 2회 이상이면 미사용
+        #          (어느 위치에 적용할지 알 수 없어 오염 위험)
+        from collections import Counter
+        jp_count = Counter(
+            (d['file'], l['jp'])
+            for d in old.get('dialogs', [])
+            for l in d['lines']
+        )
+        kr_map = {}       # (file, offset) → kr
+        jp_at = {}        # (file, offset) → jp  (검증용)
+        kr_jp_map = {}    # (file, jp)     → kr  (fallback)
         tag_map = {}
+        tag_jp_map = {}
         for dialog in old.get('dialogs', []):
             for line in dialog['lines']:
+                fkey = (dialog['file'], line['offset'])
+                jkey = (dialog['file'], line['jp'])
+                jp_at[fkey] = line['jp']
                 if line['kr']:
-                    kr_map[(dialog['file'], line['offset'])] = line['kr']
+                    kr_map[fkey] = line['kr']
+                    if jp_count[jkey] == 1:
+                        kr_jp_map[jkey] = line['kr']
                 if line.get('tag'):
-                    tag_map[(dialog['file'], line['offset'])] = line['tag']
+                    tag_map[fkey] = line['tag']
+                    if jp_count[jkey] == 1:
+                        tag_jp_map[jkey] = line['tag']
         for item in old.get('items', []):
             if item['name']['kr']:
                 kr_map[('item_name', item['name']['offset'])] = item['name']['kr']
@@ -516,14 +563,23 @@ def generate_json(game_dir, out_path):
             if entry['kr']:
                 kr_map[('ui', entry['offset'])] = entry['kr']
 
-        restored = 0
+        restored = fallback = 0
         for dialog in result['dialogs']:
             for line in dialog['lines']:
-                kr = kr_map.get((dialog['file'], line['offset']), '')
+                fkey = (dialog['file'], line['offset'])
+                jkey = (dialog['file'], line['jp'])
+                kr = kr_map.get(fkey)
+                # 오프셋 일치 시 JP 텍스트도 검증 — 다르면 오염이므로 스킵
+                if kr and jp_at.get(fkey) != line['jp']:
+                    kr = None
                 if kr:
                     line['kr'] = kr
                     restored += 1
-                tag = tag_map.get((dialog['file'], line['offset']))
+                elif kr_jp_map.get(jkey):
+                    line['kr'] = kr_jp_map[jkey]
+                    fallback += 1
+                tag = tag_map.get(fkey) if jp_at.get(fkey) == line['jp'] else None
+                tag = tag or tag_jp_map.get(jkey)
                 if tag:
                     line['tag'] = tag
         for item in result['items']:
@@ -547,8 +603,11 @@ def generate_json(game_dir, out_path):
                 entry['kr'] = kr
                 restored += 1
 
-        if restored:
-            print(f'  기존 번역 {restored}건 보존')
+        total_kr = sum(1 for d in old.get('dialogs', [])
+                       for l in d['lines'] if l.get('kr', '').strip())
+        missed = total_kr - restored - fallback
+        print(f'  기존 번역 보존: {restored}건 (오프셋 일치) + {fallback}건 (텍스트 fallback)'
+              + (f' | ⚠ 미복원 {missed}건' if missed > 0 else ''))
 
     os.makedirs(os.path.dirname(out_path), exist_ok=True)
     with open(out_path, 'w', encoding='utf-8') as f:
