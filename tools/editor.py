@@ -93,13 +93,13 @@ tr:hover { background: #f0f0f0; }
     <option value="char">캐릭터명</option>
     <option value="battle">전투</option>
     <option value="system">시스템</option>
-    <option value="ignore">제외</option>
   </select>
   <select id="filterFile">
     <option value="">전체 파일</option>
   </select>
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterUntranslated" style="vertical-align:middle"> 미번역만</label>
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterGaiji" style="vertical-align:middle"> 외자만</label>
+  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterShowIgnore" style="vertical-align:middle"> 제외 포함</label>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
@@ -212,8 +212,10 @@ function render() {
   const search = document.getElementById('searchBox').value.toLowerCase();
   const untranslatedOnly = document.getElementById('filterUntranslated').checked;
   const gaijiOnly = document.getElementById('filterGaiji').checked;
+  const showIgnore = document.getElementById('filterShowIgnore').checked;
 
   const filtered = rows.filter(r => {
+    if (!showIgnore && (r.tag || r.type) === 'ignore') return false;
     if (untranslatedOnly) {
       if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
     }
@@ -368,6 +370,7 @@ document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
 document.getElementById('filterUntranslated').addEventListener('change', render);
 document.getElementById('filterGaiji').addEventListener('change', render);
+document.getElementById('filterShowIgnore').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
 
 document.addEventListener('keydown', e => {
