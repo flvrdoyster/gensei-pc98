@@ -214,7 +214,7 @@ function render() {
   const filtered = rows.filter(r => {
     if (filterType) {
       if (filterType === '_untranslated') {
-        if ((r.kr || '').trim()) return false;
+        if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
       } else if (filterType === 'gaiji') {
         if (!r.gaiji) return false;
       } else {
