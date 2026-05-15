@@ -47,6 +47,7 @@ tr:hover { background: #f0f0f0; }
 .type-location span { background: #fed7aa; color: #9a3412; }
 .type-battle span { background: #fee2e2; color: #991b1b; }
 .type-system span { background: #e5e7eb; color: #374151; }
+.type-ignore span { background: #f5f5f5; color: #aaa; text-decoration: line-through; }
 .type-char span { background: #cffafe; color: #0e7490; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
@@ -92,6 +93,7 @@ tr:hover { background: #f0f0f0; }
     <option value="char">캐릭터명</option>
     <option value="battle">전투</option>
     <option value="system">시스템</option>
+    <option value="ignore">제외</option>
     <option value="gaiji">외자(가이지)</option>
   </select>
   <select id="filterFile">
@@ -191,13 +193,13 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
-const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system'];
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
+const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
   const taggable = (r.type === 'dialog' || r.type === 'ui') ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
