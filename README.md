@@ -37,7 +37,7 @@ build/                 (gitignore) 패치된 파일 출력
 python3 tools/hukyou_parser.py original/hukyou
 
 # 2. 번역 에디터 (http://localhost:8421)
-#    - 태그 배지 클릭으로 분류 변경 (대사/독백/컷씬/아이템/메뉴/장소/시스템)
+#    - 태그 배지 클릭으로 분류 변경 (아래 태그 정의 참조)
 #    - 가이지(외자) 항목은 '외' 배지로 표시
 python3 tools/editor.py
 
@@ -47,6 +47,22 @@ python3 tools/hukyou_inserter.py original/hukyou
 # CMD 파일 압축 해제본 저장 (분석용)
 python3 tools/hukyou_parser.py original/hukyou dump
 ```
+
+## 텍스트 태그 정의
+
+translation.json의 각 텍스트 항목에 `tag` 필드로 분류. 시리즈 공통.
+
+| 태그 | 설명 | 예시 |
+|------|------|------|
+| `dialog` | NPC/파티 대사 | 「俺のブタを助け出さなければ。」 |
+| `monolog` | 내레이션·독백 (대사창 밖) | MESSAGE.CMD 스테이지 간 파티 대화 |
+| `cutscene` | 오프닝·엔딩 연출 텍스트 | OPEN.CMD, ENDING.CMD |
+| `char` | 캐릭터 이름 표시 | ダリオス, ミズホ |
+| `battle` | 전투 관련 (적 이름, 기술명, 전투 메뉴) | スライム, たいあたり, たたかう |
+| `item` | 아이템 이름·설명·수치 | 導きの羽, HP+10 |
+| `menu` | 메뉴·라벨·UI 텍스트 | データロード, はい/いいえ |
+| `location` | 장소명 | 堺の町, 霜の山 |
+| `system` | 시스템 메시지 | セーブ中, ディスクエラー |
 
 ## 라이선스
 
