@@ -46,10 +46,11 @@ tr:hover { background: #f0f0f0; }
 .type-menu span { background: #fef9c3; color: #854d0e; }
 .type-location span { background: #fed7aa; color: #9a3412; }
 .type-system span { background: #e5e7eb; color: #374151; }
+.type-char span { background: #cffafe; color: #0e7490; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
 .gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
-.tag-menu { position: absolute; left: 0; top: 100%; background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 2px 8px rgba(0,0,0,0.15); z-index: 100; min-width: 80px; padding: 2px 0; }
+.tag-menu { position: absolute; left: 0; bottom: calc(100% + 2px); background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 -2px 8px rgba(0,0,0,0.15); z-index: 100; min-width: 80px; padding: 2px 0; }
 .tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
 .tag-menu div:hover { background: #f0f0f0; }
 .tag-menu div.active { font-weight: 600; }
@@ -87,6 +88,7 @@ tr:hover { background: #f0f0f0; }
     <option value="item">아이템</option>
     <option value="menu">메뉴/라벨</option>
     <option value="location">장소</option>
+    <option value="char">캐릭터명</option>
     <option value="system">시스템</option>
     <option value="gaiji">외자(가이지)</option>
   </select>
@@ -187,13 +189,13 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
-const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'item', 'menu', 'location', 'system'];
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템' };
+const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'item', 'menu', 'location', 'system'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
   const taggable = (r.type === 'dialog' || r.type === 'ui') ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
