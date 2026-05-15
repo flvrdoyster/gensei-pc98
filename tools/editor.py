@@ -152,7 +152,8 @@ async function load() {
   }
   const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
   for (const entry of (data.ui || [])) {
-    const tag = UI_CAT_TAG[entry.category] || 'menu';
+    const defaultTag = UI_CAT_TAG[entry.category] || 'menu';
+    const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
     rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
   }
 
@@ -330,6 +331,13 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   for (const [key, val] of Object.entries(modified)) {
     const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
     if (row) row.kr = val;
+  }
+  // 태그 변경도 in-memory rows에 반영 (화면 즉시 갱신)
+  for (const [key, tag] of Object.entries(tagChanges)) {
+    const [file, offsetStr] = key.split(':');
+    const offset = parseInt(offsetStr);
+    const row = rows.find(r => r.file === file && r.offset === offset);
+    if (row) row.tag = tag;
   }
   modified = {};
   tagChanges = {};
