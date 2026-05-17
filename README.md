@@ -1,6 +1,8 @@
-# 환세 시리즈 한글화 / 幻世シリーズ Korean Translation Patch
+# 환세 시리즈(PC-98) 한글화
 
-Compile Inc. PC-98 **환세 시리즈** 한글화 프로젝트.
+![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-PC--98-green)
+
+Compile Inc.의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트. 텍스트 추출·재삽입 툴과 웹 에뮬레이터를 포함.
 
 | 타이틀 | 폴더 | 상태 |
 |--------|------|------|
@@ -8,6 +10,22 @@ Compile Inc. PC-98 **환세 시리즈** 한글화 프로젝트.
 | 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 미착수 |
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
 | 환세희담 (幻世喜譚, 1995) | `kitan` | 미착수 |
+
+## 웹 에뮬레이터 (`emulator/`)
+
+NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.
+
+### 에뮬레이터 빌드
+
+emsdk와 NP2kai 소스가 필요함.
+
+```bash
+source <emsdk_path>/emsdk_env.sh
+make -C <NP2kai_path>/build_em emnp2kai_sdl2
+cp <NP2kai_path>/build_em/emnp2kai_sdl2.{js,wasm} emulator/
+```
+
+기술 상세 및 세이브 지속성 구현 현황: [`emulator/NOTES.md`](emulator/NOTES.md)
 
 ## 파일 구조
 
@@ -18,7 +36,7 @@ tools/
   hukyou_inserter.py   환세풍광전 번역 재삽입
   editor.py            웹 번역 에디터 (http://localhost:8421)
   charmap.json         한글↔SJIS 매핑 (KS X 1001, 2350자)
-  NOTES.md             역공학 분석 노트
+  NOTES.md             역공학 분석 노트 (텍스트 태그 정의 포함)
 original/
   hukyou/              환세풍광전 원본
   kaitou/              환세쾌도전 원본
@@ -46,54 +64,18 @@ python3 tools/hukyou_parser.py original/hukyou
 
 # 2. 번역 에디터 (http://localhost:8421)
 #    - 상단 도넛 차트: 번역 진행률 실시간 표시
-#    - 태그 배지 클릭으로 분류 변경 (아래 태그 정의 참조)
+#    - 태그 배지 클릭으로 분류 변경
 #    - 필터: 타입/파일 드롭다운 + 미번역만/외자만/제외 포함 체크박스
 #    - 검색창: JP/KR 텍스트 검색
-#    - 가이지(외자) 항목은 '외' 배지로 표시
-#    - JP 셀 클릭으로 클립보드 복사
 #    - 바이트 열: KR 인코딩 길이/원문 길이 실시간 표시 (초과 시 빨간색)
 #    - Cmd/Ctrl+S 로 저장, 빌드 버튼으로 build/ 출력
 python3 tools/editor.py
 
 # 3. 재삽입 (build/hukyou/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
-
-# CMD 파일 압축 해제본 저장 (분석용)
-python3 tools/hukyou_parser.py original/hukyou dump
 ```
 
-## 텍스트 태그 정의
-
-translation.json의 각 텍스트 항목에 `tag` 필드로 분류. 시리즈 공통.
-
-| 태그 | 설명 | 예시 |
-|------|------|------|
-| `dialog` | NPC/파티 대사 | 「俺のブタを助け出さなければ。」 |
-| `monolog` | 내레이션·독백 (대사창 밖) | MESSAGE.CMD 스테이지 간 파티 대화 |
-| `cutscene` | 오프닝·엔딩 연출 텍스트 | OPEN.CMD, ENDING.CMD |
-| `char` | 캐릭터 이름 표시 | ダリオス, ミズホ |
-| `battle` | 전투 관련 (적 이름, 기술명, 전투 메뉴) | スライム, たいあたり, たたかう |
-| `item` | 아이템 이름·설명·수치 | 導きの羽, HP+10 |
-| `menu` | 메뉴·라벨·UI 텍스트 | データロード, はい/いいえ |
-| `location` | 장소명 | 堺の町, 霜の山 |
-| `system` | 시스템 메시지 | セーブ中, ディスクエラー |
-| `ignore` | 번역 대상 아님 (쓰레기 데이터, 바이너리 오파싱 등) | — |
-
-## 웹 에뮬레이터 (`emulator/`)
-
-NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.
-
-### 에뮬레이터 빌드
-
-emsdk와 NP2kai 소스가 필요함.
-
-```bash
-source <emsdk_path>/emsdk_env.sh
-make -C <NP2kai_path>/build_em emnp2kai_sdl2
-cp <NP2kai_path>/build_em/emnp2kai_sdl2.{js,wasm} emulator/
-```
-
-기술 상세 및 세이브 지속성 구현 현황: [`emulator/NOTES.md`](emulator/NOTES.md)
+텍스트 태그 정의 및 역공학 상세: [`tools/NOTES.md`](tools/NOTES.md)
 
 ## 크레딧
 
