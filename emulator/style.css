@@ -286,8 +286,7 @@ body.mobile-active #virtual-gamepad {
 }
 
 .gamepad-dpad button img {
-  width: 14px;
-  height: 14px;
+  height: 50%;
   pointer-events: none;
 }
 
@@ -328,7 +327,7 @@ body.mobile-active #virtual-gamepad {
 }
 
 .gamepad-buttons button img {
-  height: 10px;
+  height: 50%;
   pointer-events: none;
 }
 
