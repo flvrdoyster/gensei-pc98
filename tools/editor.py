@@ -154,28 +154,75 @@ async function load() {
   charmap = await charmapRes.json();
   rows = [];
 
-  for (const dialog of data.dialogs) {
-    for (const line of dialog.lines) {
-      rows.push({
-        type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
-        offset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
-      });
+  if (data.entries) {
+    // kaitou / 새 포맷: flat entries 리스트
+    // 전역 오프셋 = chunk * 200000 + local_offset (청크 내 최대 해제 크기 < 200000 보장)
+    for (const entry of data.entries) {
+      const base = entry.chunk * 200000;
+      if (entry.type === 'skill') {
+        for (const seg of (entry.segments || [])) {
+          const segType = seg.type === 'name' ? 'skill_name' : seg.type === 'stat' ? 'skill_stat' : 'skill_desc';
+          rows.push({
+            type: segType, tag: seg.tag || null, file: 'DISK_B.DAT',
+            chunk: entry.chunk, offset: base + seg.offset,
+            jp: seg.jp, kr: seg.kr, jp_len: seg.jp_len, gaiji: false, taggable: true,
+          });
+        }
+      } else if (entry.type === 'dialog') {
+        const speaker = entry.speaker || '';
+        for (const line of (entry.lines || [])) {
+          rows.push({
+            type: 'dialog', tag: line.tag || null, file: 'DISK_B.DAT',
+            chunk: entry.chunk, offset: base + line.offset,
+            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
+            gaiji: false, taggable: true, speaker: speaker,
+          });
+        }
+      } else if (entry.type === 'title') {
+        for (const line of (entry.lines || [])) {
+          rows.push({
+            type: 'title', tag: line.tag || null, file: 'DISK_B.DAT',
+            chunk: entry.chunk, offset: base + line.offset,
+            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
+            gaiji: false, taggable: true,
+          });
+        }
+      } else { // unknown
+        for (const line of (entry.lines || [])) {
+          rows.push({
+            type: 'unknown', tag: line.tag || null, file: 'DISK_B.DAT',
+            chunk: entry.chunk, offset: base + line.offset,
+            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
+            gaiji: false, taggable: true,
+          });
+        }
+      }
     }
-  }
-  for (const item of (data.items || [])) {
-    rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
-    if (item.stat) {
-      rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
+  } else {
+    // hukyou 포맷: dialogs / items / ui 구조
+    for (const dialog of data.dialogs) {
+      for (const line of dialog.lines) {
+        rows.push({
+          type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
+          offset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
+        });
+      }
     }
-    for (const desc of item.desc) {
-      rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
+    for (const item of (data.items || [])) {
+      rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
+      if (item.stat) {
+        rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
+      }
+      for (const desc of item.desc) {
+        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
+      }
     }
-  }
-  const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
-  for (const entry of (data.ui || [])) {
-    const defaultTag = UI_CAT_TAG[entry.category] || 'menu';
-    const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
-    rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
+    const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
+    for (const entry of (data.ui || [])) {
+      const defaultTag = UI_CAT_TAG[entry.category] || 'menu';
+      const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
+      rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
+    }
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -216,15 +263,17 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외',
+  skill_name: '스킬명', skill_stat: '스탯', skill_desc: '스킬설명', title: '제목', unknown: '기타' };
 const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore' };
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore',
+    skill_name: 'type-item', skill_stat: 'type-item', skill_desc: 'type-item', title: 'type-menu', unknown: 'type-system' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
-  const taggable = (r.type === 'dialog' || r.type === 'ui') ? ' taggable' : '';
+  const taggable = (r.type === 'dialog' || r.type === 'ui' || r.taggable) ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
@@ -245,7 +294,7 @@ function render() {
     if (filterType) {
       const effective = r.tag || r.type;
       if (filterType === 'item') {
-        if (!r.type.startsWith('item') && effective !== 'item') return false;
+        if (!r.type.startsWith('item') && !r.type.startsWith('skill') && effective !== 'item') return false;
       } else {
         if (effective !== filterType) return false;
       }
@@ -273,10 +322,11 @@ function render() {
       lenClass = krLen <= jpLen ? 'ok' : 'over';
     }
 
+    const speakerHtml = r.speaker ? `<span style="font-size:11px;color:#999;display:block">${escHtml(r.speaker)}：</span>` : '';
     tr.innerHTML = `
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
-      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
+      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
       <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
@@ -428,9 +478,9 @@ document.getElementById('tbody').addEventListener('click', e => {
   document.querySelectorAll('.tag-menu').forEach(m => m.remove());
   const offset = parseInt(span.dataset.offset);
   const file = span.dataset.file;
-  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui'));
+  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui' || r.taggable));
   if (!row) return;
-  const current = row.tag || 'dialog';
+  const current = row.tag || (row.type.startsWith('skill') ? 'item' : row.type === 'title' ? 'menu' : row.type === 'unknown' ? 'system' : 'dialog');
   const menu = document.createElement('div');
   menu.className = 'tag-menu';
   for (const tag of DIALOG_TAGS) {
@@ -512,62 +562,116 @@ class Handler(http.server.BaseHTTPRequestHandler):
         jps = body.get('jps', {})  # JP 텍스트 검증용
 
         updated = skipped = 0
-        for key, kr in translations.items():
-            parts = key.split(':', 2)
-            typ, file_name, offset_str = parts[0], parts[1], parts[2]
-            offset = int(offset_str)
-            expected_jp = jps.get(key)  # 에디터가 보낸 JP 텍스트
 
-            if typ == 'dialog':
-                for dialog in data['dialogs']:
-                    if dialog['file'] != file_name:
+        if data.get('entries') is not None:
+            # kaitou 포맷: flat entries 리스트
+            # 전역 오프셋 = chunk * 200000 + local_offset
+            CHUNK_BASE = 200000
+
+            def _find_kaitou_seg(entries, typ, global_offset):
+                """전역 오프셋으로 entry + segment/line 반환."""
+                chunk_idx = global_offset // CHUNK_BASE
+                local_off = global_offset % CHUNK_BASE
+                for entry in entries:
+                    if entry.get('chunk') != chunk_idx:
                         continue
-                    for line in dialog['lines']:
-                        if line['offset'] == offset:
-                            # JP가 달라졌으면 오염 위험 — 저장 스킵
-                            if expected_jp and line['jp'] != expected_jp:
-                                skipped += 1
-                            else:
-                                line['kr'] = kr
+                    if typ in ('skill_name', 'skill_stat', 'skill_desc'):
+                        seg_type_map = {'skill_name': 'name', 'skill_stat': 'stat', 'skill_desc': 'desc'}
+                        want = seg_type_map[typ]
+                        for seg in entry.get('segments', []):
+                            if seg.get('offset') == local_off and seg.get('type') == want:
+                                return seg
+                    elif typ in ('dialog', 'title', 'unknown'):
+                        for line in entry.get('lines', []):
+                            if line.get('offset') == local_off:
+                                return line
+                return None
+
+            for key, kr in translations.items():
+                parts = key.split(':', 2)
+                typ, file_name, offset_str = parts[0], parts[1], parts[2]
+                global_offset = int(offset_str)
+                expected_jp = jps.get(key)
+                target = _find_kaitou_seg(data['entries'], typ, global_offset)
+                if target is None:
+                    skipped += 1
+                    continue
+                if expected_jp and target.get('jp') != expected_jp:
+                    skipped += 1
+                else:
+                    target['kr'] = kr
+                    updated += 1
+
+            for key, tag in tags.items():
+                file_name, offset_str = key.split(':', 1)
+                global_offset = int(offset_str)
+                chunk_idx = global_offset // CHUNK_BASE
+                local_off = global_offset % CHUNK_BASE
+                for entry in data['entries']:
+                    if entry.get('chunk') != chunk_idx:
+                        continue
+                    for container in (entry.get('segments') or entry.get('lines') or []):
+                        if container.get('offset') == local_off:
+                            container['tag'] = tag
+                            updated += 1
+
+        else:
+            # hukyou 포맷: dialogs / items / ui 구조
+            for key, kr in translations.items():
+                parts = key.split(':', 2)
+                typ, file_name, offset_str = parts[0], parts[1], parts[2]
+                offset = int(offset_str)
+                expected_jp = jps.get(key)
+
+                if typ == 'dialog':
+                    for dialog in data['dialogs']:
+                        if dialog['file'] != file_name:
+                            continue
+                        for line in dialog['lines']:
+                            if line['offset'] == offset:
+                                if expected_jp and line['jp'] != expected_jp:
+                                    skipped += 1
+                                else:
+                                    line['kr'] = kr
+                                    updated += 1
+                elif typ == 'item_name':
+                    for item in data.get('items', []):
+                        if item['name']['offset'] == offset:
+                            item['name']['kr'] = kr
+                            updated += 1
+                elif typ == 'item_stat':
+                    for item in data.get('items', []):
+                        if 'stat' in item and item['stat']['offset'] == offset:
+                            item['stat']['kr'] = kr
+                            updated += 1
+                elif typ == 'item_desc':
+                    for item in data.get('items', []):
+                        for desc in item['desc']:
+                            if desc['offset'] == offset:
+                                desc['kr'] = kr
                                 updated += 1
-            elif typ == 'item_name':
-                for item in data.get('items', []):
-                    if item['name']['offset'] == offset:
-                        item['name']['kr'] = kr
-                        updated += 1
-            elif typ == 'item_stat':
-                for item in data.get('items', []):
-                    if 'stat' in item and item['stat']['offset'] == offset:
-                        item['stat']['kr'] = kr
-                        updated += 1
-            elif typ == 'item_desc':
-                for item in data.get('items', []):
-                    for desc in item['desc']:
-                        if desc['offset'] == offset:
-                            desc['kr'] = kr
+                elif typ == 'ui':
+                    for entry in data.get('ui', []):
+                        if entry['offset'] == offset:
+                            entry['kr'] = kr
                             updated += 1
-            elif typ == 'ui':
-                for entry in data.get('ui', []):
-                    if entry['offset'] == offset:
-                        entry['kr'] = kr
-                        updated += 1
 
-        for key, tag in tags.items():
-            file_name, offset_str = key.split(':', 1)
-            offset = int(offset_str)
-            if file_name == 'GF2.COM':
-                for entry in data.get('ui', []):
-                    if entry['offset'] == offset:
-                        entry['tag'] = tag
-                        updated += 1
-            else:
-                for dialog in data['dialogs']:
-                    if dialog['file'] != file_name:
-                        continue
-                    for line in dialog['lines']:
-                        if line['offset'] == offset:
-                            line['tag'] = tag
+            for key, tag in tags.items():
+                file_name, offset_str = key.split(':', 1)
+                offset = int(offset_str)
+                if file_name == 'GF2.COM':
+                    for entry in data.get('ui', []):
+                        if entry['offset'] == offset:
+                            entry['tag'] = tag
                             updated += 1
+                else:
+                    for dialog in data['dialogs']:
+                        if dialog['file'] != file_name:
+                            continue
+                        for line in dialog['lines']:
+                            if line['offset'] == offset:
+                                line['tag'] = tag
+                                updated += 1
 
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
