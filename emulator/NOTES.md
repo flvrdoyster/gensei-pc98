@@ -30,7 +30,7 @@ void menubase_modalproc(void) {
 
 ---
 
-## 세이브 지속성 — 조사 결과 (2026-05-17)
+## 세이브 지속성 — 구현 완료 (2026-05-17)
 
 ### 세이브 데이터 위치
 
@@ -51,36 +51,48 @@ fdd_write_xdf() → file_open(fname) → file_write() → file_close()
 
 **픽스**: 에뮬레이터 시작 시 `Module.FS.chmod('/rom/hukyou_kr.fdi', 0o666)` 호출.
 
-### 다음 구현 작업
+### 구현 내용 (`index.html`)
 
-1. **`index.html` preRun에 chmod 추가**
-   ```js
-   preRun: [function() {
-     Module.FS.chmod('/rom/hukyou_kr.fdi', 0o666);
-   }]
-   ```
+#### chmod — preRun 타이밍 문제
 
-2. **IndexedDB 세이브 지속성 구현**
-   - localStorage는 용량 부족 (FDI base64 시 5MB 초과 가능)
-   - IndexedDB 직접 사용: 바이너리 그대로 저장, 용량 제한 없음
-   - 저장: 인게임 세이브 감지 or 주기적으로 `Module.FS.readFile()` → IDB에 기록
-   - 복원: 페이지 로드 시 IDB에서 읽어 `Module.FS.writeFile()` 후 에뮬레이터 시작
+단순히 `preRun`에서 `Module.FS.chmod()` 호출 시 `ErrnoError` 발생.  
+`--preload-file` 파일은 preRun 시작 시점에 아직 MEMFS에 마운트되지 않기 때문.
 
-3. **다중 디스크 대응**
+**해결**: `addRunDependency` + `setTimeout(0)` 패턴으로 마운트 완료까지 대기:
 
-   | 타이틀 | 이미지 | 크기 |
-   |--------|--------|------|
-   | 환세풍광전 | FDI × 1 | 1.3MB |
-   | 환세포물장 | HDI × 1 | 3.1MB |
-   | 환세희담 | FDI × 3 | 1.3MB × 3 |
+```js
+preRun: [function() {
+  Module.addRunDependency('disk-setup');
+  setTimeout(function() {
+    try {
+      Module.FS.chmod(DISK, 0o666);
+      if (savedDisk) {
+        Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
+      }
+    } catch(e) { ... }
+    Module.removeRunDependency('disk-setup');
+  }, 0);
+}]
+```
 
-   각 타이틀별로 IDB 키 분리하여 저장.
+#### IndexedDB 세이브 지속성
 
-### 세이브 감지 방법 (미결정)
+- localStorage는 용량 부족 (FDI base64 시 5MB 초과 가능) → IndexedDB 선택
+- 바이너리(`ArrayBuffer`) 그대로 저장 — base64 변환 불필요
+- **저장**: 10초마다 FDI 바이트 합 체크섬 비교 → 변경 시에만 IDB 기록
+- **복원**: 페이지 로드 시 IDB에서 읽어 `Module.FS.writeFile()` → chmod → 에뮬레이터 시작
+- `postRun`에서 기준 체크섬 설정 + 폴링 시작
+- **검증 완료**: 인게임 세이브 → 페이지 새로고침 → 세이브 복원 확인
 
-- **주기적 폴링**: 5~10초마다 파일 체크섬 비교 → 변경 시 IDB 저장
-- **수동 버튼**: "세이브 백업" 버튼 → 즉시 IDB 저장
-- 두 방식 병행 추천 (폴링 + 수동 버튼 안전망)
+#### 다중 디스크 확장 (향후)
+
+| 타이틀 | 이미지 | 크기 |
+|--------|--------|------|
+| 환세풍광전 | FDI × 1 | 1.3MB |
+| 환세포물장 | HDI × 1 | 3.1MB |
+| 환세희담 | FDI × 3 | 1.3MB × 3 |
+
+IDB 키를 타이틀명으로 분리하여 저장.
 
 ---
 
@@ -99,5 +111,5 @@ fdd_write_xdf() → file_open(fname) → file_write() → file_close()
 |------|------|
 | ScriptProcessorNode deprecated (오디오) | 경고만 — 기능 정상 |
 | favicon.ico 404 | 무해, 무시 가능 |
-| 세이브 지속성 미구현 | 다음 작업 |
+| 세이브 지속성 미구현 | ✅ 완료 (IndexedDB) |
 | 모바일 대응 미구현 | 향후 예정 |
