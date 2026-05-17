@@ -39,6 +39,7 @@ TITLE = resolve_title()
 TITLE_KR = TITLES[TITLE]
 TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
 CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
+HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
 
 HTML = r"""<!DOCTYPE html>
 <html lang="ko">
@@ -97,6 +98,15 @@ tr:hover { background: #f0f0f0; }
 .build-btn:hover { background: #f0f0f0; }
 .toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 .toast.show { opacity: 1; }
+.sel { width: 28px; text-align: center; padding: 5px 4px; }
+.sel input[type=checkbox] { cursor: pointer; width: 14px; height: 14px; }
+tr.row-selected { background: #dbeafe !important; }
+.bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 18px; border-radius: 8px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); z-index: 200; white-space: nowrap; }
+.bulk-bar select { background: #555; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; }
+.bulk-apply { background: #4ade80; color: #111; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; }
+.bulk-apply:hover { background: #22c55e; }
+.bulk-cancel { background: #666; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; }
+.bulk-cancel:hover { background: #888; }
 </style>
 </head>
 <body>
@@ -129,6 +139,7 @@ tr:hover { background: #f0f0f0; }
 </div>
 <table>
 <thead><tr>
+  <th class="sel"></th>
   <th class="type">타입</th>
   <th class="file">파일</th>
   <th class="jp">일본어 (JP)</th>
@@ -138,12 +149,41 @@ tr:hover { background: #f0f0f0; }
 <tbody id="tbody"></tbody>
 </table>
 <div class="toast" id="toast"></div>
+<div class="bulk-bar" id="bulkBar" style="display:none">
+  <span id="bulkCount"></span>
+  <select id="bulkTag">
+    <option value="dialog">대사</option>
+    <option value="monolog">독백</option>
+    <option value="cutscene">컷씬</option>
+    <option value="char">캐릭터</option>
+    <option value="battle">전투</option>
+    <option value="item">아이템</option>
+    <option value="menu">메뉴</option>
+    <option value="location">장소</option>
+    <option value="system">시스템</option>
+    <option value="ignore">제외</option>
+  </select>
+  <button class="bulk-apply" id="bulkApply">적용</button>
+  <button class="bulk-cancel" id="bulkCancel">취소</button>
+</div>
 
 <script>
 let rows = [];
 let modified = {};
 let tagChanges = {};
 let charmap = {};
+let selection = new Set();
+let filteredRows = [];
+let lastClickedIdx = -1;
+
+function rowKey(r) { return r.type + ':' + r.file + ':' + r.offset; }
+
+function updateBulkBar() {
+  const bar = document.getElementById('bulkBar');
+  if (selection.size === 0) { bar.style.display = 'none'; return; }
+  bar.style.display = 'flex';
+  document.getElementById('bulkCount').textContent = selection.size + '행 선택';
+}
 
 async function load() {
   const [transRes, charmapRes] = await Promise.all([
@@ -259,7 +299,7 @@ function render() {
   const gaijiOnly = document.getElementById('filterGaiji').checked;
   const showIgnore = document.getElementById('filterShowIgnore').checked;
 
-  const filtered = rows.filter(r => {
+  filteredRows = rows.filter(r => {
     if (!showIgnore && (r.tag || r.type) === 'ignore') return false;
     if (untranslatedOnly) {
       if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
@@ -281,9 +321,10 @@ function render() {
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
 
-  for (const r of filtered) {
+  for (const r of filteredRows) {
     const tr = document.createElement('tr');
-    const key = r.type + ':' + r.file + ':' + r.offset;
+    const key = rowKey(r);
+    if (selection.has(key)) tr.classList.add('row-selected');
     const kr = key in modified ? modified[key] : (r.kr || '');
     const isGaiji = r.gaiji || r.file === 'GF2.COM';
     const jpLen = getJpLen(r);
@@ -298,6 +339,7 @@ function render() {
 
     const speakerHtml = r.speaker ? `<span style="font-size:11px;color:#999;display:block">${escHtml(r.speaker)}：</span>` : '';
     tr.innerHTML = `
+      <td class="sel"><input type="checkbox" class="row-check" data-key="${escAttr(key)}" ${selection.has(key) ? 'checked' : ''}></td>
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
@@ -325,6 +367,58 @@ function updateStats() {
   document.getElementById('statsText').textContent = `${pct}% (${done}/${total}) | 수정: ${mod}건` + (tags ? ` | 분류: ${tags}건` : '');
   document.getElementById('saveBtn').disabled = changes === 0;
 }
+
+document.getElementById('tbody').addEventListener('click', e => {
+  const cb = e.target.closest('input.row-check');
+  if (!cb) return;
+  e.stopPropagation();
+  const key = cb.dataset.key;
+  const idx = filteredRows.findIndex(r => rowKey(r) === key);
+  if (e.shiftKey && lastClickedIdx >= 0 && idx >= 0) {
+    e.preventDefault();
+    const lo = Math.min(lastClickedIdx, idx);
+    const hi = Math.max(lastClickedIdx, idx);
+    const addMode = !selection.has(rowKey(filteredRows[lastClickedIdx]));
+    for (let i = lo; i <= hi; i++) {
+      const k = rowKey(filteredRows[i]);
+      if (addMode) selection.add(k); else selection.delete(k);
+    }
+  } else {
+    if (selection.has(key)) selection.delete(key); else selection.add(key);
+    lastClickedIdx = idx;
+  }
+  document.querySelectorAll('input.row-check').forEach(box => {
+    const k = box.dataset.key;
+    box.checked = selection.has(k);
+    box.closest('tr').classList.toggle('row-selected', selection.has(k));
+  });
+  updateBulkBar();
+});
+
+document.getElementById('bulkApply').addEventListener('click', () => {
+  const tag = document.getElementById('bulkTag').value;
+  for (const key of selection) {
+    const row = rows.find(r => rowKey(r) === key);
+    if (!row) continue;
+    row.tag = tag;
+    tagChanges[row.file + ':' + row.offset] = tag;
+  }
+  selection.clear();
+  lastClickedIdx = -1;
+  updateBulkBar();
+  updateStats();
+  render();
+});
+
+document.getElementById('bulkCancel').addEventListener('click', () => {
+  selection.clear();
+  lastClickedIdx = -1;
+  updateBulkBar();
+  document.querySelectorAll('input.row-check').forEach(cb => {
+    cb.checked = false;
+    cb.closest('tr').classList.remove('row-selected');
+  });
+});
 
 document.getElementById('tbody').addEventListener('input', e => {
   if (!e.target.classList.contains('kr-input')) return;
@@ -478,7 +572,15 @@ document.getElementById('tbody').addEventListener('click', e => {
   }, 0);
 });
 
-load();
+load().then(() => {
+  if (!__HAS_INSERTER__) {
+    const btn = document.getElementById('buildBtn');
+    btn.disabled = true;
+    btn.title = '인서터 미구현';
+    btn.style.opacity = '0.35';
+    btn.style.cursor = 'default';
+  }
+});
 </script>
 </body>
 </html>"""
@@ -493,7 +595,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
-            self.wfile.write(HTML.replace('__TITLE_KR__', TITLE_KR).encode())
+            html = HTML.replace('__TITLE_KR__', TITLE_KR).replace('__HAS_INSERTER__', 'true' if HAS_INSERTER else 'false')
+            self.wfile.write(html.encode())
         elif self.path == '/api/translation':
             self.send_json_file(TRANS_PATH)
         elif self.path == '/api/charmap':
