@@ -107,122 +107,6 @@ def parse_chunk_table(data: bytes) -> list[tuple[int, int]]:
         result.append((seek, end - seek))
     return result
 
-# ── 스킬/아이템 블록 파서 ─────────────────────────────────────────────────────
-
-def extract_skill_blocks(data: bytes, chunk_idx: int,
-                         consumed: set) -> list[dict]:
-    """
-    62 00 XX XX ... 65 패턴의 스킬/아이템 블록 추출.
-    소비한 바이트 범위를 consumed 에 기록.
-
-    블록 구조:
-      [62 00 XX XX]   헤더 (4바이트 스킵)
-      [SJIS]          스킬명 (name)
-      [64 XX]         구분자 (1바이트 인수)
-      [SJIS]          소비 스탯 (stat)
-      [72 XX]         줄바꿈 (1바이트 인수)
-      [SJIS]          설명 줄 (desc, 여러 줄 가능)
-      [65]            블록 종료
-    """
-    results = []
-    i = 0
-    n = len(data)
-
-    while i < n - 3:
-        if data[i] != 0x62 or data[i + 1] != 0x00:
-            i += 1
-            continue
-
-        block_start = i
-        i += 4  # skip 62 + 3 arg bytes
-
-        segments: list[dict] = []
-        cur_chars: list[str] = []
-        cur_offset = i
-        cur_type = 'name'
-        found_end = False
-
-        while i < n:
-            b = data[i]
-
-            if b == 0x65:  # block end
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        segments.append({
-                            'type': cur_type,
-                            'offset': cur_offset,
-                            'jp': jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr': '',
-                        })
-                i += 1
-                found_end = True
-                break
-
-            elif b == 0x64 and i + 1 < n:  # separator: flush → stat
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        segments.append({
-                            'type': cur_type,
-                            'offset': cur_offset,
-                            'jp': jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr': '',
-                        })
-                    cur_chars = []
-                i += 2  # skip 64 XX
-                cur_offset = i
-                cur_type = 'stat'
-
-            elif b == 0x72 and i + 1 < n:  # line break: flush → desc
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        segments.append({
-                            'type': cur_type if cur_type == 'name' else 'desc',
-                            'offset': cur_offset,
-                            'jp': jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr': '',
-                        })
-                    cur_chars = []
-                i += 2  # skip 72 XX
-                cur_offset = i
-                cur_type = 'desc'
-
-            elif b in (0x62, 0x6e, 0x73):  # unexpected opcode: broken block
-                break
-
-            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
-                ch = decode_sjis_char(b, data[i + 1])
-                if ch:
-                    cur_chars.append(ch)
-                i += 2
-
-            else:
-                i += 1  # skip unknown byte
-
-        if found_end:
-            consumed.update(range(block_start, i))
-
-        text_segs = [s for s in segments if s['jp']]
-        if text_segs:
-            jp_main = next((s['jp'] for s in text_segs if s['type'] == 'name'),
-                           text_segs[0]['jp'])
-            results.append({
-                'file':     'DISK_B.DAT',
-                'chunk':    chunk_idx,
-                'offset':   block_start,
-                'type':     'skill',
-                'jp':       jp_main,
-                'kr':       '',
-                'segments': text_segs,
-            })
-
-    return results
-
 # ── 대화 블록 파서 ────────────────────────────────────────────────────────────
 
 def extract_dialogue_blocks(data: bytes, chunk_idx: int,
@@ -425,7 +309,7 @@ def extract_name_blocks(data: bytes, chunk_idx: int,
             'file':  'DISK_B.DAT',
             'chunk': chunk_idx,
             'offset': block_start,
-            'type':  'label',
+            'type':  'dialog',
             'jp':    jp,
             'kr':    '',
             'lines': [{
@@ -491,7 +375,7 @@ def extract_title_labels(data: bytes, chunk_idx: int,
                 'file':   'DISK_B.DAT',
                 'chunk':  chunk_idx,
                 'offset': block_start,
-                'type':   'title',
+                'type':   'dialog',
                 'jp':     jp,
                 'kr':     '',
                 'lines':  [{
@@ -549,7 +433,7 @@ def extract_sjis_runs(data: bytes, chunk_idx: int,
                 'file':   'DISK_B.DAT',
                 'chunk':  chunk_idx,
                 'offset': start,
-                'type':   'unknown',
+                'type':   'dialog',
                 'jp':     jp,
                 'kr':     '',
                 'lines':  [{
@@ -655,7 +539,6 @@ def main(game_dir: str) -> None:
         consumed: set[int] = set()
 
         # 구조화 파서 순서대로 실행 — consumed 를 채워가며 진행
-        all_entries.extend(extract_skill_blocks(dec, idx, consumed))
         all_entries.extend(extract_dialogue_blocks(dec, idx, consumed))
         all_entries.extend(extract_name_blocks(dec, idx, consumed))
         all_entries.extend(extract_title_labels(dec, idx, consumed))
@@ -663,22 +546,12 @@ def main(game_dir: str) -> None:
         # SJIS 런 폴백: 위 파서가 소비하지 않은 구간만 추출
         all_entries.extend(extract_sjis_runs(dec, idx, consumed, min_chars=2))
 
-    # ── 3. 중복 제거 (chunk + 대표 offset 기반) ────────────────────────────
-    # 같은 (chunk, offset)을 여러 파서가 중복 생성하는 경우만 제거.
-    # 타입 우선순위: skill > dialog > title > label > unknown
-    TYPE_PRIORITY = {'skill': 0, 'dialog': 1, 'title': 2, 'label': 3, 'unknown': 4}
-
-    seen: dict[tuple, dict] = {}  # (chunk, offset) → best entry
+    # ── 3. 중복 제거 (chunk + offset 기반, 먼저 발견된 것 우선) ───────────────
+    seen: dict[tuple, dict] = {}
     for entry in all_entries:
         key = (entry['chunk'], entry['offset'])
         if key not in seen:
             seen[key] = entry
-        else:
-            # 더 높은 우선순위 타입으로 교체
-            existing_pri = TYPE_PRIORITY.get(seen[key]['type'], 99)
-            new_pri      = TYPE_PRIORITY.get(entry['type'], 99)
-            if new_pri < existing_pri:
-                seen[key] = entry
 
     # 청크·오프셋 순 정렬
     final_entries = sorted(seen.values(), key=lambda e: (e['chunk'], e['offset']))

@@ -159,43 +159,14 @@ async function load() {
     // 전역 오프셋 = chunk * 200000 + local_offset (청크 내 최대 해제 크기 < 200000 보장)
     for (const entry of data.entries) {
       const base = entry.chunk * 200000;
-      if (entry.type === 'skill') {
-        for (const seg of (entry.segments || [])) {
-          const segType = seg.type === 'name' ? 'skill_name' : seg.type === 'stat' ? 'skill_stat' : 'skill_desc';
-          rows.push({
-            type: segType, tag: seg.tag || null, file: 'DISK_B.DAT',
-            chunk: entry.chunk, offset: base + seg.offset,
-            jp: seg.jp, kr: seg.kr, jp_len: seg.jp_len, gaiji: false, taggable: true,
-          });
-        }
-      } else if (entry.type === 'dialog') {
-        const speaker = entry.speaker || '';
-        for (const line of (entry.lines || [])) {
-          rows.push({
-            type: 'dialog', tag: line.tag || null, file: 'DISK_B.DAT',
-            chunk: entry.chunk, offset: base + line.offset,
-            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
-            gaiji: false, taggable: true, speaker: speaker,
-          });
-        }
-      } else if (entry.type === 'title' || entry.type === 'label') {
-        for (const line of (entry.lines || [])) {
-          rows.push({
-            type: entry.type, tag: line.tag || null, file: 'DISK_B.DAT',
-            chunk: entry.chunk, offset: base + line.offset,
-            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
-            gaiji: false, taggable: true,
-          });
-        }
-      } else { // unknown
-        for (const line of (entry.lines || [])) {
-          rows.push({
-            type: 'unknown', tag: line.tag || null, file: 'DISK_B.DAT',
-            chunk: entry.chunk, offset: base + line.offset,
-            jp: line.jp, kr: line.kr, jp_len: line.jp_len,
-            gaiji: false, taggable: true,
-          });
-        }
+      const speaker = entry.speaker || '';
+      for (const line of (entry.lines || [])) {
+        rows.push({
+          type: 'dialog', tag: line.tag || null, file: 'DISK_B.DAT',
+          chunk: entry.chunk, offset: base + line.offset,
+          jp: line.jp, kr: line.kr, jp_len: line.jp_len,
+          gaiji: false, taggable: true, speaker: speaker,
+        });
       }
     }
   } else {
@@ -263,15 +234,13 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외',
-  skill_name: '스킬명', skill_stat: '스탯', skill_desc: '스킬설명', title: '제목', label: '레이블', unknown: '기타' };
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
 const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
-  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore',
-    skill_name: 'type-item', skill_stat: 'type-item', skill_desc: 'type-item', title: 'type-menu', label: 'type-menu', unknown: 'type-system' };
+  const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
   const taggable = (r.type === 'dialog' || r.type === 'ui' || r.taggable) ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
@@ -294,7 +263,7 @@ function render() {
     if (filterType) {
       const effective = r.tag || r.type;
       if (filterType === 'item') {
-        if (!r.type.startsWith('item') && !r.type.startsWith('skill') && effective !== 'item') return false;
+        if (!r.type.startsWith('item') && effective !== 'item') return false;
       } else {
         if (effective !== filterType) return false;
       }
@@ -569,22 +538,15 @@ class Handler(http.server.BaseHTTPRequestHandler):
             CHUNK_BASE = 200000
 
             def _find_kaitou_seg(entries, typ, global_offset):
-                """전역 오프셋으로 entry + segment/line 반환."""
+                """전역 오프셋으로 lines 항목 반환."""
                 chunk_idx = global_offset // CHUNK_BASE
                 local_off = global_offset % CHUNK_BASE
                 for entry in entries:
                     if entry.get('chunk') != chunk_idx:
                         continue
-                    if typ in ('skill_name', 'skill_stat', 'skill_desc'):
-                        seg_type_map = {'skill_name': 'name', 'skill_stat': 'stat', 'skill_desc': 'desc'}
-                        want = seg_type_map[typ]
-                        for seg in entry.get('segments', []):
-                            if seg.get('offset') == local_off and seg.get('type') == want:
-                                return seg
-                    elif typ in ('dialog', 'title', 'label', 'unknown'):
-                        for line in entry.get('lines', []):
-                            if line.get('offset') == local_off:
-                                return line
+                    for line in entry.get('lines', []):
+                        if line.get('offset') == local_off:
+                            return line
                 return None
 
             for key, kr in translations.items():
@@ -610,7 +572,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 for entry in data['entries']:
                     if entry.get('chunk') != chunk_idx:
                         continue
-                    for container in (entry.get('segments') or entry.get('lines') or []):
+                    for container in entry.get('lines', []):
                         if container.get('offset') == local_off:
                             container['tag'] = tag
                             updated += 1
