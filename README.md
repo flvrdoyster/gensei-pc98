@@ -8,7 +8,7 @@ Compile Inc.의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트
 | 타이틀 | 폴더 | 상태 |
 |--------|------|------|
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
-| 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 텍스트 추출 중 |
+| 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 텍스트 추출 완료 (~3380개), 인서터 미구현 |
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
 | 환세희담 (幻世喜譚, 1995) | `kitan` | 미착수 |
 
@@ -62,7 +62,7 @@ tools/
   NOTES_kaitou.md        쾌도전 역공학 상세 노트
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
-  kaitou_parser.py       쾌도전 텍스트 추출 (DISK_B.DAT)
+  kaitou_parser.py       쾌도전 텍스트 추출 v3 (DISK_B.DAT LZ 해제 후 구조적 파싱)
   dosbox-kaitou.conf     DOSBox-X PC-98 설정 (런타임 디버거)
 original/
   hukyou/                풍광전 원본 디스크 파일
