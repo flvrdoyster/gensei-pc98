@@ -13,7 +13,8 @@ Compile Inc.의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트
 
 ## 웹 에뮬레이터 (`emulator/`)
 
-NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.
+NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.  
+https://flvrdoyster.github.io/gensei-pc98/emulator
 
 ### 에뮬레이터 빌드
 
