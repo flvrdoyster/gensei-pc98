@@ -145,18 +145,26 @@
 
         preRun: [function() {
           Module.addRunDependency('disk-setup');
-          setTimeout(function() {
+          var attempts = 0;
+          function trySetup() {
             try {
+              Module.FS.stat(DISK);
               Module.FS.chmod(DISK, 0o666);
               if (savedDisk) {
                 Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
                 showToast('세이브 데이터 복원됨');
               }
+              Module.removeRunDependency('disk-setup');
             } catch(e) {
-              log('[save] 복원 실패: ' + e);
+              if (++attempts < 200) {
+                setTimeout(trySetup, 10);
+              } else {
+                log('[save] 복원 타임아웃, 원본으로 시작');
+                Module.removeRunDependency('disk-setup');
+              }
             }
-            Module.removeRunDependency('disk-setup');
-          }, 0);
+          }
+          setTimeout(trySetup, 0);
         }],
 
         postRun: [function() {

@@ -12,11 +12,18 @@
 
   var canvas = null;
 
+  var needsResume = false;
+
   function resumeAudio() {
     var ctx = (typeof Module !== 'undefined' && Module.SDL2)
       ? Module.SDL2.audioContext : null;
-    if (ctx && ctx.state === 'suspended') ctx.resume();
+    if (ctx) ctx.resume();
+    needsResume = false;
   }
+
+  document.addEventListener('visibilitychange', function() {
+    if (!document.hidden) needsResume = true;
+  });
 
   function dispatchKey(keyName, type) {
     var props = KEY_MAP[keyName];
@@ -47,6 +54,10 @@
     if (fsBtn) fsBtn.style.display = 'none';
 
     canvas = document.getElementById('canvas');
+    canvas.addEventListener('touchstart', function() {
+      if (needsResume) resumeAudio();
+    });
+
     var gamepad = document.getElementById('virtual-gamepad');
     if (!gamepad) return;
 
