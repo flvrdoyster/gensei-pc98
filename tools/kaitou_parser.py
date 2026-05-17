@@ -282,10 +282,7 @@ def extract_6b_dialogue_blocks(data: bytes, chunk_idx: int,
         if found_end:
             consumed.update(range(block_start, i))
 
-        valid_lines = [
-            l for l in lines
-            if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
-        ]
+        valid_lines = [l for l in lines if l['jp'] and l['jp'].strip()]
         if valid_lines:
             results.append({
                 'file':   'DISK_B.DAT',
@@ -394,19 +391,7 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 cur_offset = i
 
             elif b == 0x64:
-                # 서브 레이블 (소비 SP 등): 현재 세그먼트 flush 후 새 세그먼트
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        lines.append({
-                            'offset': cur_offset,
-                            'jp':     jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr':     '',
-                        })
-                    cur_chars = []
-                i += 2  # skip 64 XX
-                cur_offset = i
+                i += 2  # 줄바꿈 아님, 그냥 스킵
 
             elif b == 0x73:
                 if cur_chars:
@@ -440,18 +425,14 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
 
         consumed.update(range(block_start, i))
 
-        valid_lines = [
-            l for l in lines
-            if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
-        ]
+        valid_lines = [l for l in lines if l['jp'] and l['jp'].strip()]
         if valid_lines:
-            jp_full = '\n'.join(l['jp'] for l in valid_lines)
             results.append({
                 'file':   'DISK_B.DAT',
                 'chunk':  chunk_idx,
                 'offset': block_start,
                 'type':   'dialog',
-                'jp':     jp_full,
+                'jp':     '\n'.join(l['jp'] for l in valid_lines),
                 'kr':     '',
                 'lines':  valid_lines,
             })
