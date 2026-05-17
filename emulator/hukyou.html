@@ -2,6 +2,7 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>환세풍광전 웹 버전 : atah.io</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://atah.io/favicon.ico">
@@ -23,6 +24,20 @@
   </div>
 
   <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+
+  <div id="virtual-gamepad">
+    <div class="gamepad-dpad">
+      <button data-key="ArrowUp" class="dpad-up">↑</button>
+      <button data-key="ArrowLeft" class="dpad-left">←</button>
+      <button data-key="ArrowRight" class="dpad-right">→</button>
+      <button data-key="ArrowDown" class="dpad-down">↓</button>
+    </div>
+    <div class="gamepad-buttons">
+      <button data-key="Escape" class="btn-b">B</button>
+      <button data-key="Enter" class="btn-a">A</button>
+    </div>
+  </div>
+  <script src="gamepad.js"></script>
 
   <script>
     const DISK    = '/rom/hukyou_kr.fdi';
