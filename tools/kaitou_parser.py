@@ -391,7 +391,18 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 cur_offset = i
 
             elif b == 0x64:
-                i += 2  # 줄바꿈 아님, 그냥 스킵
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                    cur_chars = []
+                i += 2
+                cur_offset = i
 
             elif b == 0x73:
                 if cur_chars:
