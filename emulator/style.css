@@ -214,3 +214,109 @@ button:hover { background: rgba(68, 68, 68, 1); }
   height: min(100vh, 62.5vw);
   image-rendering: pixelated;
 }
+
+@font-face {
+  font-family: 'RasterForge';
+  src: url('https://fonts.cdnfonts.com/s/123917/RasterForgeRegular-XGDg9.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Virtual Gamepad (mobile only) */
+#virtual-gamepad {
+  display: none;
+}
+
+body.mobile-active #virtual-gamepad {
+  display: flex;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 24px;
+  touch-action: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+.gamepad-dpad {
+  position: relative;
+  width: 140px;
+  height: 140px;
+}
+
+.gamepad-dpad button {
+  position: absolute;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  background: rgba(245, 245, 245, 1);
+  border: 1px solid rgba(211, 211, 211, 1);
+  border-bottom: 5px solid rgba(190, 190, 190, 1);
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'RasterForge', monospace;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
+}
+
+.gamepad-dpad button.active {
+  transform: translateY(3px);
+  border-bottom-width: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.dpad-up    { top: 0;    left: 46px; }
+.dpad-down  { bottom: 0; left: 46px; }
+.dpad-left  { top: 46px; left: 0; }
+.dpad-right { top: 46px; right: 0; }
+
+.gamepad-buttons {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.gamepad-buttons button {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: rgba(245, 245, 245, 1);
+  border: 1px solid rgba(211, 211, 211, 1);
+  border-bottom: 5px solid rgba(190, 190, 190, 1);
+  color: rgba(0, 0, 0, 0.6);
+  font-family: 'RasterForge', monospace;
+  font-size: 16px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  touch-action: none;
+  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  user-select: none;
+  -webkit-tap-highlight-color: transparent;
+  transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
+}
+
+.gamepad-buttons button.active {
+  transform: translateY(3px);
+  border-bottom-width: 2px;
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Mobile responsive */
+@media (max-width: 680px) {
+  body { padding: 8px 0 0; }
+  canvas { width: 100vw; height: calc(100vw * 0.625); }
+  #canvas-wrap { width: 100vw; }
+  .hint { display: none; }
+  .controls { width: 100%; justify-content: center; }
+  .logo { width: 120px; }
+  #footer { width: 100%; padding: 16px; }
+  .game-list { width: 100%; padding: 0 8px; }
+}
