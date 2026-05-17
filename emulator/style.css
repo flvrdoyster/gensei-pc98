@@ -53,8 +53,9 @@ h1 { font-size: 1.1em; color: rgba(170, 170, 170, 1); margin-top: 8px; }
 
 canvas {
   display: block;
+  width: 640px;
+  height: 400px;
   image-rendering: pixelated;
-  /* 640×400 고정. 스케일 필요 시 transform만 사용 */
 }
 
 #overlay {
