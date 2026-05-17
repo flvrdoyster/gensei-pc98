@@ -141,13 +141,19 @@
         arguments: [DISK],
 
         preRun: [function() {
-          // 쓰기 권한 부여 (preload-file은 기본 read-only)
-          Module.FS.chmod(DISK, 0o666);
-          // 저장된 디스크 복원
-          if (savedDisk) {
-            Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
-            showToast('세이브 데이터 복원됨');
-          }
+          Module.addRunDependency('disk-setup');
+          setTimeout(function() {
+            try {
+              Module.FS.chmod(DISK, 0o666);
+              if (savedDisk) {
+                Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
+                showToast('세이브 데이터 복원됨');
+              }
+            } catch(e) {
+              log('[save] 복원 실패: ' + e);
+            }
+            Module.removeRunDependency('disk-setup');
+          }, 0);
         }],
 
         postRun: [function() {
