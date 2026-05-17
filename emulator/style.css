@@ -110,3 +110,19 @@ button {
 button:hover { background: rgba(68, 68, 68, 1); }
 
 .hint { font-size: 0.75em; color: rgba(85, 85, 85, 1); }
+
+/* Fullscreen */
+#canvas-wrap:fullscreen,
+#canvas-wrap:-webkit-full-screen {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(0, 0, 0, 1);
+}
+
+#canvas-wrap:fullscreen canvas,
+#canvas-wrap:-webkit-full-screen canvas {
+  width: min(100vw, 160vh);
+  height: min(100vh, 62.5vw);
+  image-rendering: pixelated;
+}
