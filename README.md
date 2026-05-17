@@ -95,13 +95,18 @@ cp ~/GitHub/NP2kai/build_em/emnp2kai_sdl2.{js,wasm} emulator/
 
 기술 상세 및 세이브 지속성 구현 현황: [`emulator/NOTES.md`](emulator/NOTES.md)
 
-## 라이선스
+## 크레딧
 
-| 항목 | 라이선스 |
-|------|----------|
-| 번역 데이터 및 도구 코드 | MIT |
-| 웹 에뮬레이터 (NP2kai) | MIT — Copyright (c) 2017 AZO |
-| 원본 게임 자산 | © Compile Inc. 원저작권자 소유 |
+**에뮬레이터**: [NP2kai](https://github.com/AZO234/NP2kai) by AZO — MIT License
 
-원본 게임 자산(디스크 이미지, 그래픽, 음악 등)의 저작권은 Compile Inc.에 있습니다.  
-본 프로젝트는 비상업적 한글화 목적으로만 배포됩니다.
+**번역 도구 및 웹 배포**: flvrdoyster
+
+## 소프트웨어 고지
+
+본 저장소는 환세 시리즈(幻世シリーズ)의 한국어 번역 패치를 위한 도구와 디스크 이미지를 포함합니다.
+
+원본 게임은 Compile Inc.가 개발하였으며, 게임 자산(디스크 이미지, 그래픽, 음악 등)의 모든 권리는 원저작권자에게 있습니다.
+
+본 프로젝트는 비상업적 보존 및 한글화 목적으로만 운영됩니다.
+
+저작권자로서 자료 삭제를 원하실 경우 Issue를 열어주시면 즉시 대응하겠습니다.
