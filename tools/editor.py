@@ -157,12 +157,17 @@ async function load() {
   if (data.entries) {
     // kaitou / 새 포맷: flat entries 리스트
     // 전역 오프셋 = chunk * 200000 + local_offset (청크 내 최대 해제 크기 < 200000 보장)
+    // 칼럼 헤더 + 필터 레이블을 청크용으로 교체
+    document.querySelector('th.file').textContent = '청크';
+    document.querySelector('#filterFile option[value=""]').textContent = '전체 청크';
+
     for (const entry of data.entries) {
       const base = entry.chunk * 200000;
       const speaker = entry.speaker || '';
+      const chunkLabel = '청크 ' + String(entry.chunk).padStart(2, '0');
       for (const line of (entry.lines || [])) {
         rows.push({
-          type: 'dialog', tag: line.tag || null, file: 'DISK_B.DAT',
+          type: 'dialog', tag: line.tag || null, file: chunkLabel,
           chunk: entry.chunk, offset: base + line.offset,
           jp: line.jp, kr: line.kr, jp_len: line.jp_len,
           gaiji: false, taggable: true, speaker: speaker,
