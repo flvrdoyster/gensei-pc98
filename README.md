@@ -7,6 +7,7 @@ Compile Inc. PC-98 **환세 시리즈** 한글화 프로젝트.
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
 | 환세쾌도전 (幻世快盗伝, 1994) | `kaitou` | 미착수 |
 | 환세포물장 (幻世捕物帳, 1995) | `torimono` | 미착수 |
+| 환세희담 (幻世喜譚, 1995) | `kitan` | 미착수 |
 
 ## 파일 구조
 
@@ -82,22 +83,14 @@ translation.json의 각 텍스트 항목에 `tag` 필드로 분류. 시리즈 �
 
 NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.
 
-| 파일 | 역할 |
-|------|------|
-| `index.html` | 에뮬레이터 프론트엔드 |
-| `style.css` | UI 스타일 |
-| `emnp2kai_sdl2.js` | Emscripten 빌드 (NP2kai) |
-| `emnp2kai_sdl2.wasm` | WASM 바이너리 |
-| `emnp2kai_sdl2.data` | 사전 번들 파일 (BIOS, ROM) |
-| `bios/` | PC-98 BIOS 파일 |
-| `rom/` | 게임 디스크 이미지 |
-
 ### 에뮬레이터 빌드
 
+emsdk와 NP2kai 소스가 필요함.
+
 ```bash
-source ~/GitHub/emsdk/emsdk_env.sh
-make -C ~/GitHub/NP2kai/build_em emnp2kai_sdl2
-cp ~/GitHub/NP2kai/build_em/emnp2kai_sdl2.{js,wasm} emulator/
+source <emsdk_path>/emsdk_env.sh
+make -C <NP2kai_path>/build_em emnp2kai_sdl2
+cp <NP2kai_path>/build_em/emnp2kai_sdl2.{js,wasm} emulator/
 ```
 
 기술 상세 및 세이브 지속성 구현 현황: [`emulator/NOTES.md`](emulator/NOTES.md)
