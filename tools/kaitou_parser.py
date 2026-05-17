@@ -1,5 +1,5 @@
 """
-환세쾌도전 텍스트 추출기 v4
+환세쾌도전 텍스트 추출기 v5
 ============================
 
 사용법:
@@ -8,35 +8,31 @@
 DISK_B.DAT 에서 텍스트를 추출하여
 translation/kaitou/translation.json 을 생성.
 
-v4 변경점:
-  - extract_name_blocks() 추가:
-      64 XX [SJIS] 65 패턴 파싱 (캐릭터명/적 이름/상태 레이블 등)
-      스마ッシュ 등 SJIS 런 폴백이 잘라먹던 텍스트 올바르게 추출
-  - Coverage 기반 SJIS 런 추출:
-      구조화 파서가 소비한 바이트 구간은 런 추출 스킵
-      → 파서 경계에서 잘리는 텍스트 제거
-  - 화자 오인식 수정:
-      6e 00 67 XX 뒤에 「로 시작하는 텍스트 = 화자명 아닌 첫 대사줄로 재분류
-  - 노이즈 필터 완전 제거:
-      looks_like_noise() 삭제, 분류는 번역 단계에서 수동으로
-  - 중복 제거: jp 텍스트 기반 → (chunk, local_offset) 기반으로 변경
-      동일 오프셋에서 여러 파서가 생성한 중복만 제거
+v5 변경점:
+  - extract_6b_dialogue_blocks() 추가:
+      6b 00 80 77 00 [SJIS] 73 XX 패턴 (화자 없는 대화)
+      청크 31 등에서 6e 00 67 이전 구간의 누락 대화 처리
+  - extract_simple_blocks() 추가:
+      62 00 XX XX [SJIS 직접] 65 패턴 (스킬/아이템 설명)
+      6e 00 67 앵커 없는 블록만 처리, 청크 3 커버
+  - extract_6d_name_blocks() 추가:
+      6d 08 [SJIS만] 65 패턴 (적/아이템 이름, 청크 61-64)
+      엄격 모드: SJIS 쌍만 허용, 32바이트 상한
+  - SJIS 런 폴백 범위 제한:
+      find_block_ranges() 로 62 00 블록 경계 내부만 eligible
+      x86 코드 등 구조 없는 영역의 노이즈 제거
 
-청크 구조:
-  - DISK_B.DAT 앞부분: 4-byte 엔트리 테이블 (파일 offset 0x400까지)
-    엔트리: [CX(2 LE), DX(2 LE)] → seek = (CX<<16)|DX
-  - 각 청크는 compile_lz.decompress() 로 해제 (hukyou와 동일 알고리즘)
-  - SJIS 밀도 > 5% 인 청크만 파싱
-
-제어코드 (확정):
-  62 00 XX XX  = 스킬/아이템 블록 시작 (인수 3바이트)
-  64 XX        = 이름/레이블 블록 or 구분자 (XX=00이면 추가 2바이트)
-  65           = 블록 종료 (인수 없음)
-  67 XX        = 화자 마커 (인수 1바이트)
-  6b XX        = 씬 전환 (인수 1바이트)
-  6e XX        = 대화 섹션 (인수 1바이트)
-  72 XX        = 줄바꿈 (인수 1바이트)
-  73 XX        = 대화 블록 종료 (인수 1바이트)
+확정 제어코드:
+  62 00 XX XX  = 블록 시작 (직접 텍스트 또는 대화 컨테이너)
+  64 XX        = 이름/레이블 블록 (XX=00이면 64 00 XX XX 챕터 제목)
+  65           = 블록 종료
+  67 XX        = 화자 마커
+  6b 00 80 77 00 = 화자 없는 대화 블록
+  6b 00 81 65    = 빈 대화 슬롯
+  6d 08        = 적/아이템 이름 블록
+  6e 00 67     = 대화 블록 앵커
+  72 XX        = 줄바꿈
+  73 XX        = 대화 블록 종료
 """
 
 import json
@@ -107,16 +103,13 @@ def parse_chunk_table(data: bytes) -> list[tuple[int, int]]:
         result.append((seek, end - seek))
     return result
 
-# ── 대화 블록 파서 ────────────────────────────────────────────────────────────
+# ── 파서 1: 6e 00 67 대화 블록 ───────────────────────────────────────────────
 
 def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             consumed: set) -> list[dict]:
     """
     6e 00 67 XX [화자 SJIS] 72 XX [대화줄...] 73 XX 패턴 추출.
-    소비한 바이트 범위를 consumed 에 기록.
-
-    수정 (v4): 67 XX 직후 텍스트가 「로 시작하면 화자 없는 대사로 처리
-               (기존: 모두 화자명으로 오인식)
+    v4: 67 XX 직후 텍스트가 「로 시작하면 화자 없는 첫 줄로 처리.
     """
     results = []
     i = 0
@@ -132,13 +125,11 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
         i += 4  # skip 6e 00 67 XX
 
         speaker_start = i
-
-        # 화자명 읽기 (72 XX 까지)
         speaker_chars: list[str] = []
         while i < n:
             b = data[i]
             if b == 0x72:
-                i += 2  # skip 72 XX
+                i += 2
                 break
             elif b in (0x73, 0x65, 0x62, 0x6e, 0x6b):
                 break
@@ -151,7 +142,6 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                 i += 1
         speaker = ''.join(speaker_chars).strip()
 
-        # v4 수정: 화자 텍스트가 「/『/　로 시작하면 실제로는 첫 대사줄
         prepend_line: dict | None = None
         if speaker and speaker[0] in ('「', '『', '　'):
             prepend_line = {
@@ -162,7 +152,6 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
             }
             speaker = ''
 
-        # 대화 줄 읽기 (73 XX 까지)
         lines: list[dict] = []
         if prepend_line:
             lines.append(prepend_line)
@@ -173,8 +162,7 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
 
         while i < n:
             b = data[i]
-
-            if b == 0x73:  # dialogue end
+            if b == 0x73:
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -184,11 +172,10 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             'jp_len': len(jp.encode('shift_jis', errors='replace')),
                             'kr':     '',
                         })
-                i += 2  # skip 73 XX
+                i += 2
                 found_end = True
                 break
-
-            elif b == 0x72:  # line break
+            elif b == 0x72:
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -199,10 +186,9 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             'kr':     '',
                         })
                     cur_chars = []
-                i += 2  # skip 72 XX
+                i += 2
                 cur_offset = i
-
-            elif b in (0x65, 0x6e, 0x62):  # block end
+            elif b in (0x65, 0x6e, 0x62):
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -213,20 +199,17 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             'kr':     '',
                         })
                 break
-
             elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
                 ch = decode_sjis_char(b, data[i + 1])
                 if ch:
                     cur_chars.append(ch)
                 i += 2
-
             else:
                 i += 1
 
         if found_end:
             consumed.update(range(block_start, i))
 
-        # 실질 내용 있는 줄만 (「 단독, 　 단독 제외)
         valid_lines = [
             l for l in lines
             if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
@@ -246,17 +229,283 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
 
     return results
 
-# ── 이름/레이블 블록 파서 ─────────────────────────────────────────────────────
+# ── 파서 2: 6b 00 80 화자 없는 대화 블록 ────────────────────────────────────
+
+def extract_6b_dialogue_blocks(data: bytes, chunk_idx: int,
+                               consumed: set) -> list[dict]:
+    """
+    6b 00 80 77 00 [SJIS] 73 XX 패턴 — 화자 없는 대화.
+    6b 00 81 65 = 빈 슬롯 (consume만, 엔트리 없음).
+    청크 31 등 6e 00 67 이전 구간 대화 처리.
+    """
+    results = []
+    i = 0
+    n = len(data)
+
+    while i < n - 2:
+        if i in consumed:
+            i += 1
+            continue
+
+        if not (data[i] == 0x6b and data[i + 1] == 0x00):
+            i += 1
+            continue
+
+        block_start = i
+
+        if i + 2 >= n:
+            i += 1
+            continue
+
+        subtype = data[i + 2]
+
+        # 빈 슬롯: 6b 00 81 65
+        if subtype == 0x81:
+            if i + 3 < n and data[i + 3] == 0x65:
+                consumed.update(range(i, i + 4))
+                i += 4
+            else:
+                i += 1
+            continue
+
+        # 텍스트 블록: 6b 00 80 77 00 [text] 73 XX
+        if subtype != 0x80 or i + 4 >= n:
+            i += 1
+            continue
+
+        i += 5  # skip 6b 00 80 77 00
+
+        lines: list[dict] = []
+        cur_chars: list[str] = []
+        cur_offset = i
+        found_end = False
+
+        while i < n:
+            b = data[i]
+            if b == 0x73:
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                i += 2
+                found_end = True
+                break
+            elif b == 0x72:
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                    cur_chars = []
+                i += 2
+                cur_offset = i
+            elif b in (0x65, 0x6e, 0x62, 0x6b):
+                break
+            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
+                ch = decode_sjis_char(b, data[i + 1])
+                if ch:
+                    cur_chars.append(ch)
+                i += 2
+            else:
+                i += 1
+
+        if found_end:
+            consumed.update(range(block_start, i))
+
+        valid_lines = [
+            l for l in lines
+            if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
+        ]
+        if valid_lines:
+            jp_full = '\n'.join(l['jp'] for l in valid_lines)
+            results.append({
+                'file':    'DISK_B.DAT',
+                'chunk':   chunk_idx,
+                'offset':  block_start,
+                'type':    'dialog',
+                'jp':      jp_full,
+                'kr':      '',
+                'speaker': '',
+                'lines':   valid_lines,
+            })
+
+    return results
+
+# ── 파서 3: 62 00 직접 텍스트 블록 ───────────────────────────────────────────
+
+def extract_simple_blocks(data: bytes, chunk_idx: int,
+                          consumed: set) -> list[dict]:
+    """
+    62 00 XX XX [SJIS 직접] 65 패턴 — 스킬/아이템 설명 등.
+
+    6e 00 67 앵커 없이 텍스트가 직접 배치된 62 00 블록만 처리.
+    내부 64 XX = 서브 레이블(소비 MP 등), 72 XX = 줄바꿈.
+
+    조건:
+    - block_start 가 consumed 에 없어야 함
+    - 첫 콘텐츠 바이트가 유효 SJIS 쌍이어야 함 (코드 영역 필터)
+    - 내부에 6e 00 67 이 있으면 스킵 (대화 블록 컨테이너)
+    """
+    results = []
+    i = 0
+    n = len(data)
+
+    while i < n - 4:
+        if i in consumed:
+            i += 1
+            continue
+
+        if not (data[i] == 0x62 and data[i + 1] == 0x00):
+            i += 1
+            continue
+
+        block_start = i
+        content_start = i + 4
+
+        # 첫 콘텐츠가 SJIS 쌍이 아니면 코드 영역 → 스킵
+        if (content_start + 1 >= n
+                or not is_sjis_pair(data[content_start], data[content_start + 1])):
+            i += 1
+            continue
+
+        # 내부에 6e 00 67 이 있으면 대화 컨테이너 → 스킵
+        # 첫 65 까지만 미리 스캔
+        has_dialogue_anchor = False
+        j = content_start
+        while j < n:
+            b = data[j]
+            if b == 0x65:
+                break
+            if j + 2 < n and b == 0x6e and data[j+1] == 0x00 and data[j+2] == 0x67:
+                has_dialogue_anchor = True
+                break
+            if is_sjis_lead(b) and j + 1 < n and is_sjis_pair(b, data[j + 1]):
+                j += 2
+            else:
+                j += 1
+        if has_dialogue_anchor:
+            i += 1
+            continue
+
+        # 블록 내용 추출
+        i = content_start
+        lines: list[dict] = []
+        cur_chars: list[str] = []
+        cur_offset = i
+        found_end = False
+
+        while i < n:
+            b = data[i]
+
+            if b == 0x65:
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                found_end = True
+                i += 1
+                break
+
+            elif b == 0x72:
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                    cur_chars = []
+                i += 2
+                cur_offset = i
+
+            elif b == 0x64:
+                # 서브 레이블 (소비 SP 등): 현재 세그먼트 flush 후 새 세그먼트
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                    cur_chars = []
+                i += 2  # skip 64 XX
+                cur_offset = i
+
+            elif b == 0x73:
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
+                i += 2
+                found_end = True
+                break
+
+            elif b in (0x62, 0x6b, 0x6e, 0x6d):
+                break
+
+            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
+                ch = decode_sjis_char(b, data[i + 1])
+                if ch:
+                    cur_chars.append(ch)
+                i += 2
+
+            else:
+                i += 1
+
+        if not found_end:
+            i = block_start + 1
+            continue
+
+        consumed.update(range(block_start, i))
+
+        valid_lines = [
+            l for l in lines
+            if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
+        ]
+        if valid_lines:
+            jp_full = '\n'.join(l['jp'] for l in valid_lines)
+            results.append({
+                'file':   'DISK_B.DAT',
+                'chunk':  chunk_idx,
+                'offset': block_start,
+                'type':   'dialog',
+                'jp':     jp_full,
+                'kr':     '',
+                'lines':  valid_lines,
+            })
+
+    return results
+
+# ── 파서 4: 64 XX 이름/레이블 블록 ───────────────────────────────────────────
 
 def extract_name_blocks(data: bytes, chunk_idx: int,
                         consumed: set) -> list[dict]:
     """
     64 XX [SJIS 텍스트] 65 패턴 추출 (XX != 00).
-    캐릭터명(64 f6), 상태 효과(64 fc → 毒 등), UI 레이블 등.
-    64 00 XX XX 계열(챕터 제목)은 extract_title_labels가 처리.
-
-    이미 consumed 된 위치는 스킵.
-    소비한 바이트 범위를 consumed 에 기록.
+    64 00 XX XX 계열은 extract_title_labels가 처리.
     """
     results = []
     i = 0
@@ -278,11 +527,11 @@ def extract_name_blocks(data: bytes, chunk_idx: int,
         text_start = i
         found_end = False
 
-        while i < n and i < block_start + 100:  # 합리적 상한
+        while i < n and i < block_start + 100:
             b = data[i]
             if b == 0x65:
                 found_end = True
-                i += 1  # past 65
+                i += 1
                 break
             elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
                 ch = decode_sjis_char(b, data[i + 1])
@@ -290,10 +539,8 @@ def extract_name_blocks(data: bytes, chunk_idx: int,
                     text_chars.append(ch)
                 i += 2
             elif b in (0x62, 0x64, 0x67, 0x6e, 0x72, 0x73, 0x6b, 0x75, 0x76):
-                # 다른 제어코드 만나면 이 블록은 레이블 블록이 아님
                 break
             else:
-                # non-SJIS, non-opcode 바이트: 스킵 (공백 등)
                 i += 1
 
         if not found_end:
@@ -322,16 +569,82 @@ def extract_name_blocks(data: bytes, chunk_idx: int,
 
     return results
 
-# ── 챕터 제목 파서 ────────────────────────────────────────────────────────────
+# ── 파서 5: 6d 08 적/아이템 이름 블록 ────────────────────────────────────────
+
+def extract_6d_name_blocks(data: bytes, chunk_idx: int,
+                           consumed: set) -> list[dict]:
+    """
+    6d 08 [SJIS만] 65 패턴 — 적/아이템 이름 (청크 61-64 등).
+
+    엄격 모드: SJIS 쌍만 허용, 32바이트 상한.
+    혼합(코드+텍스트) 블록은 자동 제외됨.
+    """
+    results = []
+    i = 0
+    n = len(data)
+
+    while i < n - 1:
+        if i in consumed:
+            i += 1
+            continue
+
+        if not (data[i] == 0x6d and data[i + 1] == 0x08):
+            i += 1
+            continue
+
+        block_start = i
+        i += 2
+        text_start = i
+        text_chars: list[str] = []
+        found_end = False
+
+        while i < n and i < block_start + 34:  # 32바이트 콘텐츠 상한
+            b = data[i]
+            if b == 0x65:
+                found_end = True
+                i += 1
+                break
+            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
+                ch = decode_sjis_char(b, data[i + 1])
+                if ch:
+                    text_chars.append(ch)
+                i += 2
+            else:
+                # SJIS 이외 바이트 → 이 블록은 혼합 데이터, 스킵
+                found_end = False
+                break
+
+        if not found_end:
+            i = block_start + 1
+            continue
+
+        jp = ''.join(text_chars).strip()
+        if not jp:
+            continue
+
+        consumed.update(range(block_start, i))
+        results.append({
+            'file':  'DISK_B.DAT',
+            'chunk': chunk_idx,
+            'offset': block_start,
+            'type':  'dialog',
+            'jp':    jp,
+            'kr':    '',
+            'lines': [{
+                'offset': text_start,
+                'jp':     jp,
+                'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                'kr':     '',
+            }],
+        })
+
+    return results
+
+# ── 파서 6: 64 00 XX XX 챕터 제목 ────────────────────────────────────────────
 
 def extract_title_labels(data: bytes, chunk_idx: int,
                          consumed: set) -> list[dict]:
-    """
-    64 00 XX XX [SJIS 텍스트] 패턴 추출.
-    챕터 번호/제목 등에 사용.
-    이미 consumed 된 위치는 스킵.
-    소비한 바이트 범위를 consumed 에 기록.
-    """
+    """64 00 XX XX [SJIS 텍스트] 패턴 — 챕터 번호/제목."""
     results = []
     i = 0
     n = len(data)
@@ -388,24 +701,76 @@ def extract_title_labels(data: bytes, chunk_idx: int,
 
     return results
 
+# ── SJIS 런 eligible 범위 계산 ────────────────────────────────────────────────
+
+def find_block_ranges(data: bytes) -> set[int]:
+    """
+    62 00 XX XX ... 65 블록 내부 바이트 위치 집합.
+    SJIS 런 폴백이 탐색해도 되는 영역을 정의.
+
+    조건: 첫 콘텐츠 바이트 쌍이 유효 SJIS 쌍이어야 인정.
+    → x86 코드 등 구조 없는 영역의 62 00 거짓 양성 제거.
+    좌→우 SJIS 파싱으로 65 위치를 정확히 탐색.
+    """
+    eligible: set[int] = set()
+    i = 0
+    n = len(data)
+
+    while i < n - 4:
+        if not (data[i] == 0x62 and data[i + 1] == 0x00):
+            i += 1
+            continue
+
+        block_start = i
+        content_start = i + 4
+
+        if (content_start + 1 >= n
+                or not is_sjis_pair(data[content_start], data[content_start + 1])):
+            i += 1
+            continue
+
+        # 좌→우 파싱으로 블록 종료 65 탐색
+        j = content_start
+        found = False
+        while j < n:
+            b = data[j]
+            if b == 0x65:
+                eligible.update(range(block_start, j + 1))
+                i = j + 1
+                found = True
+                break
+            elif is_sjis_lead(b) and j + 1 < n and is_sjis_pair(b, data[j + 1]):
+                j += 2
+            else:
+                j += 1
+
+        if not found:
+            i += 1
+
+    return eligible
+
 # ── SJIS 런 추출 (폴백) ───────────────────────────────────────────────────────
 
 def extract_sjis_runs(data: bytes, chunk_idx: int,
                       consumed: set,
+                      block_ranges=None,
                       min_chars: int = 2) -> list[dict]:
     """
-    연속 SJIS 런 추출 (구조적 파서가 놓친 메뉴·UI 텍스트 보완).
+    연속 SJIS 런 추출 — 구조적 파서가 놓친 텍스트 보완.
 
-    v4: consumed 셋에 포함된 위치는 스킵 → 구조화 파서 경계에서 잘리는 문제 방지.
-    min_chars: 최소 글자 수 (기본 2).
+    v5: block_ranges 가 주어지면 62 00 블록 내부로만 탐색 제한.
+        x86 코드 등 구조 없는 영역의 노이즈 제거.
     """
     results = []
     i = 0
     n = len(data)
 
     while i < n - 1:
-        # 구조화 파서가 소비한 구간은 스킵
         if i in consumed:
+            i += 1
+            continue
+
+        if block_ranges is not None and i not in block_ranges:
             i += 1
             continue
 
@@ -416,13 +781,14 @@ def extract_sjis_runs(data: bytes, chunk_idx: int,
         start = i
         chars: list[str] = []
         while i < n - 1:
-            # 중간에 consumed 구간이 시작되면 런 종료
             if i in consumed:
+                break
+            if block_ranges is not None and i not in block_ranges:
                 break
             if not (is_sjis_lead(data[i]) and is_sjis_pair(data[i], data[i + 1])):
                 break
             ch = decode_sjis_char(data[i], data[i + 1])
-            i += 2  # 항상 전진 (decode 실패해도)
+            i += 2
             if not ch:
                 break
             chars.append(ch)
@@ -449,10 +815,6 @@ def extract_sjis_runs(data: bytes, chunk_idx: int,
 # ── 기존 번역 보존 ────────────────────────────────────────────────────────────
 
 def load_existing_kr(out_path: str) -> dict:
-    """
-    기존 translation.json에서 kr 값을 로드.
-    키: (chunk, offset) → kr 문자열
-    """
     if not os.path.exists(out_path):
         return {}
     try:
@@ -479,7 +841,6 @@ def load_existing_kr(out_path: str) -> dict:
     return kr_map
 
 def apply_existing_kr(entries: list[dict], kr_map: dict) -> None:
-    """추출된 엔트리에 기존 kr 값 복원."""
     for entry in entries:
         chunk = entry.get('chunk', -1)
         key = (chunk, entry['offset'])
@@ -542,13 +903,19 @@ def main(game_dir: str) -> None:
     for idx, dec, density in text_chunks:
         consumed: set[int] = set()
 
-        # 구조화 파서 순서대로 실행 — consumed 를 채워가며 진행
+        # 구조화 파서 (consumed 채워가며 순서대로)
         all_entries.extend(extract_dialogue_blocks(dec, idx, consumed))
+        all_entries.extend(extract_6b_dialogue_blocks(dec, idx, consumed))
+        all_entries.extend(extract_simple_blocks(dec, idx, consumed))
         all_entries.extend(extract_name_blocks(dec, idx, consumed))
+        all_entries.extend(extract_6d_name_blocks(dec, idx, consumed))
         all_entries.extend(extract_title_labels(dec, idx, consumed))
 
-        # SJIS 런 폴백: 위 파서가 소비하지 않은 구간만 추출
-        all_entries.extend(extract_sjis_runs(dec, idx, consumed, min_chars=2))
+        # SJIS 런 폴백: 62 00 블록 내부로만 제한
+        block_ranges = find_block_ranges(dec)
+        all_entries.extend(
+            extract_sjis_runs(dec, idx, consumed, block_ranges=block_ranges, min_chars=2)
+        )
 
     # ── 3. 중복 제거 (chunk + offset 기반, 먼저 발견된 것 우선) ───────────────
     seen: dict[tuple, dict] = {}
@@ -557,7 +924,6 @@ def main(game_dir: str) -> None:
         if key not in seen:
             seen[key] = entry
 
-    # 청크·오프셋 순 정렬
     final_entries = sorted(seen.values(), key=lambda e: (e['chunk'], e['offset']))
 
     # ── 4. 기존 kr 복원 ────────────────────────────────────────────────────
