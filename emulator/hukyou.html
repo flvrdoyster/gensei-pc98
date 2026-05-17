@@ -8,7 +8,10 @@
   <link rel="icon" href="https://atah.io/favicon.ico">
 </head>
 <body>
-  <img src="img/logo-hukyou.png" width="200" alt="환세풍광전" class="logo">
+  <div class="top-bar">
+    <img src="img/logo-hukyou.png" width="200" alt="환세풍광전" class="logo">
+    <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
+  </div>
 
   <div id="canvas-wrap">
     <canvas id="canvas"></canvas>
@@ -18,23 +21,18 @@
     <div id="toast"></div>
   </div>
 
-  <div class="controls">
-    <button id="btn-fullscreen">⛶ 전체화면</button>
-    <button id="btn-copylog">📋 로그 복사</button>
-  </div>
-
   <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
 
   <div id="virtual-gamepad">
     <div class="gamepad-dpad">
-      <button data-key="ArrowUp" class="dpad-up">↑</button>
-      <button data-key="ArrowLeft" class="dpad-left">←</button>
-      <button data-key="ArrowRight" class="dpad-right">→</button>
-      <button data-key="ArrowDown" class="dpad-down">↓</button>
+      <button data-key="ArrowUp" class="dpad-up"><img src="img/key-arrow.svg" alt="↑"></button>
+      <button data-key="ArrowLeft" class="dpad-left"><img src="img/key-arrow.svg" alt="←" style="transform:rotate(-90deg)"></button>
+      <button data-key="ArrowRight" class="dpad-right"><img src="img/key-arrow.svg" alt="→" style="transform:rotate(90deg)"></button>
+      <button data-key="ArrowDown" class="dpad-down"><img src="img/key-arrow.svg" alt="↓" style="transform:rotate(180deg)"></button>
     </div>
     <div class="gamepad-buttons">
-      <button data-key="Escape" class="btn-b">ESC</button>
-      <button data-key="Enter" class="btn-a">Enter</button>
+      <button data-key="Escape" class="btn-b"><img src="img/key-esc.svg" alt="ESC"></button>
+      <button data-key="Enter" class="btn-a"><img src="img/key-enter.svg" alt="Enter"></button>
     </div>
   </div>
   <script src="gamepad.js"></script>
@@ -120,16 +118,6 @@
     function startPolling() {
       pollTimer = setInterval(saveDisk, POLL_MS);
     }
-
-    document.getElementById('btn-copylog').addEventListener('click', () => {
-      if (logs.length === 0) { alert('로그 없음'); return; }
-      navigator.clipboard.writeText(logs.join('\n')).then(() => {
-        const btn = document.getElementById('btn-copylog');
-        const orig = btn.textContent;
-        btn.textContent = '✓ 복사됨';
-        setTimeout(() => { btn.textContent = orig; }, 1500);
-      });
-    });
 
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
