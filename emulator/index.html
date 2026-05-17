@@ -25,7 +25,11 @@
   <p class="hint">화면을 클릭하면 마우스/키보드 캡처 &nbsp;|&nbsp; ESC → 해제</p>
 
   <script>
-    const DISK = '/rom/hukyou_kr.fdi';
+    const DISK    = '/rom/hukyou_kr.fdi';
+    const IDB_NAME  = 'gensei-saves';
+    const IDB_STORE = 'disks';
+    const IDB_KEY   = 'hukyou_kr.fdi';
+    const POLL_MS   = 10000;
 
     const canvas  = document.getElementById('canvas');
     const overlay = document.getElementById('overlay');
@@ -44,6 +48,62 @@
       toast.classList.add('visible');
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+    }
+
+    // IndexedDB helpers
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbGet(db, key) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(key);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbPut(db, key, value) {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(IDB_STORE, 'readwrite');
+        const req = tx.objectStore(IDB_STORE).put(value, key);
+        req.onsuccess = () => resolve();
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    // 체크섬 (변경 감지용)
+    function checksum(arr) {
+      let s = 0;
+      for (let i = 0; i < arr.length; i++) s = (s + arr[i]) >>> 0;
+      return s;
+    }
+
+    let db = null;
+    let lastChecksum = null;
+    let pollTimer = null;
+
+    async function saveDisk() {
+      if (!db) return;
+      try {
+        const data = Module.FS.readFile(DISK);
+        const csum = checksum(data);
+        if (csum === lastChecksum) return;
+        await idbPut(db, IDB_KEY, data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
+        lastChecksum = csum;
+        log('[save] 세이브 동기화 완료');
+      } catch (e) {
+        log('[save] 오류: ' + e);
+      }
+    }
+
+    function startPolling() {
+      pollTimer = setInterval(saveDisk, POLL_MS);
     }
 
     document.getElementById('btn-copylog').addEventListener('click', () => {
@@ -66,14 +126,35 @@
       (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
     });
 
-    function startEmulator() {
+    async function startEmulator() {
+      db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
+
+      // IDB에서 저장된 디스크 복원
+      let savedDisk = null;
+      if (db) {
+        savedDisk = await idbGet(db, IDB_KEY).catch(() => null);
+        if (savedDisk) log('[save] 저장된 세이브 데이터 발견');
+      }
+
       window.Module = {
         canvas: canvas,
         arguments: [DISK],
 
+        preRun: [function() {
+          // 쓰기 권한 부여 (preload-file은 기본 read-only)
+          Module.FS.chmod(DISK, 0o666);
+          // 저장된 디스크 복원
+          if (savedDisk) {
+            Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
+            showToast('세이브 데이터 복원됨');
+          }
+        }],
+
         postRun: [function() {
           document.title = '환세풍광전 웹 버전 : atah.io';
+          lastChecksum = checksum(Module.FS.readFile(DISK));
           showToast('초기화 완료');
+          startPolling();
         }],
 
         print:    t => log('[out] ' + t),
