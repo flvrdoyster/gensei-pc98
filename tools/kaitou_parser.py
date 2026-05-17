@@ -499,6 +499,9 @@ def apply_existing_kr(entries: list[dict], kr_map: dict) -> None:
 # 청크 전체 SJIS 밀도 임계값 (이 미만 = 그래픽/코드 청크, 스킵)
 TEXT_THRESHOLD = 0.05
 
+# 명시적으로 지정된 노이즈 청크 (그래픽/비트맵 데이터 — SJIS 밀도가 높아도 텍스트 아님)
+NOISE_CHUNKS = {8, 9, 37, 42, 44, 48, 58, 59}
+
 
 def main(game_dir: str) -> None:
     title = os.path.basename(game_dir.rstrip('/\\'))
@@ -527,8 +530,9 @@ def main(game_dir: str) -> None:
         density = sjis_density(dec)
         chunks.append((idx, dec, density))
 
-    text_chunks = [(idx, dec, d) for idx, dec, d in chunks if d >= TEXT_THRESHOLD]
-    print(f'텍스트 청크 ({TEXT_THRESHOLD:.0%} 이상): {len(text_chunks)}개')
+    text_chunks = [(idx, dec, d) for idx, dec, d in chunks
+                   if d >= TEXT_THRESHOLD and idx not in NOISE_CHUNKS]
+    print(f'텍스트 청크 ({TEXT_THRESHOLD:.0%} 이상, 노이즈 제외): {len(text_chunks)}개')
     for idx, dec, d in text_chunks:
         print(f'  청크 {idx:2d}: {len(dec):6,}B  SJIS={d:.1%}')
 
