@@ -285,10 +285,6 @@ body.mobile-active #virtual-gamepad {
   transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
 }
 
-.gamepad-dpad button img {
-  height: 50%;
-  pointer-events: none;
-}
 
 .gamepad-dpad button.active {
   transform: translateY(3px);
@@ -326,9 +322,13 @@ body.mobile-active #virtual-gamepad {
   transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
 }
 
-.gamepad-buttons button img {
+#virtual-gamepad button img {
   height: 50%;
   pointer-events: none;
+}
+
+#virtual-gamepad .gamepad-buttons button img {
+  height: 30%;
 }
 
 .gamepad-buttons button.active {
