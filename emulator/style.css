@@ -16,8 +16,8 @@
 }
 
 :root {
-  --font-lg: 1.1em;
-  --font-md: 0.85em;
+  --font-lg: 1.2em;
+  --font-md: 0.9em;
   --font-sm: 0.75em;
 }
 
@@ -116,6 +116,18 @@ button {
 button:hover { background: rgba(68, 68, 68, 1); }
 
 .hint { font-size: var(--font-sm); color: rgba(85, 85, 85, 1); }
+
+#footer {
+  font-size: var(--font-sm);
+  color: rgba(85, 85, 85, 1);
+  text-align: center;
+  margin-top: 8px;
+}
+
+#footer a { color: rgba(85, 85, 85, 1); }
+#footer a:hover { color: rgba(136, 136, 136, 1); }
+
+.footer-sep { margin: 0 4px; }
 
 /* Fullscreen */
 #canvas-wrap:fullscreen,
