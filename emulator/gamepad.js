@@ -12,6 +12,12 @@
 
   var canvas = null;
 
+  function resumeAudio() {
+    var ctx = (typeof Module !== 'undefined' && Module.SDL2)
+      ? Module.SDL2.audioContext : null;
+    if (ctx && ctx.state === 'suspended') ctx.resume();
+  }
+
   function dispatchKey(keyName, type) {
     var props = KEY_MAP[keyName];
     if (!props) return;
@@ -49,6 +55,7 @@
 
     gamepad.addEventListener('touchstart', function(e) {
       e.preventDefault();
+      resumeAudio();
       var btn = e.target.closest('[data-key]');
       if (!btn) return;
       var key = btn.dataset.key;

@@ -252,7 +252,7 @@ body.mobile-active #virtual-gamepad {
   background: rgba(245, 245, 245, 1);
   border: 1px solid rgba(211, 211, 211, 1);
   border-bottom: 5px solid rgba(190, 190, 190, 1);
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 1);
   font-family: 'RasterForge', monospace;
   font-size: 18px;
   display: flex;
@@ -283,13 +283,14 @@ body.mobile-active #virtual-gamepad {
 }
 
 .gamepad-buttons button {
-  width: 56px;
+  min-width: 48px;
   height: 48px;
+  padding: 0 14px;
   border-radius: 8px;
   background: rgba(245, 245, 245, 1);
   border: 1px solid rgba(211, 211, 211, 1);
   border-bottom: 5px solid rgba(190, 190, 190, 1);
-  color: rgba(0, 0, 0, 0.6);
+  color: rgba(0, 0, 0, 1);
   font-family: 'RasterForge', monospace;
   font-size: 14px;
   font-weight: bold;
