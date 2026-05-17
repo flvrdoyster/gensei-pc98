@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>환세풍광전 웹 버전 : atah.io</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://atah.io/favicon.ico">
+</head>
+<body>
+  <h1>환세풍광전</h1>
+
+  <div id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+    <div id="overlay">
+      <button id="btn-start">▶ 시작</button>
+    </div>
+    <div id="toast"></div>
+  </div>
+
+  <div class="controls">
+    <button id="btn-fullscreen">⛶ 전체화면</button>
+    <button id="btn-copylog">📋 로그 복사</button>
+  </div>
+
+  <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+
+  <script>
+    const DISK    = '/rom/hukyou_kr.fdi';
+    const IDB_NAME  = 'gensei-saves';
+    const IDB_STORE = 'disks';
+    const IDB_KEY   = 'hukyou_kr.fdi';
+    const POLL_MS   = 10000;
+
+    const canvas  = document.getElementById('canvas');
+    const overlay = document.getElementById('overlay');
+    const toast   = document.getElementById('toast');
+
+    const logs = [];
+    let toastTimer = null;
+
+    function log(msg) {
+      logs.push('[' + new Date().toLocaleTimeString() + '] ' + msg);
+    }
+
+    function showToast(msg, duration = 2000) {
+      log(msg);
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+    }
+
+    // IndexedDB helpers
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbGet(db, key) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(key);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbPut(db, key, value) {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(IDB_STORE, 'readwrite');
+        const req = tx.objectStore(IDB_STORE).put(value, key);
+        req.onsuccess = () => resolve();
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    // 체크섬 (변경 감지용)
+    function checksum(arr) {
+      let s = 0;
+      for (let i = 0; i < arr.length; i++) s = (s + arr[i]) >>> 0;
+      return s;
+    }
+
+    let db = null;
+    let lastChecksum = null;
+    let pollTimer = null;
+
+    async function saveDisk() {
+      if (!db) return;
+      try {
+        const data = Module.FS.readFile(DISK);
+        const csum = checksum(data);
+        if (csum === lastChecksum) return;
+        await idbPut(db, IDB_KEY, data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
+        lastChecksum = csum;
+        log('[save] 세이브 동기화 완료');
+      } catch (e) {
+        log('[save] 오류: ' + e);
+      }
+    }
+
+    function startPolling() {
+      pollTimer = setInterval(saveDisk, POLL_MS);
+    }
+
+    document.getElementById('btn-copylog').addEventListener('click', () => {
+      if (logs.length === 0) { alert('로그 없음'); return; }
+      navigator.clipboard.writeText(logs.join('\n')).then(() => {
+        const btn = document.getElementById('btn-copylog');
+        const orig = btn.textContent;
+        btn.textContent = '✓ 복사됨';
+        setTimeout(() => { btn.textContent = orig; }, 1500);
+      });
+    });
+
+    document.getElementById('btn-start').addEventListener('click', function() {
+      overlay.classList.add('hidden');
+      startEmulator();
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const wrap = document.getElementById('canvas-wrap');
+      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+    });
+
+    async function startEmulator() {
+      db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
+
+      // IDB에서 저장된 디스크 복원
+      let savedDisk = null;
+      if (db) {
+        savedDisk = await idbGet(db, IDB_KEY).catch(() => null);
+        if (savedDisk) log('[save] 저장된 세이브 데이터 발견');
+      }
+
+      window.Module = {
+        canvas: canvas,
+        arguments: [DISK],
+
+        preRun: [function() {
+          Module.addRunDependency('disk-setup');
+          setTimeout(function() {
+            try {
+              Module.FS.chmod(DISK, 0o666);
+              if (savedDisk) {
+                Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
+                showToast('세이브 데이터 복원됨');
+              }
+            } catch(e) {
+              log('[save] 복원 실패: ' + e);
+            }
+            Module.removeRunDependency('disk-setup');
+          }, 0);
+        }],
+
+        postRun: [function() {
+          document.title = '환세풍광전 웹 버전 : atah.io';
+          lastChecksum = checksum(Module.FS.readFile(DISK));
+          showToast('초기화 완료');
+          startPolling();
+        }],
+
+        print:    t => log('[out] ' + t),
+        printErr: t => log('[err] ' + t),
+
+        setStatus(text) {
+          if (text) showToast(text);
+        },
+
+        totalDependencies: 0,
+        monitorRunDependencies(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+        }
+      };
+
+      const s = document.createElement('script');
+      s.src = 'emnp2kai_sdl2.js';
+      s.onerror = () => { showToast('JS 로드 실패', 5000); };
+      document.body.appendChild(s);
+    }
+  </script>
+  <script src="https://atah.io/footer.js"></script>
+</body>
+</html>
