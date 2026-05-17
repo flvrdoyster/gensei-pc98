@@ -40,7 +40,8 @@ python3 tools/hukyou_parser.py original/hukyou   # 풍광전
 python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
 
 # 2. 번역 에디터 (http://localhost:8421)
-python3 tools/editor.py hukyou    # 또는 kaitou
+python3 tools/editor.py hukyou    # 풍광전
+python3 tools/editor.py kaitou    # 쾌도전
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
