@@ -43,6 +43,9 @@
 
     document.body.classList.add('mobile-active');
 
+    var fsBtn = document.getElementById('btn-fullscreen');
+    if (fsBtn) fsBtn.style.display = 'none';
+
     canvas = document.getElementById('canvas');
     var gamepad = document.getElementById('virtual-gamepad');
     if (!gamepad) return;
