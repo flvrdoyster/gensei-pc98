@@ -4,7 +4,7 @@ Compile Inc. PC-98 **환세 시리즈** 한글화 프로젝트.
 
 | 타이틀 | 폴더 | 상태 |
 |--------|------|------|
-| 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 파서·삽입기 완료, 번역 71% |
+| 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
 | 환세쾌도전 (幻世快盗伝, 1994) | `kaitou` | 미착수 |
 | 환세포물장 (幻世捕物帳, 1995) | `torimono` | 미착수 |
 
@@ -26,6 +26,13 @@ translation/
   hukyou/
     translation.json   환세풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
 build/                 (gitignore) 패치된 파일 출력
+emulator/
+  index.html           에뮬레이터 프론트엔드
+  style.css            UI 스타일
+  bios/                PC-98 BIOS 파일
+  rom/                 게임 디스크 이미지
+  emnp2kai_sdl2.*      NP2kai Emscripten 빌드 결과물
+  NOTES.md             에뮬레이터 기술 노트
 ```
 
 ## 사용법
