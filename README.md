@@ -97,5 +97,11 @@ cp ~/GitHub/NP2kai/build_em/emnp2kai_sdl2.{js,wasm} emulator/
 
 ## 라이선스
 
-번역 데이터 및 도구 코드: MIT  
-원본 게임 저작권: Compile Inc.
+| 항목 | 라이선스 |
+|------|----------|
+| 번역 데이터 및 도구 코드 | MIT |
+| 웹 에뮬레이터 (NP2kai) | MIT — Copyright (c) 2017 AZO |
+| 원본 게임 자산 | © Compile Inc. 원저작권자 소유 |
+
+원본 게임 자산(디스크 이미지, 그래픽, 음악 등)의 저작권은 Compile Inc.에 있습니다.  
+본 프로젝트는 비상업적 한글화 목적으로만 배포됩니다.
