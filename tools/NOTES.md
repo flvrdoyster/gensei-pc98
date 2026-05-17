@@ -1,390 +1,51 @@
-# 환세풍광전 CMD 파서 — 구현 방식 노트
+# 환세 시리즈 한글화 — 역공학 노트 인덱스
 
-## 배경
+타이틀별 상세 노트:
 
-**대상 게임**: 환세풍광전 / 幻世風狂伝 (Compile Inc., 1994, PC-98)  
-**역공학 방법**: 정공법 (GF2.COM 디스어셈블 → 런타임 분석)
+- **[NOTES_hukyou.md](NOTES_hukyou.md)** — 환세풍광전 (幻世風狂伝, 1994)
+  - GF2.COM LZ 압축 구조, CMD 포맷, 제어코드 완전 확정
+  - 파서(`hukyou_parser.py`) + 인서터(`hukyou_inserter.py`) 구현 완료
 
----
-
-## 핵심 발견 순서
-
-### 1단계 — 실행파일 압축 확인
-
-GF2.COM을 디스어셈블(`objdump -b binary -m i8086`).  
-`0x000~0x070`: x86 자가 압축 해제 루틴 (COM 부트스트랩).  
-`0x071~`: LZ 압축 데이터 시작.
-
-```
-0x12b 루프 (부트스트랩 내부):
-  al = *si++
-  if al == 0: 종료
-  if al & 0x80: back-reference (length = (al&0x7f)+3, offset = *si++ +1)
-  else: literal copy (length = al)
-```
-
-Python으로 동일 알고리즘 구현 → 60364바이트로 해제 성공.
-
-**GF2.COM 주요 상수**:
-- `GF2_BOOTSTRAP_SIZE = 0x71` — 부트스트랩 크기 (LZ 데이터 시작 오프셋)
-- `GF2_PAD_SIZE = 236` — 해제 출력에서 실제 데이터 이전 패딩 바이트 수  
-  (파서의 `decompress(raw)` 오프셋과 삽입기의 `decompress(raw, start=0x71)` 오프셋 차이)
-
-### 2단계 — CMD 파일 포맷 파악
-
-압축 해제된 GF2.COM에서:
-- `call 0x6f60`: 파일 로드 (INT 21h AH=3Fh)
-- `call 0x1417` → `call 0x12f0`: **동일한 LZ 알고리즘으로 CMD 파일 압축 해제**
-
-즉 CMD 파일은 압축된 상태. 런타임에 해제 후 인터프리트.
-
-STAGE1.CMD를 동일 알고리즘으로 해제 → Shift-JIS 텍스트 블록 확인.
-
-### 3단계 — 스크립트 제어코드 파악
-
-압축 해제된 CMD 파일에서 텍스트 주변 바이트 분석.
-
-| 바이트 | 역할 |
-|--------|------|
-| `65 00/01 [SJIS/ctrl]` | 대화 블록 시작 (01 = 이벤트, ctrl = 62/63/64/66/76) |
-| `72 XX` | 줄바꿈 (XX는 부가 파라미터) |
-| `6B` | 대화 블록 명시 종료 |
-| `65 00` (블록 내부) | 서브항목 종료자 |
-| `45 00` | 바이너리 섹션 마커 — 이후 `6B`까지 스킵 |
-| `13 00 [ptr…]` | 메뉴 선택지 블록 (포인터 테이블 + 항목) |
-| `64 XX` | 라인 구분 / 아이템 상태 구분 |
-| `0F 03` | 아이템 항목 시작 (MESSAGE.CMD) |
-| `64 02` | 아이템 설명 줄 구분 |
-| `64 XX` (XX≠02) | 아이템 수치 구분 |
-
-#### 메뉴 블록 (`13 00`) 구조
-
-```
-13 00 [ptr0_lo ptr0_hi] [ptr1_lo ptr1_hi] … → 포인터 테이블
-각 포인터가 가리키는 곳:
-  64 00 [2B ID] [SJIS 텍스트] 65 00
-```
-
-포인터 수 계산: `n = (first_ptr - current_pos) / 2`  
-유효성 검사: `n > 0 and n <= 10 and first_ptr > current_pos`
-
-핵심 판별 기준: `65 00/01` 다음 바이트가 Shift-JIS 선행 바이트 범위
-(`0x81~0x9F`, `0xE0~0xFC`) 또는 제어바이트(`62/63/64/66/76`)인지 여부로 대화/비대화 구분.
-제어바이트 확장은 `in_dialog=False`일 때만 적용 — 블록 내부 `65 00`은 서브항목 종료자로 유지.
-
-#### 오탐 방지
-
-- **`is_sjis` 디코딩 검증**: 바이트 범위(선행 0x81~0x9F/0xE0~0xFC + 후행 0x40~0xFC)만으로는
-  실제 Shift-JIS에 존재하지 않는 코드(예: 0x8865, 0xFC65)를 걸러내지 못함.
-  `data[i:i+2].decode('shift_jis')`로 실제 디코딩 성공 여부 검증 (0x85XX 가이지는 별도 처리이므로 제외).
-- **`68` 시작 오탐 차단**: `68 XX [SJIS lead] 6B` 패턴은 바이너리 데이터에서 빈번히 출현.
-  직후 `6B`(종료)가 오면 텍스트 길이=1로 유효 대화가 아니므로 `is_68_start`에서 제외.
+- **[NOTES_kaitou.md](NOTES_kaitou.md)** — 환세쾌도전 (幻世快盗伝, 1995)
+  - DISK_B.DAT 청크 구조, 제어코드 부분 확정 (72 XX만)
+  - 파서(`kaitou_parser.py`) v2 완료, 인서터 미구현
+  - 다음 단계: DOSBox-X 런타임 분석 → 제어코드 확정 → 파서 v3
 
 ---
 
-## 가이지 (外字, 0x85XX) 인코딩
-
-게임의 일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 Shift-JIS 대신 **가이지 영역(0x85XX)** 으로 인코딩되어 있음.  
-가이지 텍스트는 ASCII도 2바이트로 표현되므로, 인서터에서 `use_gaiji=True`로 인코딩해야 함.
-
-### 매핑 구조 (`compile_lz.py`)
-
-| 가이지 코드 | 내용 | 변환 공식 |
-|-------------|------|-----------|
-| `0x8540~0x859D` | ASCII 0x21~0x7E | trail − 0x1F (또는 − 0x20) |
-| `0x859F~0x85DD` | 반각 카타카나 63자 (`_HW_KANA`) | trail − 0x9F → 인덱스 |
-| `0x85E3~0x85F8` | 탁점 카타카나 (확장) | `_GAIJI_EXT` 딕셔너리 |
-
-### 확장 가이지 (`_GAIJI_EXT`)
-
-표준 반각 카타카나에 없는 탁점/반탁점 카타카나가 0x85DD 이후에 위치:
-
-| 코드 | 문자 | 코드 | 문자 |
-|------|------|------|------|
-| `0x85E3` | ヴ | `0x85F1` | デ |
-| `0x85E6` | グ | `0x85F2` | ド |
-| `0x85EA` | ジ | `0x85F5` | ビ |
-| — | — | `0x85F6` | ピ |
-| — | — | `0x85F8` | プ |
-
-그 외 0x85XX 코드는 Python `shift_jis` 코덱으로 fallback 디코딩.
-
-### 한글 인코딩 (삽입기)
-
-- 한글 자모: `charmap.json` (KS X 1001 기반, JIS 2수준 한자 영역에 매핑)
-- ASCII 문장부호·숫자·영문: 전각 자동 변환 (`ASCII_TO_FULLWIDTH`)  
-  예) `+` → `＋`(817B), `2` → `２`(8251), `H` → `Ｈ`(8267)  
-  ※ 게임 렌더러가 1바이트 ASCII를 표시하지 못하므로 전각 필수  
-  ※ 전각 변환으로 바이트 수가 2배(1→2바이트)가 되므로, 원문 길이 초과에 주의
-
----
-
-## 파서 구조 (상태 머신)
-
-### 대화 파서 (`extract_dialogs`)
-
-```
-상태: OUT_OF_DIALOG / IN_DIALOG
-
-IN_DIALOG 진입: 65 00/01 [SJIS lead 또는 제어바이트(62-76, out-of-dialog만)]
-IN_DIALOG 종료: 6B 또는 다음 65 00
-
-IN_DIALOG 내부:
-  72 XX    → 줄바꿈 (cur_text → cur_lines)
-  64 XX    → 서브항목 구분 (제어 바이트 스킵 후 새 오프셋)
-  45 00    → 바이너리 섹션 마커 → 6B까지 스킵
-  65 00    → 서브항목 종료자 (오프셋 갱신)
-  SJIS     → cur_text에 추가, cur_end 갱신
-  그 외    → 스킵
-```
-
-각 라인 항목: `{offset, jp, jp_len, kr, gaiji?, tag?}`  
-`jp_len` = `cur_end - cur_offset` (실제 바이트 수, 가이지 불완전 디코딩 대응)  
-`gaiji` = 원본 바이트에 0x85XX 가이지 코드 포함 시 `true` (인서터가 가이지 인코딩 적용)  
-`tag` = 수동 분류 태그 (`"ui"`, `"system"`, `"battle"` 등, 에디터에서 변경)
-
-#### `generate_json()` 재실행 시 기존 데이터 보존
-
-파서를 재실행하면 기존 `translation.json`에서 `kr`·`tag` 값을 오프셋 기반으로 복원.  
-복원 키: `kr_map = (type, offset)`, `tag_map = (dialog['file'], offset)`.  
-**복원 키 우선순위:**
-1. `(dialog['file'], offset)` — 오프셋 정확 매칭 (1차)
-2. `(dialog['file'], jp)` — 텍스트 기반 fallback (2차, 파서 개선으로 오프셋 변경 시)
-
-`tag_map`도 동일 구조. 루프 잔류 변수(`fname`)가 아니라 `dialog['file']` 사용.
-
-**자동 백업:** 파서 재실행 시 translation.json에 미커밋 변경이 있으면 자동으로 git commit.
-실수로 번역을 날려도 항상 직전 상태로 복구 가능.
-
-### 메뉴 파서 (`extract_menus`)
-
-```
-13 00 감지 → 포인터 테이블 읽기 → 각 포인터 위치의 항목 파싱
-항목: 64 00 [2B ID] [SJIS 텍스트] 65 00
-출력: dialog 배열에 정수 index로 병합 (오프셋 순 정렬)
-```
-
-### 독립 메뉴 파서 (`extract_orphan_items`)
-
-```
-13 00 블록 밖에 존재하는 64 00 [2B ID] [SJIS text] 65 00 패턴 추출.
-extract_dialogs/extract_menus가 잡지 못한 항목 보완.
-FFFD(디코딩 실패) 포함 항목은 제외.
-```
-
-### 아이템 파서 (`extract_items`, MESSAGE.CMD)
-
-```
-상태: name / stat / desc
-
-name 진입: 0F 03
-stat 진입: 64 XX (XX != 02)
-desc 진입: 64 02
-
-구분:
-  72 01    → 줄바꿈 (현재 상태 유지)
-  65 00    → 아이템 종료
-  0F 03    → 다음 아이템 시작
-```
-
----
-
-## 재삽입 (`hukyou_inserter.py`)
-
-### 교체 방식
-
-- 정상 텍스트: `jp.encode('shift_jis')` 원본 바이트 검증 후 교체 (`use_gaiji=False`)
-- 가이지 포함 텍스트: `jp_len` 기반 길이 교체 + `use_gaiji=True` 인코딩  
-  (ASCII를 1바이트가 아닌 2바이트 가이지(0x85XX)로 인코딩 — 게임 렌더러가 반각 표시 불가)
-- GF2.COM: 부트스트랩 보존 후 LZ 재압축, `GF2_PAD_SIZE` 오프셋 보정
-
-### 패치 순서
-
-오프셋 **내림차순** 처리 — 앞쪽 오프셋을 보존하기 위해.
-
-### 길이 맞춤 (`fit_length`)
-
-- 짧으면 전각 공백(`\x81\x40`)으로 패딩
-- 길면 뒤에서 자름 (SJIS 선행 바이트 경계 보정)
-
----
-
-## 출력 형식 (translation.json)
-
-```json
-{
-  "dialogs": [
-    {
-      "file": "STAGE1.CMD",
-      "index": 1,
-      "lines": [
-        {"offset": 18462, "jp": "「あら　いらっしゃい！", "jp_len": 22, "kr": "", "tag": "ui"},
-        {"offset": 18484, "jp": "　今日はどーしたの？",   "jp_len": 20, "kr": ""},
-        {"offset": 24724, "jp": "５０Gold", "jp_len": 12, "kr": "", "gaiji": true}
-      ]
-    },
-    {
-      "file": "OPEN.CMD",
-      "index": "menu1",
-      "lines": [
-        {"offset": 1228, "jp": "初めから遊ぶ", "jp_len": 12, "kr": ""},
-        {"offset": 1246, "jp": "続きを楽しむ", "jp_len": 12, "kr": ""},
-        {"offset": 1264, "jp": "ディスプレイ", "jp_len": 12, "kr": ""}
-      ]
-    }
-  ],
-  "items": [
-    {
-      "offset": 96,
-      "name": {"offset": 98,  "jp": "鉄の剣",     "jp_len": 6,  "kr": ""},
-      "stat": {"offset": 106, "jp": "攻撃力＋２０", "jp_len": 12, "kr": ""},
-      "desc": [
-        {"offset": 120, "jp": "鉄製の長剣", "jp_len": 10, "kr": ""}
-      ]
-    }
-  ],
-  "ui": [
-    {"offset": 28854, "category": "system", "jp": "セーブ", "jp_len": 6, "kr": ""}
-  ]
-}
-```
-
-- `offset`: 압축 해제 후 바이트 오프셋
-- `jp_len`: 원본 바이트 수 (가이지 포함 항목의 정확한 길이 보장)
-- `index`: 정수 (파일 내 오프셋 순, 대화/메뉴/독립항목 통합 번호)
-- `gaiji`: 원본 바이트에 0x85XX 포함 시 `true` (선택적)
-- `tag`: 수동 분류 태그 — `"ui"`, `"system"`, `"battle"` (선택적, 에디터에서 변경)
-- `stat` 키: 수치 없는 아이템은 키 자체 없음
-
----
-
-## 다른 Compile 타이틀 적용 시 체크리스트
-
-### 압축 알고리즘 동일 여부
-- COM 파일 0x100이 `FC 60 8C C8…`으로 시작하면 동일 구조
-- `0x113~0x114 = F3 A5` (REP MOVSW) 확인
-- Python `decompress()` 함수 그대로 사용 가능
-
-### 제어코드 차이 가능성
-같은 개발사라도 타이틀마다 스크립트 포맷이 다를 수 있음.
-아래 순서로 재분석:
-
-1. CMD 파일 압축 해제
-2. Shift-JIS 텍스트 4자 이상 연속 구간 검색
-3. 텍스트 직전/직후 1~4바이트 패턴 집계
-4. 자주 등장하는 바이트 = 제어코드 후보
-
-```python
-# 제어코드 후보 탐색 예시
-from collections import Counter
-pre_bytes = Counter()
-for i in range(len(data)-1):
-    if is_sjis(data, i):
-        pre_bytes[data[i-1]] += 1
-```
-
-5. 0x65, 0x6b, 0x72 등 동일 코드 쓸 가능성 높음 (같은 엔진이면)
-6. 차이가 있으면 새 파서로 분기
-
----
-
-## 추출기 × 파일 교차 검증 결과
-
-모든 CMD 파일과 GF2.COM에 `extract_dialogs`, `extract_items`, `extract_menus`를 교차 실행하여 검증 완료.
-
-| 추출기 | MESSAGE.CMD | STAGE/OPEN/ENDING.CMD | GF2.COM |
-|--------|:-----------:|:---------------------:|:-------:|
-| `extract_dialogs` | O (속마음 독백) | O (메인 스크립트) | ✗ 바이너리 오탐 |
-| `extract_menus` | 해당 없음 | O | ✗ 바이너리 오탐 |
-| `extract_items` | O (아이템 데이터) | ✗ 바이너리 오탐 | ✗ 바이너리 오탐 |
-| `extract_ui` | 해당 없음 | 해당 없음 | O (하드코딩 오프셋) |
-
-- STAGE 파일의 `0F 03` 히트는 바이너리 데이터 — 실제 아이템 구조 아님
-- GF2.COM의 `65 00/01` 히트는 실행 코드 내 우연 일치 — DOS 에러 메시지(`メモリが足りません` 등)만 텍스트이나 번역 대상 아님
-- MESSAGE.CMD는 아이템(offset 98~2730)과 대화(offset 2928~)가 영역 분리됨 → 아이템 오프셋을 대화 추출에서 제외하여 중복 방지
-
----
-
-## 에디터 태그 시스템
-
-translation.json의 각 텍스트 항목에 `tag` 필드로 분류 (10종, 시리즈 공통 — README.md 참조).
-
-**자동 분류 규칙** (STAGE1/2 수동 분류를 기반으로 나머지 파일에 적용):
-- 파일 기반: ENDING/OPEN.CMD→cutscene, MESSAGE.CMD→monolog
-- 정확 텍스트 매칭: STAGE1/2에서 태깅된 캐릭터명·메뉴·장소·아이템·전투를 다른 STAGE에서 동일 텍스트로 매칭
-- 패턴 매칭: 보물상자 메시지(「〜が入っていた！」등)→item, 파일 끝 적/기술 블록→battle, 쓰레기 데이터→ignore
-
-**에디터 필터 체계**:
-- 타입 드롭다운: 태그별 필터 (dialog/monolog/cutscene/char/battle/item/menu/location/system)
-- 파일 드롭다운: CMD 파일별 필터
-- 체크박스 (독립 조합 가능): 미번역만 / 외자만 / 제외 포함
-
----
-
-## 파일 목록
+## 공통 도구
 
 | 파일 | 역할 |
 |------|------|
 | `compile_lz.py` | LZ 압축/해제 + SJIS/가이지 유틸 (Compile社 공통) |
-| `hukyou_parser.py` | 환세풍광전 CMD 파서 (대화/메뉴/아이템/UI 추출 + JSON 생성) |
-| `hukyou_inserter.py` | 환세풍광전 번역 재삽입 (한글 인코딩 + LZ 재압축) |
-| `kaitou_parser.py` | 환세쾌도전 DISK_B.DAT 파서 (type=0000 청크 스캔, 72 XX 줄바꿈 인식) |
-| `editor.py` | 웹 번역 에디터 (Flask-less HTTP 서버, localhost:8421) |
-| `charmap.json` | 한글↔가이지 코드 매핑 |
-| `dosbox-kaitou.conf` | DOSBox-X PC-98 설정 (런타임 디버거용) |
-| `../translation/hukyou/translation.json` | 번역 파일 (오프셋 + JP/KR 쌍 + jp_len) |
-| `../translation/kaitou/translation.json` | 쾌도전 번역 파일 (641개 엔트리, 미번역) |
+| `editor.py` | 웹 번역 에디터 (localhost:8421) |
+| `charmap.json` | 한글↔가이지 코드 매핑 (KS X 1001, JIS 2수준 영역) |
+
+## 타이틀별 도구
+
+| 파일 | 타이틀 | 역할 |
+|------|--------|------|
+| `hukyou_parser.py` | 풍광전 | CMD 파서 (대화/메뉴/아이템/UI) |
+| `hukyou_inserter.py` | 풍광전 | 번역 재삽입 (LZ 재압축) |
+| `kaitou_parser.py` | 쾌도전 | DISK_B.DAT 파서 (type=0000 청크) |
+| `dosbox-kaitou.conf` | 쾌도전 | DOSBox-X PC-98 설정 (런타임 디버거) |
 
 ---
 
-# 환세쾌도전 DISK_B.DAT 파서 노트
+## Compile 타이틀 적용 체크리스트
 
-## 파일 구조
+### 압축 알고리즘 동일 여부 (풍광전 계열)
+- COM 파일 0x100이 `FC 60 8C C8…`으로 시작하면 동일 구조
+- `0x113~0x114 = F3 A5` (REP MOVSW) 확인
+- `compile_lz.py`의 `decompress()` 재사용 가능
 
-```
-DISK_B.DAT (334,744 bytes)
-├── 0x000~0x107  청크 인덱스 (33개 × 8바이트)
-│                  [hi_type(1), lo_type(1), offset_LE(4), field(2)]
-├── 0x000400~    type=0000 스크립트/텍스트 청크 (4개, 합계 ~92KB)
-├── 0x0148b6~    type=0100 그래픽 청크 (4개)
-├── 0x0214e5~    type=0200 음악 청크 (4개)
-├── 0x030bad~    type=0300 청크 (5개)
-├── 0x040410~    type=0400 청크 (14개)
-└── 0x0504ea~    type=0500 청크 (2개)
-```
+### 쾌도전/포물장 계열 (DAT 구조)
+- DISK_B.DAT 앞 264바이트(0x108): 청크 인덱스
+- type=0000 청크 = 스크립트/텍스트
+- `kaitou_parser.py`의 `get_text_chunk_ranges()` 재사용 가능
 
-### type=0000 청크 범위
-
-| 청크 | 시작 | 끝 | 크기 |
-|------|------|-----|------|
-| 0 | 0x000400 | 0x008172 | 32,114 B |
-| 1 | 0x008172 | 0x00d635 | 21,699 B |
-| 2 | 0x00d635 | 0x0148b6 | 29,313 B |
-| 3 | 0x01f21b | 0x0214e5 |  8,906 B |
-
-## 스크립트 제어코드 (파악된 것)
-
-| 바이트 | 역할 |
-|--------|------|
-| `62 00 XX XX` | 대화 블록 헤더 (4바이트) |
-| `72 XX` | 줄바꿈 (line break) |
-| `64 XX` | 탭/열 제어 |
-| `65 XX` | 페이지 전환/대기 추정 |
-| `6b XX` | 미확인 |
-| `ff ff` | 블록 종료 추정 |
-
-## 파서 전략 (kaitou_parser.py v2)
-
-1. **청크 인덱스 동적 파싱** → type=0000 범위 자동 추출
-2. **고밀도 영역 탐지**: 256바이트 윈도우 SJIS 비율 ≥ 0.30인 구간을 스크립트 영역으로 분류
-3. **라인 단위 추출** (`72 XX` 줄바꿈 인식) → `line_*` 타입 엔트리
-4. **런 그룹 추출** (gap ≤ 16바이트 근접) → 메뉴/UI 등 보완
-5. 두 방식 통합 후 중복 제거
-
-## 미해결 과제
-
-- **로드 주소 미확인**: `jmp [bx+0x7e5d]` 디스패처의 실제 메모리 주소 모름
-  → DOSBox-X 런타임 디버거로 확인 필요 (`dosbox-x -conf tools/dosbox-kaitou.conf`)
-- **제어코드 인수 바이트 수 미확정**: 각 opcode가 몇 바이트를 소비하는지 불명
-  → 런타임 브레이크포인트 분석 필요
-- **재삽입 미구현**: `kaitou_inserter.py` 미작성
+### 제어코드 확인 순서
+1. Shift-JIS 런 4자+ 주변 바이트 빈도 분석
+2. `72 XX` (줄바꿈) 동일 가능성 높음
+3. 앞뒤 패턴으로 블록 헤더 opcode 특정
+4. 불명 opcode → DOSBox-X 런타임 브레이크포인트로 확정
