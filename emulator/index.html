@@ -25,8 +25,7 @@
     canvas {
       display: block;
       image-rendering: pixelated;
-      /* SDL이 inline style로 height를 400px로 덮어씀 →
-         JS MutationObserver로 480px 재적용 (4:3 보정) */
+      /* 640×400 고정. 스케일 필요 시 transform만 사용 */
     }
     #overlay {
       position: absolute;
@@ -47,6 +46,7 @@
       border: 1px solid #666;
       color: #eee;
       cursor: pointer;
+      font-family: monospace;
     }
     #overlay button:hover { background: #444; }
     #status { font-size: 0.85em; color: #888; min-height: 1.2em; }
@@ -60,10 +60,7 @@
       overflow-y: auto;
       color: #777;
     }
-    .controls {
-      display: flex;
-      gap: 8px;
-    }
+    .controls { display: flex; gap: 8px; }
     button {
       background: #333;
       border: 1px solid #555;
@@ -74,7 +71,6 @@
       font-size: 0.85em;
     }
     button:hover { background: #444; }
-    button:disabled { opacity: 0.4; cursor: default; }
     .hint { font-size: 0.75em; color: #555; }
   </style>
 </head>
@@ -92,7 +88,6 @@
   <div id="status">대기 중...</div>
 
   <div class="controls">
-    <button id="btn-reset" disabled>⟳ 리셋</button>
     <button id="btn-fullscreen">⛶ 전체화면</button>
   </div>
 
@@ -100,38 +95,27 @@
   <p class="hint">클릭 → 마우스/키보드 캡처 &nbsp;|&nbsp; ESC → 해제</p>
 
   <script>
-    // 디스크 구성 (나중에 멀티 디스크 확장 가능)
-    const DISKS = [
-      '/rom/hukyou_kr.fdi',
-    ];
+    const DISK = '/rom/hukyou_kr.fdi';
 
-    const canvas = document.getElementById('canvas');
+    const canvas  = document.getElementById('canvas');
     const overlay = document.getElementById('overlay');
-
     const statusEl = document.getElementById('status');
-    const logEl = document.getElementById('log');
-    const btnReset = document.getElementById('btn-reset');
+    const logEl   = document.getElementById('log');
 
     function log(msg) {
-      const line = document.createElement('div');
-      line.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
-      logEl.appendChild(line);
+      const d = document.createElement('div');
+      d.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+      logEl.appendChild(d);
       logEl.scrollTop = logEl.scrollHeight;
     }
 
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
-      statusEl.textContent = 'WASM 로드 중...';
-      log('에뮬레이터 시작 (' + DISKS[0] + ')');
+      log('에뮬레이터 시작');
       startEmulator();
     });
 
-    btnReset.addEventListener('click', function() {
-      log('리셋');
-      // np2kai는 메뉴를 통한 리셋만 지원 — F12 키 이벤트로 대체 가능
-    });
-
-    document.getElementById('btn-fullscreen').addEventListener('click', function() {
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
       const wrap = document.getElementById('canvas-wrap');
       (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
     });
@@ -139,23 +123,22 @@
     function startEmulator() {
       window.Module = {
         canvas: canvas,
-        arguments: DISKS,   // FDI 경로들을 argv로 전달
+        arguments: [DISK],
 
         postRun: [function() {
           log('초기화 완료');
           statusEl.textContent = '실행 중';
-          btnReset.disabled = false;
         }],
 
-        print:    function(t) { log('[out] ' + t); },
-        printErr: function(t) { log('[err] ' + t); },
+        print:    t => log('[out] ' + t),
+        printErr: t => log('[err] ' + t),
 
-        setStatus: function(text) {
-          if (text) { statusEl.textContent = text; }
+        setStatus(text) {
+          if (text) statusEl.textContent = text;
         },
 
         totalDependencies: 0,
-        monitorRunDependencies: function(left) {
+        monitorRunDependencies(left) {
           this.totalDependencies = Math.max(this.totalDependencies, left);
           statusEl.textContent = left
             ? '로딩 ' + (this.totalDependencies - left) + '/' + this.totalDependencies
@@ -165,7 +148,7 @@
 
       const s = document.createElement('script');
       s.src = 'emnp2kai_sdl2.js';
-      s.onerror = () => { log('JS 로드 실패'); statusEl.textContent = '로드 실패'; };
+      s.onerror = () => { log('JS 로드 실패'); };
       document.body.appendChild(s);
     }
   </script>
