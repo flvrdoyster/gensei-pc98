@@ -328,6 +328,63 @@ translation.json의 각 텍스트 항목에 `tag` 필드로 분류 (10종, 시�
 | `compile_lz.py` | LZ 압축/해제 + SJIS/가이지 유틸 (Compile社 공통) |
 | `hukyou_parser.py` | 환세풍광전 CMD 파서 (대화/메뉴/아이템/UI 추출 + JSON 생성) |
 | `hukyou_inserter.py` | 환세풍광전 번역 재삽입 (한글 인코딩 + LZ 재압축) |
+| `kaitou_parser.py` | 환세쾌도전 DISK_B.DAT 파서 (type=0000 청크 스캔, 72 XX 줄바꿈 인식) |
 | `editor.py` | 웹 번역 에디터 (Flask-less HTTP 서버, localhost:8421) |
 | `charmap.json` | 한글↔가이지 코드 매핑 |
+| `dosbox-kaitou.conf` | DOSBox-X PC-98 설정 (런타임 디버거용) |
 | `../translation/hukyou/translation.json` | 번역 파일 (오프셋 + JP/KR 쌍 + jp_len) |
+| `../translation/kaitou/translation.json` | 쾌도전 번역 파일 (641개 엔트리, 미번역) |
+
+---
+
+# 환세쾌도전 DISK_B.DAT 파서 노트
+
+## 파일 구조
+
+```
+DISK_B.DAT (334,744 bytes)
+├── 0x000~0x107  청크 인덱스 (33개 × 8바이트)
+│                  [hi_type(1), lo_type(1), offset_LE(4), field(2)]
+├── 0x000400~    type=0000 스크립트/텍스트 청크 (4개, 합계 ~92KB)
+├── 0x0148b6~    type=0100 그래픽 청크 (4개)
+├── 0x0214e5~    type=0200 음악 청크 (4개)
+├── 0x030bad~    type=0300 청크 (5개)
+├── 0x040410~    type=0400 청크 (14개)
+└── 0x0504ea~    type=0500 청크 (2개)
+```
+
+### type=0000 청크 범위
+
+| 청크 | 시작 | 끝 | 크기 |
+|------|------|-----|------|
+| 0 | 0x000400 | 0x008172 | 32,114 B |
+| 1 | 0x008172 | 0x00d635 | 21,699 B |
+| 2 | 0x00d635 | 0x0148b6 | 29,313 B |
+| 3 | 0x01f21b | 0x0214e5 |  8,906 B |
+
+## 스크립트 제어코드 (파악된 것)
+
+| 바이트 | 역할 |
+|--------|------|
+| `62 00 XX XX` | 대화 블록 헤더 (4바이트) |
+| `72 XX` | 줄바꿈 (line break) |
+| `64 XX` | 탭/열 제어 |
+| `65 XX` | 페이지 전환/대기 추정 |
+| `6b XX` | 미확인 |
+| `ff ff` | 블록 종료 추정 |
+
+## 파서 전략 (kaitou_parser.py v2)
+
+1. **청크 인덱스 동적 파싱** → type=0000 범위 자동 추출
+2. **고밀도 영역 탐지**: 256바이트 윈도우 SJIS 비율 ≥ 0.30인 구간을 스크립트 영역으로 분류
+3. **라인 단위 추출** (`72 XX` 줄바꿈 인식) → `line_*` 타입 엔트리
+4. **런 그룹 추출** (gap ≤ 16바이트 근접) → 메뉴/UI 등 보완
+5. 두 방식 통합 후 중복 제거
+
+## 미해결 과제
+
+- **로드 주소 미확인**: `jmp [bx+0x7e5d]` 디스패처의 실제 메모리 주소 모름
+  → DOSBox-X 런타임 디버거로 확인 필요 (`dosbox-x -conf tools/dosbox-kaitou.conf`)
+- **제어코드 인수 바이트 수 미확정**: 각 opcode가 몇 바이트를 소비하는지 불명
+  → 런타임 브레이크포인트 분석 필요
+- **재삽입 미구현**: `kaitou_inserter.py` 미작성
