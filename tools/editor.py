@@ -78,7 +78,8 @@ tr:hover { background: #f0f0f0; }
 .tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
 .tag-menu div:hover { background: #f0f0f0; }
 .tag-menu div.active { font-weight: 600; }
-.file { width: 120px; font-size: 12px; color: #666; }
+.file { width: 100px; font-size: 12px; color: #666; }
+.off { width: 58px; font-size: 11px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
 .jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
@@ -142,6 +143,7 @@ tr.row-selected { background: #dbeafe !important; }
   <th class="sel"></th>
   <th class="type">타입</th>
   <th class="file">파일</th>
+  <th class="off">오프셋</th>
   <th class="jp">일본어 (JP)</th>
   <th class="kr-cell">한국어 (KR)</th>
   <th class="len">바이트</th>
@@ -208,7 +210,7 @@ async function load() {
       for (const line of (entry.lines || [])) {
         rows.push({
           type: 'dialog', tag: line.tag || null, file: chunkLabel,
-          chunk: entry.chunk, offset: base + line.offset,
+          chunk: entry.chunk, offset: base + line.offset, localOffset: line.offset,
           jp: line.jp, kr: line.kr, jp_len: line.jp_len,
           gaiji: false, taggable: true, speaker: speaker,
         });
@@ -220,24 +222,24 @@ async function load() {
       for (const line of dialog.lines) {
         rows.push({
           type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
-          offset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
+          offset: line.offset, localOffset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
         });
       }
     }
     for (const item of (data.items || [])) {
-      rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
+      rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, localOffset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
       if (item.stat) {
-        rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
+        rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, localOffset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
       }
       for (const desc of item.desc) {
-        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
+        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
       }
     }
     const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
     for (const entry of (data.ui || [])) {
       const defaultTag = UI_CAT_TAG[entry.category] || 'menu';
       const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
-      rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
+      rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
     }
   }
 
@@ -342,6 +344,7 @@ function render() {
       <td class="sel"><input type="checkbox" class="row-check" data-key="${escAttr(key)}" ${selection.has(key) ? 'checked' : ''}></td>
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
+      <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
       <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
       <td class="len ${lenClass}">${lenText}</td>
