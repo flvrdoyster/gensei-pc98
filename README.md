@@ -70,7 +70,7 @@ python3 tools/hukyou_parser.py original/hukyou
 #    - 검색창: JP/KR 텍스트 검색
 #    - 바이트 열: KR 인코딩 길이/원문 길이 실시간 표시 (초과 시 빨간색)
 #    - Cmd/Ctrl+S 로 저장, 빌드 버튼으로 build/ 출력
-python3 tools/editor.py
+python3 tools/editor.py hukyou   # 또는 kaitou, torimono, kitan
 
 # 3. 재삽입 (build/hukyou/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou

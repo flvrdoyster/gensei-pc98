@@ -3,8 +3,10 @@
 ==============
 
 사용법:
-  python3 tools/editor.py
+  python3 tools/editor.py <title>
   브라우저에서 http://localhost:8421 접속
+
+  <title>: hukyou | kaitou | torimono | kitan (기본값: hukyou)
 
 translation.json의 kr 필드를 브라우저에서 편집, 저장.
 """
@@ -13,17 +15,36 @@ import http.server
 import json
 import os
 import subprocess
+import sys
 import urllib.parse
 
+TITLES = {
+    'hukyou':   '환세풍광전',
+    'kaitou':   '환세쾌도전',
+    'torimono': '환세포물장',
+    'kitan':    '환세희담',
+}
+
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', 'hukyou', 'translation.json')
+
+def resolve_title():
+    title = sys.argv[1] if len(sys.argv) > 1 else 'hukyou'
+    if title not in TITLES:
+        print(f'알 수 없는 타이틀: {title!r}')
+        print(f'사용 가능: {", ".join(TITLES)}')
+        sys.exit(1)
+    return title
+
+TITLE = resolve_title()
+TITLE_KR = TITLES[TITLE]
+TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
 CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
 
 HTML = r"""<!DOCTYPE html>
 <html lang="ko">
 <head>
 <meta charset="utf-8">
-<title>환세풍광전 번역 에디터</title>
+<title>__TITLE_KR__ 번역 에디터</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; max-width: 1240px; margin: 0 auto; }
@@ -80,7 +101,7 @@ tr:hover { background: #f0f0f0; }
 </head>
 <body>
 <div class="topbar">
-<h1>환세풍광전 번역 에디터</h1>
+<h1>__TITLE_KR__ 번역 에디터</h1>
 <div class="toolbar">
   <select id="filterType">
     <option value="">전체 타입</option>
@@ -448,7 +469,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
-            self.wfile.write(HTML.encode())
+            self.wfile.write(HTML.replace('__TITLE_KR__', TITLE_KR).encode())
         elif self.path == '/api/translation':
             self.send_json_file(TRANS_PATH)
         elif self.path == '/api/charmap':
@@ -554,8 +575,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         return {'updated': updated, 'skipped': skipped}
 
     def run_build(self):
-        game_dir = os.path.join(PROJECT_ROOT, 'original', 'hukyou')
-        inserter = os.path.join(PROJECT_ROOT, 'tools', 'hukyou_inserter.py')
+        game_dir = os.path.join(PROJECT_ROOT, 'original', TITLE)
+        inserter = os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py')
         try:
             proc = subprocess.run(
                 ['python3', inserter, game_dir],
@@ -582,6 +603,6 @@ class Handler(http.server.BaseHTTPRequestHandler):
 if __name__ == '__main__':
     port = 8421
     server = http.server.HTTPServer(('127.0.0.1', port), Handler)
-    print(f'번역 에디터: http://localhost:{port}')
+    print(f'[{TITLE_KR}] 번역 에디터: http://localhost:{port}')
     print('종료: Ctrl+C')
     server.serve_forever()
