@@ -47,8 +47,11 @@ translation/
     translation.json   환세풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
 build/                 (gitignore) 패치된 파일 출력
 emulator/
-  index.html           에뮬레이터 프론트엔드
+  index.html           허브 페이지 (타이틀 목록)
+  hukyou.html          환세풍광전 에뮬레이터
   style.css            UI 스타일
+  gamepad.js           모바일 가상 게임패드
+  img/                 로고 및 키캡 SVG 아이콘
   bios/                PC-98 BIOS 파일
   rom/                 게임 디스크 이미지
   emnp2kai_sdl2.*      NP2kai Emscripten 빌드 결과물

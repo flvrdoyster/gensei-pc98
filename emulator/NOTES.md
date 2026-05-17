@@ -96,6 +96,35 @@ IDB 키를 타이틀명으로 분리하여 저장.
 
 ---
 
+## 모바일 대응 — 구현 완료 (2026-05-17)
+
+### 구조
+
+- **세로(portrait) 전용** — 가로 모드 대응 없음
+- 가상 게임패드는 캔버스 **아래** 별도 영역 (오버레이 아님)
+- 데스크톱에 영향 없음 — 모든 모바일 코드는 터치 기기 감지 시에만 활성화
+
+### 모바일 감지
+
+`('ontouchstart' in window) && window.innerWidth <= 680` → `body.mobile-active` 클래스 추가.  
+`?gamepad` URL 파라미터로 데스크톱에서도 강제 활성화 가능.
+
+### 가상 게임패드 (`gamepad.js`)
+
+- 방향키(D-pad) 4개 + ESC/Enter 2개 = 총 6키
+- 터치 이벤트 → `KeyboardEvent` 변환, canvas 엘리먼트에 dispatch
+- 단일 터치만 처리 (PC-98 게임이라 멀티터치 불필요)
+- 3D 키캡 스타일 (CSS `border-bottom` + `translateY` active 효과)
+- 키 아이콘은 RasterForge 픽셀 폰트 기반 SVG (`img/key-*.svg`)
+- `Module.SDL2.audioContext` resume 처리 (모바일 오디오 정책 대응)
+
+### 제한 사항
+
+- iOS는 Fullscreen API 미지원 → 모바일에서 전체화면 버튼 숨김
+- 풀스크린 시 게임패드는 canvas-wrap 바깥이므로 표시 안 됨 (의도된 동작)
+
+---
+
 ## 타이틀 확장 계획
 
 현재 환세풍광전 단일 타이틀. 향후 확장 시:
@@ -112,4 +141,4 @@ IDB 키를 타이틀명으로 분리하여 저장.
 | ScriptProcessorNode deprecated (오디오) | 경고만 — 기능 정상 |
 | favicon.ico 404 | 무해, 무시 가능 |
 | 세이브 지속성 미구현 | ✅ 완료 (IndexedDB) |
-| 모바일 대응 미구현 | 향후 예정 |
+| 모바일 대응 | ✅ 완료 (가상 게임패드) |
