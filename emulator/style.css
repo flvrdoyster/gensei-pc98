@@ -98,7 +98,25 @@ canvas {
 
 #overlay button:hover { background: rgba(68, 68, 68, 1); }
 
-#status { font-size: var(--font-md); color: rgba(136, 136, 136, 1); min-height: 1.2em; }
+
+#toast {
+  position: absolute;
+  bottom: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  color: rgba(204, 204, 204, 1);
+  font-size: var(--font-sm);
+  padding: 6px 16px;
+  border-radius: 4px;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+  white-space: nowrap;
+  z-index: 10;
+}
+
+#toast.visible { opacity: 1; }
 
 .controls { display: flex; gap: 8px; align-items: center; }
 

@@ -2,39 +2,47 @@
 <html lang="ko">
 <head>
   <meta charset="UTF-8">
-  <title>NP2kai - 환세풍광전</title>
+  <title>환세풍광전 웹 버전 : atah.io</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <h1>NP2kai — 환세풍광전 (한국어)</h1>
+  <h1>환세풍광전</h1>
 
   <div id="canvas-wrap">
     <canvas id="canvas"></canvas>
     <div id="overlay">
       <button id="btn-start">▶ 시작</button>
     </div>
+    <div id="toast"></div>
   </div>
-
-  <div id="status">대기 중...</div>
 
   <div class="controls">
     <button id="btn-fullscreen">⛶ 전체화면</button>
     <button id="btn-copylog">📋 로그 복사</button>
   </div>
 
-  <p class="hint">클릭 → 마우스/키보드 캡처 &nbsp;|&nbsp; ESC → 해제</p>
+  <p class="hint">화면을 클릭하면 마우스/키보드 캡처 &nbsp;|&nbsp; ESC → 해제</p>
 
   <script>
     const DISK = '/rom/hukyou_kr.fdi';
 
-    const canvas   = document.getElementById('canvas');
-    const overlay  = document.getElementById('overlay');
-    const statusEl = document.getElementById('status');
+    const canvas  = document.getElementById('canvas');
+    const overlay = document.getElementById('overlay');
+    const toast   = document.getElementById('toast');
 
     const logs = [];
+    let toastTimer = null;
 
     function log(msg) {
       logs.push('[' + new Date().toLocaleTimeString() + '] ' + msg);
+    }
+
+    function showToast(msg, duration = 2000) {
+      log(msg);
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
     }
 
     document.getElementById('btn-copylog').addEventListener('click', () => {
@@ -49,7 +57,6 @@
 
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
-      log('에뮬레이터 시작');
       startEmulator();
     });
 
@@ -64,31 +71,28 @@
         arguments: [DISK],
 
         postRun: [function() {
-          log('초기화 완료');
-          statusEl.textContent = '실행 중';
+          showToast('초기화 완료');
         }],
 
         print:    t => log('[out] ' + t),
         printErr: t => log('[err] ' + t),
 
         setStatus(text) {
-          if (text) statusEl.textContent = text;
+          if (text) showToast(text);
         },
 
         totalDependencies: 0,
         monitorRunDependencies(left) {
           this.totalDependencies = Math.max(this.totalDependencies, left);
-          statusEl.textContent = left
-            ? '로딩 ' + (this.totalDependencies - left) + '/' + this.totalDependencies
-            : '실행 준비 완료';
         }
       };
 
       const s = document.createElement('script');
       s.src = 'emnp2kai_sdl2.js';
-      s.onerror = () => { log('JS 로드 실패'); };
+      s.onerror = () => { showToast('JS 로드 실패', 5000); };
       document.body.appendChild(s);
     }
   </script>
+  <script src="https://atah.io/footer.js"></script>
 </body>
 </html>
