@@ -107,10 +107,7 @@ def parse_chunk_table(data: bytes) -> list[tuple[int, int]]:
 
 def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             consumed: set) -> list[dict]:
-    """
-    6e 00 67 XX [화자 SJIS] 72 XX [대화줄...] 73 XX 패턴 추출.
-    v4: 67 XX 직후 텍스트가 「로 시작하면 화자 없는 첫 줄로 처리.
-    """
+    """6e 00 67 XX [텍스트] 72 XX ... 73 XX 패턴. 모든 텍스트를 lines로."""
     results = []
     i = 0
     n = len(data)
@@ -124,38 +121,7 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
         block_start = i
         i += 4  # skip 6e 00 67 XX
 
-        speaker_start = i
-        speaker_chars: list[str] = []
-        while i < n:
-            b = data[i]
-            if b == 0x72:
-                i += 2
-                break
-            elif b in (0x73, 0x65, 0x62, 0x6e, 0x6b):
-                break
-            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
-                ch = decode_sjis_char(b, data[i + 1])
-                if ch:
-                    speaker_chars.append(ch)
-                i += 2
-            else:
-                i += 1
-        speaker = ''.join(speaker_chars).strip()
-
-        prepend_line: dict | None = None
-        if speaker and speaker[0] in ('「', '『', '　'):
-            prepend_line = {
-                'offset': speaker_start,
-                'jp':     speaker,
-                'jp_len': len(speaker.encode('shift_jis', errors='replace')),
-                'kr':     '',
-            }
-            speaker = ''
-
         lines: list[dict] = []
-        if prepend_line:
-            lines.append(prepend_line)
-
         cur_chars: list[str] = []
         cur_offset = i
         found_end = False
@@ -210,21 +176,16 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
         if found_end:
             consumed.update(range(block_start, i))
 
-        valid_lines = [
-            l for l in lines
-            if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
-        ]
+        valid_lines = [l for l in lines if l['jp'] and l['jp'].strip()]
         if valid_lines:
-            jp_full = '\n'.join(l['jp'] for l in valid_lines)
             results.append({
-                'file':    'DISK_B.DAT',
-                'chunk':   chunk_idx,
-                'offset':  block_start,
-                'type':    'dialog',
-                'jp':      jp_full,
-                'kr':      '',
-                'speaker': speaker,
-                'lines':   valid_lines,
+                'file':   'DISK_B.DAT',
+                'chunk':  chunk_idx,
+                'offset': block_start,
+                'type':   'dialog',
+                'jp':     '\n'.join(l['jp'] for l in valid_lines),
+                'kr':     '',
+                'lines':  valid_lines,
             })
 
     return results
@@ -326,16 +287,14 @@ def extract_6b_dialogue_blocks(data: bytes, chunk_idx: int,
             if l['jp'] and l['jp'].strip() not in ('「', '　', '「　', '')
         ]
         if valid_lines:
-            jp_full = '\n'.join(l['jp'] for l in valid_lines)
             results.append({
-                'file':    'DISK_B.DAT',
-                'chunk':   chunk_idx,
-                'offset':  block_start,
-                'type':    'dialog',
-                'jp':      jp_full,
-                'kr':      '',
-                'speaker': '',
-                'lines':   valid_lines,
+                'file':   'DISK_B.DAT',
+                'chunk':  chunk_idx,
+                'offset': block_start,
+                'type':   'dialog',
+                'jp':     '\n'.join(l['jp'] for l in valid_lines),
+                'kr':     '',
+                'lines':  valid_lines,
             })
 
     return results
