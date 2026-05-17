@@ -178,10 +178,10 @@ async function load() {
             gaiji: false, taggable: true, speaker: speaker,
           });
         }
-      } else if (entry.type === 'title') {
+      } else if (entry.type === 'title' || entry.type === 'label') {
         for (const line of (entry.lines || [])) {
           rows.push({
-            type: 'title', tag: line.tag || null, file: 'DISK_B.DAT',
+            type: entry.type, tag: line.tag || null, file: 'DISK_B.DAT',
             chunk: entry.chunk, offset: base + line.offset,
             jp: line.jp, kr: line.kr, jp_len: line.jp_len,
             gaiji: false, taggable: true,
@@ -264,14 +264,14 @@ function getJpLen(r) {
 }
 
 const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외',
-  skill_name: '스킬명', skill_stat: '스탯', skill_desc: '스킬설명', title: '제목', unknown: '기타' };
+  skill_name: '스킬명', skill_stat: '스탯', skill_desc: '스킬설명', title: '제목', label: '레이블', unknown: '기타' };
 const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
   const effective = r.tag || r.type;
   const label = TAG_LABELS[effective] || effective;
   const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore',
-    skill_name: 'type-item', skill_stat: 'type-item', skill_desc: 'type-item', title: 'type-menu', unknown: 'type-system' };
+    skill_name: 'type-item', skill_stat: 'type-item', skill_desc: 'type-item', title: 'type-menu', label: 'type-menu', unknown: 'type-system' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
   const taggable = (r.type === 'dialog' || r.type === 'ui' || r.taggable) ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
@@ -581,7 +581,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         for seg in entry.get('segments', []):
                             if seg.get('offset') == local_off and seg.get('type') == want:
                                 return seg
-                    elif typ in ('dialog', 'title', 'unknown'):
+                    elif typ in ('dialog', 'title', 'label', 'unknown'):
                         for line in entry.get('lines', []):
                             if line.get('offset') == local_off:
                                 return line
