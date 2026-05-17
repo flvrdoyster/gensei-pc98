@@ -43,7 +43,7 @@ from collections import Counter
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-from compile_lz import decompress, is_sjis_lead
+from compile_lz import decompress, is_sjis_lead, read_sjis_char
 
 # ── SJIS 유틸 ─────────────────────────────────────────────────────────────────
 
@@ -52,7 +52,7 @@ def is_sjis_pair(b1: int, b2: int) -> bool:
 
 def decode_sjis_char(b1: int, b2: int) -> str:
     try:
-        return bytes([b1, b2]).decode('shift_jis')
+        return read_sjis_char(bytes([b1, b2]), 0)
     except Exception:
         return ''
 
