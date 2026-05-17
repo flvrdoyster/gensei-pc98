@@ -71,6 +71,30 @@ translation.json의 각 텍스트 항목에 `tag` 필드로 분류. 시리즈 �
 | `system` | 시스템 메시지 | セーブ中, ディスクエラー |
 | `ignore` | 번역 대상 아님 (쓰레기 데이터, 바이너리 오파싱 등) | — |
 
+## 웹 에뮬레이터 (`emulator/`)
+
+NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.
+
+| 파일 | 역할 |
+|------|------|
+| `index.html` | 에뮬레이터 프론트엔드 |
+| `style.css` | UI 스타일 |
+| `emnp2kai_sdl2.js` | Emscripten 빌드 (NP2kai) |
+| `emnp2kai_sdl2.wasm` | WASM 바이너리 |
+| `emnp2kai_sdl2.data` | 사전 번들 파일 (BIOS, ROM) |
+| `bios/` | PC-98 BIOS 파일 |
+| `rom/` | 게임 디스크 이미지 |
+
+### 에뮬레이터 빌드
+
+```bash
+source ~/GitHub/emsdk/emsdk_env.sh
+make -C ~/GitHub/NP2kai/build_em emnp2kai_sdl2
+cp ~/GitHub/NP2kai/build_em/emnp2kai_sdl2.{js,wasm} emulator/
+```
+
+기술 상세 및 세이브 지속성 구현 현황: [`emulator/NOTES.md`](emulator/NOTES.md)
+
 ## 라이선스
 
 번역 데이터 및 도구 코드: MIT  
