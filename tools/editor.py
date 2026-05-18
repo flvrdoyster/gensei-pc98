@@ -99,9 +99,10 @@ tr:hover { background: #f0f0f0; }
 .build-btn:hover { background: #f0f0f0; }
 .toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 .toast.show { opacity: 1; }
-.sel { width: 28px; text-align: center; padding: 5px 4px; }
-.sel input[type=checkbox] { cursor: pointer; width: 14px; height: 14px; }
 tr.row-selected { background: #dbeafe !important; }
+tr.range-start { background: #fef9c3 !important; }
+#tbody tr { cursor: pointer; }
+#tbody tr td.kr-cell { cursor: default; }
 .bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 18px; border-radius: 8px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); z-index: 200; white-space: nowrap; }
 .bulk-bar select { background: #555; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; }
 .bulk-apply { background: #4ade80; color: #111; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; }
@@ -140,7 +141,6 @@ tr.row-selected { background: #dbeafe !important; }
 </div>
 <table>
 <thead><tr>
-  <th class="sel"></th>
   <th class="type">타입</th>
   <th class="file">파일</th>
   <th class="off">오프셋</th>
@@ -176,7 +176,7 @@ let tagChanges = {};
 let charmap = {};
 let selection = new Set();
 let filteredRows = [];
-let lastClickedIdx = -1;
+let rangeStart = null;
 
 function rowKey(r) { return r.type + ':' + r.file + ':' + r.offset; }
 
@@ -326,7 +326,10 @@ function render() {
   for (const r of filteredRows) {
     const tr = document.createElement('tr');
     const key = rowKey(r);
+    const idx = filteredRows.indexOf(r);
+    tr.dataset.key = key;
     if (selection.has(key)) tr.classList.add('row-selected');
+    if (rangeStart !== null && idx === rangeStart) tr.classList.add('range-start');
     const kr = key in modified ? modified[key] : (r.kr || '');
     const isGaiji = r.gaiji || r.file === 'GF2.COM';
     const jpLen = getJpLen(r);
@@ -341,7 +344,6 @@ function render() {
 
     const speakerHtml = r.speaker ? `<span style="font-size:11px;color:#999;display:block">${escHtml(r.speaker)}：</span>` : '';
     tr.innerHTML = `
-      <td class="sel"><input type="checkbox" class="row-check" data-key="${escAttr(key)}" ${selection.has(key) ? 'checked' : ''}></td>
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
@@ -372,30 +374,31 @@ function updateStats() {
 }
 
 document.getElementById('tbody').addEventListener('click', e => {
-  const cb = e.target.closest('input.row-check');
-  if (!cb) return;
-  e.stopPropagation();
-  const key = cb.dataset.key;
+  if (e.target.closest('input') || e.target.closest('.taggable')) return;
+  const tr = e.target.closest('tr');
+  if (!tr || !tr.dataset.key) return;
+  const key = tr.dataset.key;
   const idx = filteredRows.findIndex(r => rowKey(r) === key);
-  if (e.shiftKey && lastClickedIdx >= 0 && idx >= 0) {
-    e.preventDefault();
-    const lo = Math.min(lastClickedIdx, idx);
-    const hi = Math.max(lastClickedIdx, idx);
-    const addMode = !selection.has(rowKey(filteredRows[lastClickedIdx]));
-    for (let i = lo; i <= hi; i++) {
-      const k = rowKey(filteredRows[i]);
-      if (addMode) selection.add(k); else selection.delete(k);
-    }
+  if (idx < 0) return;
+
+  if (rangeStart === null) {
+    selection.clear();
+    rangeStart = idx;
+    render();
+  } else if (rangeStart === idx) {
+    rangeStart = null;
+    selection.clear();
+    updateBulkBar();
+    render();
   } else {
-    if (selection.has(key)) selection.delete(key); else selection.add(key);
-    lastClickedIdx = idx;
+    const lo = Math.min(rangeStart, idx);
+    const hi = Math.max(rangeStart, idx);
+    selection.clear();
+    for (let i = lo; i <= hi; i++) selection.add(rowKey(filteredRows[i]));
+    rangeStart = null;
+    updateBulkBar();
+    render();
   }
-  document.querySelectorAll('input.row-check').forEach(box => {
-    const k = box.dataset.key;
-    box.checked = selection.has(k);
-    box.closest('tr').classList.toggle('row-selected', selection.has(k));
-  });
-  updateBulkBar();
 });
 
 document.getElementById('bulkApply').addEventListener('click', () => {
@@ -407,7 +410,7 @@ document.getElementById('bulkApply').addEventListener('click', () => {
     tagChanges[row.file + ':' + row.offset] = tag;
   }
   selection.clear();
-  lastClickedIdx = -1;
+  rangeStart = null;
   updateBulkBar();
   updateStats();
   render();
@@ -415,12 +418,9 @@ document.getElementById('bulkApply').addEventListener('click', () => {
 
 document.getElementById('bulkCancel').addEventListener('click', () => {
   selection.clear();
-  lastClickedIdx = -1;
+  rangeStart = null;
   updateBulkBar();
-  document.querySelectorAll('input.row-check').forEach(cb => {
-    cb.checked = false;
-    cb.closest('tr').classList.remove('row-selected');
-  });
+  render();
 });
 
 document.getElementById('tbody').addEventListener('input', e => {
