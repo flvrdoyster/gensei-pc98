@@ -391,18 +391,22 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 cur_offset = i
 
             elif b == 0x64:
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        lines.append({
-                            'offset': cur_offset,
-                            'jp':     jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr':     '',
-                        })
-                    cur_chars = []
-                i += 2
-                cur_offset = i
+                # 다음 콘텐츠가 가이지(0x85)면 코스트 내부 바이트 — 세그먼트 구분 없이 스킵
+                if i + 2 < n and data[i + 2] == 0x85:
+                    i += 2
+                else:
+                    if cur_chars:
+                        jp = ''.join(cur_chars).strip()
+                        if jp:
+                            lines.append({
+                                'offset': cur_offset,
+                                'jp':     jp,
+                                'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                                'kr':     '',
+                            })
+                        cur_chars = []
+                    i += 2
+                    cur_offset = i
 
             elif b == 0x73:
                 if cur_chars:
@@ -419,6 +423,15 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 break
 
             elif b in (0x62, 0x6b, 0x6e, 0x6d):
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({
+                            'offset': cur_offset,
+                            'jp':     jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
+                            'kr':     '',
+                        })
                 break
 
             elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
@@ -431,7 +444,21 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 i += 1
 
         if not found_end:
+            end_pos = i
             i = block_start + 1
+            # 65 없이 끝났어도 내용이 있으면 엔트리 추가 (중첩 62 00으로 종료되는 블록)
+            valid_lines = [l for l in lines if l['jp'] and l['jp'].strip()]
+            if valid_lines:
+                consumed.update(range(block_start, end_pos))
+                results.append({
+                    'file':   'DISK_B.DAT',
+                    'chunk':  chunk_idx,
+                    'offset': block_start,
+                    'type':   'dialog',
+                    'jp':     '\n'.join(l['jp'] for l in valid_lines),
+                    'kr':     '',
+                    'lines':  valid_lines,
+                })
             continue
 
         consumed.update(range(block_start, i))
