@@ -9,6 +9,7 @@
 </head>
 <body>
   <div class="top-bar">
+    <button id="btn-export" class="btn-icon" title="디스크 내보내기">💾</button>
     <img src="img/logo-hukyou.png" width="200" alt="환세풍광전" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
   </div>
@@ -122,6 +123,22 @@
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
       startEmulator();
+    });
+
+    document.getElementById('btn-export').addEventListener('click', async () => {
+      try {
+        const exportDb = db || await openDB();
+        const data = await idbGet(exportDb, IDB_KEY);
+        if (!data) { showToast('저장된 데이터 없음'); return; }
+        const a = document.createElement('a');
+        a.href = URL.createObjectURL(new Blob([data]));
+        a.download = IDB_KEY;
+        a.click();
+        URL.revokeObjectURL(a.href);
+        showToast('디스크 내보내기 완료');
+      } catch(e) {
+        showToast('내보내기 실패: ' + e);
+      }
     });
 
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
