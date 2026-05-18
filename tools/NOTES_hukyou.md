@@ -21,15 +21,17 @@ original/hukyou/
 
 **텍스트 소스**: CMD 파일 전체. GF2.COM은 UI 문자열만 (`extract_ui`, 하드코딩 오프셋).
 
-### 추출 결과
+### 추출기 × 파일 적용 범위
 
-| 추출기 | 대상 파일 | 내용 |
-|--------|----------|------|
-| `extract_dialogs` | STAGE/OPEN/ENDING.CMD | 대화·독백 |
-| `extract_menus` | STAGE.CMD | 메뉴 선택지 |
-| `extract_orphan_items` | STAGE.CMD | 13 00 블록 밖 독립 메뉴 항목 |
-| `extract_items` | MESSAGE.CMD | 아이템 이름·스탯·설명 |
-| `extract_ui` | GF2.COM | UI 문자열 (하드코딩 오프셋) |
+| 추출기 | MESSAGE.CMD | STAGE/OPEN/ENDING.CMD | GF2.COM |
+|--------|:-----------:|:---------------------:|:-------:|
+| `extract_dialogs` | O (독백) | O (메인 대화) | ✗ 바이너리 오탐 |
+| `extract_menus` | — | O | ✗ 바이너리 오탐 |
+| `extract_orphan_items` | — | O | ✗ 바이너리 오탐 |
+| `extract_items` | O (아이템) | ✗ 바이너리 오탐 | ✗ 바이너리 오탐 |
+| `extract_ui` | — | — | O (하드코딩 오프셋) |
+
+MESSAGE.CMD는 아이템 영역과 대화 영역이 분리되어 있어 추출기 교차 적용 주의.
 
 ---
 
