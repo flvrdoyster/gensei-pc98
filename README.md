@@ -47,7 +47,7 @@ python3 tools/editor.py kaitou    # 쾌도전
 python3 tools/hukyou_inserter.py original/hukyou
 ```
 
-역공학 분석 상세: [`tools/NOTES.md`](tools/NOTES.md)
+역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md)
 
 ---
 
@@ -58,9 +58,8 @@ tools/
   compile_lz.py          LZ 압축/해제 + SJIS 유틸 (공통)
   editor.py              웹 번역 에디터 (localhost:8421)
   charmap.json           한글↔SJIS 매핑 (KS X 1001, 2350자)
-  NOTES.md               역공학 노트 인덱스
-  NOTES_hukyou.md        풍광전 역공학 상세 노트
-  NOTES_kaitou.md        쾌도전 역공학 상세 노트
+  NOTES_hukyou.md        풍광전 역공학 노트
+  NOTES_kaitou.md        쾌도전 역공학 노트
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
