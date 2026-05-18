@@ -110,7 +110,36 @@ PC-98 게임 특성상 멀티터치 불필요 — 단일 터치만 처리.
 
 모바일 오디오 정책 대응: 첫 터치 이벤트 및 `visibilitychange` 복귀 시 `Module.SDL2.audioContext.resume()`.
 
-제한: iOS Fullscreen API 미지원 → 전체화면 버튼 모바일에서 숨김.
+`('ontouchstart' in window) && window.innerWidth <= 680` → `body.mobile-active` 클래스 추가.  
+`?gamepad` URL 파라미터로 데스크톱에서도 강제 활성화 가능.
+
+### 가상 게임패드 (`gamepad.js`)
+
+- 방향키(D-pad) 4개 + ESC/Enter 2개 = 총 6키
+- 터치 이벤트 → `KeyboardEvent` 변환, canvas 엘리먼트에 dispatch
+- 단일 터치만 처리 (PC-98 게임이라 멀티터치 불필요)
+- 3D 키캡 스타일 (CSS `border-bottom` + `translateY` active 효과)
+- 키 아이콘은 RasterForge 픽셀 폰트 기반 SVG (`img/key-*.svg`)
+- `Module.SDL2.audioContext` resume 처리 (모바일 오디오 정책 대응)
+- `visibilitychange` 감지 → 잠금/탭 전환 복귀 시 다음 터치에서 AudioContext resume
+
+### 세이브 복원 타이밍
+
+`preRun`에서 `FS.stat()`으로 ROM 파일 마운트 여부를 폴링 (10ms 간격, 최대 2초).  
+첫 페이지 로드 시 .data 파일 처리가 느릴 수 있어 단순 `setTimeout(0)`으로는 부족.  
+타임아웃 시 세이브 없이 원본으로 시작.
+
+### 디스크 관리 (내보내기/가져오기)
+
+상단바 ⛁ 버튼 → 확장 패널에서 내보내기/가져오기 선택.
+- **내보내기**: IDB의 FDI를 Blob으로 다운로드
+- **가져오기**: `<input type="file">`로 FDI 선택 → IDB에 저장 → 새로고침 후 반영
+- 번역 패치 적용 시: 내보내기 → inserter 실행 → 가져오기 순서로 세이브 유지 + 새 번역 적용
+
+### 제한 사항
+
+- iOS는 Fullscreen API 미지원 → 모바일에서 전체화면 버튼 숨김
+- 풀스크린 시 게임패드는 canvas-wrap 바깥이므로 표시 안 됨 (의도된 동작)
 
 ---
 
