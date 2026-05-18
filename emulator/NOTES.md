@@ -2,6 +2,27 @@
 
 ## 빌드 구성 (NP2kai + Emscripten)
 
+### ROM/BIOS 변경 후 데이터 번들 재생성
+
+`emnp2kai_sdl2.data`는 Emscripten `file_packager.py`로 생성된 번들.  
+`rom/` 또는 `bios/` 파일 변경 시 반드시 재생성해야 브라우저에 반영됨.
+
+```bash
+# emulator/ 디렉토리에서 실행
+# 시스템 python3은 3.9라 emsdk 내장 python3.13 사용
+/Users/oyster/GitHub/emsdk/python/3.13.3_64bit/bin/python3.13 \
+  /Users/oyster/GitHub/emsdk/upstream/emscripten/tools/file_packager.py \
+  emnp2kai_sdl2.data \
+  --js-output=emnp2kai_sdl2.data.js \
+  --preload bios@/emulator/np2kai \
+  --preload rom@/rom
+rm emnp2kai_sdl2.data.js  # hukyou.html은 이 파일을 사용하지 않음
+```
+
+`emnp2kai_sdl2.js` (WASM 로더)는 수정 불필요 — `.data`만 교체하면 됨.
+
+---
+
 ### 핵심 CMake 설정 (`NP2kai/CMakeLists.txt`)
 
 | 플래그 | 이유 |
