@@ -153,12 +153,47 @@ IDB 키를 타이틀명으로 분리하여 저장.
 
 ---
 
-## 타이틀 확장 계획
+## 새 타이틀 추가 절차
 
-현재 환세풍광전 단일 타이틀. 향후 확장 시:
-- URL 파라미터 or 선택 화면으로 타이틀 전환
-- 각 타이틀 FDI/HDI를 `rom/` 아래 배치
-- IDB 키를 타이틀명으로 분리
+풍광전(`hukyou`)을 기준으로 한 체크리스트. 쾌도전(`kaitou`) 등 추가 시 그대로 따를 것.
+
+### 1. ROM 파일 배치
+
+```
+emulator/rom/kaitou_kr.fdi   # 번역 삽입된 FDI
+```
+
+멀티 디스크라면 `kaitou_kr_1.fdi`, `kaitou_kr_2.fdi` 등으로 분리.
+
+### 2. `emnp2kai_sdl2.data` 재생성
+
+새 ROM을 번들에 포함시켜야 함. [ROM/BIOS 변경 후 데이터 번들 재생성](#rombioscmd) 섹션 참조.
+
+### 3. 게임 HTML 페이지 작성
+
+`hukyou.html`을 복사해서 `kaitou.html` 생성. 바꿔야 할 부분:
+
+| 항목 | hukyou | kaitou |
+|------|--------|--------|
+| `DISK` | `/rom/hukyou_kr.fdi` | `/rom/kaitou_kr.fdi` |
+| `IDB_KEY` | `hukyou_kr.fdi` | `kaitou_kr.fdi` |
+| `document.title` | `환세풍광전 웹 버전 : atah.io` | `환세쾌도전 웹 버전 : atah.io` |
+| `<title>` 태그 | 동일 | 동일하게 |
+| `logo` img src | `img/logo-hukyou.png` | `img/logo-kaitou.png` |
+| `Module.arguments` | `[DISK]` | `[DISK]` (동일) |
+
+`IDB_NAME`(`gensei-saves`)과 `IDB_STORE`(`disks`)는 공유 — 변경 불필요.  
+세이브는 `IDB_KEY`(파일명)로 타이틀별 분리됨.
+
+멀티 디스크 시: `DISK2`, `DISK3` 상수 추가 + `Module.arguments`에 순서대로 추가. preRun에서 두 파일 모두 chmod + IDB 복원.
+
+### 4. `index.html` 업데이트
+
+`kaitou` 항목의 `class="unavailable"` 제거, `<a href="kaitou.html">` 추가, badge를 `done`으로 변경.
+
+### 5. 로고 이미지
+
+`img/logo-kaitou.png` — 타이틀 로고 이미지 배치 필요.
 
 ---
 
