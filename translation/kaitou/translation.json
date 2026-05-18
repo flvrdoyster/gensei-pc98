@@ -3,38 +3,6 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 6759,
-      "type": "dialog",
-      "jp": "隶占陷關鞏鏝",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 6761,
-          "jp": "隶占陷關鞏鏝",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 6860,
-      "type": "dialog",
-      "jp": "鎔�ﾋ巾��仰�ﾄ",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 6862,
-          "jp": "鎔�ﾋ巾��仰�ﾄ",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
       "offset": 7451,
       "type": "dialog",
       "jp": "毒",
@@ -69,31 +37,15 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 7662,
-      "type": "dialog",
-      "jp": "糜�ﾐ顋糘�ﾎ�ﾚ頤�ｸ韋�ﾄ鞏界陲鬻靠顏頸�E闊閻粹雋鞆鑼糴陦靆",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 7664,
-          "jp": "糜�ﾐ顋糘�ﾎ�ﾚ頤�ｸ韋�ﾄ鞏界陲鬻靠顏頸�E闊閻粹雋鞆鑼糴陦靆",
-          "jp_len": 54,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
       "offset": 10453,
       "type": "dialog",
-      "jp": "筋右仰��筋右芹右ス��",
+      "jp": "筋右仰筋右芹右ス��",
       "kr": "",
       "lines": [
         {
           "offset": 10457,
-          "jp": "筋右仰��筋右芹右ス��",
-          "jp_len": 20,
+          "jp": "筋右仰筋右芹右ス��",
+          "jp_len": 18,
           "kr": "",
           "tag": "ignore"
         }
@@ -220,23 +172,6 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 12277,
-      "type": "dialog",
-      "jp": "�r",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 12279,
-          "jp": "�r",
-          "jp_len": 2,
-          "kr": "",
-          "tag": "dialog"
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
       "offset": 12308,
       "type": "dialog",
       "jp": "H・P",
@@ -319,28 +254,12 @@
       "chunk": 0,
       "offset": 25219,
       "type": "dialog",
-      "jp": "θ粮�ﾔ煦",
+      "jp": "θ粮煦",
       "kr": "",
       "lines": [
         {
           "offset": 25221,
-          "jp": "θ粮�ﾔ煦",
-          "jp_len": 8,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 25566,
-      "type": "dialog",
-      "jp": "�F伎祈",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 25568,
-          "jp": "�F伎祈",
+          "jp": "θ粮煦",
           "jp_len": 6,
           "kr": ""
         }
@@ -358,118 +277,6 @@
           "offset": 28688,
           "jp": "/",
           "jp_len": 1,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 29038,
-      "type": "dialog",
-      "jp": "靹��己実鑚襍�ﾇ",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 29040,
-          "jp": "靹��己実鑚襍�ﾇ",
-          "jp_len": 14,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 29845,
-      "type": "dialog",
-      "jp": "ι",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 29847,
-          "jp": "ι",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31302,
-      "type": "dialog",
-      "jp": "�d�v",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31306,
-          "jp": "�d�v",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31315,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31319,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31329,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31333,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31344,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31348,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31358,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31362,
-          "jp": "�d�p",
-          "jp_len": 4,
           "kr": ""
         }
       ]
@@ -761,303 +568,15 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 31543,
-      "type": "dialog",
-      "jp": "�d�v",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31547,
-          "jp": "�d�v",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31559,
-      "type": "dialog",
-      "jp": "�r�r",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31563,
-          "jp": "�r�r",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31581,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31585,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31595,
-      "type": "dialog",
-      "jp": "�d�v",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31599,
-          "jp": "�d�v",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31607,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31611,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31633,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31637,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31659,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31663,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31685,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31689,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31699,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31701,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31711,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31715,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31725,
-      "type": "dialog",
-      "jp": "�d�p",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31727,
-          "jp": "�d�p",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 31768,
-      "type": "dialog",
-      "jp": "�r�r�r�r�r�r�r�r�r�r�r�h",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 31772,
-          "jp": "�r�r�r�r�r�r�r�r�r�r�r�h",
-          "jp_len": 24,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
       "offset": 32424,
       "type": "dialog",
-      "jp": "監芫�����ｵ己借",
+      "jp": "監芫糴ε�ｵ己借",
       "kr": "",
       "lines": [
         {
           "offset": 32426,
-          "jp": "監芫�����ｵ己借",
+          "jp": "監芫糴ε�ｵ己借",
           "jp_len": 14,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 37762,
-      "type": "dialog",
-      "jp": "隘欺妓右季右勲勲蝪円ηθ箜閭",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 37764,
-          "jp": "隘欺妓右季右勲勲蝪円ηθ箜閭",
-          "jp_len": 28,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 38134,
-      "type": "dialog",
-      "jp": "欺",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 38136,
-          "jp": "欺",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 38800,
-      "type": "dialog",
-      "jp": "阯近噂烏隈隈禁喰烏畿烏畿烏θι笵┣┣��",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 38802,
-          "jp": "阯近噂烏隈隈禁喰烏畿烏畿烏θι笵┣┣��",
-          "jp_len": 38,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 39009,
-      "type": "dialog",
-      "jp": "�ｫ�ｫ欺吋θ糒鏖Σ鎰Σ鍜��琴阨��薩疑",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 39011,
-          "jp": "�ｫ�ｫ欺吋θ糒鏖Σ鎰Σ鍜��琴阨��薩疑",
-          "jp_len": 34,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 39107,
-      "type": "dialog",
-      "jp": "鐡",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 39109,
-          "jp": "鐡",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 39148,
-      "type": "dialog",
-      "jp": "逶",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 39150,
-          "jp": "逶",
-          "jp_len": 2,
           "kr": ""
         }
       ]
@@ -1405,86 +924,6 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 49849,
-      "type": "dialog",
-      "jp": "�F劾���f�f宇鑞晞��薩疑蓋�V��ε運鐚",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 49851,
-          "jp": "�F劾���f�f宇鑞晞��薩疑蓋�V��ε運鐚",
-          "jp_len": 34,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 54417,
-      "type": "dialog",
-      "jp": "阮脚窪右祈右祈右祈右祈右蜉�ﾂ",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 54419,
-          "jp": "阮脚窪右祈右祈右祈右祈右蜉�ﾂ",
-          "jp_len": 28,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 54550,
-      "type": "dialog",
-      "jp": "�ﾘ祈",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 54552,
-          "jp": "�ﾘ祈",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 54569,
-      "type": "dialog",
-      "jp": "�ﾘ蛙",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 54571,
-          "jp": "�ﾘ蛙",
-          "jp_len": 4,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
-      "offset": 55030,
-      "type": "dialog",
-      "jp": "煙汽右汽右汽右季右θ益鬣筍樛�F憇髞竡久",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 55032,
-          "jp": "煙汽右汽右汽右季右θ益鬣筍樛�F憇髞竡久",
-          "jp_len": 38,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 0,
       "offset": 55807,
       "type": "dialog",
       "jp": "残金",
@@ -1502,15 +941,15 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 56020,
+      "offset": 56024,
       "type": "dialog",
-      "jp": "�d→",
+      "jp": "→",
       "kr": "",
       "lines": [
         {
-          "offset": 56022,
-          "jp": "�d→",
-          "jp_len": 4,
+          "offset": 56026,
+          "jp": "→",
+          "jp_len": 2,
           "kr": ""
         }
       ]
@@ -37056,22 +36495,6 @@
           "offset": 5991,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 33,
-      "offset": 4112,
-      "type": "dialog",
-      "jp": "詠",
-      "kr": "",
-      "lines": [
-        {
-          "offset": 4114,
-          "jp": "詠",
-          "jp_len": 2,
           "kr": ""
         }
       ]

@@ -48,7 +48,10 @@ from compile_lz import decompress, is_sjis_lead, read_sjis_char
 # ── SJIS 유틸 ─────────────────────────────────────────────────────────────────
 
 def is_sjis_pair(b1: int, b2: int) -> bool:
-    return is_sjis_lead(b1) and (0x40 <= b2 <= 0xFC) and b2 != 0x7F
+    # compile_lz.is_sjis_lead는 0xe0-0xfc까지 허용하지만,
+    # 0xf0-0xfc 범위는 x86 코드 오인식이 많아 표준 범위(0xe0-0xef)로 제한
+    std_lead = (0x81 <= b1 <= 0x9f) or (0xe0 <= b1 <= 0xef)
+    return std_lead and (0x40 <= b2 <= 0xFC) and b2 != 0x7F
 
 def decode_sjis_char(b1: int, b2: int) -> str:
     try:
@@ -645,6 +648,10 @@ def extract_title_labels(data: bytes, chunk_idx: int,
         arg = data[i + 1]
         # 64 00 XX XX 는 2바이트 인자, 64 0a/0c 는 인자 없음
         i += 4 if arg == 0x00 else 2
+        # 64 0a/0c: 첫 바이트가 SJIS lead가 아니면 x86 코드 오인식 → 스킵
+        if arg != 0x00 and i < n and not is_sjis_lead(data[i]):
+            i = block_start + 1
+            continue
 
         text_chars: list[str] = []
         text_start = i
@@ -744,6 +751,15 @@ def extract_72_labels(data: bytes, chunk_idx: int,
 
         elif mode == 0x02:
             # 72 02 [SJIS...] 패턴 — 生命力 등
+            # 첫 바이트가 표준 SJIS lead(0x81-0x9f/0xe0-0xef)가 아니면 x86 코드 오인식 → 스킵
+            if i + 2 >= n:
+                i += 1
+                continue
+            b0 = data[i + 2]
+            std_lead = (0x81 <= b0 <= 0x9f) or (0xe0 <= b0 <= 0xef)
+            if not std_lead:
+                i += 1
+                continue
             block_start = i
             i += 2  # skip 72 02
             text_start = i
@@ -762,7 +778,8 @@ def extract_72_labels(data: bytes, chunk_idx: int,
                 else:
                     i += 1
             jp = ''.join(chars).strip()
-            if jp:
+            # x86 코드 오인식 방지: 유효 항목은 6자 이내 (生命力=3자, 攻撃力=3자 등)
+            if jp and len(jp) <= 6:
                 consumed.update(range(block_start, text_end))
                 results.append({
                     'file':   'DISK_B.DAT',
