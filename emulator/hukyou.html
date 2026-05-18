@@ -9,9 +9,14 @@
 </head>
 <body>
   <div class="top-bar">
-    <button id="btn-export" class="btn-icon" title="디스크 내보내기">⤓</button>
+    <button id="btn-disk" class="btn-icon" title="디스크 관리">⤓</button>
     <img src="img/logo-hukyou.png" width="200" alt="환세풍광전" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
+  </div>
+  <div id="disk-panel" class="disk-panel hidden">
+    <button id="btn-disk-export">내보내기</button>
+    <button id="btn-disk-import">가져오기</button>
+    <input type="file" id="disk-file-input" accept=".fdi" hidden>
   </div>
 
   <div id="canvas-wrap">
@@ -125,7 +130,18 @@
       startEmulator();
     });
 
-    document.getElementById('btn-export').addEventListener('click', async () => {
+    const diskPanel = document.getElementById('disk-panel');
+    const diskFileInput = document.getElementById('disk-file-input');
+
+    const btnDisk = document.getElementById('btn-disk');
+    document.getElementById('btn-disk').addEventListener('click', () => {
+      diskPanel.classList.toggle('hidden');
+      btnDisk.classList.toggle('active');
+    });
+
+    document.getElementById('btn-disk-export').addEventListener('click', async () => {
+      diskPanel.classList.add('hidden');
+      btnDisk.classList.remove('active');
       try {
         const exportDb = db || await openDB();
         const data = await idbGet(exportDb, IDB_KEY);
@@ -139,6 +155,26 @@
       } catch(e) {
         showToast('내보내기 실패: ' + e);
       }
+    });
+
+    document.getElementById('btn-disk-import').addEventListener('click', () => {
+      diskPanel.classList.add('hidden');
+      btnDisk.classList.remove('active');
+      diskFileInput.click();
+    });
+
+    diskFileInput.addEventListener('change', async (e) => {
+      const file = e.target.files[0];
+      if (!file) return;
+      try {
+        const buf = await file.arrayBuffer();
+        const importDb = db || await openDB();
+        await idbPut(importDb, IDB_KEY, buf);
+        showToast('디스크 가져오기 완료 — 새로고침하세요');
+      } catch(err) {
+        showToast('가져오기 실패: ' + err);
+      }
+      diskFileInput.value = '';
     });
 
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
