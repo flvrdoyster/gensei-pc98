@@ -801,37 +801,33 @@ def load_existing_kr(out_path: str) -> dict:
     except Exception:
         return {}
 
-    kr_map: dict[tuple, str] = {}
+    saved: dict[tuple, dict] = {}  # (chunk, offset) -> {'kr': ..., 'tag': ...}
 
     def _collect(entry: dict) -> None:
         chunk = entry.get('chunk', -1)
-        if entry.get('kr'):
-            kr_map[(chunk, entry['offset'])] = entry['kr']
-        for seg in entry.get('segments', []):
-            if seg.get('kr'):
-                kr_map[(chunk, seg['offset'])] = seg['kr']
         for line in entry.get('lines', []):
-            if line.get('kr'):
-                kr_map[(chunk, line['offset'])] = line['kr']
+            key = (chunk, line['offset'])
+            saved[key] = {
+                'kr':  line.get('kr', ''),
+                'tag': line.get('tag'),
+            }
 
     for e in old.get('entries', []):
         _collect(e)
-    return kr_map
+    return saved
 
 def apply_existing_kr(entries: list[dict], kr_map: dict) -> None:
     for entry in entries:
         chunk = entry.get('chunk', -1)
-        key = (chunk, entry['offset'])
-        if key in kr_map and not entry['kr']:
-            entry['kr'] = kr_map[key]
-        for seg in entry.get('segments', []):
-            k = (chunk, seg['offset'])
-            if k in kr_map and not seg['kr']:
-                seg['kr'] = kr_map[k]
         for line in entry.get('lines', []):
             k = (chunk, line['offset'])
-            if k in kr_map and not line['kr']:
-                line['kr'] = kr_map[k]
+            if k not in kr_map:
+                continue
+            saved = kr_map[k]
+            if saved.get('kr') and not line['kr']:
+                line['kr'] = saved['kr']
+            if saved.get('tag') is not None:
+                line['tag'] = saved['tag']
 
 # ── 메인 ──────────────────────────────────────────────────────────────────────
 
