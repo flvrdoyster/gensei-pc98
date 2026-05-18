@@ -1,7 +1,7 @@
 # 환세쾌도전 역공학 노트
 
 **대상 게임**: 환세쾌도전 / 幻世快盗伝 (Compile Inc., 1995, PC-98)  
-**상태**: 텍스트 추출 완료 (v6 파서), 번역 진행 중 (~35%)  
+**상태**: 텍스트 추출 완료, 번역 진행 중 (~35%)  
 **역공학 방법**: GSC.COM 디스어셈블 (capstone) + DISK_B.DAT LZ 압축 해제 후 정적 분석
 
 ---
@@ -213,13 +213,13 @@ seeks.sort()
 
 ---
 
-## 파서 구조 (`kaitou_parser.py` v5)
+## 파서 구조 (`kaitou_parser.py`)
 
 ### 알고리즘
 
 1. **청크 테이블 파싱** → 65개 청크의 (seek, comp_size) 추출
 2. **각 청크 LZ 해제** → `compile_lz.decompress(data, seek)`
-3. **SJIS 밀도 계산** → 5% 미만 + 명시적 노이즈 청크(`NOISE_CHUNKS`) 스킵
+3. **명시적 노이즈 청크(`NOISE_CHUNKS`) 스킵** (그래픽/비트맵 — SJIS 밀도 임계값 없이 전 청크 처리)
 4. **구조화 파서를 순서대로 실행** (각 파서는 소비 바이트를 `consumed` 셋에 기록):
    - `extract_dialogue_blocks()` — `6e 00 67` 앵커
    - `extract_6b_dialogue_blocks()` — `6b 00 80 77 00` 앵커
@@ -240,7 +240,7 @@ seeks.sort()
 - **`6d 08` 엄격 모드**: SJIS 쌍만 허용, 32바이트 상한 → 혼합 블록 자동 제외
 - **임계값 필터 없음**: 분류는 번역자가 에디터에서 직접
 
-### 추출 결과 (v5, 노이즈 청크 제외)
+### 추출 결과 (노이즈 청크 제외)
 
 | 파서 | 대상 패턴 | 주요 청크 |
 |------|----------|---------|
@@ -253,7 +253,7 @@ seeks.sort()
 | title label | `64 00/0a/0c` | 0, 6 |
 | SJIS run (보조) | `62 00` 블록 내부 잔류 | 소수 |
 
-총 라인: ~3,829개 / 번역 완료: ~1,340개 (35%) (v6)
+총 라인: 3,829개 (엔트리 1,921개) / 번역 완료: 1,340개 (35%)
 
 ---
 
@@ -297,8 +297,8 @@ seeks.sort()
 - [x] GSC.COM 디스어셈블 → LZ 압축 알고리즘 확인
 - [x] 청크 테이블 구조 확정 (4-byte 엔트리)
 - [x] 제어코드 확정 (62/64/65/67/6b/6d/6e/72/73)
-- [x] v5 파서 구현 (`kaitou_parser.py`)
-- [x] `translation/kaitou/translation.json` 생성 (~1,891개 엔트리)
+- [x] 파서 구현 (`kaitou_parser.py`)
+- [x] `translation/kaitou/translation.json` 생성 (1,921개 엔트리 / 3,829개 라인)
 
 ### Phase 2: 인서터 (`kaitou_inserter.py`)
 
@@ -349,5 +349,5 @@ seeks.sort()
 | 텍스트 파일 | CMD × 10개 | DISK_B.DAT × 1개 |
 | 폰트 | GAIJI.DAT | 미확인 |
 | 제어코드 | 확정 (NOTES_hukyou.md) | 확정 (본 문서) |
-| 파서 | `hukyou_parser.py` | `kaitou_parser.py` v5 |
+| 파서 | `hukyou_parser.py` | `kaitou_parser.py` |
 | 인서터 | `hukyou_inserter.py` | 미구현 |

@@ -63,7 +63,7 @@ tools/
   NOTES_kaitou.md        쾌도전 역공학 상세 노트
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
-  kaitou_parser.py       쾌도전 텍스트 추출 v6 (72 01/02 UI 라벨 + 64 0a/0c 스탯 라벨 추가)
+  kaitou_parser.py       쾌도전 텍스트 추출
   dosbox-kaitou.conf     DOSBox-X PC-98 설정 (런타임 디버거)
 original/
   hukyou/                풍광전 원본 디스크 파일
@@ -71,7 +71,7 @@ original/
   torimono/              포물장 원본 디스크 파일
 translation/
   hukyou/translation.json   풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
-  kaitou/translation.json   쾌도전 번역 파일 (~1948개 엔트리, 미번역)
+  kaitou/translation.json   쾌도전 번역 파일 (1,921개 엔트리 / 3,829개 라인, 번역 진행 중 ~35%)
 build/                   (gitignore) 패치된 파일 출력
 emulator/
   index.html             허브 페이지 (타이틀 목록)
