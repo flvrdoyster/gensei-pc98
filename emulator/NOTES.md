@@ -9,9 +9,7 @@
 
 ```bash
 # emulator/ 디렉토리에서 실행
-# 시스템 python3은 3.9라 emsdk 내장 python3.13 사용
-/Users/oyster/GitHub/emsdk/python/3.13.3_64bit/bin/python3.13 \
-  /Users/oyster/GitHub/emsdk/upstream/emscripten/tools/file_packager.py \
+python3 /Users/oyster/GitHub/emsdk/upstream/emscripten/tools/file_packager.py \
   emnp2kai_sdl2.data \
   --js-output=emnp2kai_sdl2.data.js \
   --preload bios@/emulator/np2kai \
