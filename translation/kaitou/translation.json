@@ -3,6 +3,38 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
+      "offset": 6759,
+      "type": "dialog",
+      "jp": "隶占陷關鞏鏝",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 6761,
+          "jp": "隶占陷關鞏鏝",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 6860,
+      "type": "dialog",
+      "jp": "鎔�ﾋ巾��仰�ﾄ",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 6862,
+          "jp": "鎔�ﾋ巾��仰�ﾄ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
       "offset": 7451,
       "type": "dialog",
       "jp": "毒",
@@ -12,7 +44,8 @@
           "offset": 7453,
           "jp": "毒",
           "jp_len": 2,
-          "kr": "독"
+          "kr": "독",
+          "tag": "menu"
         }
       ]
     },
@@ -28,7 +61,24 @@
           "offset": 7464,
           "jp": "気絶",
           "jp_len": 4,
-          "kr": "기절"
+          "kr": "기절",
+          "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 7662,
+      "type": "dialog",
+      "jp": "糜�ﾐ顋糘�ﾎ�ﾚ頤�ｸ韋�ﾄ鞏界陲鬻靠顏頸�E闊閻粹雋鞆鑼糴陦靆",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 7664,
+          "jp": "糜�ﾐ顋糘�ﾎ�ﾚ頤�ｸ韋�ﾄ鞏界陲鬻靠顏頸�E闊閻粹雋鞆鑼糴陦靆",
+          "jp_len": 54,
+          "kr": ""
         }
       ]
     },
@@ -44,7 +94,8 @@
           "offset": 10457,
           "jp": "筋右仰��筋右芹右ス��",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -61,7 +112,7 @@
           "jp": "アリババ",
           "jp_len": 8,
           "kr": "알리바바",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -78,7 +129,7 @@
           "jp": "ペトゥム",
           "jp_len": 8,
           "kr": "페톰",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -95,7 +146,7 @@
           "jp": "スマッシュ",
           "jp_len": 10,
           "kr": "스마슈",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -112,7 +163,7 @@
           "jp": "手下",
           "jp_len": 4,
           "kr": "부하",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -129,7 +180,7 @@
           "jp": "アターホー",
           "jp_len": 10,
           "kr": "아타호",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -146,7 +197,7 @@
           "jp": "シーラ",
           "jp_len": 6,
           "kr": "실라",
-          "tag": "menu"
+          "tag": "char"
         }
       ]
     },
@@ -178,6 +229,23 @@
           "offset": 12279,
           "jp": "�r",
           "jp_len": 2,
+          "kr": "",
+          "tag": "dialog"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 12308,
+      "type": "dialog",
+      "jp": "H・P",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 12308,
+          "jp": "H・P",
+          "jp_len": 4,
           "kr": ""
         }
       ]
@@ -185,15 +253,63 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
-      "offset": 12351,
+      "offset": 12316,
       "type": "dialog",
-      "jp": "P",
+      "jp": "S・P",
       "kr": "",
       "lines": [
         {
-          "offset": 12353,
-          "jp": "P",
-          "jp_len": 1,
+          "offset": 12316,
+          "jp": "S・P",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 12328,
+      "type": "dialog",
+      "jp": "H・P",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 12328,
+          "jp": "H・P",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 12336,
+      "type": "dialog",
+      "jp": "M・P",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 12336,
+          "jp": "M・P",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 12348,
+      "type": "dialog",
+      "jp": "EXP",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 12348,
+          "jp": "EXP",
+          "jp_len": 3,
           "kr": ""
         }
       ]
@@ -217,6 +333,22 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
+      "offset": 25566,
+      "type": "dialog",
+      "jp": "�F伎祈",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 25568,
+          "jp": "�F伎祈",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
       "offset": 28686,
       "type": "dialog",
       "jp": "/",
@@ -226,6 +358,38 @@
           "offset": 28688,
           "jp": "/",
           "jp_len": 1,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 29038,
+      "type": "dialog",
+      "jp": "靹��己実鑚襍�ﾇ",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 29040,
+          "jp": "靹��己実鑚襍�ﾇ",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 29845,
+      "type": "dialog",
+      "jp": "ι",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 29847,
+          "jp": "ι",
+          "jp_len": 2,
           "kr": ""
         }
       ]
@@ -322,7 +486,8 @@
           "offset": 31386,
           "jp": "レベル",
           "jp_len": 6,
-          "kr": "레 벨"
+          "kr": "레 벨",
+          "tag": "menu"
         }
       ]
     },
@@ -338,7 +503,40 @@
           "offset": 31396,
           "jp": "状　態",
           "jp_len": 6,
-          "kr": "상 태"
+          "kr": "상 태",
+          "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31402,
+      "type": "dialog",
+      "jp": "生命力",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31404,
+          "jp": "生命力",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31410,
+      "type": "dialog",
+      "jp": "／",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31412,
+          "jp": "／",
+          "jp_len": 2,
+          "kr": ""
         }
       ]
     },
@@ -354,7 +552,8 @@
           "offset": 31418,
           "jp": "／",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         }
       ]
     },
@@ -370,7 +569,24 @@
           "offset": 31424,
           "jp": "経験値",
           "jp_len": 6,
-          "kr": "경험치"
+          "kr": "경험치",
+          "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31430,
+      "type": "dialog",
+      "jp": "／",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31432,
+          "jp": "／",
+          "jp_len": 2,
+          "kr": ""
         }
       ]
     },
@@ -386,7 +602,24 @@
           "offset": 31438,
           "jp": "攻撃力",
           "jp_len": 6,
-          "kr": "공격력"
+          "kr": "공격력",
+          "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31444,
+      "type": "dialog",
+      "jp": "素早さ",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31446,
+          "jp": "素早さ",
+          "jp_len": 6,
+          "kr": ""
         }
       ]
     },
@@ -402,7 +635,24 @@
           "offset": 31456,
           "jp": "防御力",
           "jp_len": 6,
-          "kr": "방어력"
+          "kr": "방어력",
+          "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31462,
+      "type": "dialog",
+      "jp": "運",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31464,
+          "jp": "運",
+          "jp_len": 2,
+          "kr": ""
         }
       ]
     },
@@ -418,7 +668,8 @@
           "offset": 31470,
           "jp": "武器",
           "jp_len": 4,
-          "kr": "무기"
+          "kr": "무기",
+          "tag": "menu"
         }
       ]
     },
@@ -434,7 +685,8 @@
           "offset": 31480,
           "jp": "防具",
           "jp_len": 4,
-          "kr": "장비"
+          "kr": "장비",
+          "tag": "menu"
         }
       ]
     },
@@ -450,7 +702,8 @@
           "offset": 31488,
           "jp": "道具",
           "jp_len": 4,
-          "kr": "도구"
+          "kr": "도구",
+          "tag": "menu"
         }
       ]
     },
@@ -466,7 +719,8 @@
           "offset": 31496,
           "jp": "持物",
           "jp_len": 4,
-          "kr": "물건"
+          "kr": "물건",
+          "tag": "menu"
         }
       ]
     },
@@ -482,7 +736,8 @@
           "offset": 31504,
           "jp": "説明",
           "jp_len": 4,
-          "kr": "설명"
+          "kr": "설명",
+          "tag": "menu"
         }
       ]
     },
@@ -498,7 +753,8 @@
           "offset": 31512,
           "jp": "所持金",
           "jp_len": 6,
-          "kr": "소지금"
+          "kr": "소지금",
+          "tag": "menu"
         }
       ]
     },
@@ -633,6 +889,22 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
+      "offset": 31699,
+      "type": "dialog",
+      "jp": "�d�p",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31701,
+          "jp": "�d�p",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
       "offset": 31711,
       "type": "dialog",
       "jp": "�d�p",
@@ -640,6 +912,22 @@
       "lines": [
         {
           "offset": 31715,
+          "jp": "�d�p",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 31725,
+      "type": "dialog",
+      "jp": "�d�p",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 31727,
           "jp": "�d�p",
           "jp_len": 4,
           "kr": ""
@@ -665,6 +953,118 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
+      "offset": 32424,
+      "type": "dialog",
+      "jp": "監芫�����ｵ己借",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 32426,
+          "jp": "監芫�����ｵ己借",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 37762,
+      "type": "dialog",
+      "jp": "隘欺妓右季右勲勲蝪円ηθ箜閭",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 37764,
+          "jp": "隘欺妓右季右勲勲蝪円ηθ箜閭",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 38134,
+      "type": "dialog",
+      "jp": "欺",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 38136,
+          "jp": "欺",
+          "jp_len": 2,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 38800,
+      "type": "dialog",
+      "jp": "阯近噂烏隈隈禁喰烏畿烏畿烏θι笵┣┣��",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 38802,
+          "jp": "阯近噂烏隈隈禁喰烏畿烏畿烏θι笵┣┣��",
+          "jp_len": 38,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 39009,
+      "type": "dialog",
+      "jp": "�ｫ�ｫ欺吋θ糒鏖Σ鎰Σ鍜��琴阨��薩疑",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 39011,
+          "jp": "�ｫ�ｫ欺吋θ糒鏖Σ鎰Σ鍜��琴阨��薩疑",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 39107,
+      "type": "dialog",
+      "jp": "鐡",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 39109,
+          "jp": "鐡",
+          "jp_len": 2,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 39148,
+      "type": "dialog",
+      "jp": "逶",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 39150,
+          "jp": "逶",
+          "jp_len": 2,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
       "offset": 39841,
       "type": "dialog",
       "jp": "攻　撃",
@@ -674,7 +1074,8 @@
           "offset": 39845,
           "jp": "攻　撃",
           "jp_len": 6,
-          "kr": "공 격"
+          "kr": "공 격",
+          "tag": "battle"
         }
       ]
     },
@@ -690,7 +1091,8 @@
           "offset": 39860,
           "jp": "魔　法",
           "jp_len": 6,
-          "kr": "마 법"
+          "kr": "마 법",
+          "tag": "battle"
         }
       ]
     },
@@ -706,7 +1108,8 @@
           "offset": 39875,
           "jp": "特　技",
           "jp_len": 6,
-          "kr": "특 기"
+          "kr": "특 기",
+          "tag": "battle"
         }
       ]
     },
@@ -722,7 +1125,8 @@
           "offset": 39890,
           "jp": "逃げる",
           "jp_len": 6,
-          "kr": "도주"
+          "kr": "도주",
+          "tag": "battle"
         }
       ]
     },
@@ -738,7 +1142,8 @@
           "offset": 39905,
           "jp": "道具を使う",
           "jp_len": 10,
-          "kr": "도구 사용"
+          "kr": "도구 사용",
+          "tag": "battle"
         }
       ]
     },
@@ -754,7 +1159,8 @@
           "offset": 39924,
           "jp": "タコ殴り",
           "jp_len": 8,
-          "kr": "마구치기"
+          "kr": "마구치기",
+          "tag": "battle"
         }
       ]
     },
@@ -770,7 +1176,8 @@
           "offset": 39941,
           "jp": "脳天砕(SP10)",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -786,7 +1193,8 @@
           "offset": 39968,
           "jp": "烈風飛翔(SP10)",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -802,7 +1210,8 @@
           "offset": 39997,
           "jp": "大打撃(SP10)",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -818,7 +1227,8 @@
           "offset": 40024,
           "jp": "白刃一閃(SP10)",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -834,7 +1244,8 @@
           "offset": 40053,
           "jp": "爆炎の呪文(MP8)",
           "jp_len": 15,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -850,7 +1261,8 @@
           "offset": 40084,
           "jp": "氷刃の呪文(MP9)",
           "jp_len": 15,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -866,7 +1278,8 @@
           "offset": 40115,
           "jp": "雷撃の呪文(MP10)",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -882,7 +1295,8 @@
           "offset": 40146,
           "jp": "回復の呪文(MP6)",
           "jp_len": 15,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -898,7 +1312,8 @@
           "offset": 40177,
           "jp": "解毒の呪文(MP4)",
           "jp_len": 15,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -914,7 +1329,8 @@
           "offset": 40208,
           "jp": "薬草を使う",
           "jp_len": 10,
-          "kr": "약초 사용"
+          "kr": "약초 사용",
+          "tag": "battle"
         }
       ]
     },
@@ -930,7 +1346,8 @@
           "offset": 40227,
           "jp": "毒消しを使う",
           "jp_len": 12,
-          "kr": "해독초 사용"
+          "kr": "해독초 사용",
+          "tag": "battle"
         }
       ]
     },
@@ -946,7 +1363,8 @@
           "offset": 40248,
           "jp": "リフレッシュの水を使う",
           "jp_len": 22,
-          "kr": "리프레시워터 사용"
+          "kr": "리프레시워터 사용",
+          "tag": "battle"
         }
       ]
     },
@@ -962,7 +1380,8 @@
           "offset": 40586,
           "jp": "��",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "battle"
         }
       ]
     },
@@ -978,7 +1397,88 @@
           "offset": 47541,
           "jp": "ミス",
           "jp_len": 4,
-          "kr": "미스"
+          "kr": "미스",
+          "tag": "battle"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 49849,
+      "type": "dialog",
+      "jp": "�F劾���f�f宇鑞晞��薩疑蓋�V��ε運鐚",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 49851,
+          "jp": "�F劾���f�f宇鑞晞��薩疑蓋�V��ε運鐚",
+          "jp_len": 34,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 54417,
+      "type": "dialog",
+      "jp": "阮脚窪右祈右祈右祈右祈右蜉�ﾂ",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 54419,
+          "jp": "阮脚窪右祈右祈右祈右祈右蜉�ﾂ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 54550,
+      "type": "dialog",
+      "jp": "�ﾘ祈",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 54552,
+          "jp": "�ﾘ祈",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 54569,
+      "type": "dialog",
+      "jp": "�ﾘ蛙",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 54571,
+          "jp": "�ﾘ蛙",
+          "jp_len": 4,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
+      "offset": 55030,
+      "type": "dialog",
+      "jp": "煙汽右汽右汽右季右θ益鬣筍樛�F憇髞竡久",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 55032,
+          "jp": "煙汽右汽右汽右季右θ益鬣筍樛�F憇髞竡久",
+          "jp_len": 38,
+          "kr": ""
         }
       ]
     },
@@ -994,7 +1494,8 @@
           "offset": 55811,
           "jp": "残金",
           "jp_len": 4,
-          "kr": "잔금"
+          "kr": "잔금",
+          "tag": "battle"
         }
       ]
     },
@@ -1026,7 +1527,8 @@
           "offset": 64,
           "jp": "最初から遊ぶ",
           "jp_len": 12,
-          "kr": "새롭게 놀기"
+          "kr": "새롭게 놀기",
+          "tag": "menu"
         }
       ]
     },
@@ -1042,7 +1544,8 @@
           "offset": 79,
           "jp": "続きを楽しむ",
           "jp_len": 12,
-          "kr": "계속 즐기기"
+          "kr": "계속 즐기기",
+          "tag": "menu"
         }
       ]
     },
@@ -1058,7 +1561,8 @@
           "offset": 94,
           "jp": "ディスプレイ",
           "jp_len": 12,
-          "kr": "디스플레이"
+          "kr": "디스플레이",
+          "tag": "menu"
         }
       ]
     },
@@ -1074,7 +1578,8 @@
           "offset": 188,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": "데이터1"
+          "kr": "데이터1",
+          "tag": "menu"
         }
       ]
     },
@@ -1090,7 +1595,8 @@
           "offset": 199,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": "데이터2"
+          "kr": "데이터2",
+          "tag": "menu"
         }
       ]
     },
@@ -1106,7 +1612,8 @@
           "offset": 210,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": "데이터3"
+          "kr": "데이터3",
+          "tag": "menu"
         }
       ]
     },
@@ -1122,7 +1629,8 @@
           "offset": 221,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": "데이터4"
+          "kr": "데이터4",
+          "tag": "menu"
         }
       ]
     },
@@ -1138,7 +1646,8 @@
           "offset": 232,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": "데이터5"
+          "kr": "데이터5",
+          "tag": "menu"
         }
       ]
     },
@@ -1154,7 +1663,8 @@
           "offset": 243,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": "데이터6"
+          "kr": "데이터6",
+          "tag": "menu"
         }
       ]
     },
@@ -1170,7 +1680,8 @@
           "offset": 254,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": "데이터7"
+          "kr": "데이터7",
+          "tag": "menu"
         }
       ]
     },
@@ -1186,7 +1697,8 @@
           "offset": 265,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": "데이터8"
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -1202,7 +1714,8 @@
           "offset": 338,
           "jp": "アナログ",
           "jp_len": 8,
-          "kr": "아날로그"
+          "kr": "아날로그",
+          "tag": "menu"
         }
       ]
     },
@@ -1218,7 +1731,8 @@
           "offset": 349,
           "jp": "液　晶",
           "jp_len": 6,
-          "kr": "액정"
+          "kr": "액정",
+          "tag": "menu"
         }
       ]
     },
@@ -1234,7 +1748,8 @@
           "offset": 766,
           "jp": "データロード",
           "jp_len": 12,
-          "kr": "로드"
+          "kr": "로드",
+          "tag": "system"
         }
       ]
     },
@@ -1250,7 +1765,8 @@
           "offset": 781,
           "jp": "データセーブ",
           "jp_len": 12,
-          "kr": "세이브"
+          "kr": "세이브",
+          "tag": "system"
         }
       ]
     },
@@ -1266,7 +1782,8 @@
           "offset": 796,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "system"
         }
       ]
     },
@@ -1282,7 +1799,8 @@
           "offset": 901,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": "데이터1"
+          "kr": "데이터1",
+          "tag": "system"
         }
       ]
     },
@@ -1298,7 +1816,8 @@
           "offset": 912,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": "데이터2"
+          "kr": "데이터2",
+          "tag": "system"
         }
       ]
     },
@@ -1314,7 +1833,8 @@
           "offset": 923,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": "데이터3"
+          "kr": "데이터3",
+          "tag": "system"
         }
       ]
     },
@@ -1330,7 +1850,8 @@
           "offset": 934,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": "데이터4"
+          "kr": "데이터4",
+          "tag": "system"
         }
       ]
     },
@@ -1346,7 +1867,8 @@
           "offset": 945,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": "데이터5"
+          "kr": "데이터5",
+          "tag": "system"
         }
       ]
     },
@@ -1362,7 +1884,8 @@
           "offset": 956,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": "데이터6"
+          "kr": "데이터6",
+          "tag": "system"
         }
       ]
     },
@@ -1378,7 +1901,8 @@
           "offset": 967,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": "데이터7"
+          "kr": "데이터7",
+          "tag": "system"
         }
       ]
     },
@@ -1394,7 +1918,8 @@
           "offset": 978,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": "데이터8"
+          "kr": "데이터8",
+          "tag": "system"
         }
       ]
     },
@@ -1410,7 +1935,8 @@
           "offset": 996,
           "jp": "データロード",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "system"
         }
       ]
     },
@@ -1426,7 +1952,8 @@
           "offset": 1089,
           "jp": "データセーブ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "system"
         }
       ]
     },
@@ -1442,7 +1969,8 @@
           "offset": 1152,
           "jp": "は　い",
           "jp_len": 6,
-          "kr": ""
+          "kr": "",
+          "tag": "system"
         }
       ]
     },
@@ -1458,7 +1986,8 @@
           "offset": 1161,
           "jp": "いいえ",
           "jp_len": 6,
-          "kr": ""
+          "kr": "",
+          "tag": "system"
         }
       ]
     },
@@ -1474,7 +2003,8 @@
           "offset": 1177,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "system"
         }
       ]
     },
@@ -22195,6 +22725,22 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 19,
+      "offset": 24075,
+      "type": "dialog",
+      "jp": "１０００Ｇ",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 24077,
+          "jp": "１０００Ｇ",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 19,
       "offset": 24138,
       "type": "dialog",
       "jp": "魔法のチョッキ",
@@ -36510,6 +37056,22 @@
           "offset": 5991,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 33,
+      "offset": 4112,
+      "type": "dialog",
+      "jp": "詠",
+      "kr": "",
+      "lines": [
+        {
+          "offset": 4114,
+          "jp": "詠",
+          "jp_len": 2,
           "kr": ""
         }
       ]

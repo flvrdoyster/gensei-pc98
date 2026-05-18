@@ -622,11 +622,13 @@ def extract_6d_name_blocks(data: bytes, chunk_idx: int,
 
 def extract_title_labels(data: bytes, chunk_idx: int,
                          consumed: set) -> list[dict]:
-    """64 00 XX XX [SJIS 텍스트] 패턴 — 챕터 번호/제목."""
+    """64 00/0a/0c XX XX [SJIS 텍스트] 패턴 — 챕터 번호/제목/스탯 라벨."""
     results = []
     i = 0
     n = len(data)
 
+    # 64 00/0a/0c 패턴 모두 처리 (素早さ→64 0a, 運→64 0c 포함)
+    LABEL_ARGS = frozenset({0x00, 0x0a, 0x0c})
     STOP_OPCODES = frozenset({0x62, 0x64, 0x65, 0x67, 0x6b, 0x6e,
                                0x72, 0x73, 0x74, 0x75, 0x76, 0xff})
 
@@ -635,12 +637,14 @@ def extract_title_labels(data: bytes, chunk_idx: int,
             i += 1
             continue
 
-        if not (data[i] == 0x64 and data[i + 1] == 0x00):
+        if not (data[i] == 0x64 and data[i + 1] in LABEL_ARGS):
             i += 1
             continue
 
         block_start = i
-        i += 4  # skip 64 00 XX XX
+        arg = data[i + 1]
+        # 64 00 XX XX 는 2바이트 인자, 64 0a/0c 는 인자 없음
+        i += 4 if arg == 0x00 else 2
 
         text_chars: list[str] = []
         text_start = i
@@ -676,6 +680,106 @@ def extract_title_labels(data: bytes, chunk_idx: int,
                     'kr':     '',
                 }],
             })
+
+    return results
+
+
+def extract_72_labels(data: bytes, chunk_idx: int,
+                      consumed: set) -> list[dict]:
+    """72 01 [가이지] / 72 02 [SJIS] 스탯 라벨 추출.
+
+    72 01 뒤에 0x85XX 가이지가 오면: H・P, S・P, M・P, EXP 등 컬럼 헤더.
+    72 02 뒤에 SJIS가 오면: 生命力, 経験値 등 스탯 이름.
+    연속된 같은 타입 엔트리는 하나의 entry로 묶음.
+    """
+    results = []
+    i = 0
+    n = len(data)
+
+    STOP_OPCODES = frozenset({0x62, 0x64, 0x65, 0x67, 0x6b, 0x6e,
+                               0x73, 0x74, 0x75, 0x76, 0xff})
+
+    while i < n - 2:
+        if i in consumed:
+            i += 1
+            continue
+
+        if data[i] != 0x72:
+            i += 1
+            continue
+
+        mode = data[i + 1]
+        if mode == 0x01:
+            # 72 01 [가이지 0x85XX...] 패턴 — 하나씩 독립 엔트리
+            if i + 2 >= n or data[i + 2] != 0x85:
+                i += 1
+                continue
+            block_start = i
+            i += 2  # skip 72 01
+            chars = []
+            while i < n - 1 and data[i] == 0x85:
+                try:
+                    ch = read_sjis_char(bytes([data[i], data[i + 1]]), 0)
+                    chars.append(ch)
+                except Exception:
+                    pass
+                i += 2
+            jp = ''.join(chars).strip()
+            if jp:
+                consumed.update(range(block_start, i))
+                results.append({
+                    'file':   'DISK_B.DAT',
+                    'chunk':  chunk_idx,
+                    'offset': block_start,
+                    'type':   'dialog',
+                    'jp':     jp,
+                    'kr':     '',
+                    'lines':  [{
+                        'offset':  block_start,
+                        'jp':      jp,
+                        'jp_len':  len(jp.encode('shift_jis', errors='replace')),
+                        'kr':      '',
+                    }],
+                })
+
+        elif mode == 0x02:
+            # 72 02 [SJIS...] 패턴 — 生命力 등
+            block_start = i
+            i += 2  # skip 72 02
+            text_start = i
+            chars = []
+            text_end = i
+            while i < n:
+                b = data[i]
+                if b in STOP_OPCODES:
+                    break
+                if is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
+                    ch = decode_sjis_char(b, data[i + 1])
+                    if ch:
+                        chars.append(ch)
+                    i += 2
+                    text_end = i
+                else:
+                    i += 1
+            jp = ''.join(chars).strip()
+            if jp:
+                consumed.update(range(block_start, text_end))
+                results.append({
+                    'file':   'DISK_B.DAT',
+                    'chunk':  chunk_idx,
+                    'offset': block_start,
+                    'type':   'dialog',
+                    'jp':     jp,
+                    'kr':     '',
+                    'lines':  [{
+                        'offset':  text_start,
+                        'jp':      jp,
+                        'jp_len':  len(jp.encode('shift_jis', errors='replace')),
+                        'kr':      '',
+                    }],
+                })
+        else:
+            i += 1
 
     return results
 
@@ -881,6 +985,7 @@ def main(game_dir: str) -> None:
         all_entries.extend(extract_dialogue_blocks(dec, idx, consumed))
         all_entries.extend(extract_6b_dialogue_blocks(dec, idx, consumed))
         all_entries.extend(extract_simple_blocks(dec, idx, consumed))
+        all_entries.extend(extract_72_labels(dec, idx, consumed))
         all_entries.extend(extract_name_blocks(dec, idx, consumed))
         all_entries.extend(extract_6d_name_blocks(dec, idx, consumed))
         all_entries.extend(extract_title_labels(dec, idx, consumed))
