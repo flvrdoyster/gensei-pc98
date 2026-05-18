@@ -374,7 +374,7 @@ function updateStats() {
 }
 
 document.getElementById('tbody').addEventListener('click', e => {
-  if (e.target.closest('input') || e.target.closest('.taggable')) return;
+  if (!e.target.closest('td.type') || e.target.closest('.taggable')) return;
   const tr = e.target.closest('tr');
   if (!tr || !tr.dataset.key) return;
   const key = tr.dataset.key;
