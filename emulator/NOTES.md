@@ -9,7 +9,8 @@
 
 ```bash
 # emulator/ 디렉토리에서 실행
-python3 /Users/oyster/GitHub/emsdk/upstream/emscripten/tools/file_packager.py \
+source <emsdk_path>/emsdk_env.sh
+python3 $(em-config EMSCRIPTEN_ROOT)/tools/file_packager.py \
   emnp2kai_sdl2.data \
   --js-output=emnp2kai_sdl2.data.js \
   --preload bios@/emulator/np2kai \
