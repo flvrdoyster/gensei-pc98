@@ -987,8 +987,8 @@ def main(game_dir: str) -> None:
         chunks.append((idx, dec, density))
 
     text_chunks = [(idx, dec, d) for idx, dec, d in chunks
-                   if d >= TEXT_THRESHOLD and idx not in NOISE_CHUNKS]
-    print(f'텍스트 청크 ({TEXT_THRESHOLD:.0%} 이상, 노이즈 제외): {len(text_chunks)}개')
+                   if idx not in NOISE_CHUNKS]
+    print(f'처리 청크 (노이즈 제외): {len(text_chunks)}개')
     for idx, dec, d in text_chunks:
         print(f'  청크 {idx:2d}: {len(dec):6,}B  SJIS={d:.1%}')
 
