@@ -37,19 +37,19 @@ original/hukyou/
 
 ### 1. 압축 해제
 
-GF2.COM 구조:
-- `0x000~0x070`: x86 자가 압축 해제 루틴 (부트스트랩)
-- `0x071~`: LZ 압축 데이터
+GF2.COM과 CMD 파일 모두 동일한 LZ 알고리즘으로 압축. `compile_lz.decompress()` 사용.
 
-LZ 알고리즘:
+LZ 알고리즘 (`compile_lz.py`에 구현):
 ```
 al = *si++
-if al == 0:          종료
-if al & 0x80:        back-reference — length=(al&0x7f)+3, offset=*si++＋1
-else:                literal copy — length=al
+if al == 0:      종료
+if al & 0x80:    back-reference — length=(al&0x7f)+3, offset=*si++＋1
+else:            literal copy — length=al
 ```
 
-CMD 파일도 동일 LZ. 모두 `compile_lz.decompress()` 재사용.
+GF2.COM 구조:
+- `0x000~0x070`: x86 자가 압축 해제 루틴 (부트스트랩) — 인서터에서 그대로 보존
+- `0x071~`: LZ 압축 데이터
 
 주요 상수:
 - `GF2_BOOTSTRAP_SIZE = 0x71` — LZ 데이터 시작 오프셋
