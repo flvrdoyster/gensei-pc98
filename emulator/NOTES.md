@@ -137,4 +137,3 @@ PC-98 게임 특성상 멀티터치 불필요 — 단일 터치만 처리.
 | 이슈 | 상태 |
 |------|------|
 | ScriptProcessorNode deprecated (오디오) | 경고만 — 기능 정상 |
-| favicon.ico 404 | 무해 |
