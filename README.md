@@ -8,7 +8,7 @@ Compile Inc.의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트
 | 타이틀 | 폴더 | 상태 |
 |--------|------|------|
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
-| 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 번역 진행 중 (~35%), 구조 파싱 v6, 인서터 미구현 |
+| 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 번역 진행 중, 인서터 미구현 |
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
 | 환세희담 (幻世喜譚, 1995) | `kitan` | 미착수 |
 
@@ -63,14 +63,13 @@ tools/
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
-  dosbox-kaitou.conf     DOSBox-X PC-98 설정 (런타임 디버거)
 original/
   hukyou/                풍광전 원본 디스크 파일
   kaitou/                쾌도전 원본 디스크 파일
   torimono/              포물장 원본 디스크 파일
 translation/
   hukyou/translation.json   풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
-  kaitou/translation.json   쾌도전 번역 파일 (1,921개 엔트리 / 3,829개 라인, 번역 진행 중 ~35%)
+  kaitou/translation.json   쾌도전 번역 파일 (JP/KR 쌍 + 오프셋)
 build/                   (gitignore) 패치된 파일 출력
 emulator/
   index.html             허브 페이지 (타이틀 목록)
