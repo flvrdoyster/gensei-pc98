@@ -61,8 +61,10 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 
 .top-bar .btn-icon {
   position: absolute;
-  right: 0;
 }
+
+#btn-export { left: 0; }
+#btn-fullscreen { right: 0; }
 
 .btn-icon {
   background: none;
