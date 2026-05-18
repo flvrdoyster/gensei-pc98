@@ -80,16 +80,9 @@ CMD 파일도 동일 LZ. 모두 `compile_lz.decompress()` 재사용.
 
 ### 3. 가이지 (0x85XX)
 
-일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 SJIS 대신 가이지 영역 사용.  
+일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 SJIS 대신 가이지 영역(`0x85XX`) 사용.  
+인코딩 상세(ASCII·반각 카타카나·탁점 카타카나 매핑)는 `compile_lz.py` 참조.  
 `compile_lz.read_sjis_char()` / `encode_gaiji_char()` 처리.
-
-| 가이지 범위 | 내용 |
-|-------------|------|
-| `0x8540~0x859D` | ASCII 0x21~0x7E |
-| `0x859F~0x85DD` | 반각 카타카나 63자 |
-| `0x85E3~0x85F8` | 탁점 카타카나 (ヴ·グ·ジ 등) |
-
-그 외 0x85XX는 Python `shift_jis` 코덱으로 fallback 디코딩.
 
 ### 4. 파싱
 
@@ -99,34 +92,9 @@ CMD 파일도 동일 LZ. 모두 `compile_lz.decompress()` 재사용.
 1. `(file, offset)` 정확 매칭 (1차)
 2. `(file, jp)` 텍스트 기반 fallback (2차)
 
-`translation.json` 구조:
-```json
-{
-  "dialogs": [
-    {
-      "file": "STAGE1.CMD",
-      "index": 1,
-      "lines": [
-        {"offset": 18462, "jp": "「あら　いらっしゃい！", "jp_len": 22, "kr": "", "tag": "ui"},
-        {"offset": 24724, "jp": "５０Gold", "jp_len": 12, "kr": "", "gaiji": true}
-      ]
-    }
-  ],
-  "items": [
-    {
-      "offset": 96,
-      "name": {"offset": 98,  "jp": "鉄の剣",     "jp_len": 6,  "kr": ""},
-      "stat": {"offset": 106, "jp": "攻撃力＋２０", "jp_len": 12, "kr": ""},
-      "desc": [{"offset": 120, "jp": "鉄製の長剣", "jp_len": 10, "kr": ""}]
-    }
-  ],
-  "ui": [
-    {"offset": 28854, "category": "system", "jp": "セーブ", "jp_len": 6, "kr": ""}
-  ]
-}
-```
-
-태그 종류: `dialog` / `monolog` / `cutscene` / `char` / `battle` / `item` / `menu` / `location` / `system`
+`translation.json` 최상위 키: `dialogs` (대화) · `items` (아이템) · `ui` (UI 문자열).  
+각 항목 공통 필드: `file`, `offset`, `jp`, `jp_len`, `kr`, `tag`.  
+가이지 포함 항목에는 `gaiji: true`. 태그: `dialog` / `monolog` / `cutscene` / `char` / `battle` / `item` / `menu` / `location` / `system`.
 
 ### 5. 인서트
 

@@ -1,7 +1,7 @@
 # 환세쾌도전 역공학 노트
 
 **대상**: 환세쾌도전 / 幻世快盗伝 (Compile Inc., 1995, PC-98)  
-**상태**: 번역 진행 중 (~35%), 인서터 미구현  
+**상태**: 번역 진행 중, 인서터 미구현  
 **도구**: `kaitou_parser.py` (추출)
 
 ---
@@ -42,10 +42,6 @@ original/kaitou/
 | 31 | 28,289 B | 대화 (최대 볼륨, `6b 00` + `6e 00 67` 혼용) |
 | 61~64 | 2,000~5,000 B | 적/캐릭터 이름 (`6d 08` 블록) |
 | 8,9,37,42,44,48,58,59 | — | 노이즈 (그래픽/비트맵, `NOISE_CHUNKS` 제외) |
-
-### 추출 결과
-
-1,921개 엔트리 / 3,829개 라인 · 번역 완료: 1,340개 (35%)
 
 ---
 
@@ -118,24 +114,9 @@ seeks.sort()
 7. `extract_title_labels` — `64 00/0a/0c` 앵커
 8. `extract_sjis_runs` — `62 00` 블록 내부 잔류 SJIS (폴백)
 
-`translation.json` 구조:
-```json
-{
-  "entries": [
-    {
-      "file": "DISK_B.DAT",
-      "chunk": 3,
-      "offset": 141,
-      "type": "dialog",
-      "jp": "脳天砕\n消費ＳＰ１０\n…",
-      "kr": "",
-      "lines": [
-        {"offset": 143, "jp": "脳天砕", "jp_len": 6, "kr": ""}
-      ]
-    }
-  ]
-}
-```
+`translation.json` 최상위 키: `entries`.  
+각 엔트리 필드: `file`, `chunk`, `offset`, `type`, `jp`, `kr`, `lines`.  
+`lines`는 엔트리 내 개별 줄 — 각각 `offset`, `jp`, `jp_len`, `kr`, `tag`.
 
 ### 5. 인서트
 
