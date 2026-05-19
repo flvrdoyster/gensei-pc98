@@ -50,6 +50,18 @@
     const IDB_KEY   = 'hukyou_kr.fdi';
     const POLL_MS   = 10000;
 
+    // Toast messages
+    const MSG = {
+      SAVE_RESTORED:  '세이브 데이터가 복원되었습니다.',
+      SAVE_TIMEOUT:   '세이브 데이터 복원 실패, 원본으로 시작합니다.',
+      EXPORT_EMPTY:   '저장된 디스크가 없습니다.',
+      EXPORT_DONE:    '디스크 내보내기를 완료했습니다.',
+      EXPORT_FAIL:    '디스크 내보내기에 실패했습니다: ',
+      IMPORT_DONE:    '디스크 가져오기를 완료했습니다. 새로고침 하세요.',
+      IMPORT_FAIL:    '디스크 가져오기에 실패했습니다: ',
+      JS_LOAD_FAIL:   '에뮬레이터 로드에 실패했습니다.',
+    };
+
     const canvas  = document.getElementById('canvas');
     const overlay = document.getElementById('overlay');
     const toast   = document.getElementById('toast');
@@ -145,15 +157,15 @@
       try {
         const exportDb = db || await openDB();
         const data = await idbGet(exportDb, IDB_KEY);
-        if (!data) { showToast('저장된 데이터 없음'); return; }
+        if (!data) { showToast(MSG.EXPORT_EMPTY); return; }
         const a = document.createElement('a');
         a.href = URL.createObjectURL(new Blob([data]));
         a.download = IDB_KEY;
         a.click();
         URL.revokeObjectURL(a.href);
-        showToast('디스크 내보내기 완료');
+        showToast(MSG.EXPORT_DONE);
       } catch(e) {
-        showToast('내보내기 실패: ' + e);
+        showToast(MSG.EXPORT_FAIL + e);
       }
     });
 
@@ -170,9 +182,9 @@
         const buf = await file.arrayBuffer();
         const importDb = db || await openDB();
         await idbPut(importDb, IDB_KEY, buf);
-        showToast('디스크 가져오기 완료 — 새로고침하세요');
+        showToast(MSG.IMPORT_DONE);
       } catch(err) {
-        showToast('가져오기 실패: ' + err);
+        showToast(MSG.IMPORT_FAIL + err);
       }
       diskFileInput.value = '';
     });
@@ -205,14 +217,14 @@
               Module.FS.chmod(DISK, 0o666);
               if (savedDisk) {
                 Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
-                showToast('세이브 데이터 복원됨');
+                showToast(MSG.SAVE_RESTORED);
               }
               Module.removeRunDependency('disk-setup');
             } catch(e) {
               if (++attempts < 200) {
                 setTimeout(trySetup, 10);
               } else {
-                log('[save] 복원 타임아웃, 원본으로 시작');
+                log(MSG.SAVE_TIMEOUT);
                 Module.removeRunDependency('disk-setup');
               }
             }
@@ -241,7 +253,7 @@
 
       const s = document.createElement('script');
       s.src = 'emnp2kai_sdl2.js';
-      s.onerror = () => { showToast('JS 로드 실패', 5000); };
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); };
       document.body.appendChild(s);
     }
   </script>
