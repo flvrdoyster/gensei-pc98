@@ -136,6 +136,8 @@ tr.range-start { background: #fef9c3 !important; }
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
+  <button class="build-btn" id="diskBtn">디스크에 적용</button>
+  <input type="file" id="diskInput" accept=".fdi,.hdi,.img" style="display:none">
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
 </div>
@@ -509,6 +511,44 @@ function showToast(msg, type) {
   _toastTimer = setTimeout(() => toast.classList.remove('show'), dur);
 }
 
+document.getElementById('diskBtn').addEventListener('click', () => {
+  document.getElementById('diskInput').click();
+});
+
+document.getElementById('diskInput').addEventListener('change', async (e) => {
+  const file = e.target.files[0];
+  if (!file) return;
+  e.target.value = '';
+
+  const btn = document.getElementById('diskBtn');
+  btn.disabled = true;
+  btn.textContent = '적용 중...';
+
+  try {
+    const formData = new FormData();
+    formData.append('disk', file);
+    const res = await fetch('/api/disk-patch', { method: 'POST', body: formData });
+    if (!res.ok) {
+      const err = await res.json().catch(() => ({ message: res.statusText }));
+      showToast('실패: ' + (err.message || res.statusText), 'err');
+      return;
+    }
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.name.replace(/(\.[^.]+)$/, '_patched$1');
+    a.click();
+    URL.revokeObjectURL(url);
+    showToast('패치 완료 — 다운로드됨', 'ok');
+  } catch (err) {
+    showToast('오류: ' + err.message, 'err');
+  } finally {
+    btn.disabled = false;
+    btn.textContent = '디스크에 적용';
+  }
+});
+
 document.getElementById('buildBtn').addEventListener('click', async () => {
   const btn = document.getElementById('buildBtn');
   btn.disabled = true;
@@ -622,6 +662,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_header('Content-Type', 'application/json')
             self.end_headers()
             self.wfile.write(json.dumps(result).encode())
+        elif self.path == '/api/disk-patch':
+            self.handle_disk_patch()
         else:
             self.send_error(404)
 
@@ -750,6 +792,76 @@ class Handler(http.server.BaseHTTPRequestHandler):
             json.dump(data, f, ensure_ascii=False, indent=2)
 
         return {'updated': updated, 'skipped': skipped}
+
+    def handle_disk_patch(self):
+        import cgi
+        import io
+        import tempfile
+        try:
+            from pc98disk import DiskImage
+        except ImportError as e:
+            self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
+            return
+
+        build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
+        if not os.path.isdir(build_dir):
+            self._send_json_error(f'빌드 결과 없음: {build_dir}', 400)
+            return
+
+        build_files = [f for f in os.listdir(build_dir)
+                       if os.path.isfile(os.path.join(build_dir, f))]
+        if not build_files:
+            self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
+            return
+
+        length = int(self.headers.get('Content-Length', 0))
+        body = self.rfile.read(length)
+
+        # multipart 파싱
+        content_type = self.headers.get('Content-Type', '')
+        environ = {'REQUEST_METHOD': 'POST', 'CONTENT_TYPE': content_type, 'CONTENT_LENGTH': str(length)}
+        form = cgi.FieldStorage(fp=io.BytesIO(body), environ=environ, keep_blank_values=True)
+
+        if 'disk' not in form:
+            self._send_json_error('disk 필드 없음', 400)
+            return
+
+        disk_item = form['disk']
+        disk_data = disk_item.file.read()
+        disk_filename = disk_item.filename or 'disk.fdi'
+
+        try:
+            with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
+                tmp.write(disk_data)
+                tmp_path = tmp.name
+
+            img = DiskImage.open(tmp_path)
+            patched = []
+            for fname in build_files:
+                fpath = os.path.join(build_dir, fname)
+                img.add_file(fname, open(fpath, 'rb').read())
+                patched.append(fname)
+            img.save(tmp_path)
+
+            result_data = open(tmp_path, 'rb').read()
+            os.unlink(tmp_path)
+        except Exception as e:
+            self._send_json_error(f'패치 실패: {e}', 500)
+            return
+
+        self.send_response(200)
+        self.send_header('Content-Type', 'application/octet-stream')
+        self.send_header('Content-Length', str(len(result_data)))
+        self.end_headers()
+        self.wfile.write(result_data)
+
+    def _send_json_error(self, message, code=400):
+        body = json.dumps({'message': message}).encode()
+        self.send_response(code)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
 
     def run_build(self):
         game_dir = os.path.join(PROJECT_ROOT, 'original', TITLE)
