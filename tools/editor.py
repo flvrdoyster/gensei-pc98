@@ -28,6 +28,11 @@ TITLES = {
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
+# emsdk file_packager.py 경로 (번들 재생성용)
+FILE_PACKAGER = os.path.expanduser(
+    '~/GitHub/emsdk/upstream/emscripten/tools/file_packager.py'
+)
+
 def resolve_title():
     title = sys.argv[1] if len(sys.argv) > 1 else 'hukyou'
     if title not in TITLES:
@@ -41,6 +46,7 @@ TITLE_KR = TITLES[TITLE]
 TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
 CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
 HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
+HAS_EMULATOR = TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))
 
 HTML = r"""<!DOCTYPE html>
 <html lang="ko">
@@ -139,6 +145,7 @@ tr.range-start { background: #fef9c3 !important; }
   <button class="build-btn" id="buildBtn">빌드</button>
   <button class="build-btn" id="diskBtn">디스크에 적용</button>
   <input type="file" id="diskInput" accept=".fdi,.hdi,.img" style="display:none">
+  <button class="build-btn" id="emulatorBtn">에뮬레이터 업데이트</button>
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
 </div>
@@ -616,11 +623,37 @@ document.getElementById('tbody').addEventListener('click', e => {
   }, 0);
 });
 
+document.getElementById('emulatorBtn').addEventListener('click', async () => {
+  const btn = document.getElementById('emulatorBtn');
+  btn.disabled = true;
+  btn.textContent = '업데이트 중...';
+  btn.style.background = '#555';
+
+  try {
+    const res = await fetch('/api/emulator-update', { method: 'POST' });
+    const result = await res.json();
+    showToast(result.message, result.ok ? 'ok' : 'err');
+  } catch (e) {
+    showToast('오류: ' + e.message, 'err');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '에뮬레이터 업데이트';
+  btn.style.background = '';
+});
+
 load().then(() => {
   if (!__HAS_INSERTER__) {
     const btn = document.getElementById('buildBtn');
     btn.disabled = true;
     btn.title = '인서터 미구현';
+    btn.style.opacity = '0.35';
+    btn.style.cursor = 'default';
+  }
+  if (!__HAS_EMULATOR__) {
+    const btn = document.getElementById('emulatorBtn');
+    btn.disabled = true;
+    btn.title = '에뮬레이터 없음';
     btn.style.opacity = '0.35';
     btn.style.cursor = 'default';
   }
@@ -639,7 +672,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
             self.end_headers()
-            html = HTML.replace('__TITLE_KR__', TITLE_KR).replace('__HAS_INSERTER__', 'true' if HAS_INSERTER else 'false')
+            html = (HTML
+                    .replace('__TITLE_KR__', TITLE_KR)
+                    .replace('__HAS_INSERTER__', 'true' if HAS_INSERTER else 'false')
+                    .replace('__HAS_EMULATOR__', 'true' if HAS_EMULATOR else 'false'))
             self.wfile.write(html.encode())
         elif self.path == '/api/translation':
             self.send_json_file(TRANS_PATH)
@@ -665,6 +701,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode())
         elif self.path == '/api/disk-patch':
             self.handle_disk_patch()
+        elif self.path == '/api/emulator-update':
+            self.handle_emulator_update()
         else:
             self.send_error(404)
 
@@ -873,6 +911,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.end_headers()
         self.wfile.write(result_data)
 
+    def _send_json(self, data, code=200):
+        body = json.dumps(data, ensure_ascii=False).encode()
+        self.send_response(code)
+        self.send_header('Content-Type', 'application/json')
+        self.send_header('Content-Length', str(len(body)))
+        self.end_headers()
+        self.wfile.write(body)
+
     def _send_json_error(self, message, code=400):
         body = json.dumps({'message': message}).encode()
         self.send_response(code)
@@ -880,6 +926,85 @@ class Handler(http.server.BaseHTTPRequestHandler):
         self.send_header('Content-Length', str(len(body)))
         self.end_headers()
         self.wfile.write(body)
+
+    def handle_emulator_update(self):
+        if not HAS_EMULATOR:
+            self._send_json_error('에뮬레이터 업데이트는 hukyou만 지원', 400)
+            return
+
+        build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
+        if not os.path.isdir(build_dir):
+            self._send_json_error(f'빌드 결과 없음: {build_dir}', 400)
+            return
+
+        build_files = [f for f in os.listdir(build_dir)
+                       if os.path.isfile(os.path.join(build_dir, f))
+                       and not f.startswith('.')]
+        if not build_files:
+            self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
+            return
+
+        emulator_dir = os.path.join(PROJECT_ROOT, 'emulator')
+        rom_dir      = os.path.join(emulator_dir, 'rom')
+        bios_dir     = os.path.join(emulator_dir, 'bios')
+        fdi_path     = os.path.join(rom_dir, 'hukyou_kr.fdi')
+        data_path    = os.path.join(emulator_dir, 'emnp2kai_sdl2.data')
+        data_js_path = os.path.join(emulator_dir, 'emnp2kai_sdl2.data.js')
+
+        try:
+            from pc98disk import DiskImage
+        except ImportError as e:
+            self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
+            return
+
+        # 1. 숨김 파일 제거 (.DS_Store 등이 번들에 포함되면 오프셋 깨짐)
+        try:
+            subprocess.run(
+                ['find', rom_dir, bios_dir, '-name', '.*', '-delete'],
+                check=True, capture_output=True,
+            )
+        except Exception as e:
+            self._send_json_error(f'숨김 파일 제거 실패: {e}', 500)
+            return
+
+        # 2. FDI 패치
+        try:
+            img = DiskImage.open(fdi_path)
+            for fname in build_files:
+                img.add_file(fname, open(os.path.join(build_dir, fname), 'rb').read())
+            img.save(fdi_path)
+        except Exception as e:
+            self._send_json_error(f'FDI 패치 실패: {e}', 500)
+            return
+
+        # 3. 번들 재생성
+        if not os.path.exists(FILE_PACKAGER):
+            self._send_json_error(f'file_packager.py 없음: {FILE_PACKAGER}', 500)
+            return
+        try:
+            proc = subprocess.run(
+                ['python3', FILE_PACKAGER,
+                 data_path,
+                 '--js-output=' + data_js_path,
+                 '--preload', 'bios@/emulator/np2kai',
+                 '--preload', 'rom@/rom'],
+                capture_output=True, text=True, timeout=120,
+                cwd=emulator_dir,
+            )
+            if proc.returncode != 0:
+                self._send_json_error(f'번들 재생성 실패: {proc.stderr.strip()[-300:]}', 500)
+                return
+            if os.path.exists(data_js_path):
+                os.unlink(data_js_path)
+        except Exception as e:
+            self._send_json_error(f'번들 재생성 실패: {e}', 500)
+            return
+
+        data_size = os.path.getsize(data_path)
+        self._send_json({
+            'ok': True,
+            'message': f'완료 — FDI 패치 ({len(build_files)}개 파일), 번들 재생성 ({data_size:,} bytes)',
+        })
 
     def run_build(self):
         game_dir = os.path.join(PROJECT_ROOT, 'original', TITLE)
