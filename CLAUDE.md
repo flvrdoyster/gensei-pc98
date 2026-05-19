@@ -43,7 +43,7 @@
 - 개발은 `emulator/`, 배포는 `docs/`. GitHub Pages는 `docs/`를 서빙.
 - `emulator/` 수정이 안정되었을 때 수동으로 `docs/`에 복사. 매 커밋마다 반영하지 않음.
 - `docs/` 갱신 시 `emulator/`의 내용을 통째로 덮어쓰기 (`cp -r emulator/* docs/`).
-- **주의**: `docs/CNAME` (`pc98.atah.io`)은 GitHub Pages 커스텀 도메인 설정 파일. `emulator/`에는 없으므로 `rm -rf docs/*` 후 복사하면 삭제됨. 갱신 후 CNAME 존재 여부를 반드시 확인할 것.
+- `emulator/CNAME`에 커스텀 도메인(`pc98.atah.io`)이 포함되어 있으므로 복사 시 자동으로 `docs/`에 반영됨.
 
 ## 모르면 물어보기
 
