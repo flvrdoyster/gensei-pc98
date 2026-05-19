@@ -223,7 +223,6 @@
         postRun: [function() {
           document.title = '환세풍광전 웹 버전 : atah.io';
           lastChecksum = checksum(Module.FS.readFile(DISK));
-          showToast('초기화 완료');
           startPolling();
         }],
 

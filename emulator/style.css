@@ -290,6 +290,7 @@ button:hover { background: rgba(68, 68, 68, 1); }
 body.mobile-active #virtual-gamepad {
   display: grid;
   grid-template-columns: 1fr 1fr;
+  column-gap: 5%;
   width: 100%;
   align-items: center;
   justify-items: center;
