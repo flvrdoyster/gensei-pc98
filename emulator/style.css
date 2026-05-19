@@ -302,6 +302,9 @@ body.mobile-active #virtual-gamepad {
   position: relative;
   width: 140px;
   height: 140px;
+  flex: 1;
+  display: flex;
+  justify-content: center;
 }
 
 .gamepad-dpad button {
@@ -337,8 +340,10 @@ body.mobile-active #virtual-gamepad {
 
 .gamepad-buttons {
   display: flex;
+  flex: 1;
   gap: 16px;
   align-items: center;
+  justify-content: center;
 }
 
 .gamepad-buttons button {
