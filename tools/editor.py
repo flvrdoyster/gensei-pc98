@@ -1037,4 +1037,7 @@ if __name__ == '__main__':
     server = http.server.HTTPServer(('127.0.0.1', port), Handler)
     print(f'[{TITLE_KR}] 번역 에디터: http://localhost:{port}')
     print('종료: Ctrl+C')
-    server.serve_forever()
+    try:
+        server.serve_forever()
+    except KeyboardInterrupt:
+        pass
