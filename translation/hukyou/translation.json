@@ -20390,8 +20390,8 @@
           "offset": 17642,
           "jp": "杖",
           "jp_len": 2,
-          "kr": "",
-          "tag": "ignore"
+          "kr": "장",
+          "tag": "battle"
         },
         {
           "offset": 17650,
@@ -20453,8 +20453,8 @@
           "offset": 17766,
           "jp": "丸太",
           "jp_len": 4,
-          "kr": "마누라가 투덜대요",
-          "tag": "ignore"
+          "kr": "목봉",
+          "tag": "battle"
         }
       ]
     },

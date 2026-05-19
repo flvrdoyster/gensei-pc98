@@ -14,6 +14,7 @@ translation.json의 kr 필드를 브라우저에서 편집, 저장.
 import http.server
 import json
 import os
+import re
 import subprocess
 import sys
 import urllib.parse
@@ -794,8 +795,6 @@ class Handler(http.server.BaseHTTPRequestHandler):
         return {'updated': updated, 'skipped': skipped}
 
     def handle_disk_patch(self):
-        import cgi
-        import io
         import tempfile
         try:
             from pc98disk import DiskImage
@@ -809,7 +808,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return
 
         build_files = [f for f in os.listdir(build_dir)
-                       if os.path.isfile(os.path.join(build_dir, f))]
+                       if os.path.isfile(os.path.join(build_dir, f))
+                       and not f.startswith('.')]
         if not build_files:
             self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
             return
@@ -817,18 +817,36 @@ class Handler(http.server.BaseHTTPRequestHandler):
         length = int(self.headers.get('Content-Length', 0))
         body = self.rfile.read(length)
 
-        # multipart 파싱
+        # multipart 파싱 (cgi 모듈 Python 3.13 제거 대응)
         content_type = self.headers.get('Content-Type', '')
-        environ = {'REQUEST_METHOD': 'POST', 'CONTENT_TYPE': content_type, 'CONTENT_LENGTH': str(length)}
-        form = cgi.FieldStorage(fp=io.BytesIO(body), environ=environ, keep_blank_values=True)
+        m = re.search(r'boundary=([^\s;]+)', content_type)
+        if not m:
+            self._send_json_error('multipart boundary 없음', 400)
+            return
+        boundary = ('--' + m.group(1)).encode()
+        disk_data = None
+        disk_filename = 'disk.fdi'
+        for part in body.split(boundary):
+            if b'Content-Disposition' not in part:
+                continue
+            header_end = part.find(b'\r\n\r\n')
+            if header_end == -1:
+                continue
+            headers_raw = part[:header_end]
+            part_body = part[header_end + 4:]
+            if part_body.endswith(b'\r\n'):
+                part_body = part_body[:-2]
+            if b'name="disk"' not in headers_raw:
+                continue
+            fn_m = re.search(rb'filename="([^"]+)"', headers_raw)
+            if fn_m:
+                disk_filename = fn_m.group(1).decode('utf-8', errors='replace')
+            disk_data = part_body
+            break
 
-        if 'disk' not in form:
+        if disk_data is None:
             self._send_json_error('disk 필드 없음', 400)
             return
-
-        disk_item = form['disk']
-        disk_data = disk_item.file.read()
-        disk_filename = disk_item.filename or 'disk.fdi'
 
         try:
             with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
