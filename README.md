@@ -17,7 +17,7 @@ Compile Inc.의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트
 ## 웹 에뮬레이터 (`emulator/`)
 
 NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.  
-https://flvrdoyster.github.io/gensei-pc98/emulator
+https://pc98.atah.io
 
 ```bash
 # 에뮬레이터 빌드 (emsdk + NP2kai 소스 필요)
@@ -42,6 +42,7 @@ python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
 # 2. 번역 에디터 (http://localhost:8421)
 python3 tools/editor.py hukyou    # 풍광전
 python3 tools/editor.py kaitou    # 쾌도전
+#   버튼: 저장 / 빌드 / 디스크에 적용(패치 FDI 다운로드) / 에뮬레이터 업데이트(웹 번들 재생성)
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
