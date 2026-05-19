@@ -383,7 +383,6 @@ body.mobile-active #virtual-gamepad {
   .top-bar { width: 100%; }
   .disk-panel { width: 100%; }
   .hint { display: none; }
-  .logo { width: 120px; }
   #footer { width: 100%; padding: 16px; }
   .game-list { width: auto; grid-template-columns: 1fr; }
   .desktop-only { display: none; }
