@@ -26,7 +26,7 @@
 body {
   background: rgba(26, 26, 26, 1);
   color: rgba(204, 204, 204, 1);
-  font-family: 'KoddiUDOnGothic', monospace;
+  font-family: 'KoddiUDOnGothic', sans-serif;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -155,7 +155,7 @@ canvas {
   border: 1px solid rgba(102, 102, 102, 1);
   color: rgba(238, 238, 238, 1);
   cursor: pointer;
-  font-family: 'KoddiUDOnGothic', monospace;
+  font-family: 'KoddiUDOnGothic', sans-serif;
   transition: background 0.15s;
 }
 
@@ -187,7 +187,7 @@ button {
   color: rgba(204, 204, 204, 1);
   padding: 6px 14px;
   cursor: pointer;
-  font-family: 'KoddiUDOnGothic', monospace;
+  font-family: 'KoddiUDOnGothic', sans-serif;
   font-size: var(--font-md);
   transition: background 0.15s;
 }
