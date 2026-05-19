@@ -288,10 +288,11 @@ button:hover { background: rgba(68, 68, 68, 1); }
 }
 
 body.mobile-active #virtual-gamepad {
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   width: 100%;
-  justify-content: space-between;
   align-items: center;
+  justify-items: center;
   padding: 16px 24px;
   touch-action: none;
   -webkit-user-select: none;
@@ -302,9 +303,6 @@ body.mobile-active #virtual-gamepad {
   position: relative;
   width: 140px;
   height: 140px;
-  flex: 1;
-  display: flex;
-  justify-content: center;
 }
 
 .gamepad-dpad button {
@@ -340,10 +338,8 @@ body.mobile-active #virtual-gamepad {
 
 .gamepad-buttons {
   display: flex;
-  flex: 1;
   gap: 16px;
   align-items: center;
-  justify-content: center;
 }
 
 .gamepad-buttons button {
