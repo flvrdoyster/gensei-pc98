@@ -377,7 +377,6 @@ body.mobile-active #virtual-gamepad {
 
 /* Mobile responsive */
 @media (max-width: 680px) {
-  body { padding: 8px 0 0; }
   canvas { width: 100vw; height: calc(100vw * 0.625); }
   #canvas-wrap { width: 100vw; }
   .top-bar { width: 100%; }
