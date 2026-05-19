@@ -55,6 +55,7 @@ python3 tools/hukyou_inserter.py original/hukyou
 
 ```
 tools/
+  pc98disk.py            PC-98 디스크 이미지 생성/편집 (FDI/HDI/IMG)
   compile_lz.py          LZ 압축/해제 + SJIS 유틸 (공통)
   editor.py              웹 번역 에디터 (localhost:8421)
   charmap.json           한글↔SJIS 매핑 (KS X 1001, 2350자)
