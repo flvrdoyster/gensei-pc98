@@ -102,14 +102,6 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 
 ## 모바일 대응
 
-터치 기기 감지(`ontouchstart in window && innerWidth <= 680`)로 `body.mobile-active` 클래스 추가.  
-`?gamepad` 파라미터로 데스크톱 강제 활성화 가능.
-
-가상 게임패드(`gamepad.js`): D-pad 4키 + ESC/Enter 2키, 터치 이벤트 → `KeyboardEvent` 변환.  
-PC-98 게임 특성상 멀티터치 불필요 — 단일 터치만 처리.
-
-모바일 오디오 정책 대응: 첫 터치 이벤트 및 `visibilitychange` 복귀 시 `Module.SDL2.audioContext.resume()`.
-
 `('ontouchstart' in window) && window.innerWidth <= 680` → `body.mobile-active` 클래스 추가.  
 `?gamepad` URL 파라미터로 데스크톱에서도 강제 활성화 가능.
 
