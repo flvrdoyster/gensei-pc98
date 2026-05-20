@@ -158,12 +158,12 @@ def extract_kr_items(data):
                 break
             if b == 0x64:
                 flush()
-                state = 'desc' if nb == 0x02 else 'stat'
+                state = 'desc' if (nb == 0x02 and state == 'stat') else 'stat'
                 i += 2
                 continue
             if b == 0x72:
                 flush()
-                if state == 'stat':
+                if state in ('stat', 'name'):
                     state = 'desc'
                 i += 2
                 continue

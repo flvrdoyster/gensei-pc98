@@ -374,13 +374,16 @@ def extract_items(data):
 
             if b == 0x64:
                 flush()
-                state = 'desc' if nb == 0x02 else 'stat'
+                # 64 02: stat 상태에서만 desc로, 그 외(name 포함)는 stat으로
+                # → サムライアーマー 등 name 직후 64 02가 오는 아이템 처리
+                state = 'desc' if (nb == 0x02 and state == 'stat') else 'stat'
                 i += 2; cur_off = cur_end2 = i; continue
 
             if b == 0x72:
                 flush()
-                # stat 직후 줄바꿈 = 이후는 설명 줄
-                if state == 'stat':
+                # name/stat 직후 줄바꿈 = 이후는 설명 줄
+                # → 64 없이 72 01로 이름과 설명을 구분하는 아이템(薬草 등) 처리
+                if state in ('stat', 'name'):
                     state = 'desc'
                 i += 2; cur_off = cur_end2 = i; continue
 
@@ -505,21 +508,22 @@ def generate_json(game_dir, out_path):
                 fkey = (dialog['file'], line['offset'])
                 jkey = (dialog['file'], line['jp'])
                 jp_at[fkey] = line['jp']
-                if line['kr']:
-                    kr_map[fkey] = line['kr']
+                kr = line.get('kr', '')
+                if kr:
+                    kr_map[fkey] = kr
                     if jp_count[jkey] == 1:
-                        kr_jp_map[jkey] = line['kr']
+                        kr_jp_map[jkey] = kr
                 if line.get('tag'):
                     tag_map[fkey] = line['tag']
                     if jp_count[jkey] == 1:
                         tag_jp_map[jkey] = line['tag']
         for item in old.get('items', []):
-            if item['name']['kr']:
+            if item['name'].get('kr', ''):
                 kr_map[('item_name', item['name']['offset'])] = item['name']['kr']
-            if 'stat' in item and item['stat']['kr']:
+            if 'stat' in item and item['stat'].get('kr', ''):
                 kr_map[('item_stat', item['stat']['offset'])] = item['stat']['kr']
             for desc in item['desc']:
-                if desc['kr']:
+                if desc.get('kr', ''):
                     kr_map[('item_desc', desc['offset'])] = desc['kr']
 
         restored = fallback = 0
@@ -594,7 +598,9 @@ if __name__ == '__main__':
 
     game_dir = sys.argv[1]
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    title = os.path.basename(os.path.normpath(game_dir))
+    # 데이터가 original/kitan/data/ 하위에 있으므로 basename이 'data'가 됨 — 상위 디렉터리로 올라감
+    _base = os.path.basename(os.path.normpath(game_dir))
+    title = os.path.basename(os.path.dirname(os.path.normpath(game_dir))) if _base == 'data' else _base
 
     if len(sys.argv) >= 3 and sys.argv[2] == 'dump':
         dump_decompressed(game_dir, os.path.join(project_root, 'build', title, '_decompressed'))
