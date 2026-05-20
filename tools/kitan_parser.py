@@ -144,6 +144,28 @@ def extract_dialogs(data):
             cur_offset = cur_end = i
             continue
 
+        # 메뉴 항목 구분: 64 XX (XX ≠ 00, 02)
+        # 64 00 = 화자/portrait 코드 (스킵), 64 02 = MESSAGE.CMD desc 구분자
+        # 64 01/03/04 등 = 세이브·로드·예/아니오 등 메뉴 항목 경계
+        if data[i] == 0x64 and i + 1 < len(data) and data[i + 1] not in (0x00, 0x02):
+            _flush_line()
+            i += 2
+            cur_offset = cur_end = i
+            continue
+
+        # 65 XX (XX ≠ 00): 메뉴 항목 종료 코드 — 줄 구분자로 처리
+        # 실제 대화 블록에서는 81 65 직후에만 등장하고 cur_text가 비어있어 무해함
+        if data[i] == 0x65 and i + 1 < len(data) and data[i + 1] != 0x00:
+            _flush_line()
+            i += 2
+            cur_offset = cur_end = i
+            continue
+
+        # 81 65 ('): 다이얼로그 박스 제어 코드 — 번역 대상 아님, 스킵
+        if data[i] == 0x81 and i + 1 < len(data) and data[i + 1] == 0x65:
+            i += 2
+            continue
+
         # SJIS 문자
         if is_sjis(data, i):
             if not cur_text:
