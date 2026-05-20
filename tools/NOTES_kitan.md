@@ -207,6 +207,45 @@ python3 tools/kitan_parser.py original/kitan
 
 ---
 
+## 한국어판 텍스트 추출 (`kitan_kr_import.py`)
+
+`original/kitan_kr/`의 CMD 파일에서 한국어 텍스트를 추출해 `translation.json`의 `kr` 필드에 채움.
+JP 블록 인덱스 + 줄 인덱스 기준으로 1:1 매핑 (참고용).
+
+```bash
+python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
+```
+
+### KR 인코딩 (역공학)
+
+`MDRSYSF.COM` (폰트 드라이버 TSR) 분석으로 확인.
+
+**리드 바이트 판정**: 0x81–0x9F (SJIS 1바이트 범위 동일)  
+**트레일 바이트**: 0x40–0xFC (0x7F 포함, SJIS와 달리 0x7F 건너뛰지 않음 → 189개/행)
+
+**glyph 인덱스 계산 (SJIS 범위 경로)**:
+```python
+glyph = (lead - 0x81) * 189 + (trail - 0x40)
+```
+
+**glyph → EUC-KR 변환 (EUC-KR 경로 역산)**:
+```python
+euc_lead  = 0xA1 + glyph // 96
+euc_trail = 0xA0 + glyph % 96
+char = bytes([euc_lead, euc_trail]).decode('euc_kr')
+```
+
+두 경로(SJIS 범위 / EUC-KR)가 동일한 glyph index 공간을 공유하므로, SJIS 범위 코드를 EUC-KR로 역산할 수 있음.
+
+`81 41` = glyph 1 = EUC-KR A1A1 = 　(전각 스페이스).  
+캐릭터 이름 표시: `82 7E XX XX ... 82 80` = ［이름］ 형태 (전각 대괄호).
+
+### START.CMD 블록 수 불일치
+
+JP: 7블록, KR: 6블록 → 매핑 시 KR 블록 1개 스킵됨 (무시 가능, 나머지는 정상 매핑).
+
+---
+
 ## 향후 방향
 
 demo를 에뮬레이터로 실행하는 방향:

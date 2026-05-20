@@ -5,8 +5,14 @@
   python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
 
 블록 인덱스 + 줄 인덱스로 JP/KR 텍스트를 1:1 매핑.
-KR 인코딩: SJIS 바이트 범위에 한글을 배치한 커스텀 인코딩.
-          리드/트레일 범위 체크만 하고, cp949로 디코딩(미정의 쌍은 ?로 표시).
+
+KR 인코딩:
+  리드 바이트: 0x81-0x9F (SJIS 범위), 트레일: 0x40-0xFC (0x7F 제외)
+  glyph_index = (lead - 0x81) * 189 + (trail - 0x40)
+  → EUC-KR lead = 0xA1 + glyph // 96
+  → EUC-KR trail = 0xA0 + glyph % 96
+  MDRSYSF.COM에서 역공학으로 확인된 두 경로(SJIS 범위 / EUC-KR)가
+  동일한 glyph index 공간을 공유함을 이용.
 """
 
 import json
@@ -31,7 +37,17 @@ def _is_kr(data, i):
 
 
 def _decode_kr(data, i):
-    return bytes([data[i], data[i + 1]]).decode('cp949', errors='replace')
+    """게임 코드(SJIS 범위) → glyph_index → EUC-KR → 유니코드."""
+    lead, trail = data[i], data[i + 1]
+    glyph = (lead - 0x81) * 189 + (trail - 0x40)
+    euc_lead = 0xA1 + glyph // 96
+    euc_trail = 0xA0 + glyph % 96
+    if euc_lead > 0xFE or euc_trail > 0xFE or euc_trail < 0xA1:
+        return ''  # 미정의 위치 (제어 코드 등)
+    try:
+        return bytes([euc_lead, euc_trail]).decode('euc_kr')
+    except (UnicodeDecodeError, ValueError):
+        return ''
 
 
 # ─── 대화 추출 (kitan_parser.py와 동일 로직, 디코더만 교체) ──────────────
@@ -221,8 +237,6 @@ def run(kr_dir, json_path):
 
         kr_lines = kr_blocks[bi]
         for li, jp_line in enumerate(jp_dialog['lines']):
-            if jp_line.get('kr'):  # 이미 번역 있으면 덮어쓰지 않음
-                continue
             if li < len(kr_lines):
                 jp_line['kr'] = kr_lines[li]
                 filled += 1
@@ -233,13 +247,13 @@ def run(kr_dir, json_path):
         if ji >= len(kr_items):
             break
         kr_item = kr_items[ji]
-        if not jp_item['name'].get('kr') and kr_item['name']:
+        if kr_item['name']:
             jp_item['name']['kr'] = kr_item['name']
             item_filled += 1
-        if 'stat' in jp_item and not jp_item['stat'].get('kr') and kr_item['stat']:
+        if 'stat' in jp_item and kr_item['stat']:
             jp_item['stat']['kr'] = kr_item['stat']
         for di, jp_desc in enumerate(jp_item.get('desc', [])):
-            if not jp_desc.get('kr') and di < len(kr_item['desc']):
+            if di < len(kr_item['desc']):
                 jp_desc['kr'] = kr_item['desc'][di]
 
     with open(json_path, 'w', encoding='utf-8') as f:

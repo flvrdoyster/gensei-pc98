@@ -166,6 +166,14 @@ def extract_dialogs(data):
             i += 2
             continue
 
+        # 81 6b (〔): 직후 바이트가 SJIS가 아닐 때만 제어 코드로 스킵
+        # 직후에 SJIS 문자가 오면 실제 텍스트 내 괄호 문자 (예: 〔薬草〕)
+        if data[i] == 0x81 and i + 1 < len(data) and data[i + 1] == 0x6b:
+            if i + 2 >= len(data) or not is_sjis(data, i + 2):
+                i += 2
+                continue
+            # SJIS가 뒤따르면 실제 문자 — 아래 SJIS 처리로 fall-through
+
         # SJIS 문자
         if is_sjis(data, i):
             if not cur_text:

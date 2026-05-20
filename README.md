@@ -41,6 +41,9 @@ python3 tools/hukyou_parser.py original/hukyou   # 풍광전
 python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
 python3 tools/kitan_parser.py  original/kitan    # 희담
 
+# 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
+python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
+
 # 2. 번역 에디터 (http://localhost:8421)
 python3 tools/editor.py hukyou    # 풍광전
 python3 tools/editor.py kaitou    # 쾌도전
@@ -69,6 +72,7 @@ tools/
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
   kitan_parser.py        희담 텍스트 추출
+  kitan_kr_import.py     희담 한국어판 참고 텍스트 채우기
 original/
   hukyou/                풍광전 원본 디스크 파일
   kaitou/                쾌도전 원본 디스크 파일
