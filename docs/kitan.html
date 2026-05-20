@@ -9,11 +9,9 @@
 </head>
 <body>
   <div class="top-bar">
-    <button id="btn-disk" class="btn-icon" title="디스크 관리" style="visibility:hidden">⛁</button>
     <img src="img/logo-kitan.png" height="54" alt="환세희담" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
   </div>
-  <div id="disk-panel" class="disk-panel hidden"></div>
 
   <div id="canvas-wrap">
     <canvas id="canvas"></canvas>
@@ -40,20 +38,14 @@
   <script src="gamepad.js"></script>
 
   <script>
-    // 디스크 정의
     const DISKS = {
-      demo:   '/rom/kitan-demo.fdi',
       system: '/rom/kitan-system.fdi',
       data:   '/rom/kitan-data.fdi',
     };
-    const DISK_NAMES = ['demo', 'system', 'data'];
 
     const IDB_NAME  = 'gensei-saves';
     const IDB_STORE = 'disks';
     const POLL_MS   = 10000;
-
-    // 드라이브 상태
-    const driveState = ['system', 'data'];
 
     // Toast messages
     const MSG = {
@@ -91,8 +83,6 @@
 
     let db = null;
 
-    const btnDisk = document.getElementById('btn-disk');
-
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
       const wrap = document.getElementById('canvas-wrap');
       (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
@@ -116,11 +106,8 @@
           var attempts = 0;
           function trySetup() {
             try {
-              // 모든 디스크 마운트 확인
-              Module.FS.stat(DISKS.demo);
               Module.FS.stat(DISKS.system);
               Module.FS.stat(DISKS.data);
-              // 모든 디스크에 쓰기 권한 부여
               Object.values(DISKS).forEach(d => Module.FS.chmod(d, 0o666));
               Module.removeRunDependency('disk-setup');
             } catch(e) {
