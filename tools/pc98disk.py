@@ -83,14 +83,16 @@ HDI_HEADER_SIZE = 4096
 
 
 def make_fdi_header(geo):
+    data_size = geo["cylinders"] * geo["heads"] * geo["spt"] * geo["sector_size"]
     hdr = bytearray(FDI_HEADER_SIZE)
     struct.pack_into("<I", hdr, 0x00, 0)
     struct.pack_into("<I", hdr, 0x04, 0x90)  # fdd type: 2HD
     struct.pack_into("<I", hdr, 0x08, FDI_HEADER_SIZE)
-    struct.pack_into("<I", hdr, 0x0C, geo["sector_size"])
-    struct.pack_into("<I", hdr, 0x10, geo["spt"])
-    struct.pack_into("<I", hdr, 0x14, geo["heads"])
-    struct.pack_into("<I", hdr, 0x18, geo["cylinders"])
+    struct.pack_into("<I", hdr, 0x0C, data_size)
+    struct.pack_into("<I", hdr, 0x10, geo["sector_size"])
+    struct.pack_into("<I", hdr, 0x14, geo["spt"])
+    struct.pack_into("<I", hdr, 0x18, geo["heads"])
+    struct.pack_into("<I", hdr, 0x1C, geo["cylinders"])
     return bytes(hdr)
 
 
@@ -234,10 +236,10 @@ class DiskImage:
             if _has_fdi_header(raw):
                 img.header = raw[:FDI_HEADER_SIZE]
                 img.data = bytearray(raw[FDI_HEADER_SIZE:])
-                ss = struct.unpack_from("<I", img.header, 0x0C)[0]
-                spt = struct.unpack_from("<I", img.header, 0x10)[0]
-                heads = struct.unpack_from("<I", img.header, 0x14)[0]
-                cyls = struct.unpack_from("<I", img.header, 0x18)[0]
+                ss = struct.unpack_from("<I", img.header, 0x10)[0]
+                spt = struct.unpack_from("<I", img.header, 0x14)[0]
+                heads = struct.unpack_from("<I", img.header, 0x18)[0]
+                cyls = struct.unpack_from("<I", img.header, 0x1C)[0]
             else:
                 img.header = b""
                 img.data = bytearray(raw)
@@ -512,10 +514,10 @@ def _has_fdi_header(raw):
     hdr_size = struct.unpack_from("<I", raw, 0x08)[0]
     if hdr_size != FDI_HEADER_SIZE:
         return False
-    ss = struct.unpack_from("<I", raw, 0x0C)[0]
+    ss = struct.unpack_from("<I", raw, 0x10)[0]
     if ss not in (128, 256, 512, 1024):
         return False
-    spt = struct.unpack_from("<I", raw, 0x10)[0]
+    spt = struct.unpack_from("<I", raw, 0x14)[0]
     if not (1 <= spt <= 64):
         return False
     return True
