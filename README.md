@@ -39,7 +39,7 @@ cp <NP2kai_path>/build_em/emnp2kai_sdl2.wasm emulator/
 # 1. 텍스트 추출 (translation/<title>/translation.json 생성)
 python3 tools/hukyou_parser.py original/hukyou   # 풍광전
 python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
-python3 tools/kitan_parser.py  original/kitan    # 희담
+python3 tools/kitan_parser.py  original/kitan/data    # 희담
 
 # 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json

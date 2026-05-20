@@ -10,9 +10,9 @@
 
 ```
 original/kitan/
-  kitan-demo.fdi    데모 디스크 (FAT12 MEGDOS)
-  kitan-system.fdi  시스템 디스크 → emulator/ 번들
-  kitan-data.fdi    데이터 디스크 → emulator/ 번들
+  data/     데이터 디스크에서 추출한 CMD·CNS·DAT 등 게임 파일
+  system/   시스템 디스크에서 추출한 파일
+  demo/     데모 디스크에서 추출한 파일
 ```
 
 에뮬레이터(`emulator/kitan.html`)는 system + data 디스크만 사용.  
@@ -200,7 +200,7 @@ MESSAGE.CMD  아이템 DB
 `tools/kitan_parser.py` — 위 포맷을 파싱해 `translation/kitan/translation.json` 생성.
 
 ```bash
-python3 tools/kitan_parser.py original/kitan
+python3 tools/kitan_parser.py original/kitan/data
 ```
 
 출력 JSON 구조는 `translation/hukyou/translation.json`과 동일 (ui 섹션 없음).
