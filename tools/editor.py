@@ -948,8 +948,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         rom_dir      = os.path.join(emulator_dir, 'rom')
         bios_dir     = os.path.join(emulator_dir, 'bios')
         fdi_path     = os.path.join(rom_dir, 'hukyou_kr.fdi')
-        data_path    = os.path.join(emulator_dir, 'emnp2kai_sdl2.data')
-        data_js_path = os.path.join(emulator_dir, 'emnp2kai_sdl2.data.js')
+        data_path    = os.path.join(emulator_dir, 'hukyou.data')
+        js_path      = os.path.join(emulator_dir, 'hukyou.js')
 
         try:
             from pc98disk import DiskImage
@@ -957,17 +957,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
             return
 
-        # 1. 숨김 파일 제거 (.DS_Store 등이 번들에 포함되면 오프셋 깨짐)
-        try:
-            subprocess.run(
-                ['find', rom_dir, bios_dir, '-name', '.*', '-delete'],
-                check=True, capture_output=True,
-            )
-        except Exception as e:
-            self._send_json_error(f'숨김 파일 제거 실패: {e}', 500)
-            return
-
-        # 2. FDI 패치
+        # 1. FDI 패치
         try:
             img = DiskImage.open(fdi_path)
             for fname in build_files:
@@ -977,28 +967,63 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send_json_error(f'FDI 패치 실패: {e}', 500)
             return
 
-        # 3. 번들 재생성
+        # 2. 임시 디렉토리에 bios + hukyou ROM만 모아서 번들 생성
         if not os.path.exists(FILE_PACKAGER):
             self._send_json_error(f'file_packager.py 없음: {FILE_PACKAGER}', 500)
             return
+        import tempfile, shutil, re, json
+        tmpdir = tempfile.mkdtemp(prefix='hukyou-bundle-')
+        loader_js = os.path.join(tmpdir, 'loader.js')
         try:
+            # 임시 번들 디렉토리 구성
+            tmp_bios = os.path.join(tmpdir, 'bios')
+            tmp_rom  = os.path.join(tmpdir, 'rom')
+            os.makedirs(tmp_bios)
+            os.makedirs(tmp_rom)
+            for f in os.listdir(bios_dir):
+                if not f.startswith('.'):
+                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
+            shutil.copy2(fdi_path, tmp_rom)
+
+            # file_packager 실행
             proc = subprocess.run(
                 ['python3', FILE_PACKAGER,
                  data_path,
-                 '--js-output=' + data_js_path,
+                 '--js-output=' + loader_js,
                  '--preload', 'bios@/emulator/np2kai',
                  '--preload', 'rom@/rom'],
                 capture_output=True, text=True, timeout=120,
-                cwd=emulator_dir,
+                cwd=tmpdir,
             )
             if proc.returncode != 0:
                 self._send_json_error(f'번들 재생성 실패: {proc.stderr.strip()[-300:]}', 500)
                 return
-            if os.path.exists(data_js_path):
-                os.unlink(data_js_path)
+
+            # 3. loader.js에서 메타데이터 추출 → hukyou.js 교체
+            with open(loader_js, 'r') as f:
+                loader_content = f.read()
+            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
+            if not meta_match:
+                self._send_json_error('메타데이터 추출 실패', 500)
+                return
+            new_files = meta_match.group(1)
+            new_size  = meta_match.group(2)
+
+            with open(js_path, 'r') as f:
+                js_content = f.read()
+            js_content = re.sub(
+                r'loadPackage\(\{files:\[.*?\],remote_package_size:\d+\}\)',
+                f'loadPackage({{files:{new_files},remote_package_size:{new_size}}})',
+                js_content,
+            )
+            with open(js_path, 'w') as f:
+                f.write(js_content)
+
         except Exception as e:
             self._send_json_error(f'번들 재생성 실패: {e}', 500)
             return
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
 
         data_size = os.path.getsize(data_path)
         self._send_json({
