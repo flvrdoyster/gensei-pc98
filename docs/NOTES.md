@@ -7,15 +7,17 @@ NP2kai를 Emscripten으로 브라우저에 포팅한 구현 노트.
 
 ## 구조 개요
 
-빌드 결과물은 세 파일:
+WASM은 전 게임 공유, JS와 data는 게임별 분리:
 
 | 파일 | 역할 |
 |------|------|
-| `emnp2kai_sdl2.js` | Emscripten 런타임 + WASM 로더 |
-| `emnp2kai_sdl2.wasm` | NP2kai 바이너리 |
-| `emnp2kai_sdl2.data` | BIOS · ROM 번들 (Emscripten preload) |
+| `emnp2kai_sdl2.wasm` | NP2kai 바이너리 (공유) |
+| `<title>.js` | 게임별 JS 로더 (메타데이터 포함) |
+| `<title>.data` | 게임별 BIOS · ROM 번들 |
 
-JS가 WASM과 `.data`를 fetch해서 초기화. `.data`는 ROM/BIOS 변경 시만 재생성, JS/WASM은 NP2kai 소스 변경 시만 재빌드.
+예: `hukyou.js` + `hukyou.data`, `kitan.js` + `kitan.data`.  
+JS 내부에 `loadPackage({files:[...], remote_package_size:N})`로 번들 메타데이터가 하드코딩됨.  
+WASM은 NP2kai 소스 변경 시만 재빌드, JS/data는 ROM이나 BIOS 변경 시 재생성.
 
 ---
 
@@ -45,20 +47,37 @@ void menubase_modalproc(void) {
 }
 ```
 
-### data 번들
+### data 번들 (게임별 분리)
 
-BIOS · ROM은 `file_packager.py`로 번들. ROM 파일 변경 시 재생성:
+게임마다 별도 data 파일 생성. 임시 디렉토리에 해당 게임의 bios + ROM만 모아서 번들링:
 
 ```bash
-# emulator/ 디렉토리에서 실행
+# 예: 풍광전 번들 생성
+mkdir -p /tmp/bundle/bios /tmp/bundle/rom
+cp emulator/bios/bios.rom emulator/bios/font.bmp /tmp/bundle/bios/
+cp emulator/rom/hukyou_kr.fdi /tmp/bundle/rom/
+
 source <emsdk_path>/emsdk_env.sh
+cd /tmp/bundle
 python3 $(em-config EMSCRIPTEN_ROOT)/tools/file_packager.py \
-  emnp2kai_sdl2.data \
-  --js-output=emnp2kai_sdl2.data.js \
+  <project_root>/emulator/hukyou.data \
+  --js-output=/tmp/loader.js \
   --preload bios@/emulator/np2kai \
   --preload rom@/rom
-rm emnp2kai_sdl2.data.js  # 이 프로젝트에서는 미사용 (로더가 JS에 내장됨)
+rm /tmp/loader.js
 ```
+
+생성 후 `loader.js`에서 메타데이터를 추출하여 게임별 JS의 `loadPackage(...)` 부분을 교체:
+
+```bash
+# 기존 emnp2kai_sdl2.js를 복사하고 파일명 + 메타데이터를 sed로 교체
+cp emnp2kai_sdl2.js hukyou.js
+sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
+          -e 's/datafile_emnp2kai_sdl2.data/datafile_hukyou.data/g' hukyou.js
+# loadPackage({files:[...]}) 부분도 loader.js에서 추출한 메타데이터로 교체
+```
+
+**폰트 분기**: 한글화 완료 타이틀은 `font.bmp`(한글), 미완료 타이틀은 `font_jp.bmp`를 `font.bmp`로 복사하여 번들링.
 
 ---
 
@@ -141,15 +160,18 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 
 | 항목 | 내용 |
 |------|------|
-| `DISK` | `/rom/<title>_kr.fdi` |
-| `IDB_KEY` | `<title>_kr.fdi` (타이틀별 세이브 분리 키) |
-| `<title>` · `document.title` | 타이틀명 |
-| `logo` img src | `img/logo-<title>.png` |
+| `DISK` / `DISKS` | ROM 경로 (`/rom/<title>.fdi`) |
+| `IDB_KEY` | 타이틀별 세이브 분리 키 |
+| `document.title` | 타이틀명 |
+| `logo` img src/height | `img/logo-<title>.png`, 높이 기준 (풍광전 42px, 희담 54px) |
+| `s.src` | `<title>.js` |
 
-멀티 디스크: `DISK2`, `DISK3` 상수 추가, `Module.arguments`에 순서대로, preRun에서 모두 chmod + IDB 복원.
+멀티 디스크: `Module.arguments`에 FDI 경로를 순서대로, preRun에서 모두 chmod.  
+단, **런타임 디스크 교체는 불가** — NP2kai가 내부 메모리에 디스크를 캐싱하므로 `FS.writeFile()`이 무시됨.
 
-`index.html`: 해당 항목 `class="unavailable"` 제거, `<a href>` 추가, badge → `done`.  
-`rom/`에 FDI 추가 후 data 번들 재생성 필수.
+번들 생성: 게임별 bios + ROM으로 `<title>.data` 생성, `emnp2kai_sdl2.js` 복사 후 `<title>.js`로 메타데이터 교체.
+
+`index.html`: 해당 항목 `class="unavailable"` 제거, `<a href>` 추가, badge → `done`.
 
 ---
 
@@ -158,3 +180,4 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 | 이슈 | 상태 |
 |------|------|
 | ScriptProcessorNode deprecated (오디오) | 경고만 — 기능 정상 |
+| 런타임 디스크 교체 불가 | NP2kai가 디스크를 내부 캐싱. `diskdrv_setfdd()` 등의 export가 필요 |

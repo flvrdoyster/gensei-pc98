@@ -23,7 +23,8 @@ https://pc98.atah.io
 # 에뮬레이터 빌드 (emsdk + NP2kai 소스 필요)
 source <emsdk_path>/emsdk_env.sh
 make -C <NP2kai_path>/build_em emnp2kai_sdl2
-cp <NP2kai_path>/build_em/emnp2kai_sdl2.{js,wasm} emulator/
+cp <NP2kai_path>/build_em/emnp2kai_sdl2.wasm emulator/
+# JS는 게임별로 복사 후 메타데이터 교체 — 상세는 emulator/NOTES.md 참조
 ```
 
 기술 상세: [`emulator/NOTES.md`](emulator/NOTES.md)
@@ -80,7 +81,8 @@ emulator/
   kitan.html             희담 에뮬레이터
   style.css / gamepad.js UI 스타일 + 모바일 가상 패드
   bios/ rom/             PC-98 BIOS + 게임 디스크 이미지
-  emnp2kai_sdl2.*        NP2kai Emscripten 빌드 결과물
+  emnp2kai_sdl2.wasm     NP2kai WASM 바이너리 (공유)
+  <title>.js / .data     게임별 JS 로더 + BIOS·ROM 번들
   NOTES.md               에뮬레이터 기술 노트
 ```
 
