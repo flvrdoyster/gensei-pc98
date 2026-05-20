@@ -250,7 +250,7 @@ button:hover { background: rgba(68, 68, 68, 1); }
 
 .game-list li.unavailable { opacity: 0.45; }
 
-.game-logo { width: 160px; }
+.game-logo { width: 160px; height: 48px; object-fit: contain; }
 
 .game-title { font-size: 1.6em; color: rgba(204, 204, 204, 1); }
 
