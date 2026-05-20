@@ -10,7 +10,7 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
 | 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 번역 진행 중, 인서터 미구현 |
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
-| 환세희담 (幻世喜譚, 1995) | `kitan` | 미착수 |
+| 환세희담 (幻世喜譚, 1995) | `kitan` | 에뮬 탑재 완료, demo 한글화 예정 |
 
 ---
 
@@ -62,6 +62,7 @@ tools/
   charmap.json           한글↔SJIS 매핑 (KS X 1001, 2350자)
   NOTES_hukyou.md        풍광전 역공학 노트
   NOTES_kaitou.md        쾌도전 역공학 노트
+  NOTES_kitan.md         희담 역공학 노트
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
@@ -76,6 +77,7 @@ build/                   (gitignore) 패치된 파일 출력
 emulator/
   index.html             허브 페이지 (타이틀 목록)
   hukyou.html            풍광전 에뮬레이터
+  kitan.html             희담 에뮬레이터
   style.css / gamepad.js UI 스타일 + 모바일 가상 패드
   bios/ rom/             PC-98 BIOS + 게임 디스크 이미지
   emnp2kai_sdl2.*        NP2kai Emscripten 빌드 결과물
