@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>환세희담 : atah.io</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://atah.io/favicon.ico">
+</head>
+<body>
+  <div class="top-bar">
+    <button id="btn-disk" class="btn-icon" title="디스크 교체">⛁</button>
+    <img src="img/logo-kitan.png" width="200" alt="환세희담" class="logo">
+    <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
+  </div>
+  <div id="disk-panel" class="disk-panel hidden">
+    <button data-drive="0" data-disk="demo" class="disk-btn">드라이브1: demo</button>
+    <button data-drive="1" data-disk="" class="disk-btn">드라이브2: 없음</button>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+    <div id="overlay">
+      <button id="btn-start">▶ 시작</button>
+    </div>
+    <div id="toast"></div>
+  </div>
+
+  <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+
+  <div id="virtual-gamepad">
+    <div class="gamepad-dpad">
+      <button data-key="ArrowUp" class="dpad-up"><img src="img/key-arrow.svg" alt="↑"></button>
+      <button data-key="ArrowLeft" class="dpad-left"><img src="img/key-arrow.svg" alt="←" style="transform:rotate(-90deg)"></button>
+      <button data-key="ArrowRight" class="dpad-right"><img src="img/key-arrow.svg" alt="→" style="transform:rotate(90deg)"></button>
+      <button data-key="ArrowDown" class="dpad-down"><img src="img/key-arrow.svg" alt="↓" style="transform:rotate(180deg)"></button>
+    </div>
+    <div class="gamepad-buttons">
+      <button data-key="Escape" class="btn-b"><img src="img/key-esc.svg" alt="ESC"></button>
+      <button data-key="Enter" class="btn-a"><img src="img/key-enter.svg" alt="Enter"></button>
+    </div>
+  </div>
+  <script src="gamepad.js"></script>
+
+  <script>
+    // 디스크 정의
+    const DISKS = {
+      demo:   '/rom/kitan-demo.fdi',
+      system: '/rom/kitan-system.fdi',
+      data:   '/rom/kitan-data.fdi',
+    };
+    const DISK_NAMES = ['demo', 'system', 'data'];
+
+    const IDB_NAME  = 'gensei-saves';
+    const IDB_STORE = 'disks';
+    const POLL_MS   = 10000;
+
+    // 드라이브 상태: [FDD1에 넣은 디스크명, FDD2에 넣은 디스크명]
+    const driveState = ['demo', ''];
+
+    // Toast messages
+    const MSG = {
+      DISK_SWAPPED:   '디스크를 교체했습니다.',
+      DISK_SWAP_FAIL: '디스크 교체에 실패했습니다: ',
+      JS_LOAD_FAIL:   '에뮬레이터 로드에 실패했습니다.',
+    };
+
+    const canvas  = document.getElementById('canvas');
+    const overlay = document.getElementById('overlay');
+    const toast   = document.getElementById('toast');
+
+    const logs = [];
+    let toastTimer = null;
+
+    function log(msg) {
+      logs.push('[' + new Date().toLocaleTimeString() + '] ' + msg);
+    }
+
+    function showToast(msg, duration = 2000) {
+      log(msg);
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+    }
+
+    // IndexedDB helpers
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    let db = null;
+
+    // 디스크 교체
+    function swapDisk(driveIndex, diskName) {
+      try {
+        const drivePath = '/rom/kitan-drive' + driveIndex + '.fdi';
+        if (diskName) {
+          const srcData = Module.FS.readFile(DISKS[diskName]);
+          Module.FS.writeFile(drivePath, srcData);
+        }
+        driveState[driveIndex] = diskName;
+        updateDiskButtons();
+        showToast(MSG.DISK_SWAPPED);
+      } catch(e) {
+        showToast(MSG.DISK_SWAP_FAIL + e);
+      }
+    }
+
+    // 디스크 패널 버튼
+    const diskPanel = document.getElementById('disk-panel');
+    const btnDisk = document.getElementById('btn-disk');
+    const diskBtns = diskPanel.querySelectorAll('.disk-btn');
+
+    function updateDiskButtons() {
+      diskBtns.forEach(btn => {
+        const drive = parseInt(btn.dataset.drive);
+        const current = driveState[drive];
+        btn.textContent = '드라이브' + (drive + 1) + ': ' + (current || '없음');
+      });
+    }
+
+    btnDisk.addEventListener('click', () => {
+      diskPanel.classList.toggle('hidden');
+      btnDisk.classList.toggle('active');
+    });
+
+    // 드라이브 버튼 클릭 → 다음 디스크로 순환
+    diskBtns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const drive = parseInt(btn.dataset.drive);
+        const current = driveState[drive];
+        // 순환: 없음 → demo → system → data → 없음
+        const cycle = ['', ...DISK_NAMES];
+        const idx = cycle.indexOf(current);
+        const next = cycle[(idx + 1) % cycle.length];
+        swapDisk(drive, next);
+      });
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const wrap = document.getElementById('canvas-wrap');
+      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+    });
+
+    document.getElementById('btn-start').addEventListener('click', function() {
+      overlay.classList.add('hidden');
+      startEmulator();
+    });
+
+    async function startEmulator() {
+      db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
+
+      // 시작 구성: FDD1=demo
+      const startDisk = DISKS.demo;
+
+      window.Module = {
+        canvas: canvas,
+        arguments: [startDisk],
+
+        preRun: [function() {
+          Module.addRunDependency('disk-setup');
+          var attempts = 0;
+          function trySetup() {
+            try {
+              // 모든 디스크 마운트 확인
+              Module.FS.stat(DISKS.demo);
+              Module.FS.stat(DISKS.system);
+              Module.FS.stat(DISKS.data);
+              // 모든 디스크에 쓰기 권한 부여
+              Object.values(DISKS).forEach(d => Module.FS.chmod(d, 0o666));
+              Module.removeRunDependency('disk-setup');
+            } catch(e) {
+              if (++attempts < 200) {
+                setTimeout(trySetup, 10);
+              } else {
+                log('디스크 마운트 타임아웃, 원본으로 시작');
+                Module.removeRunDependency('disk-setup');
+              }
+            }
+          }
+          setTimeout(trySetup, 0);
+        }],
+
+        postRun: [function() {
+          document.title = '환세희담 : atah.io';
+          showToast('준비 완료');
+        }],
+
+        print:    t => log('[out] ' + t),
+        printErr: t => log('[err] ' + t),
+
+        setStatus(text) {
+          if (text) showToast(text);
+        },
+
+        totalDependencies: 0,
+        monitorRunDependencies(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+        }
+      };
+
+      const s = document.createElement('script');
+      s.src = 'kitan.js';
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); };
+      document.body.appendChild(s);
+    }
+  </script>
+  <script src="https://atah.io/footer.js" data-emulator></script>
+</body>
+</html>
