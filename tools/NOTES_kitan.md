@@ -109,6 +109,104 @@ bitplane 배치 방식 미확인 — 역공학 중단, 에뮬 방식으로 전�
 
 ---
 
+## DISK_B.DAT 아카이브 포맷 (시스템 디스크)
+
+시스템 FDI 내 DISK_B.DAT는 130개 이상의 파일을 담은 독자 아카이브.
+
+```
+[0x000]  00 00 00 04   매직 (4바이트)
+[0x004]  N×4바이트     파일 종료 오프셋 테이블
+[0x400~] 파일 데이터   파일 0 시작 오프셋 = 0x400
+```
+
+**오프셋 인코딩** (각 4바이트 엔트리):
+```python
+high = struct.unpack_from('<H', entry, 0)[0]
+low  = struct.unpack_from('<H', entry, 2)[0]
+end_offset = high * 65536 + low   # 파일 N의 끝 = 파일 N+1의 시작
+```
+
+- 파일 N의 시작 = 이전 엔트리의 end_offset (파일 0은 0x400)
+- 파일 N의 크기 = entry[N] − entry[N−1]
+- 엔트리 수 = (0x400 − 4) / 4 = 255 (최대), 실제 파일 수는 더 작음  
+  → `end_offset == 0` 인 엔트리가 나오면 종료
+
+**kitan-data.fdi (DISK_C)**:
+
+FAT 없는 raw 파티션. FDI 파일 내 0x3C00 오프셋부터 DISK_C 데이터.  
+DISK_B.DAT의 동일 오프셋 표를 참조해 파일 범위를 계산, 그 범위를 DISK_C 데이터에서 읽음.
+
+---
+
+## CMD 스크립트 포맷
+
+모든 CMD 파일은 Compile LZ 압축 (`compile_lz.decompress()`).
+
+### 대화 제어코드
+
+| 코드 | 의미 |
+|------|------|
+| `6b 00` | 대화 블록 경계 (새 블록 시작 + 이전 블록 종료) |
+| `72 XX` | 줄바꿈 |
+| `73 XX` | 페이지 표시 후 대기 |
+| `76 XX` | 화면 클리어 후 계속 |
+| `64 XX` | 항목 구분 (stat/desc 분기) |
+| `13 00` | 메뉴 선택지 포인터 테이블 |
+
+**대화 블록 패턴**:
+```
+6b 00 [선택: 80 77 00 등 캐릭터 코드]
+SJIS 텍스트 [72 01 줄바꿈 | 73 30 페이지 | 76 1a 클리어]
+...
+6b 00  ← 다음 블록 시작 (이 블록 종료)
+```
+
+`6b 00` 이후 5바이트 이내에 SJIS가 없으면 바이너리 이벤트 블록 → 스킵.
+
+### 아이템 포맷 (MESSAGE.CMD)
+
+```
+62 00 0f 03  SJIS이름  64 XX  SJIS스탯  72 01  SJIS설명줄  72 01  ...
+62 00 0f 03  (다음 항목)
+```
+
+- `62 00` = 항목 시작 프리픽스
+- `0f 03` = 아이템 데이터 시작 마커
+- `64 XX (XX≠02)` → 스탯 (소비MP/SP, 공격력 등)
+- `64 02` → 설명 줄 시작
+- 스탯 이후 첫 `72 01` = 설명 줄로 전환
+
+### 스크립트 파일 목록
+
+```
+START.CMD
+SC1A.CMD SC1B.CMD
+SC2A.CMD ~ SC2G.CMD
+SC3A.CMD ~ SC3E.CMD
+SC4A.CMD ~ SC4E.CMD
+SC5A.CMD ~ SC5F.CMD
+SC6A.CMD ~ SC6D.CMD
+SC7A.CMD
+PARTY2~4.CMD PARTY6~7.CMD  (PARTY1, PARTY5 없음)
+BTL_PC.CMD   전투 대사
+ENDING.CMD   엔딩
+MESSAGE.CMD  아이템 DB
+```
+
+---
+
+## 파서
+
+`tools/kitan_parser.py` — 위 포맷을 파싱해 `translation/kitan/translation.json` 생성.
+
+```bash
+python3 tools/kitan_parser.py original/kitan
+```
+
+출력 JSON 구조는 `translation/hukyou/translation.json`과 동일 (ui 섹션 없음).
+
+---
+
 ## 향후 방향
 
 demo를 에뮬레이터로 실행하는 방향:

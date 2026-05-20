@@ -10,7 +10,7 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 번역 완료, 최종 검수 중 |
 | 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 번역 진행 중, 인서터 미구현 |
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
-| 환세희담 (幻世喜譚, 1995) | `kitan` | 에뮬 탑재 완료, demo 한글화 예정 |
+| 환세희담 (幻世喜譚, 1995) | `kitan` | 에뮬 탑재 완료, 텍스트 추출 완료, 번역 중 |
 
 ---
 
@@ -39,6 +39,7 @@ cp <NP2kai_path>/build_em/emnp2kai_sdl2.wasm emulator/
 # 1. 텍스트 추출 (translation/<title>/translation.json 생성)
 python3 tools/hukyou_parser.py original/hukyou   # 풍광전
 python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
+python3 tools/kitan_parser.py  original/kitan    # 희담
 
 # 2. 번역 에디터 (http://localhost:8421)
 python3 tools/editor.py hukyou    # 풍광전
@@ -67,6 +68,7 @@ tools/
   hukyou_parser.py       풍광전 텍스트 추출
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
+  kitan_parser.py        희담 텍스트 추출
 original/
   hukyou/                풍광전 원본 디스크 파일
   kaitou/                쾌도전 원본 디스크 파일
@@ -74,6 +76,7 @@ original/
 translation/
   hukyou/translation.json   풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
   kaitou/translation.json   쾌도전 번역 파일 (JP/KR 쌍 + 오프셋)
+  kitan/translation.json    희담 번역 파일 (JP/KR 쌍 + 오프셋)
 build/                   (gitignore) 패치된 파일 출력
 emulator/
   index.html             허브 페이지 (타이틀 목록)
