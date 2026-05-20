@@ -248,6 +248,13 @@ JP: 7블록, KR: 6블록 → 매핑 시 KR 블록 1개 스킵됨 (무시 가능,
 
 ## 향후 방향
 
+### 인서터 구현 시 주의
+
+`editor.py`의 빌드 버튼은 인서터에 `original/{TITLE}`을 전달함.  
+kitan은 게임 파일이 `original/kitan/data/`에 있으므로, 인서터 구현 시 `editor.py`의 `run_build()`에서 kitan 경우 `/data`를 추가하도록 수정 필요.
+
+### demo 에뮬레이터 탑재
+
 demo를 에뮬레이터로 실행하는 방향:
 
 1. demo FDI에서 텍스트 추출 (SP1.COM + CNS 파일 내 SJIS)
