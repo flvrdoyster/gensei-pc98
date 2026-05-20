@@ -236,10 +236,12 @@ def run(kr_dir, json_path):
             continue
 
         kr_lines = kr_blocks[bi]
-        for li, jp_line in enumerate(jp_dialog['lines']):
-            if li < len(kr_lines):
-                jp_line['kr'] = kr_lines[li]
-                filled += 1
+        # 기존 kr 필드 초기화 후, 전체 KR 텍스트를 첫 번째 JP 줄에만 넣기
+        for jp_line in jp_dialog['lines']:
+            jp_line.pop('kr', None)
+        if kr_lines:
+            jp_dialog['lines'][0]['kr'] = '　'.join(kr_lines)
+            filled += 1
 
     # 아이템 매핑: 인덱스 순서
     item_filled = 0
