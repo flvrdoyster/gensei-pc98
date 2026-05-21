@@ -23,6 +23,11 @@ import sys
 
 sys.path.insert(0, os.path.dirname(__file__))
 from compile_lz import decompress
+from kitan_parser import (extract_dialogs, extract_menus, extract_labeled_text,
+                          extract_message_dialog,
+                          _LABELED_PREFIXES as _JP_LABELED_PREFIXES,
+                          _DEFAULT_LABELED_PREFIXES as _JP_DEFAULT_LABELED_PREFIXES,
+                          ITEM_FILE as _JP_ITEM_FILE)
 
 
 # ─── 인코딩 ────────────────────────────────────────────
@@ -77,12 +82,14 @@ _DIALOG_LOOKAHEAD = 30
 
 
 def extract_kr_dialogs(data):
-    """6b 00 기반 대화 블록 추출."""
+    """6b 00 기반 대화 블록 추출.
+    start_offset = 블록 내 첫 KR 문자 위치 (JP lines[0]['offset'] 와 일치).
+    """
     dialogs = []
     cur_lines = []
     cur_text = ''
     in_dialog = False
-    block_start = 0
+    block_start = None  # 첫 KR 문자를 만날 때 설정
     i = 0
 
     def has_text(start):
@@ -99,17 +106,18 @@ def extract_kr_dialogs(data):
         cur_text = ''
 
     def flush_dialog():
+        nonlocal block_start
         flush_line()
-        if cur_lines:
+        if cur_lines and block_start is not None:
             dialogs.append((block_start, list(cur_lines)))
         cur_lines.clear()
+        block_start = None
 
     while i < len(data) - 1:
         if data[i] == 0x6b and data[i + 1] == 0x00:
             if in_dialog:
                 flush_dialog()
             in_dialog = has_text(i + 2)
-            block_start = i
             i += 2
             cur_text = ''
             continue
@@ -157,6 +165,8 @@ def extract_kr_dialogs(data):
                 continue
 
         if _is_kr(data, i):
+            if block_start is None:
+                block_start = i  # 첫 KR 문자 위치 = JP lines[0]['offset'] 에 대응
             cur_text += _decode_kr(data, i)
             i += 2
             continue
@@ -204,12 +214,11 @@ def extract_kr_labeled_text(data, prefixes):
         if matched != cur_prefix and cur_group:
             items.append((cur_start, cur_group))
             cur_group = []
-        if not cur_group:
-            cur_start = i
         cur_prefix = matched
 
         j = i + 2
         text = ''
+        text_off = None  # 첫 KR 문자 위치
 
         while j < len(data):
             if data[j] == 0x65:
@@ -219,12 +228,16 @@ def extract_kr_labeled_text(data, prefixes):
                 j += 2
                 continue
             if _is_kr(data, j):
+                if text_off is None:
+                    text_off = j
                 text += _decode_kr(data, j)
                 j += 2
             else:
                 j += 1
 
         if len(text.strip()) >= 2:
+            if not cur_group and text_off is not None:
+                cur_start = text_off  # 그룹 첫 항목의 첫 KR 문자 위치
             cur_group.append(text.strip())
             i = j
         else:
@@ -247,10 +260,11 @@ def extract_kr_message_dialog(data):
     """
     MESSAGE.CMD 전용 스토리 대화 추출.
     kitan_parser.py extract_message_dialog 와 동일한 로직.
+    block_start = 블록 내 첫 KR 문자 위치 (JP lines[0]['offset'] 와 일치).
     """
     blocks = []
     i = _KR_MSG_DIALOG_START
-    block_start = i
+    block_start = None  # 첫 KR 문자를 만날 때 설정
     cur_lines = []
     cur_text = ''
 
@@ -262,11 +276,11 @@ def extract_kr_message_dialog(data):
             if len(t) >= 2:
                 cur_lines.append(t)
             cur_text = ''
-            if cur_lines:
+            if cur_lines and block_start is not None:
                 blocks.append((block_start, cur_lines))
                 cur_lines = []
             i += 1
-            block_start = i
+            block_start = None  # 다음 블록을 위해 리셋
             continue
 
         if b == 0x72:
@@ -278,6 +292,8 @@ def extract_kr_message_dialog(data):
             continue
 
         if _is_kr(data, i):
+            if block_start is None:
+                block_start = i  # 첫 KR 문자 위치
             cur_text += _decode_kr(data, i)
             i += 2
             continue
@@ -287,7 +303,7 @@ def extract_kr_message_dialog(data):
     t = cur_text.strip()
     if len(t) >= 2:
         cur_lines.append(t)
-    if cur_lines:
+    if cur_lines and block_start is not None:
         blocks.append((block_start, cur_lines))
 
     return blocks
@@ -347,6 +363,50 @@ def extract_kr_items(data):
     return items
 
 
+# ─── JP↔KR 오프셋 매핑 ──────────────────────────────────
+
+def _build_offset_map(jp_data, kr_data, fname):
+    """
+    JP 압축 해제 데이터와 KR 압축 해제 데이터를 받아
+    {jp_offset → [kr_line_text, ...]} 딕셔너리를 반환.
+
+    매칭 방식: 추출기 종류별(dialogs / labeled / msg_dialogs)로 N번째끼리 대응.
+    JP와 KR 파일의 바이너리 오프셋이 달라도 순서가 같으면 정확히 매핑됨.
+    """
+    prefixes = _JP_LABELED_PREFIXES.get(fname, _JP_DEFAULT_LABELED_PREFIXES)
+    offset_map: dict[int, list] = {}
+
+    # 1. 대화 블록 (6b 00)
+    jp_dialogs = extract_dialogs(jp_data)
+    kr_dialogs = extract_kr_dialogs(kr_data)
+    for n, jp_lines in enumerate(jp_dialogs):
+        if n < len(kr_dialogs):
+            _, kr_lines = kr_dialogs[n]
+            if kr_lines:
+                offset_map[jp_lines[0]['offset']] = kr_lines
+
+    # 2. 레이블 텍스트 (64 01 / 63 08 / 6d 08)
+    jp_labeled = extract_labeled_text(jp_data, prefixes)
+    kr_labeled = extract_kr_labeled_text(kr_data, prefixes)
+    for n, jp_lines in enumerate(jp_labeled):
+        if n < len(kr_labeled):
+            _, kr_lines = kr_labeled[n]
+            if kr_lines:
+                offset_map[jp_lines[0]['offset']] = kr_lines
+
+    # 3. MESSAGE.CMD 스토리 대화
+    if fname == _JP_ITEM_FILE:
+        jp_msg = extract_message_dialog(jp_data)
+        kr_msg = extract_kr_message_dialog(kr_data)
+        for n, jp_lines in enumerate(jp_msg):
+            if n < len(kr_msg):
+                _, kr_lines = kr_msg[n]
+                if kr_lines:
+                    offset_map[jp_lines[0]['offset']] = kr_lines
+
+    return offset_map
+
+
 # ─── 매핑 + JSON 업데이트 ────────────────────────────────
 
 DIALOG_FILES = [
@@ -371,95 +431,130 @@ _LABELED_PREFIXES = {
 }
 
 
-def run(kr_dir, json_path):
+_COMMITTED_OVERLAY_FILES = {'START.CMD', 'ENDING.CMD'}
+_COMMITTED_SHA = '32ac5bc'
+
+
+def _load_committed_kr(sha):
+    """git 커밋에서 translation.json을 읽어 {(file, offset): kr} 딕셔너리 반환."""
+    import subprocess
+    try:
+        out = subprocess.check_output(
+            ['git', 'show', f'{sha}:translation/kitan/translation.json'],
+            stderr=subprocess.DEVNULL,
+        )
+        tj = json.loads(out)
+        return {
+            (d['file'], ln['offset']): ln['kr']
+            for d in tj['dialogs']
+            for ln in d['lines']
+            if ln.get('kr')
+        }
+    except Exception as e:
+        print(f'⚠ 커밋 번역 로드 실패 ({sha}): {e}')
+        return {}
+
+
+def run(kr_dir, json_path, jp_dir=None):
+    """
+    kr_dir:    KR CMD 파일 디렉터리 (예: original/kitan_kr)
+    json_path: translation.json 경로
+    jp_dir:    JP CMD 파일 디렉터리 (미지정 시 json_path에서 유추)
+
+    동작:
+      1) 모든 kr 초기화
+      2) per-extractor auto-match로 KR 게임 참고 텍스트 채우기
+      3) START.CMD / ENDING.CMD: 32ac5bc 커밋 번역으로 오버레이 (커밋 우선)
+    """
     with open(json_path, encoding='utf-8') as f:
         tj = json.load(f)
 
-    # 파일별 KR 블록 추출 — JP generate_json 와 동일한 방식으로 합치고 정렬
-    kr_file_blocks: dict[str, list] = {}
+    # JP 게임 파일 경로 유추 (translation/{title}/translation.json → original/{title}/data)
+    if jp_dir is None:
+        title = os.path.basename(os.path.dirname(json_path))
+        root = os.path.dirname(os.path.dirname(os.path.dirname(
+            os.path.abspath(json_path))))
+        jp_dir = os.path.join(root, 'original', title, 'data')
+
+    # 1) 모든 kr 초기화
+    for d in tj['dialogs']:
+        for ln in d['lines']:
+            ln['kr'] = ''
+    for item in tj.get('items', []):
+        item['name']['kr'] = ''
+        if 'stat' in item:
+            item['stat']['kr'] = ''
+        for desc in item['desc']:
+            desc['kr'] = ''
+
+    # 2) 파일별 JP↔KR 오프셋 매핑 구성 (추출기 종류별 N번째 대응)
+    kr_offset_map: dict[str, dict[int, list]] = {}
     for fname in DIALOG_FILES:
-        path = os.path.join(kr_dir, fname)
-        if not os.path.exists(path):
+        jp_path = os.path.join(jp_dir, fname)
+        kr_path = os.path.join(kr_dir, fname)
+        if not os.path.exists(jp_path) or not os.path.exists(kr_path):
             continue
-        with open(path, 'rb') as f:
-            data = decompress(f.read())
-
-        all_kr = extract_kr_dialogs(data)
-
-        prefixes = _LABELED_PREFIXES.get(fname, _DEFAULT_LABELED_PREFIXES)
-        all_kr += extract_kr_labeled_text(data, prefixes)
-
-        if fname == ITEM_FILE:
-            all_kr += extract_kr_message_dialog(data)
-
-        # 오프셋 기준 정렬 (JP all_blocks.sort 와 동일)
-        all_kr.sort(key=lambda x: x[0])
-
-        # 같은 오프셋 중복 제거
-        seen = set()
-        deduped = []
-        for off, lines in all_kr:
-            if off not in seen:
-                seen.add(off)
-                deduped.append(lines)
-
-        kr_file_blocks[fname] = deduped
+        with open(jp_path, 'rb') as f:
+            jp_data = decompress(f.read())
+        with open(kr_path, 'rb') as f:
+            kr_data = decompress(f.read())
+        kr_offset_map[fname] = _build_offset_map(jp_data, kr_data, fname)
 
     # KR 아이템 추출
-    item_path = os.path.join(kr_dir, ITEM_FILE)
     kr_items = []
-    if os.path.exists(item_path):
-        with open(item_path, 'rb') as f:
-            data = decompress(f.read())
-        kr_items = extract_kr_items(data)
+    item_kr_path = os.path.join(kr_dir, ITEM_FILE)
+    if os.path.exists(item_kr_path):
+        with open(item_kr_path, 'rb') as f:
+            kr_items = extract_kr_items(decompress(f.read()))
 
-    # 대화 매핑: 파일별 블록 카운터로 JP → KR 1:1
-    # 빈 kr 필드만 채움 — 기존 번역 보존
-    filled = skipped = 0
-    file_block_idx: dict[str, int] = {}
-
+    # auto-match 적용 (lines[0]에 KR 게임 블록 텍스트)
+    auto_filled = auto_skipped = 0
     for jp_dialog in tj['dialogs']:
         fname = jp_dialog['file']
-        if fname not in kr_file_blocks:
+        if fname not in kr_offset_map:
             continue
+        jp_offset = jp_dialog['lines'][0]['offset']
+        kr_lines = kr_offset_map[fname].get(jp_offset)
+        if kr_lines:
+            jp_dialog['lines'][0]['kr'] = '　'.join(kr_lines)
+            auto_filled += 1
+        else:
+            auto_skipped += 1
 
-        bi = file_block_idx.get(fname, 0)
-        file_block_idx[fname] = bi + 1
-
-        kr_blocks = kr_file_blocks[fname]
-        if bi >= len(kr_blocks):
-            skipped += 1
-            continue
-
-        kr_lines = kr_blocks[bi]
-        first_line = jp_dialog['lines'][0]
-        if kr_lines and not first_line.get('kr'):
-            first_line['kr'] = '　'.join(kr_lines)
-            filled += 1
-
-    # 아이템 매핑 (빈 kr만)
+    # 아이템 auto-match
     item_filled = 0
     for ji, jp_item in enumerate(tj.get('items', [])):
         if ji >= len(kr_items):
             break
         kr_item = kr_items[ji]
-        if kr_item['name'] and not jp_item['name'].get('kr'):
+        if kr_item['name']:
             jp_item['name']['kr'] = kr_item['name']
             item_filled += 1
-        if 'stat' in jp_item and kr_item['stat'] and not jp_item['stat'].get('kr'):
+        if 'stat' in jp_item and kr_item['stat']:
             jp_item['stat']['kr'] = kr_item['stat']
         for di, jp_desc in enumerate(jp_item.get('desc', [])):
-            if di < len(kr_item['desc']) and not jp_desc.get('kr'):
+            if di < len(kr_item['desc']):
                 jp_desc['kr'] = kr_item['desc'][di]
 
-    # 전각 → 반각 정규화 (기존 값 포함 전체 적용)
+    # 3) START.CMD / ENDING.CMD: 커밋 번역 오버레이
+    committed = _load_committed_kr(_COMMITTED_SHA)
+    overlay_count = 0
+    for d in tj['dialogs']:
+        if d['file'] not in _COMMITTED_OVERLAY_FILES:
+            continue
+        for ln in d['lines']:
+            key = (d['file'], ln['offset'])
+            if key in committed:
+                ln['kr'] = committed[key]
+                overlay_count += 1
+
+    # 전각 → 반각 정규화 (전체)
     normalized = 0
     for d in tj['dialogs']:
         for ln in d['lines']:
-            kr = ln.get('kr', '')
-            if kr:
-                nkr = _to_halfwidth(kr)
-                if nkr != kr:
+            if ln.get('kr'):
+                nkr = _to_halfwidth(ln['kr'])
+                if nkr != ln['kr']:
                     ln['kr'] = nkr
                     normalized += 1
     for item in tj.get('items', []):
@@ -473,8 +568,9 @@ def run(kr_dir, json_path):
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(tj, f, ensure_ascii=False, indent=2)
 
-    print(f'대화 줄 채움: {filled}개 / 스킵: {skipped}블록')
-    print(f'아이템 name 채움: {item_filled}개')
+    print(f'auto-match: {auto_filled}개 채움 / {auto_skipped}개 미매칭')
+    print(f'커밋 오버레이 ({_COMMITTED_SHA}, START+ENDING): {overlay_count}개')
+    print(f'아이템 채움: {item_filled}개')
     if normalized:
         print(f'전각→반각 정규화: {normalized}개')
     print(f'저장: {json_path}')

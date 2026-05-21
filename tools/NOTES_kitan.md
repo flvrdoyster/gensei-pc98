@@ -210,11 +210,25 @@ python3 tools/kitan_parser.py original/kitan/data
 ## 한국어판 텍스트 추출 (`kitan_kr_import.py`)
 
 `original/kitan_kr/`의 CMD 파일에서 한국어 텍스트를 추출해 `translation.json`의 `kr` 필드에 채움.
-JP 블록 인덱스 + 줄 인덱스 기준으로 1:1 매핑 (참고용).
 
 ```bash
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
 ```
+
+### 매핑 방식
+
+JP와 KR CMD 파일은 같은 제어코드 구조이나 텍스트 길이 차이로 절대 오프셋이 불일치.  
+**추출기 종류별 N번째 대응**으로 오프셋 불일치에 강건하게 매핑:
+
+1. JP 파일에서 `extract_dialogs` / `extract_labeled_text` / `extract_message_dialog` 실행
+2. KR 파일에서 동일 추출기 실행
+3. 같은 종류 N번째 JP 블록 ↔ N번째 KR 블록 대응 → JP 오프셋 기준 딕셔너리 구성
+4. `translation.json`의 각 블록 `lines[0]['offset']`으로 조회해 `kr` 채움
+
+**동작 순서**:
+1. 모든 `kr` 초기화
+2. per-extractor auto-match 적용 (전 파일, KR 게임 텍스트 참고)
+3. `START.CMD` / `ENDING.CMD` 전용: 지정 커밋의 수동 번역으로 오버레이 (커밋 우선)
 
 ### KR 인코딩 (역공학)
 
@@ -242,7 +256,7 @@ char = bytes([euc_lead, euc_trail]).decode('euc_kr')
 
 ### START.CMD 블록 수 불일치
 
-JP: 7블록, KR: 6블록 → 매핑 시 KR 블록 1개 스킵됨 (무시 가능, 나머지는 정상 매핑).
+JP: 4블록(대화), KR: 3블록 — 추출기별 N번째 대응이므로 대화 1블록이 누락되고 나머지는 정상 매핑.
 
 ---
 
