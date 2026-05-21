@@ -53,7 +53,8 @@ python3 tools/editor.py kaitou    # 쾌도전
 python3 tools/hukyou_inserter.py original/hukyou
 ```
 
-역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md)
+역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md)  
+공통 도구: [`tools/NOTES_tools.md`](tools/NOTES_tools.md)
 
 ---
 
