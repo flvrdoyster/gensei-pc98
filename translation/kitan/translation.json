@@ -35792,18 +35792,6 @@
       "index": 7,
       "lines": [
         {
-          "offset": 6099,
-          "jp": "ータロード",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6A.CMD",
-      "index": 8,
-      "lines": [
-        {
           "offset": 6112,
           "jp": "データセーブ",
           "jp_len": 12,
@@ -35813,7 +35801,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 9,
+      "index": 8,
       "lines": [
         {
           "offset": 6127,
@@ -35825,19 +35813,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 10,
-      "lines": [
-        {
-          "offset": 6129,
-          "jp": "ＯＳに戻る",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6A.CMD",
-      "index": 11,
+      "index": 9,
       "lines": [
         {
           "offset": 6232,
@@ -35849,7 +35825,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 12,
+      "index": 10,
       "lines": [
         {
           "offset": 6243,
@@ -35861,7 +35837,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 13,
+      "index": 11,
       "lines": [
         {
           "offset": 6254,
@@ -35873,7 +35849,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 14,
+      "index": 12,
       "lines": [
         {
           "offset": 6265,
@@ -35885,7 +35861,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 15,
+      "index": 13,
       "lines": [
         {
           "offset": 6276,
@@ -35897,7 +35873,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 16,
+      "index": 14,
       "lines": [
         {
           "offset": 6287,
@@ -35909,7 +35885,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 17,
+      "index": 15,
       "lines": [
         {
           "offset": 6298,
@@ -35921,7 +35897,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 18,
+      "index": 16,
       "lines": [
         {
           "offset": 6309,
@@ -35933,7 +35909,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 19,
+      "index": 17,
       "lines": [
         {
           "offset": 6483,
@@ -35945,7 +35921,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 20,
+      "index": 18,
       "lines": [
         {
           "offset": 6492,
@@ -35957,7 +35933,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 21,
+      "index": 19,
       "lines": [
         {
           "offset": 11925,
@@ -35981,7 +35957,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 22,
+      "index": 20,
       "lines": [
         {
           "offset": 12030,
@@ -36017,7 +35993,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 23,
+      "index": 21,
       "lines": [
         {
           "offset": 12179,
@@ -36059,7 +36035,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 24,
+      "index": 22,
       "lines": [
         {
           "offset": 12340,
@@ -36101,7 +36077,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 25,
+      "index": 23,
       "lines": [
         {
           "offset": 12499,
@@ -36125,7 +36101,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 26,
+      "index": 24,
       "lines": [
         {
           "offset": 12574,
@@ -36149,7 +36125,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 27,
+      "index": 25,
       "lines": [
         {
           "offset": 12653,
@@ -36173,7 +36149,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 28,
+      "index": 26,
       "lines": [
         {
           "offset": 12739,
@@ -36191,7 +36167,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 29,
+      "index": 27,
       "lines": [
         {
           "offset": 12785,
@@ -36209,7 +36185,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 30,
+      "index": 28,
       "lines": [
         {
           "offset": 12842,
@@ -36221,7 +36197,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 31,
+      "index": 29,
       "lines": [
         {
           "offset": 12875,
@@ -36233,7 +36209,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 32,
+      "index": 30,
       "lines": [
         {
           "offset": 12906,
@@ -36251,7 +36227,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 33,
+      "index": 31,
       "lines": [
         {
           "offset": 12957,
@@ -36269,7 +36245,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 34,
+      "index": 32,
       "lines": [
         {
           "offset": 13021,
@@ -36287,7 +36263,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 35,
+      "index": 33,
       "lines": [
         {
           "offset": 13132,
@@ -36377,7 +36353,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 36,
+      "index": 34,
       "lines": [
         {
           "offset": 13525,
@@ -36413,7 +36389,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 37,
+      "index": 35,
       "lines": [
         {
           "offset": 13672,
@@ -36449,7 +36425,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 38,
+      "index": 36,
       "lines": [
         {
           "offset": 13786,
@@ -36545,7 +36521,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 39,
+      "index": 37,
       "lines": [
         {
           "offset": 14201,
@@ -36581,7 +36557,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 40,
+      "index": 38,
       "lines": [
         {
           "offset": 14342,
@@ -36617,7 +36593,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 41,
+      "index": 39,
       "lines": [
         {
           "offset": 14511,
@@ -36635,7 +36611,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 42,
+      "index": 40,
       "lines": [
         {
           "offset": 14582,
@@ -36659,7 +36635,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 43,
+      "index": 41,
       "lines": [
         {
           "offset": 14645,
@@ -36677,7 +36653,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 44,
+      "index": 42,
       "lines": [
         {
           "offset": 14724,
@@ -36689,7 +36665,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 45,
+      "index": 43,
       "lines": [
         {
           "offset": 14792,
@@ -36749,7 +36725,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 46,
+      "index": 44,
       "lines": [
         {
           "offset": 15020,
@@ -36767,7 +36743,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 47,
+      "index": 45,
       "lines": [
         {
           "offset": 15069,
@@ -36785,7 +36761,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 48,
+      "index": 46,
       "lines": [
         {
           "offset": 15129,
@@ -36797,7 +36773,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 49,
+      "index": 47,
       "lines": [
         {
           "offset": 15253,
@@ -36821,7 +36797,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 50,
+      "index": 48,
       "lines": [
         {
           "offset": 15358,
@@ -36917,7 +36893,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 51,
+      "index": 49,
       "lines": [
         {
           "offset": 15763,
@@ -36935,7 +36911,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 52,
+      "index": 50,
       "lines": [
         {
           "offset": 15811,
@@ -36953,7 +36929,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 53,
+      "index": 51,
       "lines": [
         {
           "offset": 15875,
@@ -36989,7 +36965,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 54,
+      "index": 52,
       "lines": [
         {
           "offset": 16009,
@@ -37007,7 +36983,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 55,
+      "index": 53,
       "lines": [
         {
           "offset": 16073,
@@ -37043,7 +37019,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 56,
+      "index": 54,
       "lines": [
         {
           "offset": 16201,
@@ -37061,7 +37037,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 57,
+      "index": 55,
       "lines": [
         {
           "offset": 16274,
@@ -37085,7 +37061,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 58,
+      "index": 56,
       "lines": [
         {
           "offset": 16364,
@@ -37109,7 +37085,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 59,
+      "index": 57,
       "lines": [
         {
           "offset": 16442,
@@ -37133,7 +37109,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 60,
+      "index": 58,
       "lines": [
         {
           "offset": 16526,
@@ -37169,7 +37145,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 61,
+      "index": 59,
       "lines": [
         {
           "offset": 16658,
@@ -37187,7 +37163,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 62,
+      "index": 60,
       "lines": [
         {
           "offset": 16725,
@@ -37205,7 +37181,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 63,
+      "index": 61,
       "lines": [
         {
           "offset": 16767,
@@ -37241,7 +37217,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 64,
+      "index": 62,
       "lines": [
         {
           "offset": 16917,
@@ -37259,7 +37235,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 65,
+      "index": 63,
       "lines": [
         {
           "offset": 16959,
@@ -37295,7 +37271,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 66,
+      "index": 64,
       "lines": [
         {
           "offset": 17095,
@@ -37313,7 +37289,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 67,
+      "index": 65,
       "lines": [
         {
           "offset": 17166,
@@ -37331,7 +37307,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 68,
+      "index": 66,
       "lines": [
         {
           "offset": 17233,
@@ -37349,7 +37325,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 69,
+      "index": 67,
       "lines": [
         {
           "offset": 17320,
@@ -37373,7 +37349,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 70,
+      "index": 68,
       "lines": [
         {
           "offset": 17407,
@@ -37397,7 +37373,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 71,
+      "index": 69,
       "lines": [
         {
           "offset": 18163,
@@ -37415,30 +37391,6 @@
           "offset": 18181,
           "jp": "リフレッシュの水",
           "jp_len": 16,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6A.CMD",
-      "index": 72,
-      "lines": [
-        {
-          "offset": 18172,
-          "jp": "消し薬",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6A.CMD",
-      "index": 73,
-      "lines": [
-        {
-          "offset": 18183,
-          "jp": "フレッシュの水",
-          "jp_len": 14,
           "kr": ""
         }
       ]
@@ -45743,6 +45695,3750 @@
           "jp_len": 12,
           "kr": "DOS 복귀",
           "tag": "system"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 1,
+      "lines": [
+        {
+          "offset": 4752,
+          "jp": "里に帰るのも　ほんとうに",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 4778,
+          "jp": "久しぶりだぜ",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 4792,
+          "jp": "ま　町を見物でもしてから",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 4818,
+          "jp": "ゆっくりと戻るか",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 2,
+      "lines": [
+        {
+          "offset": 4835,
+          "jp": "えらいこっちゃーっ！",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 4857,
+          "jp": "俺が　便所に入っている間に",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 4885,
+          "jp": "何があったというんだ？",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 3,
+      "lines": [
+        {
+          "offset": 4908,
+          "jp": "川から　裏山の洞窟に入れるとは",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 4940,
+          "jp": "知らなかった",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 4954,
+          "jp": "しかし　川の水をどうにか",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 4980,
+          "jp": "しねーとなあ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 4,
+      "lines": [
+        {
+          "offset": 4993,
+          "jp": "領主のダンナの所に盗賊…",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5019,
+          "jp": "つかまえりゃ　なにか報酬が",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5047,
+          "jp": "出るかもしれんな",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 5,
+      "lines": [
+        {
+          "offset": 5064,
+          "jp": "はて？　俺はなにをしてるんだ",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5094,
+          "jp": "いまは　じーさんをさらった",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5122,
+          "jp": "ヤツの跡を追わなければ",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 6,
+      "lines": [
+        {
+          "offset": 5145,
+          "jp": "ムリヤリ　小汚い鍵を",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 5167,
+          "jp": "おしつけられちまったぜ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 5191,
+          "jp": "とりあえずは　領主のダンナに",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5221,
+          "jp": "返しておけばいいか",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 7,
+      "lines": [
+        {
+          "offset": 5240,
+          "jp": "この〔水門の鍵〕さえあれば",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5268,
+          "jp": "チョコザイな水門も",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 5288,
+          "jp": "年貢の納めどきってわけだ",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 8,
+      "lines": [
+        {
+          "offset": 5313,
+          "jp": "領主のダンナの所に盗賊…",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5339,
+          "jp": "つかまえりゃ　なにか報酬が",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5367,
+          "jp": "出るかもしれんな",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 9,
+      "lines": [
+        {
+          "offset": 5384,
+          "jp": "樹に登った変なオッサンか",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5410,
+          "jp": "もしかすると…",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 10,
+      "lines": [
+        {
+          "offset": 5425,
+          "jp": "橋が落ちてしまうなんて",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 5449,
+          "jp": "参るよなあ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 5461,
+          "jp": "帰りのことは後回しにして",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5487,
+          "jp": "いまは　ここの攻略に専念だ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 11,
+      "lines": [
+        {
+          "offset": 5514,
+          "jp": "よーし　これで溺れることなく",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5544,
+          "jp": "裏山の洞窟に進入できるぜ",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 12,
+      "lines": [
+        {
+          "offset": 5569,
+          "jp": "やっかいな　しかけが多い城だが",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 5601,
+          "jp": "急いでじーさんを",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 5619,
+          "jp": "助けてやらんといかんな",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 13,
+      "lines": [
+        {
+          "offset": 5642,
+          "jp": "しかしまあ　いろんな物がある",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5672,
+          "jp": "城だぜ",
+          "jp_len": 6,
+          "kr": ""
+        },
+        {
+          "offset": 5680,
+          "jp": "俺たちの　ご先祖ってのは",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5706,
+          "jp": "すげえヒマだったみたいだなあ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 14,
+      "lines": [
+        {
+          "offset": 5735,
+          "jp": "そろそろ　本日の",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 5753,
+          "jp": "メインイベントって雰囲気だな",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5783,
+          "jp": "気合入れて行くかぁ！",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 15,
+      "lines": [
+        {
+          "offset": 5804,
+          "jp": "さあ　とっとと里へ戻るか",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 16,
+      "lines": [
+        {
+          "offset": 5829,
+          "jp": "帰ってきたばかりだというのに",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 5859,
+          "jp": "また旅に出るはめになるとは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5887,
+          "jp": "思ってもみなかったぜ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 17,
+      "lines": [
+        {
+          "offset": 5908,
+          "jp": "こんな汚い所から",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 5926,
+          "jp": "とっとと　おさらばしたいぜ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 18,
+      "lines": [
+        {
+          "offset": 5953,
+          "jp": "ファーリンちゃんは　どこに",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5981,
+          "jp": "つかまってるんだ？",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 6001,
+          "jp": "早い所　さがしてやらねば",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 19,
+      "lines": [
+        {
+          "offset": 6026,
+          "jp": "強盗のくせに　いい料理の腕を",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 6056,
+          "jp": "してやがるなあ",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 6072,
+          "jp": "ほんとうに　うまそうな弁当だ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 20,
+      "lines": [
+        {
+          "offset": 6101,
+          "jp": "気分はすっかりガキのころの",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 6129,
+          "jp": "おつかいって感じだな",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 21,
+      "lines": [
+        {
+          "offset": 6150,
+          "jp": "お使いを　やりとげた後は",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 6176,
+          "jp": "心地よい達成感があって",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 6200,
+          "jp": "いいものだなあ",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 22,
+      "lines": [
+        {
+          "offset": 6215,
+          "jp": "あの吹きぬけの下に",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 6235,
+          "jp": "ボスがいるのは　わかってるんだ",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 6267,
+          "jp": "なんとか降りる方法は",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 6289,
+          "jp": "ないものだろうか",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 23,
+      "lines": [
+        {
+          "offset": 6306,
+          "jp": "キラーン！",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 6318,
+          "jp": "よし　さっきの吹きぬけの所に",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 6348,
+          "jp": "急いで戻るぞ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 24,
+      "lines": [
+        {
+          "offset": 6361,
+          "jp": "封印の一族か…",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 6377,
+          "jp": "妙な所に隠れ住んでなきゃ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 6403,
+          "jp": "いいが",
+          "jp_len": 6,
+          "kr": ""
+        },
+        {
+          "offset": 6411,
+          "jp": "探すのは面倒だからな",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 25,
+      "lines": [
+        {
+          "offset": 6432,
+          "jp": "トラの形をした岩ってことは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 6460,
+          "jp": "やっぱり　この近くに",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 6482,
+          "jp": "トラの民が住んでいるという",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 6510,
+          "jp": "証拠なのかな",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 26,
+      "lines": [
+        {
+          "offset": 6523,
+          "jp": "酒だ　酒っ！",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 6537,
+          "jp": "酒　持ってこーい！",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 27,
+      "lines": [
+        {
+          "offset": 6556,
+          "jp": "くそっ！　どういうことだ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 6582,
+          "jp": "最近なぜか　泳がなきゃならん",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 6612,
+          "jp": "ことばかりだ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 28,
+      "lines": [
+        {
+          "offset": 6625,
+          "jp": "自慢じゃないが　俺は竹馬の",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 6653,
+          "jp": "スペシャリストなのだ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 6675,
+          "jp": "華麗なステップを見てくれ",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 29,
+      "lines": [
+        {
+          "offset": 6700,
+          "jp": "なんてすけべなヤツなんだ！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 6728,
+          "jp": "俺でさえ　さわったことのない",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 6758,
+          "jp": "ファーリンちゃんの胸を",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 6782,
+          "jp": "モミモミしようとするとはっ！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 30,
+      "lines": [
+        {
+          "offset": 6811,
+          "jp": "むぅ　あのスケベ親父め",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 6835,
+          "jp": "なかなかの作品を秘蔵していたな",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 6867,
+          "jp": "あなどれん男だ",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 31,
+      "lines": [
+        {
+          "offset": 6882,
+          "jp": "こ　この肌に食い込むロープが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 6912,
+          "jp": "鳥肌もんに気持ちいいぞ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 6936,
+          "jp": "いかん　このままでは",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 6958,
+          "jp": "道をふみはずしてしまいそうだ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 32,
+      "lines": [
+        {
+          "offset": 6987,
+          "jp": "自由になれて　うれしい俺",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7013,
+          "jp": "まだ縛られていたかったと",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7039,
+          "jp": "悲しむ俺　ほんとうの俺は",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7065,
+          "jp": "いったい　どっちなんだ？",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 33,
+      "lines": [
+        {
+          "offset": 7090,
+          "jp": "トラの民のアターホー",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 7112,
+          "jp": "強そうでいて　まぬけなひびきが",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 7144,
+          "jp": "感じられる名前だな",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 34,
+      "lines": [
+        {
+          "offset": 7163,
+          "jp": "ま　また高い所から",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 7183,
+          "jp": "落ちることになろうとは",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 7207,
+          "jp": "思わなかった…",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 35,
+      "lines": [
+        {
+          "offset": 7222,
+          "jp": "骨で造った建物とは驚いた",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7248,
+          "jp": "トラの民の先祖も",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7266,
+          "jp": "相当　変わり者みてーだな",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 36,
+      "lines": [
+        {
+          "offset": 7291,
+          "jp": "骨ってのは　かなりにおいが",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 7319,
+          "jp": "キツイんだよな",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 7335,
+          "jp": "とくに俺は鼻がいいから",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 7359,
+          "jp": "けっこう　くるものがあるぜ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 37,
+      "lines": [
+        {
+          "offset": 7386,
+          "jp": "またまた出ました〔火霊石〕！",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 7416,
+          "jp": "こんどは　どんなことに",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 7440,
+          "jp": "使うんだろうな？",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 38,
+      "lines": [
+        {
+          "offset": 7457,
+          "jp": "いやー　大した威力だよ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 7481,
+          "jp": "一家に１コはほしいくらいだ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 7509,
+          "jp": "あの〔火霊石〕はよ",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 39,
+      "lines": [
+        {
+          "offset": 7528,
+          "jp": "あのサルに縛りのテクニックを",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 7558,
+          "jp": "教えてもらいたかったが",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 7582,
+          "jp": "オヤジはヤツを生かしておかない",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 7614,
+          "jp": "だろうなあ",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 40,
+      "lines": [
+        {
+          "offset": 7625,
+          "jp": "オヤジ　恐るべし",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7643,
+          "jp": "あの戦いぶりは　まさしく",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7669,
+          "jp": "殺戮マシーンだったぜ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 41,
+      "lines": [
+        {
+          "offset": 7690,
+          "jp": "ついに最北の都まで",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 7710,
+          "jp": "来てしまったか",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 7726,
+          "jp": "故郷が恋しいなあ",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 42,
+      "lines": [
+        {
+          "offset": 7743,
+          "jp": "魔法使いか…",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 7757,
+          "jp": "敵にまわすと恐い相手だぜ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7783,
+          "jp": "ああ　ペトゥムが",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7801,
+          "jp": "仲間でよかった",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 43,
+      "lines": [
+        {
+          "offset": 7816,
+          "jp": "ペトゥムの師匠というのは",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7842,
+          "jp": "なんか　スゴイ人物のようだな",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 44,
+      "lines": [
+        {
+          "offset": 7871,
+          "jp": "うおーっ！　早く",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7889,
+          "jp": "女王さまに会わせろーっ！",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 45,
+      "lines": [
+        {
+          "offset": 7914,
+          "jp": "なには　ともあれ",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7932,
+          "jp": "女王さまに会わせろーっ！",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7958,
+          "jp": "襲ったりしないからーっ！",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 46,
+      "lines": [
+        {
+          "offset": 7983,
+          "jp": "な　なんてこった…",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 8003,
+          "jp": "俺のバカ　バカ　バカーッ！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 47,
+      "lines": [
+        {
+          "offset": 8030,
+          "jp": "女王と聞いて期待した俺が",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8056,
+          "jp": "バカだった",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 8068,
+          "jp": "まさか　こんなとんでもない",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 8096,
+          "jp": "女だとは…",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 48,
+      "lines": [
+        {
+          "offset": 8107,
+          "jp": "聞けば　封印されているのは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 8135,
+          "jp": "魔獣だっていうじゃないか",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8161,
+          "jp": "俺ん所の秘宝とは",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 8179,
+          "jp": "ずいぶんと違うんだなあ",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 49,
+      "lines": [
+        {
+          "offset": 8202,
+          "jp": "えーい　くそっ！",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 8220,
+          "jp": "イライラして落ち着かんぜ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8246,
+          "jp": "水の上を旅するのなんて",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 8270,
+          "jp": "狂気のさただ！",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 50,
+      "lines": [
+        {
+          "offset": 8285,
+          "jp": "船の中がさわがしいな",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 8307,
+          "jp": "なにかあったのか？",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 51,
+      "lines": [
+        {
+          "offset": 8326,
+          "jp": "えーと　たのまれたのは",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 8350,
+          "jp": "食堂にいる料理長への",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 8372,
+          "jp": "伝言だったな",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 52,
+      "lines": [
+        {
+          "offset": 8385,
+          "jp": "えーと　たのまれたのは",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 8409,
+          "jp": "機関室への伝言だったな",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 53,
+      "lines": [
+        {
+          "offset": 8432,
+          "jp": "えーと　たのまれたのは",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 8456,
+          "jp": "船長室から〔風霊石〕を",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 8480,
+          "jp": "とってくることだったな",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 54,
+      "lines": [
+        {
+          "offset": 8503,
+          "jp": "あの素晴らしい名作を",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 8525,
+          "jp": "失うなんて　たえられん！",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8551,
+          "jp": "なんとしても",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 8565,
+          "jp": "持って逃げなくてはっ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 55,
+      "lines": [
+        {
+          "offset": 8586,
+          "jp": "思えば短い人生だったなあ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8612,
+          "jp": "タタミの上で死ねなかったのが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 8642,
+          "jp": "くやしいぜ",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 56,
+      "lines": [
+        {
+          "offset": 8653,
+          "jp": "地獄のさたも金しだい　とは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 8681,
+          "jp": "よく言った",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 8693,
+          "jp": "しかし　手持ちのゴールドが",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 8721,
+          "jp": "使えないのは参ったな",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 57,
+      "lines": [
+        {
+          "offset": 8742,
+          "jp": "あとは地獄の法官というヤツに",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 8772,
+          "jp": "会えばいいんだな",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 8790,
+          "jp": "どこにいるかは知らんけど",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 58,
+      "lines": [
+        {
+          "offset": 8815,
+          "jp": "シャバの空気がうまいとは",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8841,
+          "jp": "よく言った",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 8853,
+          "jp": "う〜ん　生きてるっていいなあ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 59,
+      "lines": [
+        {
+          "offset": 8882,
+          "jp": "海のそばというのは",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 8902,
+          "jp": "どうしても落ち着けないな",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8928,
+          "jp": "早く　まともな陸地へ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 8950,
+          "jp": "戻りたいぜ",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 60,
+      "lines": [
+        {
+          "offset": 8961,
+          "jp": "むぅ　いままでのヤツらは",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 8987,
+          "jp": "あの　お姉さまのもとで",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 9011,
+          "jp": "悪事を働いていたのか",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 9033,
+          "jp": "なんて　うらやましいんだ",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 61,
+      "lines": [
+        {
+          "offset": 9058,
+          "jp": "えらいことになってるなあ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 9084,
+          "jp": "法官のバカは　どこで",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 9106,
+          "jp": "なにをしてるんだ　いったい？",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 62,
+      "lines": [
+        {
+          "offset": 9135,
+          "jp": "魔神のツメあとか…",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9155,
+          "jp": "お姉さま　待っててくださいね",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 9185,
+          "jp": "必ず参りますから！",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 63,
+      "lines": [
+        {
+          "offset": 9204,
+          "jp": "また地獄に来ることになるとは",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 9234,
+          "jp": "思わなかったぜ",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 9250,
+          "jp": "しかし　ここになつかしさを",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9278,
+          "jp": "感じてしまうのはなぜだ？",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 64,
+      "lines": [
+        {
+          "offset": 9303,
+          "jp": "はるばる　やってきたぜ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 9327,
+          "jp": "お姉さまの家！",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 9343,
+          "jp": "なかなか　攻略しがいのある",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9371,
+          "jp": "所みたいだな",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 65,
+      "lines": [
+        {
+          "offset": 9384,
+          "jp": "これでエレベーターは",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 9406,
+          "jp": "動くようになったぜ",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 66,
+      "lines": [
+        {
+          "offset": 9425,
+          "jp": "しかし　えらく広いな",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 9447,
+          "jp": "お姉さまは　どこにいるのやら",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 67,
+      "lines": [
+        {
+          "offset": 9476,
+          "jp": "におう　におうぞ！",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9496,
+          "jp": "お姉さまは　すぐ近くだ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 9520,
+          "jp": "がんばれ　俺っ！",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 68,
+      "lines": [
+        {
+          "offset": 9537,
+          "jp": "さすがは敵本拠地",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 9555,
+          "jp": "ボスが連続して現れるとはな",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 69,
+      "lines": [
+        {
+          "offset": 9582,
+          "jp": "なるほど　あの玉が",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9602,
+          "jp": "エレベーターを動かすための",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9630,
+          "jp": "鍵となっていたのか",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 70,
+      "lines": [
+        {
+          "offset": 9649,
+          "jp": "い　いかん！　緊張してきた",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9677,
+          "jp": "お姉さまの近くまで",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9697,
+          "jp": "来たせいかな？",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 71,
+      "lines": [
+        {
+          "offset": 9849,
+          "jp": "さあ　いまからキリちゃんの",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9877,
+          "jp": "大脱出劇が始まるよ",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9897,
+          "jp": "思い切りドハデに決めてやる！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 72,
+      "lines": [
+        {
+          "offset": 9926,
+          "jp": "どうせなら　どばーっとハデに",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 9956,
+          "jp": "強盗どもを　けちらしたほうが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 9986,
+          "jp": "カッコいいのにさ",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 10004,
+          "jp": "あ〜あ　つまんないの",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 73,
+      "lines": [
+        {
+          "offset": 10025,
+          "jp": "なんか間違ってるよっ！",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 10049,
+          "jp": "なんで　あたしが",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 10067,
+          "jp": "強盗の使い走りをやらなけりゃ",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10097,
+          "jp": "なんないのさ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 74,
+      "lines": [
+        {
+          "offset": 10110,
+          "jp": "まったく　ここの強盗どもは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 10138,
+          "jp": "不精なヤツが多いよ！",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 75,
+      "lines": [
+        {
+          "offset": 10159,
+          "jp": "スマッシュ　あんた本気で",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10185,
+          "jp": "そんなこと言ってるの？",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 76,
+      "lines": [
+        {
+          "offset": 10208,
+          "jp": "こんなときに空を飛べるヤツが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10238,
+          "jp": "いれば　よかったんだけどね",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 77,
+      "lines": [
+        {
+          "offset": 10265,
+          "jp": "あれま　自ら効果音つきで",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10291,
+          "jp": "目を光らせちゃってさ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 10313,
+          "jp": "なにか　いいアイデアでも",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10339,
+          "jp": "思いついたのかね？",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 78,
+      "lines": [
+        {
+          "offset": 10358,
+          "jp": "地味な田舎は　どうも性に",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10384,
+          "jp": "合わないよ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 10396,
+          "jp": "やっぱ　どばーっとハデじゃ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 10424,
+          "jp": "なくちゃね！",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 79,
+      "lines": [
+        {
+          "offset": 10437,
+          "jp": "しかし　スマッシュが",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 10459,
+          "jp": "カナヅチとは笑っちゃうね",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10485,
+          "jp": "犬カキもできないのかい",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 80,
+      "lines": [
+        {
+          "offset": 10508,
+          "jp": "父さん　大丈夫かな…",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 81,
+      "lines": [
+        {
+          "offset": 10529,
+          "jp": "ここ　あんまりいい思い出が",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 10557,
+          "jp": "ないんだよね",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 10571,
+          "jp": "盗賊につかまっちまうなんて",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 10599,
+          "jp": "一生ものの不覚だったよ",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 82,
+      "lines": [
+        {
+          "offset": 10622,
+          "jp": "列車でダイビングとは",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 10644,
+          "jp": "我ながらグッドな妙案だったね",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10674,
+          "jp": "ヤツらもビビってるだろう",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10700,
+          "jp": "これで精神的に優位に立てたな",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 83,
+      "lines": [
+        {
+          "offset": 10729,
+          "jp": "こういう場合　動力炉ってのは",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10759,
+          "jp": "地下にある物だよね",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 84,
+      "lines": [
+        {
+          "offset": 10778,
+          "jp": "よしっ！　作戦の第１段階終了",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10808,
+          "jp": "さあ　さくさくと次行こう",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 10834,
+          "jp": "さくさくとね！",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 85,
+      "lines": [
+        {
+          "offset": 10849,
+          "jp": "殺人光線か…　さすがの",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 10873,
+          "jp": "あたしも　そういう必殺技は",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 10901,
+          "jp": "持ってないんだよねえ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 10923,
+          "jp": "決め技に　ひとつ欲しいなあ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 86,
+      "lines": [
+        {
+          "offset": 10950,
+          "jp": "人間大砲とは　ナイスな",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 10974,
+          "jp": "作戦じゃないの",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 10990,
+          "jp": "アリババも　わかってるねえ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 11018,
+          "jp": "あたしの好みを",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 87,
+      "lines": [
+        {
+          "offset": 11033,
+          "jp": "さっきのサルのいた部屋って",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 11061,
+          "jp": "封印の部屋だよね",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 11079,
+          "jp": "なんで　ここにあるの？",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 88,
+      "lines": [
+        {
+          "offset": 11102,
+          "jp": "さっさと残りのエレベーターも",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 11132,
+          "jp": "動くようにしちゃおう",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 89,
+      "lines": [
+        {
+          "offset": 11153,
+          "jp": "うーっ！　思わず",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 11171,
+          "jp": "武者ぶるいしちゃったよ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 11195,
+          "jp": "決戦が近いせいかな？",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 90,
+      "lines": [
+        {
+          "offset": 11415,
+          "jp": "スマッシュさんの言う通り",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 11441,
+          "jp": "早く　長老さまを",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 11459,
+          "jp": "お救いしませんと！",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 91,
+      "lines": [
+        {
+          "offset": 11478,
+          "jp": "あぶり出しの　かけじく…",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 11504,
+          "jp": "スマッシュさん　本気なのかしら",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 11536,
+          "jp": "まさか　いくらなんでも",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 11560,
+          "jp": "あぶり出しは　ないでしょう",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 92,
+      "lines": [
+        {
+          "offset": 11587,
+          "jp": "もう　いいですっ！",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 11607,
+          "jp": "あぶり出しでも　なんでも",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 11633,
+          "jp": "好きにしてください",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 93,
+      "lines": [
+        {
+          "offset": 11652,
+          "jp": "長老さまも　ご無事でしたし",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 11680,
+          "jp": "これで一安心ですね",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 94,
+      "lines": [
+        {
+          "offset": 11699,
+          "jp": "最初の目的地は清流の町ですか",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 11729,
+          "jp": "私　列車に乗るのは",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 11749,
+          "jp": "初めてなので　なんだか",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 11773,
+          "jp": "楽しみです",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 95,
+      "lines": [
+        {
+          "offset": 11784,
+          "jp": "隠れ里と言っても完全に世間から",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 11816,
+          "jp": "隔離しているわけではありません",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 11848,
+          "jp": "町の人に　たずねてみれば",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 11874,
+          "jp": "なにか　わかるかも知れません",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 96,
+      "lines": [
+        {
+          "offset": 11903,
+          "jp": "トラになれ…",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 11917,
+          "jp": "いったい　どういう意味なの",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 11945,
+          "jp": "かしら",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 97,
+      "lines": [
+        {
+          "offset": 11952,
+          "jp": "ほんとうに　お酒で",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 11972,
+          "jp": "あの謎が解けるのでしょうか",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 98,
+      "lines": [
+        {
+          "offset": 11999,
+          "jp": "なんとかして　川を渡らねば",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12027,
+          "jp": "なりません",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 99,
+      "lines": [
+        {
+          "offset": 12038,
+          "jp": "竹馬？　このような物に乗って",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 12068,
+          "jp": "ほんとうに歩けるのですか？",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 100,
+      "lines": [
+        {
+          "offset": 12095,
+          "jp": "な　なんて人なのでしょう！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12123,
+          "jp": "私の　む　胸を…その　あの…",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 12153,
+          "jp": "ああ　もぉ！",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 12167,
+          "jp": "とにかく　ダメったらダメです",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 101,
+      "lines": [
+        {
+          "offset": 12196,
+          "jp": "なんにしても　お酒が",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 12218,
+          "jp": "手に入って　よかったですわ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 102,
+      "lines": [
+        {
+          "offset": 12245,
+          "jp": "はぅ〜　後頭部が痛いですぅ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12273,
+          "jp": "いったい　なにがあったというの",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 12305,
+          "jp": "ですか",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 103,
+      "lines": [
+        {
+          "offset": 12312,
+          "jp": "いつまでもバカやってないで",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12340,
+          "jp": "早くアターホーさんを",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 12362,
+          "jp": "助けましょう",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 104,
+      "lines": [
+        {
+          "offset": 12375,
+          "jp": "私の里の二の舞だけは",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 12397,
+          "jp": "なんとしても　さけなければ！",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 105,
+      "lines": [
+        {
+          "offset": 12426,
+          "jp": "こんどもまた広そうな",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 12448,
+          "jp": "お城ですわね",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 12462,
+          "jp": "キツネの民の封印の場は",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 12486,
+          "jp": "とても質素ですのに",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 106,
+      "lines": [
+        {
+          "offset": 12505,
+          "jp": "ちょっと趣味の悪い所ですわ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 107,
+      "lines": [
+        {
+          "offset": 12532,
+          "jp": "よそさまの　お墓を荒らすとは",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 12562,
+          "jp": "なんて非常識なんでしょう！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 108,
+      "lines": [
+        {
+          "offset": 12589,
+          "jp": "また　あぶり出しだったら",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 12615,
+          "jp": "怒りますよ　私",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 109,
+      "lines": [
+        {
+          "offset": 12630,
+          "jp": "しかし　思い切ったことを",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 12656,
+          "jp": "したものですね",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 12672,
+          "jp": "ほんとにビックリしましたわ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 110,
+      "lines": [
+        {
+          "offset": 12699,
+          "jp": "いまの私は気合いの入りかたが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 12729,
+          "jp": "違いますよ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 12741,
+          "jp": "今回は　とくに！",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 111,
+      "lines": [
+        {
+          "offset": 12758,
+          "jp": "や　やりました…",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 112,
+      "lines": [
+        {
+          "offset": 12775,
+          "jp": "残る封印の一族は３種族…",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 12801,
+          "jp": "この町で　なにか手がかりが",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12829,
+          "jp": "つかめるとよいのですが",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 113,
+      "lines": [
+        {
+          "offset": 12852,
+          "jp": "ペトゥムさんの　お師匠さまは",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 12882,
+          "jp": "どのようなかたなんでしょう",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12910,
+          "jp": "お会いするのが楽しみです",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 114,
+      "lines": [
+        {
+          "offset": 12935,
+          "jp": "さみしがり屋の孤高の隠者ですか",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 12967,
+          "jp": "あまりカッコよくありませんね",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 115,
+      "lines": [
+        {
+          "offset": 12996,
+          "jp": "なにか　いやーな予感が",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 13020,
+          "jp": "しますわ　私…",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 116,
+      "lines": [
+        {
+          "offset": 13035,
+          "jp": "ああ　なぜかしら",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 13053,
+          "jp": "不安でしょうがありません",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 13079,
+          "jp": "いったい　これから",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 13099,
+          "jp": "なにが起こるというのでしょう",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 117,
+      "lines": [
+        {
+          "offset": 13194,
+          "jp": "おのれ　サル野郎め！",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 13216,
+          "jp": "ワシを怒らせると　どうなるか",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13246,
+          "jp": "思い知らせてくれるわ！",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 118,
+      "lines": [
+        {
+          "offset": 13269,
+          "jp": "あのサルめ　絶対に許さん！",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 119,
+      "lines": [
+        {
+          "offset": 13296,
+          "jp": "ひとン家の墓を勝手に",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 13318,
+          "jp": "ほじくり返しておってからに！",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13348,
+          "jp": "あのくそザル　ろくな死にかたは",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 13380,
+          "jp": "できんと思え！",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 120,
+      "lines": [
+        {
+          "offset": 13395,
+          "jp": "この〔地酒〕さえあれば",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 13419,
+          "jp": "リフトを動かすことが",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 13441,
+          "jp": "できるわい",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 121,
+      "lines": [
+        {
+          "offset": 13452,
+          "jp": "はて？　〔火霊石〕など",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 13476,
+          "jp": "宝箱に入れたおぼえはないが…",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13506,
+          "jp": "あのサル野郎が持ち込んだ物",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 13534,
+          "jp": "なのかのぉ？",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 122,
+      "lines": [
+        {
+          "offset": 13547,
+          "jp": "築３００年の伝統をほこる",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 13573,
+          "jp": "トラの民の城に　なんつーことを",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 13605,
+          "jp": "するんじゃーっ！",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 13623,
+          "jp": "ああ　修繕きくかのぉ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 123,
+      "lines": [
+        {
+          "offset": 13644,
+          "jp": "いまのワシは　あのサル専用の",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13674,
+          "jp": "殺戮マシーンよ",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 13690,
+          "jp": "誰も止められぬわっ！",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 124,
+      "lines": [
+        {
+          "offset": 13711,
+          "jp": "やることはやったし",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 13731,
+          "jp": "ひとまず裏口から清流の町へ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 13759,
+          "jp": "戻るぞ",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 125,
+      "lines": [
+        {
+          "offset": 13945,
+          "jp": "このキリという人",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 13963,
+          "jp": "なにか危ないことを考えている",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13993,
+          "jp": "みたいですねえ",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 126,
+      "lines": [
+        {
+          "offset": 14008,
+          "jp": "うーん　なかなか　おいしそうな",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 14040,
+          "jp": "弁当です",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 14050,
+          "jp": "こんなのが食べられるのなら",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14078,
+          "jp": "強盗になってもいいですね",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 127,
+      "lines": [
+        {
+          "offset": 14103,
+          "jp": "やれやれ　新人というものは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14131,
+          "jp": "どこでも　こき使われるもの",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14159,
+          "jp": "なんですね",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 128,
+      "lines": [
+        {
+          "offset": 14170,
+          "jp": "それはそうと先を急ぎましょう",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14200,
+          "jp": "さきほどの扉の前にいた人が",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14228,
+          "jp": "いなくなっているはずです",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 129,
+      "lines": [
+        {
+          "offset": 14253,
+          "jp": "落下速度をコントロールする",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14281,
+          "jp": "魔法は失われて久しいんですよ",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14311,
+          "jp": "お役に立てなくて",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 14329,
+          "jp": "もうしわけありません",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 130,
+      "lines": [
+        {
+          "offset": 14350,
+          "jp": "ずいぶんと自信に満ちた",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14374,
+          "jp": "顔をしてます",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 14388,
+          "jp": "ここはスマッシュさんに",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14412,
+          "jp": "期待しましょう",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 131,
+      "lines": [
+        {
+          "offset": 14427,
+          "jp": "私が旅に出ている間に",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14449,
+          "jp": "師匠がボケてなければいいが…",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14479,
+          "jp": "どうも不安です",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 132,
+      "lines": [
+        {
+          "offset": 14494,
+          "jp": "南の森はいま関係者以外",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14518,
+          "jp": "立ち入り禁止のはず",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 14538,
+          "jp": "女王陛下の許可がいるかも",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 14564,
+          "jp": "しれませんね",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 133,
+      "lines": [
+        {
+          "offset": 14577,
+          "jp": "城の地下なんかで　なにを",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 14603,
+          "jp": "しているんだろう？",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 14623,
+          "jp": "あやしい　なんとか入る方法は",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14653,
+          "jp": "ないものかな",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 134,
+      "lines": [
+        {
+          "offset": 14666,
+          "jp": "城の地下で穴を掘っている",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 14692,
+          "jp": "というが…",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14704,
+          "jp": "むぅ　私も　いやーな予感が",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14732,
+          "jp": "してきました",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 135,
+      "lines": [
+        {
+          "offset": 14745,
+          "jp": "石化の呪いですか…",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 14765,
+          "jp": "私も女王も専門外なんですよね",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14795,
+          "jp": "呪い系の呪文は",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 14811,
+          "jp": "これは参りました",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 136,
+      "lines": [
+        {
+          "offset": 14828,
+          "jp": "５年前　封印のある洞窟に",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 14854,
+          "jp": "いろいろと　しかけを",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14876,
+          "jp": "設置しました　それが",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14898,
+          "jp": "役立っているといいのですが…",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 137,
+      "lines": [
+        {
+          "offset": 14927,
+          "jp": "トホホ　私の設置したしかけが",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14957,
+          "jp": "見破られ　逆に我々の",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14979,
+          "jp": "足どめに使われることに",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15003,
+          "jp": "なろうとは",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 138,
+      "lines": [
+        {
+          "offset": 15014,
+          "jp": "地獄から　よみがえるとは",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 15040,
+          "jp": "スマッシュさんも",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 15058,
+          "jp": "なんて　しぶとい…いえ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15082,
+          "jp": "タフなんでしょう",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 139,
+      "lines": [
+        {
+          "offset": 15099,
+          "jp": "はて？　怪しげな気配が",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15123,
+          "jp": "したような…",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 15137,
+          "jp": "気のせいでしょうか",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 140,
+      "lines": [
+        {
+          "offset": 15156,
+          "jp": "それにしても異常なまでに",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 15182,
+          "jp": "大きな人でしたね",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 15200,
+          "jp": "戦闘力もありそうでしたよ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 15226,
+          "jp": "私たち勝てますかね？",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 141,
+      "lines": [
+        {
+          "offset": 15247,
+          "jp": "あの〔笑殺の羽ぼうき〕という",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15277,
+          "jp": "アイテムには　どのような力が",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15307,
+          "jp": "秘められていたのか…",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 15329,
+          "jp": "またまたイヤな予感がします",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 142,
+      "lines": [
+        {
+          "offset": 15356,
+          "jp": "私たちチームは　この空中都市の",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 15388,
+          "jp": "降下を止めるのが目的です",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 15414,
+          "jp": "まずは動力炉を捜すとしましょう",
+          "jp_len": 30,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 143,
+      "lines": [
+        {
+          "offset": 15445,
+          "jp": "というわけで　エレベーターで",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15475,
+          "jp": "地下へ行き　動力炉を",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 15497,
+          "jp": "捜しましょう",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 144,
+      "lines": [
+        {
+          "offset": 15510,
+          "jp": "これが　もと魔王の城ですか…",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15540,
+          "jp": "とりまいている気は　まさしく",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15570,
+          "jp": "邪悪のそれですが　機械だらけ",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15600,
+          "jp": "だと　風情がありませんね",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 145,
+      "lines": [
+        {
+          "offset": 15625,
+          "jp": "殺人光線ですか…　私も",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15649,
+          "jp": "専門の魔法以外のこととなると",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15679,
+          "jp": "お手上げですよ",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 146,
+      "lines": [
+        {
+          "offset": 15694,
+          "jp": "なんてムチャな人たちなんだ",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 15722,
+          "jp": "これでしたら　国で女王の相手を",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 15754,
+          "jp": "していたほうがマシですよぉ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 147,
+      "lines": [
+        {
+          "offset": 15781,
+          "jp": "この〔カードＬＶ２〕があれば",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15811,
+          "jp": "いままで通れなかった所にも",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 15839,
+          "jp": "入ることができるはずですよ",
+          "jp_len": 26,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 148,
+      "lines": [
+        {
+          "offset": 15866,
+          "jp": "残る玉は　いったい",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 15886,
+          "jp": "どこに　あるのでしょう？",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 149,
+      "lines": [
+        {
+          "offset": 15911,
+          "jp": "ブルブルッ…",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 15925,
+          "jp": "ここは寒くて　いけませんね",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 15953,
+          "jp": "私は冷え性だから",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 15971,
+          "jp": "よけい　こたえますよ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 150,
+      "lines": [
+        {
+          "offset": 16017,
+          "jp": "城の連中にバレるとまずいから",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 16047,
+          "jp": "隠密にすませるわよ",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 16067,
+          "jp": "いいわね！　絶対によ！",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 151,
+      "lines": [
+        {
+          "offset": 16090,
+          "jp": "封じる山か…",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 16104,
+          "jp": "５年前　魔獣　喰らうものを",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 16132,
+          "jp": "目覚めさせたときのことを",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 16158,
+          "jp": "思い出すなあ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 152,
+      "lines": [
+        {
+          "offset": 16171,
+          "jp": "どうすれば　ペトゥムの鼻を",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 16199,
+          "jp": "あかしてやれるかしら",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 16221,
+          "jp": "これは私の永遠の課題だわ",
+          "jp_len": 24,
+          "kr": ""
         }
       ]
     }
