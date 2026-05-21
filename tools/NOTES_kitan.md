@@ -1,7 +1,7 @@
 # 환세희담 역공학 노트
 
 **대상**: 환세희담 / 幻世喜譚 (Compile, 1995, PC-98)  
-**상태**: 에뮬레이터 탑재 완료 (system + data 디스크), demo 분석 부분 완료  
+**상태**: 에뮬레이터 탑재 완료 (system + data 디스크), JP 텍스트 파싱 완료, KR 참고 텍스트 임포트 완료, 번역 진행 중  
 **도구**: `compile_lz.py` (LZ 해제 공통), `pc98disk.py` (FDI 파일 추출)
 
 ---
@@ -161,7 +161,7 @@ SJIS 텍스트 [72 01 줄바꿈 | 73 30 페이지 | 76 1a 클리어]
 6b 00  ← 다음 블록 시작 (이 블록 종료)
 ```
 
-`6b 00` 이후 5바이트 이내에 SJIS가 없으면 바이너리 이벤트 블록 → 스킵.
+`6b 00` 이후 30바이트 이내에 SJIS가 없으면 바이너리 이벤트 블록 → 스킵 (`_DIALOG_LOOKAHEAD = 30`).
 
 ### 아이템 포맷 (MESSAGE.CMD)
 
@@ -188,7 +188,7 @@ SC5A.CMD ~ SC5F.CMD
 SC6A.CMD ~ SC6D.CMD
 SC7A.CMD
 PARTY2~4.CMD PARTY6~7.CMD  (PARTY1, PARTY5 없음)
-BTL_PC.CMD   전투 대사
+BTL_PC.CMD   전투 AI (바이너리 전용, 텍스트 없음)
 ENDING.CMD   엔딩
 MESSAGE.CMD  아이템 DB
 ```
@@ -291,12 +291,14 @@ JP: 4블록(대화), KR: 3블록 — 추출기별 N번째 대응이므로 대화
 
 ## 향후 방향
 
-### 인서터 구현 시 주의
+### 인서터 구현
+
+번역 완료 후 CMD 파일에 한글 텍스트를 재삽입해 FDI를 재조립해야 함.
 
 `editor.py`의 빌드 버튼은 인서터에 `original/{TITLE}`을 전달함.  
 kitan은 게임 파일이 `original/kitan/data/`에 있으므로, 인서터 구현 시 `editor.py`의 `run_build()`에서 kitan 경우 `/data`를 추가하도록 수정 필요.
 
-### demo 에뮬레이터 탑재
+### demo 에뮬레이터 탑재 (미완료)
 
 demo를 에뮬레이터로 실행하는 방향:
 
