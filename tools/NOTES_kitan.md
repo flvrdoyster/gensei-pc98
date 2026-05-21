@@ -246,43 +246,32 @@ JP: 7블록, KR: 6블록 → 매핑 시 KR 블록 1개 스킵됨 (무시 가능,
 
 ---
 
-## 미추출 텍스트 — 파서 추가 구현 필요
+## 추출 패턴 (구현 완료)
 
-현재 `extract_dialogs` (`6b 00` 블록)와 `extract_items` (`0f 03` 블록)만 구현됨.  
-아래 패턴은 아직 파서가 잡지 못한다.
+`kitan_parser.py`가 처리하는 패턴 전체:
 
-### 패턴별 정리
-
-| 패턴 | 대상 파일 | 내용 | 건수 |
+| 패턴 | 대상 파일 | 내용 | 함수 |
 |------|-----------|------|------|
-| `64 01 [SJIS] 65` | 거의 모든 CMD | 데이터로드/세이브, 게임 메뉴(`休　む`, `セーブ`), 타이틀 항목(`初めから遊ぶ` 등) | 파일당 3~15개 |
-| `63 08 [SJIS] 65` | **ENDING.CMD 전용** | 제작진 크레딧 40개 |
-| `6d 08 [SJIS] 65` | **PARTY2~7.CMD 전용** | 적/NPC 이름 32개 |
-| bare SJIS + `65` | SC6A.CMD | 층수 이름 5개 (`　４階　` 등); 파일 내 pointer table(offset 0x1530)에서 참조 |
-| `00 02 [SJIS+72 01...] 65` | **MESSAGE.CMD 전용** | 스토리 대화 151블록; 0x1290~EOF에 연속 배치 |
+| `6b 00` 블록 | 모든 CMD | 일반 대화 / 메뉴 항목 | `extract_dialogs` |
+| `13 00` 포인터 블록 | 모든 CMD | 분기 메뉴 선택지 | `extract_menus` |
+| `64 01 [SJIS] 65 XX` | 모든 CMD (MESSAGE 제외) | 세이브/로드, 타이틀 메뉴 등 | `extract_labeled_text` |
+| `63 08 [SJIS] 65 XX` | ENDING.CMD 전용 | 제작진 크레딧 | `extract_labeled_text` |
+| `6d 08 [SJIS] 65 XX` | PARTY2~7.CMD 전용 | 적/NPC 이름 | `extract_labeled_text` |
+| bare SJIS + `65` | SC6A.CMD 전용 | 층수 이름 (`　４階　` 등) | `extract_bare_sjis65` |
+| `[SJIS] 72 01 ... 65` | MESSAGE.CMD 전용 | 스토리 대화; 0x1290~EOF 연속 배치 | `extract_message_dialog` |
+| `0f 03` 블록 | MESSAGE.CMD 전용 | 아이템 DB (이름/스탯/설명) | `extract_items` |
 
-### 구현 방법 (분석 완료, 미구현)
+### extract_dialogs 제어코드 처리 메모
 
-**`extract_labeled_text(data, prefixes)`**
-- `prefixes = [(0xXX, 0xYY), ...]` 리스트를 받아 `XX YY [opt: 64 XX control] [SJIS] 65` 추출
-- 연속된 동일 prefix 항목을 하나의 그룹으로 묶음
-- `63 08`은 ENDING.CMD, `6d 08`은 PARTY*.CMD에만 적용 (다른 파일에서는 binary 오탐)
-- `64 01`은 전체 파일 적용; MESSAGE.CMD만 제외 (dialog가 menu 항목으로 오탐됨)
+- `64 00` = portrait/캐릭터 코드 + 2바이트 인수 = **총 4바이트 오피코드**  
+  인수 바이트가 우연히 SJIS를 형성해 텍스트에 붙는 것 방지 → 4바이트 스킵 + 텍스트 리셋
+- 비-SJIS 바이트 = 텍스트 **리셋** (이벤트 데이터 내 우연한 SJIS 쌍 누적 방지)
+- `6d 04 [SJIS] 6d 00 65` 형식: `6d 00` 이 flush 트리거 → 텍스트 정상 추출됨
 
-**`extract_message_dialog(data)`**
-- MESSAGE.CMD 전용: 0x1290부터 EOF까지 순차 스캔
-- `72 01` = 줄바꿈, `65` = 블록 종료 — 151블록 연속 배치 확인
+### extract_message_dialog 포맷 메모
 
-**`extract_bare_sjis65(data, captured_offsets)`**
-- 순수 SJIS 연속 + `65` 종료 패턴 스캔 (다른 추출기 후 나머지 잡기)
-- SC6A 층수 이름 추출에 필요
-- `captured_offsets` 필터로 중복 방지; 최소 2자 이상
-
-**`generate_json()` 수정 요점**
-1. 파일별 prefix 정의 후 `extract_labeled_text` 호출 (MESSAGE.CMD 제외)
-2. MESSAGE.CMD에서 `extract_message_dialog` 호출
-3. 모든 파일에 `extract_bare_sjis65` 후처리 호출
-4. 결과를 `captured_offsets`로 deduplicate 후 `result['dialogs']`에 추가
+`00 02` 프리픽스는 섹션 최초(0x128E)에만 붙고, 이후 블록은 `65` 종료 직후 바로 다음 블록  
+시작. 비-SJIS 바이트(반각가나 등)는 리셋 없이 스킵.
 
 ---
 

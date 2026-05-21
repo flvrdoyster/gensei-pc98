@@ -17176,18 +17176,6 @@
           "kr": ""
         },
         {
-          "offset": 23261,
-          "jp": "庫",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
-          "offset": 23271,
-          "jp": "粂",
-          "jp_len": 2,
-          "kr": ""
-        },
-        {
           "offset": 25704,
           "jp": "薬草",
           "jp_len": 4,
@@ -43952,18 +43940,6 @@
       "index": 1,
       "lines": [
         {
-          "offset": 2145,
-          "jp": "蛯",
-          "jp_len": 2,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "PARTY7.CMD",
-      "index": 2,
-      "lines": [
-        {
           "offset": 4078,
           "jp": "ブレード村正",
           "jp_len": 12,
@@ -43973,7 +43949,7 @@
     },
     {
       "file": "PARTY7.CMD",
-      "index": 3,
+      "index": 2,
       "lines": [
         {
           "offset": 4106,

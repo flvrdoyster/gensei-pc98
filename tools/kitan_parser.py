@@ -104,7 +104,7 @@ def extract_dialogs(data):
 
     def _flush_line():
         nonlocal cur_text, cur_offset, cur_end
-        if cur_text.strip():
+        if len(cur_text.strip()) >= 2:  # 1자 이하는 노이즈로 간주
             cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
         cur_text = ''
         cur_offset = cur_end = i
@@ -145,9 +145,16 @@ def extract_dialogs(data):
             cur_offset = cur_end = i
             continue
 
+        # 64 00: portrait/캐릭터 코드 + 2바이트 인수 (총 4바이트 오피코드)
+        # 인수 바이트가 우연히 SJIS 쌍을 이뤄 텍스트로 오인되는 것 방지
+        if data[i] == 0x64 and i + 1 < len(data) and data[i + 1] == 0x00:
+            cur_text = ''
+            i += min(4, len(data) - i)
+            cur_offset = cur_end = i
+            continue
+
         # 메뉴 항목 구분: 64 XX (XX ≠ 00, 02)
-        # 64 00 = 화자/portrait 코드 (스킵), 64 02 = MESSAGE.CMD desc 구분자
-        # 64 01/03/04 등 = 세이브·로드·예/아니오 등 메뉴 항목 경계
+        # 64 02 = MESSAGE.CMD desc 구분자; 64 01/03/04 등 = 메뉴 항목 경계
         if data[i] == 0x64 and i + 1 < len(data) and data[i + 1] not in (0x00, 0x02):
             _flush_line()
             i += 2
@@ -155,8 +162,14 @@ def extract_dialogs(data):
             continue
 
         # 65 XX (XX ≠ 00): 메뉴 항목 종료 코드 — 줄 구분자로 처리
-        # 실제 대화 블록에서는 81 65 직후에만 등장하고 cur_text가 비어있어 무해함
         if data[i] == 0x65 and i + 1 < len(data) and data[i + 1] != 0x00:
+            _flush_line()
+            i += 2
+            cur_offset = cur_end = i
+            continue
+
+        # 6d 00: 항목 표시 종료 코드 (6d 04 [SJIS] 6d 00 65 형식) — flush
+        if data[i] == 0x6d and i + 1 < len(data) and data[i + 1] == 0x00:
             _flush_line()
             i += 2
             cur_offset = cur_end = i
@@ -184,7 +197,9 @@ def extract_dialogs(data):
             cur_end = i
             continue
 
-        # 그 외 제어 바이트 — 스킵
+        # 그 외 바이너리 바이트 — 스킵 + 텍스트 리셋
+        # 바이너리 이벤트 데이터 내 우연한 SJIS 쌍이 실제 텍스트에 붙는 것 방지
+        cur_text = ''
         i += 1
 
     # 파일 끝 처리
@@ -419,6 +434,225 @@ def extract_items(data):
 
 
 # ─────────────────────────────────────
+# 레이블 텍스트 파서 (64 01 / 63 08 / 6d 08 + 65 형식)
+# ─────────────────────────────────────
+
+def extract_labeled_text(data, prefixes):
+    """
+    XX YY [SJIS...] 65 형식 레이블 텍스트 추출.
+
+    prefixes: [(b0, b1), ...] — 대상 프리픽스 목록.
+    연속된 동일 prefix 항목을 하나의 그룹으로 묶음.
+    prefix 사이에 끼어드는 64 XX 제어코드는 스킵.
+    """
+    if not prefixes:
+        return []
+
+    prefix_set = set(prefixes)
+    items = []
+    cur_group = []
+    cur_prefix = None
+    i = 0
+
+    while i < len(data) - 1:
+        # 현재 위치에서 prefix 매칭 시도
+        matched = None
+        for p0, p1 in prefix_set:
+            if data[i] == p0 and data[i + 1] == p1:
+                matched = (p0, p1)
+                break
+
+        if matched is None:
+            # prefix 아닌 바이트 → 현재 그룹 마감
+            if cur_group:
+                items.append(cur_group)
+                cur_group = []
+                cur_prefix = None
+            i += 1
+            continue
+
+        # prefix 변경 시 이전 그룹 마감
+        if matched != cur_prefix and cur_group:
+            items.append(cur_group)
+            cur_group = []
+        cur_prefix = matched
+
+        # prefix 직후부터 65 (종료) 까지 SJIS 수집
+        j = i + 2
+        text = ''
+        text_off = j
+        text_end = j
+
+        while j < len(data):
+            if data[j] == 0x65:
+                # 2바이트 오피코드 (65 XX)
+                j += 2 if j + 1 < len(data) else 1
+                break
+            # 임베디드 제어코드 (64 XX) — 스킵
+            if data[j] == 0x64 and j + 1 < len(data):
+                j += 2
+                continue
+            if is_sjis(data, j):
+                if not text:
+                    text_off = j
+                text += read_sjis_char(data, j)
+                j += 2
+                text_end = j
+            else:
+                j += 1
+
+        if (len(text.strip()) >= 2  # 1자 이하는 노이즈
+                and not any(ord(c) == 0xFFFD for c in text)):
+            line = {'offset': text_off, 'jp': text,
+                    'jp_len': text_end - text_off, 'kr': ''}
+            if _has_gaiji(data, text_off, text_end):
+                line['gaiji'] = True
+            cur_group.append(line)
+            i = j
+        else:
+            # 매칭 실패 — 그룹 마감 후 1바이트 전진
+            if cur_group:
+                items.append(cur_group)
+                cur_group = []
+                cur_prefix = None
+            i += 1
+
+    if cur_group:
+        items.append(cur_group)
+
+    return items
+
+
+# ─────────────────────────────────────
+# MESSAGE.CMD 스토리 대화 파서 (00 02 블록)
+# ─────────────────────────────────────
+
+_MSG_DIALOG_START = 0x1290  # MESSAGE.CMD 스토리 대화 시작 오프셋
+
+
+def extract_message_dialog(data):
+    """
+    MESSAGE.CMD 전용 스토리 대화 추출.
+
+    0x1290부터 EOF까지 순차 스캔.
+    블록 형식: [SJIS...] (72 XX 줄바꿈) ... 65 (블록 종료)
+    블록 사이에 00 02 프리픽스는 섹션 최초에만 존재하며, 이후 블록은
+    직전 65 종료 직후부터 시작. 비-SJIS 바이트는 스킵 (텍스트 리셋 없음).
+    """
+    blocks = []
+    i = _MSG_DIALOG_START
+
+    cur_lines = []
+    cur_text = ''
+    cur_offset = i
+    cur_end = i
+
+    while i < len(data):
+        b = data[i]
+
+        # 65: 블록 종료
+        if b == 0x65:
+            if cur_text.strip():
+                cur_lines.append(
+                    _make_line(cur_offset, cur_end, cur_text, data))
+                cur_text = ''
+            if cur_lines:
+                blocks.append(cur_lines)
+                cur_lines = []
+            i += 1
+            cur_offset = cur_end = i
+            continue
+
+        # 72 XX: 줄바꿈
+        if b == 0x72:
+            if cur_text.strip():
+                cur_lines.append(
+                    _make_line(cur_offset, cur_end, cur_text, data))
+                cur_text = ''
+            i += 2
+            cur_offset = cur_end = i
+            continue
+
+        # SJIS
+        if is_sjis(data, i):
+            if not cur_text:
+                cur_offset = i
+            cur_text += read_sjis_char(data, i)
+            i += 2
+            cur_end = i
+            continue
+
+        # 그 외 바이트 (제어코드, 반각가나 등) — 텍스트 리셋 없이 스킵
+        # 이 섹션은 순수 텍스트 영역이므로 바이너리 이벤트 블록 없음
+        i += 1
+
+    # EOF 처리
+    if cur_text.strip():
+        cur_lines.append(_make_line(cur_offset, cur_end, cur_text, data))
+    if cur_lines:
+        blocks.append(cur_lines)
+
+    return blocks
+
+
+# ─────────────────────────────────────
+# bare SJIS+65 파서 (SC6A 층수 이름 등)
+# ─────────────────────────────────────
+
+def extract_bare_sjis65(data, captured_offsets):
+    """
+    순수 SJIS 연속 + 65 종료 패턴 스캔.
+
+    중간에 바이너리 바이트 없이 SJIS만 이어지다가 65로 끝나는 패턴.
+    주 용도: SC6A.CMD 층수 이름 (　４階　 등).
+    captured_offsets 에 이미 있는 오프셋은 제외.
+    """
+    items = []
+    i = 0
+
+    while i < len(data) - 1:
+        if not is_sjis(data, i):
+            i += 1
+            continue
+
+        start = i
+        text = ''
+        text_off = i
+        text_end = i
+        pure = True
+        j = i
+
+        while j < len(data):
+            if data[j] == 0x65:
+                j += 1  # 65 는 1바이트로 취급
+                break
+            if is_sjis(data, j):
+                text += read_sjis_char(data, j)
+                text_end = j + 2
+                j += 2
+            else:
+                # 순수 SJIS 연속이 깨짐
+                pure = False
+                break
+        else:
+            pure = False  # 65 종료 없이 EOF
+
+        if (pure and text.strip() and len(text) >= 2
+                and not any(ord(c) == 0xFFFD for c in text)):
+            if text_off not in captured_offsets:
+                line = {'offset': text_off, 'jp': text,
+                        'jp_len': text_end - text_off, 'kr': ''}
+                if _has_gaiji(data, text_off, text_end):
+                    line['gaiji'] = True
+                items.append([line])
+            i = j  # 캡처 여부 무관하게 런 전체를 건너뜀
+        else:
+            i = start + 1
+
+    return items
+
+
+# ─────────────────────────────────────
 # JSON 출력
 # ─────────────────────────────────────
 
@@ -437,6 +671,19 @@ DIALOG_FILES = [
     'MESSAGE.CMD',
 ]
 ITEM_FILE = 'MESSAGE.CMD'
+
+# 파일별 레이블 텍스트 프리픽스 (extract_labeled_text 용)
+_DEFAULT_LABELED_PREFIXES = [(0x64, 0x01)]
+_LABELED_PREFIXES = {
+    'ENDING.CMD': [(0x63, 0x08), (0x64, 0x01)],
+    **{p: [(0x6d, 0x08), (0x64, 0x01)]
+       for p in ('PARTY2.CMD', 'PARTY3.CMD', 'PARTY4.CMD',
+                 'PARTY6.CMD', 'PARTY7.CMD')},
+    'MESSAGE.CMD': [],  # extract_message_dialog 사용
+}
+
+# bare SJIS+65 스캔 적용 파일
+_BARE_SJIS65_FILES = {'SC6A.CMD'}
 
 
 def generate_json(game_dir, out_path):
@@ -467,11 +714,24 @@ def generate_json(game_dir, out_path):
         dialogs = extract_dialogs(data)
         menus = extract_menus(data)
 
+        # 레이블 텍스트 (64 01 세이브/메뉴, 63 08 크레딧, 6d 08 적 이름)
+        prefixes = _LABELED_PREFIXES.get(fname, _DEFAULT_LABELED_PREFIXES)
+        labeled = extract_labeled_text(data, prefixes)
+
+        # MESSAGE.CMD: 스토리 대화 (00 02 블록)
+        msg_dialogs = extract_message_dialog(data) if fname == ITEM_FILE else []
+
         # MESSAGE.CMD: 아이템과 중복되는 오프셋 제외
         exclude = item_offsets if fname == ITEM_FILE else set()
 
         file_idx = 0
-        all_blocks = dialogs + menus
+        all_blocks = dialogs + menus + labeled + msg_dialogs
+
+        # SC6A.CMD: bare SJIS+65 층수 이름 추가
+        if fname in _BARE_SJIS65_FILES:
+            pre_captured = {ln['offset'] for blk in all_blocks for ln in blk}
+            all_blocks += extract_bare_sjis65(data, pre_captured)
+
         all_blocks.sort(key=lambda b: b[0]['offset'] if b else 0)
         seen = set()
         for lines in all_blocks:
