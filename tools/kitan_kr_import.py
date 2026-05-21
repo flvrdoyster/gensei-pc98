@@ -27,6 +27,23 @@ from compile_lz import decompress
 
 # ─── 인코딩 ────────────────────────────────────────────
 
+def _to_halfwidth(text):
+    """전각 공백·전각 ASCII 문자를 반각으로 변환.
+    U+3000 (전각 스페이스) → 반각 스페이스
+    U+FF01–U+FF5E (전각 ！ ~ ～) → U+0021–U+007E (ASCII)
+    """
+    out = []
+    for c in text:
+        cp = ord(c)
+        if cp == 0x3000:
+            out.append(' ')
+        elif 0xFF01 <= cp <= 0xFF5E:
+            out.append(chr(cp - 0xFEE0))
+        else:
+            out.append(c)
+    return ''.join(out)
+
+
 def _is_kr(data, i):
     """SJIS 바이트 범위만 체크 (shift_jis 디코딩 없이)."""
     if i + 1 >= len(data):
@@ -435,11 +452,31 @@ def run(kr_dir, json_path):
             if di < len(kr_item['desc']) and not jp_desc.get('kr'):
                 jp_desc['kr'] = kr_item['desc'][di]
 
+    # 전각 → 반각 정규화 (기존 값 포함 전체 적용)
+    normalized = 0
+    for d in tj['dialogs']:
+        for ln in d['lines']:
+            kr = ln.get('kr', '')
+            if kr:
+                nkr = _to_halfwidth(kr)
+                if nkr != kr:
+                    ln['kr'] = nkr
+                    normalized += 1
+    for item in tj.get('items', []):
+        for field in (item.get('name'), item.get('stat'), *item.get('desc', [])):
+            if field and field.get('kr'):
+                nkr = _to_halfwidth(field['kr'])
+                if nkr != field['kr']:
+                    field['kr'] = nkr
+                    normalized += 1
+
     with open(json_path, 'w', encoding='utf-8') as f:
         json.dump(tj, f, ensure_ascii=False, indent=2)
 
     print(f'대화 줄 채움: {filled}개 / 스킵: {skipped}블록')
     print(f'아이템 name 채움: {item_filled}개')
+    if normalized:
+        print(f'전각→반각 정규화: {normalized}개')
     print(f'저장: {json_path}')
 
 
