@@ -73,7 +73,8 @@ def _make_line(cur_offset, cur_end, cur_text, data=None):
 # 대화 파서
 # ─────────────────────────────────────
 
-_DIALOG_LOOKAHEAD = 5  # 6b 00 이후 이 바이트 수 안에 SJIS가 없으면 바이너리 블록으로 간주
+_DIALOG_LOOKAHEAD = 30  # 6b 00 이후 이 바이트 수 안에 SJIS가 없으면 바이너리 블록으로 간주
+# 캐릭터 코드 프리앰블(80 XX 00 + 이벤트 코드)이 최대 29바이트까지 붙을 수 있음
 
 
 def _has_sjis_nearby(data, start, limit=_DIALOG_LOOKAHEAD):
