@@ -46,7 +46,10 @@ TITLE_KR = TITLES[TITLE]
 TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
 CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
 HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
-HAS_EMULATOR = TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))
+HAS_EMULATOR = (
+    (TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))) or
+    (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js')))
+)
 
 HTML = r"""<!DOCTYPE html>
 <html lang="ko">
@@ -958,6 +961,105 @@ class Handler(http.server.BaseHTTPRequestHandler):
             msg = '패치할 파일 없음'
         self._send_json({'ok': bool(total_patched), 'message': msg})
 
+    def _handle_emulator_update_kitan(self):
+        import tempfile, shutil, re
+        build_dir    = os.path.join(PROJECT_ROOT, 'build', 'kitan')
+        emulator_dir = os.path.join(PROJECT_ROOT, 'emulator')
+        rom_dir      = os.path.join(emulator_dir, 'rom')
+        bios_dir     = os.path.join(emulator_dir, 'bios')
+        data_path    = os.path.join(emulator_dir, 'kitan.data')
+        js_path      = os.path.join(emulator_dir, 'kitan.js')
+
+        # 1. build/kitan/ → system/data FDI 패치
+        if os.path.isdir(build_dir) and os.listdir(build_dir):
+            try:
+                from kitan_inserter import patch_fdi
+                for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
+                    fdi_path = os.path.join(rom_dir, fdi_name)
+                    if not os.path.exists(fdi_path):
+                        continue
+                    with open(fdi_path, 'rb') as f:
+                        fdi_data = f.read()
+                    result, patched = patch_fdi(fdi_data, build_dir)
+                    if patched:
+                        with open(fdi_path, 'wb') as f:
+                            f.write(result)
+            except Exception as e:
+                self._send_json_error(f'FDI 패치 실패: {e}', 500)
+                return
+
+        # 2. demo 디스크 패치
+        try:
+            demo_inserter = os.path.join(PROJECT_ROOT, 'tools', 'kitan_demo_inserter.py')
+            game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'data')
+            subprocess.run(['python3', demo_inserter, game_dir],
+                           capture_output=True, timeout=60, cwd=PROJECT_ROOT)
+        except Exception:
+            pass  # demo 패치 실패는 무시
+
+        # 3. kitan.data 번들 재생성
+        if not os.path.exists(FILE_PACKAGER):
+            self._send_json_error(f'file_packager.py 없음: {FILE_PACKAGER}', 500)
+            return
+
+        tmpdir = tempfile.mkdtemp(prefix='kitan-bundle-')
+        loader_js = os.path.join(tmpdir, 'loader.js')
+        try:
+            tmp_bios = os.path.join(tmpdir, 'bios')
+            tmp_rom  = os.path.join(tmpdir, 'rom')
+            os.makedirs(tmp_bios)
+            os.makedirs(tmp_rom)
+            for f in os.listdir(bios_dir):
+                if not f.startswith('.'):
+                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
+            for fdi in ('kitan-system.fdi', 'kitan-data.fdi', 'kitan-demo.fdi'):
+                src = os.path.join(rom_dir, fdi)
+                if os.path.exists(src):
+                    shutil.copy2(src, tmp_rom)
+
+            proc = subprocess.run(
+                ['python3', FILE_PACKAGER, data_path,
+                 '--js-output=' + loader_js,
+                 '--preload', 'bios@/emulator/np2kai',
+                 '--preload', 'rom@/rom'],
+                capture_output=True, text=True, timeout=120, cwd=tmpdir,
+            )
+            if proc.returncode != 0:
+                self._send_json_error(f'번들 재생성 실패: {proc.stderr.strip()[-300:]}', 500)
+                return
+
+            # 4. kitan.js 메타데이터 갱신
+            with open(loader_js, 'r') as f:
+                loader_content = f.read()
+            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
+            if not meta_match:
+                self._send_json_error('메타데이터 추출 실패', 500)
+                return
+            new_files = meta_match.group(1)
+            new_size  = meta_match.group(2)
+
+            with open(js_path, 'r') as f:
+                js_content = f.read()
+            js_content = re.sub(
+                r'loadPackage\(\{(?:"files"|files):\s*\[.*?\],\s*(?:"remote_package_size"|remote_package_size):\s*\d+\}\)',
+                f'loadPackage({{"files":{new_files},"remote_package_size":{new_size}}})',
+                js_content,
+            )
+            with open(js_path, 'w') as f:
+                f.write(js_content)
+
+        except Exception as e:
+            self._send_json_error(f'번들 재생성 실패: {e}', 500)
+            return
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+        data_size = os.path.getsize(data_path)
+        self._send_json({
+            'ok': True,
+            'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
+        })
+
     def _handle_disk_patch_upload(self):
         disk_data, disk_filename, build_dir = self._parse_disk_upload()
         if disk_data is None:
@@ -1011,7 +1113,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
     def handle_emulator_update(self):
         if not HAS_EMULATOR:
-            self._send_json_error('에뮬레이터 업데이트는 hukyou만 지원', 400)
+            self._send_json_error('에뮬레이터 업데이트 미지원', 400)
+            return
+        if TITLE == 'kitan':
+            self._handle_emulator_update_kitan()
             return
 
         build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
