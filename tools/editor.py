@@ -251,6 +251,12 @@ async function load() {
       const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
       rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
     }
+    // gsovl (kitan GS.OVL 고정 오프셋 문자열)
+    const GSOVL_TAG = { battle: 'battle', status: 'system', name: 'char', stat: 'system', misc: 'menu' };
+    for (const entry of (data.gsovl || [])) {
+      const tag = GSOVL_TAG[entry.tag] || 'system';
+      rows.push({ type: 'gsovl', tag: tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+    }
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -822,6 +828,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
                                 updated += 1
                 elif typ == 'ui':
                     for entry in data.get('ui', []):
+                        if entry['offset'] == offset:
+                            entry['kr'] = kr
+                            updated += 1
+                elif typ == 'gsovl':
+                    for entry in data.get('gsovl', []):
                         if entry['offset'] == offset:
                             entry['kr'] = kr
                             updated += 1
