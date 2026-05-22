@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>환세희담 데모 : atah.io</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://atah.io/favicon.ico">
+</head>
+<body>
+  <div class="top-bar">
+    <span class="btn-icon" style="visibility:hidden">⛁</span>
+    <img src="img/logo-kitan.png" height="54" alt="환세희담 데모" class="logo">
+    <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+    <div id="overlay">
+      <button id="btn-start">▶ 시작</button>
+    </div>
+    <div id="toast"></div>
+  </div>
+
+  <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+
+  <div id="virtual-gamepad">
+    <div class="gamepad-dpad">
+      <button data-key="ArrowUp" class="dpad-up"><img src="img/key-arrow.svg" alt="↑"></button>
+      <button data-key="ArrowLeft" class="dpad-left"><img src="img/key-arrow.svg" alt="←" style="transform:rotate(-90deg)"></button>
+      <button data-key="ArrowRight" class="dpad-right"><img src="img/key-arrow.svg" alt="→" style="transform:rotate(90deg)"></button>
+      <button data-key="ArrowDown" class="dpad-down"><img src="img/key-arrow.svg" alt="↓" style="transform:rotate(180deg)"></button>
+    </div>
+    <div class="gamepad-buttons">
+      <button data-key="Escape" class="btn-b"><img src="img/key-esc.svg" alt="ESC"></button>
+      <button data-key="Enter" class="btn-a"><img src="img/key-enter.svg" alt="Enter"></button>
+    </div>
+  </div>
+  <script src="gamepad.js"></script>
+
+  <script>
+    const DISK = '/rom/kitan-demo.fdi';
+
+    const MSG = {
+      JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
+    };
+
+    const canvas  = document.getElementById('canvas');
+    const overlay = document.getElementById('overlay');
+    const toast   = document.getElementById('toast');
+
+    const logs = [];
+    let toastTimer = null;
+
+    function log(msg) {
+      logs.push('[' + new Date().toLocaleTimeString() + '] ' + msg);
+    }
+
+    function showToast(msg, duration = 2000) {
+      log(msg);
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+    }
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const wrap = document.getElementById('canvas-wrap');
+      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+    });
+
+    document.getElementById('btn-start').addEventListener('click', function() {
+      overlay.classList.add('hidden');
+      startEmulator();
+    });
+
+    async function startEmulator() {
+      // 단일 디스크 부팅: FDD1=demo
+      window.Module = {
+        canvas: canvas,
+        arguments: [DISK],
+
+        preRun: [function() {
+          Module.addRunDependency('disk-setup');
+          var attempts = 0;
+          function trySetup() {
+            try {
+              Module.FS.stat(DISK);
+              Module.FS.chmod(DISK, 0o666);
+              Module.removeRunDependency('disk-setup');
+            } catch(e) {
+              if (++attempts < 200) {
+                setTimeout(trySetup, 10);
+              } else {
+                log('디스크 마운트 타임아웃');
+                Module.removeRunDependency('disk-setup');
+              }
+            }
+          }
+          setTimeout(trySetup, 0);
+        }],
+
+        postRun: [function() {
+          document.title = '환세희담 데모 : atah.io';
+          showToast('준비 완료');
+        }],
+
+        print:    t => log('[out] ' + t),
+        printErr: t => log('[err] ' + t),
+
+        setStatus(text) {
+          if (text) showToast(text);
+        },
+
+        totalDependencies: 0,
+        monitorRunDependencies(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+        }
+      };
+
+      const s = document.createElement('script');
+      s.src = 'kitan.js';
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); };
+      document.body.appendChild(s);
+    }
+  </script>
+  <script src="https://atah.io/footer.js" data-emulator></script>
+</body>
+</html>

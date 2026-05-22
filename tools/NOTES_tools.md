@@ -2,6 +2,25 @@
 
 ---
 
+## 로컬 서버 포트 규칙
+
+| 용도 | 포트 | 연상 |
+|------|------|------|
+| 번역 에디터 (`editor.py`) | **8182** | JP(81) → KR(82) |
+| 에뮬레이터 (`python3 -m http.server`) | **9801** | PC-9801 |
+
+```bash
+# 번역 에디터
+python3 tools/editor.py <title>
+# → http://localhost:8182
+
+# 에뮬레이터 (프로젝트 루트에서 실행)
+python3 -m http.server 9801 --directory emulator
+# → http://localhost:9801
+```
+
+---
+
 ## pc98disk.py — PC-98 디스크 이미지 도구
 
 Editdisk 대체. FDI/HDI/IMG 생성·편집을 CLI에서 수행.

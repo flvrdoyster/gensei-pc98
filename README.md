@@ -44,13 +44,16 @@ python3 tools/kitan_parser.py  original/kitan/data    # 희담
 # 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
 
-# 2. 번역 에디터 (http://localhost:8421)
+# 2. 번역 에디터 (http://localhost:8182)
 python3 tools/editor.py hukyou    # 풍광전
 python3 tools/editor.py kaitou    # 쾌도전
 #   버튼: 저장 / 빌드 / 디스크에 적용(패치 FDI 다운로드) / 에뮬레이터 업데이트(웹 번들 재생성)
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
+
+# 4. 로컬 에뮬레이터 확인 (http://localhost:9801)
+python3 -m http.server 9801 --directory emulator
 ```
 
 역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md)  
@@ -64,7 +67,7 @@ python3 tools/hukyou_inserter.py original/hukyou
 tools/
   pc98disk.py            PC-98 디스크 이미지 생성/편집 (FDI/HDI/IMG)
   compile_lz.py          LZ 압축/해제 + SJIS 유틸 (공통)
-  editor.py              웹 번역 에디터 (localhost:8421)
+  editor.py              웹 번역 에디터 (localhost:8182)
   charmap.json           한글↔SJIS 매핑 (KS X 1001, 2350자)
   NOTES_hukyou.md        풍광전 역공학 노트
   NOTES_kaitou.md        쾌도전 역공학 노트

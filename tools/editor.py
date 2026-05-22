@@ -4,7 +4,7 @@
 
 사용법:
   python3 tools/editor.py <title>
-  브라우저에서 http://localhost:8421 접속
+  브라우저에서 http://localhost:8182 접속
 
   <title>: hukyou | kaitou | torimono | kitan (기본값: hukyou)
 
@@ -1140,7 +1140,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    port = 8421
+    port = 8182
     server = http.server.HTTPServer(('127.0.0.1', port), Handler)
     print(f'[{TITLE_KR}] 번역 에디터: http://localhost:{port}')
     print('종료: Ctrl+C')
