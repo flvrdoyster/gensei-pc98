@@ -47,7 +47,7 @@ python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation
 # 2. 번역 에디터 (http://localhost:8182)
 python3 tools/editor.py hukyou    # 풍광전
 python3 tools/editor.py kaitou    # 쾌도전
-#   버튼: 저장 / 빌드 / 디스크에 적용(패치 FDI 다운로드) / 에뮬레이터 업데이트(웹 번들 재생성)
+#   버튼: 저장 / 빌드 / 번들 생성(웹 에뮬레이터용 번들 재생성)
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou

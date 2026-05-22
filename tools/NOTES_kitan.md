@@ -260,7 +260,7 @@ python3 tools/kitan_parser.py original/kitan/data
 #    인수는 게임 파일 소스 디렉토리 (system/data 디스크 파일이 모두 여기 있음)
 python3 tools/kitan_inserter.py original/kitan/data
 
-# 2. FDI 패치 — system·data 양쪽 FDI에 각각 호출 (editor.py "디스크 적용" 버튼)
+# 2. FDI 패치 — system·data 양쪽 FDI에 각각 호출 (editor.py "번들 생성"이 내부적으로 수행)
 #    patch_fdi()가 FDI 타입을 자동 감지해 해당 인덱스 맵 적용
 from kitan_inserter import patch_fdi
 result, patched = patch_fdi(fdi_data_system, 'build/kitan')  # → DISK_B_INDEX 파일 삽입
