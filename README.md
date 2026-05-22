@@ -2,8 +2,10 @@
 
 ![License](https://img.shields.io/badge/license-MIT-blue) ![Platform](https://img.shields.io/badge/platform-PC--98-green)
 
+## 개요
+
 Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.  
-텍스트 추출·재삽입 툴과 웹 에뮬레이터를 포함.
+텍스트 추출 툴·재삽입 툴·번역 에디터 및 웹 에뮬레이터를 포함.
 
 | 타이틀 | 폴더 | 상태 |
 |--------|------|------|
@@ -12,96 +14,78 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
 | 환세포물장 (幻世捕物帳, 1996) | `torimono` | 미착수 |
 | 환세희담 (幻世喜譚, 1995) | `kitan` | 에뮬 탑재 완료, 텍스트 추출 완료, 번역 중 |
 
----
+### 구성
 
-## 웹 에뮬레이터 (`emulator/`)
+**`tools/`** — 한글화 도구 모음.  
+`compile_lz.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
 
-NP2kai + Emscripten SDL2 빌드. 브라우저에서 패치 결과 즉시 확인.  
-https://pc98.atah.io
+**`original/`** — 원본 게임 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분.
 
-```bash
-# 에뮬레이터 빌드 (emsdk + NP2kai 소스 필요)
-source <emsdk_path>/emsdk_env.sh
-make -C <NP2kai_path>/build_em emnp2kai_sdl2
-cp <NP2kai_path>/build_em/emnp2kai_sdl2.wasm emulator/
-# JS는 게임별로 복사 후 메타데이터 교체 — 상세는 emulator/NOTES.md 참조
+**`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
+
+**`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
+타이틀별 HTML 페이지 + JS/데이터 번들로 구성되며, `https://pc98.atah.io`에 배포됨.  
+`docs/`는 GitHub Pages 서빙용으로 `emulator/`를 그대로 복사한 것.
+
+**`build/`** — 인서터 출력 디렉토리 (gitignore). 패치된 파일이 여기 생성됨.
+
+### 작업 흐름
+
+```
+파서 → translation.json 생성
+         ↓
+      에디터 (번역 입력 · 저장)
+         ↓
+      인서터 → build/ 에 패치 파일 생성
+         ↓
+      번들 생성 → emulator/ 번들 갱신
+         ↓
+      로컬 에뮬레이터로 확인
 ```
 
-기술 상세: [`emulator/NOTES.md`](emulator/NOTES.md)
+에디터는 인서터·번들 생성을 버튼으로 실행할 수 있는 GUI. 각 툴은 독립적인 Python 스크립트로도 사용 가능.
 
 ---
 
-## 한글화 툴 사용법
+## 사용법
 
 프로젝트 루트(`gensei-pc98/`)에서 실행.
 
 ```bash
 # 1. 텍스트 추출 (translation/<title>/translation.json 생성)
-python3 tools/hukyou_parser.py original/hukyou   # 풍광전
-python3 tools/kaitou_parser.py original/kaitou   # 쾌도전
+python3 tools/hukyou_parser.py original/hukyou        # 풍광전
+python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
 python3 tools/kitan_parser.py  original/kitan/data    # 희담
 
 # 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
 
 # 2. 번역 에디터 → http://localhost:8182
-python3 tools/editor.py hukyou    # 풍광전
-python3 tools/editor.py kaitou    # 쾌도전
-python3 tools/editor.py kitan  original/kitan/data  # 희담
+python3 tools/editor.py hukyou                        # 풍광전
+python3 tools/editor.py kaitou                        # 쾌도전
+python3 tools/editor.py kitan  original/kitan/data    # 희담
 #   버튼: 저장 / 빌드 / 번들 생성(웹 에뮬레이터용 번들 재생성)
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
-python3 tools/kitan_inserter.py  original/kitan/data   # 희담 본편
+python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 
 # 4. 로컬 에뮬레이터 확인 → http://localhost:9801
 python3 -m http.server 9801 --directory emulator
 ```
 
-역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md) · [`tools/NOTES_kitan.md`](tools/NOTES_kitan.md)  
-공통 도구: [`tools/NOTES_tools.md`](tools/NOTES_tools.md)
-
 ---
 
-## 파일 구조
+## 노트
 
-```
-tools/
-  pc98disk.py            PC-98 디스크 이미지 생성/편집 (FDI/HDI/IMG)
-  compile_lz.py          LZ 압축/해제 + SJIS 유틸 (공통)
-  editor.py              웹 번역 에디터 (localhost:8182)
-  charmap.json           한글↔SJIS 매핑 (KS X 1001, 2350자)
-  NOTES_hukyou.md        풍광전 역공학 노트
-  NOTES_kaitou.md        쾌도전 역공학 노트
-  NOTES_kitan.md         희담 역공학 노트
-  hukyou_parser.py       풍광전 텍스트 추출
-  hukyou_inserter.py     풍광전 번역 재삽입
-  kaitou_parser.py       쾌도전 텍스트 추출
-  kitan_parser.py        희담 텍스트 추출
-  kitan_inserter.py      희담 번역 재삽입 (본편)
-  kitan_demo_inserter.py 희담 번역 재삽입 (오프닝)
-  kitan_kr_import.py     희담 한국어판 참고 텍스트 채우기
-original/
-  hukyou/                풍광전 원본 디스크 파일
-  kaitou/                쾌도전 원본 디스크 파일
-  torimono/              포물장 원본 디스크 파일
-translation/
-  hukyou/translation.json   풍광전 번역 파일 (JP/KR 쌍 + 오프셋)
-  kaitou/translation.json   쾌도전 번역 파일 (JP/KR 쌍 + 오프셋)
-  kitan/translation.json    희담 번역 파일 (JP/KR 쌍 + 오프셋)
-build/                   (gitignore) 패치된 파일 출력
-emulator/
-  index.html             허브 페이지 (타이틀 목록)
-  hukyou.html            풍광전 에뮬레이터
-  kitan.html             희담 에뮬레이터 (게임 플레이)
-  kitan-opening.html     희담 오프닝 에뮬레이터 (⛁로 kitan.html과 연결)
-  style.css / gamepad.js UI 스타일 + 모바일 가상 패드
-  bios/ rom/             PC-98 BIOS + 게임 디스크 이미지
-  emnp2kai_sdl2.wasm     NP2kai WASM 바이너리 (공유)
-  <title>.js / .data     게임별 JS 로더 + BIOS·ROM 번들
-  NOTES.md               에뮬레이터 기술 노트
-```
+역공학 분석 및 구현 상세:
+
+- [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) — 풍광전
+- [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md) — 쾌도전
+- [`tools/NOTES_kitan.md`](tools/NOTES_kitan.md) — 희담
+- [`tools/NOTES_tools.md`](tools/NOTES_tools.md) — 공통 도구
+- [`emulator/NOTES.md`](emulator/NOTES.md) — 에뮬레이터
 
 ---
 
