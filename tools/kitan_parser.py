@@ -485,8 +485,9 @@ def extract_labeled_text(data, prefixes):
 
         while j < len(data):
             if data[j] == 0x65:
-                # 2바이트 오피코드 (65 XX)
-                j += 2 if j + 1 < len(data) else 1
+                # 1바이트 종료 코드 — 6D 08 계열은 65 직후에 바로 다음 prefix가 옴
+                # (65 XX 2바이트로 취급하면 연속 항목에서 하나씩 건너뜀)
+                j += 1
                 break
             # 임베디드 제어코드 (64 XX) — 스킵
             if data[j] == 0x64 and j + 1 < len(data):
