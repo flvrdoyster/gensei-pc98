@@ -832,35 +832,28 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         return {'updated': updated, 'skipped': skipped}
 
-    def handle_disk_patch(self):
-        import tempfile
-        try:
-            from pc98disk import DiskImage
-        except ImportError as e:
-            self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
-            return
-
+    def _parse_disk_upload(self):
+        """multipart에서 disk 파일 추출. (disk_data, disk_filename) 반환."""
         build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
         if not os.path.isdir(build_dir):
             self._send_json_error(f'빌드 결과 없음: {build_dir}', 400)
-            return
+            return None, None, None
 
         build_files = [f for f in os.listdir(build_dir)
                        if os.path.isfile(os.path.join(build_dir, f))
                        and not f.startswith('.')]
         if not build_files:
             self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
-            return
+            return None, None, None
 
         length = int(self.headers.get('Content-Length', 0))
         body = self.rfile.read(length)
 
-        # multipart 파싱 (cgi 모듈 Python 3.13 제거 대응)
         content_type = self.headers.get('Content-Type', '')
         m = re.search(r'boundary=([^\s;]+)', content_type)
         if not m:
             self._send_json_error('multipart boundary 없음', 400)
-            return
+            return None, None, None
         boundary = ('--' + m.group(1)).encode()
         disk_data = None
         disk_filename = 'disk.fdi'
@@ -884,26 +877,46 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         if disk_data is None:
             self._send_json_error('disk 필드 없음', 400)
+            return None, None, None
+
+        return disk_data, disk_filename, build_dir
+
+    def handle_disk_patch(self):
+        disk_data, disk_filename, build_dir = self._parse_disk_upload()
+        if disk_data is None:
             return
 
-        try:
-            with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
-                tmp.write(disk_data)
-                tmp_path = tmp.name
+        if TITLE == 'kitan':
+            try:
+                from kitan_inserter import patch_fdi
+                result_data, patched = patch_fdi(disk_data, build_dir)
+            except Exception as e:
+                self._send_json_error(f'패치 실패: {e}', 500)
+                return
+        else:
+            import tempfile
+            try:
+                from pc98disk import DiskImage
+            except ImportError as e:
+                self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
+                return
+            try:
+                with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
+                    tmp.write(disk_data)
+                    tmp_path = tmp.name
 
-            img = DiskImage.open(tmp_path)
-            patched = []
-            for fname in build_files:
-                fpath = os.path.join(build_dir, fname)
-                img.add_file(fname, open(fpath, 'rb').read())
-                patched.append(fname)
-            img.save(tmp_path)
+                img = DiskImage.open(tmp_path)
+                for fname in os.listdir(build_dir):
+                    fpath = os.path.join(build_dir, fname)
+                    if os.path.isfile(fpath) and not fname.startswith('.'):
+                        img.add_file(fname, open(fpath, 'rb').read())
+                img.save(tmp_path)
 
-            result_data = open(tmp_path, 'rb').read()
-            os.unlink(tmp_path)
-        except Exception as e:
-            self._send_json_error(f'패치 실패: {e}', 500)
-            return
+                result_data = open(tmp_path, 'rb').read()
+                os.unlink(tmp_path)
+            except Exception as e:
+                self._send_json_error(f'패치 실패: {e}', 500)
+                return
 
         self.send_response(200)
         self.send_header('Content-Type', 'application/octet-stream')

@@ -7,10 +7,8 @@
 
 동작:
   1. translation/kitan/translation.json 로드
-  2. 원본 CMD 파일 압축 해제
-  3. 각 오프셋에서 JP 텍스트를 KR로 교체 (charmap.json 기반 인코딩)
-  4. LZ 재압축
-  5. kitan-system.fdi (DISK_B) / kitan-data.fdi (DISK_C)에 직접 덮어쓰기
+  2. 원본 CMD 파일 압축 해제 → 텍스트 패치 → LZ 재압축
+  3. build/kitan/ 에 패치된 CMD 저장
 """
 
 import json
@@ -18,17 +16,48 @@ import os
 import struct
 import sys
 
-from compile_lz import decompress, compress
-from hukyou_inserter import load_charmap, collect_replacements, patch_data
+import hukyou_inserter
+from compile_lz import decompress, compress, encode_gaiji_char
+from hukyou_inserter import (
+    load_charmap, collect_replacements, patch_data,
+    ASCII_TO_FULLWIDTH,
+)
 
 
-# DISK_B.DAT: kitan-system.fdi 내 오프셋 0x14400
-# DISK_C: kitan-data.fdi 내 오프셋 0x3C00
-DISK_B_BASE = 0x14400
-DISK_C_BASE = 0x3C00
+def encode_korean_kitan(text, charmap=None, use_gaiji=False):
+    """희담 KR 인코딩: EUC-KR → glyph index → SJIS-range bytes.
+    glyph = (euc_lead - 0xA1) * 96 + (euc_trail - 0xA0)
+    lead  = 0x81 + glyph // 189
+    trail = 0x40 + glyph % 189
+    """
+    result = bytearray()
+    for ch in text:
+        try:
+            euc = ch.encode('euc_kr')
+            if len(euc) == 2 and euc[0] >= 0xA1:
+                glyph = (euc[0] - 0xA1) * 96 + (euc[1] - 0xA0)
+                result.append(0x81 + glyph // 189)
+                result.append(0x40 + glyph % 189)
+                continue
+        except UnicodeEncodeError:
+            pass
+        if use_gaiji and encode_gaiji_char(ch):
+            result.extend(encode_gaiji_char(ch))
+        elif ch in ASCII_TO_FULLWIDTH:
+            result.extend(ASCII_TO_FULLWIDTH[ch])
+        else:
+            result.extend(ch.encode('shift_jis', errors='strict'))
+    return bytes(result)
+
+
+# ─────────────────────────────────────
+# 아카이브 오프셋 테이블
+# ─────────────────────────────────────
+
+DISK_B_BASE = 0x14400  # DISK_B.DAT in kitan-system.fdi
+DISK_C_BASE = 0x3C00   # DISK_C in kitan-data.fdi
 DATA_OFFSET = 0x400
 
-# CMD 파일 → 아카이브 인덱스 매핑 (바이트 비교로 검증 완료)
 DISK_B_INDEX = {
     'START.CMD': 2, 'MESSAGE.CMD': 3, 'PARTY2.CMD': 4, 'BTL_PC.CMD': 6,
     'SC1A.CMD': 11, 'SC1B.CMD': 12,
@@ -68,6 +97,64 @@ def get_slot_range(entries, index, disk_base):
     return disk_base + start, disk_base + end
 
 
+def detect_disk_type(fdi_data):
+    """FDI가 system(DISK_B) 인지 data(DISK_C) 인지 판별."""
+    if len(fdi_data) > DISK_B_BASE + 4:
+        magic = struct.unpack_from('>I', fdi_data, DISK_B_BASE)[0]
+        if magic == 4:
+            return 'system'
+    if len(fdi_data) > DISK_C_BASE + 4:
+        magic = struct.unpack_from('>I', fdi_data, DISK_C_BASE)[0]
+        if magic == 4:
+            return 'data'
+    return None
+
+
+def patch_fdi(fdi_data, build_dir):
+    """build/ 의 패치된 CMD 파일을 FDI에 삽입. bytes 반환."""
+    fdi = bytearray(fdi_data)
+    disk_type = detect_disk_type(fdi)
+    if disk_type is None:
+        raise ValueError('DISK_B/DISK_C 아카이브를 찾을 수 없음')
+
+    if disk_type == 'system':
+        base, index_map = DISK_B_BASE, DISK_B_INDEX
+    else:
+        base, index_map = DISK_C_BASE, DISK_C_INDEX
+
+    entries = parse_offset_table(fdi, base)
+    patched = []
+
+    build_files = [f for f in os.listdir(build_dir)
+                   if os.path.isfile(os.path.join(build_dir, f))
+                   and not f.startswith('.')]
+
+    for fname in build_files:
+        if fname not in index_map:
+            continue
+        idx = index_map[fname]
+        abs_start, abs_end = get_slot_range(entries, idx, base)
+        slot_size = abs_end - abs_start
+
+        with open(os.path.join(build_dir, fname), 'rb') as f:
+            compressed = f.read()
+
+        if len(compressed) > slot_size:
+            continue
+
+        fdi[abs_start:abs_start + len(compressed)] = compressed
+        if len(compressed) < slot_size:
+            fdi[abs_start + len(compressed):abs_end] = (
+                b'\x00' * (slot_size - len(compressed)))
+        patched.append(fname)
+
+    return bytes(fdi), patched
+
+
+# ─────────────────────────────────────
+# 빌드 (build/ 출력)
+# ─────────────────────────────────────
+
 def run(game_dir):
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -83,82 +170,33 @@ def run(game_dir):
         translation = json.load(f)
 
     charmap = load_charmap()
+    _orig = hukyou_inserter.encode_korean
+    hukyou_inserter.encode_korean = encode_korean_kitan
     by_file = collect_replacements(translation, charmap)
+    hukyou_inserter.encode_korean = _orig
 
     if not by_file:
         print('번역된 항목 없음')
         return
 
-    system_fdi_path = os.path.join(project_root, 'emulator', 'rom', 'kitan-system.fdi')
-    data_fdi_path = os.path.join(project_root, 'emulator', 'rom', 'kitan-data.fdi')
-
-    with open(system_fdi_path, 'rb') as f:
-        system_fdi = bytearray(f.read())
-    with open(data_fdi_path, 'rb') as f:
-        data_fdi = bytearray(f.read())
-
-    system_entries = parse_offset_table(system_fdi, DISK_B_BASE)
-    data_entries = parse_offset_table(data_fdi, DISK_C_BASE)
-
-    system_modified = False
-    data_modified = False
+    out_dir = os.path.join(project_root, 'build', title)
+    os.makedirs(out_dir, exist_ok=True)
 
     for fname, replacements in by_file.items():
         src_path = os.path.join(game_dir, fname)
         with open(src_path, 'rb') as f:
             raw = f.read()
 
-        decompressed = decompress(raw)
-        patched = patch_data(decompressed, replacements)
+        data = decompress(raw)
+        patched = patch_data(data, replacements)
         compressed = compress(patched)
 
-        wrote = False
-
-        if fname in DISK_B_INDEX:
-            idx = DISK_B_INDEX[fname]
-            abs_start, abs_end = get_slot_range(system_entries, idx, DISK_B_BASE)
-            slot_size = abs_end - abs_start
-            if len(compressed) > slot_size:
-                print(f'  ⚠ {fname} (DISK_B): 압축 크기 초과 '
-                      f'({len(compressed)} > {slot_size})')
-            else:
-                system_fdi[abs_start:abs_start + len(compressed)] = compressed
-                if len(compressed) < slot_size:
-                    system_fdi[abs_start + len(compressed):abs_end] = (
-                        b'\x00' * (slot_size - len(compressed)))
-                system_modified = True
-                wrote = True
-
-        if fname in DISK_C_INDEX:
-            idx = DISK_C_INDEX[fname]
-            abs_start, abs_end = get_slot_range(data_entries, idx, DISK_C_BASE)
-            slot_size = abs_end - abs_start
-            if len(compressed) > slot_size:
-                print(f'  ⚠ {fname} (DISK_C): 압축 크기 초과 '
-                      f'({len(compressed)} > {slot_size})')
-            else:
-                data_fdi[abs_start:abs_start + len(compressed)] = compressed
-                if len(compressed) < slot_size:
-                    data_fdi[abs_start + len(compressed):abs_end] = (
-                        b'\x00' * (slot_size - len(compressed)))
-                data_modified = True
-                wrote = True
-
-        if not wrote and fname not in DISK_B_INDEX and fname not in DISK_C_INDEX:
-            print(f'  ⚠ {fname}: 매핑 없음')
-            continue
+        out_path = os.path.join(out_dir, fname)
+        with open(out_path, 'wb') as f:
+            f.write(compressed)
 
         print(f'{fname}: {len(replacements)}건 교체, '
               f'{len(raw)} → {len(compressed)} bytes')
-
-    if system_modified:
-        with open(system_fdi_path, 'wb') as f:
-            f.write(system_fdi)
-        print(f'\n{os.path.basename(system_fdi_path)} 갱신 완료')
-    if data_modified:
-        with open(data_fdi_path, 'wb') as f:
-            f.write(data_fdi)
-        print(f'\n{os.path.basename(data_fdi_path)} 갱신 완료')
 
 
 if __name__ == '__main__':
