@@ -3,19 +3,19 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>환세희담 : atah.io</title>
+  <title>환세희담 데모 : atah.io</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://atah.io/favicon.ico">
 </head>
 <body>
   <div class="top-bar">
     <button id="btn-disk" class="btn-icon" title="디스크 선택">⛁</button>
-    <img src="img/logo-kitan.png" height="54" alt="환세희담" class="logo">
+    <img src="img/logo-kitan.png" height="54" alt="환세희담 데모" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
   </div>
   <div id="disk-panel" class="disk-panel hidden">
-    <button onclick="location.href='kitan-opening.html'">　오프닝</button>
-    <button>▶ 게임 플레이</button>
+    <button>▶ 오프닝</button>
+    <button onclick="location.href='kitan.html'">　게임 플레이</button>
   </div>
 
   <div id="canvas-wrap">
@@ -43,11 +43,7 @@
   <script src="gamepad.js"></script>
 
   <script>
-    const DISKS = ['/rom/kitan-system.fdi', '/rom/kitan-data.fdi'];
-
-    const IDB_NAME  = 'gensei-saves';
-    const IDB_STORE = 'disks';
-    const POLL_MS   = 10000;
+    const DISKS = ['/rom/kitan-demo.fdi', '/rom/kitan-data.fdi'];
 
     const MSG = {
       JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
@@ -72,27 +68,16 @@
       toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
     }
 
-    function openDB() {
-      return new Promise((resolve, reject) => {
-        const req = indexedDB.open(IDB_NAME, 1);
-        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
-        req.onsuccess = e => resolve(e.target.result);
-        req.onerror   = e => reject(e.target.error);
-      });
-    }
-
-    let db = null;
-
-    document.getElementById('btn-fullscreen').addEventListener('click', () => {
-      const wrap = document.getElementById('canvas-wrap');
-      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
-    });
-
     const diskPanel = document.getElementById('disk-panel');
     const btnDisk   = document.getElementById('btn-disk');
     btnDisk.addEventListener('click', () => {
       diskPanel.classList.toggle('hidden');
       btnDisk.classList.toggle('active');
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const wrap = document.getElementById('canvas-wrap');
+      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
     });
 
     document.getElementById('btn-start').addEventListener('click', function() {
@@ -101,8 +86,6 @@
     });
 
     async function startEmulator() {
-      db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
-
       window.Module = {
         canvas: canvas,
         arguments: DISKS,
@@ -118,7 +101,7 @@
               if (++attempts < 200) {
                 setTimeout(trySetup, 10);
               } else {
-                log('디스크 마운트 타임아웃, 원본으로 시작');
+                log('디스크 마운트 타임아웃');
                 Module.removeRunDependency('disk-setup');
               }
             }
@@ -127,7 +110,7 @@
         }],
 
         postRun: [function() {
-          document.title = '환세희담 : atah.io';
+          document.title = '환세희담 데모 : atah.io';
           showToast('준비 완료');
         }],
 
