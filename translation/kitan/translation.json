@@ -50125,168 +50125,168 @@
       "tag": "battle",
       "jp": "攻　撃",
       "jp_len": 6,
-      "kr": ""
+      "kr": "공 격"
     },
     {
       "offset": 13461,
       "tag": "battle",
       "jp": "魔　法",
       "jp_len": 6,
-      "kr": ""
+      "kr": "마 법"
     },
     {
       "offset": 13476,
       "tag": "battle",
       "jp": "特　技",
       "jp_len": 6,
-      "kr": ""
+      "kr": "특 기"
     },
     {
       "offset": 13491,
       "tag": "battle",
       "jp": "逃げる",
       "jp_len": 6,
-      "kr": ""
+      "kr": "도 주"
     },
     {
       "offset": 13506,
       "tag": "battle",
       "jp": "道具を使う",
       "jp_len": 10,
-      "kr": ""
+      "kr": "도구 사용"
     },
     {
       "offset": 13525,
       "tag": "battle",
       "jp": "タコ殴り",
       "jp_len": 8,
-      "kr": ""
+      "kr": "일제공격"
     },
     {
       "offset": 13542,
       "tag": "battle",
       "jp": "大撃剣(SP10)",
       "jp_len": 18,
-      "kr": ""
+      "kr": "대격검"
     },
     {
       "offset": 13569,
       "tag": "battle",
       "jp": "白刃一閃(SP10)",
       "jp_len": 20,
-      "kr": ""
+      "kr": "백인일섬"
     },
     {
       "offset": 13598,
       "tag": "battle",
       "jp": "虎撃拳(SP10)",
       "jp_len": 18,
-      "kr": ""
+      "kr": "호격권"
     },
     {
       "offset": 13625,
       "tag": "battle",
       "jp": "猛虎乱舞(SP10)",
       "jp_len": 20,
-      "kr": ""
+      "kr": "맹호난무"
     },
     {
       "offset": 13654,
       "tag": "battle",
       "jp": "大炎の呪文(MP",
       "jp_len": 16,
-      "kr": ""
+      "kr": "대염의주문"
     },
     {
       "offset": 13685,
       "tag": "battle",
       "jp": "氷の呪文(MP",
       "jp_len": 14,
-      "kr": ""
+      "kr": "빙의주문"
     },
     {
       "offset": 13714,
       "tag": "battle",
       "jp": "雷の呪文(MP10)",
       "jp_len": 20,
-      "kr": ""
+      "kr": "뇌의주문"
     },
     {
       "offset": 13743,
       "tag": "battle",
       "jp": "回復の呪文(MP",
       "jp_len": 16,
-      "kr": ""
+      "kr": "회복의주문"
     },
     {
       "offset": 13774,
       "tag": "battle",
       "jp": "解毒の呪文(MP",
       "jp_len": 16,
-      "kr": ""
+      "kr": "해독의주문"
     },
     {
       "offset": 13805,
       "tag": "battle",
       "jp": "薬草を使う",
       "jp_len": 10,
-      "kr": ""
+      "kr": "약초 사용"
     },
     {
       "offset": 13824,
       "tag": "battle",
       "jp": "毒消しを使う",
       "jp_len": 12,
-      "kr": ""
+      "kr": "해독약 사용"
     },
     {
       "offset": 13845,
       "tag": "battle",
       "jp": "リフレッシュの水を使う",
       "jp_len": 22,
-      "kr": ""
+      "kr": "리프레시워터 사용"
     },
     {
       "offset": 22540,
       "tag": "status",
       "jp": "精神力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "정신력"
     },
     {
       "offset": 22547,
       "tag": "status",
       "jp": "魔　力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "마 력"
     },
     {
       "offset": 22554,
       "tag": "status",
       "jp": "特技",
       "jp_len": 4,
-      "kr": ""
+      "kr": "특기"
     },
     {
       "offset": 22559,
       "tag": "status",
       "jp": "魔法",
       "jp_len": 4,
-      "kr": ""
+      "kr": "마법"
     },
     {
       "offset": 22564,
       "tag": "status",
       "jp": "正常",
       "jp_len": 4,
-      "kr": ""
+      "kr": "정상"
     },
     {
       "offset": 22574,
       "tag": "status",
       "jp": "気絶",
       "jp_len": 4,
-      "kr": ""
+      "kr": "기절"
     },
     {
       "offset": 22072,
@@ -50377,91 +50377,91 @@
       "tag": "stat",
       "jp": "レベル",
       "jp_len": 6,
-      "kr": ""
+      "kr": "레 벨"
     },
     {
       "offset": 44788,
       "tag": "stat",
       "jp": "状　態",
       "jp_len": 6,
-      "kr": ""
+      "kr": "상 태"
     },
     {
       "offset": 44796,
       "tag": "stat",
       "jp": "生命力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "생명력"
     },
     {
       "offset": 44816,
       "tag": "stat",
       "jp": "経験値",
       "jp_len": 6,
-      "kr": ""
+      "kr": "경험치"
     },
     {
       "offset": 44830,
       "tag": "stat",
       "jp": "攻撃力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "공격력"
     },
     {
       "offset": 44838,
       "tag": "stat",
       "jp": "素早さ",
       "jp_len": 6,
-      "kr": ""
+      "kr": "빠르기"
     },
     {
       "offset": 44848,
       "tag": "stat",
       "jp": "防御力",
       "jp_len": 6,
-      "kr": ""
+      "kr": "방어력"
     },
     {
       "offset": 44864,
       "tag": "stat",
       "jp": "武器",
       "jp_len": 4,
-      "kr": ""
+      "kr": "무기"
     },
     {
       "offset": 44872,
       "tag": "stat",
       "jp": "防具",
       "jp_len": 4,
-      "kr": ""
+      "kr": "장비"
     },
     {
       "offset": 44880,
       "tag": "stat",
       "jp": "道具",
       "jp_len": 4,
-      "kr": ""
+      "kr": "도구"
     },
     {
       "offset": 44888,
       "tag": "stat",
       "jp": "所持金",
       "jp_len": 6,
-      "kr": ""
+      "kr": "소지금"
     },
     {
       "offset": 55217,
       "tag": "misc",
       "jp": "残金　",
       "jp_len": 6,
-      "kr": ""
+      "kr": "잔금"
     },
     {
       "offset": 55556,
       "tag": "misc",
       "jp": "誰が持つ？",
       "jp_len": 10,
-      "kr": ""
+      "kr": "누구에게?"
     }
   ],
   "demo": [
