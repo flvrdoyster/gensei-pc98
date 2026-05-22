@@ -9,9 +9,13 @@
 </head>
 <body>
   <div class="top-bar">
-    <a href="kitan.html" class="btn-icon" title="게임 플레이">⛁</a>
+    <button id="btn-disk" class="btn-icon" title="디스크 선택">⛁</button>
     <img src="img/logo-kitan.png" height="54" alt="환세희담 데모" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
+  </div>
+  <div id="disk-panel" class="disk-panel hidden">
+    <button>▶ 오프닝</button>
+    <button onclick="location.href='kitan.html'">　게임 플레이</button>
   </div>
 
   <div id="canvas-wrap">
@@ -63,6 +67,13 @@
       clearTimeout(toastTimer);
       toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
     }
+
+    const diskPanel = document.getElementById('disk-panel');
+    const btnDisk   = document.getElementById('btn-disk');
+    btnDisk.addEventListener('click', () => {
+      diskPanel.classList.toggle('hidden');
+      btnDisk.classList.toggle('active');
+    });
 
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
       const wrap = document.getElementById('canvas-wrap');

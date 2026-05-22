@@ -15,8 +15,10 @@ original/kitan/
   demo/     데모 디스크에서 추출한 파일
 ```
 
-에뮬레이터(`emulator/kitan.html`)는 system + data 디스크만 사용.  
-demo 디스크는 별도로 처리 예정 (에뮬 탑재 + 한글화).
+에뮬레이터:
+- `emulator/kitan.html` — 게임 플레이 (system + data 디스크)
+- `emulator/kitan-opening.html` — 오프닝 (demo + data 디스크)
+- ⛁ 버튼으로 두 페이지 간 전환 가능
 
 ---
 

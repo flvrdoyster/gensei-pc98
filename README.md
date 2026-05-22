@@ -51,6 +51,8 @@ python3 tools/editor.py kaitou    # 쾌도전
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
 python3 tools/hukyou_inserter.py original/hukyou
+python3 tools/kitan_inserter.py  original/kitan/data   # 희담 본편
+python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 
 # 4. 로컬 에뮬레이터 확인 (http://localhost:9801)
 python3 -m http.server 9801 --directory emulator
@@ -89,7 +91,8 @@ build/                   (gitignore) 패치된 파일 출력
 emulator/
   index.html             허브 페이지 (타이틀 목록)
   hukyou.html            풍광전 에뮬레이터
-  kitan.html             희담 에뮬레이터
+  kitan.html             희담 에뮬레이터 (게임 플레이)
+  kitan-opening.html     희담 오프닝 에뮬레이터 (⛁로 kitan.html과 연결)
   style.css / gamepad.js UI 스타일 + 모바일 가상 패드
   bios/ rom/             PC-98 BIOS + 게임 디스크 이미지
   emnp2kai_sdl2.wasm     NP2kai WASM 바이너리 (공유)
