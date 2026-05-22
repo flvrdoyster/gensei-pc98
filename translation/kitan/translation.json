@@ -50119,6 +50119,351 @@
       ]
     }
   ],
+  "gsovl": [
+    {
+      "offset": 13446,
+      "tag": "battle",
+      "jp": "攻　撃",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 13461,
+      "tag": "battle",
+      "jp": "魔　法",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 13476,
+      "tag": "battle",
+      "jp": "特　技",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 13491,
+      "tag": "battle",
+      "jp": "逃げる",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 13506,
+      "tag": "battle",
+      "jp": "道具を使う",
+      "jp_len": 10,
+      "kr": ""
+    },
+    {
+      "offset": 13525,
+      "tag": "battle",
+      "jp": "タコ殴り",
+      "jp_len": 8,
+      "kr": ""
+    },
+    {
+      "offset": 13542,
+      "tag": "battle",
+      "jp": "大撃剣(SP10)",
+      "jp_len": 18,
+      "kr": ""
+    },
+    {
+      "offset": 13569,
+      "tag": "battle",
+      "jp": "白刃一閃(SP10)",
+      "jp_len": 20,
+      "kr": ""
+    },
+    {
+      "offset": 13598,
+      "tag": "battle",
+      "jp": "虎撃拳(SP10)",
+      "jp_len": 18,
+      "kr": ""
+    },
+    {
+      "offset": 13625,
+      "tag": "battle",
+      "jp": "猛虎乱舞(SP10)",
+      "jp_len": 20,
+      "kr": ""
+    },
+    {
+      "offset": 13654,
+      "tag": "battle",
+      "jp": "大炎の呪文(MP",
+      "jp_len": 16,
+      "kr": ""
+    },
+    {
+      "offset": 13685,
+      "tag": "battle",
+      "jp": "氷の呪文(MP",
+      "jp_len": 14,
+      "kr": ""
+    },
+    {
+      "offset": 13714,
+      "tag": "battle",
+      "jp": "雷の呪文(MP10)",
+      "jp_len": 20,
+      "kr": ""
+    },
+    {
+      "offset": 13743,
+      "tag": "battle",
+      "jp": "回復の呪文(MP",
+      "jp_len": 16,
+      "kr": ""
+    },
+    {
+      "offset": 13774,
+      "tag": "battle",
+      "jp": "解毒の呪文(MP",
+      "jp_len": 16,
+      "kr": ""
+    },
+    {
+      "offset": 13805,
+      "tag": "battle",
+      "jp": "薬草を使う",
+      "jp_len": 10,
+      "kr": ""
+    },
+    {
+      "offset": 13824,
+      "tag": "battle",
+      "jp": "毒消しを使う",
+      "jp_len": 12,
+      "kr": ""
+    },
+    {
+      "offset": 13845,
+      "tag": "battle",
+      "jp": "リフレッシュの水を使う",
+      "jp_len": 22,
+      "kr": ""
+    },
+    {
+      "offset": 22540,
+      "tag": "status",
+      "jp": "精神力",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 22547,
+      "tag": "status",
+      "jp": "魔　力",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 22554,
+      "tag": "status",
+      "jp": "特技",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 22559,
+      "tag": "status",
+      "jp": "魔法",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 22564,
+      "tag": "status",
+      "jp": "正常",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 22574,
+      "tag": "status",
+      "jp": "気絶",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 22072,
+      "tag": "name",
+      "jp": "スマッシュ",
+      "jp_len": 10,
+      "kr": "스마슈"
+    },
+    {
+      "offset": 22095,
+      "tag": "name",
+      "jp": "ファーリン",
+      "jp_len": 10,
+      "kr": "화린"
+    },
+    {
+      "offset": 22118,
+      "tag": "name",
+      "jp": "キリ",
+      "jp_len": 4,
+      "kr": "키리"
+    },
+    {
+      "offset": 22135,
+      "tag": "name",
+      "jp": "ペトゥム",
+      "jp_len": 8,
+      "kr": "페톰"
+    },
+    {
+      "offset": 22156,
+      "tag": "name",
+      "jp": "アターホー",
+      "jp_len": 10,
+      "kr": "아타호"
+    },
+    {
+      "offset": 22179,
+      "tag": "name",
+      "jp": "シーラ",
+      "jp_len": 6,
+      "kr": "실라"
+    },
+    {
+      "offset": 22696,
+      "tag": "name",
+      "jp": "スマッシュ",
+      "jp_len": 10,
+      "kr": "스마슈"
+    },
+    {
+      "offset": 22733,
+      "tag": "name",
+      "jp": "ファーリン",
+      "jp_len": 10,
+      "kr": "화린"
+    },
+    {
+      "offset": 22765,
+      "tag": "name",
+      "jp": "キリ",
+      "jp_len": 4,
+      "kr": "키리"
+    },
+    {
+      "offset": 22775,
+      "tag": "name",
+      "jp": "ペトゥム",
+      "jp_len": 8,
+      "kr": "페톰"
+    },
+    {
+      "offset": 22789,
+      "tag": "name",
+      "jp": "アターホー",
+      "jp_len": 10,
+      "kr": "아타호"
+    },
+    {
+      "offset": 22805,
+      "tag": "name",
+      "jp": "シーラ",
+      "jp_len": 6,
+      "kr": "실라"
+    },
+    {
+      "offset": 44778,
+      "tag": "stat",
+      "jp": "レベル",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44788,
+      "tag": "stat",
+      "jp": "状　態",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44796,
+      "tag": "stat",
+      "jp": "生命力",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44816,
+      "tag": "stat",
+      "jp": "経験値",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44830,
+      "tag": "stat",
+      "jp": "攻撃力",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44838,
+      "tag": "stat",
+      "jp": "素早さ",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44848,
+      "tag": "stat",
+      "jp": "防御力",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 44864,
+      "tag": "stat",
+      "jp": "武器",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 44872,
+      "tag": "stat",
+      "jp": "防具",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 44880,
+      "tag": "stat",
+      "jp": "道具",
+      "jp_len": 4,
+      "kr": ""
+    },
+    {
+      "offset": 44888,
+      "tag": "stat",
+      "jp": "所持金",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 55217,
+      "tag": "misc",
+      "jp": "残金　",
+      "jp_len": 6,
+      "kr": ""
+    },
+    {
+      "offset": 55556,
+      "tag": "misc",
+      "jp": "誰が持つ？",
+      "jp_len": 10,
+      "kr": ""
+    }
+  ],
   "items": [
     {
       "offset": 151,

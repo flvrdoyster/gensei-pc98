@@ -190,21 +190,11 @@ def run(game_dir):
         print(f'{fname}: {len(replacements)}건 교체, '
               f'{len(raw)} → {len(compressed)} bytes')
 
-    # GS.OVL 캐릭터 이름 패치
-    _patch_gsovl(game_dir, out_dir, charmap)
+    # GS.OVL 패치 (캐릭터 이름, 배틀 메뉴, UI 라벨 등)
+    _patch_gsovl(game_dir, out_dir, charmap, translation)
 
 
-_GSOVL_NAMES = [
-    (0x5638, bytes.fromhex('8358837d836283568385'), '스마슈'),
-    (0x564f, bytes.fromhex('83748340815b838a8393'), '화린'),
-    (0x5666, bytes.fromhex('834c838a'),             '키리'),
-    (0x5677, bytes.fromhex('8379836783448380'),     '페톰'),
-    (0x568c, bytes.fromhex('8341835e815b837a815b'), '아타호'),
-    (0x56a3, bytes.fromhex('8356815b8389'),         '실라'),
-]
-
-
-def _patch_gsovl(game_dir, out_dir, charmap):
+def _patch_gsovl(game_dir, out_dir, charmap, translation):
     src = os.path.join(game_dir, 'GS.OVL')
     if not os.path.exists(src):
         print('GS.OVL: 없음, 건너뜀')
@@ -212,17 +202,28 @@ def _patch_gsovl(game_dir, out_dir, charmap):
     with open(src, 'rb') as f:
         raw = f.read()
     data = bytearray(decompress(raw))
-    for offset, orig_bytes, kr in _GSOVL_NAMES:
-        new_bytes = encode_korean_kitan(kr, charmap)
-        end = offset + len(orig_bytes)  # 65 위치 (고정)
-        fill = len(orig_bytes) - len(new_bytes)
-        data[offset:end] = new_bytes + b'\x00\xF4' * (fill // 2)
-        # data[end] == 0x65 는 그대로 유지
+
+    patched = 0
+    for entry in translation.get('gsovl', []):
+        kr = entry.get('kr', '').strip()
+        if not kr:
+            continue
+        offset = entry['offset']
+        jp_len = entry['jp_len']
+        kr_bytes = encode_korean_kitan(kr, charmap)
+        if len(kr_bytes) > jp_len:
+            print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {jp_len}), 건너뜀')
+            continue
+        fill = jp_len - len(kr_bytes)
+        padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
+        data[offset:offset + jp_len] = kr_bytes + padding
+        patched += 1
+
     recompressed = compress(bytes(data))
     out_path = os.path.join(out_dir, 'GS.OVL')
     with open(out_path, 'wb') as f:
         f.write(recompressed)
-    print(f'GS.OVL: 캐릭터 이름 패치 완료 ({len(raw)} → {len(recompressed)} bytes)')
+    print(f'GS.OVL: {patched}건 패치 완료 ({len(raw)} → {len(recompressed)} bytes)')
 
 
 if __name__ == '__main__':

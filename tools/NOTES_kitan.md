@@ -1,7 +1,7 @@
 # 환세희담 역공학 노트
 
 **대상**: 환세희담 / 幻世喜譚 (Compile, 1995, PC-98)  
-**상태**: 에뮬레이터 탑재 완료 (system + data 디스크), JP 텍스트 파싱 완료, KR 참고 텍스트 임포트 완료, 인서터 구현·에뮬레이터 검증 완료, 번역 진행 중  
+**상태**: 에뮬레이터 탑재 완료, JP 텍스트 파싱 완료, KR 참고 텍스트 임포트 완료, 인서터·GS.OVL 패치 구현 완료, 번역 진행 중  
 **도구**: `compile_lz.py` (LZ 해제 공통), `pc98disk.py` (FDI 파일 추출)
 
 ---
@@ -203,7 +203,14 @@ MESSAGE.CMD  아이템 DB
 python3 tools/kitan_parser.py original/kitan/data
 ```
 
-출력 JSON 구조는 `translation/hukyou/translation.json`과 동일 (ui 섹션 없음).
+출력 JSON 구조:
+```json
+{
+  "dialogs": [...],   // CMD 파일 대화·메뉴 (파일별 그룹)
+  "gsovl":  [...],   // GS.OVL 고정 오프셋 문자열 (배틀 메뉴·UI 라벨·캐릭터 이름)
+  "items":  [...]    // MESSAGE.CMD 아이템 DB
+}
+```
 
 ---
 
@@ -217,10 +224,16 @@ python3 tools/kitan_parser.py original/kitan/data
 | `13 00` 포인터 블록 | 모든 CMD | 분기 메뉴 선택지 | `extract_menus` |
 | `64 01 [SJIS] 65 XX` | 모든 CMD (MESSAGE 제외) | 세이브/로드, 타이틀 메뉴 등 | `extract_labeled_text` |
 | `63 08 [SJIS] 65 XX` | ENDING.CMD 전용 | 제작진 크레딧 | `extract_labeled_text` |
-| `6d 08 [SJIS] 65 XX` | PARTY2~7.CMD 전용 | 적/NPC 이름 | `extract_labeled_text` |
+| `6d 08 [SJIS] 65` | PARTY2~7.CMD 전용 | 적/NPC 이름 | `extract_labeled_text` |
 | bare SJIS + `65` | SC6A.CMD 전용 | 층수 이름 (`　４階　` 등) | `extract_bare_sjis65` |
 | `[SJIS] 72 01 ... 65` | MESSAGE.CMD 전용 | 스토리 대화; 0x1290~EOF 연속 배치 | `extract_message_dialog` |
 | `0f 03` 블록 | MESSAGE.CMD 전용 | 아이템 DB (이름/스탯/설명) | `extract_items` |
+
+### 6d 08 연속 항목 주의사항
+
+`6d 08 [SJIS] 65` 패턴에서 `65`는 1바이트 종결자 (2바이트 오피코드 아님).  
+다음 항목의 `6d 08`이 `65` 직후에 바로 이어지므로 `j += 1`로 처리해야 연속 항목 누락 없음.  
+(`j += 2`로 처리하면 홀수 번째 항목만 추출됨 — 수정 완료)
 
 ### extract_dialogs 제어코드 처리 메모
 
@@ -262,33 +275,26 @@ result, patched = patch_fdi(fdi_data_data,   'build/kitan')  # → DISK_C_INDEX 
 - **DISK_B_INDEX**: 대부분의 CMD는 `kitan-system.fdi` 내 DISK_B.DAT (base `0x14400`)
 - **DISK_C_INDEX**: `PARTY7.CMD`만 `kitan-data.fdi` (base `0x3C00`)
 
-### GS.OVL 캐릭터 이름 패치
+### GS.OVL 패치
 
-`original/kitan/data/GS.OVL` 에 캐릭터 이름이 저장되어 있음.  
-별도 스크립트 `tools/patch_gsovl_names.py`로 처리:
+`GS.OVL`은 배틀 메뉴·UI 라벨·캐릭터 이름 등 게임 전반의 UI 문자열을 담음.  
+`kitan_parser.py`가 고정 오프셋에서 문자열을 추출해 `translation.json`의 `gsovl` 섹션에 저장.  
+`kitan_inserter.py`가 `translation['gsovl']`을 읽어 패치 후 `build/kitan/GS.OVL` 출력.  
+GS.OVL은 DISK_B_INDEX 0번 — `patch_fdi` 호출 시 system FDI에 자동 삽입.
 
-```bash
-python3 tools/patch_gsovl_names.py original/kitan/data/GS.OVL
-```
+**패치 대상 분류 (tag)**:
 
-**이름 테이블 구조** (압축 해제 후):
-```
-[SJIS 이름] 65 [00 F4 × N] 64 F6  (64 F6 = 엔트리 구분자)
-```
-- `65` = 이름 종결자, `00 F4` = 빈 표시 슬롯
-- 패치 방법: 새 이름 + `65` + `00 F4` 채움 (64 F6 위치 고정, 총 크기 불변)
+| tag | 내용 |
+|-----|------|
+| `battle` | 배틀 메뉴 (공격·마법·특기·도망·아이템, 스킬명) |
+| `status` | 상태 표시 라벨 (精神力·魔力·特技·魔法·正常·気絶) |
+| `name` | 캐릭터 이름 — 스테이터스 창(0x5638) + HUD 상시 표시(0x58A8) 두 곳에 각각 |
+| `stat` | 스탯 창 라벨 (レベル·生命力·経験値·攻撃力·素早さ·防御力·武器·防具·道具·所持金) |
+| `misc` | 기타 (残金·誰が持つ？) |
 
-| 오프셋 (해제 후) | JP 이름 | KR 이름 |
-|-----------------|---------|---------|
-| 0x5638 | スマッシュ | 스마슈 |
-| 0x564F | ファーリン | 화린 |
-| 0x5666 | キリ | 키리 |
-| 0x5677 | ペトゥム | 페톰 |
-| 0x568C | アターホー | 아타호 |
-| 0x56A3 | シーラ | 실라 |
-
-GS.OVL은 DISK_B_INDEX에 없으므로 kitan_inserter.py와 별도로 관리.  
-GS.OVL 패치 후 FDI에 삽입하려면 DISK_B.DAT에서 GS.OVL의 인덱스 번호 확인 필요 (미확인).
+**패치 방식** (압축 해제 후):  
+KR 바이트로 교체 후 남은 슬롯은 `00 F4`로 채움. 슬롯 크기 = 원본 SJIS 바이트 수.  
+초과 시 경고 출력 후 건너뜀.
 
 ---
 

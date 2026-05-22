@@ -654,6 +654,74 @@ def extract_bare_sjis65(data, captured_offsets):
 
 
 # ─────────────────────────────────────
+# GS.OVL 고정 오프셋 문자열 파서
+# ─────────────────────────────────────
+
+# (오프셋, 태그) 순서대로 정의 — 태그는 에디터 분류용
+_GSOVL_OFFSETS = [
+    # 배틀 메뉴 (battle)
+    (0x3486, 'battle'), (0x3495, 'battle'), (0x34A4, 'battle'),
+    (0x34B3, 'battle'), (0x34C2, 'battle'), (0x34D5, 'battle'),
+    (0x34E6, 'battle'), (0x3501, 'battle'), (0x351E, 'battle'),
+    (0x3539, 'battle'), (0x3556, 'battle'), (0x3575, 'battle'),
+    (0x3592, 'battle'), (0x35AF, 'battle'), (0x35CE, 'battle'),
+    (0x35ED, 'battle'), (0x3600, 'battle'), (0x3615, 'battle'),
+    # 상태 표시 라벨 (status)
+    (0x580C, 'status'), (0x5813, 'status'), (0x581A, 'status'),
+    (0x581F, 'status'), (0x5824, 'status'), (0x582E, 'status'),
+    # 스테이터스 창 이름 (name)
+    (0x5638, 'name'), (0x564F, 'name'), (0x5666, 'name'),
+    (0x5677, 'name'), (0x568C, 'name'), (0x56A3, 'name'),
+    # HUD 상시 표시 이름 (name)
+    (0x58A8, 'name'), (0x58CD, 'name'), (0x58ED, 'name'),
+    (0x58F7, 'name'), (0x5905, 'name'), (0x5915, 'name'),
+    # 스탯 창 라벨 (stat)
+    (0xAEEA, 'stat'), (0xAEF4, 'stat'), (0xAEFC, 'stat'),
+    (0xAF10, 'stat'), (0xAF1E, 'stat'), (0xAF26, 'stat'),
+    (0xAF30, 'stat'), (0xAF40, 'stat'), (0xAF48, 'stat'),
+    (0xAF50, 'stat'), (0xAF58, 'stat'),
+    # 기타 (misc)
+    (0xD7B1, 'misc'), (0xD904, 'misc'),
+]
+
+# 알려진 kr 기본값 (캐릭터 이름 — 나머지는 에디터에서 입력)
+_GSOVL_KR_DEFAULTS = {
+    0x5638: '스마슈', 0x564F: '화린', 0x5666: '키리',
+    0x5677: '페톰', 0x568C: '아타호', 0x56A3: '실라',
+    0x58A8: '스마슈', 0x58CD: '화린', 0x58ED: '키리',
+    0x58F7: '페톰', 0x5905: '아타호', 0x5915: '실라',
+}
+
+
+def extract_gsovl(game_dir):
+    """GS.OVL 고정 오프셋 문자열 추출. 파일 없으면 빈 리스트."""
+    fpath = os.path.join(game_dir, 'GS.OVL')
+    if not os.path.exists(fpath):
+        return []
+    with open(fpath, 'rb') as f:
+        raw = f.read()
+    data = decompress(raw)
+
+    result = []
+    for offset, tag in _GSOVL_OFFSETS:
+        text = ''
+        i = offset
+        while i < len(data) - 1 and is_sjis(data, i):
+            text += read_sjis_char(data, i)
+            i += 2
+        if not text or any(ord(c) == 0xFFFD for c in text):
+            continue
+        result.append({
+            'offset': offset,
+            'tag': tag,
+            'jp': text,
+            'jp_len': i - offset,
+            'kr': _GSOVL_KR_DEFAULTS.get(offset, ''),
+        })
+    return result
+
+
+# ─────────────────────────────────────
 # JSON 출력
 # ─────────────────────────────────────
 
@@ -688,7 +756,10 @@ _BARE_SJIS65_FILES = {'SC6A.CMD'}
 
 
 def generate_json(game_dir, out_path):
-    result = {'dialogs': [], 'items': []}
+    result = {'dialogs': [], 'gsovl': [], 'items': []}
+
+    # GS.OVL 고정 오프셋 문자열 추출
+    result['gsovl'] = extract_gsovl(game_dir)
 
     # 아이템 먼저 추출 — MESSAGE.CMD 대화 중복 제외용
     item_offsets = set()
@@ -787,6 +858,15 @@ def generate_json(game_dir, out_path):
             for desc in item['desc']:
                 if desc.get('kr', ''):
                     kr_map[('item_desc', desc['offset'])] = desc['kr']
+
+        # gsovl kr 복원 (오프셋 기준)
+        old_gsovl_kr = {e['offset']: e.get('kr', '')
+                        for e in old.get('gsovl', [])}
+        for entry in result['gsovl']:
+            # 기존 kr 우선, 없으면 기본값 유지
+            old_kr = old_gsovl_kr.get(entry['offset'], '')
+            if old_kr:
+                entry['kr'] = old_kr
 
         restored = fallback = 0
         for dialog in result['dialogs']:
