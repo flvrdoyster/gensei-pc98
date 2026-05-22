@@ -306,7 +306,7 @@ demo를 에뮬레이터로 실행하는 방향:
 
 1. demo FDI에서 텍스트 추출 (SP1.COM + CNS 파일 내 SJIS)
 2. 한글 패치 후 demo FDI 재조립
-3. `emulator/kitan.html`에 demo 디스크 추가 또는 별도 `kitan-demo.html` 생성
+3. `emulator/kitan-opening.html` — 오프닝 전용 페이지 (⛁로 kitan.html과 연결)
 
 ---
 

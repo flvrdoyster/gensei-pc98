@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <span class="btn-icon" style="visibility:hidden">⛁</span>
+    <a href="kitan-opening.html" class="btn-icon" title="오프닝">⛁</a>
     <img src="img/logo-kitan.png" height="54" alt="환세희담" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
   </div>
@@ -39,18 +39,14 @@
   <script src="gamepad.js"></script>
 
   <script>
-    const DISKS = {
-      system: '/rom/kitan-system.fdi',
-      data:   '/rom/kitan-data.fdi',
-    };
+    const DISKS = ['/rom/kitan-system.fdi', '/rom/kitan-data.fdi'];
 
     const IDB_NAME  = 'gensei-saves';
     const IDB_STORE = 'disks';
     const POLL_MS   = 10000;
 
-    // Toast messages
     const MSG = {
-      JS_LOAD_FAIL:   '에뮬레이터 로드에 실패했습니다.',
+      JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
     };
 
     const canvas  = document.getElementById('canvas');
@@ -72,7 +68,6 @@
       toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
     }
 
-    // IndexedDB helpers
     function openDB() {
       return new Promise((resolve, reject) => {
         const req = indexedDB.open(IDB_NAME, 1);
@@ -97,19 +92,16 @@
     async function startEmulator() {
       db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
 
-      // 시작 구성: FDD1=system, FDD2=data
       window.Module = {
         canvas: canvas,
-        arguments: [DISKS.system, DISKS.data],
+        arguments: DISKS,
 
         preRun: [function() {
           Module.addRunDependency('disk-setup');
           var attempts = 0;
           function trySetup() {
             try {
-              Module.FS.stat(DISKS.system);
-              Module.FS.stat(DISKS.data);
-              Object.values(DISKS).forEach(d => Module.FS.chmod(d, 0o666));
+              DISKS.forEach(d => { Module.FS.stat(d); Module.FS.chmod(d, 0o666); });
               Module.removeRunDependency('disk-setup');
             } catch(e) {
               if (++attempts < 200) {

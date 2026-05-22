@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="top-bar">
-    <span class="btn-icon" style="visibility:hidden">⛁</span>
+    <a href="kitan.html" class="btn-icon" title="게임 플레이">⛁</a>
     <img src="img/logo-kitan.png" height="54" alt="환세희담 데모" class="logo">
     <button id="btn-fullscreen" class="btn-icon" title="전체화면">⛶</button>
   </div>
@@ -39,7 +39,7 @@
   <script src="gamepad.js"></script>
 
   <script>
-    const DISK = '/rom/kitan-demo.fdi';
+    const DISKS = ['/rom/kitan-demo.fdi', '/rom/kitan-data.fdi'];
 
     const MSG = {
       JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
@@ -75,18 +75,16 @@
     });
 
     async function startEmulator() {
-      // 단일 디스크 부팅: FDD1=demo
       window.Module = {
         canvas: canvas,
-        arguments: [DISK],
+        arguments: DISKS,
 
         preRun: [function() {
           Module.addRunDependency('disk-setup');
           var attempts = 0;
           function trySetup() {
             try {
-              Module.FS.stat(DISK);
-              Module.FS.chmod(DISK, 0o666);
+              DISKS.forEach(d => { Module.FS.stat(d); Module.FS.chmod(d, 0o666); });
               Module.removeRunDependency('disk-setup');
             } catch(e) {
               if (++attempts < 200) {
