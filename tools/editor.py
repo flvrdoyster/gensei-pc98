@@ -144,7 +144,7 @@ tr.range-start { background: #fef9c3 !important; }
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
   <button class="build-btn" id="diskBtn">디스크에 적용</button>
-  <input type="file" id="diskInput" accept=".fdi,.hdi,.img" style="display:none">
+  <input type="file" id="diskInput" accept=".fdi,.hdi,.img" style="display:none" data-direct="__DIRECT_DISK_PATCH__">
   <button class="build-btn" id="emulatorBtn">에뮬레이터 업데이트</button>
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
@@ -519,43 +519,58 @@ function showToast(msg, type) {
   _toastTimer = setTimeout(() => toast.classList.remove('show'), dur);
 }
 
-document.getElementById('diskBtn').addEventListener('click', () => {
-  document.getElementById('diskInput').click();
-});
-
-document.getElementById('diskInput').addEventListener('change', async (e) => {
-  const file = e.target.files[0];
-  if (!file) return;
-  e.target.value = '';
-
-  const btn = document.getElementById('diskBtn');
-  btn.disabled = true;
-  btn.textContent = '적용 중...';
-
-  try {
-    const formData = new FormData();
-    formData.append('disk', file);
-    const res = await fetch('/api/disk-patch', { method: 'POST', body: formData });
-    if (!res.ok) {
-      const err = await res.json().catch(() => ({ message: res.statusText }));
-      showToast('실패: ' + (err.message || res.statusText), 'err');
-      return;
+if (document.getElementById('diskInput').dataset.direct === 'true') {
+  document.getElementById('diskBtn').addEventListener('click', async () => {
+    const btn = document.getElementById('diskBtn');
+    btn.disabled = true;
+    btn.textContent = '적용 중...';
+    try {
+      const res = await fetch('/api/disk-patch', { method: 'POST' });
+      const result = await res.json();
+      showToast(result.message, result.ok ? 'ok' : 'err');
+    } catch (err) {
+      showToast('오류: ' + err.message, 'err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '디스크에 적용';
     }
-    const blob = await res.blob();
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = file.name.replace(/(\.[^.]+)$/, '_patched$1');
-    a.click();
-    URL.revokeObjectURL(url);
-    showToast('패치 완료 — 다운로드됨', 'ok');
-  } catch (err) {
-    showToast('오류: ' + err.message, 'err');
-  } finally {
-    btn.disabled = false;
-    btn.textContent = '디스크에 적용';
-  }
-});
+  });
+} else {
+  document.getElementById('diskBtn').addEventListener('click', () => {
+    document.getElementById('diskInput').click();
+  });
+  document.getElementById('diskInput').addEventListener('change', async (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+    e.target.value = '';
+    const btn = document.getElementById('diskBtn');
+    btn.disabled = true;
+    btn.textContent = '적용 중...';
+    try {
+      const formData = new FormData();
+      formData.append('disk', file);
+      const res = await fetch('/api/disk-patch', { method: 'POST', body: formData });
+      if (!res.ok) {
+        const err = await res.json().catch(() => ({ message: res.statusText }));
+        showToast('실패: ' + (err.message || res.statusText), 'err');
+        return;
+      }
+      const blob = await res.blob();
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = file.name.replace(/(\.[^.]+)$/, '_patched$1');
+      a.click();
+      URL.revokeObjectURL(url);
+      showToast('패치 완료 — 다운로드됨', 'ok');
+    } catch (err) {
+      showToast('오류: ' + err.message, 'err');
+    } finally {
+      btn.disabled = false;
+      btn.textContent = '디스크에 적용';
+    }
+  });
+}
 
 document.getElementById('buildBtn').addEventListener('click', async () => {
   const btn = document.getElementById('buildBtn');
@@ -675,7 +690,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             html = (HTML
                     .replace('__TITLE_KR__', TITLE_KR)
                     .replace('__HAS_INSERTER__', 'true' if HAS_INSERTER else 'false')
-                    .replace('__HAS_EMULATOR__', 'true' if HAS_EMULATOR else 'false'))
+                    .replace('__HAS_EMULATOR__', 'true' if HAS_EMULATOR else 'false')
+                    .replace('__DIRECT_DISK_PATCH__', 'true' if TITLE == 'kitan' else 'false'))
             self.wfile.write(html.encode())
         elif self.path == '/api/translation':
             self.send_json_file(TRANS_PATH)
@@ -882,41 +898,72 @@ class Handler(http.server.BaseHTTPRequestHandler):
         return disk_data, disk_filename, build_dir
 
     def handle_disk_patch(self):
+        if TITLE == 'kitan':
+            self._handle_disk_patch_kitan()
+        else:
+            self._handle_disk_patch_upload()
+
+    def _handle_disk_patch_kitan(self):
+        build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
+        if not os.path.isdir(build_dir):
+            self._send_json_error('빌드 결과 없음. 먼저 빌드하세요.', 400)
+            return
+
+        rom_dir = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+        fdi_files = [('kitan-system.fdi', 'system'), ('kitan-data.fdi', 'data')]
+        total_patched = []
+
+        try:
+            from kitan_inserter import patch_fdi
+            for fdi_name, disk_type in fdi_files:
+                fdi_path = os.path.join(rom_dir, fdi_name)
+                if not os.path.exists(fdi_path):
+                    continue
+                with open(fdi_path, 'rb') as f:
+                    fdi_data = f.read()
+                result, patched = patch_fdi(fdi_data, build_dir)
+                if patched:
+                    with open(fdi_path, 'wb') as f:
+                        f.write(result)
+                    total_patched.extend(patched)
+        except Exception as e:
+            self._send_json_error(f'패치 실패: {e}', 500)
+            return
+
+        if total_patched:
+            msg = f'디스크 적용 완료 — {len(total_patched)}개 파일 패치'
+        else:
+            msg = '패치할 파일 없음'
+        self._send_json({'ok': bool(total_patched), 'message': msg})
+
+    def _handle_disk_patch_upload(self):
         disk_data, disk_filename, build_dir = self._parse_disk_upload()
         if disk_data is None:
             return
 
-        if TITLE == 'kitan':
-            try:
-                from kitan_inserter import patch_fdi
-                result_data, patched = patch_fdi(disk_data, build_dir)
-            except Exception as e:
-                self._send_json_error(f'패치 실패: {e}', 500)
-                return
-        else:
-            import tempfile
-            try:
-                from pc98disk import DiskImage
-            except ImportError as e:
-                self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
-                return
-            try:
-                with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
-                    tmp.write(disk_data)
-                    tmp_path = tmp.name
+        import tempfile
+        try:
+            from pc98disk import DiskImage
+        except ImportError as e:
+            self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
+            return
+        try:
+            with tempfile.NamedTemporaryFile(suffix=os.path.splitext(disk_filename)[1], delete=False) as tmp:
+                tmp.write(disk_data)
+                tmp_path = tmp.name
 
-                img = DiskImage.open(tmp_path)
-                for fname in os.listdir(build_dir):
-                    fpath = os.path.join(build_dir, fname)
-                    if os.path.isfile(fpath) and not fname.startswith('.'):
-                        img.add_file(fname, open(fpath, 'rb').read())
-                img.save(tmp_path)
+            img = DiskImage.open(tmp_path)
+            for fname in os.listdir(build_dir):
+                fpath = os.path.join(build_dir, fname)
+                if os.path.isfile(fpath) and not fname.startswith('.'):
+                    img.add_file(fname, open(fpath, 'rb').read())
+            img.save(tmp_path)
 
-                result_data = open(tmp_path, 'rb').read()
-                os.unlink(tmp_path)
-            except Exception as e:
-                self._send_json_error(f'패치 실패: {e}', 500)
-                return
+            result_data = open(tmp_path, 'rb').read()
+            os.unlink(tmp_path)
+        except Exception as e:
+            self._send_json_error(f'패치 실패: {e}', 500)
+            return
 
         self.send_response(200)
         self.send_header('Content-Type', 'application/octet-stream')
