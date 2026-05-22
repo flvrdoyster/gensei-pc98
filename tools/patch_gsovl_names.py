@@ -1,9 +1,14 @@
 """GS.OVL 캐릭터 이름 한글 패치"""
 import sys, json, os
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+try:
+    _d = os.path.dirname(os.path.abspath(__file__))
+    _TOOLS = _d if os.path.exists(os.path.join(_d, 'compile_lz.py')) else os.path.join(os.getcwd(), 'tools')
+except NameError:
+    _TOOLS = os.path.join(os.getcwd(), 'tools')
+sys.path.insert(0, _TOOLS)
 from compile_lz import decompress, compress
 
-with open(os.path.join(os.path.dirname(__file__), 'charmap.json')) as f:
+with open(os.path.join(_TOOLS, 'charmap.json')) as f:
     charmap = json.load(f)
 
 def encode_kr(text):

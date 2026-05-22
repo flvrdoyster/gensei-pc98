@@ -189,6 +189,42 @@ def run(game_dir):
         print(f'{fname}: {len(replacements)}건 교체, '
               f'{len(raw)} → {len(compressed)} bytes')
 
+    # GS.OVL 캐릭터 이름 패치
+    _patch_gsovl(game_dir, charmap)
+
+
+_GSOVL_NAMES = [
+    (0x5638, bytes.fromhex('8358837d836283568385'), '스마슈'),
+    (0x564f, bytes.fromhex('83748340815b838a8393'), '화린'),
+    (0x5666, bytes.fromhex('834c838a'),             '키리'),
+    (0x5677, bytes.fromhex('8379836783448380'),     '페톰'),
+    (0x568c, bytes.fromhex('8341835e815b837a815b'), '아타호'),
+    (0x56a3, bytes.fromhex('8356815b8389'),         '실라'),
+]
+
+
+def _patch_gsovl(game_dir, charmap):
+    src = os.path.join(game_dir, 'GS.OVL')
+    if not os.path.exists(src):
+        print('GS.OVL: 없음, 건너뜀')
+        return
+    with open(src, 'rb') as f:
+        raw = f.read()
+    data = bytearray(decompress(raw))
+    for offset, orig_bytes, kr in _GSOVL_NAMES:
+        new_bytes = encode_korean_kitan(kr, charmap)
+        end = offset + len(orig_bytes)
+        sep = end + 1
+        while data[sep:sep+2] != bytes([0x64, 0xF6]):
+            sep += 1
+        slot = sep - offset
+        fill = slot - len(new_bytes) - 1
+        data[offset:sep] = new_bytes + b'\x65' + b'\x00\xF4' * (fill // 2)
+    recompressed = compress(bytes(data))
+    with open(src, 'wb') as f:
+        f.write(recompressed)
+    print(f'GS.OVL: 캐릭터 이름 패치 완료 ({len(raw)} → {len(recompressed)} bytes)')
+
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
