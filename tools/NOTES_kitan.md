@@ -295,11 +295,14 @@ JP: 4블록(대화), KR: 3블록 — 추출기별 N번째 대응이므로 대화
 
 ```bash
 # 1. CMD 빌드 (build/kitan/ 생성)
+#    인수는 게임 파일 소스 디렉토리 (system/data 디스크 파일이 모두 여기 있음)
 python3 tools/kitan_inserter.py original/kitan/data
 
-# 2. FDI 패치 (editor.py의 "디스크 적용" 버튼, 또는 직접 호출)
+# 2. FDI 패치 — system·data 양쪽 FDI에 각각 호출 (editor.py "디스크 적용" 버튼)
+#    patch_fdi()가 FDI 타입을 자동 감지해 해당 인덱스 맵 적용
 from kitan_inserter import patch_fdi
-result, patched = patch_fdi(fdi_data, 'build/kitan')
+result, patched = patch_fdi(fdi_data_system, 'build/kitan')  # → DISK_B_INDEX 파일 삽입
+result, patched = patch_fdi(fdi_data_data,   'build/kitan')  # → DISK_C_INDEX 파일 삽입
 ```
 
 ### 구조
