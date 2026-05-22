@@ -1,7 +1,7 @@
 # 환세희담 역공학 노트
 
 **대상**: 환세희담 / 幻世喜譚 (Compile, 1995, PC-98)  
-**상태**: 에뮬레이터 탑재 완료 (system + data 디스크), JP 텍스트 파싱 완료, KR 참고 텍스트 임포트 완료, 번역 진행 중  
+**상태**: 에뮬레이터 탑재 완료 (system + data 디스크), JP 텍스트 파싱 완료, KR 참고 텍스트 임포트 완료, 인서터 구현·에뮬레이터 검증 완료, 번역 진행 중  
 **도구**: `compile_lz.py` (LZ 해제 공통), `pc98disk.py` (FDI 파일 추출)
 
 ---
@@ -289,18 +289,60 @@ JP: 4블록(대화), KR: 3블록 — 추출기별 N번째 대응이므로 대화
 
 ---
 
+## 인서터
+
+`tools/kitan_inserter.py` — CMD 파일 패치 후 FDI에 직접 삽입.
+
+```bash
+# 1. CMD 빌드 (build/kitan/ 생성)
+python3 tools/kitan_inserter.py original/kitan/data
+
+# 2. FDI 패치 (editor.py의 "디스크 적용" 버튼, 또는 직접 호출)
+from kitan_inserter import patch_fdi
+result, patched = patch_fdi(fdi_data, 'build/kitan')
+```
+
+### 구조
+
+- **한글 인코딩**: 풍광전과 동일하게 `charmap.json` 기반 (`encode_korean_kitan`)
+- **텍스트 길이**: 원본 바이트 크기 고정 — 초과 시 잘림 경고 후 truncate
+- **FDI 삽입**: DISK_B.DAT 오프셋 테이블로 슬롯 위치·크기 계산 → 범위 내 overwrite
+  - 파일 크기 불변 → 오프셋 테이블 갱신 불필요
+  - 슬롯보다 크면 skipping (초과 텍스트 잘려야 함)
+- **DISK_B_INDEX**: 대부분의 CMD는 `kitan-system.fdi` 내 DISK_B.DAT (base `0x14400`)
+- **DISK_C_INDEX**: `PARTY7.CMD`만 `kitan-data.fdi` (base `0x3C00`)
+
+### GS.OVL 캐릭터 이름 패치
+
+`original/kitan/data/GS.OVL` 에 캐릭터 이름이 저장되어 있음.  
+별도 스크립트 `tools/patch_gsovl_names.py`로 처리:
+
+```bash
+python3 tools/patch_gsovl_names.py original/kitan/data/GS.OVL
+```
+
+**이름 테이블 구조** (압축 해제 후):
+```
+[SJIS 이름] 65 [00 F4 × N] 64 F6  (64 F6 = 엔트리 구분자)
+```
+- `65` = 이름 종결자, `00 F4` = 빈 표시 슬롯
+- 패치 방법: 새 이름 + `65` + `00 F4` 채움 (64 F6 위치 고정, 총 크기 불변)
+
+| 오프셋 (해제 후) | JP 이름 | KR 이름 |
+|-----------------|---------|---------|
+| 0x5638 | スマッシュ | 스마슈 |
+| 0x564F | ファーリン | 화린 |
+| 0x5666 | キリ | 키리 |
+| 0x5677 | ペトゥム | 페톰 |
+| 0x568C | アターホー | 아타호 |
+| 0x56A3 | シーラ | 실라 |
+
+GS.OVL은 DISK_B_INDEX에 없으므로 kitan_inserter.py와 별도로 관리.  
+GS.OVL 패치 후 FDI에 삽입하려면 DISK_B.DAT에서 GS.OVL의 인덱스 번호 확인 필요 (미확인).
+
+---
+
 ## 향후 방향
-
-### 인서터 구현
-
-번역 완료 후 구현. 풍광전 인서터(`hukyou_inserter.py`)를 기반으로 재사용:
-
-- **한글 폰트·charmap**: 같은 PC-98 기반이므로 풍광전과 동일한 방식
-- **텍스트 길이**: `fit_length()`로 원본 바이트 크기 고정 — 풍광전과 동일한 제약
-- **유일한 차이**: 패치된 CMD를 별도 파일로 저장하는 대신, DISK_B.DAT 오프셋 테이블로 위치를 계산해 FDI 내 DISK_C 영역에 직접 덮어씀. 파일 크기가 바뀌지 않으면 오프셋 테이블 갱신 불필요.
-
-`editor.py`의 빌드 버튼은 인서터에 `original/{TITLE}`을 전달함.  
-kitan은 게임 파일이 `original/kitan/data/`에 있으므로, 인서터 구현 시 `editor.py`의 `run_build()`에서 kitan 경우 `/data`를 추가하도록 수정 필요.
 
 ### demo 에뮬레이터 탑재 (미완료)
 
