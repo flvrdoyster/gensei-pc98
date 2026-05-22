@@ -207,59 +207,6 @@ python3 tools/kitan_parser.py original/kitan/data
 
 ---
 
-## 한국어판 텍스트 추출 (`kitan_kr_import.py`)
-
-`original/kitan_kr/`의 CMD 파일에서 한국어 텍스트를 추출해 `translation.json`의 `kr` 필드에 채움.
-
-```bash
-python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
-```
-
-### 매핑 방식
-
-JP와 KR CMD 파일은 같은 제어코드 구조이나 텍스트 길이 차이로 절대 오프셋이 불일치.  
-**추출기 종류별 N번째 대응**으로 오프셋 불일치에 강건하게 매핑:
-
-1. JP 파일에서 `extract_dialogs` / `extract_labeled_text` / `extract_message_dialog` 실행
-2. KR 파일에서 동일 추출기 실행
-3. 같은 종류 N번째 JP 블록 ↔ N번째 KR 블록 대응 → JP 오프셋 기준 딕셔너리 구성
-4. `translation.json`의 각 블록 `lines[0]['offset']`으로 조회해 `kr` 채움
-
-**동작 순서**:
-1. 모든 `kr` 초기화
-2. per-extractor auto-match 적용 (전 파일, KR 게임 텍스트 참고)
-3. `START.CMD` / `ENDING.CMD` 전용: 지정 커밋의 수동 번역으로 오버레이 (커밋 우선)
-
-### KR 인코딩 (역공학)
-
-`MDRSYSF.COM` (폰트 드라이버 TSR) 분석으로 확인.
-
-**리드 바이트 판정**: 0x81–0x9F (SJIS 1바이트 범위 동일)  
-**트레일 바이트**: 0x40–0xFC (0x7F 포함, SJIS와 달리 0x7F 건너뛰지 않음 → 189개/행)
-
-**glyph 인덱스 계산 (SJIS 범위 경로)**:
-```python
-glyph = (lead - 0x81) * 189 + (trail - 0x40)
-```
-
-**glyph → EUC-KR 변환 (EUC-KR 경로 역산)**:
-```python
-euc_lead  = 0xA1 + glyph // 96
-euc_trail = 0xA0 + glyph % 96
-char = bytes([euc_lead, euc_trail]).decode('euc_kr')
-```
-
-두 경로(SJIS 범위 / EUC-KR)가 동일한 glyph index 공간을 공유하므로, SJIS 범위 코드를 EUC-KR로 역산할 수 있음.
-
-`81 41` = glyph 1 = EUC-KR A1A1 = 　(전각 스페이스).  
-캐릭터 이름 표시: `82 7E XX XX ... 82 80` = ［이름］ 형태 (전각 대괄호).
-
-### START.CMD 블록 수 불일치
-
-JP: 4블록(대화), KR: 3블록 — 추출기별 N번째 대응이므로 대화 1블록이 누락되고 나머지는 정상 매핑.
-
----
-
 ## 추출 패턴 (구현 완료)
 
 `kitan_parser.py`가 처리하는 패턴 전체:
