@@ -58,7 +58,7 @@ python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 python3 -m http.server 9801 --directory emulator
 ```
 
-역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md)  
+역공학 분석 상세: [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) · [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md) · [`tools/NOTES_kitan.md`](tools/NOTES_kitan.md)  
 공통 도구: [`tools/NOTES_tools.md`](tools/NOTES_tools.md)
 
 ---
@@ -78,6 +78,8 @@ tools/
   hukyou_inserter.py     풍광전 번역 재삽입
   kaitou_parser.py       쾌도전 텍스트 추출
   kitan_parser.py        희담 텍스트 추출
+  kitan_inserter.py      희담 번역 재삽입 (본편)
+  kitan_demo_inserter.py 희담 번역 재삽입 (오프닝)
   kitan_kr_import.py     희담 한국어판 참고 텍스트 채우기
 original/
   hukyou/                풍광전 원본 디스크 파일
