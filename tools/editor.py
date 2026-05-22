@@ -146,7 +146,7 @@ tr.range-start { background: #fef9c3 !important; }
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
-  <button class="build-btn" id="emulatorBtn">에뮬레이터 업데이트</button>
+  <button class="build-btn" id="emulatorBtn">번들 생성</button>
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
 </div>
@@ -613,7 +613,7 @@ document.getElementById('emulatorBtn').addEventListener('click', async () => {
   }
 
   btn.disabled = false;
-  btn.textContent = '에뮬레이터 업데이트';
+  btn.textContent = '번들 생성';
   btn.style.background = '';
 });
 
