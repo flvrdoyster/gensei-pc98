@@ -25,23 +25,14 @@ from hukyou_inserter import (
 
 
 def encode_korean_kitan(text, charmap=None, use_gaiji=False):
-    """희담 KR 인코딩: EUC-KR → glyph index → SJIS-range bytes.
-    glyph = (euc_lead - 0xA1) * 96 + (euc_trail - 0xA0)
-    lead  = 0x81 + glyph // 189
-    trail = 0x40 + glyph % 189
-    """
+    """희담 KR 인코딩: 풍광전과 동일하게 charmap.json 기반."""
     result = bytearray()
     for ch in text:
-        try:
-            euc = ch.encode('euc_kr')
-            if len(euc) == 2 and euc[0] >= 0xA1:
-                glyph = (euc[0] - 0xA1) * 96 + (euc[1] - 0xA0)
-                result.append(0x81 + glyph // 189)
-                result.append(0x40 + glyph % 189)
-                continue
-        except UnicodeEncodeError:
-            pass
-        if use_gaiji and encode_gaiji_char(ch):
+        if charmap and ch in charmap:
+            code = charmap[ch]
+            result.append(int(code[:2], 16))
+            result.append(int(code[2:], 16))
+        elif use_gaiji and encode_gaiji_char(ch):
             result.extend(encode_gaiji_char(ch))
         elif ch in ASCII_TO_FULLWIDTH:
             result.extend(ASCII_TO_FULLWIDTH[ch])
