@@ -1140,7 +1140,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
 
 if __name__ == '__main__':
-    port = 8182
+    port = 8182  # JP(81) → KR(82)
     server = http.server.HTTPServer(('127.0.0.1', port), Handler)
     print(f'[{TITLE_KR}] 번역 에디터: http://localhost:{port}')
     print('종료: Ctrl+C')
