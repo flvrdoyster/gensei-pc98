@@ -257,6 +257,12 @@ async function load() {
       const tag = GSOVL_TAG[entry.tag] || 'system';
       rows.push({ type: 'gsovl', tag: tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
     }
+    // demo (kitan demo SP1.COM 텍스트)
+    const DEMO_TAG = { intro: 'dialog', title: 'system', error: 'system' };
+    for (const entry of (data.demo || [])) {
+      const tag = DEMO_TAG[entry.tag] || 'dialog';
+      rows.push({ type: 'demo', tag: tag, file: 'SP1.COM', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+    }
   }
 
   const files = [...new Set(rows.map(r => r.file))];
@@ -833,6 +839,11 @@ class Handler(http.server.BaseHTTPRequestHandler):
                             updated += 1
                 elif typ == 'gsovl':
                     for entry in data.get('gsovl', []):
+                        if entry['offset'] == offset:
+                            entry['kr'] = kr
+                            updated += 1
+                elif typ == 'demo':
+                    for entry in data.get('demo', []):
                         if entry['offset'] == offset:
                             entry['kr'] = kr
                             updated += 1

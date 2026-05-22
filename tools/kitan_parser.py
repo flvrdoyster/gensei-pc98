@@ -654,6 +654,54 @@ def extract_bare_sjis65(data, captured_offsets):
 
 
 # ─────────────────────────────────────
+# demo 디스크 SP1.COM 텍스트 파서
+# ─────────────────────────────────────
+
+_DEMO_OFFSETS = [
+    # 드라이브 에러
+    (0x0D45, 'error'), (0x0D67, 'error'),
+    # 캐릭터 소개 (PETUM)
+    (0x76FA, 'intro'), (0x7705, 'intro'), (0x7728, 'intro'),
+    # 캐릭터 소개 (KIRI)
+    (0x7749, 'intro'), (0x7752, 'intro'), (0x7779, 'intro'),
+    # 캐릭터 소개 (SMASH)
+    (0x779C, 'intro'), (0x77A7, 'intro'), (0x77C8, 'intro'),
+    # 타이틀
+    (0x77CF, 'title'), (0x77E6, 'title'),
+    # 메모리 에러
+    (0x7C44, 'error'), (0x7C88, 'error'),
+]
+
+
+def extract_demo_strings(game_dir):
+    """demo/SP1.COM 고정 오프셋 텍스트 추출."""
+    demo_dir = os.path.join(os.path.dirname(game_dir), 'demo')
+    fpath = os.path.join(demo_dir, 'SP1.COM')
+    if not os.path.exists(fpath):
+        return []
+    with open(fpath, 'rb') as f:
+        data = f.read()
+
+    result = []
+    for offset, tag in _DEMO_OFFSETS:
+        text = ''
+        i = offset
+        while i < len(data) - 1 and is_sjis(data, i):
+            text += read_sjis_char(data, i)
+            i += 2
+        if not text or any(ord(c) == 0xFFFD for c in text):
+            continue
+        result.append({
+            'offset': offset,
+            'tag': tag,
+            'jp': text,
+            'jp_len': i - offset,
+            'kr': '',
+        })
+    return result
+
+
+# ─────────────────────────────────────
 # GS.OVL 고정 오프셋 문자열 파서
 # ─────────────────────────────────────
 
@@ -756,10 +804,13 @@ _BARE_SJIS65_FILES = {'SC6A.CMD'}
 
 
 def generate_json(game_dir, out_path):
-    result = {'dialogs': [], 'gsovl': [], 'items': []}
+    result = {'dialogs': [], 'gsovl': [], 'demo': [], 'items': []}
 
     # GS.OVL 고정 오프셋 문자열 추출
     result['gsovl'] = extract_gsovl(game_dir)
+
+    # demo SP1.COM 텍스트 추출
+    result['demo'] = extract_demo_strings(game_dir)
 
     # 아이템 먼저 추출 — MESSAGE.CMD 대화 중복 제외용
     item_offsets = set()
@@ -863,8 +914,15 @@ def generate_json(game_dir, out_path):
         old_gsovl_kr = {e['offset']: e.get('kr', '')
                         for e in old.get('gsovl', [])}
         for entry in result['gsovl']:
-            # 기존 kr 우선, 없으면 기본값 유지
             old_kr = old_gsovl_kr.get(entry['offset'], '')
+            if old_kr:
+                entry['kr'] = old_kr
+
+        # demo kr 복원
+        old_demo_kr = {e['offset']: e.get('kr', '')
+                       for e in old.get('demo', [])}
+        for entry in result['demo']:
+            old_kr = old_demo_kr.get(entry['offset'], '')
             if old_kr:
                 entry['kr'] = old_kr
 
