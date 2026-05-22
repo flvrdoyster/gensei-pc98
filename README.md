@@ -44,9 +44,10 @@ python3 tools/kitan_parser.py  original/kitan/data    # 희담
 # 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
 
-# 2. 번역 에디터 (http://localhost:8182)
+# 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou    # 풍광전
 python3 tools/editor.py kaitou    # 쾌도전
+python3 tools/editor.py kitan  original/kitan/data  # 희담
 #   버튼: 저장 / 빌드 / 번들 생성(웹 에뮬레이터용 번들 재생성)
 
 # 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
@@ -54,7 +55,7 @@ python3 tools/hukyou_inserter.py original/hukyou
 python3 tools/kitan_inserter.py  original/kitan/data   # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 
-# 4. 로컬 에뮬레이터 확인 (http://localhost:9801)
+# 4. 로컬 에뮬레이터 확인 → http://localhost:9801
 python3 -m http.server 9801 --directory emulator
 ```
 
