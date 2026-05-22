@@ -211,12 +211,26 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
         offset = entry['offset']
         jp_len = entry['jp_len']
         kr_bytes = encode_korean_kitan(kr, charmap)
-        if len(kr_bytes) > jp_len:
-            print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {jp_len}), 건너뜀')
-            continue
-        fill = jp_len - len(kr_bytes)
-        padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
-        data[offset:offset + jp_len] = kr_bytes + padding
+
+        # 가이지 코스트 접미사 보존: 첫 0x85 이전까지만 교체
+        orig = bytes(data[offset:offset + jp_len])
+        gaiji_start = next((i for i, b in enumerate(orig) if b == 0x85), None)
+        if gaiji_start is not None:
+            gaiji_suffix = orig[gaiji_start:]
+            max_kr = jp_len - len(gaiji_suffix)
+            if len(kr_bytes) > max_kr:
+                print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {max_kr}), 건너뜀')
+                continue
+            fill = max_kr - len(kr_bytes)
+            padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
+            data[offset:offset + jp_len] = kr_bytes + padding + gaiji_suffix
+        else:
+            if len(kr_bytes) > jp_len:
+                print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {jp_len}), 건너뜀')
+                continue
+            fill = jp_len - len(kr_bytes)
+            padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
+            data[offset:offset + jp_len] = kr_bytes + padding
         patched += 1
 
     recompressed = compress(bytes(data))
