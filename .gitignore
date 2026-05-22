@@ -1,6 +1,9 @@
 # 빌드 출력
 build/
 
+# 원본 한국어판 (참고용, 배포 제외)
+original/kitan_kr/
+
 # 파이썬
 __pycache__/
 *.pyc
