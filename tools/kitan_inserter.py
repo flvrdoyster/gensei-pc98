@@ -50,6 +50,7 @@ DISK_C_BASE = 0x3C00   # DISK_C in kitan-data.fdi
 DATA_OFFSET = 0x400
 
 DISK_B_INDEX = {
+    'GS.OVL': 0,
     'START.CMD': 2, 'MESSAGE.CMD': 3, 'PARTY2.CMD': 4, 'BTL_PC.CMD': 6,
     'SC1A.CMD': 11, 'SC1B.CMD': 12,
     'SC2A.CMD': 14, 'SC2B.CMD': 15, 'SC2C.CMD': 16, 'SC2D.CMD': 17,
@@ -190,7 +191,7 @@ def run(game_dir):
               f'{len(raw)} → {len(compressed)} bytes')
 
     # GS.OVL 캐릭터 이름 패치
-    _patch_gsovl(game_dir, charmap)
+    _patch_gsovl(game_dir, out_dir, charmap)
 
 
 _GSOVL_NAMES = [
@@ -203,7 +204,7 @@ _GSOVL_NAMES = [
 ]
 
 
-def _patch_gsovl(game_dir, charmap):
+def _patch_gsovl(game_dir, out_dir, charmap):
     src = os.path.join(game_dir, 'GS.OVL')
     if not os.path.exists(src):
         print('GS.OVL: 없음, 건너뜀')
@@ -213,15 +214,13 @@ def _patch_gsovl(game_dir, charmap):
     data = bytearray(decompress(raw))
     for offset, orig_bytes, kr in _GSOVL_NAMES:
         new_bytes = encode_korean_kitan(kr, charmap)
-        end = offset + len(orig_bytes)
-        sep = end + 1
-        while data[sep:sep+2] != bytes([0x64, 0xF6]):
-            sep += 1
-        slot = sep - offset
-        fill = slot - len(new_bytes) - 1
-        data[offset:sep] = new_bytes + b'\x65' + b'\x00\xF4' * (fill // 2)
+        end = offset + len(orig_bytes)  # 65 위치 (고정)
+        fill = len(orig_bytes) - len(new_bytes)
+        data[offset:end] = new_bytes + b'\x00\xF4' * (fill // 2)
+        # data[end] == 0x65 는 그대로 유지
     recompressed = compress(bytes(data))
-    with open(src, 'wb') as f:
+    out_path = os.path.join(out_dir, 'GS.OVL')
+    with open(out_path, 'wb') as f:
         f.write(recompressed)
     print(f'GS.OVL: 캐릭터 이름 패치 완료 ({len(raw)} → {len(recompressed)} bytes)')
 
