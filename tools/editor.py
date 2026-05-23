@@ -89,10 +89,10 @@ tr:hover { background: #f0f0f0; }
 td.file { font-size: 12px; }
 .off { width: 58px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
 td.off { font-size: 11px; }
-.jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
+.jp { width: 280px; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
-.kr-cell { width: 42%; }
+.kr-cell { width: 460px; }
 .kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; overflow-y: auto; line-height: 1.5; display: block; box-sizing: border-box; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
