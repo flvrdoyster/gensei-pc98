@@ -139,6 +139,7 @@ tr.range-start { background: #fef9c3 !important; }
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterGaiji" style="vertical-align:middle"> 외자만</label>
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterShowIgnore" style="vertical-align:middle"> 제외 포함</label>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
+  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterExact" style="vertical-align:middle"> 완전 일치</label>
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
   <button class="build-btn" id="emulatorBtn">번들 생성</button>
@@ -317,6 +318,7 @@ function render() {
   const filterType = document.getElementById('filterType').value;
   const filterFile = document.getElementById('filterFile').value;
   const search = document.getElementById('searchBox').value.toLowerCase();
+  const exactMatch = document.getElementById('filterExact').checked;
   const untranslatedOnly = document.getElementById('filterUntranslated').checked;
   const gaijiOnly = document.getElementById('filterGaiji').checked;
   const showIgnore = document.getElementById('filterShowIgnore').checked;
@@ -332,7 +334,10 @@ function render() {
       if (effective !== filterType) return false;
     }
     if (filterFile && r.file !== filterFile) return false;
-    if (search && !r.jp.toLowerCase().includes(search) && !(r.kr || '').toLowerCase().includes(search)) return false;
+    if (search) {
+      const jp = r.jp.toLowerCase(), kr = (r.kr || '').toLowerCase();
+      if (exactMatch ? (jp !== search && kr !== search) : (!jp.includes(search) && !kr.includes(search))) return false;
+    }
     return true;
   });
 
@@ -552,6 +557,7 @@ document.getElementById('filterUntranslated').addEventListener('change', render)
 document.getElementById('filterGaiji').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
+document.getElementById('filterExact').addEventListener('change', render);
 
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 's') {
