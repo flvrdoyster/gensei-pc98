@@ -632,7 +632,6 @@ function updateStickyOffset() {
   document.documentElement.style.setProperty('--topbar-h', h + 'px');
 }
 updateStickyOffset();
-window.addEventListener('resize', updateStickyOffset);
 
 // ── Enter → 다음 행 이동 ──
 document.getElementById('tbody').addEventListener('keydown', e => {
