@@ -67,7 +67,6 @@ h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
-td.type { overflow: visible; position: relative; }
 tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
 .type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
@@ -84,10 +83,6 @@ tr:hover { background: #f0f0f0; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
 .gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
-.tag-menu { position: absolute; left: 0; bottom: calc(100% + 2px); background: #fff; border: 1px solid #ccc; border-radius: 4px; box-shadow: 0 -2px 8px rgba(0,0,0,0.15); z-index: 100; min-width: 80px; padding: 2px 0; }
-.tag-menu div { padding: 4px 10px; font-size: 12px; cursor: pointer; font-weight: 400; color: #333; }
-.tag-menu div:hover { background: #f0f0f0; }
-.tag-menu div.active { font-weight: 600; }
 .file { width: 100px; font-size: 12px; color: #666; }
 .off { width: 58px; font-size: 11px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
 .jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
@@ -569,33 +564,16 @@ document.addEventListener('keydown', e => {
 document.getElementById('tbody').addEventListener('click', e => {
   const span = e.target.closest('.taggable');
   if (!span) return;
-  document.querySelectorAll('.tag-menu').forEach(m => m.remove());
+  e.stopPropagation();
   const offset = parseInt(span.dataset.offset);
   const file = span.dataset.file;
   const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable));
   if (!row) return;
-  const current = row.tag || (row.type.startsWith('skill') ? 'item' : row.type === 'title' ? 'menu' : row.type === 'unknown' ? 'system' : 'dialog');
-  const menu = document.createElement('div');
-  menu.className = 'tag-menu';
-  for (const tag of DIALOG_TAGS) {
-    const div = document.createElement('div');
-    div.textContent = TAG_LABELS[tag];
-    if (tag === current) div.className = 'active';
-    div.addEventListener('click', () => {
-      row.tag = tag;
-      tagChanges[file + ':' + offset] = tag;
-      menu.remove();
-      render();
-      updateStats();
-    });
-    menu.appendChild(div);
-  }
-  span.style.position = 'relative';
-  span.appendChild(menu);
-  setTimeout(() => {
-    const close = (ev) => { if (!menu.contains(ev.target)) { menu.remove(); document.removeEventListener('click', close); } };
-    document.addEventListener('click', close);
-  }, 0);
+  selection.clear();
+  selection.add(rowKey(row));
+  rangeStart = null;
+  updateBulkBar();
+  render();
 });
 
 document.getElementById('emulatorBtn').addEventListener('click', async () => {
