@@ -288,13 +288,12 @@ button:hover { background: rgba(68, 68, 68, 1); }
 }
 
 body.mobile-active #virtual-gamepad {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  column-gap: 10%;
+  display: flex;
+  justify-content: space-between;
   width: 100%;
+  box-sizing: border-box;
   align-items: center;
-  justify-items: center;
-  padding: 16px 24px;
+  padding: 16px 0;
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;
