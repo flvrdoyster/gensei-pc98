@@ -4,7 +4,7 @@
 
 ## 개요
 
-Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.  
+Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프로젝트.  
 텍스트 추출 툴·재삽입 툴·번역 에디터 및 웹 에뮬레이터를 포함.
 
 | 타이틀 | 폴더 | 상태 |
@@ -19,7 +19,7 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
 **`tools/`** — 한글화 도구 모음.  
 `compile_lz.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
 
-**`original/`** — 원본 게임 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분.
+**`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분.
 
 **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
 
@@ -36,14 +36,15 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
          ↓
       에디터 (번역 입력 · 저장)
          ↓
-      인서터 → build/ 에 패치 파일 생성
+      인서터 → build/ 폴더에 패치 파일 생성
          ↓
-      번들 생성 → emulator/ 번들 갱신
+      번들 생성 → emulator/ 폴더의 번들을 갱신
          ↓
       로컬 에뮬레이터로 확인
 ```
 
-에디터는 인서터·번들 생성을 버튼으로 실행할 수 있는 GUI. 각 툴은 독립적인 Python 스크립트로도 사용 가능.
+에디터는 번역 입력부터 재삽입·번들 생성까지 GUI로 처리할 수 있는 통합 도구.  
+각 툴은 독립적인 Python 스크립트로도 사용 가능.
 
 ---
 
@@ -52,10 +53,11 @@ Compile의 PC-98 환세 시리즈를 한국어로 번역하는 프로젝트.
 프로젝트 루트(`gensei-pc98/`)에서 실행.
 
 ```bash
-# 1. 텍스트 추출 (translation/<title>/translation.json 생성)
+# 1. 텍스트 추출 
 python3 tools/hukyou_parser.py original/hukyou        # 풍광전
 python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
 python3 tools/kitan_parser.py  original/kitan/data    # 희담
+(추출 결과는 translation/<title>/translation.json 으로 생성)
 
 # 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
 python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
@@ -64,12 +66,12 @@ python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation
 python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan  original/kitan/data    # 희담
-#   버튼: 저장 / 빌드 / 번들 생성(웹 에뮬레이터용 번들 재생성)
 
-# 3. 재삽입 (build/<title>/ 에 패치된 파일 생성)
+# 3. 재삽입 
 python3 tools/hukyou_inserter.py original/hukyou
 python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
+(재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성)
 
 # 4. 로컬 에뮬레이터 확인 → http://localhost:9801
 python3 -m http.server 9801 --directory emulator
@@ -84,7 +86,7 @@ python3 -m http.server 9801 --directory emulator
 - [`tools/HUKYOU.md`](tools/HUKYOU.md) — 풍광전
 - [`tools/KAITOU.md`](tools/KAITOU.md) — 쾌도전
 - [`tools/KITAN.md`](tools/KITAN.md) — 희담
-- [`tools/NOTES.md`](tools/NOTES.md) — 공통 도구
+- [`tools/NOTES.md`](tools/NOTES.md) — 한글화 도구
 - [`emulator/NOTES.md`](emulator/NOTES.md) — 에뮬레이터
 
 ---
