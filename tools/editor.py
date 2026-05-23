@@ -248,16 +248,16 @@ async function load() {
       rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
     }
     // gsovl (kitan GS.OVL 고정 오프셋 문자열)
-    const GSOVL_TAG = { battle: 'battle', status: 'system', name: 'char', stat: 'system', misc: 'menu' };
+    const GSOVL_CAT_TAG = { battle: 'battle', status: 'system', name: 'char', stat: 'system', misc: 'menu' };
     for (const entry of (data.gsovl || [])) {
-      const tag = GSOVL_TAG[entry.tag] || 'system';
-      rows.push({ type: 'gsovl', tag: tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+      const tag = GSOVL_CAT_TAG[entry.tag] ?? entry.tag ?? 'system';
+      rows.push({ type: 'gsovl', tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
     }
     // demo (kitan demo SP1.COM 텍스트)
-    const DEMO_TAG = { intro: 'dialog', title: 'system', error: 'system' };
+    const DEMO_CAT_TAG = { intro: 'dialog', title: 'system', error: 'system' };
     for (const entry of (data.demo || [])) {
-      const tag = DEMO_TAG[entry.tag] || 'dialog';
-      rows.push({ type: 'demo', tag: tag, file: 'SP1.COM', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+      const tag = DEMO_CAT_TAG[entry.tag] ?? entry.tag ?? 'dialog';
+      rows.push({ type: 'demo', tag, file: 'SP1.COM', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
     }
   }
 
