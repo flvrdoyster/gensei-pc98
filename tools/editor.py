@@ -312,7 +312,7 @@ function typeLabel(r) {
   const label = TAG_LABELS[effective] || effective;
   const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
-  const taggable = (r.type === 'dialog' || r.type === 'ui' || r.taggable) ? ' taggable' : '';
+  const taggable = (r.type === 'dialog' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable) ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
@@ -572,7 +572,7 @@ document.getElementById('tbody').addEventListener('click', e => {
   document.querySelectorAll('.tag-menu').forEach(m => m.remove());
   const offset = parseInt(span.dataset.offset);
   const file = span.dataset.file;
-  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui' || r.taggable));
+  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable));
   if (!row) return;
   const current = row.tag || (row.type.startsWith('skill') ? 'item' : row.type === 'title' ? 'menu' : row.type === 'unknown' ? 'system' : 'dialog');
   const menu = document.createElement('div');
@@ -796,19 +796,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
             for key, tag in tags.items():
                 file_name, offset_str = key.split(':', 1)
                 offset = int(offset_str)
-                if file_name == 'GF2.COM':
-                    for entry in data.get('ui', []):
+                for section in ('ui', 'gsovl', 'demo'):
+                    for entry in data.get(section, []):
                         if entry['offset'] == offset:
                             entry['tag'] = tag
                             updated += 1
-                else:
-                    for dialog in data['dialogs']:
-                        if dialog['file'] != file_name:
-                            continue
-                        for line in dialog['lines']:
-                            if line['offset'] == offset:
-                                line['tag'] = tag
-                                updated += 1
+                for dialog in data.get('dialogs', []):
+                    if dialog['file'] != file_name:
+                        continue
+                    for line in dialog['lines']:
+                        if line['offset'] == offset:
+                            line['tag'] = tag
+                            updated += 1
 
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
             json.dump(data, f, ensure_ascii=False, indent=2)
