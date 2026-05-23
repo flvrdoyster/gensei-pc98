@@ -233,12 +233,14 @@ async function load() {
       }
     }
     for (const item of (data.items || [])) {
-      rows.push({ type: 'item_name', file: 'MESSAGE.CMD', offset: item.name.offset, localOffset: item.name.offset, jp: item.name.jp, kr: item.name.kr, gaiji: !!item.name.gaiji });
+      const n = item.name;
+      rows.push({ type: 'item', tag: n.tag || 'item', file: 'MESSAGE.CMD', offset: n.offset, localOffset: n.offset, jp: n.jp, kr: n.kr, jp_len: n.jp_len, gaiji: !!n.gaiji });
       if (item.stat) {
-        rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, localOffset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
+        const s = item.stat;
+        rows.push({ type: 'item', tag: s.tag || 'item', file: 'MESSAGE.CMD', offset: s.offset, localOffset: s.offset, jp: s.jp, kr: s.kr, jp_len: s.jp_len, gaiji: !!s.gaiji });
       }
       for (const desc of item.desc) {
-        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, jp_len: desc.jp_len, gaiji: !!desc.gaiji });
+        rows.push({ type: 'item', tag: desc.tag || 'item', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, jp_len: desc.jp_len, gaiji: !!desc.gaiji });
       }
     }
     const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
@@ -299,7 +301,7 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', item_name: '아이템명', item_stat: '수치', item_desc: '설명', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
 const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
@@ -307,7 +309,7 @@ function typeLabel(r) {
   const label = TAG_LABELS[effective] || effective;
   const TYPE_CSS = { dialog: 'type-dialog', monolog: 'type-monolog', cutscene: 'type-cutscene', char: 'type-char', battle: 'type-battle', item: 'type-item', item_name: 'type-item', item_stat: 'type-item', item_desc: 'type-item', menu: 'type-menu', location: 'type-location', system: 'type-system', ignore: 'type-ignore' };
   const cls = TYPE_CSS[effective] || 'type-dialog';
-  const taggable = (r.type === 'dialog' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable) ? ' taggable' : '';
+  const taggable = (r.type === 'dialog' || r.type === 'item' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable) ? ' taggable' : '';
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
@@ -327,11 +329,7 @@ function render() {
     if (gaijiOnly && !r.gaiji) return false;
     if (filterType) {
       const effective = r.tag || r.type;
-      if (filterType === 'item') {
-        if (!r.type.startsWith('item') && effective !== 'item') return false;
-      } else {
-        if (effective !== filterType) return false;
-      }
+      if (effective !== filterType) return false;
     }
     if (filterFile && r.file !== filterFile) return false;
     if (search && !r.jp.toLowerCase().includes(search) && !(r.kr || '').toLowerCase().includes(search)) return false;
@@ -569,7 +567,7 @@ document.getElementById('tbody').addEventListener('click', e => {
   e.stopPropagation();
   const offset = parseInt(span.dataset.offset);
   const file = span.dataset.file;
-  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable));
+  const row = rows.find(r => r.offset === offset && r.file === file && (r.type === 'dialog' || r.type === 'item' || r.type === 'ui' || r.type === 'gsovl' || r.type === 'demo' || r.taggable));
   if (!row) return;
   selection.clear();
   selection.add(rowKey(row));
@@ -743,21 +741,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
                                 else:
                                     line['kr'] = kr
                                     updated += 1
-                elif typ == 'item_name':
+                elif typ == 'item':
                     for item in data.get('items', []):
-                        if item['name']['offset'] == offset:
-                            item['name']['kr'] = kr
-                            updated += 1
-                elif typ == 'item_stat':
-                    for item in data.get('items', []):
-                        if 'stat' in item and item['stat']['offset'] == offset:
-                            item['stat']['kr'] = kr
-                            updated += 1
-                elif typ == 'item_desc':
-                    for item in data.get('items', []):
-                        for desc in item['desc']:
-                            if desc['offset'] == offset:
-                                desc['kr'] = kr
+                        for field in ([item['name']] +
+                                      ([item['stat']] if 'stat' in item else []) +
+                                      item['desc']):
+                            if field['offset'] == offset:
+                                field['kr'] = kr
                                 updated += 1
                 elif typ == 'ui':
                     for entry in data.get('ui', []):
@@ -789,6 +779,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     for line in dialog['lines']:
                         if line['offset'] == offset:
                             line['tag'] = tag
+                            updated += 1
+                for item in data.get('items', []):
+                    for field in ([item['name']] +
+                                  ([item['stat']] if 'stat' in item else []) +
+                                  item['desc']):
+                        if field['offset'] == offset:
+                            field['tag'] = tag
                             updated += 1
 
         with open(TRANS_PATH, 'w', encoding='utf-8') as f:
