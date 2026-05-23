@@ -119,6 +119,12 @@ tr.range-start { background: #fef9c3 !important; }
 .fill-bar button { background: #3b82f6; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
 .fill-bar button:hover { background: #2563eb; }
 .fill-bar .fill-info { color: #555; white-space: nowrap; }
+.over-nav { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #888; }
+.over-nav button { background: none; border: 1px solid #ccc; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 12px; color: #555; }
+.over-nav button:hover { background: #f0f0f0; }
+.over-nav .over-count { color: #dc2626; font-weight: 600; }
+tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
+
 </style>
 </head>
 <body>
@@ -145,9 +151,11 @@ tr.range-start { background: #fef9c3 !important; }
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterShowIgnore" style="vertical-align:middle"> 제외 포함</label>
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterExact" style="vertical-align:middle"> 완전 일치</label>
+  <span class="over-nav" id="overNav" style="display:none"><span class="over-count" id="overCount"></span>초과 <button id="overPrev">[ 이전</button><button id="overNext">다음 ]</button></span>
   <button class="save-btn" id="saveBtn" disabled>저장</button>
   <button class="build-btn" id="buildBtn">빌드</button>
   <button class="build-btn" id="emulatorBtn">번들 생성</button>
+
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
 </div>
@@ -168,6 +176,7 @@ tr.range-start { background: #fef9c3 !important; }
 <tbody id="tbody"></tbody>
 </table>
 <div class="toast" id="toast"></div>
+
 <div class="bulk-bar" id="bulkBar" style="display:none">
   <span id="bulkCount"></span>
   <select id="bulkTag">
@@ -194,6 +203,9 @@ let charmap = {};
 let selection = new Set();
 let filteredRows = [];
 let rangeStart = null;
+let overflowRows = [];   // filteredRows 중 초과 항목
+let overflowIdx = -1;
+let lastSearch = '';
 
 function rowKey(r) { return r.type + ':' + r.file + ':' + r.offset; }
 
@@ -394,6 +406,28 @@ function render() {
     fillBar.style.display = 'none';
   }
 
+  // 초과 항목 계산
+  overflowRows = [];
+  for (const r of filteredRows) {
+    const key = rowKey(r);
+    const kr = key in modified ? modified[key] : (r.kr || '');
+    if (!kr) continue;
+    const isGaiji = r.gaiji || r.file === 'GF2.COM';
+    const jpLen = getJpLen(r);
+    const krLen = encodeByteLen(kr, isGaiji);
+    if (krLen > jpLen) overflowRows.push(r);
+  }
+  const overNav = document.getElementById('overNav');
+  if (overflowRows.length > 0) {
+    document.getElementById('overCount').textContent = overflowRows.length + '건 ';
+    overNav.style.display = 'inline-flex';
+    // overflowIdx가 범위를 벗어났으면 리셋
+    if (overflowIdx >= overflowRows.length) overflowIdx = overflowRows.length - 1;
+  } else {
+    overNav.style.display = 'none';
+    overflowIdx = -1;
+  }
+
   updateStats();
 }
 
@@ -575,8 +609,41 @@ document.getElementById('filterFile').addEventListener('change', render);
 document.getElementById('filterUntranslated').addEventListener('change', render);
 document.getElementById('filterGaiji').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
-document.getElementById('searchBox').addEventListener('input', render);
 document.getElementById('filterExact').addEventListener('change', render);
+
+document.getElementById('searchBox').addEventListener('input', e => {
+  const prev = lastSearch;
+  lastSearch = e.target.value;
+  render();
+  // 검색 해제 시 단일 선택 항목으로 스크롤
+  if (prev && !lastSearch && selection.size === 1) {
+    const key = [...selection][0];
+    const tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
+    if (tr) tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+});
+
+// ── 초과 항목 이동 ──
+function scrollToOverflow(idx) {
+  if (overflowRows.length === 0) return;
+  overflowIdx = (idx + overflowRows.length) % overflowRows.length;
+  const r = overflowRows[overflowIdx];
+  const key = rowKey(r);
+  document.querySelectorAll('#tbody tr.overflow-focus').forEach(tr => tr.classList.remove('overflow-focus'));
+  const tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
+  if (tr) {
+    tr.classList.add('overflow-focus');
+    tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  }
+}
+
+document.getElementById('overPrev').addEventListener('click', () => {
+  scrollToOverflow(overflowIdx <= 0 ? overflowRows.length - 1 : overflowIdx - 1);
+});
+document.getElementById('overNext').addEventListener('click', () => {
+  scrollToOverflow(overflowIdx + 1);
+});
+
 
 document.getElementById('fillApply').addEventListener('click', () => {
   const val = document.getElementById('fillInput').value;
@@ -595,7 +662,12 @@ document.addEventListener('keydown', e => {
     e.preventDefault();
     const btn = document.getElementById('saveBtn');
     if (!btn.disabled) btn.click();
+    return;
   }
+  // 입력 필드 안에서는 무시
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === '[') { e.preventDefault(); scrollToOverflow(overflowIdx <= 0 ? overflowRows.length - 1 : overflowIdx - 1); }
+  if (e.key === ']') { e.preventDefault(); scrollToOverflow(overflowIdx + 1); }
 });
 
 document.getElementById('tbody').addEventListener('click', e => {
