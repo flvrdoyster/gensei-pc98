@@ -945,21 +945,27 @@ def generate_json(game_dir, out_path):
                 if desc.get('kr', ''):
                     kr_map[('item_desc', desc['offset'])] = desc['kr']
 
-        # gsovl kr 복원 (오프셋 기준)
-        old_gsovl_kr = {e['offset']: e.get('kr', '')
-                        for e in old.get('gsovl', [])}
+        # gsovl kr/tag 복원 (오프셋 기준)
+        old_gsovl = {e['offset']: e for e in old.get('gsovl', [])}
         for entry in result['gsovl']:
-            old_kr = old_gsovl_kr.get(entry['offset'], '')
-            if old_kr:
-                entry['kr'] = old_kr
+            old_e = old_gsovl.get(entry['offset'])
+            if not old_e:
+                continue
+            if old_e.get('kr'):
+                entry['kr'] = old_e['kr']
+            if old_e.get('tag') and old_e['tag'] != entry['tag']:
+                entry['tag'] = old_e['tag']
 
-        # demo kr 복원
-        old_demo_kr = {e['offset']: e.get('kr', '')
-                       for e in old.get('demo', [])}
+        # demo kr/tag 복원
+        old_demo = {e['offset']: e for e in old.get('demo', [])}
         for entry in result['demo']:
-            old_kr = old_demo_kr.get(entry['offset'], '')
-            if old_kr:
-                entry['kr'] = old_kr
+            old_e = old_demo.get(entry['offset'])
+            if not old_e:
+                continue
+            if old_e.get('kr'):
+                entry['kr'] = old_e['kr']
+            if old_e.get('tag') and old_e['tag'] != entry['tag']:
+                entry['tag'] = old_e['tag']
 
         restored = fallback = 0
         for dialog in result['dialogs']:
