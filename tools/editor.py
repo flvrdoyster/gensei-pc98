@@ -65,7 +65,7 @@ h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
 .toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
 .toolbar .stats { margin-left: auto; font-size: 12px; color: #888; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
-th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
+th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; font-size: 13px; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
 tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
@@ -83,8 +83,10 @@ tr:hover { background: #f0f0f0; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(0.9); }
 .gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
-.file { width: 100px; font-size: 12px; color: #666; }
-.off { width: 58px; font-size: 11px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
+.file { width: 100px; color: #666; }
+td.file { font-size: 12px; }
+.off { width: 58px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
+td.off { font-size: 11px; }
 .jp { width: 26%; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
@@ -93,7 +95,8 @@ tr:hover { background: #f0f0f0; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
 .kr-input.saved { border-color: #22c55e; }
-.len { width: 70px; font-size: 12px; text-align: center; color: #888; }
+.len { width: 70px; text-align: center; color: #888; }
+td.len { font-size: 12px; }
 .len.over { color: #dc2626; font-weight: bold; }
 .len.ok { color: #16a34a; }
 .len.empty { color: #bbb; }
