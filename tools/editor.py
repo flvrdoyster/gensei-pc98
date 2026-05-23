@@ -437,8 +437,10 @@ document.getElementById('bulkApply').addEventListener('click', () => {
 document.getElementById('bulkCancel').addEventListener('click', () => {
   selection.clear();
   rangeStart = null;
+  document.querySelectorAll('#tbody tr.row-selected, #tbody tr.range-start').forEach(tr => {
+    tr.classList.remove('row-selected', 'range-start');
+  });
   updateBulkBar();
-  render();
 });
 
 document.getElementById('tbody').addEventListener('input', e => {
@@ -572,8 +574,10 @@ document.getElementById('tbody').addEventListener('click', e => {
   selection.clear();
   selection.add(rowKey(row));
   rangeStart = null;
+  document.querySelectorAll('#tbody tr.row-selected').forEach(tr => tr.classList.remove('row-selected'));
+  e.target.closest('tr').classList.add('row-selected');
   updateBulkBar();
-  render();
+  updateStats();
 });
 
 document.getElementById('emulatorBtn').addEventListener('click', async () => {
