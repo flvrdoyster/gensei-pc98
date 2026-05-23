@@ -65,7 +65,7 @@ h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
 .toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
 .toolbar .stats { margin-left: auto; font-size: 12px; color: #888; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
-th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; }
+th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
 tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
@@ -405,6 +405,7 @@ function render() {
   } else {
     fillBar.style.display = 'none';
   }
+  requestAnimationFrame(updateStickyOffset);
 
   // 초과 항목 계산
   overflowRows = [];
@@ -452,7 +453,10 @@ function updateStats() {
   const pct = total ? Math.round(100 * done / total) : 0;
   const circ = 2 * Math.PI * 14;
   document.getElementById('donutArc').setAttribute('stroke-dasharray', `${circ * pct / 100} ${circ}`);
-  document.getElementById('statsText').textContent = `${pct}% (${done}/${total}) | 수정: ${mod}건` + (tags ? ` | 분류: ${tags}건` : '');
+  const filteredInfo = filteredRows.length < total ? ` | 표시: ${filteredRows.length}건` : '';
+  const modInfo = mod ? ` | 수정: ${mod}건` : '';
+  const tagInfo = tags ? ` | 분류: ${tags}건` : '';
+  document.getElementById('statsText').textContent = `${pct}% (${done}/${total})${filteredInfo}${modInfo}${tagInfo}`;
   document.getElementById('saveBtn').disabled = changes === 0;
 }
 
@@ -612,6 +616,28 @@ document.getElementById('buildBtn').addEventListener('click', async () => {
   btn.disabled = false;
   btn.textContent = '빌드';
   btn.style.background = '';
+});
+
+// ── 헤더 sticky offset ──
+function updateStickyOffset() {
+  const h = document.querySelector('.topbar').offsetHeight;
+  document.documentElement.style.setProperty('--topbar-h', h + 'px');
+}
+updateStickyOffset();
+window.addEventListener('resize', updateStickyOffset);
+
+// ── Enter → 다음 행 이동 ──
+document.getElementById('tbody').addEventListener('keydown', e => {
+  if (e.key !== 'Enter' || e.shiftKey) return;
+  const ta = e.target.closest('.kr-input');
+  if (!ta) return;
+  e.preventDefault();
+  const all = Array.from(document.querySelectorAll('#tbody .kr-input'));
+  const idx = all.indexOf(ta);
+  if (idx >= 0 && idx < all.length - 1) {
+    all[idx + 1].focus();
+    all[idx + 1].select();
+  }
 });
 
 document.getElementById('filterType').addEventListener('change', render);
