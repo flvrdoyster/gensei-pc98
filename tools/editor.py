@@ -66,7 +66,7 @@ h1 { font-size: 16px; font-weight: 600; color: #333; }
 .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
 .stats { font-size: 12px; color: #888; }
-table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+table { width: 1056px; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; font-size: 13px; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
 tr:hover { background: #f0f0f0; }
