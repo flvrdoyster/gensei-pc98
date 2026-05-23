@@ -69,7 +69,7 @@ th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
 tr:hover { background: #f0f0f0; }
 .type { width: 88px; }
-.type span { display: inline-block; padding: 2px 6px; border-radius: 3px; font-size: 11px; font-weight: 600; }
+.type span { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
 .type-dialog span { background: #dbeafe; color: #1d4ed8; }
 .type-monolog span { background: #e0e7ff; color: #4338ca; }
 .type-cutscene span { background: #fce7f3; color: #9d174d; }
@@ -89,7 +89,7 @@ tr:hover { background: #f0f0f0; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
 .kr-cell { width: 42%; }
-.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 3px; font-size: 13px; font-family: inherit; }
+.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; min-height: 28px; max-height: 120px; overflow-y: hidden; line-height: 1.5; display: block; box-sizing: border-box; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
 .kr-input.saved { border-color: #22c55e; }
@@ -97,30 +97,30 @@ tr:hover { background: #f0f0f0; }
 .len.over { color: #dc2626; font-weight: bold; }
 .len.ok { color: #16a34a; }
 .len.empty { color: #bbb; }
-.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
+.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; margin-left: 8px; }
 .save-btn:hover { background: #111; }
 .save-btn:disabled { background: #bbb; cursor: default; }
 .build-btn { background: #fff; color: #333; border: 1px solid #ccc; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
 .build-btn:hover { background: #f0f0f0; }
-.toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 6px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
 .toast.show { opacity: 1; }
 tr.row-selected { background: #dbeafe !important; }
 tr.range-start { background: #fef9c3 !important; }
 #tbody tr { cursor: pointer; }
 #tbody tr td.kr-cell { cursor: default; }
-.bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 18px; border-radius: 8px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); z-index: 200; white-space: nowrap; }
+.bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 18px; border-radius: 6px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); z-index: 200; white-space: nowrap; }
 .bulk-bar select { background: #555; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; }
-.bulk-apply { background: #4ade80; color: #111; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; }
-.bulk-apply:hover { background: #22c55e; }
+.bulk-apply { background: #16a34a; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; }
+.bulk-apply:hover { background: #15803d; }
 .bulk-cancel { background: #666; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; }
 .bulk-cancel:hover { background: #888; }
-.fill-bar { background: #f0f4ff; border: 1px solid #c7d7f5; border-radius: 6px; padding: 7px 12px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
-.fill-bar input { flex: 1; background: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 3px; font-size: 13px; font-family: inherit; }
-.fill-bar button { background: #3b82f6; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
-.fill-bar button:hover { background: #2563eb; }
+.fill-bar { background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 7px 12px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.fill-bar input { flex: 1; background: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
+.fill-bar button { background: #fff; color: #333; border: 1px solid #ccc; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+.fill-bar button:hover { background: #f0f0f0; }
 .fill-bar .fill-info { color: #555; white-space: nowrap; }
-.over-nav { display: inline-flex; align-items: center; gap: 4px; font-size: 12px; color: #888; }
-.over-nav button { background: none; border: 1px solid #ccc; border-radius: 3px; padding: 2px 6px; cursor: pointer; font-size: 12px; color: #555; }
+.over-nav { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #555; }
+.over-nav button { background: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 13px; color: #333; }
 .over-nav button:hover { background: #f0f0f0; }
 .over-nav .over-count { color: #dc2626; font-weight: 600; }
 tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
@@ -366,10 +366,10 @@ function render() {
   const tbody = document.getElementById('tbody');
   tbody.innerHTML = '';
 
-  for (const r of filteredRows) {
+  for (let idx = 0; idx < filteredRows.length; idx++) {
+    const r = filteredRows[idx];
     const tr = document.createElement('tr');
     const key = rowKey(r);
-    const idx = filteredRows.indexOf(r);
     tr.dataset.key = key;
     if (selection.has(key)) tr.classList.add('row-selected');
     if (rangeStart !== null && idx === rangeStart) tr.classList.add('range-start');
@@ -391,11 +391,13 @@ function render() {
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
-      <td class="kr-cell"><input class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" value="${escAttr(kr)}" placeholder="번역 입력..."></td>
+      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="번역 입력...">${escHtml(kr)}</textarea></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
     tbody.appendChild(tr);
   }
+
+  document.querySelectorAll('#tbody .kr-input').forEach(autoResize);
 
   // 완전 일치 검색 중일 때 fill bar 표시
   const fillBar = document.getElementById('fillBar');
@@ -429,6 +431,13 @@ function render() {
   }
 
   updateStats();
+}
+
+function autoResize(el) {
+  el.style.height = 'auto';
+  const h = Math.max(el.scrollHeight, 28);
+  if (h > 120) { el.style.height = '120px'; el.style.overflowY = 'auto'; }
+  else { el.style.height = h + 'px'; el.style.overflowY = 'hidden'; }
 }
 
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
@@ -501,6 +510,7 @@ document.getElementById('bulkCancel').addEventListener('click', () => {
 
 document.getElementById('tbody').addEventListener('input', e => {
   if (!e.target.classList.contains('kr-input')) return;
+  autoResize(e.target);
   const key = e.target.dataset.key;
   const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
   const val = e.target.value;
