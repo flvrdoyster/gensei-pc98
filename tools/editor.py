@@ -238,7 +238,7 @@ async function load() {
         rows.push({ type: 'item_stat', file: 'MESSAGE.CMD', offset: item.stat.offset, localOffset: item.stat.offset, jp: item.stat.jp, kr: item.stat.kr, gaiji: !!item.stat.gaiji });
       }
       for (const desc of item.desc) {
-        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, gaiji: !!desc.gaiji });
+        rows.push({ type: 'item_desc', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, jp_len: desc.jp_len, gaiji: !!desc.gaiji });
       }
     }
     const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
