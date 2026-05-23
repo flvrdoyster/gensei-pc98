@@ -114,6 +114,11 @@ tr.range-start { background: #fef9c3 !important; }
 .bulk-apply:hover { background: #22c55e; }
 .bulk-cancel { background: #666; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; }
 .bulk-cancel:hover { background: #888; }
+.fill-bar { background: #f0f4ff; border: 1px solid #c7d7f5; border-radius: 6px; padding: 7px 12px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.fill-bar input { flex: 1; background: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 3px; font-size: 13px; font-family: inherit; }
+.fill-bar button { background: #3b82f6; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+.fill-bar button:hover { background: #2563eb; }
+.fill-bar .fill-info { color: #555; white-space: nowrap; }
 </style>
 </head>
 <body>
@@ -145,6 +150,11 @@ tr.range-start { background: #fef9c3 !important; }
   <button class="build-btn" id="emulatorBtn">번들 생성</button>
   <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
+</div>
+<div class="fill-bar" id="fillBar" style="display:none">
+  <span class="fill-info" id="fillInfo"></span>
+  <input type="text" id="fillInput" placeholder="KR 입력...">
+  <button id="fillApply">전체 적용</button>
 </div>
 <table>
 <thead><tr>
@@ -375,6 +385,15 @@ function render() {
     tbody.appendChild(tr);
   }
 
+  // 완전 일치 검색 중일 때 fill bar 표시
+  const fillBar = document.getElementById('fillBar');
+  if (exactMatch && search && filteredRows.length > 0) {
+    document.getElementById('fillInfo').textContent = `${filteredRows.length}건`;
+    fillBar.style.display = 'flex';
+  } else {
+    fillBar.style.display = 'none';
+  }
+
   updateStats();
 }
 
@@ -558,6 +577,18 @@ document.getElementById('filterGaiji').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
 document.getElementById('searchBox').addEventListener('input', render);
 document.getElementById('filterExact').addEventListener('change', render);
+
+document.getElementById('fillApply').addEventListener('click', () => {
+  const val = document.getElementById('fillInput').value;
+  if (!val) return;
+  for (const r of filteredRows) {
+    const key = rowKey(r);
+    modified[key] = val;
+    r.kr = val;
+  }
+  render();
+  updateStats();
+});
 
 document.addEventListener('keydown', e => {
   if ((e.ctrlKey || e.metaKey) && e.key === 's') {
