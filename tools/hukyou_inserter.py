@@ -277,6 +277,24 @@ def run(game_dir):
               f'{len(raw)} → {len(compressed)} bytes')
 
 
+def patch_fdi(fdi_path, build_dir):
+    """build/ 의 패치된 파일을 FAT12 FDI에 삽입. 변경된 파일 목록 반환."""
+    sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+    from pc98disk import DiskImage
+
+    build_files = [f for f in os.listdir(build_dir)
+                   if os.path.isfile(os.path.join(build_dir, f))
+                   and not f.startswith('.')]
+    if not build_files:
+        return []
+
+    img = DiskImage.open(fdi_path)
+    for fname in build_files:
+        img.add_file(fname, open(os.path.join(build_dir, fname), 'rb').read())
+    img.save(fdi_path)
+    return build_files
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('usage: python3 hukyou_inserter.py <game_dir>')

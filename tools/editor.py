@@ -957,18 +957,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
         data_path    = os.path.join(emulator_dir, 'hukyou.data')
         js_path      = os.path.join(emulator_dir, 'hukyou.js')
 
-        try:
-            from pc98disk import DiskImage
-        except ImportError as e:
-            self._send_json_error(f'pc98disk 모듈 로드 실패: {e}', 500)
-            return
-
         # 1. FDI 패치
         try:
-            img = DiskImage.open(fdi_path)
-            for fname in build_files:
-                img.add_file(fname, open(os.path.join(build_dir, fname), 'rb').read())
-            img.save(fdi_path)
+            from hukyou_inserter import patch_fdi
+            patch_fdi(fdi_path, build_dir)
         except Exception as e:
             self._send_json_error(f'FDI 패치 실패: {e}', 500)
             return
