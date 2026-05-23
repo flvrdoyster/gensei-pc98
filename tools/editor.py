@@ -58,77 +58,87 @@ HTML = r"""<!DOCTYPE html>
 <title>__TITLE_KR__ 번역 에디터</title>
 <style>
 * { box-sizing: border-box; margin: 0; padding: 0; }
-body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; max-width: 1240px; margin: 0 auto; }
-.topbar { position: sticky; top: 0; z-index: 10; background: #f5f5f5; padding: 12px 0 8px; border-bottom: 2px solid #ddd; }
-h1 { font-size: 16px; font-weight: 600; color: #333; }
-.topbar-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+body { font-family: 'Malgun Gothic', sans-serif; background: #1e1e1e; color: #d4d4d4; padding: 16px; padding-top: 0; font-size: 14px; width: 800px; }
+.topbar { position: sticky; top: 0; z-index: 10; background: #181818; padding: 10px 0 8px; border-bottom: 1px solid #333; }
+h1 { font-size: 15px; font-weight: 600; color: #bbb; }
+.topbar-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 6px; }
 .topbar-actions { display: flex; align-items: center; gap: 8px; }
-.toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
-.toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
-.stats { font-size: 12px; color: #888; }
-table { width: 1056px; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
-th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; font-size: 13px; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
-td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
-tr:hover { background: #f0f0f0; }
-.type { width: 88px; }
+.toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: nowrap; }
+.toolbar-search { margin-top: 4px; }
+.toolbar select, .toolbar input[type="text"] { background: #252525; color: #ccc; border: 1px solid #3a3a3a; height: 28px; padding: 0 8px; border-radius: 4px; font-size: 12px; font-family: inherit; }
+.toolbar select:focus, .toolbar input:focus { outline: none; border-color: #555; }
+.toolbar label { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #888; cursor: pointer; user-select: none; white-space: nowrap; }
+.toolbar label input[type="checkbox"] { accent-color: #999; width: 12px; height: 12px; }
+#filterType { width: 128px; }
+#filterFile { width: 128px; }
+#searchBox { width: 264px; }
+.stats { font-size: 12px; color: #666; }
+table { width: 768px; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
+th { background: #1a1a1a; padding: 6px 8px; text-align: left; border-bottom: 1px solid #333; font-weight: 600; color: #666; font-size: 11px; position: sticky; top: var(--topbar-h, 72px); z-index: 5; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+td { padding: 5px 8px; border-bottom: 1px solid #252525; vertical-align: top; overflow: hidden; }
+tr:hover { background: #232323; }
+.type { width: 76px; }
 .type span { display: inline-block; padding: 2px 6px; border-radius: 4px; font-size: 11px; font-weight: 600; }
-.type-dialog span { background: #dbeafe; color: #1d4ed8; }
-.type-monolog span { background: #e0e7ff; color: #4338ca; }
-.type-cutscene span { background: #fce7f3; color: #9d174d; }
-.type-item span { background: #dcfce7; color: #15803d; }
-.type-menu span { background: #fef9c3; color: #854d0e; }
-.type-location span { background: #fed7aa; color: #9a3412; }
-.type-battle span { background: #fee2e2; color: #991b1b; }
-.type-system span { background: #e5e7eb; color: #374151; }
-.type-ignore span { background: #f5f5f5; color: #aaa; text-decoration: line-through; }
-.type-char span { background: #cffafe; color: #0e7490; }
+.type-dialog span { background: #1e3a5c; color: #7ec4f8; }
+.type-monolog span { background: #2a2450; color: #a5a0f0; }
+.type-cutscene span { background: #3d1a30; color: #f0a0cc; }
+.type-item span { background: #1a3520; color: #70c880; }
+.type-menu span { background: #332800; color: #d4b060; }
+.type-location span { background: #3a2010; color: #d09060; }
+.type-battle span { background: #3a1a1a; color: #e08080; }
+.type-system span { background: #2a2a2a; color: #aaa; }
+.type-ignore span { background: #222; color: #555; text-decoration: line-through; }
+.type-char span { background: #0d3040; color: #60c8e0; }
 .type span.taggable { cursor: pointer; position: relative; }
-.type span.taggable:hover { filter: brightness(0.9); }
-.gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #f3e8ff; color: #7c3aed; margin-left: 4px; vertical-align: middle; }
-.file { width: 100px; color: #666; }
+.type span.taggable:hover { filter: brightness(1.2); }
+.gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #2e1a50; color: #c090f0; margin-left: 4px; vertical-align: middle; }
+.file { width: 82px; color: #555; }
 td.file { font-size: 12px; }
-.off { width: 58px; color: #aaa; font-family: monospace; text-align: right; padding-right: 10px; }
+.off { width: 50px; color: #555; font-family: monospace; text-align: right; padding-right: 10px; }
 td.off { font-size: 11px; }
-.jp { width: 280px; color: #444; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
-.jp:hover { background: #f0f4ff; }
-.jp.copied { background: #d4edda; transition: background 0.1s; }
-.kr-cell { width: 460px; }
-.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; overflow-y: auto; line-height: 1.5; display: block; box-sizing: border-box; }
-.kr-input:focus { border-color: #555; outline: none; }
-.kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
-.kr-input.saved { border-color: #22c55e; }
-.len { width: 70px; text-align: center; color: #888; }
+.jp { width: 200px; color: #999; white-space: pre-wrap; word-break: break-all; cursor: pointer; }
+.jp:hover { background: #1e2433; }
+.jp.copied { background: #1a3322; transition: background 0.1s; }
+.kr-cell { width: 304px; }
+.kr-input { width: 100%; background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; overflow-y: auto; line-height: 1.5; display: block; box-sizing: border-box; }
+.kr-input:focus { border-color: #666; outline: none; }
+.kr-input.modified { border-color: #b87820; background: #1e1600; }
+.kr-input.saved { border-color: #2a8040; }
+.len { width: 56px; text-align: center; color: #555; }
 td.len { font-size: 12px; }
-.len.over { color: #dc2626; font-weight: bold; }
-.len.ok { color: #16a34a; }
-.len.empty { color: #bbb; }
-.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-.save-btn:hover { background: #111; }
-.save-btn:disabled { background: #bbb; cursor: default; }
-.build-btn { background: #fff; color: #333; border: 1px solid #ccc; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
-.build-btn:hover { background: #f0f0f0; }
-.toast { position: fixed; bottom: 24px; right: 24px; color: #fff; padding: 10px 18px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.25s; max-width: 340px; box-shadow: 0 2px 8px rgba(0,0,0,0.25); }
+.len.over { color: #c04040; font-weight: bold; }
+.len.ok { color: #408040; }
+.len.empty { color: #3a3a3a; }
+.save-btn { background: #2e2e2e; color: #ccc; border: 1px solid #4a4a4a; height: 28px; width: 56px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: inherit; }
+.save-btn:hover { background: #3a3a3a; color: #fff; }
+.save-btn:disabled { background: #1e1e1e; color: #444; border-color: #2a2a2a; cursor: default; }
+.build-btn { background: transparent; color: #999; border: 1px solid #3a3a3a; height: 28px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: inherit; }
+#buildBtn { width: 56px; }
+#emulatorBtn { width: 80px; }
+.build-btn:hover { background: #2a2a2a; color: #ddd; border-color: #555; }
+.toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 340px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
 .toast.show { opacity: 1; }
-tr.row-selected { background: #dbeafe !important; }
-tr.range-start { background: #fef9c3 !important; }
+tr.row-selected { background: #1a2840 !important; }
+tr.range-start { background: #252000 !important; }
 #tbody tr { cursor: pointer; }
 #tbody tr td.kr-cell { cursor: default; }
-.bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: #fff; padding: 10px 18px; border-radius: 6px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 16px rgba(0,0,0,0.35); z-index: 200; white-space: nowrap; }
-.bulk-bar select { background: #555; color: #fff; border: none; padding: 4px 8px; border-radius: 4px; font-size: 13px; cursor: pointer; }
-.bulk-apply { background: #16a34a; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; }
-.bulk-apply:hover { background: #15803d; }
-.bulk-cancel { background: #666; color: #fff; border: none; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; }
-.bulk-cancel:hover { background: #888; }
-.fill-bar { background: #f5f5f5; border: 1px solid #ddd; border-radius: 4px; padding: 7px 12px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
-.fill-bar input { flex: 1; background: #fff; border: 1px solid #ccc; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
-.fill-bar button { background: #fff; color: #333; border: 1px solid #ccc; padding: 5px 14px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
-.fill-bar button:hover { background: #f0f0f0; }
-.fill-bar .fill-info { color: #555; white-space: nowrap; }
-.over-nav { display: inline-flex; align-items: center; gap: 6px; font-size: 13px; color: #555; }
-.over-nav button { background: #fff; border: 1px solid #ccc; border-radius: 4px; padding: 5px 10px; cursor: pointer; font-size: 13px; color: #333; }
-.over-nav button:hover { background: #f0f0f0; }
-.over-nav .over-count { color: #dc2626; font-weight: 600; }
-tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
+.bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 6px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 200; white-space: nowrap; }
+.bulk-bar select { background: #333; color: #ccc; border: 1px solid #4a4a4a; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+.bulk-apply { background: #1a3d1a; color: #7dc87d; border: 1px solid #2d5c2d; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 600; }
+.bulk-apply:hover { background: #234d23; }
+.bulk-cancel { background: #2a2a2a; color: #999; border: 1px solid #3a3a3a; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; }
+.bulk-cancel:hover { background: #333; color: #ccc; }
+.fill-bar { background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 4px; padding: 7px 12px; margin-bottom: 8px; display: flex; gap: 8px; align-items: center; font-size: 13px; }
+.fill-bar input { flex: 1; background: #252525; border: 1px solid #3a3a3a; color: #d4d4d4; padding: 4px 8px; border-radius: 4px; font-size: 13px; font-family: inherit; }
+.fill-bar input:focus { outline: none; border-color: #555; }
+.fill-bar button { background: #2a2a2a; color: #bbb; border: 1px solid #3a3a3a; padding: 4px 12px; border-radius: 4px; font-size: 13px; cursor: pointer; font-weight: 600; white-space: nowrap; }
+.fill-bar button:hover { background: #333; color: #ddd; }
+.fill-bar .fill-info { color: #666; white-space: nowrap; }
+.over-nav { display: inline-flex; align-items: center; gap: 6px; font-size: 12px; color: #666; }
+.over-nav button { background: #252525; border: 1px solid #3a3a3a; border-radius: 4px; height: 28px; width: 48px; cursor: pointer; font-size: 12px; color: #999; font-family: inherit; }
+.over-nav button:hover { background: #2e2e2e; color: #ccc; }
+.over-nav .over-count { color: #c04040; font-weight: 600; }
+tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
 
 </style>
 </head>
@@ -137,10 +147,10 @@ tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
 <div class="topbar-title">
   <h1>__TITLE_KR__ 번역 에디터</h1>
   <div class="topbar-actions">
+    <span class="stats" id="stats"><svg id="donut" width="16" height="16" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#333" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
     <button class="save-btn" id="saveBtn" disabled>저장</button>
     <button class="build-btn" id="buildBtn">빌드</button>
     <button class="build-btn" id="emulatorBtn">번들 생성</button>
-    <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
   </div>
 </div>
 <div class="toolbar">
@@ -159,12 +169,14 @@ tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
   <select id="filterFile">
     <option value="">전체 파일</option>
   </select>
-  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterUntranslated" style="vertical-align:middle"> 미번역만</label>
-  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterGaiji" style="vertical-align:middle"> 외자만</label>
-  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterShowIgnore" style="vertical-align:middle"> 제외 포함</label>
-  <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
-  <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterExact" style="vertical-align:middle"> 완전 일치</label>
-  <span class="over-nav" id="overNav" style="display:none"><span class="over-count" id="overCount"></span>초과 <button id="overPrev">[ 이전</button><button id="overNext">다음 ]</button></span>
+  <label><input type="checkbox" id="filterUntranslated"> 미번역만</label>
+  <label><input type="checkbox" id="filterGaiji"> 외자만</label>
+  <label><input type="checkbox" id="filterShowIgnore"> 제외 포함</label>
+</div>
+<div class="toolbar toolbar-search">
+  <input type="text" id="searchBox" placeholder="검색 (JP/KR)...">
+  <label><input type="checkbox" id="filterExact"> 완전 일치</label>
+  <span class="over-nav" id="overNav" style="display:none"><span class="over-count" id="overCount"></span>초과 <button id="overPrev">이전</button><button id="overNext">다음</button></span>
 </div>
 </div>
 <div class="fill-bar" id="fillBar" style="display:none">
@@ -176,10 +188,10 @@ tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
 <thead><tr>
   <th class="type">타입</th>
   <th class="file">파일</th>
-  <th class="off">오프셋</th>
-  <th class="jp">일본어 (JP)</th>
-  <th class="kr-cell">한국어 (KR)</th>
-  <th class="len">바이트</th>
+  <th class="off">OFF</th>
+  <th class="jp">JP</th>
+  <th class="kr-cell">KR</th>
+  <th class="len">Byte</th>
 </tr></thead>
 <tbody id="tbody"></tbody>
 </table>
