@@ -197,7 +197,7 @@ def collect_replacements(translation, charmap):
             s = item['stat']
             add(fname, s['offset'], s['jp'], s['kr'], jp_len=s.get('jp_len'))
         for desc in item['desc']:
-            add(fname, desc['offset'], desc['jp'], desc['kr'])
+            add(fname, desc['offset'], desc['jp'], desc['kr'], jp_len=desc.get('jp_len'))
 
     for entry in translation.get('ui', []):
         fname = 'GF2.COM'
