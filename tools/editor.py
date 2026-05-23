@@ -60,10 +60,12 @@ HTML = r"""<!DOCTYPE html>
 * { box-sizing: border-box; margin: 0; padding: 0; }
 body { font-family: 'Malgun Gothic', sans-serif; background: #f5f5f5; color: #222; padding: 16px; padding-top: 0; font-size: 14px; max-width: 1240px; margin: 0 auto; }
 .topbar { position: sticky; top: 0; z-index: 10; background: #f5f5f5; padding: 12px 0 8px; border-bottom: 2px solid #ddd; }
-h1 { font-size: 16px; font-weight: 600; margin-bottom: 8px; color: #333; }
+h1 { font-size: 16px; font-weight: 600; color: #333; }
+.topbar-title { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
+.topbar-actions { display: flex; align-items: center; gap: 8px; }
 .toolbar { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
 .toolbar select, .toolbar input { background: #fff; color: #222; border: 1px solid #ccc; padding: 5px 10px; border-radius: 4px; font-size: 13px; }
-.toolbar .stats { margin-left: auto; font-size: 12px; color: #888; }
+.stats { font-size: 12px; color: #888; }
 table { width: 100%; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
 th { background: #e8e8e8; padding: 7px 8px; text-align: left; border-bottom: 2px solid #ccc; font-weight: 600; color: #444; font-size: 13px; position: sticky; top: var(--topbar-h, 72px); z-index: 5; }
 td { padding: 5px 8px; border-bottom: 1px solid #e0e0e0; vertical-align: top; overflow: hidden; }
@@ -100,7 +102,7 @@ td.len { font-size: 12px; }
 .len.over { color: #dc2626; font-weight: bold; }
 .len.ok { color: #16a34a; }
 .len.empty { color: #bbb; }
-.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; margin-left: 8px; }
+.save-btn { background: #333; color: #fff; border: none; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
 .save-btn:hover { background: #111; }
 .save-btn:disabled { background: #bbb; cursor: default; }
 .build-btn { background: #fff; color: #333; border: 1px solid #ccc; padding: 6px 16px; border-radius: 4px; cursor: pointer; font-size: 13px; }
@@ -132,7 +134,15 @@ tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
 </head>
 <body>
 <div class="topbar">
-<h1>__TITLE_KR__ 번역 에디터</h1>
+<div class="topbar-title">
+  <h1>__TITLE_KR__ 번역 에디터</h1>
+  <div class="topbar-actions">
+    <button class="save-btn" id="saveBtn" disabled>저장</button>
+    <button class="build-btn" id="buildBtn">빌드</button>
+    <button class="build-btn" id="emulatorBtn">번들 생성</button>
+    <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
+  </div>
+</div>
 <div class="toolbar">
   <select id="filterType">
     <option value="">전체 타입</option>
@@ -155,11 +165,6 @@ tr.overflow-focus { outline: 2px solid #dc2626; outline-offset: -2px; }
   <input type="text" id="searchBox" placeholder="검색 (JP/KR)..." style="width:200px">
   <label style="font-size:13px;cursor:pointer;user-select:none"><input type="checkbox" id="filterExact" style="vertical-align:middle"> 완전 일치</label>
   <span class="over-nav" id="overNav" style="display:none"><span class="over-count" id="overCount"></span>초과 <button id="overPrev">[ 이전</button><button id="overNext">다음 ]</button></span>
-  <button class="save-btn" id="saveBtn" disabled>저장</button>
-  <button class="build-btn" id="buildBtn">빌드</button>
-  <button class="build-btn" id="emulatorBtn">번들 생성</button>
-
-  <span class="stats" id="stats"><svg id="donut" width="20" height="20" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#e5e7eb" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
 </div>
 </div>
 <div class="fill-bar" id="fillBar" style="display:none">
