@@ -93,7 +93,7 @@ td.off { font-size: 11px; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
 .kr-cell { width: 42%; }
-.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; min-height: 28px; max-height: 120px; overflow-y: auto; line-height: 1.5; display: block; box-sizing: border-box; field-sizing: content; }
+.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; min-height: 28px; max-height: 120px; overflow-y: hidden; line-height: 1.5; display: block; box-sizing: border-box; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
 .kr-input.saved { border-color: #22c55e; }
@@ -440,9 +440,7 @@ function render() {
   updateStats();
 }
 
-const _fieldSizingSupported = CSS.supports('field-sizing', 'content');
 function autoResize(el) {
-  if (_fieldSizingSupported) return;  // CSS가 처리
   el.style.height = 'auto';
   const h = Math.max(el.scrollHeight, 28);
   if (h > 120) { el.style.height = '120px'; el.style.overflowY = 'auto'; }
@@ -518,6 +516,11 @@ document.getElementById('bulkCancel').addEventListener('click', () => {
     tr.classList.remove('row-selected', 'range-start');
   });
   updateBulkBar();
+});
+
+document.getElementById('tbody').addEventListener('focusin', e => {
+  const ta = e.target.closest('.kr-input');
+  if (ta) autoResize(ta);
 });
 
 document.getElementById('tbody').addEventListener('input', e => {
