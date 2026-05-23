@@ -49,7 +49,7 @@ original/kaitou/
 
 ### 1. 압축 해제
 
-LZ 알고리즘은 풍광전과 동일 — `compile_lz.decompress()` 재사용. 알고리즘 상세는 `NOTES_hukyou.md` 참조.
+LZ 알고리즘은 풍광전과 동일 — `compile_lz.decompress()` 재사용. 알고리즘 상세는 `HUKYOU.md` 참조.
 
 쾌도전 고유 구조 — DISK_B.DAT 청크 테이블 파싱:
 ```python

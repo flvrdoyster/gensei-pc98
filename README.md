@@ -81,10 +81,10 @@ python3 -m http.server 9801 --directory emulator
 
 역공학 분석 및 구현 상세:
 
-- [`tools/NOTES_hukyou.md`](tools/NOTES_hukyou.md) — 풍광전
-- [`tools/NOTES_kaitou.md`](tools/NOTES_kaitou.md) — 쾌도전
-- [`tools/NOTES_kitan.md`](tools/NOTES_kitan.md) — 희담
-- [`tools/NOTES_tools.md`](tools/NOTES_tools.md) — 공통 도구
+- [`tools/HUKYOU.md`](tools/HUKYOU.md) — 풍광전
+- [`tools/KAITOU.md`](tools/KAITOU.md) — 쾌도전
+- [`tools/KITAN.md`](tools/KITAN.md) — 희담
+- [`tools/NOTES.md`](tools/NOTES.md) — 공통 도구
 - [`emulator/NOTES.md`](emulator/NOTES.md) — 에뮬레이터
 
 ---
