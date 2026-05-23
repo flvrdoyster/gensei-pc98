@@ -212,9 +212,20 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
         jp_len = entry['jp_len']
         kr_bytes = encode_korean_kitan(kr, charmap)
 
-        # 가이지 코스트 접미사 보존: 첫 0x85 이전까지만 교체
+        # 가이지 코스트 접미사 보존: 첫 0x85 lead byte 이전까지만 교체
+        # SJIS trail byte의 0x85는 무시 (예: ュ = 0x83 0x85)
         orig = bytes(data[offset:offset + jp_len])
-        gaiji_start = next((i for i, b in enumerate(orig) if b == 0x85), None)
+        gaiji_start = None
+        _i = 0
+        while _i < len(orig):
+            b = orig[_i]
+            if b == 0x85:
+                gaiji_start = _i
+                break
+            if (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and _i + 1 < len(orig):
+                _i += 2
+            else:
+                _i += 1
         if gaiji_start is not None:
             gaiji_suffix = orig[gaiji_start:]
             max_kr = jp_len - len(gaiji_suffix)
