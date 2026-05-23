@@ -229,7 +229,7 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
                 print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {jp_len}), 건너뜀')
                 continue
             fill = jp_len - len(kr_bytes)
-            padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
+            padding = b'\x81\x40' * (fill // 2) + (b'\x20' if fill % 2 else b'')
             data[offset:offset + jp_len] = kr_bytes + padding
         patched += 1
 

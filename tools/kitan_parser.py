@@ -723,11 +723,6 @@ _GSOVL_OFFSETS = [
     # HUD 상시 표시 이름 (name)
     (0x58A8, 'name'), (0x58CD, 'name'), (0x58ED, 'name'),
     (0x58F7, 'name'), (0x5905, 'name'), (0x5915, 'name'),
-    # 스탯 창 라벨 (stat)
-    (0xAEEA, 'stat'), (0xAEF4, 'stat'), (0xAEFC, 'stat'),
-    (0xAF10, 'stat'), (0xAF1E, 'stat'), (0xAF26, 'stat'),
-    (0xAF30, 'stat'), (0xAF40, 'stat'), (0xAF48, 'stat'),
-    (0xAF50, 'stat'), (0xAF58, 'stat'),
     # 기타 (misc)
     (0xD7B1, 'misc'), (0xD904, 'misc'),
 ]
@@ -741,6 +736,31 @@ _GSOVL_KR_DEFAULTS = {
 }
 
 
+_STAT_SCAN_START = 0xAEEA  # レベル
+_STAT_SCAN_END   = 0xAF60  # 所持金 이후
+
+_FULLWIDTH_SLASH = '／'  # SJIS 81 5E — 스탯 구간 내 구분자, 라벨 아님
+
+
+def _scan_stat_labels(data):
+    """스탯 라벨 구간을 스캔해 SJIS 텍스트 런을 추출. (offset, text, jp_len) 리스트 반환."""
+    results = []
+    i = _STAT_SCAN_START
+    while i < _STAT_SCAN_END - 1:
+        if is_sjis(data, i):
+            seg_start = i
+            text = ''
+            while i < _STAT_SCAN_END and is_sjis(data, i):
+                text += read_sjis_char(data, i)
+                i += 2
+            # ／ 만으로 이루어진 구분자 제외
+            if text.replace(_FULLWIDTH_SLASH, '').strip():
+                results.append((seg_start, text, i - seg_start))
+        else:
+            i += 2
+    return results
+
+
 def extract_gsovl(game_dir):
     """GS.OVL 고정 오프셋 문자열 추출. 파일 없으면 빈 리스트."""
     fpath = os.path.join(game_dir, 'GS.OVL')
@@ -751,6 +771,8 @@ def extract_gsovl(game_dir):
     data = decompress(raw)
 
     result = []
+
+    # 하드코딩 오프셋 (battle, status, name, misc)
     for offset, tag in _GSOVL_OFFSETS:
         text = ''
         i = offset
@@ -766,6 +788,19 @@ def extract_gsovl(game_dir):
             'jp_len': i - offset,
             'kr': _GSOVL_KR_DEFAULTS.get(offset, ''),
         })
+
+    # 스탯 라벨은 스캔으로 자동 추출
+    for offset, text, jp_len in _scan_stat_labels(data):
+        if any(ord(c) == 0xFFFD for c in text):
+            continue
+        result.append({
+            'offset': offset,
+            'tag': 'stat',
+            'jp': text,
+            'jp_len': jp_len,
+            'kr': '',
+        })
+
     return result
 
 
