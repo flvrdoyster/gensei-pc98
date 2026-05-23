@@ -93,7 +93,7 @@ td.off { font-size: 11px; }
 .jp:hover { background: #f0f4ff; }
 .jp.copied { background: #d4edda; transition: background 0.1s; }
 .kr-cell { width: 42%; }
-.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; min-height: 28px; max-height: 120px; overflow-y: hidden; line-height: 1.5; display: block; box-sizing: border-box; }
+.kr-input { width: 100%; background: #fff; color: #222; border: 1px solid #ccc; padding: 4px 7px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: none; overflow-y: auto; line-height: 1.5; display: block; box-sizing: border-box; }
 .kr-input:focus { border-color: #555; outline: none; }
 .kr-input.modified { border-color: #f59e0b; background: #fffbeb; }
 .kr-input.saved { border-color: #22c55e; }
@@ -399,7 +399,7 @@ function render() {
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
-      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="번역 입력...">${escHtml(kr)}</textarea></td>
+      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="번역 입력..." rows="1">${escHtml(kr)}</textarea></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
     tbody.appendChild(tr);
@@ -440,12 +440,6 @@ function render() {
   updateStats();
 }
 
-function autoResize(el) {
-  el.style.height = 'auto';
-  const h = Math.max(el.scrollHeight, 28);
-  if (h > 120) { el.style.height = '120px'; el.style.overflowY = 'auto'; }
-  else { el.style.height = h + 'px'; el.style.overflowY = 'hidden'; }
-}
 
 function escHtml(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 function escAttr(s) { return s.replace(/&/g,'&amp;').replace(/"/g,'&quot;'); }
@@ -518,14 +512,8 @@ document.getElementById('bulkCancel').addEventListener('click', () => {
   updateBulkBar();
 });
 
-document.getElementById('tbody').addEventListener('focusin', e => {
-  const ta = e.target.closest('.kr-input');
-  if (ta) autoResize(ta);
-});
-
 document.getElementById('tbody').addEventListener('input', e => {
   if (!e.target.classList.contains('kr-input')) return;
-  autoResize(e.target);
   const key = e.target.dataset.key;
   const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
   const val = e.target.value;
