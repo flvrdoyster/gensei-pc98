@@ -115,6 +115,7 @@ td.len { font-size: 12px; }
 .build-btn { background: transparent; color: #999; border: 1px solid #3a3a3a; height: 28px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: inherit; }
 #buildBtn { width: 56px; }
 #emulatorBtn { width: 80px; }
+#jumpEditBtn { width: 32px; padding: 0; font-size: 14px; }
 .build-btn:hover { background: #2a2a2a; color: #ddd; border-color: #555; }
 .toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 340px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
 .toast.show { opacity: 1; }
@@ -148,6 +149,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   <h1>__TITLE_KR__ 번역 에디터</h1>
   <div class="topbar-actions">
     <span class="stats" id="stats"><svg id="donut" width="16" height="16" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#333" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
+    <button class="build-btn" id="jumpEditBtn" title="마지막 편집 위치로 (Ctrl+D)" disabled>↩</button>
     <button class="save-btn" id="saveBtn" disabled>저장</button>
     <button class="build-btn" id="buildBtn">빌드</button>
     <button class="build-btn" id="emulatorBtn">번들 생성</button>
@@ -199,6 +201,8 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
 
 <div class="bulk-bar" id="bulkBar" style="display:none">
   <span id="bulkCount"></span>
+  <button class="bulk-apply" id="bulkCopyJp">JP 복사</button>
+  <button class="bulk-apply" id="bulkCopyKr">KR 복사</button>
   <select id="bulkTag">
     <option value="dialog">대사</option>
     <option value="monolog">독백</option>
@@ -226,6 +230,7 @@ let rangeStart = null;
 let overflowRows = [];   // filteredRows 중 초과 항목
 let overflowIdx = -1;
 let lastSearch = '';
+let lastEditedKey = null;
 
 function rowKey(r) { return r.type + ':' + r.file + ':' + r.offset; }
 
@@ -515,6 +520,25 @@ document.getElementById('bulkApply').addEventListener('click', () => {
   render();
 });
 
+function bulkCopyField(field, btn) {
+  const texts = [];
+  for (const key of selection) {
+    const row = rows.find(r => rowKey(r) === key);
+    if (!row) continue;
+    if (field === 'kr') {
+      texts.push(key in modified ? modified[key] : (row.kr || ''));
+    } else {
+      texts.push(row.jp || '');
+    }
+  }
+  navigator.clipboard.writeText(texts.join('\n'));
+  const orig = btn.textContent;
+  btn.textContent = '복사됨';
+  setTimeout(() => { btn.textContent = orig; }, 600);
+}
+document.getElementById('bulkCopyJp').addEventListener('click', e => bulkCopyField('jp', e.target));
+document.getElementById('bulkCopyKr').addEventListener('click', e => bulkCopyField('kr', e.target));
+
 document.getElementById('bulkCancel').addEventListener('click', () => {
   selection.clear();
   rangeStart = null;
@@ -537,6 +561,8 @@ document.getElementById('tbody').addEventListener('input', e => {
     modified[key] = val;
     e.target.classList.add('modified');
   }
+  lastEditedKey = key;
+  document.getElementById('jumpEditBtn').disabled = false;
 
   const isGaiji = row.gaiji || row.type === 'ui';
   const jpLen = getJpLen(row);
@@ -703,11 +729,26 @@ document.getElementById('fillApply').addEventListener('click', () => {
   updateStats();
 });
 
+function jumpToLastEdit() {
+  if (!lastEditedKey) return;
+  const tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(lastEditedKey)}"]`);
+  if (!tr) return;
+  tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  const ta = tr.querySelector('.kr-input');
+  if (ta) ta.focus();
+}
+document.getElementById('jumpEditBtn').addEventListener('click', jumpToLastEdit);
+
 document.addEventListener('keydown', e => {
-  if ((e.ctrlKey || e.metaKey) && e.key === 's') {
+  if (e.ctrlKey && !e.metaKey && e.code === 'KeyS') {
     e.preventDefault();
     const btn = document.getElementById('saveBtn');
     if (!btn.disabled) btn.click();
+    return;
+  }
+  if (e.ctrlKey && !e.metaKey && e.code === 'KeyD') {
+    e.preventDefault();
+    jumpToLastEdit();
     return;
   }
   // 입력 필드 안에서는 무시
