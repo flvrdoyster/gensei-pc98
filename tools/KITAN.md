@@ -311,6 +311,59 @@ KR 바이트로 교체 후 남은 슬롯은 `00 F4`로 채움. 슬롯 크기 = �
 
 ---
 
+## 디버깅 — 패치가 게임 그래픽/로직을 깨뜨릴 때
+
+번역 패치 적용 후 원본에 없던 시각적 깨짐이 보이면, 다음 절차로 원인 파일·entry를 좁힌다.
+
+### 1. 원본 FDI 확보
+
+희담 원본 FDI는 커밋 `9ee4c97` 시점에 추가됨. 임시 디렉토리에 추출:
+
+```bash
+mkdir -p /tmp/kitan-orig
+git show 9ee4c97:emulator/rom/kitan-system.fdi > /tmp/kitan-orig/kitan-system.fdi
+git show 9ee4c97:emulator/rom/kitan-data.fdi   > /tmp/kitan-orig/kitan-data.fdi
+```
+
+네이티브 NP2kai에 띄워서 원본에서 정상인지 먼저 확인.
+
+### 2. 파일 단위 이진 탐색
+
+`build/kitan/`에서 한두 파일만 골라 `patch_fdi`로 임시 FDI 생성:
+
+```python
+import sys, shutil, os
+sys.path.insert(0, 'tools')
+from kitan_inserter import patch_fdi
+
+# 의심 파일만 골라 임시 build 디렉토리 구성
+tmp_build = '/tmp/build_subset'
+os.makedirs(tmp_build, exist_ok=True)
+shutil.copy('build/kitan/SC1A.CMD', tmp_build)   # 의심 파일만
+
+with open('/tmp/kitan-orig/kitan-system.fdi', 'rb') as f:
+    fdi = f.read()
+patched, files = patch_fdi(fdi, tmp_build)
+with open('/tmp/test.fdi', 'wb') as f:
+    f.write(patched)
+```
+
+### 3. CMD 파일 내 offset 범위 분할
+
+특정 CMD가 범인이면 entry를 offset 절반씩 나눠 적용해 좁힌다.  
+`collect_replacements()` 결과(`[(offset, old, new), ...]`)를 offset으로 정렬 후 분할,  
+`patch_data()` + `compress()`로 재빌드한 뒤 `patch_fdi`로 슬롯에 삽입.
+
+수십 줄 짜리 1회용 스크립트로 충분. 절반씩 줄여 5~7회 안에 단일 entry까지 좁혀짐.
+
+### 4. 흔한 원인 패턴
+
+- **fill-bar 오용**: 메뉴 텍스트가 엉뚱한 entry에 채워져 폭주한 KR이 비텍스트 영역 침범 — `ignore` 태그 + KR 비우기
+- **파서 오탐**: 바이너리 영역을 SJIS로 잘못 해석한 entry (jp가 깨진 한자, jp_len이 비정상적으로 큼)
+- **가이지 경계**: GS.OVL 등 텍스트 + 가이지 혼합 영역에서 가이지를 덮어쓰는 경우 — 파서가 `0x85` 경계에서 중단해야 함
+
+---
+
 ## 참고: SP1.COM 구조 (부분)
 
 ```
