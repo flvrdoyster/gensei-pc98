@@ -773,10 +773,13 @@ def extract_gsovl(game_dir):
     result = []
 
     # 하드코딩 오프셋 (battle, status, name, misc)
+    # 첫 0x85(가이지) 만나면 중단 — 가이지 영역은 비텍스트 데이터로 보존
     for offset, tag in _GSOVL_OFFSETS:
         text = ''
         i = offset
         while i < len(data) - 1 and is_sjis(data, i):
+            if data[i] == 0x85:
+                break
             text += read_sjis_char(data, i)
             i += 2
         if not text or any(ord(c) == 0xFFFD for c in text):

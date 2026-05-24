@@ -186,6 +186,8 @@ def collect_replacements(translation, charmap):
     for dialog in translation['dialogs']:
         fname = dialog['file']
         for line in dialog['lines']:
+            if line.get('tag') == 'ignore':
+                continue  # 제외 태그는 패치 안 함 (KR 남아있어도 무시)
             add(fname, line['offset'], line['jp'], line['kr'],
                 jp_len=line.get('jp_len'))
 
