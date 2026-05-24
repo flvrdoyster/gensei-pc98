@@ -432,7 +432,12 @@ function render() {
   }
   requestAnimationFrame(updateStickyOffset);
 
-  // 초과 항목 계산
+  recomputeOverflow();
+
+  updateStats();
+}
+
+function recomputeOverflow() {
   overflowRows = [];
   for (const r of filteredRows) {
     const key = rowKey(r);
@@ -447,14 +452,11 @@ function render() {
   if (overflowRows.length > 0) {
     document.getElementById('overCount').textContent = overflowRows.length + '건 ';
     overNav.style.display = 'inline-flex';
-    // overflowIdx가 범위를 벗어났으면 리셋
     if (overflowIdx >= overflowRows.length) overflowIdx = overflowRows.length - 1;
   } else {
     overNav.style.display = 'none';
     overflowIdx = -1;
   }
-
-  updateStats();
 }
 
 
@@ -512,6 +514,11 @@ document.getElementById('bulkApply').addEventListener('click', () => {
     if (!row) continue;
     row.tag = tag;
     tagChanges[row.file + ':' + row.offset] = tag;
+    // 제외 태그면 KR도 비우기 (잘못 채워진 KR이 인서터에 닿지 않도록)
+    if (tag === 'ignore') {
+      modified[key] = '';
+      row.kr = '';
+    }
   }
   selection.clear();
   rangeStart = null;
@@ -532,9 +539,10 @@ function bulkCopyField(field, btn) {
     }
   }
   navigator.clipboard.writeText(texts.join('\n'));
-  const orig = btn.textContent;
-  btn.textContent = '복사됨';
-  setTimeout(() => { btn.textContent = orig; }, 600);
+  selection.clear();
+  rangeStart = null;
+  updateBulkBar();
+  render();
 }
 document.getElementById('bulkCopyJp').addEventListener('click', e => bulkCopyField('jp', e.target));
 document.getElementById('bulkCopyKr').addEventListener('click', e => bulkCopyField('kr', e.target));
@@ -576,6 +584,7 @@ document.getElementById('tbody').addEventListener('input', e => {
     lenTd.className = 'len empty';
   }
 
+  recomputeOverflow();
   updateStats();
 });
 
