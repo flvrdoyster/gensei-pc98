@@ -17,7 +17,7 @@ import json
 import os
 import sys
 
-from compile_lz import decompress, compress, encode_gaiji_char
+from compile_lz import decompress, compress, encode_halfwidth_char
 
 
 def load_charmap():
@@ -110,7 +110,7 @@ ASCII_TO_FULLWIDTH = {
 }
 
 
-def encode_korean(text, charmap, use_gaiji=False):
+def encode_korean(text, charmap, use_halfwidth=False):
     """한국어 텍스트를 SJIS 바이트로 인코딩. 한글은 charmap, 나머지는 SJIS."""
     result = bytearray()
     for ch in text:
@@ -118,8 +118,8 @@ def encode_korean(text, charmap, use_gaiji=False):
             code = charmap[ch]
             result.append(int(code[:2], 16))
             result.append(int(code[2:], 16))
-        elif use_gaiji and encode_gaiji_char(ch):
-            result.extend(encode_gaiji_char(ch))
+        elif use_halfwidth and encode_halfwidth_char(ch):
+            result.extend(encode_halfwidth_char(ch))
         elif ch in ASCII_TO_FULLWIDTH:
             result.extend(ASCII_TO_FULLWIDTH[ch])
         else:
@@ -163,23 +163,23 @@ def collect_replacements(translation, charmap):
             return
         try:
             old = jp.encode('shift_jis')
-            # jp_len과 실제 인코딩 길이가 다르면 가이지 불완전 디코딩 → 길이 기반으로 전환
+            # jp_len과 실제 인코딩 길이가 다르면 반각 불완전 디코딩 → 길이 기반으로 전환
             if jp_len is not None and len(old) != jp_len:
                 raise ValueError
             new = encode_korean(kr, charmap)
             new = fit_length(old, new, context=f'{fname} 0x{offset:X}: {kr}')
             by_file.setdefault(fname, []).append((offset, old, new))
         except (UnicodeEncodeError, ValueError):
-            # 가이지 등 round-trip 불가 문자 포함 → 가이지 인코딩 + jp_len 기반 교체
+            # 반각 등 round-trip 불가 문자 포함 → 반각 인코딩 + jp_len 기반 교체
             length = jp_len if jp_len is not None else len(jp.encode('shift_jis', errors='replace'))
-            new = encode_korean(kr, charmap, use_gaiji=True)
+            new = encode_korean(kr, charmap, use_halfwidth=True)
             new = fit_length(b'\x00' * length, new, context=f'{fname} 0x{offset:X}: {kr}')
             by_file.setdefault(fname, []).append((offset, length, new))
 
     def add_ui(fname, offset, jp_len, kr):
         if not kr:
             return
-        new = encode_korean(kr, charmap, use_gaiji=True)
+        new = encode_korean(kr, charmap, use_halfwidth=True)
         new = fit_length(b'\x00' * jp_len, new, context=f'{fname} 0x{offset:X}: {kr}')
         by_file.setdefault(fname, []).append((offset, jp_len, new))
 
@@ -223,8 +223,8 @@ def patch_data(data, replacements):
                         f'오프셋 0x{offset:X} 길이 불일치: '
                         f'예상 {len(old)}바이트 != 실제 {len(actual)}바이트'
                     )
-                # 0x85XX 가이지 인코딩 차이: 같은 문자지만 다른 바이트 → 위치는 정확
-                print(f'  ⚠ 0x{offset:X} 가이지 인코딩 차이 (무시)')
+                # 0x85XX 반각 인코딩 차이: 같은 문자지만 다른 바이트 → 위치는 정확
+                print(f'  ⚠ 0x{offset:X} 반각 인코딩 차이 (무시)')
             buf[offset:offset + len(old)] = new
         else:
             offset, length, new = entry

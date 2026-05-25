@@ -48,8 +48,8 @@ def _auto_backup(out_path, project_root):
 # 공통 유틸
 # ─────────────────────────────────────
 
-def _has_gaiji(data, start, end):
-    """바이트 범위에 가이지(0x85XX) 코드가 포함되어 있는지 확인."""
+def _has_halfwidth(data, start, end):
+    """바이트 범위에 반각(0x85XX) 코드가 포함되어 있는지 확인."""
     i = start
     while i < end - 1:
         if data[i] == 0x85:
@@ -64,8 +64,8 @@ def _has_gaiji(data, start, end):
 def _make_line(cur_offset, cur_end, cur_text, data=None):
     line = {'offset': cur_offset, 'jp': cur_text,
             'jp_len': cur_end - cur_offset, 'kr': ''}
-    if data is not None and _has_gaiji(data, cur_offset, cur_end):
-        line['gaiji'] = True
+    if data is not None and _has_halfwidth(data, cur_offset, cur_end):
+        line['halfwidth'] = True
     return line
 
 
@@ -270,8 +270,8 @@ def extract_menus(data):
             if text.strip():
                 line = {'offset': text_off, 'jp': text,
                         'jp_len': text_end - text_off, 'kr': ''}
-                if _has_gaiji(data, text_off, text_end):
-                    line['gaiji'] = True
+                if _has_halfwidth(data, text_off, text_end):
+                    line['halfwidth'] = True
                 lines.append(line)
 
         if lines:
@@ -321,8 +321,8 @@ def extract_orphan_items(data, captured_offsets):
                 and not any(ord(c) == 0xFFFD for c in text)):
             line = {'offset': text_off, 'jp': text,
                     'jp_len': text_end - text_off, 'kr': ''}
-            if _has_gaiji(data, text_off, text_end):
-                line['gaiji'] = True
+            if _has_halfwidth(data, text_off, text_end):
+                line['halfwidth'] = True
             cur_group.append(line)
             i = j + 2 if j < len(data) - 1 else j
         else:
@@ -375,8 +375,8 @@ def extract_items(data):
             else:
                 dl = {'offset': cur_off, 'jp': s,
                       'jp_len': cur_end2 - cur_off, 'kr': ''}
-                if _has_gaiji(data, cur_off, cur_end2):
-                    dl['gaiji'] = True
+                if _has_halfwidth(data, cur_off, cur_end2):
+                    dl['halfwidth'] = True
                 desc_lines.append(dl)
 
         while i < len(data) - 1:
@@ -415,8 +415,8 @@ def extract_items(data):
         if name:
             name_line = {'offset': name_off, 'jp': name,
                          'jp_len': name_end - name_off, 'kr': ''}
-            if _has_gaiji(data, name_off, name_end):
-                name_line['gaiji'] = True
+            if _has_halfwidth(data, name_off, name_end):
+                name_line['halfwidth'] = True
             entry = {
                 'offset': item_start,
                 'name': name_line,
@@ -425,8 +425,8 @@ def extract_items(data):
             if stat:
                 stat_line = {'offset': stat_off, 'jp': stat,
                              'jp_len': stat_end - stat_off, 'kr': ''}
-                if _has_gaiji(data, stat_off, stat_end):
-                    stat_line['gaiji'] = True
+                if _has_halfwidth(data, stat_off, stat_end):
+                    stat_line['halfwidth'] = True
                 entry['stat'] = stat_line
             items.append(entry)
 
@@ -506,8 +506,8 @@ def extract_labeled_text(data, prefixes):
                 and not any(ord(c) == 0xFFFD for c in text)):
             line = {'offset': text_off, 'jp': text,
                     'jp_len': text_end - text_off, 'kr': ''}
-            if _has_gaiji(data, text_off, text_end):
-                line['gaiji'] = True
+            if _has_halfwidth(data, text_off, text_end):
+                line['halfwidth'] = True
             cur_group.append(line)
             i = j
         else:
@@ -643,8 +643,8 @@ def extract_bare_sjis65(data, captured_offsets):
             if text_off not in captured_offsets:
                 line = {'offset': text_off, 'jp': text,
                         'jp_len': text_end - text_off, 'kr': ''}
-                if _has_gaiji(data, text_off, text_end):
-                    line['gaiji'] = True
+                if _has_halfwidth(data, text_off, text_end):
+                    line['halfwidth'] = True
                 items.append([line])
             i = j  # 캡처 여부 무관하게 런 전체를 건너뜀
         else:
@@ -773,7 +773,7 @@ def extract_gsovl(game_dir):
     result = []
 
     # 하드코딩 오프셋 (battle, status, name, misc)
-    # 첫 0x85(가이지) 만나면 중단 — 가이지 영역은 비텍스트 데이터로 보존
+    # 첫 0x85(반각) 만나면 중단 — 반각 영역은 비텍스트 데이터로 보존
     for offset, tag in _GSOVL_OFFSETS:
         text = ''
         i = offset

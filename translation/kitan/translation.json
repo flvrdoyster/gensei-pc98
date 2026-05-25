@@ -5090,8 +5090,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 29794,
@@ -5231,8 +5231,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 30187,
@@ -9209,7 +9209,7 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 8059,
@@ -9234,7 +9234,7 @@
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -9625,14 +9625,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 9552,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -12257,14 +12257,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 6839,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -17463,8 +17463,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 25852,
@@ -17604,8 +17604,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 26237,
@@ -21137,7 +21137,7 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 11913,
@@ -21162,7 +21162,7 @@
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -22278,7 +22278,7 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 4402,
@@ -22303,7 +22303,7 @@
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -25570,8 +25570,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 19968,
@@ -26059,14 +26059,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 10636,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -29141,14 +29141,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 10145,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -29289,14 +29289,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 10817,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -29345,14 +29345,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 11047,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -36078,7 +36078,7 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 2499,
@@ -36103,7 +36103,7 @@
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -39546,14 +39546,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 15350,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -39584,14 +39584,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 15500,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -40794,14 +40794,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 16155,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -40832,14 +40832,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 16305,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -40870,14 +40870,14 @@
           "jp": "〔リフレッシュの水〕が入っていた！",
           "jp_len": 34,
           "kr": "〔재생수〕가 들어있다!",
-          "gaiji": true
+          "halfwidth": true
         },
         {
           "offset": 16455,
           "jp": "〔リフレッシュの水〕を手に入れた",
           "jp_len": 32,
           "kr": "〔재생수〕를 얻었다",
-          "gaiji": true
+          "halfwidth": true
         }
       ]
     },
@@ -41782,8 +41782,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 9120,
@@ -44108,8 +44108,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 12906,
@@ -44249,8 +44249,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "재생수",
-          "gaiji": true,
-          "tag": "item"
+          "tag": "item",
+          "halfwidth": true
         },
         {
           "offset": 13299,
@@ -44480,16 +44480,16 @@
           "jp": "��ラックフライ",
           "jp_len": 14,
           "kr": "블랙플라이",
-          "gaiji": true,
-          "tag": "battle"
+          "tag": "battle",
+          "halfwidth": true
         },
         {
           "offset": 5796,
           "jp": "��ォ��ャノーイ",
           "jp_len": 14,
           "kr": "보댜노이",
-          "gaiji": true,
-          "tag": "battle"
+          "tag": "battle",
+          "halfwidth": true
         },
         {
           "offset": 5813,
@@ -44632,8 +44632,8 @@
           "jp": "アーマーレ��ィ",
           "jp_len": 14,
           "kr": "아머레이디",
-          "gaiji": true,
-          "tag": "battle"
+          "tag": "battle",
+          "halfwidth": true
         },
         {
           "offset": 9986,
@@ -52564,7 +52564,7 @@
         "jp": "リフレッシュの水",
         "jp_len": 16,
         "kr": "재생수",
-        "gaiji": true
+        "halfwidth": true
       },
       "desc": [
         {

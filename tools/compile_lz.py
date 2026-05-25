@@ -105,7 +105,7 @@ def is_sjis(data, i):
         if not (0x40 <= b2 <= 0xFC and b2 != 0x7F):
             return False
         if b == 0x85:
-            return True  # 가이지 영역 — read_sjis_char에서 별도 디코딩
+            return True  # 반각 영역 — read_sjis_char에서 별도 디코딩
         try:
             data[i:i + 2].decode('shift_jis')
             return True
@@ -136,11 +136,11 @@ def read_sjis_char(data, i):
     return data[i:i + 2].decode('shift_jis', errors='replace')
 
 
-_GAIJI_REV = {}
+_HALFWIDTH_REV = {}
 
 
-def _build_gaiji_rev():
-    if _GAIJI_REV:
+def _build_halfwidth_rev():
+    if _HALFWIDTH_REV:
         return
     for code in range(0x21, 0x7F):
         if code < 0x80:
@@ -148,13 +148,13 @@ def _build_gaiji_rev():
         else:
             s2 = code + 0x20
         sjis = (0x85 << 8) | s2
-        _GAIJI_REV[chr(code)] = bytes([0x85, s2])
+        _HALFWIDTH_REV[chr(code)] = bytes([0x85, s2])
     for idx, ch in enumerate(_HW_KANA):
         j2 = idx + 0x21
         s2 = j2 + 0x7E
-        _GAIJI_REV[ch] = bytes([0x85, s2])
+        _HALFWIDTH_REV[ch] = bytes([0x85, s2])
 
 
-def encode_gaiji_char(ch):
-    _build_gaiji_rev()
-    return _GAIJI_REV.get(ch)
+def encode_halfwidth_char(ch):
+    _build_halfwidth_rev()
+    return _HALFWIDTH_REV.get(ch)

@@ -18,7 +18,7 @@ translation/kaitou/translation.json 을 생성.
   6b 00 81 65    = 빈 대화 슬롯
   6d 08        = 적/아이템 이름 블록
   6e 00 67     = 대화 블록 앵커
-  72 01 [85XX] = UI 컬럼 헤더 (가이지 문자열)
+  72 01 [85XX] = UI 컬럼 헤더 (반각 문자열)
   72 02 [SJIS] = 스탯 이름
   72 XX        = 줄바꿈
   73 XX        = 대화 블록 종료
@@ -383,7 +383,7 @@ def extract_simple_blocks(data: bytes, chunk_idx: int,
                 cur_offset = i
 
             elif b == 0x64:
-                # 다음 콘텐츠가 가이지(0x85)면 코스트 내부 바이트 — 세그먼트 구분 없이 스킵
+                # 다음 콘텐츠가 반각(0x85)면 코스트 내부 바이트 — 세그먼트 구분 없이 스킵
                 if i + 2 < n and data[i + 2] == 0x85:
                     i += 2
                 else:
@@ -682,9 +682,9 @@ def extract_title_labels(data: bytes, chunk_idx: int,
 
 def extract_72_labels(data: bytes, chunk_idx: int,
                       consumed: set) -> list[dict]:
-    """72 01 [가이지] / 72 02 [SJIS] 스탯 라벨 추출.
+    """72 01 [반각] / 72 02 [SJIS] 스탯 라벨 추출.
 
-    72 01 뒤에 0x85XX 가이지가 오면: H・P, S・P, M・P, EXP 등 컬럼 헤더.
+    72 01 뒤에 0x85XX 반각가 오면: H・P, S・P, M・P, EXP 등 컬럼 헤더.
     72 02 뒤에 SJIS가 오면: 生命力, 経験値 등 스탯 이름.
     연속된 같은 타입 엔트리는 하나의 entry로 묶음.
     """
@@ -706,7 +706,7 @@ def extract_72_labels(data: bytes, chunk_idx: int,
 
         mode = data[i + 1]
         if mode == 0x01:
-            # 72 01 [가이지 0x85XX...] 패턴 — 하나씩 독립 엔트리
+            # 72 01 [반각 0x85XX...] 패턴 — 하나씩 독립 엔트리
             if i + 2 >= n or data[i + 2] != 0x85:
                 i += 1
                 continue
