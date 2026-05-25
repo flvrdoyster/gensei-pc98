@@ -327,11 +327,11 @@ const ASCII_FULLWIDTH = new Set([' ', '.', ',', '!', '?', '(', ')', '+', '=', '~
   'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']);
 
-function encodeByteLen(text, useGaiji) {
+function encodeByteLen(text, useHalfwidth) {
   let len = 0;
   for (const ch of text) {
     if (charmap[ch]) { len += 2; }
-    else if (useGaiji) { len += 2; }
+    else if (useHalfwidth) { len += 2; }
     else if (ASCII_FULLWIDTH.has(ch)) { len += 2; }
     else if (ch.charCodeAt(0) < 0x80) { len += 1; }
     else { len += 2; }
