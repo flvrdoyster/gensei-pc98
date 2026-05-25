@@ -120,20 +120,8 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
 
         while i < n:
             b = data[i]
-            if b == 0x73:
-                if cur_chars:
-                    jp = ''.join(cur_chars).strip()
-                    if jp:
-                        lines.append({
-                            'offset': cur_offset,
-                            'jp':     jp,
-                            'jp_len': len(jp.encode('shift_jis', errors='replace')),
-                            'kr':     '',
-                        })
-                i += 2
-                found_end = True
-                break
-            elif b == 0x72:
+            if b in (0x72, 0x73, 0x76):
+                # 줄바꿈(72) / 페이지(73) / 클리어(76) — line 종결만 하고 블록 계속
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -147,6 +135,7 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                 i += 2
                 cur_offset = i
             elif b in (0x65, 0x6e, 0x62):
+                # 진짜 블록 종료
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -156,6 +145,7 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                             'jp_len': len(jp.encode('shift_jis', errors='replace')),
                             'kr':     '',
                         })
+                found_end = True
                 break
             elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
                 ch = decode_sjis_char(b, data[i + 1])
@@ -882,6 +872,9 @@ def extract_sjis_runs(data: bytes, chunk_idx: int,
             chars.append(ch)
 
         jp = ''.join(chars).strip()
+        # 디코딩 실패 문자(U+FFFD) 포함 시 노이즈 — 폐기
+        if '�' in jp:
+            continue
         if len(jp) >= min_chars:
             results.append({
                 'file':   'DISK_B.DAT',
@@ -993,10 +986,15 @@ def main(game_dir: str) -> None:
         all_entries.extend(extract_6d_name_blocks(dec, idx, consumed))
         all_entries.extend(extract_title_labels(dec, idx, consumed))
 
-        # SJIS 런 폴백: 62 00 블록 내부로만 제한
+        # SJIS 런 폴백 1차: 62 00 블록 내부 (구조적 보완)
         block_ranges = find_block_ranges(dec)
         all_entries.extend(
             extract_sjis_runs(dec, idx, consumed, block_ranges=block_ranges, min_chars=2)
+        )
+        # SJIS 런 폴백 2차: 블록 범위 밖 — 포인터 테이블 뒤 대화 등 잡기
+        # 보수적 임계 (min_chars=4) + U+FFFD 필터로 노이즈 최소화
+        all_entries.extend(
+            extract_sjis_runs(dec, idx, consumed, block_ranges=None, min_chars=4)
         )
 
     # ── 3. 중복 제거 (chunk + offset 기반, 먼저 발견된 것 우선) ───────────────
