@@ -134,8 +134,8 @@ def extract_dialogue_blocks(data: bytes, chunk_idx: int,
                     cur_chars = []
                 i += 2
                 cur_offset = i
-            elif b in (0x65, 0x6e, 0x62):
-                # 진짜 블록 종료
+            elif b in (0x65, 0x6e, 0x62, 0x6b):
+                # 진짜 블록 종료 (6b = 화자/대화 opcode 새 블록 시작)
                 if cur_chars:
                     jp = ''.join(cur_chars).strip()
                     if jp:
@@ -279,6 +279,68 @@ def extract_6b_dialogue_blocks(data: bytes, chunk_idx: int,
     return results
 
 # ── 파서 3: 62 00 직접 텍스트 블록 ───────────────────────────────────────────
+
+def extract_6b_xx_blocks(data: bytes, chunk_idx: int,
+                         consumed: set) -> list[dict]:
+    """
+    6b XX 81 [6b YY 81 ...] [SJIS text] 73/72/65 패턴.
+    화자 prefix 시퀀스(6b XX 81) 1회 이상 다음 텍스트가 옴.
+    extract_6b_dialogue_blocks의 6b 00 80 77 00 케이스와 별개.
+    """
+    results = []
+    i = 0
+    n = len(data)
+    while i < n - 2:
+        if i in consumed:
+            i += 1; continue
+        # 6b XX 81 시퀀스 시작 (XX != 00, prefix가 81)
+        if not (data[i] == 0x6b and i + 2 < n
+                and data[i + 1] != 0x00 and data[i + 2] == 0x81):
+            i += 1; continue
+        block_start = i
+        # 반복 skip
+        while i + 2 < n and data[i] == 0x6b and data[i + 2] == 0x81:
+            i += 3
+        # 텍스트 추출
+        lines = []
+        cur_chars = []
+        cur_offset = i
+        found_end = False
+        while i < n:
+            b = data[i]
+            if b in (0x72, 0x73, 0x76):
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({'offset': cur_offset, 'jp': jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')), 'kr': ''})
+                    cur_chars = []
+                i += 2
+                cur_offset = i
+            elif b in (0x65, 0x6e, 0x62, 0x6b):
+                if cur_chars:
+                    jp = ''.join(cur_chars).strip()
+                    if jp:
+                        lines.append({'offset': cur_offset, 'jp': jp,
+                            'jp_len': len(jp.encode('shift_jis', errors='replace')), 'kr': ''})
+                found_end = True
+                break
+            elif is_sjis_lead(b) and i + 1 < n and is_sjis_pair(b, data[i + 1]):
+                ch = decode_sjis_char(b, data[i + 1])
+                if ch:
+                    cur_chars.append(ch)
+                i += 2
+            else:
+                break  # 비-SJIS 만나면 즉시 종료 (정렬 안전)
+        if lines:
+            consumed.update(range(block_start, i))
+            results.append({
+                'file': 'DISK_B.DAT', 'chunk': chunk_idx, 'offset': block_start,
+                'type': 'dialog', 'jp': '\n'.join(l['jp'] for l in lines),
+                'kr': '', 'lines': lines,
+            })
+    return results
+
 
 def extract_simple_blocks(data: bytes, chunk_idx: int,
                           consumed: set) -> list[dict]:
@@ -829,6 +891,14 @@ def find_block_ranges(data: bytes) -> set[int]:
 
 # ── SJIS 런 추출 (폴백) ───────────────────────────────────────────────────────
 
+def _is_cjk_or_kana(ch: str) -> bool:
+    """CJK 한자/카나/전각 ASCII/일반 구두점/ASCII printable 허용."""
+    cp = ord(ch)
+    return (0x4E00 <= cp <= 0x9FFF or 0x3040 <= cp <= 0x309F
+            or 0x30A0 <= cp <= 0x30FF or 0xFF00 <= cp <= 0xFFEF
+            or 0x3000 <= cp <= 0x303F or 0x20 <= cp <= 0x7E)
+
+
 def extract_sjis_runs(data: bytes, chunk_idx: int,
                       consumed: set,
                       block_ranges=None,
@@ -872,8 +942,18 @@ def extract_sjis_runs(data: bytes, chunk_idx: int,
             chars.append(ch)
 
         jp = ''.join(chars).strip()
-        # 디코딩 실패 문자(U+FFFD) 포함 시 노이즈 — 폐기
+        # 노이즈 필터:
+        # 1) U+FFFD (디코딩 실패)
+        # 2) 모든 글자가 동일 (예: 矣矣, 珥珥)
+        # 3) 비-CJK/가나 문자 포함 (예: 키릴 у, 그리스 Ж, 반각 ｃ)
         if '�' in jp:
+            continue
+        if len(set(jp)) <= 1:
+            continue
+        if any(not _is_cjk_or_kana(ch) for ch in jp):
+            continue
+        # 동일 글자 3회 이상 반복(예: '〔〔〔', '矮聿矮聿') — 의미없는 데이터 정렬
+        if any(jp.count(c) >= 3 for c in set(jp)):
             continue
         if len(jp) >= min_chars:
             results.append({
@@ -980,6 +1060,7 @@ def main(game_dir: str) -> None:
         # 구조화 파서 (consumed 채워가며 순서대로)
         all_entries.extend(extract_dialogue_blocks(dec, idx, consumed))
         all_entries.extend(extract_6b_dialogue_blocks(dec, idx, consumed))
+        all_entries.extend(extract_6b_xx_blocks(dec, idx, consumed))
         all_entries.extend(extract_simple_blocks(dec, idx, consumed))
         all_entries.extend(extract_72_labels(dec, idx, consumed))
         all_entries.extend(extract_name_blocks(dec, idx, consumed))
@@ -1004,7 +1085,29 @@ def main(game_dir: str) -> None:
         if key not in seen:
             seen[key] = entry
 
-    final_entries = sorted(seen.values(), key=lambda e: (e['chunk'], e['offset']))
+    # 노이즈 필터: lines 안의 jp 검사
+    def _is_noise(jp: str) -> bool:
+        if not jp: return True
+        if '�' in jp: return True
+        if len(set(jp)) <= 1: return True
+        if any(not _is_cjk_or_kana(ch) for ch in jp): return True
+        if any(jp.count(c) >= 3 for c in set(jp)): return True
+        # 반각 카나(U+FF61-U+FF9F) 포함 + 짧음 — 노이즈 (轄訣ｑモヨ 류)
+        if len(jp) <= 6 and any(0xFF61 <= ord(c) <= 0xFF9F for c in jp):
+            return True
+        return False
+
+    filtered_entries = []
+    for entry in seen.values():
+        lines = entry.get('lines', [])
+        clean = [l for l in lines if not _is_noise(l.get('jp', ''))]
+        if clean:
+            entry['lines'] = clean
+            # entry-level jp도 갱신
+            entry['jp'] = '\n'.join(l['jp'] for l in clean)
+            filtered_entries.append(entry)
+
+    final_entries = sorted(filtered_entries, key=lambda e: (e['chunk'], e['offset']))
 
     # ── 4. 기존 kr 복원 ────────────────────────────────────────────────────
     if kr_map:
