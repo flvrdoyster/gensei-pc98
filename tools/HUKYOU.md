@@ -80,11 +80,11 @@ GF2.COM 구조:
 
 대화 블록 진입 판별: `65 00/01` 다음 바이트가 SJIS 선행 바이트(`0x81~0x9F`, `0xE0~0xFC`) 또는 제어 바이트(`62~76`)인지 확인.
 
-### 3. 가이지 (0x85XX)
+### 3. 반각 (0x85XX)
 
-일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 SJIS 대신 가이지 영역(`0x85XX`) 사용.  
+일부 텍스트(상점 가격, 몬스터명, UI 등)는 표준 SJIS 대신 반각 영역(`0x85XX`) 사용.  
 인코딩 상세(ASCII·반각 카타카나·탁점 카타카나 매핑)는 `compile_lz.py` 참조.  
-`compile_lz.read_sjis_char()` / `encode_gaiji_char()` 처리.
+`compile_lz.read_sjis_char()` / `encode_halfwidth_char()` 처리.
 
 ### 4. 파싱
 
@@ -96,7 +96,7 @@ GF2.COM 구조:
 
 `translation.json` 최상위 키: `dialogs` (대화) · `items` (아이템) · `ui` (UI 문자열).  
 각 항목 공통 필드: `file`, `offset`, `jp`, `jp_len`, `kr`, `tag`.  
-가이지 포함 항목에는 `gaiji: true`. 태그: `dialog` / `monolog` / `cutscene` / `char` / `battle` / `item` / `menu` / `location` / `system`.
+반각 포함 항목에는 `halfwidth: true`. 태그: `dialog` / `monolog` / `cutscene` / `char` / `battle` / `item` / `menu` / `location` / `system`.
 
 ### 5. 인서트
 
@@ -104,7 +104,7 @@ GF2.COM 구조:
 
 - 오프셋 **내림차순** 처리 — 앞쪽 오프셋 보존
 - 정상 텍스트: `jp.encode('shift_jis')` 검증 후 교체
-- 가이지 텍스트: `jp_len` 기반 길이 교체 + `use_gaiji=True` 인코딩
+- 반각 텍스트: `jp_len` 기반 길이 교체 + `use_halfwidth=True` 인코딩
 - 짧으면 전각 공백(`\x81\x40`) 패딩, 길면 SJIS 경계에서 잘라냄
 
 ### 6. 빌드
@@ -118,6 +118,6 @@ GF2.COM 처리:
 
 ## 참고
 
-- **SJIS 범위 검증 필수**: 바이트 범위만으로는 실제 SJIS에 없는 코드(예: `0x8865`, `0xFC65`)를 걸러내지 못함 → `data[i:i+2].decode('shift_jis')` 검증 (0x85XX 가이지 제외)
+- **SJIS 범위 검증 필수**: 바이트 범위만으로는 실제 SJIS에 없는 코드(예: `0x8865`, `0xFC65`)를 걸러내지 못함 → `data[i:i+2].decode('shift_jis')` 검증 (0x85XX 반각 제외)
 - **전각 필수**: 게임 렌더러가 1바이트 ASCII 표시 불가 → ASCII 문장부호·숫자·영문 모두 전각 자동 변환 (`ASCII_TO_FULLWIDTH`)
 - **MESSAGE.CMD 이중 구조**: 다른 CMD 파일과 달리 아이템 데이터와 대화가 한 파일에 공존한다. 앞부분은 `extract_items`로, 뒷부분은 `extract_dialogs`로 처리 — 교차 적용 시 오탐 발생.

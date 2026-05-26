@@ -91,7 +91,7 @@ tr:hover { background: #232323; }
 .type-char span { background: #0d3040; color: #60c8e0; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(1.2); }
-.gaiji-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #2e1a50; color: #c090f0; margin-left: 4px; vertical-align: middle; }
+.halfwidth-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #2e1a50; color: #c090f0; margin-left: 4px; vertical-align: middle; }
 .file { width: 82px; color: #555; }
 td.file { font-size: 12px; }
 .off { width: 50px; color: #555; font-family: monospace; text-align: right; padding-right: 10px; }
@@ -172,7 +172,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
     <option value="">전체 파일</option>
   </select>
   <label><input type="checkbox" id="filterUntranslated"> 미번역만</label>
-  <label><input type="checkbox" id="filterGaiji"> 외자만</label>
+  <label><input type="checkbox" id="filterHalfwidth"> 반각만</label>
   <label><input type="checkbox" id="filterShowIgnore"> 제외 포함</label>
 </div>
 <div class="toolbar toolbar-search">
@@ -266,7 +266,7 @@ async function load() {
           type: 'dialog', tag: line.tag || null, file: chunkLabel,
           chunk: entry.chunk, offset: base + line.offset, localOffset: line.offset,
           jp: line.jp, kr: line.kr, jp_len: line.jp_len,
-          gaiji: false, taggable: true, speaker: speaker,
+          halfwidth: false, taggable: true, speaker: speaker,
         });
       }
     }
@@ -276,38 +276,38 @@ async function load() {
       for (const line of dialog.lines) {
         rows.push({
           type: 'dialog', tag: line.tag || null, file: dialog.file, index: dialog.index,
-          offset: line.offset, localOffset: line.offset, jp: line.jp, kr: line.kr, gaiji: !!line.gaiji,
+          offset: line.offset, localOffset: line.offset, jp: line.jp, kr: line.kr, halfwidth: !!line.halfwidth,
         });
       }
     }
     for (const item of (data.items || [])) {
       const n = item.name;
-      rows.push({ type: 'item', tag: n.tag || 'item', file: 'MESSAGE.CMD', offset: n.offset, localOffset: n.offset, jp: n.jp, kr: n.kr, jp_len: n.jp_len, gaiji: !!n.gaiji });
+      rows.push({ type: 'item', tag: n.tag || 'item', file: 'MESSAGE.CMD', offset: n.offset, localOffset: n.offset, jp: n.jp, kr: n.kr, jp_len: n.jp_len, halfwidth: !!n.halfwidth });
       if (item.stat) {
         const s = item.stat;
-        rows.push({ type: 'item', tag: s.tag || 'item', file: 'MESSAGE.CMD', offset: s.offset, localOffset: s.offset, jp: s.jp, kr: s.kr, jp_len: s.jp_len, gaiji: !!s.gaiji });
+        rows.push({ type: 'item', tag: s.tag || 'item', file: 'MESSAGE.CMD', offset: s.offset, localOffset: s.offset, jp: s.jp, kr: s.kr, jp_len: s.jp_len, halfwidth: !!s.halfwidth });
       }
       for (const desc of item.desc) {
-        rows.push({ type: 'item', tag: desc.tag || 'item', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, jp_len: desc.jp_len, gaiji: !!desc.gaiji });
+        rows.push({ type: 'item', tag: desc.tag || 'item', file: 'MESSAGE.CMD', offset: desc.offset, localOffset: desc.offset, jp: desc.jp, kr: desc.kr, jp_len: desc.jp_len, halfwidth: !!desc.halfwidth });
       }
     }
     const UI_CAT_TAG = { system: 'system', status: 'menu', names: 'menu', battle: 'battle' };
     for (const entry of (data.ui || [])) {
       const defaultTag = UI_CAT_TAG[entry.category] || 'menu';
       const tag = entry.tag || defaultTag;  // JSON에 저장된 tag 우선, 없으면 category 기본값
-      rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: true });
+      rows.push({ type: 'ui', tag: tag, file: 'GF2.COM', category: entry.category, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, halfwidth: true });
     }
     // gsovl (kitan GS.OVL 고정 오프셋 문자열)
     const GSOVL_CAT_TAG = { battle: 'battle', status: 'system', name: 'char', stat: 'system', misc: 'menu' };
     for (const entry of (data.gsovl || [])) {
       const tag = GSOVL_CAT_TAG[entry.tag] ?? entry.tag ?? 'system';
-      rows.push({ type: 'gsovl', tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+      rows.push({ type: 'gsovl', tag, file: 'GS.OVL', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, halfwidth: false });
     }
     // demo (kitan demo SP1.COM 텍스트)
     const DEMO_CAT_TAG = { intro: 'dialog', title: 'system', error: 'system' };
     for (const entry of (data.demo || [])) {
       const tag = DEMO_CAT_TAG[entry.tag] ?? entry.tag ?? 'dialog';
-      rows.push({ type: 'demo', tag, file: 'SP1.COM', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, gaiji: false });
+      rows.push({ type: 'demo', tag, file: 'SP1.COM', category: entry.tag, offset: entry.offset, localOffset: entry.offset, jp: entry.jp, kr: entry.kr, jp_len: entry.jp_len, halfwidth: false });
     }
   }
 
@@ -327,11 +327,11 @@ const ASCII_FULLWIDTH = new Set([' ', '.', ',', '!', '?', '(', ')', '+', '=', '~
   'A','B','C','D','E','F','G','H','I','J','K','L','M','N','O','P','Q','R','S','T','U','V','W','X','Y','Z',
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']);
 
-function encodeByteLen(text, useGaiji) {
+function encodeByteLen(text, useHalfwidth) {
   let len = 0;
   for (const ch of text) {
     if (charmap[ch]) { len += 2; }
-    else if (useGaiji) { len += 2; }
+    else if (useHalfwidth) { len += 2; }
     else if (ASCII_FULLWIDTH.has(ch)) { len += 2; }
     else if (ch.charCodeAt(0) < 0x80) { len += 1; }
     else { len += 2; }
@@ -367,7 +367,7 @@ function render() {
   const search = document.getElementById('searchBox').value.toLowerCase();
   const exactMatch = document.getElementById('filterExact').checked;
   const untranslatedOnly = document.getElementById('filterUntranslated').checked;
-  const gaijiOnly = document.getElementById('filterGaiji').checked;
+  const halfwidthOnly = document.getElementById('filterHalfwidth').checked;
   const showIgnore = document.getElementById('filterShowIgnore').checked;
 
   filteredRows = rows.filter(r => {
@@ -375,7 +375,7 @@ function render() {
     if (untranslatedOnly) {
       if ((r.kr || '').trim() || (r.tag || r.type) === 'ignore') return false;
     }
-    if (gaijiOnly && !r.gaiji) return false;
+    if (halfwidthOnly && !r.halfwidth) return false;
     if (filterType) {
       const effective = r.tag || r.type;
       if (effective !== filterType) return false;
@@ -399,9 +399,9 @@ function render() {
     if (selection.has(key)) tr.classList.add('row-selected');
     if (rangeStart !== null && idx === rangeStart) tr.classList.add('range-start');
     const kr = key in modified ? modified[key] : (r.kr || '');
-    const isGaiji = r.gaiji || r.file === 'GF2.COM';
+    const isHalfwidth = r.halfwidth || r.file === 'GF2.COM';
     const jpLen = getJpLen(r);
-    const krLen = kr ? encodeByteLen(kr, isGaiji) : 0;
+    const krLen = kr ? encodeByteLen(kr, isHalfwidth) : 0;
 
     let lenClass = 'empty';
     let lenText = `${jpLen}`;
@@ -415,7 +415,7 @@ function render() {
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
-      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.gaiji ? '<span class="gaiji-badge">외</span>' : ''}</td>
+      <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.halfwidth ? '<span class="halfwidth-badge">반</span>' : ''}</td>
       <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="번역 입력..." rows="1">${escHtml(kr)}</textarea></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
@@ -443,9 +443,9 @@ function recomputeOverflow() {
     const key = rowKey(r);
     const kr = key in modified ? modified[key] : (r.kr || '');
     if (!kr) continue;
-    const isGaiji = r.gaiji || r.file === 'GF2.COM';
+    const isHalfwidth = r.halfwidth || r.file === 'GF2.COM';
     const jpLen = getJpLen(r);
-    const krLen = encodeByteLen(kr, isGaiji);
+    const krLen = encodeByteLen(kr, isHalfwidth);
     if (krLen > jpLen) overflowRows.push(r);
   }
   const overNav = document.getElementById('overNav');
@@ -572,9 +572,9 @@ document.getElementById('tbody').addEventListener('input', e => {
   lastEditedKey = key;
   document.getElementById('jumpEditBtn').disabled = false;
 
-  const isGaiji = row.gaiji || row.type === 'ui';
+  const isHalfwidth = row.halfwidth || row.type === 'ui';
   const jpLen = getJpLen(row);
-  const krLen = val ? encodeByteLen(val, isGaiji) : 0;
+  const krLen = val ? encodeByteLen(val, isHalfwidth) : 0;
   const lenTd = e.target.closest('tr').querySelector('.len');
   if (val) {
     lenTd.textContent = `${krLen}/${jpLen}`;
@@ -688,7 +688,7 @@ document.getElementById('tbody').addEventListener('keydown', e => {
 document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
 document.getElementById('filterUntranslated').addEventListener('change', render);
-document.getElementById('filterGaiji').addEventListener('change', render);
+document.getElementById('filterHalfwidth').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
 document.getElementById('filterExact').addEventListener('change', render);
 

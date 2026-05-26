@@ -17,27 +17,41 @@ import struct
 import sys
 
 import hukyou_inserter
-from compile_lz import decompress, compress, encode_gaiji_char
+from compile_lz import decompress, compress, encode_halfwidth_char
 from hukyou_inserter import (
     load_charmap, collect_replacements, patch_data,
     ASCII_TO_FULLWIDTH,
 )
 
 
-def encode_korean_kitan(text, charmap=None, use_gaiji=False):
-    """희담 KR 인코딩: 풍광전과 동일하게 charmap.json 기반."""
+def encode_korean_kitan(text, charmap=None, use_halfwidth=False):
+    """희담 KR 인코딩: charmap.json 기반.
+    `/X` 마커는 반각 한글 (charmap에 `/리` 같은 키로 등록된 경우)을 의미.
+    """
     result = bytearray()
-    for ch in text:
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        # 반각 마커 우선 매칭
+        if ch == '/' and i + 1 < len(text) and charmap:
+            key = '/' + text[i+1]
+            if key in charmap:
+                code = charmap[key]
+                result.append(int(code[:2], 16))
+                result.append(int(code[2:], 16))
+                i += 2
+                continue
         if charmap and ch in charmap:
             code = charmap[ch]
             result.append(int(code[:2], 16))
             result.append(int(code[2:], 16))
-        elif use_gaiji and encode_gaiji_char(ch):
-            result.extend(encode_gaiji_char(ch))
+        elif use_halfwidth and encode_halfwidth_char(ch):
+            result.extend(encode_halfwidth_char(ch))
         elif ch in ASCII_TO_FULLWIDTH:
             result.extend(ASCII_TO_FULLWIDTH[ch])
         else:
             result.extend(ch.encode('shift_jis', errors='strict'))
+        i += 1
     return bytes(result)
 
 
@@ -147,6 +161,97 @@ def patch_fdi(fdi_data, build_dir):
 # 빌드 (build/ 출력)
 # ─────────────────────────────────────
 
+def _compute_visual_width(data, offset, length):
+    """JP 바이트 영역의 시각적 글자폭. 반각(0x85XX) = 0.5, 전각 SJIS pair = 1, 반각 ASCII = 0.5"""
+    has_halfwidth = False
+    width = 0.0
+    i = 0
+    while i < length:
+        b = data[offset + i]
+        if b == 0x85 and i + 1 < length:
+            has_halfwidth = True
+            width += 0.5
+            i += 2
+        elif (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and i + 1 < length:
+            width += 1.0
+            i += 2
+        else:
+            width += 0.5
+            i += 1
+    return width, has_halfwidth
+
+
+def _kr_visual_width(kr):
+    """KR 문자열의 시각적 폭. `/X` 마커는 반각(0.5), 일반 글자는 전각(1.0)."""
+    w = 0.0
+    i = 0
+    while i < len(kr):
+        if kr[i] == '/' and i + 1 < len(kr):
+            w += 0.5
+            i += 2
+        else:
+            w += 1.0
+            i += 1
+    return w
+
+
+def _trim_to_width(kr, max_width):
+    """KR을 max_width 이하로 자름. `/X` 마커는 한 단위로 처리."""
+    out = []
+    w = 0.0
+    i = 0
+    while i < len(kr):
+        if kr[i] == '/' and i + 1 < len(kr):
+            if w + 0.5 > max_width: break
+            out.append(kr[i:i+2])
+            w += 0.5
+            i += 2
+        else:
+            if w + 1.0 > max_width: break
+            out.append(kr[i])
+            w += 1.0
+            i += 1
+    return ''.join(out)
+
+
+def _truncate_overwidth_kr(translation, game_dir):
+    """반각 포함 entry의 KR이 시각적 폭(int)을 넘으면 잘라냄. translation 인메모리 수정."""
+    file_cache = {}
+    n = 0
+    for d in translation.get('dialogs', []):
+        fname = d['file']
+        if fname not in file_cache:
+            path = os.path.join(game_dir, fname)
+            if not os.path.exists(path):
+                file_cache[fname] = None
+                continue
+            with open(path, 'rb') as f:
+                file_cache[fname] = decompress(f.read())
+        data = file_cache[fname]
+        if data is None:
+            continue
+        for line in d['lines']:
+            kr = line.get('kr', '')
+            if not kr:
+                continue
+            off = line['offset']
+            jl = line.get('jp_len', 0)
+            if off + jl > len(data):
+                continue
+            width, has_halfwidth = _compute_visual_width(data, off, jl)
+            if not has_halfwidth:
+                continue
+            kr_w = _kr_visual_width(kr)
+            if kr_w > width:
+                old = kr
+                # 폭 맞을 때까지 char 단위로 trim (반각 마커는 보존)
+                line['kr'] = _trim_to_width(kr, width)
+                print(f'  ⚠ {fname} 0x{off:X}: 반각 폭({width}) 초과 (KR 폭={kr_w}), {old!r} → {line["kr"]!r}')
+                n += 1
+    if n:
+        print(f'KR 폭 조정: {n}건')
+
+
 def run(game_dir):
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
@@ -162,6 +267,9 @@ def run(game_dir):
         translation = json.load(f)
 
     charmap = load_charmap()
+    # JP에 반각(반각 카나) 포함된 entry는 시각적 폭에 맞춰 KR 자르기
+    # (charmap 한글은 전각만 지원하므로 반각 반각 영역을 못 채우면 줄 길이가 어긋남)
+    _truncate_overwidth_kr(translation, game_dir)
     _orig = hukyou_inserter.encode_korean
     hukyou_inserter.encode_korean = encode_korean_kitan
     by_file = collect_replacements(translation, charmap)
@@ -212,29 +320,29 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
         jp_len = entry['jp_len']
         kr_bytes = encode_korean_kitan(kr, charmap)
 
-        # 가이지 코스트 접미사 보존: 첫 0x85 lead byte 이전까지만 교체
+        # 반각 코스트 접미사 보존: 첫 0x85 lead byte 이전까지만 교체
         # SJIS trail byte의 0x85는 무시 (예: ュ = 0x83 0x85)
         orig = bytes(data[offset:offset + jp_len])
-        gaiji_start = None
+        halfwidth_start = None
         _i = 0
         while _i < len(orig):
             b = orig[_i]
             if b == 0x85:
-                gaiji_start = _i
+                halfwidth_start = _i
                 break
             if (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and _i + 1 < len(orig):
                 _i += 2
             else:
                 _i += 1
-        if gaiji_start is not None:
-            gaiji_suffix = orig[gaiji_start:]
-            max_kr = jp_len - len(gaiji_suffix)
+        if halfwidth_start is not None:
+            halfwidth_suffix = orig[halfwidth_start:]
+            max_kr = jp_len - len(halfwidth_suffix)
             if len(kr_bytes) > max_kr:
                 print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {max_kr}), 건너뜀')
                 continue
             fill = max_kr - len(kr_bytes)
             padding = b'\x00\xF4' * (fill // 2) + (b'\x00' if fill % 2 else b'')
-            data[offset:offset + jp_len] = kr_bytes + padding + gaiji_suffix
+            data[offset:offset + jp_len] = kr_bytes + padding + halfwidth_suffix
         else:
             if len(kr_bytes) > jp_len:
                 print(f'  ⚠ 0x{offset:04X} {entry["jp"]!r}: KR 길이 초과 ({len(kr_bytes)} > {jp_len}), 건너뜀')
