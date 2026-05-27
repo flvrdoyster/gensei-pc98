@@ -3592,64 +3592,64 @@
           "offset": 25644,
           "jp": "ケイ��マン",
           "jp_len": 10,
-          "kr": "케이브맨",
-          "tag": "battle",
+          "kr": "/케/이/브/맨",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25658,
           "jp": "スコー��オン",
           "jp_len": 12,
-          "kr": "스콜피온",
-          "tag": "battle",
+          "kr": "/스/콜/피/온",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25674,
           "jp": "アントソル��ャー",
           "jp_len": 16,
-          "kr": "앤트솔져",
-          "tag": "battle",
+          "kr": "/앤/트/솔/져",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25694,
           "jp": "��ニ��ニ",
           "jp_len": 8,
-          "kr": "푸니푸니",
-          "tag": "battle",
+          "kr": "/푸/니/푸/니",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25706,
           "jp": "リ��ン����ッ��",
           "jp_len": 14,
-          "kr": "리빙데드",
-          "tag": "battle",
+          "kr": "/리/빙/데/드",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25724,
           "jp": "イン��",
           "jp_len": 6,
-          "kr": "임프",
-          "tag": "battle",
+          "kr": "/임/프",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25734,
           "jp": "クイックシル��ァー",
           "jp_len": 18,
-          "kr": "퀵실버",
-          "tag": "battle",
+          "kr": "/퀵/실/버",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 25756,
           "jp": "ナカチマロ",
           "jp_len": 10,
-          "kr": "나카치마로",
-          "tag": "battle",
+          "kr": "/나/카/치/마/로",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
@@ -12981,64 +12981,64 @@
           "offset": 26700,
           "jp": "カ��",
           "jp_len": 4,
-          "kr": "카게",
-          "tag": "battle",
+          "kr": "/카/게",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26708,
           "jp": "サエーナ",
           "jp_len": 8,
-          "kr": "사에나",
-          "tag": "battle",
+          "kr": "/사/에/나",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26720,
           "jp": "��ロッ��",
           "jp_len": 8,
-          "kr": "브로프",
-          "tag": "battle",
+          "kr": "/브/로/프",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26732,
           "jp": "��ェーターラ",
           "jp_len": 12,
-          "kr": "베타라",
-          "tag": "battle",
+          "kr": "/베/타/라",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26748,
           "jp": "フォレストG",
           "jp_len": 12,
-          "kr": "포레스트G",
-          "tag": "battle",
+          "kr": "/포/레/스/트G",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26764,
           "jp": "ウッ��レン��ャー",
           "jp_len": 16,
-          "kr": "우드레인져",
-          "tag": "battle",
+          "kr": "/우/드/레/인/져",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26784,
           "jp": "エント",
           "jp_len": 6,
-          "kr": "앤트",
-          "tag": "battle",
+          "kr": "/앤/트",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 26794,
           "jp": "ツチマロ",
           "jp_len": 8,
-          "kr": "츠치마로",
-          "tag": "battle",
+          "kr": "/츠/치/마/로",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
@@ -19053,80 +19053,80 @@
           "offset": 27357,
           "jp": "��スニー��ル",
           "jp_len": 12,
-          "kr": "데스니들",
-          "tag": "battle",
+          "kr": "/데/스/니/들",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27373,
           "jp": "ムリアン",
           "jp_len": 8,
-          "kr": "무리안",
-          "tag": "battle",
+          "kr": "/무/리/안",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27385,
           "jp": "スライム",
           "jp_len": 8,
-          "kr": "슬라임",
-          "tag": "battle",
+          "kr": "/슬/라/임",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27397,
           "jp": "����ース",
           "jp_len": 8,
-          "kr": "기가스",
-          "tag": "battle",
+          "kr": "/기/가/스",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27409,
           "jp": "クリー��ン��P",
           "jp_len": 14,
-          "kr": "크리핑P",
-          "tag": "battle",
+          "kr": "/크/리/핑P",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27427,
           "jp": "フールカス",
           "jp_len": 10,
-          "kr": "푸르카스",
-          "tag": "battle",
+          "kr": "/푸/르/카/스",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27441,
           "jp": "ヘ��ィウォーリア",
           "jp_len": 16,
-          "kr": "헤비워리어",
-          "tag": "battle",
+          "kr": "/헤/비/워/리/어",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27461,
           "jp": "ツ��メ",
           "jp_len": 6,
-          "kr": "츠바메",
-          "tag": "battle",
+          "kr": "/츠/바/메",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27471,
           "jp": "��レー��・��ラ��マ",
           "jp_len": 18,
-          "kr": "블레이드・플라즈마",
-          "tag": "battle",
+          "kr": "/블/레/이/드・/플/라/즈/마",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 27493,
           "jp": "クラウモノ",
           "jp_len": 10,
-          "kr": "쿠라우모노",
-          "tag": "battle",
+          "kr": "/쿠/라/우/모/노",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
@@ -20270,64 +20270,64 @@
           "offset": 17404,
           "jp": "��イ��ハンター",
           "jp_len": 14,
-          "kr": "다이브헌터",
-          "tag": "battle",
+          "kr": "/다/이/브/헌/터",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17422,
           "jp": "エリニュス",
           "jp_len": 10,
-          "kr": "에리니스",
-          "tag": "battle",
+          "kr": "/에/리/니/스",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17436,
           "jp": "ファン��ウルフ",
           "jp_len": 14,
-          "kr": "팡울프",
-          "tag": "battle",
+          "kr": "/팡/울/프",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17454,
           "jp": "ス��リット",
           "jp_len": 10,
-          "kr": "스피릿",
-          "tag": "battle",
+          "kr": "/스/피/릿",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17468,
           "jp": "ソーサラー",
           "jp_len": 10,
-          "kr": "소서러",
-          "tag": "battle",
+          "kr": "/소/서/러",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17482,
           "jp": "ムールムール",
           "jp_len": 12,
-          "kr": "무루무루",
-          "tag": "battle",
+          "kr": "/무/루/무/루",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17498,
           "jp": "モーラ",
           "jp_len": 6,
-          "kr": "모라",
-          "tag": "battle",
+          "kr": "/모/라",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
           "offset": 17508,
           "jp": "タカサマロ",
           "jp_len": 10,
-          "kr": "타카사마로",
-          "tag": "battle",
+          "kr": "/타/카/사/마/로",
+          "tag": "enemy",
           "halfwidth": true
         },
         {
