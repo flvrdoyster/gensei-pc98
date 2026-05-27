@@ -1001,16 +1001,72 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         return {'updated': updated, 'skipped': skipped}
 
-    def _handle_emulator_update_kitan(self):
+    def _repackage_bundle(self, title, fdi_names):
+        """공통 번들 재생성: emulator/bios + 지정 FDI들 → file_packager로 묶고
+        emulator/<title>.js의 loadPackage 메타데이터 갱신. data_size 반환.
+        실패 시 RuntimeError raise."""
         import tempfile, shutil, re
-        build_dir    = os.path.join(PROJECT_ROOT, 'build', 'kitan')
         emulator_dir = os.path.join(PROJECT_ROOT, 'emulator')
         rom_dir      = os.path.join(emulator_dir, 'rom')
         bios_dir     = os.path.join(emulator_dir, 'bios')
-        data_path    = os.path.join(emulator_dir, 'kitan.data')
-        js_path      = os.path.join(emulator_dir, 'kitan.js')
+        data_path    = os.path.join(emulator_dir, f'{title}.data')
+        js_path      = os.path.join(emulator_dir, f'{title}.js')
 
-        # 1. build/kitan/ → system/data FDI 패치
+        if not os.path.exists(FILE_PACKAGER):
+            raise RuntimeError(f'file_packager.py 없음: {FILE_PACKAGER}')
+
+        tmpdir = tempfile.mkdtemp(prefix=f'{title}-bundle-')
+        loader_js = os.path.join(tmpdir, 'loader.js')
+        try:
+            tmp_bios = os.path.join(tmpdir, 'bios')
+            tmp_rom  = os.path.join(tmpdir, 'rom')
+            os.makedirs(tmp_bios)
+            os.makedirs(tmp_rom)
+            for f in os.listdir(bios_dir):
+                if not f.startswith('.'):
+                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
+            for fdi in fdi_names:
+                src = os.path.join(rom_dir, fdi)
+                if os.path.exists(src):
+                    shutil.copy2(src, tmp_rom)
+
+            proc = subprocess.run(
+                ['python3', FILE_PACKAGER, data_path,
+                 '--js-output=' + loader_js,
+                 '--preload', 'bios@/emulator/np2kai',
+                 '--preload', 'rom@/rom'],
+                capture_output=True, text=True, timeout=120, cwd=tmpdir,
+            )
+            if proc.returncode != 0:
+                raise RuntimeError(f'file_packager 실패: {proc.stderr.strip()[-300:]}')
+
+            with open(loader_js, 'r') as f:
+                loader_content = f.read()
+            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
+            if not meta_match:
+                raise RuntimeError('메타데이터 추출 실패')
+            new_files = meta_match.group(1)
+            new_size  = meta_match.group(2)
+
+            with open(js_path, 'r') as f:
+                js_content = f.read()
+            js_content = re.sub(
+                r'loadPackage\(\{(?:"files"|files):\s*\[.*?\],\s*(?:"remote_package_size"|remote_package_size):\s*\d+\}\)',
+                f'loadPackage({{"files":{new_files},"remote_package_size":{new_size}}})',
+                js_content,
+            )
+            with open(js_path, 'w') as f:
+                f.write(js_content)
+        finally:
+            shutil.rmtree(tmpdir, ignore_errors=True)
+
+        return os.path.getsize(data_path)
+
+    def _handle_emulator_update_kitan(self):
+        build_dir = os.path.join(PROJECT_ROOT, 'build', 'kitan')
+        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+
+        # 1. build/kitan/ → system/data FDI 패치 (in-memory)
         if os.path.isdir(build_dir) and os.listdir(build_dir):
             try:
                 from kitan_inserter import patch_fdi
@@ -1028,7 +1084,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 self._send_json_error(f'FDI 패치 실패: {e}', 500)
                 return
 
-        # 2. demo 디스크 패치
+        # 2. demo 디스크 패치 (희담 전용)
         try:
             demo_inserter = os.path.join(PROJECT_ROOT, 'tools', 'kitan_demo_inserter.py')
             game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'data')
@@ -1037,64 +1093,14 @@ class Handler(http.server.BaseHTTPRequestHandler):
         except Exception:
             pass  # demo 패치 실패는 무시
 
-        # 3. kitan.data 번들 재생성
-        if not os.path.exists(FILE_PACKAGER):
-            self._send_json_error(f'file_packager.py 없음: {FILE_PACKAGER}', 500)
-            return
-
-        tmpdir = tempfile.mkdtemp(prefix='kitan-bundle-')
-        loader_js = os.path.join(tmpdir, 'loader.js')
+        # 3. 번들 재생성 (공통)
         try:
-            tmp_bios = os.path.join(tmpdir, 'bios')
-            tmp_rom  = os.path.join(tmpdir, 'rom')
-            os.makedirs(tmp_bios)
-            os.makedirs(tmp_rom)
-            for f in os.listdir(bios_dir):
-                if not f.startswith('.'):
-                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
-            for fdi in ('kitan-system.fdi', 'kitan-data.fdi', 'kitan-demo.fdi'):
-                src = os.path.join(rom_dir, fdi)
-                if os.path.exists(src):
-                    shutil.copy2(src, tmp_rom)
-
-            proc = subprocess.run(
-                ['python3', FILE_PACKAGER, data_path,
-                 '--js-output=' + loader_js,
-                 '--preload', 'bios@/emulator/np2kai',
-                 '--preload', 'rom@/rom'],
-                capture_output=True, text=True, timeout=120, cwd=tmpdir,
-            )
-            if proc.returncode != 0:
-                self._send_json_error(f'번들 재생성 실패: {proc.stderr.strip()[-300:]}', 500)
-                return
-
-            # 4. kitan.js 메타데이터 갱신
-            with open(loader_js, 'r') as f:
-                loader_content = f.read()
-            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
-            if not meta_match:
-                self._send_json_error('메타데이터 추출 실패', 500)
-                return
-            new_files = meta_match.group(1)
-            new_size  = meta_match.group(2)
-
-            with open(js_path, 'r') as f:
-                js_content = f.read()
-            js_content = re.sub(
-                r'loadPackage\(\{(?:"files"|files):\s*\[.*?\],\s*(?:"remote_package_size"|remote_package_size):\s*\d+\}\)',
-                f'loadPackage({{"files":{new_files},"remote_package_size":{new_size}}})',
-                js_content,
-            )
-            with open(js_path, 'w') as f:
-                f.write(js_content)
-
+            data_size = self._repackage_bundle('kitan',
+                ('kitan-system.fdi', 'kitan-data.fdi', 'kitan-demo.fdi'))
         except Exception as e:
             self._send_json_error(f'번들 재생성 실패: {e}', 500)
             return
-        finally:
-            shutil.rmtree(tmpdir, ignore_errors=True)
 
-        data_size = os.path.getsize(data_path)
         self._send_json({
             'ok': True,
             'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
@@ -1136,14 +1142,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
             return
 
-        emulator_dir = os.path.join(PROJECT_ROOT, 'emulator')
-        rom_dir      = os.path.join(emulator_dir, 'rom')
-        bios_dir     = os.path.join(emulator_dir, 'bios')
-        fdi_path     = os.path.join(rom_dir, 'hukyou_kr.fdi')
-        data_path    = os.path.join(emulator_dir, 'hukyou.data')
-        js_path      = os.path.join(emulator_dir, 'hukyou.js')
+        rom_dir  = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+        fdi_path = os.path.join(rom_dir, 'hukyou_kr.fdi')
 
-        # 1. FDI 패치
+        # 1. FDI 패치 (path 직접 수정)
         try:
             from hukyou_inserter import patch_fdi
             patch_fdi(fdi_path, build_dir)
@@ -1151,65 +1153,13 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send_json_error(f'FDI 패치 실패: {e}', 500)
             return
 
-        # 2. 임시 디렉토리에 bios + hukyou ROM만 모아서 번들 생성
-        if not os.path.exists(FILE_PACKAGER):
-            self._send_json_error(f'file_packager.py 없음: {FILE_PACKAGER}', 500)
-            return
-        import tempfile, shutil, re, json
-        tmpdir = tempfile.mkdtemp(prefix='hukyou-bundle-')
-        loader_js = os.path.join(tmpdir, 'loader.js')
+        # 2. 번들 재생성 (공통)
         try:
-            # 임시 번들 디렉토리 구성
-            tmp_bios = os.path.join(tmpdir, 'bios')
-            tmp_rom  = os.path.join(tmpdir, 'rom')
-            os.makedirs(tmp_bios)
-            os.makedirs(tmp_rom)
-            for f in os.listdir(bios_dir):
-                if not f.startswith('.'):
-                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
-            shutil.copy2(fdi_path, tmp_rom)
-
-            # file_packager 실행
-            proc = subprocess.run(
-                ['python3', FILE_PACKAGER,
-                 data_path,
-                 '--js-output=' + loader_js,
-                 '--preload', 'bios@/emulator/np2kai',
-                 '--preload', 'rom@/rom'],
-                capture_output=True, text=True, timeout=120,
-                cwd=tmpdir,
-            )
-            if proc.returncode != 0:
-                self._send_json_error(f'번들 재생성 실패: {proc.stderr.strip()[-300:]}', 500)
-                return
-
-            # 3. loader.js에서 메타데이터 추출 → hukyou.js 교체
-            with open(loader_js, 'r') as f:
-                loader_content = f.read()
-            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
-            if not meta_match:
-                self._send_json_error('메타데이터 추출 실패', 500)
-                return
-            new_files = meta_match.group(1)
-            new_size  = meta_match.group(2)
-
-            with open(js_path, 'r') as f:
-                js_content = f.read()
-            js_content = re.sub(
-                r'loadPackage\(\{files:\[.*?\],remote_package_size:\d+\}\)',
-                f'loadPackage({{files:{new_files},remote_package_size:{new_size}}})',
-                js_content,
-            )
-            with open(js_path, 'w') as f:
-                f.write(js_content)
-
+            data_size = self._repackage_bundle('hukyou', ('hukyou_kr.fdi',))
         except Exception as e:
             self._send_json_error(f'번들 재생성 실패: {e}', 500)
             return
-        finally:
-            shutil.rmtree(tmpdir, ignore_errors=True)
 
-        data_size = os.path.getsize(data_path)
         self._send_json({
             'ok': True,
             'message': f'완료 — FDI 패치 ({len(build_files)}개 파일), 번들 재생성 ({data_size:,} bytes)',
