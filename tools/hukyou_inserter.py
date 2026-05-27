@@ -111,9 +111,22 @@ ASCII_TO_FULLWIDTH = {
 
 
 def encode_korean(text, charmap, use_halfwidth=False):
-    """한국어 텍스트를 SJIS 바이트로 인코딩. 한글은 charmap, 나머지는 SJIS."""
+    """한국어 텍스트를 SJIS 바이트로 인코딩. 한글은 charmap, 나머지는 SJIS.
+    `/X` 마커는 반각 한글 (charmap에 `/리` 같은 키로 등록된 경우)을 의미.
+    """
     result = bytearray()
-    for ch in text:
+    i = 0
+    while i < len(text):
+        ch = text[i]
+        # 반각 마커 우선 매칭
+        if ch == '/' and i + 1 < len(text):
+            key = '/' + text[i+1]
+            if key in charmap:
+                code = charmap[key]
+                result.append(int(code[:2], 16))
+                result.append(int(code[2:], 16))
+                i += 2
+                continue
         if ch in charmap:
             code = charmap[ch]
             result.append(int(code[:2], 16))
@@ -125,6 +138,7 @@ def encode_korean(text, charmap, use_halfwidth=False):
         else:
             encoded = ch.encode('shift_jis', errors='strict')
             result.extend(encoded)
+        i += 1
     return bytes(result)
 
 

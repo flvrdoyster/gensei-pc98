@@ -89,6 +89,7 @@ tr:hover { background: #232323; }
 .type-system span { background: #2a2a2a; color: #aaa; }
 .type-ignore span { background: #222; color: #555; text-decoration: line-through; }
 .type-char span { background: #0d3040; color: #60c8e0; }
+.type-enemy span { background: #401020; color: #f08090; }
 .type span.taggable { cursor: pointer; position: relative; }
 .type span.taggable:hover { filter: brightness(1.2); }
 .halfwidth-badge { display: inline-block; padding: 1px 4px; border-radius: 2px; font-size: 10px; font-weight: 600; background: #2e1a50; color: #c090f0; margin-left: 4px; vertical-align: middle; }
@@ -165,6 +166,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
     <option value="menu">메뉴/라벨</option>
     <option value="location">장소</option>
     <option value="char">캐릭터명</option>
+    <option value="enemy">적</option>
     <option value="battle">전투</option>
     <option value="system">시스템</option>
   </select>
@@ -208,6 +210,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
     <option value="monolog">독백</option>
     <option value="cutscene">컷씬</option>
     <option value="char">캐릭터</option>
+    <option value="enemy">적</option>
     <option value="battle">전투</option>
     <option value="item">아이템</option>
     <option value="menu">메뉴</option>
@@ -349,7 +352,7 @@ function getJpLen(r) {
   return len;
 }
 
-const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', battle: '전투', item: '아이템', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
+const TAG_LABELS = { dialog: '대사', monolog: '독백', cutscene: '컷씬', char: '캐릭터', enemy: '적', battle: '전투', item: '아이템', menu: '메뉴', location: '장소', system: '시스템', ignore: '제외' };
 const DIALOG_TAGS = ['dialog', 'monolog', 'cutscene', 'char', 'battle', 'item', 'menu', 'location', 'system', 'ignore'];
 
 function typeLabel(r) {
