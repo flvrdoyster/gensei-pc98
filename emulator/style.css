@@ -67,6 +67,11 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 
 #btn-disk.active { background: rgba(38, 38, 38, 1); }
 
+.top-bar-right {
+  display: flex;
+  align-items: center;
+}
+
 .disk-panel {
   display: flex;
   gap: 0;
