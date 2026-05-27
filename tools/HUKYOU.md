@@ -123,5 +123,5 @@ GF2.COM 처리:
 ## 참고
 
 - **SJIS 범위 검증 필수**: 바이트 범위만으로는 실제 SJIS에 없는 코드(예: `0x8865`, `0xFC65`)를 걸러내지 못함 → `data[i:i+2].decode('shift_jis')` 검증 (0x85XX 반각 제외)
-- **전각 필수**: 게임 렌더러가 1바이트 ASCII 표시 불가 → ASCII 문장부호·숫자·영문 모두 전각 자동 변환 (`ASCII_TO_FULLWIDTH`)
+- **1바이트 ASCII 표시 불가**: 게임 렌더러가 raw 1바이트 ASCII(`0x41` 등) 직접 표시 불가 → 기본은 전각으로 자동 변환 (`ASCII_TO_FULLWIDTH`), 반각이 필요하면 `/X` 시퀀스로 2바이트 SJIS halfwidth 영역(`0x85XX`) 사용
 - **MESSAGE.CMD 이중 구조**: 다른 CMD 파일과 달리 아이템 데이터와 대화가 한 파일에 공존한다. 앞부분은 `extract_items`로, 뒷부분은 `extract_dialogs`로 처리 — 교차 적용 시 오탐 발생.
