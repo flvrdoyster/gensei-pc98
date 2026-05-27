@@ -24422,168 +24422,191 @@
       "category": "names",
       "jp": "正常",
       "jp_len": 4,
-      "kr": "정상"
+      "kr": "정상",
+      "tag": "battle"
     },
     {
       "offset": 41614,
       "category": "names",
       "jp": "毒",
       "jp_len": 2,
-      "kr": "독"
+      "kr": "독",
+      "tag": "battle"
     },
     {
       "offset": 41618,
       "category": "names",
       "jp": "気絶",
       "jp_len": 4,
-      "kr": "기절"
+      "kr": "기절",
+      "tag": "battle"
     },
     {
       "offset": 41630,
       "category": "names",
       "jp": "薬　草",
       "jp_len": 6,
-      "kr": "약초"
+      "kr": "약초",
+      "tag": "battle"
     },
     {
       "offset": 41642,
       "category": "names",
       "jp": "苦い薬草",
       "jp_len": 8,
-      "kr": "쓴약초"
+      "kr": "쓴약초",
+      "tag": "battle"
     },
     {
       "offset": 41656,
       "category": "names",
       "jp": "毒消し薬",
       "jp_len": 8,
-      "kr": "해독초"
+      "kr": "해독초",
+      "tag": "battle"
     },
     {
       "offset": 41668,
       "category": "names",
       "jp": "リフレッシュの水",
       "jp_len": 16,
-      "kr": "리프레시워터"
+      "kr": "/리/프/레/시/워/터",
+      "tag": "battle"
     },
     {
       "offset": 41688,
       "category": "names",
       "jp": "大打撃",
       "jp_len": 6,
-      "kr": "대타격"
+      "kr": "대타격",
+      "tag": "battle"
     },
     {
       "offset": 41700,
       "category": "names",
       "jp": "白刃一閃",
       "jp_len": 8,
-      "kr": "백인일섬"
+      "kr": "백인일섬",
+      "tag": "battle"
     },
     {
       "offset": 41714,
       "category": "names",
       "jp": "炎",
       "jp_len": 2,
-      "kr": "염"
+      "kr": "염",
+      "tag": "battle"
     },
     {
       "offset": 41722,
       "category": "names",
       "jp": "大　炎",
       "jp_len": 6,
-      "kr": "대염"
+      "kr": "대염",
+      "tag": "battle"
     },
     {
       "offset": 41734,
       "category": "names",
       "jp": "氷",
       "jp_len": 2,
-      "kr": "빙"
+      "kr": "빙",
+      "tag": "battle"
     },
     {
       "offset": 41742,
       "category": "names",
       "jp": "雷",
       "jp_len": 2,
-      "kr": "뢰"
+      "kr": "뢰",
+      "tag": "battle"
     },
     {
       "offset": 41750,
       "category": "names",
       "jp": "回　復",
       "jp_len": 6,
-      "kr": "회복"
+      "kr": "회복",
+      "tag": "battle"
     },
     {
       "offset": 41762,
       "category": "names",
       "jp": "大回復",
       "jp_len": 6,
-      "kr": "대회복"
+      "kr": "대회복",
+      "tag": "battle"
     },
     {
       "offset": 41774,
       "category": "names",
       "jp": "毒消し",
       "jp_len": 6,
-      "kr": "해독"
+      "kr": "해독",
+      "tag": "battle"
     },
     {
       "offset": 41788,
       "category": "names",
       "jp": "毒",
       "jp_len": 2,
-      "kr": "독"
+      "kr": "독",
+      "tag": "battle"
     },
     {
       "offset": 41794,
       "category": "names",
       "jp": "気絶",
       "jp_len": 4,
-      "kr": "기절"
+      "kr": "기절",
+      "tag": "battle"
     },
     {
       "offset": 41800,
       "category": "names",
       "jp": "消費MP=",
       "jp_len": 10,
-      "kr": "소비MP="
+      "kr": "소비MP=",
+      "tag": "battle"
     },
     {
       "offset": 41812,
       "category": "names",
       "jp": "消費SP=",
       "jp_len": 10,
-      "kr": "소비SP="
+      "kr": "소비SP=",
+      "tag": "battle"
     },
     {
       "offset": 41890,
       "category": "names",
       "jp": "魔法",
       "jp_len": 4,
-      "kr": "마법"
+      "kr": "마법",
+      "tag": "battle"
     },
     {
       "offset": 41896,
       "category": "names",
       "jp": "特技",
       "jp_len": 4,
-      "kr": "특기"
+      "kr": "특기",
+      "tag": "battle"
     },
     {
       "offset": 59783,
       "category": "battle",
       "jp": "アイテム",
       "jp_len": 8,
-      "kr": "아이템"
+      "kr": "/아/이/템",
+      "tag": "battle"
     },
     {
       "offset": 59867,
       "category": "battle",
       "jp": "MISS",
       "jp_len": 8,
-      "kr": "MISS"
+      "kr": "/M/I/S/S"
     }
   ]
 }
