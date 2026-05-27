@@ -86,6 +86,10 @@ GF2.COM 구조:
 인코딩 상세(ASCII·반각 카타카나·탁점 카타카나 매핑)는 `compile_lz.py` 참조.  
 `compile_lz.read_sjis_char()` / `encode_halfwidth_char()` 처리.
 
+**한글 반각 적용**: 좁은 슬롯(전투 적 이름·UI 아이템 라벨)에 한글이 들어갈 때  
+`0x85A4~0x85EC` 슬롯에 한글 글리프를 그려넣고 `/X` 마커로 인코딩.  
+적 이름 식별은 에디터의 `enemy` 태그. 상세 절차는 `tools/NOTES.md` "반각 한글" 섹션 참조.
+
 ### 4. 파싱
 
 `hukyou_parser.py` 실행 → `translation/hukyou/translation.json` 생성.
