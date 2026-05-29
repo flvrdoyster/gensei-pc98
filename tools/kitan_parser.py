@@ -773,12 +773,14 @@ def extract_gsovl(game_dir):
     result = []
 
     # 하드코딩 오프셋 (battle, status, name, misc)
-    # 첫 0x85(반각) 만나면 중단 — 반각 영역은 비텍스트 데이터로 보존
+    # 텍스트가 0x85(반각)로 시작하면 끝까지 디코딩 (リフレッシュの水を使う 류).
+    # 일반 SJIS로 시작하면 첫 0x85에서 중단 (大撃剣[SP10] 류 — 가이지 코스트 보존).
     for offset, tag in _GSOVL_OFFSETS:
+        started_with_halfwidth = (offset < len(data) and data[offset] == 0x85)
         text = ''
         i = offset
         while i < len(data) - 1 and is_sjis(data, i):
-            if data[i] == 0x85:
+            if data[i] == 0x85 and not started_with_halfwidth:
                 break
             text += read_sjis_char(data, i)
             i += 2
