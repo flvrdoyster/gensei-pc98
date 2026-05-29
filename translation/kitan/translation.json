@@ -5090,8 +5090,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 29794,
@@ -5231,8 +5231,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 30187,
@@ -6785,7 +6785,7 @@
           "offset": 10529,
           "jp": "「おっ　水門を開閉するための",
           "jp_len": 28,
-          "kr": "「오 수문 계폐용"
+          "kr": "「오 수문 개폐용"
         },
         {
           "offset": 10559,
@@ -17463,8 +17463,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25852,
@@ -17604,8 +17604,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 26237,
@@ -25570,8 +25570,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 19968,
@@ -41786,8 +41786,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 9120,
@@ -44112,8 +44112,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 12906,
@@ -44253,8 +44253,8 @@
           "jp": "リフレッシュの水",
           "jp_len": 16,
           "kr": "/리/프/레/시/워/터",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 13299,
@@ -44483,52 +44483,52 @@
           "offset": 5779,
           "jp": "��ラックフライ",
           "jp_len": 14,
-          "kr": "블랙플라이",
-          "tag": "battle",
-          "halfwidth": true
+          "kr": "/블/랙/플/라/이",
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 5796,
           "jp": "��ォ��ャノーイ",
           "jp_len": 14,
-          "kr": "보댜노이",
-          "tag": "battle",
-          "halfwidth": true
+          "kr": "/보/댜/노/이",
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 5813,
           "jp": "ローニン",
           "jp_len": 8,
           "kr": "로닌",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 5824,
           "jp": "バフク",
           "jp_len": 6,
           "kr": "바후쿠",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 5833,
           "jp": "ローグ",
           "jp_len": 6,
           "kr": "로그",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 5842,
           "jp": "ブレード村正",
           "jp_len": 12,
           "kr": "/블/레/이/드/무/라/마/사",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 5857,
           "jp": "アリババ",
           "jp_len": 8,
-          "kr": "알리바바",
-          "tag": "battle"
+          "kr": "/알/리/바/바",
+          "tag": "enemy"
         }
       ]
     },
@@ -44541,35 +44541,35 @@
           "jp": "フシキ",
           "jp_len": 6,
           "kr": "후시키",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 3150,
           "jp": "インプ",
           "jp_len": 6,
           "kr": "임프",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 3159,
           "jp": "サマエル",
           "jp_len": 8,
           "kr": "사마엘",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 3170,
           "jp": "ダンピール",
           "jp_len": 10,
           "kr": "담피르",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 3183,
           "jp": "サルバート",
           "jp_len": 10,
-          "kr": "사루바토",
-          "tag": "battle"
+          "kr": "/사/루/바/토",
+          "tag": "enemy"
         }
       ]
     },
@@ -44582,28 +44582,28 @@
           "jp": "ビョウキ",
           "jp_len": 8,
           "kr": "뵤키",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 4213,
           "jp": "ソーサラー",
           "jp_len": 10,
           "kr": "소서러",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 4226,
           "jp": "スライム",
           "jp_len": 8,
           "kr": "슬라임",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 4237,
           "jp": "ヴェーターラ",
           "jp_len": 12,
           "kr": "베타라",
-          "tag": "battle"
+          "tag": "enemy"
         }
       ]
     },
@@ -44615,8 +44615,8 @@
           "offset": 4269,
           "jp": "グラマテス",
           "jp_len": 10,
-          "kr": "그라마테스",
-          "tag": "battle"
+          "kr": "/그/라/마/테/스",
+          "tag": "enemy"
         }
       ]
     },
@@ -44629,71 +44629,71 @@
           "jp": "アウトロー",
           "jp_len": 10,
           "kr": "아웃로",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 9969,
           "jp": "アーマーレ��ィ",
           "jp_len": 14,
-          "kr": "아머레이디",
-          "tag": "battle",
-          "halfwidth": true
+          "kr": "/아/머/레/이/디",
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 9986,
           "jp": "レッガー",
           "jp_len": 8,
           "kr": "레거",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 9997,
           "jp": "マシンエイプ",
           "jp_len": 12,
-          "kr": "머신에이프",
-          "tag": "battle"
+          "kr": "/머/신/에/이/프",
+          "tag": "enemy"
         },
         {
           "offset": 10012,
           "jp": "ヴァラク",
           "jp_len": 8,
           "kr": "발라크",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 10023,
           "jp": "フールカス",
           "jp_len": 10,
-          "kr": "푸르카스",
-          "tag": "battle"
+          "kr": "/푸/르/카/스",
+          "tag": "enemy"
         },
         {
           "offset": 10036,
           "jp": "アケオロス",
           "jp_len": 10,
-          "kr": "아케올로스",
-          "tag": "battle"
+          "kr": "/아/케/올/로/스",
+          "tag": "enemy"
         },
         {
           "offset": 10049,
           "jp": "テツジン",
           "jp_len": 8,
           "kr": "테츠진",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 10060,
           "jp": "プテーシス",
           "jp_len": 10,
-          "kr": "프테시스",
-          "tag": "battle"
+          "kr": "/프/테/시/스",
+          "tag": "enemy"
         },
         {
           "offset": 10073,
           "jp": "カスミ",
           "jp_len": 6,
           "kr": "카스미",
-          "tag": "battle"
+          "tag": "enemy"
         }
       ]
     },
@@ -44706,21 +44706,21 @@
           "jp": "ブレード村正",
           "jp_len": 12,
           "kr": "/블/레/이/드/무/라/마/사",
-          "tag": "battle"
+          "tag": "enemy"
         },
         {
           "offset": 4093,
           "jp": "サルバート",
           "jp_len": 10,
-          "kr": "사루바토",
-          "tag": "battle"
+          "kr": "/사/루/바/토",
+          "tag": "enemy"
         },
         {
           "offset": 4106,
           "jp": "グラマテス",
           "jp_len": 10,
-          "kr": "그라마테스",
-          "tag": "battle"
+          "kr": "/그/라/마/테/스",
+          "tag": "enemy"
         }
       ]
     },
@@ -51074,6 +51074,13 @@
       "jp": "毒消しを使う",
       "jp_len": 12,
       "kr": "해독약을쓴다"
+    },
+    {
+      "offset": 13845,
+      "tag": "battle",
+      "jp": "リフレッシュの水を使う",
+      "jp_len": 22,
+      "kr": "/리/프/레/시워터를쓴다"
     },
     {
       "offset": 22540,
