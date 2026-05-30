@@ -116,17 +116,6 @@ def extract_dialogs(data):
         cur_lines.clear()
 
     while i < len(data) - 1:
-        # 64 00 96 48 : 상점 라벨 영역 진입 — dialog 강제 종료
-        # (extract_shop_labels 가 별도 처리하므로 dialog 가 잡으면 안 됨)
-        if (i + 3 < len(data)
-                and data[i] == 0x64 and data[i + 1] == 0x00
-                and data[i + 2] == 0x96 and data[i + 3] == 0x48):
-            if in_dialog:
-                _flush_dialog()
-            in_dialog = False
-            i += 4
-            continue
-
         # 6b 00 : 블록 경계 (이전 블록 종료 + 새 블록 시작)
         if data[i] == 0x6b and data[i + 1] == 0x00:
             if in_dialog:
@@ -657,42 +646,6 @@ def extract_message_dialog(data):
 # bare SJIS+65 파서 (SC6A 층수 이름 등)
 # ─────────────────────────────────────
 
-def extract_shop_labels(data, captured_offsets):
-    """
-    64 00 96 48 [SJIS run] [non-SJIS] 형식 상점 아이템 라벨 추출.
-
-    SC1A/SC3A/SC4A/SC6D/SC7A.CMD 의 상점 인벤토리.
-    64 00 = 항목 시작 opcode, 96 48 = 아이템 카테고리 바이트 (텍스트 아님).
-    96 48 직후 SJIS run 을 라벨로 추출 (가격·설명은 후속 코드).
-    """
-    items = []
-    i = 0
-    while i < len(data) - 5:
-        if (data[i] != 0x64 or data[i + 1] != 0x00
-                or data[i + 2] != 0x96 or data[i + 3] != 0x48):
-            i += 1; continue
-        if not is_sjis(data, i + 4):
-            i += 4; continue
-        text_off = i + 4
-        j = text_off
-        text = ''
-        while j < len(data) - 1 and is_sjis(data, j):
-            text += read_sjis_char(data, j)
-            j += 2
-        text_end = j
-        if (len(text.strip()) >= 2
-                and not any(ord(c) == 0xFFFD for c in text)
-                and text_off not in captured_offsets):
-            line = {'offset': text_off, 'jp': text,
-                    'jp_len': text_end - text_off, 'kr': ''}
-            if _has_halfwidth(data, text_off, text_end):
-                line['halfwidth'] = True
-            items.append([line])
-        i = j
-
-    return items
-
-
 def extract_bare_sjis65(data, captured_offsets):
     """
     순수 SJIS 연속 + 65 종료 패턴 스캔.
@@ -940,9 +893,6 @@ _LABELED_PREFIXES = {
 # bare SJIS+65 스캔 적용 파일
 _BARE_SJIS65_FILES = {'SC6A.CMD', 'SC6B.CMD', 'SC6C.CMD'}
 
-# 64 00 [SJIS] 상점 라벨 스캔 적용 파일
-_SHOP_LABEL_FILES = {'SC1A.CMD', 'SC3A.CMD', 'SC4A.CMD', 'SC6D.CMD', 'SC7A.CMD'}
-
 
 def generate_json(game_dir, out_path):
     result = {'dialogs': [], 'gsovl': [], 'demo': [], 'items': []}
@@ -1000,11 +950,6 @@ def generate_json(game_dir, out_path):
         if fname in _BARE_SJIS65_FILES:
             pre_captured = {ln['offset'] for blk in all_blocks for ln in blk}
             all_blocks += extract_bare_sjis65(data, pre_captured)
-
-        # 상점 인벤토리 라벨 (64 00 [SJIS])
-        if fname in _SHOP_LABEL_FILES:
-            pre_captured = {ln['offset'] for blk in all_blocks for ln in blk}
-            all_blocks += extract_shop_labels(data, pre_captured)
 
         all_blocks.sort(key=lambda b: b[0]['offset'] if b else 0)
         seen = set()

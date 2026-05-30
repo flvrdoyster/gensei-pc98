@@ -227,14 +227,14 @@ python3 tools/kitan_parser.py original/kitan/data
 | `01 02 [SJIS]` 블록 | 모든 CMD | 감정/화자 코드 체인 후 본문 (블록 외부 한정) | `extract_dialogs` |
 | `76 1a [SJIS]` 블록 | 모든 CMD | 화면 클리어 직후 본문 (블록 외부 한정) | `extract_dialogs` |
 | `02 65 [SJIS]` 블록 | 모든 CMD | 화자 체인 종료 후 본문 (in_dialog 무관, flush 동반) | `extract_dialogs` |
-| `64 00 96 48` 종료 | SC1A/3A/4A/6D/7A | 상점 라벨 영역 진입 → dialog 강제 종료 | `extract_dialogs` |
 | `13 00` 포인터 블록 | 모든 CMD | 분기 메뉴 선택지 | `extract_menus` |
 | `64 01 / 64 03 / 6d 04 / 6d 11 [SJIS] 65 XX` | 모든 CMD (MESSAGE 제외) | 세이브/메뉴 라벨 (`64 03` = 슬롯 선택, `6d 04` = 메뉴 두 번째 셋, `6d 11` = SC6B 층수 prefix) | `extract_labeled_text` |
 | `63 08 [SJIS] 65 XX` | ENDING.CMD 전용 | 제작진 크레딧 | `extract_labeled_text` |
 | `6d 08 [SJIS] 65` | PARTY2~7.CMD 전용 | 적/NPC 이름 | `extract_labeled_text` |
 | bare SJIS + `65` | SC6A/6B/6C.CMD | 층수 이름 (`　４階　` 등) | `extract_bare_sjis65` |
-| `64 00 96 48 [SJIS]` | SC1A/3A/4A/6D/7A.CMD | 상점 인벤토리 아이템 라벨 (`96 48`은 카테고리 바이트, 텍스트 아님) | `extract_shop_labels` |
 | `[SJIS] 72 01 ... 65` | MESSAGE.CMD 전용 | 스토리 대화; 0x1290~EOF 연속 배치 | `extract_message_dialog` |
+
+상점 인벤토리 영역(SC1A/3A/4A/6D/7A의 `64 00 96 48 [name] 64 XX [price] 72 01 [desc] ...`)은 `extract_dialogs`가 통째로 처리. `64 00`이 4바이트 portrait opcode로 96 48까지 스킵하므로 자연스럽게 `name` 부터 잡힘.
 | `0f 03` 블록 | MESSAGE.CMD 전용 | 아이템 DB (이름/스탯/설명) | `extract_items` |
 
 MESSAGE.CMD는 `extract_dialogs`를 `_MSG_DIALOG_START`(0x1290) 이전 영역만 스캔 — 스토리 대화 영역에서 중복 추출 방지.
