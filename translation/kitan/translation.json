@@ -30,56 +30,56 @@
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 199,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 210,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 221,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 232,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 243,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 254,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 265,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 338,
@@ -100,91 +100,91 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 673,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 688,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 793,
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 804,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 815,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 826,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 837,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 848,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 859,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 870,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 892,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 985,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1044,
@@ -205,7 +205,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2003,
@@ -2731,85 +2731,85 @@
           "offset": 20442,
           "jp": "「本当に　まいったよ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "「정말 큰일이야"
         },
         {
           "offset": 20464,
           "jp": "　まさか　昼間から盗賊に",
           "jp_len": 24,
-          "kr": ""
+          "kr": "설마 대낮부터 도둑이"
         },
         {
           "offset": 20490,
           "jp": "　入られるとはね",
           "jp_len": 16,
-          "kr": ""
+          "kr": "들 줄이야"
         },
         {
           "offset": 20510,
           "jp": "　あのとき　私はここにいたのだが",
           "jp_len": 32,
-          "kr": ""
+          "kr": "그때 나는 여기 있었는데"
         },
         {
           "offset": 20544,
           "jp": "　妙な物音がしたので",
           "jp_len": 20,
-          "kr": ""
+          "kr": "이상한 소리가 나서"
         },
         {
           "offset": 20566,
           "jp": "　隣の部屋へ行ってみたんだ",
           "jp_len": 26,
-          "kr": ""
+          "kr": "옆방으로 가봤거든"
         },
         {
           "offset": 20596,
           "jp": "　すると　盗賊のほうも",
           "jp_len": 22,
-          "kr": ""
+          "kr": "그랬더니 도둑 쪽도"
         },
         {
           "offset": 20620,
           "jp": "　私のことに気づいたらしく",
           "jp_len": 26,
-          "kr": ""
+          "kr": "나를 알아챘는지"
         },
         {
           "offset": 20648,
           "jp": "　窓から逃げてしまった",
           "jp_len": 22,
-          "kr": ""
+          "kr": "창문으로 도망쳐버렸어"
         },
         {
           "offset": 20674,
           "jp": "　私が見たのは　ヤツの",
           "jp_len": 22,
-          "kr": ""
+          "kr": "내가 본 건 녀석의"
         },
         {
           "offset": 20698,
           "jp": "　後姿だけだったよ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "뒷모습 뿐이었지"
         },
         {
           "offset": 20720,
           "jp": "　えっ　盗まれた物かい？",
           "jp_len": 24,
-          "kr": ""
+          "kr": "응? 훔쳐간 게 뭐냐고"
         },
         {
           "offset": 20748,
           "jp": "　鍵だよ　なんの鍵だったかは",
           "jp_len": 28,
-          "kr": ""
+          "kr": "열쇠야 무슨 열쇠인지는"
         },
         {
           "offset": 20778,
           "jp": "　忘れてしまったけど…",
           "jp_len": 22,
-          "kr": ""
+          "kr": "잊어버렸지만…"
         }
       ]
     },
@@ -5302,21 +5302,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30685,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30700,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -5329,56 +5329,56 @@
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30816,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30827,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30838,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30849,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30860,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30871,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 30882,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -5391,7 +5391,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -5404,7 +5404,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -5417,7 +5417,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -8825,91 +8825,91 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18603,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18618,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18723,
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18734,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18745,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18756,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18767,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18778,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18789,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18800,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18822,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18915,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18974,
@@ -8930,7 +8930,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 19933,
@@ -8957,20 +8957,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1521,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1536,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -8982,49 +8983,57 @@
           "offset": 1641,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1652,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1663,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1674,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 1685,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1696,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1707,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1718,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -9037,7 +9046,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -9050,7 +9059,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -9062,7 +9071,8 @@
           "offset": 1921,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -10261,7 +10271,8 @@
           "offset": 1860,
           "jp": "釉嘉經膣怎",
           "jp_len": 473,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -10274,20 +10285,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2860,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2875,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -10299,49 +10311,57 @@
           "offset": 2980,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2991,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 3002,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 3013,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 3024,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 3035,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 3046,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 3057,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -10354,7 +10374,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -10367,7 +10387,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -10379,7 +10399,8 @@
           "offset": 3260,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -10545,13 +10566,14 @@
           "offset": 12674,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 12686,
           "jp": "「な　なんだ？！",
           "jp_len": 16,
-          "kr": ""
+          "kr": "「뭐 뭐야?!"
         }
       ]
     },
@@ -11280,113 +11302,125 @@
           "offset": 1190,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 1440,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 1567,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1582,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1597,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         },
         {
           "offset": 1702,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1713,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1724,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1735,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 1746,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1757,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1768,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1779,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         },
         {
           "offset": 1801,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1894,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1953,
           "jp": "は　い",
           "jp_len": 6,
-          "kr": ""
+          "kr": "네"
         },
         {
           "offset": 1962,
           "jp": "いいえ",
           "jp_len": 6,
-          "kr": ""
+          "kr": "아니오"
         },
         {
           "offset": 1982,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -11471,37 +11505,39 @@
           "offset": 5672,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 5684,
           "jp": "「どうにかして　ここの鍵を",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「어떻게든 여기 자물쇠를"
         },
         {
           "offset": 5712,
           "jp": "　開けないとなあ…",
           "jp_len": 18,
-          "kr": ""
+          "kr": "열지 않으면…"
         },
         {
           "offset": 5734,
           "jp": "「ケケケッ　ムリだよ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "「케케케 무리라고"
         },
         {
           "offset": 5758,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 5770,
           "jp": "「ゲッ！　見張りつきかよ",
           "jp_len": 24,
-          "kr": ""
+          "kr": "「헉! 감시역까지 있냐"
         },
         {
           "offset": 5798,
@@ -11519,13 +11555,14 @@
           "offset": 5860,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 5872,
           "jp": "「ちっ！",
           "jp_len": 8,
-          "kr": ""
+          "kr": "「쳇!"
         }
       ]
     },
@@ -11849,31 +11886,31 @@
           "offset": 7054,
           "jp": "「おや　この扉",
           "jp_len": 14,
-          "kr": ""
+          "kr": "「어라 이 문"
         },
         {
           "offset": 7070,
           "jp": "　魔法で　施錠されてますね",
           "jp_len": 26,
-          "kr": ""
+          "kr": "마법으로 잠겨 있군요"
         },
         {
           "offset": 7100,
           "jp": "　魔法となれば　私の専門",
           "jp_len": 24,
-          "kr": ""
+          "kr": "마법이라면 제 전문이죠"
         },
         {
           "offset": 7126,
           "jp": "　おまかせください",
           "jp_len": 18,
-          "kr": ""
+          "kr": "맡겨주세요"
         },
         {
           "offset": 7146,
           "jp": "　いま　あけてあげますよ",
           "jp_len": 24,
-          "kr": ""
+          "kr": "지금 열어드릴게요"
         },
         {
           "offset": 7185,
@@ -12396,20 +12433,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1672,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1687,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -12421,49 +12459,57 @@
           "offset": 1792,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1803,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1814,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1825,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 1836,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1847,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1858,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1869,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -12476,7 +12522,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -12489,7 +12535,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -12501,7 +12547,8 @@
           "offset": 2072,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -13443,20 +13490,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 782,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 797,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -13468,49 +13516,57 @@
           "offset": 902,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 913,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 924,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 935,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 946,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 957,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 968,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 979,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -13523,7 +13579,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -13536,7 +13592,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -13548,7 +13604,8 @@
           "offset": 1182,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -13951,20 +14008,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1880,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1895,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -13976,49 +14034,57 @@
           "offset": 2000,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2011,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2022,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2033,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2044,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2055,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2066,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2077,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -14031,7 +14097,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -14044,7 +14110,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -14056,7 +14122,8 @@
           "offset": 2280,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -14098,13 +14165,14 @@
           "offset": 4671,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 4683,
           "jp": "「この下に　ボスがいるのか…",
           "jp_len": 28,
-          "kr": ""
+          "kr": "「이 아래에 두목이 있나…"
         }
       ]
     },
@@ -14116,31 +14184,32 @@
           "offset": 4737,
           "jp": "キリ",
           "jp_len": 4,
-          "kr": ""
+          "kr": "키리",
+          "tag": "char"
         },
         {
           "offset": 4743,
           "jp": "「でも　これじゃあ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "「근데 이래서는"
         },
         {
           "offset": 4763,
           "jp": "　どうしようもないね",
           "jp_len": 20,
-          "kr": ""
+          "kr": "어쩔 수가 없잖아"
         },
         {
           "offset": 4787,
           "jp": "　ここから　飛び降りるわけにも",
           "jp_len": 30,
-          "kr": ""
+          "kr": "여기서 뛰어내릴 수도"
         },
         {
           "offset": 4819,
           "jp": "　いかないし…",
           "jp_len": 14,
-          "kr": ""
+          "kr": "없고…"
         }
       ]
     },
@@ -14152,19 +14221,20 @@
           "offset": 4859,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 4869,
           "jp": "「私たちには",
           "jp_len": 12,
-          "kr": ""
+          "kr": "「우리들은"
         },
         {
           "offset": 4883,
           "jp": "　翼がありませんからね",
           "jp_len": 22,
-          "kr": ""
+          "kr": "날개가 없으니 말이죠"
         }
       ]
     },
@@ -15278,20 +15348,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2266,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2281,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -15303,49 +15374,57 @@
           "offset": 2386,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2397,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2408,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2419,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2430,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2441,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2452,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2463,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -15358,7 +15437,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -15371,7 +15450,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -15383,7 +15462,8 @@
           "offset": 2666,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -15696,20 +15776,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4342,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4357,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -15721,49 +15802,57 @@
           "offset": 4462,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 4473,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 4484,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 4495,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 4506,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 4517,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 4528,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 4539,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -15776,7 +15865,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -15789,7 +15878,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -15801,7 +15890,8 @@
           "offset": 4742,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -16983,7 +17073,8 @@
           "offset": 14225,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 14235,
@@ -17007,7 +17098,8 @@
           "offset": 14305,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 14317,
@@ -17019,7 +17111,8 @@
           "offset": 14331,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 14341,
@@ -17055,7 +17148,8 @@
           "offset": 14473,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 14485,
@@ -17067,7 +17161,8 @@
           "offset": 14519,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 14529,
@@ -17097,7 +17192,8 @@
           "offset": 14651,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 14663,
@@ -17127,7 +17223,8 @@
           "offset": 14759,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 14769,
@@ -17145,7 +17242,8 @@
           "offset": 14821,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 14833,
@@ -20653,20 +20751,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 3640,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 3655,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -20678,49 +20777,57 @@
           "offset": 3760,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 3771,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 3782,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 3793,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 3804,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 3815,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 3826,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 3837,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -20733,7 +20840,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -20746,7 +20853,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -20758,7 +20865,8 @@
           "offset": 4040,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -21173,7 +21281,8 @@
           "offset": 7194,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 7206,
@@ -21191,7 +21300,8 @@
           "offset": 7252,
           "jp": "ファーリン",
           "jp_len": 10,
-          "kr": ""
+          "kr": "화린",
+          "tag": "char"
         },
         {
           "offset": 7264,
@@ -21227,7 +21337,8 @@
           "offset": 7376,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 7388,
@@ -21489,7 +21600,8 @@
           "offset": 8319,
           "jp": "アターホー",
           "jp_len": 10,
-          "kr": ""
+          "kr": "아타호",
+          "tag": "char"
         },
         {
           "offset": 8331,
@@ -21507,7 +21619,8 @@
           "offset": 8383,
           "jp": "スマッシュ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "스마슈",
+          "tag": "char"
         },
         {
           "offset": 8395,
@@ -22058,20 +22171,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5658,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5673,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -22083,49 +22197,57 @@
           "offset": 5778,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 5789,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 5800,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 5811,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 5822,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 5833,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 5844,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 5855,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -22138,7 +22260,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -22151,7 +22273,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -22163,7 +22285,8 @@
           "offset": 6058,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -22181,7 +22304,7 @@
           "offset": 9534,
           "jp": "「３階」",
           "jp_len": 8,
-          "kr": ""
+          "kr": "「3층」"
         }
       ]
     },
@@ -23087,7 +23210,8 @@
           "offset": 12889,
           "jp": "アターホー",
           "jp_len": 10,
-          "kr": ""
+          "kr": "아타호",
+          "tag": "char"
         },
         {
           "offset": 12901,
@@ -23111,7 +23235,8 @@
           "offset": 12981,
           "jp": "アターホー",
           "jp_len": 10,
-          "kr": ""
+          "kr": "아타호",
+          "tag": "char"
         },
         {
           "offset": 12993,
@@ -23450,20 +23575,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2033,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2048,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -23475,49 +23601,57 @@
           "offset": 2153,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2164,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2175,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2186,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2197,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2208,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2219,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2230,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -23530,7 +23664,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -23543,7 +23677,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -23555,7 +23689,8 @@
           "offset": 2433,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -24083,20 +24218,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2039,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2054,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -24108,49 +24244,57 @@
           "offset": 2159,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2170,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2181,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2192,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2203,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2214,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2225,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2236,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -24163,7 +24307,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -24176,7 +24320,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -24188,7 +24332,8 @@
           "offset": 2439,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -24521,20 +24666,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2609,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2624,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -24546,49 +24692,57 @@
           "offset": 2729,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2740,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2751,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2762,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2773,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2784,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2795,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2806,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -24601,7 +24755,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -24614,7 +24768,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -24626,7 +24780,8 @@
           "offset": 3009,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -24638,7 +24793,8 @@
           "offset": 4547,
           "jp": "曳曳鋭訣悃液粤升根誌根昼循鴻誌鴻昼暇",
           "jp_len": 1057,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -27761,91 +27917,91 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4427,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4442,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4547,
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4558,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4569,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4580,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4591,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4602,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4613,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4624,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4646,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4739,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4798,
@@ -27866,7 +28022,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5752,
@@ -30709,20 +30865,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 827,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 842,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -30734,49 +30891,57 @@
           "offset": 947,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 958,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 969,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 980,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 991,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1002,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1013,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1024,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -30789,7 +30954,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -30802,7 +30967,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -30814,7 +30979,8 @@
           "offset": 1227,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -31145,7 +31311,8 @@
           "offset": 9858,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 9868,
@@ -31280,20 +31447,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1837,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1852,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -31305,49 +31473,57 @@
           "offset": 1957,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1968,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1979,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1990,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2001,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2012,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2023,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2034,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -31360,7 +31536,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -31373,7 +31549,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -31385,7 +31561,8 @@
           "offset": 2237,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -32493,91 +32670,91 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 7886,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 7901,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8006,
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8017,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8028,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8039,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8050,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8061,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8072,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8083,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8105,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8198,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8257,
@@ -32598,7 +32775,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 9216,
@@ -32625,20 +32802,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5590,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5605,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -32650,49 +32828,57 @@
           "offset": 5710,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 5721,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 5732,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 5743,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 5754,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 5765,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 5776,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 5787,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -32705,7 +32891,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -32718,7 +32904,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -32730,7 +32916,8 @@
           "offset": 5990,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -33936,20 +34123,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1910,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1925,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -33961,49 +34149,57 @@
           "offset": 2030,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2041,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2052,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2063,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2074,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2085,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2096,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2107,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -34016,7 +34212,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -34029,7 +34225,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -34041,7 +34237,8 @@
           "offset": 2310,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -35785,20 +35982,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 3840,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 3855,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -35810,49 +36008,57 @@
           "offset": 3960,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 3971,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 3982,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 3993,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 4004,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 4015,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 4026,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 4037,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -35865,7 +36071,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -35878,7 +36084,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -35890,7 +36096,8 @@
           "offset": 4240,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -37569,20 +37776,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1280,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1295,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -37594,49 +37802,57 @@
           "offset": 1400,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1411,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1422,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1433,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 1444,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1455,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1466,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1477,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -37649,7 +37865,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -37662,7 +37878,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -37674,7 +37890,8 @@
           "offset": 1680,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -37920,20 +38137,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1369,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1384,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -37945,49 +38163,57 @@
           "offset": 1489,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 1500,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 1511,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 1522,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 1533,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 1544,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 1555,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 1566,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -38000,7 +38226,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -38013,7 +38239,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -38025,7 +38251,8 @@
           "offset": 1769,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -39039,7 +39266,8 @@
           "offset": 235,
           "jp": "у舶＄喪ｃ駐沫訣悃汚凛葛圀誌棔蒟珮粤跚韜＄喪ｃ駐у舶葛圀訣悃沫汚剋償洟",
           "jp_len": 307,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -39052,20 +39280,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 634,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 649,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -39077,49 +39306,57 @@
           "offset": 754,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 765,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 776,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 787,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 798,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 809,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 820,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 831,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -39132,7 +39369,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39145,7 +39382,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39157,7 +39394,8 @@
           "offset": 1034,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -39411,21 +39649,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6112,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6127,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39438,56 +39676,56 @@
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6243,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6254,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6265,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6276,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6287,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6298,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 6309,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39500,7 +39738,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39513,7 +39751,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39552,7 +39790,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -41082,7 +41320,7 @@
           "offset": 4434,
           "jp": "　４階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "4층"
         }
       ]
     },
@@ -41094,7 +41332,7 @@
           "offset": 4443,
           "jp": "　３階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "3층"
         }
       ]
     },
@@ -41106,7 +41344,7 @@
           "offset": 4452,
           "jp": "　２階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "2층"
         }
       ]
     },
@@ -41118,7 +41356,7 @@
           "offset": 4461,
           "jp": "　１階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "1층"
         }
       ]
     },
@@ -41131,20 +41369,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5095,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5110,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -41156,49 +41395,57 @@
           "offset": 5215,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 5226,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 5237,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 5248,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 5259,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 5270,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 5281,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 5292,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -41211,7 +41458,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -41224,7 +41471,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -41236,7 +41483,7 @@
           "offset": 5466,
           "jp": "は　い",
           "jp_len": 6,
-          "kr": ""
+          "kr": "네"
         }
       ]
     },
@@ -41248,7 +41495,7 @@
           "offset": 5475,
           "jp": "いいえ",
           "jp_len": 6,
-          "kr": ""
+          "kr": "아니오"
         }
       ]
     },
@@ -41260,7 +41507,8 @@
           "offset": 5495,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -43070,7 +43318,7 @@
           "offset": 4121,
           "jp": "地下１階",
           "jp_len": 8,
-          "kr": ""
+          "kr": "지하1층"
         }
       ]
     },
@@ -43082,7 +43330,7 @@
           "offset": 4130,
           "jp": "　１階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "1층"
         }
       ]
     },
@@ -43094,7 +43342,7 @@
           "offset": 4139,
           "jp": "　２階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "2층"
         }
       ]
     },
@@ -43106,7 +43354,7 @@
           "offset": 4148,
           "jp": "　３階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "3층"
         }
       ]
     },
@@ -43118,7 +43366,7 @@
           "offset": 4157,
           "jp": "　４階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "4층"
         }
       ]
     },
@@ -43130,7 +43378,7 @@
           "offset": 4166,
           "jp": "　５階　",
           "jp_len": 8,
-          "kr": ""
+          "kr": "5층"
         }
       ]
     },
@@ -43143,20 +43391,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5232,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 5247,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -43168,49 +43417,57 @@
           "offset": 5352,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 5363,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 5374,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 5385,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 5396,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 5407,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 5418,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 5429,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -43223,7 +43480,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -43236,7 +43493,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -43248,7 +43505,7 @@
           "offset": 5603,
           "jp": "は　い",
           "jp_len": 6,
-          "kr": ""
+          "kr": "네"
         }
       ]
     },
@@ -43260,7 +43517,7 @@
           "offset": 5612,
           "jp": "いいえ",
           "jp_len": 6,
-          "kr": ""
+          "kr": "아니오"
         }
       ]
     },
@@ -43272,7 +43529,8 @@
           "offset": 5632,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -44263,7 +44521,8 @@
           "offset": 15031,
           "jp": "アリババ",
           "jp_len": 8,
-          "kr": ""
+          "kr": "",
+          "tag": "char"
         },
         {
           "offset": 15041,
@@ -44659,20 +44918,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2152,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 2167,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -44684,49 +44944,57 @@
           "offset": 2272,
           "jp": "データ１",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터1",
+          "tag": "menu"
         },
         {
           "offset": 2283,
           "jp": "データ２",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터2",
+          "tag": "menu"
         },
         {
           "offset": 2294,
           "jp": "データ３",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터3",
+          "tag": "menu"
         },
         {
           "offset": 2305,
           "jp": "データ４",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터4",
+          "tag": "menu"
         },
         {
           "offset": 2316,
           "jp": "データ５",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터5",
+          "tag": "menu"
         },
         {
           "offset": 2327,
           "jp": "データ６",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터6",
+          "tag": "menu"
         },
         {
           "offset": 2338,
           "jp": "データ７",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터7",
+          "tag": "menu"
         },
         {
           "offset": 2349,
           "jp": "データ８",
           "jp_len": 8,
-          "kr": ""
+          "kr": "데이터8",
+          "tag": "menu"
         }
       ]
     },
@@ -44739,7 +45007,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -44752,7 +45020,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -44764,7 +45032,8 @@
           "offset": 2552,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
-          "kr": "DOS 복귀"
+          "kr": "DOS 복귀",
+          "tag": "menu"
         }
       ]
     },
@@ -48029,21 +48298,21 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13631,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13646,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -48056,56 +48325,56 @@
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13762,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13773,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13784,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13795,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13806,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13817,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 13828,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -48118,7 +48387,7 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -48131,7 +48400,7 @@
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -48144,7 +48413,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -50392,91 +50661,91 @@
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22519,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22534,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22639,
           "jp": "データ１",
           "jp_len": 8,
           "kr": "데이터1",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22650,
           "jp": "データ２",
           "jp_len": 8,
           "kr": "데이터2",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22661,
           "jp": "データ３",
           "jp_len": 8,
           "kr": "데이터3",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22672,
           "jp": "データ４",
           "jp_len": 8,
           "kr": "데이터4",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22683,
           "jp": "データ５",
           "jp_len": 8,
           "kr": "데이터5",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22694,
           "jp": "データ６",
           "jp_len": 8,
           "kr": "데이터6",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22705,
           "jp": "データ７",
           "jp_len": 8,
           "kr": "데이터7",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22716,
           "jp": "データ８",
           "jp_len": 8,
           "kr": "데이터8",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22738,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22831,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22890,
@@ -50497,7 +50766,7 @@
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -52471,12 +52740,19 @@
           "jp_len": 28,
           "kr": "화려하게 결판을 내겠어!",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 72,
+      "lines": [
         {
-          "offset": 9928,
-          "jp": "うせなら　どばーっとハデに",
-          "jp_len": 26,
-          "kr": ""
+          "offset": 9926,
+          "jp": "どうせなら　どばーっとハデに",
+          "jp_len": 28,
+          "kr": "기왕이면 더 화려하게",
+          "tag": "monolog"
         },
         {
           "offset": 9956,
@@ -52498,12 +52774,19 @@
           "jp_len": 20,
           "kr": "아~아! 지루해!",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 73,
+      "lines": [
         {
-          "offset": 10027,
-          "jp": "んか間違ってるよっ！",
-          "jp_len": 20,
-          "kr": ""
+          "offset": 10025,
+          "jp": "なんか間違ってるよっ！",
+          "jp_len": 22,
+          "kr": "뭔가 잘못 됐다고!",
+          "tag": "monolog"
         },
         {
           "offset": 10049,
@@ -52525,12 +52808,19 @@
           "jp_len": 12,
           "kr": "하는 거야",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 74,
+      "lines": [
         {
-          "offset": 10112,
-          "jp": "ったく　ここの強盗どもは",
-          "jp_len": 24,
-          "kr": ""
+          "offset": 10110,
+          "jp": "まったく　ここの強盗どもは",
+          "jp_len": 26,
+          "kr": "정말 여기 강도놈들은",
+          "tag": "monolog"
         },
         {
           "offset": 10138,
@@ -52538,12 +52828,19 @@
           "jp_len": 20,
           "kr": "게으른 녀석뿐이야!",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 75,
+      "lines": [
         {
-          "offset": 10161,
-          "jp": "マッシュ　あんた本気で",
-          "jp_len": 22,
-          "kr": ""
+          "offset": 10159,
+          "jp": "スマッシュ　あんた本気で",
+          "jp_len": 24,
+          "kr": "스마슈 너 진심으로",
+          "tag": "monolog"
         },
         {
           "offset": 10185,
@@ -52551,12 +52848,19 @@
           "jp_len": 22,
           "kr": "그런 소릴 하는거야?",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 76,
+      "lines": [
         {
-          "offset": 10210,
-          "jp": "んなときに空を飛べるヤツが",
-          "jp_len": 26,
-          "kr": ""
+          "offset": 10208,
+          "jp": "こんなときに空を飛べるヤツが",
+          "jp_len": 28,
+          "kr": "이런 때 하늘을 날 수",
+          "tag": "monolog"
         },
         {
           "offset": 10238,
@@ -52564,12 +52868,19 @@
           "jp_len": 26,
           "kr": "있으면 좋으련만…",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 77,
+      "lines": [
         {
-          "offset": 10267,
-          "jp": "れま　自ら効果音つきで",
-          "jp_len": 22,
-          "kr": ""
+          "offset": 10265,
+          "jp": "あれま　自ら効果音つきで",
+          "jp_len": 24,
+          "kr": "어라 혼자 효과음 내며",
+          "tag": "monolog"
         },
         {
           "offset": 10291,
@@ -52591,12 +52902,19 @@
           "jp_len": 18,
           "kr": "떠오른 거야?",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 78,
+      "lines": [
         {
-          "offset": 10360,
-          "jp": "味な田舎は　どうも性に",
-          "jp_len": 22,
-          "kr": ""
+          "offset": 10358,
+          "jp": "地味な田舎は　どうも性に",
+          "jp_len": 24,
+          "kr": "따분한 시골은 정말로",
+          "tag": "monolog"
         },
         {
           "offset": 10384,
@@ -52618,12 +52936,19 @@
           "jp_len": 12,
           "kr": "맛이지!",
           "tag": "monolog"
-        },
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 79,
+      "lines": [
         {
-          "offset": 10439,
-          "jp": "かし　スマッシュが",
-          "jp_len": 18,
-          "kr": ""
+          "offset": 10437,
+          "jp": "しかし　スマッシュが",
+          "jp_len": 20,
+          "kr": "근데 스마슈가",
+          "tag": "monolog"
         },
         {
           "offset": 10459,
@@ -52637,1623 +52962,6 @@
           "jp": "犬カキもできないのかい",
           "jp_len": 22,
           "kr": "개헤엄도 못치는 건가",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10512,
-          "jp": "ん　大丈夫かな…",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 10531,
-          "jp": "こ　あんまりいい思い出が",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 10557,
-          "jp": "ないんだよね",
-          "jp_len": 12,
-          "kr": "없단 말이지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10571,
-          "jp": "盗賊につかまっちまうなんて",
-          "jp_len": 26,
-          "kr": "도적에게 붙잡히다니",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10599,
-          "jp": "一生ものの不覚だったよ",
-          "jp_len": 22,
-          "kr": "일생일대의 실수였어",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10624,
-          "jp": "車でダイビングとは",
-          "jp_len": 18,
-          "kr": ""
-        },
-        {
-          "offset": 10644,
-          "jp": "我ながらグッドな妙案だったね",
-          "jp_len": 28,
-          "kr": "내 발상이지만 정말 훌륭해",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10674,
-          "jp": "ヤツらもビビってるだろう",
-          "jp_len": 24,
-          "kr": "녀석들도 놀랐겠지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10700,
-          "jp": "これで精神的に優位に立てたな",
-          "jp_len": 28,
-          "kr": "이걸로 심적으론 우위라고",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10731,
-          "jp": "ういう場合　動力炉ってのは",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 10759,
-          "jp": "地下にある物だよね",
-          "jp_len": 18,
-          "kr": "지하에 있겠지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10782,
-          "jp": "っ！　作戦の第１段階終了",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 10808,
-          "jp": "さあ　さくさくと次行こう",
-          "jp_len": 24,
-          "kr": "자 어서 다음으로 가자",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10834,
-          "jp": "さくさくとね！",
-          "jp_len": 14,
-          "kr": "어서, 어서!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10851,
-          "jp": "人光線か…　さすがの",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 10873,
-          "jp": "あたしも　そういう必殺技は",
-          "jp_len": 26,
-          "kr": "나도 그런 필살기는",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10901,
-          "jp": "持ってないんだよねえ",
-          "jp_len": 20,
-          "kr": "갖고 있지 않은데",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10923,
-          "jp": "決め技に　ひとつ欲しいなあ",
-          "jp_len": 26,
-          "kr": "결정타로 하나 갖고 싶어",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10952,
-          "jp": "間大砲とは　ナイスな",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 10974,
-          "jp": "作戦じゃないの",
-          "jp_len": 14,
-          "kr": "작전이잖아",
-          "tag": "monolog"
-        },
-        {
-          "offset": 10990,
-          "jp": "アリババも　わかってるねえ",
-          "jp_len": 26,
-          "kr": "알리바바도 내 취향을",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11018,
-          "jp": "あたしの好みを",
-          "jp_len": 14,
-          "kr": "잘 아는군",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11035,
-          "jp": "っきのサルのいた部屋って",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 11061,
-          "jp": "封印の部屋だよね",
-          "jp_len": 16,
-          "kr": "봉인의 방이었지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11079,
-          "jp": "なんで　ここにあるの？",
-          "jp_len": 22,
-          "kr": "왜 여기 있는 거지?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11104,
-          "jp": "っさと残りのエレベーターも",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 11132,
-          "jp": "動くようにしちゃおう",
-          "jp_len": 20,
-          "kr": "움직이게 만들자",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11155,
-          "jp": "ーっ！　思わず",
-          "jp_len": 14,
-          "kr": ""
-        },
-        {
-          "offset": 11171,
-          "jp": "武者ぶるいしちゃったよ",
-          "jp_len": 22,
-          "kr": "몸이 부르르 떨렸어",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11195,
-          "jp": "決戦が近いせいかな？",
-          "jp_len": 20,
-          "kr": "결전이 가까워져서?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11415,
-          "jp": "スマッシュさんの言う通り",
-          "jp_len": 24,
-          "kr": "스마슈씨 말대로",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11441,
-          "jp": "早く　長老さまを",
-          "jp_len": 16,
-          "kr": "어서 장로님을",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11459,
-          "jp": "お救いしませんと！",
-          "jp_len": 18,
-          "kr": "구해야만 해요!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11480,
-          "jp": "ぶり出しの　かけじく…",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 11504,
-          "jp": "スマッシュさん　本気なのかしら",
-          "jp_len": 30,
-          "kr": "스마슈씨 정말일까요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11536,
-          "jp": "まさか　いくらなんでも",
-          "jp_len": 22,
-          "kr": "설마 아무리 그래도",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11560,
-          "jp": "あぶり出しは　ないでしょう",
-          "jp_len": 26,
-          "kr": "비밀 글씨는 아니겠죠",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11591,
-          "jp": "　いいですっ！",
-          "jp_len": 14,
-          "kr": ""
-        },
-        {
-          "offset": 11607,
-          "jp": "あぶり出しでも　なんでも",
-          "jp_len": 24,
-          "kr": "비밀 글씨든 뭐든",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11633,
-          "jp": "好きにしてください",
-          "jp_len": 18,
-          "kr": "좋을 대로 하세요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11654,
-          "jp": "老さまも　ご無事でしたし",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 11680,
-          "jp": "これで一安心ですね",
-          "jp_len": 18,
-          "kr": "한시름 놓았어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11701,
-          "jp": "初の目的地は清流の町ですか",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 11729,
-          "jp": "私　列車に乗るのは",
-          "jp_len": 18,
-          "kr": "저 열차에 타는건",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11749,
-          "jp": "初めてなので　なんだか",
-          "jp_len": 22,
-          "kr": "처음이라서 뭐랄까",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11773,
-          "jp": "楽しみです",
-          "jp_len": 10,
-          "kr": "기대돼요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11786,
-          "jp": "れ里と言っても完全に世間から",
-          "jp_len": 28,
-          "kr": ""
-        },
-        {
-          "offset": 11816,
-          "jp": "隔離しているわけではありません",
-          "jp_len": 30,
-          "kr": "세상에서 격리된 건 아니에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11848,
-          "jp": "町の人に　たずねてみれば",
-          "jp_len": 24,
-          "kr": "마을 사람들에게 물으면",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11874,
-          "jp": "なにか　わかるかも知れません",
-          "jp_len": 28,
-          "kr": "뭔가 알 수 있을지 몰라요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11905,
-          "jp": "ラになれ…",
-          "jp_len": 10,
-          "kr": ""
-        },
-        {
-          "offset": 11917,
-          "jp": "いったい　どういう意味なの",
-          "jp_len": 26,
-          "kr": "되어라… 도대체 무슨",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11945,
-          "jp": "かしら",
-          "jp_len": 6,
-          "kr": "의미지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 11954,
-          "jp": "んとうに　お酒で",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 11972,
-          "jp": "あの謎が解けるのでしょうか",
-          "jp_len": 26,
-          "kr": "수수께끼가 풀릴까요?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12001,
-          "jp": "んとかして　川を渡らねば",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12027,
-          "jp": "なりません",
-          "jp_len": 10,
-          "kr": "해요!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12040,
-          "jp": "馬？　このような物に乗って",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 12068,
-          "jp": "ほんとうに歩けるのですか？",
-          "jp_len": 26,
-          "kr": "정말 걸을 수 있나요?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12097,
-          "jp": "　なんて人なのでしょう！",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12123,
-          "jp": "私の　む　胸を…その　あの…",
-          "jp_len": 28,
-          "kr": "내 가슴을… 그, 그게…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12153,
-          "jp": "ああ　もぉ！",
-          "jp_len": 12,
-          "kr": "아 정말!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12167,
-          "jp": "とにかく　ダメったらダメです",
-          "jp_len": 28,
-          "kr": "아무튼 안 된다면 안 돼요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12198,
-          "jp": "んにしても　お酒が",
-          "jp_len": 18,
-          "kr": ""
-        },
-        {
-          "offset": 12218,
-          "jp": "手に入って　よかったですわ",
-          "jp_len": 26,
-          "kr": "넣게 되어 다행이에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12247,
-          "jp": "ぅ〜　後頭部が痛いですぅ",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12273,
-          "jp": "いったい　なにがあったというの",
-          "jp_len": 30,
-          "kr": "도대체 무슨 일이 있었던",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12305,
-          "jp": "ですか",
-          "jp_len": 6,
-          "kr": "걸까요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12314,
-          "jp": "つまでもバカやってないで",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12340,
-          "jp": "早くアターホーさんを",
-          "jp_len": 20,
-          "kr": "어서 아타호씨를",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12362,
-          "jp": "助けましょう",
-          "jp_len": 12,
-          "kr": "구하자구요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12379,
-          "jp": "里の二の舞だけは",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 12397,
-          "jp": "なんとしても　さけなければ！",
-          "jp_len": 28,
-          "kr": "수모를 겪어선 안 돼!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12428,
-          "jp": "んどもまた広そうな",
-          "jp_len": 18,
-          "kr": ""
-        },
-        {
-          "offset": 12448,
-          "jp": "お城ですわね",
-          "jp_len": 12,
-          "kr": "성이네요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12462,
-          "jp": "キツネの民の封印の場は",
-          "jp_len": 22,
-          "kr": "여우 민족의 봉인은",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12486,
-          "jp": "とても質素ですのに",
-          "jp_len": 18,
-          "kr": "무척 소박했는데요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12507,
-          "jp": "ょっと趣味の悪い所ですわ",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12536,
-          "jp": "さまの　お墓を荒らすとは",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 12562,
-          "jp": "なんて非常識なんでしょう！",
-          "jp_len": 26,
-          "kr": "어쩜 이리 몰상식할까요!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12591,
-          "jp": "た　あぶり出しだったら",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 12615,
-          "jp": "怒りますよ　私",
-          "jp_len": 14,
-          "kr": "저 화낼거에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12632,
-          "jp": "かし　思い切ったことを",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 12656,
-          "jp": "したものですね",
-          "jp_len": 14,
-          "kr": "행동하셨어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12672,
-          "jp": "ほんとにビックリしましたわ",
-          "jp_len": 26,
-          "kr": "정말 깜짝 놀랐어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12701,
-          "jp": "まの私は気合いの入りかたが",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 12729,
-          "jp": "違いますよ",
-          "jp_len": 10,
-          "kr": "들어갔어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12741,
-          "jp": "今回は　とくに！",
-          "jp_len": 16,
-          "kr": "이번엔 특히!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12762,
-          "jp": "やりました…",
-          "jp_len": 12,
-          "kr": ""
-        },
-        {
-          "offset": 12777,
-          "jp": "る封印の一族は３種族…",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 12801,
-          "jp": "この町で　なにか手がかりが",
-          "jp_len": 26,
-          "kr": "이곳에서 뭔가 단서를",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12829,
-          "jp": "つかめるとよいのですが",
-          "jp_len": 22,
-          "kr": "얻으면 좋을텐데",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12854,
-          "jp": "トゥムさんの　お師匠さまは",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 12882,
-          "jp": "どのようなかたなんでしょう",
-          "jp_len": 26,
-          "kr": "어떤 분일까요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12910,
-          "jp": "お会いするのが楽しみです",
-          "jp_len": 24,
-          "kr": "뵙는 게 기대되네요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12937,
-          "jp": "みしがり屋の孤高の隠者ですか",
-          "jp_len": 28,
-          "kr": ""
-        },
-        {
-          "offset": 12967,
-          "jp": "あまりカッコよくありませんね",
-          "jp_len": 28,
-          "kr": "그다지 멋지지 않네요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 12998,
-          "jp": "にか　いやーな予感が",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 13020,
-          "jp": "しますわ　私…",
-          "jp_len": 14,
-          "kr": "들어요…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13037,
-          "jp": "あ　なぜかしら",
-          "jp_len": 14,
-          "kr": ""
-        },
-        {
-          "offset": 13053,
-          "jp": "不安でしょうがありません",
-          "jp_len": 24,
-          "kr": "불안해서 견딜 수 없어",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13079,
-          "jp": "いったい　これから",
-          "jp_len": 18,
-          "kr": "도대체 이제부터",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13099,
-          "jp": "なにが起こるというのでしょう",
-          "jp_len": 28,
-          "kr": "무슨 일이 벌어지는 걸까요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13194,
-          "jp": "おのれ　サル野郎め！",
-          "jp_len": 20,
-          "kr": "원숭이 네 이놈!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13216,
-          "jp": "ワシを怒らせると　どうなるか",
-          "jp_len": 28,
-          "kr": "나를 화나게 하면 어찌",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13246,
-          "jp": "思い知らせてくれるわ！",
-          "jp_len": 22,
-          "kr": "되는지 알게 해주마!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13271,
-          "jp": "のサルめ　絶対に許さん！",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 13298,
-          "jp": "とン家の墓を勝手に",
-          "jp_len": 18,
-          "kr": ""
-        },
-        {
-          "offset": 13318,
-          "jp": "ほじくり返しておってからに！",
-          "jp_len": 28,
-          "kr": "함부로 파헤쳐 놓다니!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13348,
-          "jp": "あのくそザル　ろくな死にかたは",
-          "jp_len": 30,
-          "kr": "그 빌어먹을 원숭이놈 제명에",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13380,
-          "jp": "できんと思え！",
-          "jp_len": 14,
-          "kr": "죽진 못한다!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13397,
-          "jp": "の〔地酒〕さえあれば",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 13419,
-          "jp": "リフトを動かすことが",
-          "jp_len": 20,
-          "kr": "리프트를 움직일 수",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13441,
-          "jp": "できるわい",
-          "jp_len": 10,
-          "kr": "있는겐가",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13454,
-          "jp": "て？　〔火霊石〕など",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 13476,
-          "jp": "宝箱に入れたおぼえはないが…",
-          "jp_len": 28,
-          "kr": "보물상자에 넣은 적 없는데",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13506,
-          "jp": "あのサル野郎が持ち込んだ物",
-          "jp_len": 26,
-          "kr": "그 원숭이자식이 가져온",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13534,
-          "jp": "なのかのぉ？",
-          "jp_len": 12,
-          "kr": "물건인가?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13549,
-          "jp": "３００年の伝統をほこる",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 13573,
-          "jp": "トラの民の城に　なんつーことを",
-          "jp_len": 30,
-          "kr": "호랑이족의 성에 무슨 짓을",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13605,
-          "jp": "するんじゃーっ！",
-          "jp_len": 16,
-          "kr": "하는 거냐!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13623,
-          "jp": "ああ　修繕きくかのぉ",
-          "jp_len": 20,
-          "kr": "아아 수리가 되려나",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13646,
-          "jp": "まのワシは　あのサル専用の",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 13674,
-          "jp": "殺戮マシーンよ",
-          "jp_len": 14,
-          "kr": "살육 머신이다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13690,
-          "jp": "誰も止められぬわっ！",
-          "jp_len": 20,
-          "kr": "날 막을 순 없다!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13717,
-          "jp": "とはやったし",
-          "jp_len": 12,
-          "kr": ""
-        },
-        {
-          "offset": 13731,
-          "jp": "ひとまず裏口から清流の町へ",
-          "jp_len": 26,
-          "kr": "일단 뒷문으로 청류마을에",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13759,
-          "jp": "戻るぞ",
-          "jp_len": 6,
-          "kr": "가자",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13945,
-          "jp": "このキリという人",
-          "jp_len": 16,
-          "kr": "키리라는 녀석",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13963,
-          "jp": "なにか危ないことを考えている",
-          "jp_len": 28,
-          "kr": "뭔가 위험한 걸 생각하는",
-          "tag": "monolog"
-        },
-        {
-          "offset": 13993,
-          "jp": "みたいですねえ",
-          "jp_len": 14,
-          "kr": "모양이야",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14010,
-          "jp": "ーん　なかなか　おいしそうな",
-          "jp_len": 28,
-          "kr": ""
-        },
-        {
-          "offset": 14040,
-          "jp": "弁当です",
-          "jp_len": 8,
-          "kr": "새참이야",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14050,
-          "jp": "こんなのが食べられるのなら",
-          "jp_len": 26,
-          "kr": "이런 걸 먹을 수 있다면",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14078,
-          "jp": "強盗になってもいいですね",
-          "jp_len": 24,
-          "kr": "강도가 되어도 좋겠구먼",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14113,
-          "jp": "新人というものは",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 14131,
-          "jp": "どこでも　こき使われるもの",
-          "jp_len": 26,
-          "kr": "어디서든 혹사를 당하는",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14159,
-          "jp": "なんですね",
-          "jp_len": 10,
-          "kr": "법이라지",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14172,
-          "jp": "れはそうと先を急ぎましょう",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 14200,
-          "jp": "さきほどの扉の前にいた人が",
-          "jp_len": 26,
-          "kr": "아까 문 앞의 사람은 ",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14228,
-          "jp": "いなくなっているはずです",
-          "jp_len": 24,
-          "kr": "없어졌을 거에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14257,
-          "jp": "速度をコントロールする",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 14281,
-          "jp": "魔法は失われて久しいんですよ",
-          "jp_len": 28,
-          "kr": "마법은 사라진지 오래됐어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14311,
-          "jp": "お役に立てなくて",
-          "jp_len": 16,
-          "kr": "도움이 못 되어서",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14329,
-          "jp": "もうしわけありません",
-          "jp_len": 20,
-          "kr": "죄송합니다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14352,
-          "jp": "いぶんと自信に満ちた",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 14374,
-          "jp": "顔をしてます",
-          "jp_len": 12,
-          "kr": "얼굴이네요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14388,
-          "jp": "ここはスマッシュさんに",
-          "jp_len": 22,
-          "kr": "여기는 스마슈씨에게",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14412,
-          "jp": "期待しましょう",
-          "jp_len": 14,
-          "kr": "맡기도록 하죠",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14431,
-          "jp": "旅に出ている間に",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 14449,
-          "jp": "師匠がボケてなければいいが…",
-          "jp_len": 28,
-          "kr": "스승님 멀쩡하셨어야 할텐데",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14479,
-          "jp": "どうも不安です",
-          "jp_len": 14,
-          "kr": "영 불안합니다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14496,
-          "jp": "の森はいま関係者以外",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 14518,
-          "jp": "立ち入り禁止のはず",
-          "jp_len": 18,
-          "kr": "출입금지일 겁니다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14538,
-          "jp": "女王陛下の許可がいるかも",
-          "jp_len": 24,
-          "kr": "여왕 폐하의 허가가",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14564,
-          "jp": "しれませんね",
-          "jp_len": 12,
-          "kr": "필요할지도요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14581,
-          "jp": "地下なんかで　なにを",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 14603,
-          "jp": "しているんだろう？",
-          "jp_len": 18,
-          "kr": "무슨 일이지?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14623,
-          "jp": "あやしい　なんとか入る方法は",
-          "jp_len": 28,
-          "kr": "이상해 어떻게 들어갈 방법",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14653,
-          "jp": "ないものかな",
-          "jp_len": 12,
-          "kr": "은 없을까",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14670,
-          "jp": "地下で穴を掘っている",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 14692,
-          "jp": "というが…",
-          "jp_len": 10,
-          "kr": "판다라…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14704,
-          "jp": "むぅ　私も　いやーな予感が",
-          "jp_len": 26,
-          "kr": "음 저도 나쁜 예감이",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14732,
-          "jp": "してきました",
-          "jp_len": 12,
-          "kr": "들고 있어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14747,
-          "jp": "化の呪いですか…",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 14765,
-          "jp": "私も女王も専門外なんですよね",
-          "jp_len": 28,
-          "kr": "저도 여왕도 저주계 주문은",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14795,
-          "jp": "呪い系の呪文は",
-          "jp_len": 14,
-          "kr": "전문이 아니라",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14811,
-          "jp": "これは参りました",
-          "jp_len": 16,
-          "kr": "이건 곤란하군요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14830,
-          "jp": "年前　封印のある洞窟に",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 14854,
-          "jp": "いろいろと　しかけを",
-          "jp_len": 20,
-          "kr": "여러가지 장치를",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14876,
-          "jp": "設置しました　それが",
-          "jp_len": 20,
-          "kr": "설치했습니다 그게",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14898,
-          "jp": "役立っているといいのですが…",
-          "jp_len": 28,
-          "kr": "도움이 되었으면 합니다만…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14929,
-          "jp": "ホホ　私の設置したしかけが",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 14957,
-          "jp": "見破られ　逆に我々の",
-          "jp_len": 20,
-          "kr": "간파당해 도리어",
-          "tag": "monolog"
-        },
-        {
-          "offset": 14979,
-          "jp": "足どめに使われることに",
-          "jp_len": 22,
-          "kr": "우리 발목이 잡힐",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15003,
-          "jp": "なろうとは",
-          "jp_len": 10,
-          "kr": "줄이야",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15016,
-          "jp": "獄から　よみがえるとは",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 15040,
-          "jp": "スマッシュさんも",
-          "jp_len": 16,
-          "kr": "스마슈씨도 엄청",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15058,
-          "jp": "なんて　しぶとい…いえ",
-          "jp_len": 22,
-          "kr": "질긴… 아니",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15082,
-          "jp": "タフなんでしょう",
-          "jp_len": 16,
-          "kr": "터프하군요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15101,
-          "jp": "て？　怪しげな気配が",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 15123,
-          "jp": "したような…",
-          "jp_len": 12,
-          "kr": "느껴졌는데…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15137,
-          "jp": "気のせいでしょうか",
-          "jp_len": 18,
-          "kr": "기분 탓일까요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15158,
-          "jp": "れにしても異常なまでに",
-          "jp_len": 22,
-          "kr": ""
-        },
-        {
-          "offset": 15182,
-          "jp": "大きな人でしたね",
-          "jp_len": 16,
-          "kr": "커다랐죠",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15200,
-          "jp": "戦闘力もありそうでしたよ",
-          "jp_len": 24,
-          "kr": "전투력도 있어 보였어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15226,
-          "jp": "私たち勝てますかね？",
-          "jp_len": 20,
-          "kr": "이길 수 있을까요?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15249,
-          "jp": "の〔笑殺の羽ぼうき〕という",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 15277,
-          "jp": "アイテムには　どのような力が",
-          "jp_len": 28,
-          "kr": "아이템에는 어떤 힘이",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15307,
-          "jp": "秘められていたのか…",
-          "jp_len": 20,
-          "kr": "숨겨져 있을까요…",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15329,
-          "jp": "またまたイヤな予感がします",
-          "jp_len": 26,
-          "kr": "또 나쁜 예감이 듭니다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15360,
-          "jp": "ちチームは　この空中都市の",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 15388,
-          "jp": "降下を止めるのが目的です",
-          "jp_len": 24,
-          "kr": "강하를 막는 겁니다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15414,
-          "jp": "まずは動力炉を捜すとしましょう",
-          "jp_len": 30,
-          "kr": "우선 동력화로를 찾읍시다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15447,
-          "jp": "いうわけで　エレベーターで",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 15475,
-          "jp": "地下へ行き　動力炉を",
-          "jp_len": 20,
-          "kr": "내려가 동력화로를",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15497,
-          "jp": "捜しましょう",
-          "jp_len": 12,
-          "kr": "찾아봅시다",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15512,
-          "jp": "れが　もと魔王の城ですか…",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 15540,
-          "jp": "とりまいている気は　まさしく",
-          "jp_len": 28,
-          "kr": "감도는 기운이 그야말로",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15570,
-          "jp": "邪悪のそれですが　機械だらけ",
-          "jp_len": 28,
-          "kr": "사악함 그 자체지만 기계가",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15600,
-          "jp": "だと　風情がありませんね",
-          "jp_len": 24,
-          "kr": "가득해 운치가 없군요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15627,
-          "jp": "人光線ですか…　私も",
-          "jp_len": 20,
-          "kr": ""
-        },
-        {
-          "offset": 15649,
-          "jp": "専門の魔法以外のこととなると",
-          "jp_len": 28,
-          "kr": "전문인 마법이 아니면",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15679,
-          "jp": "お手上げですよ",
-          "jp_len": 14,
-          "kr": "손들 수밖에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15696,
-          "jp": "んてムチャな人たちなんだ",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 15722,
-          "jp": "これでしたら　国で女王の相手を",
-          "jp_len": 30,
-          "kr": "이럴 바엔 여왕을 상대하는",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15754,
-          "jp": "していたほうがマシですよぉ",
-          "jp_len": 26,
-          "kr": "편이 훨씬 낫겠어요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15783,
-          "jp": "の〔カードＬＶ２〕があれば",
-          "jp_len": 26,
-          "kr": ""
-        },
-        {
-          "offset": 15811,
-          "jp": "いままで通れなかった所にも",
-          "jp_len": 26,
-          "kr": "지금까지 못 갔던 곳도",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15839,
-          "jp": "入ることができるはずですよ",
-          "jp_len": 26,
-          "kr": "들어갈 수 있을 거에요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15868,
-          "jp": "る玉は　いったい",
-          "jp_len": 16,
-          "kr": ""
-        },
-        {
-          "offset": 15886,
-          "jp": "どこに　あるのでしょう？",
-          "jp_len": 24,
-          "kr": "어디 있는 걸까요?",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15913,
-          "jp": "ルブルッ…",
-          "jp_len": 10,
-          "kr": ""
-        },
-        {
-          "offset": 15925,
-          "jp": "ここは寒くて　いけませんね",
-          "jp_len": 26,
-          "kr": "여기는 너무 춥군요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15953,
-          "jp": "私は冷え性だから",
-          "jp_len": 16,
-          "kr": "추위에 약해서",
-          "tag": "monolog"
-        },
-        {
-          "offset": 15971,
-          "jp": "よけい　こたえますよ",
-          "jp_len": 20,
-          "kr": "유난히 더 괴롭네요",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16017,
-          "jp": "城の連中にバレるとまずいから",
-          "jp_len": 28,
-          "kr": "성에 들키면 곤란하니",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16047,
-          "jp": "隠密にすませるわよ",
-          "jp_len": 18,
-          "kr": "은밀하게 가야 해",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16067,
-          "jp": "いいわね！　絶対によ！",
-          "jp_len": 22,
-          "kr": "알겠지! 꼭이야!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16094,
-          "jp": "る山か…",
-          "jp_len": 8,
-          "kr": ""
-        },
-        {
-          "offset": 16104,
-          "jp": "５年前　魔獣　喰らうものを",
-          "jp_len": 26,
-          "kr": "5년전 마수 쿠라우모노를",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16132,
-          "jp": "目覚めさせたときのことを",
-          "jp_len": 24,
-          "kr": "깨웠던 때의 사건이",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16158,
-          "jp": "思い出すなあ",
-          "jp_len": 12,
-          "kr": "떠오르는군!",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16173,
-          "jp": "うすれば　ペトゥムの鼻を",
-          "jp_len": 24,
-          "kr": ""
-        },
-        {
-          "offset": 16199,
-          "jp": "あかしてやれるかしら",
-          "jp_len": 20,
-          "kr": "납작하게 해줄까",
-          "tag": "monolog"
-        },
-        {
-          "offset": 16221,
-          "jp": "これは私の永遠の課題だわ",
-          "jp_len": 24,
-          "kr": "이건 내 평생의 과제야",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 72,
-      "lines": [
-        {
-          "offset": 9926,
-          "jp": "どうせなら　どばーっとハデに",
-          "jp_len": 28,
-          "kr": "기왕이면 더 화려하게",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 73,
-      "lines": [
-        {
-          "offset": 10025,
-          "jp": "なんか間違ってるよっ！",
-          "jp_len": 22,
-          "kr": "뭔가 잘못 됐다고!",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 74,
-      "lines": [
-        {
-          "offset": 10110,
-          "jp": "まったく　ここの強盗どもは",
-          "jp_len": 26,
-          "kr": "정말 여기 강도놈들은",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 75,
-      "lines": [
-        {
-          "offset": 10159,
-          "jp": "スマッシュ　あんた本気で",
-          "jp_len": 24,
-          "kr": "스마슈 너 진심으로",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 76,
-      "lines": [
-        {
-          "offset": 10208,
-          "jp": "こんなときに空を飛べるヤツが",
-          "jp_len": 28,
-          "kr": "이런 때 하늘을 날 수",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 77,
-      "lines": [
-        {
-          "offset": 10265,
-          "jp": "あれま　自ら効果音つきで",
-          "jp_len": 24,
-          "kr": "어라 혼자 효과음 내며",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 78,
-      "lines": [
-        {
-          "offset": 10358,
-          "jp": "地味な田舎は　どうも性に",
-          "jp_len": 24,
-          "kr": "따분한 시골은 정말로",
-          "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 79,
-      "lines": [
-        {
-          "offset": 10437,
-          "jp": "しかし　スマッシュが",
-          "jp_len": 20,
-          "kr": "근데 스마슈가",
           "tag": "monolog"
         }
       ]
@@ -54281,6 +52989,27 @@
           "jp_len": 26,
           "kr": "여긴 그다지 좋은 추억이",
           "tag": "monolog"
+        },
+        {
+          "offset": 10557,
+          "jp": "ないんだよね",
+          "jp_len": 12,
+          "kr": "없단 말이지",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10571,
+          "jp": "盗賊につかまっちまうなんて",
+          "jp_len": 26,
+          "kr": "도적에게 붙잡히다니",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10599,
+          "jp": "一生ものの不覚だったよ",
+          "jp_len": 22,
+          "kr": "일생일대의 실수였어",
+          "tag": "monolog"
         }
       ]
     },
@@ -54293,6 +53022,27 @@
           "jp": "列車でダイビングとは",
           "jp_len": 20,
           "kr": "열차에서 다이빙은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10644,
+          "jp": "我ながらグッドな妙案だったね",
+          "jp_len": 28,
+          "kr": "내 발상이지만 정말 훌륭해",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10674,
+          "jp": "ヤツらもビビってるだろう",
+          "jp_len": 24,
+          "kr": "녀석들도 놀랐겠지",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10700,
+          "jp": "これで精神的に優位に立てたな",
+          "jp_len": 28,
+          "kr": "이걸로 심적으론 우위라고",
           "tag": "monolog"
         }
       ]
@@ -54307,6 +53057,13 @@
           "jp_len": 28,
           "kr": "이런 경우 동력화로라는 건",
           "tag": "monolog"
+        },
+        {
+          "offset": 10759,
+          "jp": "地下にある物だよね",
+          "jp_len": 18,
+          "kr": "지하에 있겠지",
+          "tag": "monolog"
         }
       ]
     },
@@ -54319,6 +53076,20 @@
           "jp": "よしっ！　作戦の第１段階終了",
           "jp_len": 28,
           "kr": "좋아! 작전 1단계 종료",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10808,
+          "jp": "さあ　さくさくと次行こう",
+          "jp_len": 24,
+          "kr": "자 어서 다음으로 가자",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10834,
+          "jp": "さくさくとね！",
+          "jp_len": 14,
+          "kr": "어서, 어서!",
           "tag": "monolog"
         }
       ]
@@ -54333,6 +53104,27 @@
           "jp_len": 22,
           "kr": "살인광선이라… 과연",
           "tag": "monolog"
+        },
+        {
+          "offset": 10873,
+          "jp": "あたしも　そういう必殺技は",
+          "jp_len": 26,
+          "kr": "나도 그런 필살기는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10901,
+          "jp": "持ってないんだよねえ",
+          "jp_len": 20,
+          "kr": "갖고 있지 않은데",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10923,
+          "jp": "決め技に　ひとつ欲しいなあ",
+          "jp_len": 26,
+          "kr": "결정타로 하나 갖고 싶어",
+          "tag": "monolog"
         }
       ]
     },
@@ -54345,6 +53137,27 @@
           "jp": "人間大砲とは　ナイスな",
           "jp_len": 22,
           "kr": "인간대포라니 나이스한",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10974,
+          "jp": "作戦じゃないの",
+          "jp_len": 14,
+          "kr": "작전이잖아",
+          "tag": "monolog"
+        },
+        {
+          "offset": 10990,
+          "jp": "アリババも　わかってるねえ",
+          "jp_len": 26,
+          "kr": "알리바바도 내 취향을",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11018,
+          "jp": "あたしの好みを",
+          "jp_len": 14,
+          "kr": "잘 아는군",
           "tag": "monolog"
         }
       ]
@@ -54359,6 +53172,20 @@
           "jp_len": 26,
           "kr": "아까 원숭이가 있던 방이",
           "tag": "monolog"
+        },
+        {
+          "offset": 11061,
+          "jp": "封印の部屋だよね",
+          "jp_len": 16,
+          "kr": "봉인의 방이었지",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11079,
+          "jp": "なんで　ここにあるの？",
+          "jp_len": 22,
+          "kr": "왜 여기 있는 거지?",
+          "tag": "monolog"
         }
       ]
     },
@@ -54371,6 +53198,13 @@
           "jp": "さっさと残りのエレベーターも",
           "jp_len": 28,
           "kr": "빨리 나머지 엘리베이터도",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11132,
+          "jp": "動くようにしちゃおう",
+          "jp_len": 20,
+          "kr": "움직이게 만들자",
           "tag": "monolog"
         }
       ]
@@ -54385,6 +53219,20 @@
           "jp_len": 16,
           "kr": "앗 나도 모르게",
           "tag": "monolog"
+        },
+        {
+          "offset": 11171,
+          "jp": "武者ぶるいしちゃったよ",
+          "jp_len": 22,
+          "kr": "몸이 부르르 떨렸어",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11195,
+          "jp": "決戦が近いせいかな？",
+          "jp_len": 20,
+          "kr": "결전이 가까워져서?",
+          "tag": "monolog"
         }
       ]
     },
@@ -54393,10 +53241,24 @@
       "index": 90,
       "lines": [
         {
-          "offset": 11478,
-          "jp": "あぶり出しの　かけじく…",
+          "offset": 11415,
+          "jp": "スマッシュさんの言う通り",
           "jp_len": 24,
-          "kr": "비밀 글씨 족자라…",
+          "kr": "스마슈씨 말대로",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11441,
+          "jp": "早く　長老さまを",
+          "jp_len": 16,
+          "kr": "어서 장로님을",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11459,
+          "jp": "お救いしませんと！",
+          "jp_len": 18,
+          "kr": "구해야만 해요!",
           "tag": "monolog"
         }
       ]
@@ -54406,10 +53268,31 @@
       "index": 91,
       "lines": [
         {
-          "offset": 11587,
-          "jp": "もう　いいですっ！",
-          "jp_len": 18,
-          "kr": "이제 됐어요!",
+          "offset": 11478,
+          "jp": "あぶり出しの　かけじく…",
+          "jp_len": 24,
+          "kr": "비밀 글씨 족자라…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11504,
+          "jp": "スマッシュさん　本気なのかしら",
+          "jp_len": 30,
+          "kr": "스마슈씨 정말일까요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11536,
+          "jp": "まさか　いくらなんでも",
+          "jp_len": 22,
+          "kr": "설마 아무리 그래도",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11560,
+          "jp": "あぶり出しは　ないでしょう",
+          "jp_len": 26,
+          "kr": "비밀 글씨는 아니겠죠",
           "tag": "monolog"
         }
       ]
@@ -54419,10 +53302,24 @@
       "index": 92,
       "lines": [
         {
-          "offset": 11652,
-          "jp": "長老さまも　ご無事でしたし",
-          "jp_len": 26,
-          "kr": "장로님도 무사하시고…",
+          "offset": 11587,
+          "jp": "もう　いいですっ！",
+          "jp_len": 18,
+          "kr": "이제 됐어요!",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11607,
+          "jp": "あぶり出しでも　なんでも",
+          "jp_len": 24,
+          "kr": "비밀 글씨든 뭐든",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11633,
+          "jp": "好きにしてください",
+          "jp_len": 18,
+          "kr": "좋을 대로 하세요",
           "tag": "monolog"
         }
       ]
@@ -54432,10 +53329,17 @@
       "index": 93,
       "lines": [
         {
-          "offset": 11699,
-          "jp": "最初の目的地は清流の町ですか",
-          "jp_len": 28,
-          "kr": "첫 목적지는 청류마을인가요",
+          "offset": 11652,
+          "jp": "長老さまも　ご無事でしたし",
+          "jp_len": 26,
+          "kr": "장로님도 무사하시고…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11680,
+          "jp": "これで一安心ですね",
+          "jp_len": 18,
+          "kr": "한시름 놓았어요",
           "tag": "monolog"
         }
       ]
@@ -54445,10 +53349,31 @@
       "index": 94,
       "lines": [
         {
-          "offset": 11784,
-          "jp": "隠れ里と言っても完全に世間から",
-          "jp_len": 30,
-          "kr": "은둔마을이래도 완전히 ",
+          "offset": 11699,
+          "jp": "最初の目的地は清流の町ですか",
+          "jp_len": 28,
+          "kr": "첫 목적지는 청류마을인가요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11729,
+          "jp": "私　列車に乗るのは",
+          "jp_len": 18,
+          "kr": "저 열차에 타는건",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11749,
+          "jp": "初めてなので　なんだか",
+          "jp_len": 22,
+          "kr": "처음이라서 뭐랄까",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11773,
+          "jp": "楽しみです",
+          "jp_len": 10,
+          "kr": "기대돼요",
           "tag": "monolog"
         }
       ]
@@ -54458,10 +53383,31 @@
       "index": 95,
       "lines": [
         {
-          "offset": 11903,
-          "jp": "トラになれ…",
-          "jp_len": 12,
-          "kr": "주정뱅이가",
+          "offset": 11784,
+          "jp": "隠れ里と言っても完全に世間から",
+          "jp_len": 30,
+          "kr": "은둔마을이래도 완전히 ",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11816,
+          "jp": "隔離しているわけではありません",
+          "jp_len": 30,
+          "kr": "세상에서 격리된 건 아니에요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11848,
+          "jp": "町の人に　たずねてみれば",
+          "jp_len": 24,
+          "kr": "마을 사람들에게 물으면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11874,
+          "jp": "なにか　わかるかも知れません",
+          "jp_len": 28,
+          "kr": "뭔가 알 수 있을지 몰라요",
           "tag": "monolog"
         }
       ]
@@ -54471,10 +53417,24 @@
       "index": 96,
       "lines": [
         {
-          "offset": 11952,
-          "jp": "ほんとうに　お酒で",
-          "jp_len": 18,
-          "kr": "정말 그 술로",
+          "offset": 11903,
+          "jp": "トラになれ…",
+          "jp_len": 12,
+          "kr": "주정뱅이가",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11917,
+          "jp": "いったい　どういう意味なの",
+          "jp_len": 26,
+          "kr": "되어라… 도대체 무슨",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11945,
+          "jp": "かしら",
+          "jp_len": 6,
+          "kr": "의미지",
           "tag": "monolog"
         }
       ]
@@ -54484,10 +53444,17 @@
       "index": 97,
       "lines": [
         {
-          "offset": 11999,
-          "jp": "なんとかして　川を渡らねば",
+          "offset": 11952,
+          "jp": "ほんとうに　お酒で",
+          "jp_len": 18,
+          "kr": "정말 그 술로",
+          "tag": "monolog"
+        },
+        {
+          "offset": 11972,
+          "jp": "あの謎が解けるのでしょうか",
           "jp_len": 26,
-          "kr": "어떻게든 강을 건너야만",
+          "kr": "수수께끼가 풀릴까요?",
           "tag": "monolog"
         }
       ]
@@ -54497,10 +53464,17 @@
       "index": 98,
       "lines": [
         {
-          "offset": 12038,
-          "jp": "竹馬？　このような物に乗って",
-          "jp_len": 28,
-          "kr": "죽마? 이런 걸 타고",
+          "offset": 11999,
+          "jp": "なんとかして　川を渡らねば",
+          "jp_len": 26,
+          "kr": "어떻게든 강을 건너야만",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12027,
+          "jp": "なりません",
+          "jp_len": 10,
+          "kr": "해요!",
           "tag": "monolog"
         }
       ]
@@ -54510,10 +53484,17 @@
       "index": 99,
       "lines": [
         {
-          "offset": 12095,
-          "jp": "な　なんて人なのでしょう！",
+          "offset": 12038,
+          "jp": "竹馬？　このような物に乗って",
+          "jp_len": 28,
+          "kr": "죽마? 이런 걸 타고",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12068,
+          "jp": "ほんとうに歩けるのですか？",
           "jp_len": 26,
-          "kr": "무슨 소릴 하는 거죠!",
+          "kr": "정말 걸을 수 있나요?",
           "tag": "monolog"
         }
       ]
@@ -54523,10 +53504,31 @@
       "index": 100,
       "lines": [
         {
-          "offset": 12196,
-          "jp": "なんにしても　お酒が",
-          "jp_len": 20,
-          "kr": "어쨌든 술을 손에",
+          "offset": 12095,
+          "jp": "な　なんて人なのでしょう！",
+          "jp_len": 26,
+          "kr": "무슨 소릴 하는 거죠!",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12123,
+          "jp": "私の　む　胸を…その　あの…",
+          "jp_len": 28,
+          "kr": "내 가슴을… 그, 그게…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12153,
+          "jp": "ああ　もぉ！",
+          "jp_len": 12,
+          "kr": "아 정말!",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12167,
+          "jp": "とにかく　ダメったらダメです",
+          "jp_len": 28,
+          "kr": "아무튼 안 된다면 안 돼요",
           "tag": "monolog"
         }
       ]
@@ -54536,10 +53538,17 @@
       "index": 101,
       "lines": [
         {
-          "offset": 12245,
-          "jp": "はぅ〜　後頭部が痛いですぅ",
+          "offset": 12196,
+          "jp": "なんにしても　お酒が",
+          "jp_len": 20,
+          "kr": "어쨌든 술을 손에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12218,
+          "jp": "手に入って　よかったですわ",
           "jp_len": 26,
-          "kr": "하아∼ 뒤통수가 아파요",
+          "kr": "넣게 되어 다행이에요",
           "tag": "monolog"
         }
       ]
@@ -54549,10 +53558,24 @@
       "index": 102,
       "lines": [
         {
-          "offset": 12312,
-          "jp": "いつまでもバカやってないで",
+          "offset": 12245,
+          "jp": "はぅ〜　後頭部が痛いですぅ",
           "jp_len": 26,
-          "kr": "바보짓은 이제 그만하고",
+          "kr": "하아∼ 뒤통수가 아파요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12273,
+          "jp": "いったい　なにがあったというの",
+          "jp_len": 30,
+          "kr": "도대체 무슨 일이 있었던",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12305,
+          "jp": "ですか",
+          "jp_len": 6,
+          "kr": "걸까요",
           "tag": "monolog"
         }
       ]
@@ -54562,10 +53585,24 @@
       "index": 103,
       "lines": [
         {
-          "offset": 12375,
-          "jp": "私の里の二の舞だけは",
+          "offset": 12312,
+          "jp": "いつまでもバカやってないで",
+          "jp_len": 26,
+          "kr": "바보짓은 이제 그만하고",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12340,
+          "jp": "早くアターホーさんを",
           "jp_len": 20,
-          "kr": "우리 마을 같은",
+          "kr": "어서 아타호씨를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12362,
+          "jp": "助けましょう",
+          "jp_len": 12,
+          "kr": "구하자구요",
           "tag": "monolog"
         }
       ]
@@ -54575,10 +53612,17 @@
       "index": 104,
       "lines": [
         {
-          "offset": 12426,
-          "jp": "こんどもまた広そうな",
+          "offset": 12375,
+          "jp": "私の里の二の舞だけは",
           "jp_len": 20,
-          "kr": "이번에도 또 넓은",
+          "kr": "우리 마을 같은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12397,
+          "jp": "なんとしても　さけなければ！",
+          "jp_len": 28,
+          "kr": "수모를 겪어선 안 돼!",
           "tag": "monolog"
         }
       ]
@@ -54586,6 +53630,40 @@
     {
       "file": "MESSAGE.CMD",
       "index": 105,
+      "lines": [
+        {
+          "offset": 12426,
+          "jp": "こんどもまた広そうな",
+          "jp_len": 20,
+          "kr": "이번에도 또 넓은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12448,
+          "jp": "お城ですわね",
+          "jp_len": 12,
+          "kr": "성이네요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12462,
+          "jp": "キツネの民の封印の場は",
+          "jp_len": 22,
+          "kr": "여우 민족의 봉인은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12486,
+          "jp": "とても質素ですのに",
+          "jp_len": 18,
+          "kr": "무척 소박했는데요",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 106,
       "lines": [
         {
           "offset": 12505,
@@ -54598,7 +53676,7 @@
     },
     {
       "file": "MESSAGE.CMD",
-      "index": 106,
+      "index": 107,
       "lines": [
         {
           "offset": 12532,
@@ -54606,18 +53684,12 @@
           "jp_len": 28,
           "kr": "남의 무덤을 파헤치다니",
           "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 107,
-      "lines": [
+        },
         {
-          "offset": 12589,
-          "jp": "また　あぶり出しだったら",
-          "jp_len": 24,
-          "kr": "또 비밀 글씨라면",
+          "offset": 12562,
+          "jp": "なんて非常識なんでしょう！",
+          "jp_len": 26,
+          "kr": "어쩜 이리 몰상식할까요!",
           "tag": "monolog"
         }
       ]
@@ -54627,10 +53699,17 @@
       "index": 108,
       "lines": [
         {
-          "offset": 12630,
-          "jp": "しかし　思い切ったことを",
+          "offset": 12589,
+          "jp": "また　あぶり出しだったら",
           "jp_len": 24,
-          "kr": "근데 정말 과감하게",
+          "kr": "또 비밀 글씨라면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12615,
+          "jp": "怒りますよ　私",
+          "jp_len": 14,
+          "kr": "저 화낼거에요",
           "tag": "monolog"
         }
       ]
@@ -54640,10 +53719,24 @@
       "index": 109,
       "lines": [
         {
-          "offset": 12699,
-          "jp": "いまの私は気合いの入りかたが",
-          "jp_len": 28,
-          "kr": "지금 전 기합이 잔뜩",
+          "offset": 12630,
+          "jp": "しかし　思い切ったことを",
+          "jp_len": 24,
+          "kr": "근데 정말 과감하게",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12656,
+          "jp": "したものですね",
+          "jp_len": 14,
+          "kr": "행동하셨어요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12672,
+          "jp": "ほんとにビックリしましたわ",
+          "jp_len": 26,
+          "kr": "정말 깜짝 놀랐어요",
           "tag": "monolog"
         }
       ]
@@ -54651,6 +53744,33 @@
     {
       "file": "MESSAGE.CMD",
       "index": 110,
+      "lines": [
+        {
+          "offset": 12699,
+          "jp": "いまの私は気合いの入りかたが",
+          "jp_len": 28,
+          "kr": "지금 전 기합이 잔뜩",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12729,
+          "jp": "違いますよ",
+          "jp_len": 10,
+          "kr": "들어갔어요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12741,
+          "jp": "今回は　とくに！",
+          "jp_len": 16,
+          "kr": "이번엔 특히!",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 111,
       "lines": [
         {
           "offset": 12758,
@@ -54663,7 +53783,7 @@
     },
     {
       "file": "MESSAGE.CMD",
-      "index": 111,
+      "index": 112,
       "lines": [
         {
           "offset": 12775,
@@ -54671,18 +53791,19 @@
           "jp_len": 24,
           "kr": "남은 봉인의 일족은 셋",
           "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 112,
-      "lines": [
+        },
         {
-          "offset": 12852,
-          "jp": "ペトゥムさんの　お師匠さまは",
-          "jp_len": 28,
-          "kr": "페톰씨의 스승님은",
+          "offset": 12801,
+          "jp": "この町で　なにか手がかりが",
+          "jp_len": 26,
+          "kr": "이곳에서 뭔가 단서를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12829,
+          "jp": "つかめるとよいのですが",
+          "jp_len": 22,
+          "kr": "얻으면 좋을텐데",
           "tag": "monolog"
         }
       ]
@@ -54692,10 +53813,24 @@
       "index": 113,
       "lines": [
         {
-          "offset": 12935,
-          "jp": "さみしがり屋の孤高の隠者ですか",
-          "jp_len": 30,
-          "kr": "외로움을 타는 고독한 은자",
+          "offset": 12852,
+          "jp": "ペトゥムさんの　お師匠さまは",
+          "jp_len": 28,
+          "kr": "페톰씨의 스승님은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12882,
+          "jp": "どのようなかたなんでしょう",
+          "jp_len": 26,
+          "kr": "어떤 분일까요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12910,
+          "jp": "お会いするのが楽しみです",
+          "jp_len": 24,
+          "kr": "뵙는 게 기대되네요",
           "tag": "monolog"
         }
       ]
@@ -54705,10 +53840,17 @@
       "index": 114,
       "lines": [
         {
-          "offset": 12996,
-          "jp": "なにか　いやーな予感が",
-          "jp_len": 22,
-          "kr": "저 왠지 나쁜 예감이",
+          "offset": 12935,
+          "jp": "さみしがり屋の孤高の隠者ですか",
+          "jp_len": 30,
+          "kr": "외로움을 타는 고독한 은자",
+          "tag": "monolog"
+        },
+        {
+          "offset": 12967,
+          "jp": "あまりカッコよくありませんね",
+          "jp_len": 28,
+          "kr": "그다지 멋지지 않네요",
           "tag": "monolog"
         }
       ]
@@ -54718,10 +53860,17 @@
       "index": 115,
       "lines": [
         {
-          "offset": 13035,
-          "jp": "ああ　なぜかしら",
-          "jp_len": 16,
-          "kr": "아아 왜일까요",
+          "offset": 12996,
+          "jp": "なにか　いやーな予感が",
+          "jp_len": 22,
+          "kr": "저 왠지 나쁜 예감이",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13020,
+          "jp": "しますわ　私…",
+          "jp_len": 14,
+          "kr": "들어요…",
           "tag": "monolog"
         }
       ]
@@ -54729,6 +53878,67 @@
     {
       "file": "MESSAGE.CMD",
       "index": 116,
+      "lines": [
+        {
+          "offset": 13035,
+          "jp": "ああ　なぜかしら",
+          "jp_len": 16,
+          "kr": "아아 왜일까요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13053,
+          "jp": "不安でしょうがありません",
+          "jp_len": 24,
+          "kr": "불안해서 견딜 수 없어",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13079,
+          "jp": "いったい　これから",
+          "jp_len": 18,
+          "kr": "도대체 이제부터",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13099,
+          "jp": "なにが起こるというのでしょう",
+          "jp_len": 28,
+          "kr": "무슨 일이 벌어지는 걸까요",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 117,
+      "lines": [
+        {
+          "offset": 13194,
+          "jp": "おのれ　サル野郎め！",
+          "jp_len": 20,
+          "kr": "원숭이 네 이놈!",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13216,
+          "jp": "ワシを怒らせると　どうなるか",
+          "jp_len": 28,
+          "kr": "나를 화나게 하면 어찌",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13246,
+          "jp": "思い知らせてくれるわ！",
+          "jp_len": 22,
+          "kr": "되는지 알게 해주마!",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 118,
       "lines": [
         {
           "offset": 13269,
@@ -54741,7 +53951,7 @@
     },
     {
       "file": "MESSAGE.CMD",
-      "index": 117,
+      "index": 119,
       "lines": [
         {
           "offset": 13296,
@@ -54749,31 +53959,26 @@
           "jp_len": 20,
           "kr": "남의 소중한 묘를",
           "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 118,
-      "lines": [
+        },
         {
-          "offset": 13395,
-          "jp": "この〔地酒〕さえあれば",
-          "jp_len": 22,
-          "kr": "이 명주만 있으면",
+          "offset": 13318,
+          "jp": "ほじくり返しておってからに！",
+          "jp_len": 28,
+          "kr": "함부로 파헤쳐 놓다니!",
           "tag": "monolog"
-        }
-      ]
-    },
-    {
-      "file": "MESSAGE.CMD",
-      "index": 119,
-      "lines": [
+        },
         {
-          "offset": 13452,
-          "jp": "はて？　〔火霊石〕など",
-          "jp_len": 22,
-          "kr": "어? 화령석은",
+          "offset": 13348,
+          "jp": "あのくそザル　ろくな死にかたは",
+          "jp_len": 30,
+          "kr": "그 빌어먹을 원숭이놈 제명에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13380,
+          "jp": "できんと思え！",
+          "jp_len": 14,
+          "kr": "죽진 못한다!",
           "tag": "monolog"
         }
       ]
@@ -54783,10 +53988,24 @@
       "index": 120,
       "lines": [
         {
-          "offset": 13547,
-          "jp": "築３００年の伝統をほこる",
-          "jp_len": 24,
-          "kr": "300년 전통의 자랑인",
+          "offset": 13395,
+          "jp": "この〔地酒〕さえあれば",
+          "jp_len": 22,
+          "kr": "이 명주만 있으면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13419,
+          "jp": "リフトを動かすことが",
+          "jp_len": 20,
+          "kr": "리프트를 움직일 수",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13441,
+          "jp": "できるわい",
+          "jp_len": 10,
+          "kr": "있는겐가",
           "tag": "monolog"
         }
       ]
@@ -54796,10 +54015,31 @@
       "index": 121,
       "lines": [
         {
-          "offset": 13644,
-          "jp": "いまのワシは　あのサル専用の",
+          "offset": 13452,
+          "jp": "はて？　〔火霊石〕など",
+          "jp_len": 22,
+          "kr": "어? 화령석은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13476,
+          "jp": "宝箱に入れたおぼえはないが…",
           "jp_len": 28,
-          "kr": "지금 나는 저 원숭이 전용",
+          "kr": "보물상자에 넣은 적 없는데",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13506,
+          "jp": "あのサル野郎が持ち込んだ物",
+          "jp_len": 26,
+          "kr": "그 원숭이자식이 가져온",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13534,
+          "jp": "なのかのぉ？",
+          "jp_len": 12,
+          "kr": "물건인가?",
           "tag": "monolog"
         }
       ]
@@ -54809,10 +54049,31 @@
       "index": 122,
       "lines": [
         {
-          "offset": 13711,
-          "jp": "やることはやったし",
-          "jp_len": 18,
-          "kr": "할 일은 다 했고",
+          "offset": 13547,
+          "jp": "築３００年の伝統をほこる",
+          "jp_len": 24,
+          "kr": "300년 전통의 자랑인",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13573,
+          "jp": "トラの民の城に　なんつーことを",
+          "jp_len": 30,
+          "kr": "호랑이족의 성에 무슨 짓을",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13605,
+          "jp": "するんじゃーっ！",
+          "jp_len": 16,
+          "kr": "하는 거냐!",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13623,
+          "jp": "ああ　修繕きくかのぉ",
+          "jp_len": 20,
+          "kr": "아아 수리가 되려나",
           "tag": "monolog"
         }
       ]
@@ -54822,10 +54083,24 @@
       "index": 123,
       "lines": [
         {
-          "offset": 14008,
-          "jp": "うーん　なかなか　おいしそうな",
-          "jp_len": 30,
-          "kr": "음! 정말 맛있어 보이는",
+          "offset": 13644,
+          "jp": "いまのワシは　あのサル専用の",
+          "jp_len": 28,
+          "kr": "지금 나는 저 원숭이 전용",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13674,
+          "jp": "殺戮マシーンよ",
+          "jp_len": 14,
+          "kr": "살육 머신이다",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13690,
+          "jp": "誰も止められぬわっ！",
+          "jp_len": 20,
+          "kr": "날 막을 순 없다!",
           "tag": "monolog"
         }
       ]
@@ -54835,10 +54110,24 @@
       "index": 124,
       "lines": [
         {
-          "offset": 14103,
-          "jp": "やれやれ　新人というものは",
+          "offset": 13711,
+          "jp": "やることはやったし",
+          "jp_len": 18,
+          "kr": "할 일은 다 했고",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13731,
+          "jp": "ひとまず裏口から清流の町へ",
           "jp_len": 26,
-          "kr": "이런이런 신참이라는 건",
+          "kr": "일단 뒷문으로 청류마을에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13759,
+          "jp": "戻るぞ",
+          "jp_len": 6,
+          "kr": "가자",
           "tag": "monolog"
         }
       ]
@@ -54848,10 +54137,24 @@
       "index": 125,
       "lines": [
         {
-          "offset": 14170,
-          "jp": "それはそうと先を急ぎましょう",
+          "offset": 13945,
+          "jp": "このキリという人",
+          "jp_len": 16,
+          "kr": "키리라는 녀석",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13963,
+          "jp": "なにか危ないことを考えている",
           "jp_len": 28,
-          "kr": "그건 그렇고 서두르죠",
+          "kr": "뭔가 위험한 걸 생각하는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 13993,
+          "jp": "みたいですねえ",
+          "jp_len": 14,
+          "kr": "모양이야",
           "tag": "monolog"
         }
       ]
@@ -54861,10 +54164,31 @@
       "index": 126,
       "lines": [
         {
-          "offset": 14253,
-          "jp": "落下速度をコントロールする",
+          "offset": 14008,
+          "jp": "うーん　なかなか　おいしそうな",
+          "jp_len": 30,
+          "kr": "음! 정말 맛있어 보이는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14040,
+          "jp": "弁当です",
+          "jp_len": 8,
+          "kr": "새참이야",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14050,
+          "jp": "こんなのが食べられるのなら",
           "jp_len": 26,
-          "kr": "낙하 속도를 컨트롤하는",
+          "kr": "이런 걸 먹을 수 있다면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14078,
+          "jp": "強盗になってもいいですね",
+          "jp_len": 24,
+          "kr": "강도가 되어도 좋겠구먼",
           "tag": "monolog"
         }
       ]
@@ -54874,10 +54198,24 @@
       "index": 127,
       "lines": [
         {
-          "offset": 14350,
-          "jp": "ずいぶんと自信に満ちた",
-          "jp_len": 22,
-          "kr": "굉장히 자신만만한",
+          "offset": 14103,
+          "jp": "やれやれ　新人というものは",
+          "jp_len": 26,
+          "kr": "이런이런 신참이라는 건",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14131,
+          "jp": "どこでも　こき使われるもの",
+          "jp_len": 26,
+          "kr": "어디서든 혹사를 당하는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14159,
+          "jp": "なんですね",
+          "jp_len": 10,
+          "kr": "법이라지",
           "tag": "monolog"
         }
       ]
@@ -54887,10 +54225,24 @@
       "index": 128,
       "lines": [
         {
-          "offset": 14427,
-          "jp": "私が旅に出ている間に",
-          "jp_len": 20,
-          "kr": "제가 없는 동안에",
+          "offset": 14170,
+          "jp": "それはそうと先を急ぎましょう",
+          "jp_len": 28,
+          "kr": "그건 그렇고 서두르죠",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14200,
+          "jp": "さきほどの扉の前にいた人が",
+          "jp_len": 26,
+          "kr": "아까 문 앞의 사람은 ",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14228,
+          "jp": "いなくなっているはずです",
+          "jp_len": 24,
+          "kr": "없어졌을 거에요",
           "tag": "monolog"
         }
       ]
@@ -54900,10 +54252,31 @@
       "index": 129,
       "lines": [
         {
-          "offset": 14494,
-          "jp": "南の森はいま関係者以外",
-          "jp_len": 22,
-          "kr": "남쪽 숲은 관계자 외",
+          "offset": 14253,
+          "jp": "落下速度をコントロールする",
+          "jp_len": 26,
+          "kr": "낙하 속도를 컨트롤하는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14281,
+          "jp": "魔法は失われて久しいんですよ",
+          "jp_len": 28,
+          "kr": "마법은 사라진지 오래됐어요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14311,
+          "jp": "お役に立てなくて",
+          "jp_len": 16,
+          "kr": "도움이 못 되어서",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14329,
+          "jp": "もうしわけありません",
+          "jp_len": 20,
+          "kr": "죄송합니다",
           "tag": "monolog"
         }
       ]
@@ -54913,10 +54286,31 @@
       "index": 130,
       "lines": [
         {
-          "offset": 14577,
-          "jp": "城の地下なんかで　なにを",
-          "jp_len": 24,
-          "kr": "성의 지하에서 도대체",
+          "offset": 14350,
+          "jp": "ずいぶんと自信に満ちた",
+          "jp_len": 22,
+          "kr": "굉장히 자신만만한",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14374,
+          "jp": "顔をしてます",
+          "jp_len": 12,
+          "kr": "얼굴이네요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14388,
+          "jp": "ここはスマッシュさんに",
+          "jp_len": 22,
+          "kr": "여기는 스마슈씨에게",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14412,
+          "jp": "期待しましょう",
+          "jp_len": 14,
+          "kr": "맡기도록 하죠",
           "tag": "monolog"
         }
       ]
@@ -54926,10 +54320,24 @@
       "index": 131,
       "lines": [
         {
-          "offset": 14666,
-          "jp": "城の地下で穴を掘っている",
-          "jp_len": 24,
-          "kr": "성 지하에서 동굴을",
+          "offset": 14427,
+          "jp": "私が旅に出ている間に",
+          "jp_len": 20,
+          "kr": "제가 없는 동안에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14449,
+          "jp": "師匠がボケてなければいいが…",
+          "jp_len": 28,
+          "kr": "스승님 멀쩡하셨어야 할텐데",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14479,
+          "jp": "どうも不安です",
+          "jp_len": 14,
+          "kr": "영 불안합니다",
           "tag": "monolog"
         }
       ]
@@ -54939,10 +54347,31 @@
       "index": 132,
       "lines": [
         {
-          "offset": 14745,
-          "jp": "石化の呪いですか…",
+          "offset": 14494,
+          "jp": "南の森はいま関係者以外",
+          "jp_len": 22,
+          "kr": "남쪽 숲은 관계자 외",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14518,
+          "jp": "立ち入り禁止のはず",
           "jp_len": 18,
-          "kr": "석화 저주입니까…",
+          "kr": "출입금지일 겁니다",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14538,
+          "jp": "女王陛下の許可がいるかも",
+          "jp_len": 24,
+          "kr": "여왕 폐하의 허가가",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14564,
+          "jp": "しれませんね",
+          "jp_len": 12,
+          "kr": "필요할지도요",
           "tag": "monolog"
         }
       ]
@@ -54952,10 +54381,31 @@
       "index": 133,
       "lines": [
         {
-          "offset": 14828,
-          "jp": "５年前　封印のある洞窟に",
+          "offset": 14577,
+          "jp": "城の地下なんかで　なにを",
           "jp_len": 24,
-          "kr": "5년 전 봉인한 동굴에",
+          "kr": "성의 지하에서 도대체",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14603,
+          "jp": "しているんだろう？",
+          "jp_len": 18,
+          "kr": "무슨 일이지?",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14623,
+          "jp": "あやしい　なんとか入る方法は",
+          "jp_len": 28,
+          "kr": "이상해 어떻게 들어갈 방법",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14653,
+          "jp": "ないものかな",
+          "jp_len": 12,
+          "kr": "은 없을까",
           "tag": "monolog"
         }
       ]
@@ -54965,10 +54415,31 @@
       "index": 134,
       "lines": [
         {
-          "offset": 14927,
-          "jp": "トホホ　私の設置したしかけが",
-          "jp_len": 28,
-          "kr": "내가 설치해 놓은 장치를",
+          "offset": 14666,
+          "jp": "城の地下で穴を掘っている",
+          "jp_len": 24,
+          "kr": "성 지하에서 동굴을",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14692,
+          "jp": "というが…",
+          "jp_len": 10,
+          "kr": "판다라…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14704,
+          "jp": "むぅ　私も　いやーな予感が",
+          "jp_len": 26,
+          "kr": "음 저도 나쁜 예감이",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14732,
+          "jp": "してきました",
+          "jp_len": 12,
+          "kr": "들고 있어요",
           "tag": "monolog"
         }
       ]
@@ -54978,10 +54449,31 @@
       "index": 135,
       "lines": [
         {
-          "offset": 15014,
-          "jp": "地獄から　よみがえるとは",
-          "jp_len": 24,
-          "kr": "지옥에서 돌아오다니",
+          "offset": 14745,
+          "jp": "石化の呪いですか…",
+          "jp_len": 18,
+          "kr": "석화 저주입니까…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14765,
+          "jp": "私も女王も専門外なんですよね",
+          "jp_len": 28,
+          "kr": "저도 여왕도 저주계 주문은",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14795,
+          "jp": "呪い系の呪文は",
+          "jp_len": 14,
+          "kr": "전문이 아니라",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14811,
+          "jp": "これは参りました",
+          "jp_len": 16,
+          "kr": "이건 곤란하군요",
           "tag": "monolog"
         }
       ]
@@ -54991,10 +54483,31 @@
       "index": 136,
       "lines": [
         {
-          "offset": 15099,
-          "jp": "はて？　怪しげな気配が",
-          "jp_len": 22,
-          "kr": "어라? 수상한 기척을",
+          "offset": 14828,
+          "jp": "５年前　封印のある洞窟に",
+          "jp_len": 24,
+          "kr": "5년 전 봉인한 동굴에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14854,
+          "jp": "いろいろと　しかけを",
+          "jp_len": 20,
+          "kr": "여러가지 장치를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14876,
+          "jp": "設置しました　それが",
+          "jp_len": 20,
+          "kr": "설치했습니다 그게",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14898,
+          "jp": "役立っているといいのですが…",
+          "jp_len": 28,
+          "kr": "도움이 되었으면 합니다만…",
           "tag": "monolog"
         }
       ]
@@ -55004,10 +54517,31 @@
       "index": 137,
       "lines": [
         {
-          "offset": 15156,
-          "jp": "それにしても異常なまでに",
-          "jp_len": 24,
-          "kr": "그나저나 이상할 정도로",
+          "offset": 14927,
+          "jp": "トホホ　私の設置したしかけが",
+          "jp_len": 28,
+          "kr": "내가 설치해 놓은 장치를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14957,
+          "jp": "見破られ　逆に我々の",
+          "jp_len": 20,
+          "kr": "간파당해 도리어",
+          "tag": "monolog"
+        },
+        {
+          "offset": 14979,
+          "jp": "足どめに使われることに",
+          "jp_len": 22,
+          "kr": "우리 발목이 잡힐",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15003,
+          "jp": "なろうとは",
+          "jp_len": 10,
+          "kr": "줄이야",
           "tag": "monolog"
         }
       ]
@@ -55017,10 +54551,31 @@
       "index": 138,
       "lines": [
         {
-          "offset": 15247,
-          "jp": "あの〔笑殺の羽ぼうき〕という",
-          "jp_len": 28,
-          "kr": "그 간지럼 깃털이라는",
+          "offset": 15014,
+          "jp": "地獄から　よみがえるとは",
+          "jp_len": 24,
+          "kr": "지옥에서 돌아오다니",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15040,
+          "jp": "スマッシュさんも",
+          "jp_len": 16,
+          "kr": "스마슈씨도 엄청",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15058,
+          "jp": "なんて　しぶとい…いえ",
+          "jp_len": 22,
+          "kr": "질긴… 아니",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15082,
+          "jp": "タフなんでしょう",
+          "jp_len": 16,
+          "kr": "터프하군요",
           "tag": "monolog"
         }
       ]
@@ -55030,10 +54585,24 @@
       "index": 139,
       "lines": [
         {
-          "offset": 15356,
-          "jp": "私たちチームは　この空中都市の",
-          "jp_len": 30,
-          "kr": "우리 팀 목적은 공중도시의",
+          "offset": 15099,
+          "jp": "はて？　怪しげな気配が",
+          "jp_len": 22,
+          "kr": "어라? 수상한 기척을",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15123,
+          "jp": "したような…",
+          "jp_len": 12,
+          "kr": "느껴졌는데…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15137,
+          "jp": "気のせいでしょうか",
+          "jp_len": 18,
+          "kr": "기분 탓일까요",
           "tag": "monolog"
         }
       ]
@@ -55043,10 +54612,31 @@
       "index": 140,
       "lines": [
         {
-          "offset": 15445,
-          "jp": "というわけで　エレベーターで",
-          "jp_len": 28,
-          "kr": "그러니 엘리베이터로 지하에",
+          "offset": 15156,
+          "jp": "それにしても異常なまでに",
+          "jp_len": 24,
+          "kr": "그나저나 이상할 정도로",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15182,
+          "jp": "大きな人でしたね",
+          "jp_len": 16,
+          "kr": "커다랐죠",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15200,
+          "jp": "戦闘力もありそうでしたよ",
+          "jp_len": 24,
+          "kr": "전투력도 있어 보였어요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15226,
+          "jp": "私たち勝てますかね？",
+          "jp_len": 20,
+          "kr": "이길 수 있을까요?",
           "tag": "monolog"
         }
       ]
@@ -55056,10 +54646,31 @@
       "index": 141,
       "lines": [
         {
-          "offset": 15510,
-          "jp": "これが　もと魔王の城ですか…",
+          "offset": 15247,
+          "jp": "あの〔笑殺の羽ぼうき〕という",
           "jp_len": 28,
-          "kr": "이게 전 마왕의 성인가요…",
+          "kr": "그 간지럼 깃털이라는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15277,
+          "jp": "アイテムには　どのような力が",
+          "jp_len": 28,
+          "kr": "아이템에는 어떤 힘이",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15307,
+          "jp": "秘められていたのか…",
+          "jp_len": 20,
+          "kr": "숨겨져 있을까요…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15329,
+          "jp": "またまたイヤな予感がします",
+          "jp_len": 26,
+          "kr": "또 나쁜 예감이 듭니다",
           "tag": "monolog"
         }
       ]
@@ -55069,10 +54680,24 @@
       "index": 142,
       "lines": [
         {
-          "offset": 15625,
-          "jp": "殺人光線ですか…　私も",
-          "jp_len": 22,
-          "kr": "살인광선인가요… 저도",
+          "offset": 15356,
+          "jp": "私たちチームは　この空中都市の",
+          "jp_len": 30,
+          "kr": "우리 팀 목적은 공중도시의",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15388,
+          "jp": "降下を止めるのが目的です",
+          "jp_len": 24,
+          "kr": "강하를 막는 겁니다",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15414,
+          "jp": "まずは動力炉を捜すとしましょう",
+          "jp_len": 30,
+          "kr": "우선 동력화로를 찾읍시다",
           "tag": "monolog"
         }
       ]
@@ -55082,10 +54707,24 @@
       "index": 143,
       "lines": [
         {
-          "offset": 15694,
-          "jp": "なんてムチャな人たちなんだ",
-          "jp_len": 26,
-          "kr": "무지막지한 사람들이군요",
+          "offset": 15445,
+          "jp": "というわけで　エレベーターで",
+          "jp_len": 28,
+          "kr": "그러니 엘리베이터로 지하에",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15475,
+          "jp": "地下へ行き　動力炉を",
+          "jp_len": 20,
+          "kr": "내려가 동력화로를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15497,
+          "jp": "捜しましょう",
+          "jp_len": 12,
+          "kr": "찾아봅시다",
           "tag": "monolog"
         }
       ]
@@ -55095,10 +54734,31 @@
       "index": 144,
       "lines": [
         {
-          "offset": 15781,
-          "jp": "この〔カードＬＶ２〕があれば",
+          "offset": 15510,
+          "jp": "これが　もと魔王の城ですか…",
           "jp_len": 28,
-          "kr": "이 카드 LV2가 있으면",
+          "kr": "이게 전 마왕의 성인가요…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15540,
+          "jp": "とりまいている気は　まさしく",
+          "jp_len": 28,
+          "kr": "감도는 기운이 그야말로",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15570,
+          "jp": "邪悪のそれですが　機械だらけ",
+          "jp_len": 28,
+          "kr": "사악함 그 자체지만 기계가",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15600,
+          "jp": "だと　風情がありませんね",
+          "jp_len": 24,
+          "kr": "가득해 운치가 없군요",
           "tag": "monolog"
         }
       ]
@@ -55108,10 +54768,24 @@
       "index": 145,
       "lines": [
         {
-          "offset": 15866,
-          "jp": "残る玉は　いったい",
-          "jp_len": 18,
-          "kr": "남은 구슬은 대체",
+          "offset": 15625,
+          "jp": "殺人光線ですか…　私も",
+          "jp_len": 22,
+          "kr": "살인광선인가요… 저도",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15649,
+          "jp": "専門の魔法以外のこととなると",
+          "jp_len": 28,
+          "kr": "전문인 마법이 아니면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15679,
+          "jp": "お手上げですよ",
+          "jp_len": 14,
+          "kr": "손들 수밖에요",
           "tag": "monolog"
         }
       ]
@@ -55121,10 +54795,24 @@
       "index": 146,
       "lines": [
         {
-          "offset": 15911,
-          "jp": "ブルブルッ…",
-          "jp_len": 12,
-          "kr": "부들부들…",
+          "offset": 15694,
+          "jp": "なんてムチャな人たちなんだ",
+          "jp_len": 26,
+          "kr": "무지막지한 사람들이군요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15722,
+          "jp": "これでしたら　国で女王の相手を",
+          "jp_len": 30,
+          "kr": "이럴 바엔 여왕을 상대하는",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15754,
+          "jp": "していたほうがマシですよぉ",
+          "jp_len": 26,
+          "kr": "편이 훨씬 낫겠어요",
           "tag": "monolog"
         }
       ]
@@ -55134,10 +54822,24 @@
       "index": 147,
       "lines": [
         {
-          "offset": 16090,
-          "jp": "封じる山か…",
-          "jp_len": 12,
-          "kr": "봉쇄된 산…",
+          "offset": 15781,
+          "jp": "この〔カードＬＶ２〕があれば",
+          "jp_len": 28,
+          "kr": "이 카드 LV2가 있으면",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15811,
+          "jp": "いままで通れなかった所にも",
+          "jp_len": 26,
+          "kr": "지금까지 못 갔던 곳도",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15839,
+          "jp": "入ることができるはずですよ",
+          "jp_len": 26,
+          "kr": "들어갈 수 있을 거에요",
           "tag": "monolog"
         }
       ]
@@ -55147,10 +54849,139 @@
       "index": 148,
       "lines": [
         {
+          "offset": 15866,
+          "jp": "残る玉は　いったい",
+          "jp_len": 18,
+          "kr": "남은 구슬은 대체",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15886,
+          "jp": "どこに　あるのでしょう？",
+          "jp_len": 24,
+          "kr": "어디 있는 걸까요?",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 149,
+      "lines": [
+        {
+          "offset": 15911,
+          "jp": "ブルブルッ…",
+          "jp_len": 12,
+          "kr": "부들부들…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15925,
+          "jp": "ここは寒くて　いけませんね",
+          "jp_len": 26,
+          "kr": "여기는 너무 춥군요",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15953,
+          "jp": "私は冷え性だから",
+          "jp_len": 16,
+          "kr": "추위에 약해서",
+          "tag": "monolog"
+        },
+        {
+          "offset": 15971,
+          "jp": "よけい　こたえますよ",
+          "jp_len": 20,
+          "kr": "유난히 더 괴롭네요",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 150,
+      "lines": [
+        {
+          "offset": 16017,
+          "jp": "城の連中にバレるとまずいから",
+          "jp_len": 28,
+          "kr": "성에 들키면 곤란하니",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16047,
+          "jp": "隠密にすませるわよ",
+          "jp_len": 18,
+          "kr": "은밀하게 가야 해",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16067,
+          "jp": "いいわね！　絶対によ！",
+          "jp_len": 22,
+          "kr": "알겠지! 꼭이야!",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 151,
+      "lines": [
+        {
+          "offset": 16090,
+          "jp": "封じる山か…",
+          "jp_len": 12,
+          "kr": "봉쇄된 산…",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16104,
+          "jp": "５年前　魔獣　喰らうものを",
+          "jp_len": 26,
+          "kr": "5년전 마수 쿠라우모노를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16132,
+          "jp": "目覚めさせたときのことを",
+          "jp_len": 24,
+          "kr": "깨웠던 때의 사건이",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16158,
+          "jp": "思い出すなあ",
+          "jp_len": 12,
+          "kr": "떠오르는군!",
+          "tag": "monolog"
+        }
+      ]
+    },
+    {
+      "file": "MESSAGE.CMD",
+      "index": 152,
+      "lines": [
+        {
           "offset": 16171,
           "jp": "どうすれば　ペトゥムの鼻を",
           "jp_len": 26,
           "kr": "어떻게 하면 페톰의 코를",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16199,
+          "jp": "あかしてやれるかしら",
+          "jp_len": 20,
+          "kr": "납작하게 해줄까",
+          "tag": "monolog"
+        },
+        {
+          "offset": 16221,
+          "jp": "これは私の永遠の課題だわ",
+          "jp_len": 24,
+          "kr": "이건 내 평생의 과제야",
           "tag": "monolog"
         }
       ]
@@ -55194,7 +55025,7 @@
     },
     {
       "offset": 13525,
-      "tag": "battle",
+      "tag": "char",
       "jp": "タコ殴り",
       "jp_len": 8,
       "kr": "일제공격"
@@ -55215,7 +55046,7 @@
     },
     {
       "offset": 13598,
-      "tag": "battle",
+      "tag": "char",
       "jp": "虎撃拳",
       "jp_len": 6,
       "kr": "호격권"
@@ -55874,7 +55705,8 @@
           "offset": 787,
           "jp": "敵全体にダメージを与える",
           "jp_len": 26,
-          "kr": "발차기로 전체 데미지"
+          "kr": "발차기로 전체 데미지",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -55926,7 +55758,8 @@
           "offset": 913,
           "jp": "カスタムメイドの剣　普及品",
           "jp_len": 28,
-          "kr": "커스텀 메이드로 보급품과"
+          "kr": "커스텀 메이드로 보급품과",
+          "tag": "menu"
         },
         {
           "offset": 943,
@@ -55984,7 +55817,8 @@
           "offset": 1073,
           "jp": "スマッシュ好みの片刃の剣",
           "jp_len": 26,
-          "kr": "스마슈 취향의 외날도"
+          "kr": "스마슈 취향의 외날도",
+          "tag": "menu"
         },
         {
           "offset": 1101,
@@ -56100,7 +55934,8 @@
           "offset": 1369,
           "jp": "軽さがウリの革製防具",
           "jp_len": 22,
-          "kr": "가벼운 게 장점"
+          "kr": "가벼운 게 장점",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -56123,7 +55958,8 @@
           "offset": 1422,
           "jp": "防御力が高いうえ　軽量の",
           "jp_len": 26,
-          "kr": "방어력이 높은데 경량인"
+          "kr": "방어력이 높은데 경량인",
+          "tag": "menu"
         },
         {
           "offset": 1450,
@@ -56158,7 +55994,8 @@
           "offset": 1521,
           "jp": "東方渡来の防具",
           "jp_len": 16,
-          "kr": "동방의 방어구"
+          "kr": "동방의 방어구",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -56216,7 +56053,8 @@
           "offset": 1681,
           "jp": "軽いが強固な　よろい",
           "jp_len": 22,
-          "kr": "가볍고 견고한 갑옷"
+          "kr": "가볍고 견고한 갑옷",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -56333,7 +56171,8 @@
         "offset": 1921,
         "jp": "防御力＋４５",
         "jp_len": 12,
-        "kr": "방어력+45"
+        "kr": "방어력+45",
+        "tag": "menu"
       }
     },
     {
@@ -56355,14 +56194,16 @@
           "offset": 2044,
           "jp": "キリ愛用の武器（？）",
           "jp_len": 22,
-          "kr": "키리 애용의 무기"
+          "kr": "키리 애용의 무기",
+          "tag": "menu"
         }
       ],
       "stat": {
         "offset": 2000,
         "jp": "攻撃力＋３５",
         "jp_len": 12,
-        "kr": "공격력+35"
+        "kr": "공격력+35",
+        "tag": "menu"
       }
     },
     {
@@ -56378,7 +56219,8 @@
           "offset": 2099,
           "jp": "魔法によるアンプを内蔵し",
           "jp_len": 26,
-          "kr": "마법의 앰프를 내장해"
+          "kr": "마법의 앰프를 내장해",
+          "tag": "menu"
         },
         {
           "offset": 2127,
@@ -56391,7 +56233,8 @@
         "offset": 2085,
         "jp": "攻撃力＋６５",
         "jp_len": 12,
-        "kr": "공격력+65"
+        "kr": "공격력+65",
+        "tag": "menu"
       }
     },
     {
@@ -56414,7 +56257,8 @@
         "offset": 2170,
         "jp": "防御力＋３５",
         "jp_len": 12,
-        "kr": "방어력+35"
+        "kr": "방어력+35",
+        "tag": "menu"
       }
     },
     {
@@ -56423,7 +56267,8 @@
         "offset": 2203,
         "jp": "もっとハデな衣装",
         "jp_len": 16,
-        "kr": "더화려한의상"
+        "kr": "더화려한의상",
+        "tag": "menu"
       },
       "desc": [
         {
@@ -56465,7 +56310,8 @@
           "offset": 2338,
           "jp": "ペトゥムが持つ杖",
           "jp_len": 18,
-          "kr": "페톰의 지팡이"
+          "kr": "페톰의 지팡이",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -56501,7 +56347,8 @@
         "offset": 2371,
         "jp": "攻撃力＋４０",
         "jp_len": 12,
-        "kr": "공격력+40"
+        "kr": "공격력+40",
+        "tag": "menu"
       }
     },
     {
@@ -56678,7 +56525,8 @@
         "offset": 2860,
         "jp": "クィーンウィップ",
         "jp_len": 16,
-        "kr": "여왕채찍"
+        "kr": "여왕채찍",
+        "tag": "menu"
       },
       "desc": [
         {
@@ -56720,7 +56568,8 @@
           "offset": 3009,
           "jp": "いつも着る服",
           "jp_len": 14,
-          "kr": "항상 입는다"
+          "kr": "항상 입는다",
+          "tag": "menu"
         }
       ],
       "stat": {
@@ -56829,7 +56678,8 @@
         "offset": 3260,
         "jp": "水門の鍵",
         "jp_len": 8,
-        "kr": "수문열쇠"
+        "kr": "수문열쇠",
+        "tag": "menu"
       },
       "desc": [
         {
@@ -57076,7 +56926,8 @@
         "offset": 3859,
         "jp": "通行許可証",
         "jp_len": 10,
-        "kr": "통행허가증"
+        "kr": "통행허가증",
+        "tag": "menu"
       },
       "desc": [
         {

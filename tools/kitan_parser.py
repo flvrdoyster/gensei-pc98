@@ -116,12 +116,69 @@ def extract_dialogs(data):
         cur_lines.clear()
 
     while i < len(data) - 1:
+        # 64 00 96 48 : 상점 라벨 영역 진입 — dialog 강제 종료
+        # (extract_shop_labels 가 별도 처리하므로 dialog 가 잡으면 안 됨)
+        if (i + 3 < len(data)
+                and data[i] == 0x64 and data[i + 1] == 0x00
+                and data[i + 2] == 0x96 and data[i + 3] == 0x48):
+            if in_dialog:
+                _flush_dialog()
+            in_dialog = False
+            i += 4
+            continue
+
         # 6b 00 : 블록 경계 (이전 블록 종료 + 새 블록 시작)
         if data[i] == 0x6b and data[i + 1] == 0x00:
             if in_dialog:
                 _flush_dialog()
             # 직후 SJIS가 없으면 바이너리 이벤트 블록 — 스킵
             in_dialog = _has_sjis_nearby(data, i + 2)
+            i += 2
+            cur_text = ''
+            cur_offset = cur_end = i
+            continue
+
+        # 6e 00 67 01 : 화자 prefix 블록 시작 (이전 블록 종료)
+        if (data[i] == 0x6e and i + 3 < len(data)
+                and data[i + 1] == 0x00 and data[i + 2] == 0x67
+                and data[i + 3] == 0x01):
+            if in_dialog:
+                _flush_dialog()
+            in_dialog = _has_sjis_nearby(data, i + 4)
+            i += 4
+            cur_text = ''
+            cur_offset = cur_end = i
+            continue
+
+        # 01 02 [SJIS] : 화자/감정 코드 후 본문 시작
+        # (블록 외부에서만 — 내부에서는 SJIS 처리로 자연스럽게 흘러감)
+        if (not in_dialog and i + 2 < len(data)
+                and data[i] == 0x01 and data[i + 1] == 0x02
+                and is_sjis(data, i + 2)):
+            in_dialog = True
+            i += 2
+            cur_text = ''
+            cur_offset = cur_end = i
+            continue
+
+        # 76 1a [SJIS] : 화면 클리어 후 본문 시작 (블록 외부)
+        if (not in_dialog and i + 2 < len(data)
+                and data[i] == 0x76 and data[i + 1] == 0x1a
+                and is_sjis(data, i + 2)):
+            in_dialog = True
+            i += 2
+            cur_text = ''
+            cur_offset = cur_end = i
+            continue
+
+        # 02 65 [SJIS] : 화자 코드 체인 종료 후 본문 시작
+        # (블록 외부에서는 진입, 내부에서도 cur_offset 재설정으로 첫 글자 누락 방지)
+        if (i + 2 < len(data)
+                and data[i] == 0x02 and data[i + 1] == 0x65
+                and is_sjis(data, i + 2)):
+            if in_dialog:
+                _flush_line()
+            in_dialog = True
             i += 2
             cur_text = ''
             cur_offset = cur_end = i
@@ -600,6 +657,42 @@ def extract_message_dialog(data):
 # bare SJIS+65 파서 (SC6A 층수 이름 등)
 # ─────────────────────────────────────
 
+def extract_shop_labels(data, captured_offsets):
+    """
+    64 00 96 48 [SJIS run] [non-SJIS] 형식 상점 아이템 라벨 추출.
+
+    SC1A/SC3A/SC4A/SC6D/SC7A.CMD 의 상점 인벤토리.
+    64 00 = 항목 시작 opcode, 96 48 = 아이템 카테고리 바이트 (텍스트 아님).
+    96 48 직후 SJIS run 을 라벨로 추출 (가격·설명은 후속 코드).
+    """
+    items = []
+    i = 0
+    while i < len(data) - 5:
+        if (data[i] != 0x64 or data[i + 1] != 0x00
+                or data[i + 2] != 0x96 or data[i + 3] != 0x48):
+            i += 1; continue
+        if not is_sjis(data, i + 4):
+            i += 4; continue
+        text_off = i + 4
+        j = text_off
+        text = ''
+        while j < len(data) - 1 and is_sjis(data, j):
+            text += read_sjis_char(data, j)
+            j += 2
+        text_end = j
+        if (len(text.strip()) >= 2
+                and not any(ord(c) == 0xFFFD for c in text)
+                and text_off not in captured_offsets):
+            line = {'offset': text_off, 'jp': text,
+                    'jp_len': text_end - text_off, 'kr': ''}
+            if _has_halfwidth(data, text_off, text_end):
+                line['halfwidth'] = True
+            items.append([line])
+        i = j
+
+    return items
+
+
 def extract_bare_sjis65(data, captured_offsets):
     """
     순수 SJIS 연속 + 65 종료 패턴 스캔.
@@ -725,6 +818,8 @@ _GSOVL_OFFSETS = [
     (0x58F7, 'name'), (0x5905, 'name'), (0x5915, 'name'),
     # 기타 (misc)
     (0xD7B1, 'misc'), (0xD904, 'misc'),
+    # 전투 화면 메시지 (battle)
+    (0x6E56, 'battle'),  # ﾐｽ (MISS)
 ]
 
 # 알려진 kr 기본값 (캐릭터 이름 — 나머지는 에디터에서 입력)
@@ -830,7 +925,10 @@ DIALOG_FILES = [
 ITEM_FILE = 'MESSAGE.CMD'
 
 # 파일별 레이블 텍스트 프리픽스 (extract_labeled_text 용)
-_DEFAULT_LABELED_PREFIXES = [(0x64, 0x01)]
+# 64 01: 일반 메뉴 라벨 (세이브/로드 첫 셋)
+# 64 03: 세이브 슬롯 선택 (데이터1~8)
+# 6d 04: 메뉴 두 번째 셋 (게임 중 ESC 메뉴 등)
+_DEFAULT_LABELED_PREFIXES = [(0x64, 0x01), (0x64, 0x03), (0x6d, 0x04), (0x6d, 0x11)]
 _LABELED_PREFIXES = {
     'ENDING.CMD': [(0x63, 0x08), (0x64, 0x01)],
     **{p: [(0x6d, 0x08), (0x64, 0x01)]
@@ -840,7 +938,10 @@ _LABELED_PREFIXES = {
 }
 
 # bare SJIS+65 스캔 적용 파일
-_BARE_SJIS65_FILES = {'SC6A.CMD'}
+_BARE_SJIS65_FILES = {'SC6A.CMD', 'SC6B.CMD', 'SC6C.CMD'}
+
+# 64 00 [SJIS] 상점 라벨 스캔 적용 파일
+_SHOP_LABEL_FILES = {'SC1A.CMD', 'SC3A.CMD', 'SC4A.CMD', 'SC6D.CMD', 'SC7A.CMD'}
 
 
 def generate_json(game_dir, out_path):
@@ -874,7 +975,12 @@ def generate_json(game_dir, out_path):
         with open(fpath, 'rb') as f:
             raw = f.read()
         data = decompress(raw)
-        dialogs = extract_dialogs(data)
+        # MESSAGE.CMD 는 extract_message_dialog 가 0x1290 부터 처리하므로
+        # extract_dialogs 가 중복으로 잡지 않게 그 이전만 스캔
+        if fname == ITEM_FILE:
+            dialogs = extract_dialogs(data[:_MSG_DIALOG_START])
+        else:
+            dialogs = extract_dialogs(data)
         menus = extract_menus(data)
 
         # 레이블 텍스트 (64 01 세이브/메뉴, 63 08 크레딧, 6d 08 적 이름)
@@ -894,6 +1000,11 @@ def generate_json(game_dir, out_path):
         if fname in _BARE_SJIS65_FILES:
             pre_captured = {ln['offset'] for blk in all_blocks for ln in blk}
             all_blocks += extract_bare_sjis65(data, pre_captured)
+
+        # 상점 인벤토리 라벨 (64 00 [SJIS])
+        if fname in _SHOP_LABEL_FILES:
+            pre_captured = {ln['offset'] for blk in all_blocks for ln in blk}
+            all_blocks += extract_shop_labels(data, pre_captured)
 
         all_blocks.sort(key=lambda b: b[0]['offset'] if b else 0)
         seen = set()

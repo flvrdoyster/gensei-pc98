@@ -320,14 +320,17 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
         jp_len = entry['jp_len']
         kr_bytes = encode_korean_kitan(kr, charmap)
 
-        # 반각 코스트 접미사 보존: 첫 0x85 lead byte 이전까지만 교체
-        # SJIS trail byte의 0x85는 무시 (예: ュ = 0x83 0x85)
+        # 반각 코스트 접미사 보존: 첫 0x85 lead byte 이전까지만 교체.
+        # SJIS trail byte의 0x85는 무시 (예: ュ = 0x83 0x85).
+        # 단, 텍스트 본체가 0x85로 시작하면 (예: リフレッシュの水を使う) 반각 텍스트
+        # 자체이니 suffix 처리 안 함 — 파서의 extract_gsovl과 동일 로직.
         orig = bytes(data[offset:offset + jp_len])
         halfwidth_start = None
         _i = 0
+        starts_with_halfwidth = (len(orig) > 0 and orig[0] == 0x85)
         while _i < len(orig):
             b = orig[_i]
-            if b == 0x85:
+            if b == 0x85 and not starts_with_halfwidth:
                 halfwidth_start = _i
                 break
             if (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and _i + 1 < len(orig):
