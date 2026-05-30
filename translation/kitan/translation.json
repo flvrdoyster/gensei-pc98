@@ -5558,128 +5558,6 @@
       ]
     },
     {
-      "file": "SC1A.CMD",
-      "index": 141,
-      "lines": [
-        {
-          "offset": 29644,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 142,
-      "lines": [
-        {
-          "offset": 29713,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 143,
-      "lines": [
-        {
-          "offset": 29774,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 144,
-      "lines": [
-        {
-          "offset": 29859,
-          "jp": "蓬蛮刀",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 145,
-      "lines": [
-        {
-          "offset": 29928,
-          "jp": "蓬鎖かたびら",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 146,
-      "lines": [
-        {
-          "offset": 30037,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 147,
-      "lines": [
-        {
-          "offset": 30106,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 148,
-      "lines": [
-        {
-          "offset": 30167,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 149,
-      "lines": [
-        {
-          "offset": 30252,
-          "jp": "蓬蛮刀",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC1A.CMD",
-      "index": 150,
-      "lines": [
-        {
-          "offset": 30321,
-          "jp": "蓬鎖かたびら",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
       "file": "SC1B.CMD",
       "index": 1,
       "lines": [
@@ -19364,128 +19242,6 @@
       "index": 69,
       "lines": [
         {
-          "offset": 25702,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 70,
-      "lines": [
-        {
-          "offset": 25771,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 71,
-      "lines": [
-        {
-          "offset": 25832,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 72,
-      "lines": [
-        {
-          "offset": 25917,
-          "jp": "蓬銀の短剣",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 73,
-      "lines": [
-        {
-          "offset": 25984,
-          "jp": "蓬祈りの聖衣",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 74,
-      "lines": [
-        {
-          "offset": 26087,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 75,
-      "lines": [
-        {
-          "offset": 26156,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 76,
-      "lines": [
-        {
-          "offset": 26217,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 77,
-      "lines": [
-        {
-          "offset": 26302,
-          "jp": "蓬銀の短剣",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 78,
-      "lines": [
-        {
-          "offset": 26369,
-          "jp": "蓬祈りの聖衣",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC3A.CMD",
-      "index": 79,
-      "lines": [
-        {
           "offset": 26539,
           "jp": "「あんた強いねえ",
           "jp_len": 16,
@@ -19507,7 +19263,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 80,
+      "index": 70,
       "lines": [
         {
           "offset": 26610,
@@ -19537,7 +19293,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 81,
+      "index": 71,
       "lines": [
         {
           "offset": 26697,
@@ -19567,7 +19323,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 82,
+      "index": 72,
       "lines": [
         {
           "offset": 26804,
@@ -19585,7 +19341,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 83,
+      "index": 73,
       "lines": [
         {
           "offset": 26847,
@@ -19621,7 +19377,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 84,
+      "index": 74,
       "lines": [
         {
           "offset": 26974,
@@ -19657,7 +19413,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 85,
+      "index": 75,
       "lines": [
         {
           "offset": 27086,
@@ -19693,7 +19449,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 86,
+      "index": 76,
       "lines": [
         {
           "offset": 27221,
@@ -19717,7 +19473,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 87,
+      "index": 77,
       "lines": [
         {
           "offset": 27324,
@@ -19742,7 +19498,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 88,
+      "index": 78,
       "lines": [
         {
           "offset": 27399,
@@ -19754,7 +19510,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 89,
+      "index": 79,
       "lines": [
         {
           "offset": 27424,
@@ -19796,7 +19552,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 90,
+      "index": 80,
       "lines": [
         {
           "offset": 27589,
@@ -19820,7 +19576,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 91,
+      "index": 81,
       "lines": [
         {
           "offset": 27680,
@@ -19856,7 +19612,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 92,
+      "index": 82,
       "lines": [
         {
           "offset": 27813,
@@ -19886,7 +19642,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 93,
+      "index": 83,
       "lines": [
         {
           "offset": 27936,
@@ -19910,7 +19666,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 94,
+      "index": 84,
       "lines": [
         {
           "offset": 28038,
@@ -20000,7 +19756,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 95,
+      "index": 85,
       "lines": [
         {
           "offset": 28456,
@@ -20036,7 +19792,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 96,
+      "index": 86,
       "lines": [
         {
           "offset": 28601,
@@ -20060,7 +19816,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 97,
+      "index": 87,
       "lines": [
         {
           "offset": 28688,
@@ -20102,7 +19858,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 98,
+      "index": 88,
       "lines": [
         {
           "offset": 28851,
@@ -20114,7 +19870,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 99,
+      "index": 89,
       "lines": [
         {
           "offset": 28888,
@@ -20162,7 +19918,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 100,
+      "index": 90,
       "lines": [
         {
           "offset": 29067,
@@ -20192,7 +19948,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 101,
+      "index": 91,
       "lines": [
         {
           "offset": 29176,
@@ -20228,7 +19984,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 102,
+      "index": 92,
       "lines": [
         {
           "offset": 29311,
@@ -20252,7 +20008,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 103,
+      "index": 93,
       "lines": [
         {
           "offset": 29396,
@@ -20276,7 +20032,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 104,
+      "index": 94,
       "lines": [
         {
           "offset": 29471,
@@ -20300,7 +20056,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 105,
+      "index": 95,
       "lines": [
         {
           "offset": 29560,
@@ -20324,7 +20080,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 106,
+      "index": 96,
       "lines": [
         {
           "offset": 29645,
@@ -20360,7 +20116,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 107,
+      "index": 97,
       "lines": [
         {
           "offset": 29784,
@@ -20390,7 +20146,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 108,
+      "index": 98,
       "lines": [
         {
           "offset": 29893,
@@ -20426,7 +20182,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 109,
+      "index": 99,
       "lines": [
         {
           "offset": 30018,
@@ -20456,7 +20212,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 110,
+      "index": 100,
       "lines": [
         {
           "offset": 30119,
@@ -20480,7 +20236,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 111,
+      "index": 101,
       "lines": [
         {
           "offset": 30189,
@@ -20522,7 +20278,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 112,
+      "index": 102,
       "lines": [
         {
           "offset": 30331,
@@ -20564,7 +20320,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 113,
+      "index": 103,
       "lines": [
         {
           "offset": 30484,
@@ -20642,7 +20398,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 114,
+      "index": 104,
       "lines": [
         {
           "offset": 30807,
@@ -20678,7 +20434,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 115,
+      "index": 105,
       "lines": [
         {
           "offset": 30936,
@@ -20714,7 +20470,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 116,
+      "index": 106,
       "lines": [
         {
           "offset": 31075,
@@ -20744,7 +20500,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 117,
+      "index": 107,
       "lines": [
         {
           "offset": 31197,
@@ -20762,7 +20518,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 118,
+      "index": 108,
       "lines": [
         {
           "offset": 31253,
@@ -20780,7 +20536,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 119,
+      "index": 109,
       "lines": [
         {
           "offset": 31316,
@@ -20798,7 +20554,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 120,
+      "index": 110,
       "lines": [
         {
           "offset": 31375,
@@ -20822,7 +20578,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 121,
+      "index": 111,
       "lines": [
         {
           "offset": 31467,
@@ -20852,7 +20608,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 122,
+      "index": 112,
       "lines": [
         {
           "offset": 31587,
@@ -20882,7 +20638,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 123,
+      "index": 113,
       "lines": [
         {
           "offset": 31698,
@@ -20930,7 +20686,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 124,
+      "index": 114,
       "lines": [
         {
           "offset": 31883,
@@ -20960,7 +20716,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 125,
+      "index": 115,
       "lines": [
         {
           "offset": 32002,
@@ -20990,7 +20746,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 126,
+      "index": 116,
       "lines": [
         {
           "offset": 32103,
@@ -21032,7 +20788,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 127,
+      "index": 117,
       "lines": [
         {
           "offset": 32273,
@@ -21062,7 +20818,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 128,
+      "index": 118,
       "lines": [
         {
           "offset": 32371,
@@ -21086,7 +20842,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 129,
+      "index": 119,
       "lines": [
         {
           "offset": 32454,
@@ -21104,7 +20860,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 130,
+      "index": 120,
       "lines": [
         {
           "offset": 32517,
@@ -21134,7 +20890,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 131,
+      "index": 121,
       "lines": [
         {
           "offset": 32630,
@@ -28103,18 +27859,6 @@
       "index": 79,
       "lines": [
         {
-          "offset": 19818,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 80,
-      "lines": [
-        {
           "offset": 19820,
           "jp": "薬草",
           "jp_len": 4,
@@ -28408,115 +28152,6 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 81,
-      "lines": [
-        {
-          "offset": 19887,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 82,
-      "lines": [
-        {
-          "offset": 19948,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 83,
-      "lines": [
-        {
-          "offset": 20033,
-          "jp": "蓬蛮刀",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 84,
-      "lines": [
-        {
-          "offset": 20102,
-          "jp": "蓬鎖かたびら",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 85,
-      "lines": [
-        {
-          "offset": 20185,
-          "jp": "蓬鋼鉄の刀",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 86,
-      "lines": [
-        {
-          "offset": 20250,
-          "jp": "蓬上忍スーツ",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 87,
-      "lines": [
-        {
-          "offset": 20341,
-          "jp": "蓬鋼鉄のよろい",
-          "jp_len": 14,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 88,
-      "lines": [
-        {
-          "offset": 20412,
-          "jp": "蓬雲樹の杖",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC4A.CMD",
-      "index": 89,
-      "lines": [
-        {
-          "offset": 20469,
-          "jp": "蓬賢者のローブ",
-          "jp_len": 14,
-          "kr": ""
         }
       ]
     },
@@ -46587,67 +46222,6 @@
       ]
     },
     {
-      "file": "SC6D.CMD",
-      "index": 27,
-      "lines": [
-        {
-          "offset": 9100,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC6D.CMD",
-      "index": 28,
-      "lines": [
-        {
-          "offset": 9185,
-          "jp": "蓬降魔刀",
-          "jp_len": 8,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6D.CMD",
-      "index": 29,
-      "lines": [
-        {
-          "offset": 9266,
-          "jp": "蓬サムライアーマー",
-          "jp_len": 18,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6D.CMD",
-      "index": 30,
-      "lines": [
-        {
-          "offset": 9361,
-          "jp": "蓬雷精のギター",
-          "jp_len": 14,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC6D.CMD",
-      "index": 31,
-      "lines": [
-        {
-          "offset": 9436,
-          "jp": "蓬もっとハデな衣装",
-          "jp_len": 18,
-          "kr": ""
-        }
-      ]
-    },
-    {
       "file": "SC7A.CMD",
       "index": 1,
       "lines": [
@@ -48785,18 +48359,6 @@
       "index": 66,
       "lines": [
         {
-          "offset": 12756,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 67,
-      "lines": [
-        {
           "offset": 12758,
           "jp": "薬草",
           "jp_len": 4,
@@ -49217,116 +48779,6 @@
           "jp_len": 4,
           "kr": "",
           "tag": "ignore"
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 68,
-      "lines": [
-        {
-          "offset": 12825,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 69,
-      "lines": [
-        {
-          "offset": 12886,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 70,
-      "lines": [
-        {
-          "offset": 12971,
-          "jp": "蓬蛮刀",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 71,
-      "lines": [
-        {
-          "offset": 13040,
-          "jp": "蓬鎖かたびら",
-          "jp_len": 12,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 72,
-      "lines": [
-        {
-          "offset": 13149,
-          "jp": "蓬薬草",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 73,
-      "lines": [
-        {
-          "offset": 13218,
-          "jp": "蓬毒消し薬",
-          "jp_len": 10,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 74,
-      "lines": [
-        {
-          "offset": 13279,
-          "jp": "蓬リフレッシュの水",
-          "jp_len": 18,
-          "kr": "",
-          "halfwidth": true
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 75,
-      "lines": [
-        {
-          "offset": 13364,
-          "jp": "蓬蛮刀",
-          "jp_len": 6,
-          "kr": ""
-        }
-      ]
-    },
-    {
-      "file": "SC7A.CMD",
-      "index": 76,
-      "lines": [
-        {
-          "offset": 13433,
-          "jp": "蓬鎖かたびら",
-          "jp_len": 12,
-          "kr": ""
         }
       ]
     },
