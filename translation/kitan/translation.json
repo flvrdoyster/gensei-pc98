@@ -39934,6 +39934,42 @@
       "index": 2,
       "lines": [
         {
+          "offset": 4443,
+          "jp": "　３階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 3,
+      "lines": [
+        {
+          "offset": 4452,
+          "jp": "　２階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 4,
+      "lines": [
+        {
+          "offset": 4461,
+          "jp": "　１階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 5,
+      "lines": [
+        {
           "offset": 5080,
           "jp": "データロード",
           "jp_len": 12,
@@ -39957,7 +39993,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 3,
+      "index": 6,
       "lines": [
         {
           "offset": 5215,
@@ -40011,7 +40047,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 4,
+      "index": 7,
       "lines": [
         {
           "offset": 5314,
@@ -40024,7 +40060,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 5,
+      "index": 8,
       "lines": [
         {
           "offset": 5407,
@@ -40037,7 +40073,31 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 6,
+      "index": 9,
+      "lines": [
+        {
+          "offset": 5466,
+          "jp": "は　い",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 10,
+      "lines": [
+        {
+          "offset": 5475,
+          "jp": "いいえ",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 11,
       "lines": [
         {
           "offset": 5495,
@@ -40049,7 +40109,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 7,
+      "index": 12,
       "lines": [
         {
           "offset": 8943,
@@ -40061,7 +40121,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 8,
+      "index": 13,
       "lines": [
         {
           "offset": 8998,
@@ -40229,7 +40289,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 9,
+      "index": 14,
       "lines": [
         {
           "offset": 9639,
@@ -40284,7 +40344,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 10,
+      "index": 15,
       "lines": [
         {
           "offset": 9888,
@@ -40303,7 +40363,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 11,
+      "index": 16,
       "lines": [
         {
           "offset": 9967,
@@ -40385,7 +40445,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 12,
+      "index": 17,
       "lines": [
         {
           "offset": 10280,
@@ -40429,7 +40489,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 13,
+      "index": 18,
       "lines": [
         {
           "offset": 10459,
@@ -40611,7 +40671,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 14,
+      "index": 19,
       "lines": [
         {
           "offset": 11150,
@@ -40636,7 +40696,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 15,
+      "index": 20,
       "lines": [
         {
           "offset": 11245,
@@ -40687,7 +40747,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 16,
+      "index": 21,
       "lines": [
         {
           "offset": 11415,
@@ -40771,7 +40831,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 17,
+      "index": 22,
       "lines": [
         {
           "offset": 11756,
@@ -40789,7 +40849,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 18,
+      "index": 23,
       "lines": [
         {
           "offset": 11829,
@@ -40807,7 +40867,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 19,
+      "index": 24,
       "lines": [
         {
           "offset": 11898,
@@ -40889,7 +40949,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 20,
+      "index": 25,
       "lines": [
         {
           "offset": 12217,
@@ -40907,7 +40967,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 21,
+      "index": 26,
       "lines": [
         {
           "offset": 12274,
@@ -40925,7 +40985,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 22,
+      "index": 27,
       "lines": [
         {
           "offset": 12346,
@@ -40943,7 +41003,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 23,
+      "index": 28,
       "lines": [
         {
           "offset": 12403,
@@ -40961,7 +41021,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 24,
+      "index": 29,
       "lines": [
         {
           "offset": 12475,
@@ -40979,7 +41039,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 25,
+      "index": 30,
       "lines": [
         {
           "offset": 12527,
@@ -40997,7 +41057,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 26,
+      "index": 31,
       "lines": [
         {
           "offset": 12592,
@@ -41009,7 +41069,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 27,
+      "index": 32,
       "lines": [
         {
           "offset": 12649,
@@ -41034,7 +41094,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 28,
+      "index": 33,
       "lines": [
         {
           "offset": 12750,
@@ -41053,7 +41113,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 29,
+      "index": 34,
       "lines": [
         {
           "offset": 12811,
@@ -41078,7 +41138,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 30,
+      "index": 35,
       "lines": [
         {
           "offset": 12896,
@@ -41142,7 +41202,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 31,
+      "index": 36,
       "lines": [
         {
           "offset": 13249,
@@ -41184,7 +41244,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 32,
+      "index": 37,
       "lines": [
         {
           "offset": 13418,
@@ -41196,7 +41256,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 33,
+      "index": 38,
       "lines": [
         {
           "offset": 13612,
@@ -41312,7 +41372,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 34,
+      "index": 39,
       "lines": [
         {
           "offset": 14139,
@@ -41384,7 +41444,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 35,
+      "index": 40,
       "lines": [
         {
           "offset": 14422,
@@ -41396,7 +41456,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 36,
+      "index": 41,
       "lines": [
         {
           "offset": 14459,
@@ -41480,7 +41540,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 37,
+      "index": 42,
       "lines": [
         {
           "offset": 14806,
@@ -41498,7 +41558,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 38,
+      "index": 43,
       "lines": [
         {
           "offset": 14866,
@@ -41516,7 +41576,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 39,
+      "index": 44,
       "lines": [
         {
           "offset": 14937,
@@ -41570,7 +41630,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 40,
+      "index": 45,
       "lines": [
         {
           "offset": 15144,
@@ -41594,7 +41654,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 41,
+      "index": 46,
       "lines": [
         {
           "offset": 15229,
@@ -41612,7 +41672,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 42,
+      "index": 47,
       "lines": [
         {
           "offset": 15308,
@@ -41632,7 +41692,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 43,
+      "index": 48,
       "lines": [
         {
           "offset": 15393,
@@ -41650,7 +41710,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 44,
+      "index": 49,
       "lines": [
         {
           "offset": 15458,
@@ -41670,7 +41730,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 45,
+      "index": 50,
       "lines": [
         {
           "offset": 15543,
@@ -41688,7 +41748,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 46,
+      "index": 51,
       "lines": [
         {
           "offset": 16259,
@@ -41718,6 +41778,78 @@
       "index": 1,
       "lines": [
         {
+          "offset": 4121,
+          "jp": "地下１階",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 2,
+      "lines": [
+        {
+          "offset": 4130,
+          "jp": "　１階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 3,
+      "lines": [
+        {
+          "offset": 4139,
+          "jp": "　２階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 4,
+      "lines": [
+        {
+          "offset": 4148,
+          "jp": "　３階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 5,
+      "lines": [
+        {
+          "offset": 4157,
+          "jp": "　４階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 6,
+      "lines": [
+        {
+          "offset": 4166,
+          "jp": "　５階　",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 7,
+      "lines": [
+        {
           "offset": 5217,
           "jp": "データロード",
           "jp_len": 12,
@@ -41741,7 +41873,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 2,
+      "index": 8,
       "lines": [
         {
           "offset": 5352,
@@ -41795,7 +41927,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 3,
+      "index": 9,
       "lines": [
         {
           "offset": 5451,
@@ -41808,7 +41940,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 4,
+      "index": 10,
       "lines": [
         {
           "offset": 5544,
@@ -41821,7 +41953,31 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 5,
+      "index": 11,
+      "lines": [
+        {
+          "offset": 5603,
+          "jp": "は　い",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 12,
+      "lines": [
+        {
+          "offset": 5612,
+          "jp": "いいえ",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 13,
       "lines": [
         {
           "offset": 5632,
@@ -41833,7 +41989,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 6,
+      "index": 14,
       "lines": [
         {
           "offset": 11270,
@@ -41845,7 +42001,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 7,
+      "index": 15,
       "lines": [
         {
           "offset": 11311,
@@ -41863,7 +42019,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 8,
+      "index": 16,
       "lines": [
         {
           "offset": 11382,
@@ -41875,7 +42031,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 9,
+      "index": 17,
       "lines": [
         {
           "offset": 11437,
@@ -41887,7 +42043,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 10,
+      "index": 18,
       "lines": [
         {
           "offset": 11478,
@@ -41905,7 +42061,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 11,
+      "index": 19,
       "lines": [
         {
           "offset": 11549,
@@ -41923,7 +42079,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 12,
+      "index": 20,
       "lines": [
         {
           "offset": 11620,
@@ -41947,7 +42103,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 13,
+      "index": 21,
       "lines": [
         {
           "offset": 11710,
@@ -41971,7 +42127,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 14,
+      "index": 22,
       "lines": [
         {
           "offset": 11800,
@@ -41989,7 +42145,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 15,
+      "index": 23,
       "lines": [
         {
           "offset": 11902,
@@ -42013,7 +42169,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 16,
+      "index": 24,
       "lines": [
         {
           "offset": 11989,
@@ -42349,7 +42505,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 17,
+      "index": 25,
       "lines": [
         {
           "offset": 13480,
@@ -42418,7 +42574,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 18,
+      "index": 26,
       "lines": [
         {
           "offset": 13735,
@@ -42430,7 +42586,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 19,
+      "index": 27,
       "lines": [
         {
           "offset": 13766,
@@ -42484,7 +42640,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 20,
+      "index": 28,
       "lines": [
         {
           "offset": 13973,
@@ -42508,7 +42664,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 21,
+      "index": 29,
       "lines": [
         {
           "offset": 14058,
@@ -42520,7 +42676,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 22,
+      "index": 30,
       "lines": [
         {
           "offset": 14089,
@@ -42538,7 +42694,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 23,
+      "index": 31,
       "lines": [
         {
           "offset": 14143,
@@ -42550,7 +42706,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 24,
+      "index": 32,
       "lines": [
         {
           "offset": 14203,
@@ -42562,7 +42718,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 25,
+      "index": 33,
       "lines": [
         {
           "offset": 14231,
@@ -42580,7 +42736,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 26,
+      "index": 34,
       "lines": [
         {
           "offset": 14277,
@@ -42598,7 +42754,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 27,
+      "index": 35,
       "lines": [
         {
           "offset": 14358,
@@ -42623,7 +42779,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 28,
+      "index": 36,
       "lines": [
         {
           "offset": 14425,
@@ -42641,7 +42797,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 29,
+      "index": 37,
       "lines": [
         {
           "offset": 14483,
@@ -42659,7 +42815,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 30,
+      "index": 38,
       "lines": [
         {
           "offset": 14529,
@@ -42696,7 +42852,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 31,
+      "index": 39,
       "lines": [
         {
           "offset": 14711,
@@ -42733,7 +42889,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 32,
+      "index": 40,
       "lines": [
         {
           "offset": 14862,
@@ -42770,7 +42926,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 33,
+      "index": 41,
       "lines": [
         {
           "offset": 15163,
@@ -42856,7 +43012,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 34,
+      "index": 42,
       "lines": [
         {
           "offset": 15473,
@@ -42880,7 +43036,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 35,
+      "index": 43,
       "lines": [
         {
           "offset": 15650,
@@ -42892,7 +43048,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 36,
+      "index": 44,
       "lines": [
         {
           "offset": 15848,
@@ -42916,7 +43072,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 37,
+      "index": 45,
       "lines": [
         {
           "offset": 15964,
@@ -42952,7 +43108,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 38,
+      "index": 46,
       "lines": [
         {
           "offset": 16113,
@@ -42972,7 +43128,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 39,
+      "index": 47,
       "lines": [
         {
           "offset": 16198,
@@ -42990,7 +43146,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 40,
+      "index": 48,
       "lines": [
         {
           "offset": 16263,
@@ -43010,7 +43166,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 41,
+      "index": 49,
       "lines": [
         {
           "offset": 16348,
@@ -43028,7 +43184,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 42,
+      "index": 50,
       "lines": [
         {
           "offset": 16413,
@@ -43048,7 +43204,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 43,
+      "index": 51,
       "lines": [
         {
           "offset": 16498,
@@ -43066,7 +43222,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 44,
+      "index": 52,
       "lines": [
         {
           "offset": 17376,
