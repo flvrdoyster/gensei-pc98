@@ -9,21 +9,21 @@
           "jp": "初めから遊ぶ",
           "jp_len": 12,
           "kr": "새롭게 놀기",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 79,
           "jp": "続きを楽しむ",
           "jp_len": 12,
           "kr": "계속 즐기기",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 94,
           "jp": "ディスプレイ",
           "jp_len": 12,
           "kr": "디스플레이",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 188,
@@ -86,14 +86,14 @@
           "jp": "アナログ",
           "jp_len": 8,
           "kr": "아날로그",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 349,
           "jp": "液　晶",
           "jp_len": 6,
           "kr": "액정",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 658,
@@ -191,14 +191,14 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1053,
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 1073,
@@ -8916,14 +8916,14 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 18983,
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 19003,
@@ -28008,14 +28008,14 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4807,
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 4827,
@@ -32761,14 +32761,14 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8266,
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 8286,
@@ -39764,7 +39764,7 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -39777,7 +39777,7 @@
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         }
       ]
     },
@@ -50752,14 +50752,14 @@
           "jp": "は　い",
           "jp_len": 6,
           "kr": "네",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22899,
           "jp": "いいえ",
           "jp_len": 6,
           "kr": "아니오",
-          "tag": "system"
+          "tag": "menu"
         },
         {
           "offset": 22919,
@@ -54269,7 +54269,7 @@
           "offset": 14311,
           "jp": "お役に立てなくて",
           "jp_len": 16,
-          "kr": "도움이 못 되어서",
+          "kr": "도움이 못 되어",
           "tag": "monolog"
         },
         {
@@ -55098,21 +55098,21 @@
       "tag": "battle",
       "jp": "薬草を使う",
       "jp_len": 10,
-      "kr": "약초를쓴다"
+      "kr": "약초 사용"
     },
     {
       "offset": 13824,
       "tag": "battle",
       "jp": "毒消しを使う",
       "jp_len": 12,
-      "kr": "해독약을쓴다"
+      "kr": "해독약 사용"
     },
     {
       "offset": 13845,
       "tag": "battle",
       "jp": "リフレッシュの水を使う",
       "jp_len": 22,
-      "kr": "/리/프/레/시워터를쓴다"
+      "kr": "리프레시워터 사용"
     },
     {
       "offset": 22540,
