@@ -5118,63 +5118,39 @@
           "jp_len": 4,
           "kr": "",
           "tag": "ignore"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 141,
+      "lines": [
         {
           "offset": 29646,
           "jp": "薬草",
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 29652,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 29660,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 29682,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 142,
+      "lines": [
         {
           "offset": 29715,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 29725,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 29733,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 29761,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 143,
+      "lines": [
         {
           "offset": 29776,
           "jp": "リフレッシュの水",
@@ -5182,140 +5158,65 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 29794,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 29804,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 29830,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 144,
+      "lines": [
         {
           "offset": 29861,
           "jp": "蛮刀",
           "jp_len": 4,
           "kr": "만도",
           "tag": "item"
-        },
-        {
-          "offset": 29867,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 29879,
-          "jp": "　遠い異国から伝わった　一風",
-          "jp_len": 28,
-          "kr": "먼 이국에서 전해진 특이한",
-          "tag": "item"
-        },
-        {
-          "offset": 29909,
-          "jp": "　変わった曲刀",
-          "jp_len": 14,
-          "kr": "모양의 곡도",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 145,
+      "lines": [
         {
           "offset": 29930,
           "jp": "鎖かたびら",
           "jp_len": 10,
           "kr": "사슬갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 29942,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 29954,
-          "jp": "　昔　戦士たちのあこがれだった",
-          "jp_len": 30,
-          "kr": "옛날 전사들이 동경했던 갑옷",
-          "tag": "item"
-        },
-        {
-          "offset": 29986,
-          "jp": "　よろい　これは固い",
-          "jp_len": 20,
-          "kr": "이것은 단단하다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 146,
+      "lines": [
         {
           "offset": 30039,
           "jp": "薬草",
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 30045,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 30053,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 30075,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 147,
+      "lines": [
         {
           "offset": 30108,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 30118,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 30126,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 30154,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 148,
+      "lines": [
         {
           "offset": 30169,
           "jp": "リフレッシュの水",
@@ -5323,84 +5224,39 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 30187,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 30197,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 30223,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 149,
+      "lines": [
         {
           "offset": 30254,
           "jp": "蛮刀",
           "jp_len": 4,
           "kr": "만도",
           "tag": "item"
-        },
-        {
-          "offset": 30260,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 30272,
-          "jp": "　遠い異国から伝わった　一風",
-          "jp_len": 28,
-          "kr": "먼 이국에서 전해진 특이한",
-          "tag": "item"
-        },
-        {
-          "offset": 30302,
-          "jp": "　変わった曲刀",
-          "jp_len": 14,
-          "kr": "모양의 곡도",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 150,
+      "lines": [
         {
           "offset": 30323,
           "jp": "鎖かたびら",
           "jp_len": 10,
           "kr": "사슬갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 30335,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 30347,
-          "jp": "　昔　戦士たちのあこがれだった",
-          "jp_len": 30,
-          "kr": "옛날 전사들이 동경했던 갑옷",
-          "tag": "item"
-        },
-        {
-          "offset": 30379,
-          "jp": "　よろい　これは固い",
-          "jp_len": 20,
-          "kr": "이것은 단단하다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 151,
+      "lines": [
         {
           "offset": 30406,
           "jp": "休　む",
@@ -5414,7 +5270,13 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 152,
+      "lines": [
         {
           "offset": 30444,
           "jp": "セーブ",
@@ -5428,7 +5290,13 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 153,
+      "lines": [
         {
           "offset": 30670,
           "jp": "データロード",
@@ -5449,7 +5317,13 @@
           "jp_len": 12,
           "kr": "DOS 복귀",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 154,
+      "lines": [
         {
           "offset": 30805,
           "jp": "データ１",
@@ -5505,55 +5379,45 @@
           "jp_len": 8,
           "kr": "데이터8",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 155,
+      "lines": [
         {
           "offset": 30904,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 156,
+      "lines": [
         {
           "offset": 30997,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
           "tag": "system"
-        },
-        {
-          "offset": 31056,
-          "jp": "は　い",
-          "jp_len": 6,
-          "kr": "네",
-          "tag": "system"
-        },
-        {
-          "offset": 31065,
-          "jp": "いいえ",
-          "jp_len": 6,
-          "kr": "아니오",
-          "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 157,
+      "lines": [
         {
           "offset": 31085,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
           "tag": "system"
-        },
-        {
-          "offset": 32015,
-          "jp": "＄喪",
-          "jp_len": 4,
-          "kr": "",
-          "tag": "ignore"
-        },
-        {
-          "offset": 32265,
-          "jp": "＄喪",
-          "jp_len": 4,
-          "kr": "",
-          "tag": "ignore"
         }
       ]
     },
@@ -18924,63 +18788,39 @@
           "jp": "　では　後のことはたのんだぞ",
           "jp_len": 28,
           "kr": "그럼, 몸 조심 하세요 아타호 그래, 너희들도 조심해 그럼 뒷일을 부탁한다!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 69,
+      "lines": [
         {
           "offset": 25704,
           "jp": "薬草",
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 25710,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 25718,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 25740,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 70,
+      "lines": [
         {
           "offset": 25773,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 25783,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 25791,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 25819,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 71,
+      "lines": [
         {
           "offset": 25834,
           "jp": "リフレッシュの水",
@@ -18988,140 +18828,65 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 25852,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 25862,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 25888,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 72,
+      "lines": [
         {
           "offset": 25919,
           "jp": "銀の短剣",
           "jp_len": 8,
           "kr": "은단검",
           "tag": "item"
-        },
-        {
-          "offset": 25929,
-          "jp": "２０００Ｇ",
-          "jp_len": 10,
-          "kr": "2000G",
-          "tag": "item"
-        },
-        {
-          "offset": 25941,
-          "jp": "　魔をはらうという銀で",
-          "jp_len": 22,
-          "kr": "마를 쫓는다는 은으로",
-          "tag": "item"
-        },
-        {
-          "offset": 25965,
-          "jp": "　造られた短剣",
-          "jp_len": 14,
-          "kr": "만들어진 단검",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 73,
+      "lines": [
         {
           "offset": 25986,
           "jp": "祈りの聖衣",
           "jp_len": 10,
           "kr": "기도의성의",
           "tag": "item"
-        },
-        {
-          "offset": 25998,
-          "jp": "３０００Ｇ",
-          "jp_len": 10,
-          "kr": "3000G",
-          "tag": "item"
-        },
-        {
-          "offset": 26010,
-          "jp": "　長い巡礼の旅にも耐える",
-          "jp_len": 24,
-          "kr": "긴 순례 여행도 견디는",
-          "tag": "item"
-        },
-        {
-          "offset": 26036,
-          "jp": "　丈夫なローブ風の服",
-          "jp_len": 20,
-          "kr": "튼튼한 로브풍의 옷",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 74,
+      "lines": [
         {
           "offset": 26089,
           "jp": "薬草",
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 26095,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 26103,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 26125,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 75,
+      "lines": [
         {
           "offset": 26158,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 26168,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 26176,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 26204,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 76,
+      "lines": [
         {
           "offset": 26219,
           "jp": "リフレッシュの水",
@@ -19129,84 +18894,39 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 26237,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 26247,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 26273,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 77,
+      "lines": [
         {
           "offset": 26304,
           "jp": "銀の短剣",
           "jp_len": 8,
           "kr": "은단검",
           "tag": "item"
-        },
-        {
-          "offset": 26314,
-          "jp": "２０００Ｇ",
-          "jp_len": 10,
-          "kr": "2000G",
-          "tag": "item"
-        },
-        {
-          "offset": 26326,
-          "jp": "　魔をはらうという銀で",
-          "jp_len": 22,
-          "kr": "마를 쫓는다는 은으로",
-          "tag": "item"
-        },
-        {
-          "offset": 26350,
-          "jp": "　造られた短剣",
-          "jp_len": 14,
-          "kr": "만들어진 단검",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 78,
+      "lines": [
         {
           "offset": 26371,
           "jp": "祈りの聖衣",
           "jp_len": 10,
           "kr": "기도의성의",
           "tag": "item"
-        },
-        {
-          "offset": 26383,
-          "jp": "３０００Ｇ",
-          "jp_len": 10,
-          "kr": "3000G",
-          "tag": "item"
-        },
-        {
-          "offset": 26395,
-          "jp": "　長い巡礼の旅にも耐える",
-          "jp_len": 24,
-          "kr": "긴 순례 여행도 견디는",
-          "tag": "item"
-        },
-        {
-          "offset": 26421,
-          "jp": "　丈夫なローブ風の服",
-          "jp_len": 20,
-          "kr": "튼튼한 로브풍의 옷",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 79,
+      "lines": [
         {
           "offset": 26448,
           "jp": "休　む",
@@ -19220,7 +18940,13 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 80,
+      "lines": [
         {
           "offset": 26486,
           "jp": "セーブ",
@@ -19239,7 +18965,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 69,
+      "index": 81,
       "lines": [
         {
           "offset": 26539,
@@ -19263,7 +18989,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 70,
+      "index": 82,
       "lines": [
         {
           "offset": 26610,
@@ -19293,7 +19019,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 71,
+      "index": 83,
       "lines": [
         {
           "offset": 26697,
@@ -19323,7 +19049,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 72,
+      "index": 84,
       "lines": [
         {
           "offset": 26804,
@@ -19341,7 +19067,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 73,
+      "index": 85,
       "lines": [
         {
           "offset": 26847,
@@ -19377,7 +19103,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 74,
+      "index": 86,
       "lines": [
         {
           "offset": 26974,
@@ -19413,7 +19139,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 75,
+      "index": 87,
       "lines": [
         {
           "offset": 27086,
@@ -19449,7 +19175,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 76,
+      "index": 88,
       "lines": [
         {
           "offset": 27221,
@@ -19473,7 +19199,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 77,
+      "index": 89,
       "lines": [
         {
           "offset": 27324,
@@ -19498,7 +19224,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 78,
+      "index": 90,
       "lines": [
         {
           "offset": 27399,
@@ -19510,7 +19236,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 79,
+      "index": 91,
       "lines": [
         {
           "offset": 27424,
@@ -19552,7 +19278,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 80,
+      "index": 92,
       "lines": [
         {
           "offset": 27589,
@@ -19576,7 +19302,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 81,
+      "index": 93,
       "lines": [
         {
           "offset": 27680,
@@ -19612,7 +19338,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 82,
+      "index": 94,
       "lines": [
         {
           "offset": 27813,
@@ -19642,7 +19368,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 83,
+      "index": 95,
       "lines": [
         {
           "offset": 27936,
@@ -19666,7 +19392,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 84,
+      "index": 96,
       "lines": [
         {
           "offset": 28038,
@@ -19756,7 +19482,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 85,
+      "index": 97,
       "lines": [
         {
           "offset": 28456,
@@ -19792,7 +19518,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 86,
+      "index": 98,
       "lines": [
         {
           "offset": 28601,
@@ -19816,7 +19542,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 87,
+      "index": 99,
       "lines": [
         {
           "offset": 28688,
@@ -19858,7 +19584,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 88,
+      "index": 100,
       "lines": [
         {
           "offset": 28851,
@@ -19870,7 +19596,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 89,
+      "index": 101,
       "lines": [
         {
           "offset": 28888,
@@ -19918,7 +19644,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 90,
+      "index": 102,
       "lines": [
         {
           "offset": 29067,
@@ -19948,7 +19674,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 91,
+      "index": 103,
       "lines": [
         {
           "offset": 29176,
@@ -19984,7 +19710,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 92,
+      "index": 104,
       "lines": [
         {
           "offset": 29311,
@@ -20008,7 +19734,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 93,
+      "index": 105,
       "lines": [
         {
           "offset": 29396,
@@ -20032,7 +19758,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 94,
+      "index": 106,
       "lines": [
         {
           "offset": 29471,
@@ -20056,7 +19782,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 95,
+      "index": 107,
       "lines": [
         {
           "offset": 29560,
@@ -20080,7 +19806,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 96,
+      "index": 108,
       "lines": [
         {
           "offset": 29645,
@@ -20116,7 +19842,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 97,
+      "index": 109,
       "lines": [
         {
           "offset": 29784,
@@ -20146,7 +19872,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 98,
+      "index": 110,
       "lines": [
         {
           "offset": 29893,
@@ -20182,7 +19908,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 99,
+      "index": 111,
       "lines": [
         {
           "offset": 30018,
@@ -20212,7 +19938,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 100,
+      "index": 112,
       "lines": [
         {
           "offset": 30119,
@@ -20236,7 +19962,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 101,
+      "index": 113,
       "lines": [
         {
           "offset": 30189,
@@ -20278,7 +20004,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 102,
+      "index": 114,
       "lines": [
         {
           "offset": 30331,
@@ -20320,7 +20046,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 103,
+      "index": 115,
       "lines": [
         {
           "offset": 30484,
@@ -20398,7 +20124,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 104,
+      "index": 116,
       "lines": [
         {
           "offset": 30807,
@@ -20434,7 +20160,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 105,
+      "index": 117,
       "lines": [
         {
           "offset": 30936,
@@ -20470,7 +20196,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 106,
+      "index": 118,
       "lines": [
         {
           "offset": 31075,
@@ -20500,7 +20226,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 107,
+      "index": 119,
       "lines": [
         {
           "offset": 31197,
@@ -20518,7 +20244,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 108,
+      "index": 120,
       "lines": [
         {
           "offset": 31253,
@@ -20536,7 +20262,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 109,
+      "index": 121,
       "lines": [
         {
           "offset": 31316,
@@ -20554,7 +20280,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 110,
+      "index": 122,
       "lines": [
         {
           "offset": 31375,
@@ -20578,7 +20304,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 111,
+      "index": 123,
       "lines": [
         {
           "offset": 31467,
@@ -20608,7 +20334,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 112,
+      "index": 124,
       "lines": [
         {
           "offset": 31587,
@@ -20638,7 +20364,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 113,
+      "index": 125,
       "lines": [
         {
           "offset": 31698,
@@ -20686,7 +20412,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 114,
+      "index": 126,
       "lines": [
         {
           "offset": 31883,
@@ -20716,7 +20442,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 115,
+      "index": 127,
       "lines": [
         {
           "offset": 32002,
@@ -20746,7 +20472,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 116,
+      "index": 128,
       "lines": [
         {
           "offset": 32103,
@@ -20788,7 +20514,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 117,
+      "index": 129,
       "lines": [
         {
           "offset": 32273,
@@ -20818,7 +20544,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 118,
+      "index": 130,
       "lines": [
         {
           "offset": 32371,
@@ -20842,7 +20568,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 119,
+      "index": 131,
       "lines": [
         {
           "offset": 32454,
@@ -20860,7 +20586,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 120,
+      "index": 132,
       "lines": [
         {
           "offset": 32517,
@@ -20890,7 +20616,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 121,
+      "index": 133,
       "lines": [
         {
           "offset": 32630,
@@ -27864,56 +27590,26 @@
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 19826,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 19834,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 19856,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 80,
+      "lines": [
         {
           "offset": 19889,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 19899,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 19907,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 19935,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 81,
+      "lines": [
         {
           "offset": 19950,
           "jp": "リフレッシュの水",
@@ -27921,217 +27617,104 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 19968,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 19978,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 20004,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 82,
+      "lines": [
         {
           "offset": 20035,
           "jp": "蛮刀",
           "jp_len": 4,
           "kr": "만도",
           "tag": "item"
-        },
-        {
-          "offset": 20041,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20053,
-          "jp": "　遠い異国から伝わった　一風",
-          "jp_len": 28,
-          "kr": "먼 이국에서 전해진 특이한",
-          "tag": "item"
-        },
-        {
-          "offset": 20083,
-          "jp": "　変わった曲刀",
-          "jp_len": 14,
-          "kr": "모양의 곡도",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 83,
+      "lines": [
         {
           "offset": 20104,
           "jp": "鎖かたびら",
           "jp_len": 10,
           "kr": "사슬갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 20116,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20128,
-          "jp": "　昔　戦士たちのあこがれだった",
-          "jp_len": 30,
-          "kr": "옛날 전사들이 동경했던 갑옷",
-          "tag": "item"
-        },
-        {
-          "offset": 20160,
-          "jp": "　よろい　これは固い",
-          "jp_len": 20,
-          "kr": "이것은 단단하다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 84,
+      "lines": [
         {
           "offset": 20187,
           "jp": "鋼鉄の刀",
           "jp_len": 8,
           "kr": "강철도",
           "tag": "item"
-        },
-        {
-          "offset": 20197,
-          "jp": "３０００Ｇ",
-          "jp_len": 10,
-          "kr": "3000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20209,
-          "jp": "　東方の戦士　サムライの",
-          "jp_len": 24,
-          "kr": "동방의 전사 사무라이가",
-          "tag": "item"
-        },
-        {
-          "offset": 20235,
-          "jp": "　使う武器",
-          "jp_len": 10,
-          "kr": "쓰는 무기",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 85,
+      "lines": [
         {
           "offset": 20252,
           "jp": "上忍スーツ",
           "jp_len": 10,
           "kr": "상급슈트",
           "tag": "item"
-        },
-        {
-          "offset": 20264,
-          "jp": "４０００Ｇ",
-          "jp_len": 10,
-          "kr": "4000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20276,
-          "jp": "　エキゾチックな戦闘服　特殊な",
-          "jp_len": 30,
-          "kr": "엑조틱한 전투복 특수한 직조",
-          "tag": "item"
-        },
-        {
-          "offset": 20308,
-          "jp": "　織りかたで丈夫にできている",
-          "jp_len": 28,
-          "kr": "방식으로 튼튼하게 짜였다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 86,
+      "lines": [
         {
           "offset": 20343,
           "jp": "鋼鉄のよろい",
           "jp_len": 12,
           "kr": "강철갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 20357,
-          "jp": "７０００Ｇ",
-          "jp_len": 10,
-          "kr": "7000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20369,
-          "jp": "　昔　騎士たちがまとっていた",
-          "jp_len": 28,
-          "kr": "옛날 기사들이 착용했던",
-          "tag": "item"
-        },
-        {
-          "offset": 20399,
-          "jp": "　よろい",
-          "jp_len": 8,
-          "kr": "갑옷",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 87,
+      "lines": [
         {
           "offset": 20414,
           "jp": "雲樹の杖",
           "jp_len": 8,
           "kr": "운목장",
           "tag": "item"
-        },
-        {
-          "offset": 20424,
-          "jp": "２５００Ｇ",
-          "jp_len": 10,
-          "kr": "2500G",
-          "tag": "item"
-        },
-        {
-          "offset": 20436,
-          "jp": "　希少なため　すごく高級な杖",
-          "jp_len": 28,
-          "kr": "희귀해서 매우 비싼 지팡이",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 88,
+      "lines": [
         {
           "offset": 20471,
           "jp": "賢者のローブ",
           "jp_len": 12,
           "kr": "현자로브",
           "tag": "item"
-        },
-        {
-          "offset": 20485,
-          "jp": "３０００Ｇ",
-          "jp_len": 10,
-          "kr": "3000G",
-          "tag": "item"
-        },
-        {
-          "offset": 20497,
-          "jp": "　ヘタなよろいよりも防御力が",
-          "jp_len": 28,
-          "kr": "어설픈 갑옷보다 방어력이",
-          "tag": "item"
-        },
-        {
-          "offset": 20527,
-          "jp": "　高く　魔術師も一安心",
-          "jp_len": 22,
-          "kr": "높아 마술사도 안심",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 89,
+      "lines": [
         {
           "offset": 20558,
           "jp": "休　む",
@@ -46063,7 +45646,13 @@
           "jp": "「それなら　もうお持ちですぜ",
           "jp_len": 28,
           "kr": "「하십시오. 그거라면 이미"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 27,
+      "lines": [
         {
           "offset": 9102,
           "jp": "リフレッシュの水",
@@ -46071,140 +45660,65 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 9120,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 9130,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 9156,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 9187,
           "jp": "降魔刀",
           "jp_len": 6,
           "kr": "강마도",
           "tag": "item"
-        },
-        {
-          "offset": 9195,
-          "jp": "１００００Ｇ",
-          "jp_len": 12,
-          "kr": "10000G ",
-          "tag": "item"
-        },
-        {
-          "offset": 9209,
-          "jp": "　東方より直輸入した　刀の",
-          "jp_len": 26,
-          "kr": "동방에서 직수입한 도의",
-          "tag": "item"
-        },
-        {
-          "offset": 9237,
-          "jp": "　最高峰　切れ味ばつぐん",
-          "jp_len": 24,
-          "kr": "최고봉 베는 맛이 발군",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 29,
+      "lines": [
         {
           "offset": 9268,
           "jp": "サムライアーマー",
           "jp_len": 16,
           "kr": "사무라이아머",
           "tag": "item"
-        },
-        {
-          "offset": 9286,
-          "jp": "１４０００Ｇ",
-          "jp_len": 12,
-          "kr": "14000G",
-          "tag": "item"
-        },
-        {
-          "offset": 9300,
-          "jp": "　東方より直輸入の最高級品",
-          "jp_len": 26,
-          "kr": "동방에서 직수입한 최고급품",
-          "tag": "item"
-        },
-        {
-          "offset": 9328,
-          "jp": "　いまならこの価格で　ご奉仕",
-          "jp_len": 28,
-          "kr": "지금이면 이 가격으로 세일 중",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 30,
+      "lines": [
         {
           "offset": 9363,
           "jp": "雷精のギター",
           "jp_len": 12,
           "kr": "번개기타",
           "tag": "item"
-        },
-        {
-          "offset": 9377,
-          "jp": "１５０００Ｇ",
-          "jp_len": 12,
-          "kr": "15000G",
-          "tag": "item"
-        },
-        {
-          "offset": 9391,
-          "jp": "　キリが持つと凶器に変わる",
-          "jp_len": 26,
-          "kr": "키리가 지니면 흉기로 변하는",
-          "tag": "item"
-        },
-        {
-          "offset": 9419,
-          "jp": "　悲しい名器",
-          "jp_len": 12,
-          "kr": "가련한 악기",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 9438,
           "jp": "もっとハデな衣装",
           "jp_len": 16,
           "kr": "더화려한의상",
           "tag": "item"
-        },
-        {
-          "offset": 9456,
-          "jp": "１６０００Ｇ",
-          "jp_len": 12,
-          "kr": "16000G",
-          "tag": "item"
-        },
-        {
-          "offset": 9470,
-          "jp": "　特注で作らせたキリ専用の",
-          "jp_len": 26,
-          "kr": "특별 주문하여 만든 키리의",
-          "tag": "item"
-        },
-        {
-          "offset": 9498,
-          "jp": "　防具",
-          "jp_len": 6,
-          "kr": "전용 방어구",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 32,
+      "lines": [
         {
           "offset": 9511,
           "jp": "休　む",
@@ -48364,56 +47878,26 @@
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 12764,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 12772,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 12794,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 67,
+      "lines": [
         {
           "offset": 12827,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 12837,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 12845,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 12873,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 68,
+      "lines": [
         {
           "offset": 12888,
           "jp": "リフレッシュの水",
@@ -48421,140 +47905,65 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 12906,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 12916,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 12942,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 69,
+      "lines": [
         {
           "offset": 12973,
           "jp": "蛮刀",
           "jp_len": 4,
           "kr": "만도",
           "tag": "item"
-        },
-        {
-          "offset": 12979,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 12991,
-          "jp": "　遠い異国から伝わった　一風",
-          "jp_len": 28,
-          "kr": "먼 이국에서 전해진 특이한",
-          "tag": "item"
-        },
-        {
-          "offset": 13021,
-          "jp": "　変わった曲刀",
-          "jp_len": 14,
-          "kr": "모양의 곡도",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 70,
+      "lines": [
         {
           "offset": 13042,
           "jp": "鎖かたびら",
           "jp_len": 10,
           "kr": "사슬갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 13054,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 13066,
-          "jp": "　昔　戦士たちのあこがれだった",
-          "jp_len": 30,
-          "kr": "옛날 전사들이 동경했던 갑옷",
-          "tag": "item"
-        },
-        {
-          "offset": 13098,
-          "jp": "　よろい　これは固い",
-          "jp_len": 20,
-          "kr": "이것은 단단하다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 71,
+      "lines": [
         {
           "offset": 13151,
           "jp": "薬草",
           "jp_len": 4,
           "kr": "약초",
           "tag": "item"
-        },
-        {
-          "offset": 13157,
-          "jp": "５０Ｇ",
-          "jp_len": 6,
-          "kr": "50G",
-          "tag": "item"
-        },
-        {
-          "offset": 13165,
-          "jp": "　子供でも知っている",
-          "jp_len": 20,
-          "kr": "아이들도 아는",
-          "tag": "item"
-        },
-        {
-          "offset": 13187,
-          "jp": "　回復アイテムのパイオニア",
-          "jp_len": 26,
-          "kr": "회복 아이템의 선구자",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 72,
+      "lines": [
         {
           "offset": 13220,
           "jp": "毒消し薬",
           "jp_len": 8,
           "kr": "해독약",
           "tag": "item"
-        },
-        {
-          "offset": 13230,
-          "jp": "３０Ｇ",
-          "jp_len": 6,
-          "kr": "30G",
-          "tag": "item"
-        },
-        {
-          "offset": 13238,
-          "jp": "　あらゆる毒の効果をなくす",
-          "jp_len": 26,
-          "kr": "온갖 독의 효과를 없애는",
-          "tag": "item"
-        },
-        {
-          "offset": 13266,
-          "jp": "　解毒薬",
-          "jp_len": 8,
-          "kr": "해독약",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 73,
+      "lines": [
         {
           "offset": 13281,
           "jp": "リフレッシュの水",
@@ -48562,84 +47971,39 @@
           "kr": "/리/프/레/시/워/터",
           "halfwidth": true,
           "tag": "item"
-        },
-        {
-          "offset": 13299,
-          "jp": "１００Ｇ",
-          "jp_len": 8,
-          "kr": "100G",
-          "tag": "item"
-        },
-        {
-          "offset": 13309,
-          "jp": "　戦闘中に戦えなくなった",
-          "jp_len": 24,
-          "kr": "싸우다 쓰러진 동료도",
-          "tag": "item"
-        },
-        {
-          "offset": 13335,
-          "jp": "　仲間も　この１本で復活",
-          "jp_len": 24,
-          "kr": "이 한 병으로 부활",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 74,
+      "lines": [
         {
           "offset": 13366,
           "jp": "蛮刀",
           "jp_len": 4,
           "kr": "만도",
           "tag": "item"
-        },
-        {
-          "offset": 13372,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 13384,
-          "jp": "　遠い異国から伝わった　一風",
-          "jp_len": 28,
-          "kr": "먼 이국에서 전해진 특이한",
-          "tag": "item"
-        },
-        {
-          "offset": 13414,
-          "jp": "　変わった曲刀",
-          "jp_len": 14,
-          "kr": "모양의 곡도",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 75,
+      "lines": [
         {
           "offset": 13435,
           "jp": "鎖かたびら",
           "jp_len": 10,
           "kr": "사슬갑옷",
           "tag": "item"
-        },
-        {
-          "offset": 13447,
-          "jp": "１０００Ｇ",
-          "jp_len": 10,
-          "kr": "1000G",
-          "tag": "item"
-        },
-        {
-          "offset": 13459,
-          "jp": "　昔　戦士たちのあこがれだった",
-          "jp_len": 30,
-          "kr": "옛날 전사들이 동경했던 갑옷",
-          "tag": "item"
-        },
-        {
-          "offset": 13491,
-          "jp": "　よろい　これは固い",
-          "jp_len": 20,
-          "kr": "이것은 단단하다",
-          "tag": "item"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 76,
+      "lines": [
         {
           "offset": 13518,
           "jp": "休　む",
@@ -48653,7 +48017,13 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 77,
+      "lines": [
         {
           "offset": 13616,
           "jp": "データロード",
@@ -48674,7 +48044,13 @@
           "jp_len": 12,
           "kr": "DOS 복귀",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 78,
+      "lines": [
         {
           "offset": 13751,
           "jp": "データ１",
@@ -48730,55 +48106,45 @@
           "jp_len": 8,
           "kr": "데이터8",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 79,
+      "lines": [
         {
           "offset": 13850,
           "jp": "データロード",
           "jp_len": 12,
           "kr": "로드",
           "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 80,
+      "lines": [
         {
           "offset": 13943,
           "jp": "データセーブ",
           "jp_len": 12,
           "kr": "세이브",
           "tag": "system"
-        },
-        {
-          "offset": 14002,
-          "jp": "は　い",
-          "jp_len": 6,
-          "kr": "네",
-          "tag": "system"
-        },
-        {
-          "offset": 14011,
-          "jp": "いいえ",
-          "jp_len": 6,
-          "kr": "아니오",
-          "tag": "system"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 81,
+      "lines": [
         {
           "offset": 14031,
           "jp": "ＤＯＳに戻る",
           "jp_len": 12,
           "kr": "DOS 복귀",
           "tag": "system"
-        },
-        {
-          "offset": 14961,
-          "jp": "＄喪",
-          "jp_len": 4,
-          "kr": "",
-          "tag": "ignore"
-        },
-        {
-          "offset": 15211,
-          "jp": "＄喪",
-          "jp_len": 4,
-          "kr": "",
-          "tag": "ignore"
         }
       ]
     },
