@@ -5717,7 +5717,13 @@
           "jp": "「おお　スマッシュではないか！",
           "jp_len": 30,
           "kr": "「오오 스마슈 아닌가! "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 8,
+      "lines": [
         {
           "offset": 6631,
           "jp": "スマッシュ",
@@ -5873,7 +5879,13 @@
           "jp": "　ファーリン殿だ",
           "jp_len": 16,
           "kr": "화린 공이시다 "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 9,
+      "lines": [
         {
           "offset": 7169,
           "jp": "ファーリン",
@@ -5947,7 +5959,13 @@
           "jp": "　よかったら　俺と…",
           "jp_len": 20,
           "kr": "괜찮으면 나랑… "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 10,
+      "lines": [
         {
           "offset": 7461,
           "jp": "長老",
@@ -6016,7 +6034,13 @@
           "jp": "　ファーリン殿",
           "jp_len": 14,
           "kr": "화린 공"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 7695,
           "jp": "ファーリン",
@@ -6029,7 +6053,13 @@
           "jp": "「いえ　私は…",
           "jp_len": 14,
           "kr": "「아뇨 저는…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 7741,
           "jp": "長老",
@@ -6135,7 +6165,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 8,
+      "index": 13,
       "lines": [
         {
           "offset": 8071,
@@ -6166,7 +6196,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 9,
+      "index": 14,
       "lines": [
         {
           "offset": 8150,
@@ -6203,7 +6233,13 @@
           "jp": "　犬の民の長が　いるはず",
           "jp_len": 24,
           "kr": "개민족 족장이 있을 터"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 8310,
           "jp": "スマッシュ",
@@ -6252,7 +6288,13 @@
           "jp": "　や　やめ…やめてください…",
           "jp_len": 28,
           "kr": "그… 그만하세요…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 16,
+      "lines": [
         {
           "offset": 8516,
           "jp": "スマッシュ",
@@ -6385,7 +6427,13 @@
           "jp": "　者ども　行くでござるぞ",
           "jp_len": 24,
           "kr": "이만들 떠나지요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 17,
+      "lines": [
         {
           "offset": 9020,
           "jp": "スマッシュ",
@@ -6403,7 +6451,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 10,
+      "index": 18,
       "lines": [
         {
           "offset": 9086,
@@ -6421,7 +6469,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 11,
+      "index": 19,
       "lines": [
         {
           "offset": 9142,
@@ -6457,7 +6505,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 12,
+      "index": 20,
       "lines": [
         {
           "offset": 9291,
@@ -6499,7 +6547,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 13,
+      "index": 21,
       "lines": [
         {
           "offset": 9459,
@@ -6542,7 +6590,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 14,
+      "index": 22,
       "lines": [
         {
           "offset": 9624,
@@ -6572,7 +6620,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 15,
+      "index": 23,
       "lines": [
         {
           "offset": 9740,
@@ -6626,7 +6674,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 16,
+      "index": 24,
       "lines": [
         {
           "offset": 9993,
@@ -6717,7 +6765,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 17,
+      "index": 25,
       "lines": [
         {
           "offset": 10345,
@@ -6748,7 +6796,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 18,
+      "index": 26,
       "lines": [
         {
           "offset": 10432,
@@ -6772,7 +6820,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 19,
+      "index": 27,
       "lines": [
         {
           "offset": 10517,
@@ -6840,7 +6888,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 20,
+      "index": 28,
       "lines": [
         {
           "offset": 10801,
@@ -6852,7 +6900,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 21,
+      "index": 29,
       "lines": [
         {
           "offset": 10836,
@@ -6906,7 +6954,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 22,
+      "index": 30,
       "lines": [
         {
           "offset": 11059,
@@ -6918,7 +6966,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 23,
+      "index": 31,
       "lines": [
         {
           "offset": 11098,
@@ -6936,7 +6984,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 24,
+      "index": 32,
       "lines": [
         {
           "offset": 11151,
@@ -6984,7 +7032,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 25,
+      "index": 33,
       "lines": [
         {
           "offset": 11354,
@@ -7026,7 +7074,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 26,
+      "index": 34,
       "lines": [
         {
           "offset": 11516,
@@ -7110,7 +7158,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 27,
+      "index": 35,
       "lines": [
         {
           "offset": 11857,
@@ -7152,7 +7200,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 28,
+      "index": 36,
       "lines": [
         {
           "offset": 12015,
@@ -7176,7 +7224,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 29,
+      "index": 37,
       "lines": [
         {
           "offset": 12084,
@@ -7218,7 +7266,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 30,
+      "index": 38,
       "lines": [
         {
           "offset": 12252,
@@ -7230,7 +7278,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 31,
+      "index": 39,
       "lines": [
         {
           "offset": 12267,
@@ -7266,7 +7314,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 32,
+      "index": 40,
       "lines": [
         {
           "offset": 12398,
@@ -7296,7 +7344,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 33,
+      "index": 41,
       "lines": [
         {
           "offset": 12519,
@@ -7326,7 +7374,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 34,
+      "index": 42,
       "lines": [
         {
           "offset": 12654,
@@ -7368,7 +7416,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 35,
+      "index": 43,
       "lines": [
         {
           "offset": 12801,
@@ -7404,7 +7452,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 36,
+      "index": 44,
       "lines": [
         {
           "offset": 12930,
@@ -7464,7 +7512,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 37,
+      "index": 45,
       "lines": [
         {
           "offset": 13168,
@@ -7531,7 +7579,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 38,
+      "index": 46,
       "lines": [
         {
           "offset": 13423,
@@ -7574,7 +7622,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 39,
+      "index": 47,
       "lines": [
         {
           "offset": 13598,
@@ -7647,7 +7695,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 40,
+      "index": 48,
       "lines": [
         {
           "offset": 13867,
@@ -7677,7 +7725,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 41,
+      "index": 49,
       "lines": [
         {
           "offset": 13984,
@@ -7720,7 +7768,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 42,
+      "index": 50,
       "lines": [
         {
           "offset": 14141,
@@ -7762,7 +7810,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 43,
+      "index": 51,
       "lines": [
         {
           "offset": 14267,
@@ -7780,7 +7828,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 44,
+      "index": 52,
       "lines": [
         {
           "offset": 14317,
@@ -7798,7 +7846,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 45,
+      "index": 53,
       "lines": [
         {
           "offset": 14381,
@@ -7846,7 +7894,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 46,
+      "index": 54,
       "lines": [
         {
           "offset": 14573,
@@ -7876,7 +7924,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 47,
+      "index": 55,
       "lines": [
         {
           "offset": 14687,
@@ -7894,7 +7942,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 48,
+      "index": 56,
       "lines": [
         {
           "offset": 14729,
@@ -7918,7 +7966,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 49,
+      "index": 57,
       "lines": [
         {
           "offset": 14818,
@@ -7950,7 +7998,13 @@
           "jp": "　じーさんを　助けに行けたのにっ！",
           "jp_len": 34,
           "kr": "할아범을 구할 수 있었을텐데!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 58,
+      "lines": [
         {
           "offset": 14992,
           "jp": "長老",
@@ -8018,7 +8072,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 50,
+      "index": 59,
       "lines": [
         {
           "offset": 15257,
@@ -8038,7 +8092,13 @@
           "jp": "　じーさん",
           "jp_len": 10,
           "kr": "해보자구"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 60,
+      "lines": [
         {
           "offset": 15333,
           "jp": "長老",
@@ -8087,7 +8147,13 @@
           "jp": "　各地の辺境で　使命をはたしてきた",
           "jp_len": 34,
           "kr": "각지 변방에서 사명을 다해왔지"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 61,
+      "lines": [
         {
           "offset": 15551,
           "jp": "ファーリン",
@@ -8163,7 +8229,13 @@
           "jp": "「襲われた？　キツネの民もか！",
           "jp_len": 30,
           "kr": "「습격당했다고? 여우민족도!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 62,
+      "lines": [
         {
           "offset": 15847,
           "jp": "長老",
@@ -8219,7 +8291,13 @@
           "jp": "　だったんだ？",
           "jp_len": 14,
           "kr": "였어?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 63,
+      "lines": [
         {
           "offset": 16089,
           "jp": "ファーリン",
@@ -8250,7 +8328,13 @@
           "jp": "　伝え聞いていないのです",
           "jp_len": 24,
           "kr": "전해 들었을 뿐인걸요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 64,
+      "lines": [
         {
           "offset": 16219,
           "jp": "長老",
@@ -8381,7 +8465,13 @@
           "jp": "　聞かんうちに　そんな…",
           "jp_len": 24,
           "kr": "듣기도 전에 그런…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 65,
+      "lines": [
         {
           "offset": 16707,
           "jp": "ファーリン",
@@ -8425,7 +8515,13 @@
           "jp": "「まかせておきなさい",
           "jp_len": 20,
           "kr": "「맡겨두세요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 66,
+      "lines": [
         {
           "offset": 16895,
           "jp": "長老",
@@ -8506,7 +8602,13 @@
           "jp": "　聞いておる",
           "jp_len": 12,
           "kr": "들었다네"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC1B.CMD",
+      "index": 67,
+      "lines": [
         {
           "offset": 17209,
           "jp": "ファーリン",
@@ -8530,7 +8632,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 51,
+      "index": 68,
       "lines": [
         {
           "offset": 17302,
@@ -8627,7 +8729,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 52,
+      "index": 69,
       "lines": [
         {
           "offset": 17680,
@@ -8651,7 +8753,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 53,
+      "index": 70,
       "lines": [
         {
           "offset": 17774,
@@ -8663,7 +8765,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 54,
+      "index": 71,
       "lines": [
         {
           "offset": 17811,
@@ -8717,7 +8819,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 55,
+      "index": 72,
       "lines": [
         {
           "offset": 18018,
@@ -8741,7 +8843,7 @@
     },
     {
       "file": "SC1B.CMD",
-      "index": 56,
+      "index": 73,
       "lines": [
         {
           "offset": 18349,
@@ -9148,7 +9250,13 @@
           "jp": "　手伝ってくれ",
           "jp_len": 14,
           "kr": "도와줘"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2A.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 7507,
           "jp": "ファーリン",
@@ -9197,7 +9305,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 7695,
@@ -9216,7 +9324,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 7734,
@@ -9240,7 +9348,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 7823,
@@ -9258,7 +9366,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 7894,
@@ -9282,7 +9390,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 7986,
@@ -9294,7 +9402,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 17,
+      "index": 18,
       "lines": [
         {
           "offset": 8020,
@@ -9319,7 +9427,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 8124,
@@ -9332,7 +9440,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 8170,
@@ -9351,7 +9459,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 20,
+      "index": 21,
       "lines": [
         {
           "offset": 8223,
@@ -9370,7 +9478,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 21,
+      "index": 22,
       "lines": [
         {
           "offset": 8278,
@@ -9382,7 +9490,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 22,
+      "index": 23,
       "lines": [
         {
           "offset": 8312,
@@ -9394,7 +9502,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 23,
+      "index": 24,
       "lines": [
         {
           "offset": 8368,
@@ -9408,7 +9516,13 @@
           "jp": "「スマッシュさん！",
           "jp_len": 18,
           "kr": "「스마슈씨!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2A.CMD",
+      "index": 25,
+      "lines": [
         {
           "offset": 8424,
           "jp": "スマッシュ",
@@ -9611,7 +9725,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 24,
+      "index": 26,
       "lines": [
         {
           "offset": 9168,
@@ -9673,7 +9787,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 25,
+      "index": 27,
       "lines": [
         {
           "offset": 9383,
@@ -9692,7 +9806,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 26,
+      "index": 28,
       "lines": [
         {
           "offset": 9439,
@@ -9710,7 +9824,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 27,
+      "index": 29,
       "lines": [
         {
           "offset": 9510,
@@ -9730,7 +9844,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 28,
+      "index": 30,
       "lines": [
         {
           "offset": 9598,
@@ -9754,7 +9868,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 29,
+      "index": 31,
       "lines": [
         {
           "offset": 9690,
@@ -9766,7 +9880,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 30,
+      "index": 32,
       "lines": [
         {
           "offset": 9724,
@@ -9785,7 +9899,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 31,
+      "index": 33,
       "lines": [
         {
           "offset": 9777,
@@ -9804,7 +9918,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 32,
+      "index": 34,
       "lines": [
         {
           "offset": 9839,
@@ -9828,7 +9942,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 33,
+      "index": 35,
       "lines": [
         {
           "offset": 9905,
@@ -9918,7 +10032,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 34,
+      "index": 36,
       "lines": [
         {
           "offset": 10275,
@@ -9960,7 +10074,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 35,
+      "index": 37,
       "lines": [
         {
           "offset": 10428,
@@ -9972,7 +10086,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 36,
+      "index": 38,
       "lines": [
         {
           "offset": 10461,
@@ -10002,7 +10116,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 37,
+      "index": 39,
       "lines": [
         {
           "offset": 10580,
@@ -10016,7 +10130,13 @@
           "jp": "「なんだったんだ　あのネズミ？",
           "jp_len": 30,
           "kr": "「뭐였던 거야 저 쥐는?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2A.CMD",
+      "index": 40,
+      "lines": [
         {
           "offset": 10648,
           "jp": "ファーリン",
@@ -10034,7 +10154,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 38,
+      "index": 41,
       "lines": [
         {
           "offset": 10695,
@@ -10058,7 +10178,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 39,
+      "index": 42,
       "lines": [
         {
           "offset": 10785,
@@ -10076,7 +10196,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 40,
+      "index": 43,
       "lines": [
         {
           "offset": 10830,
@@ -10130,7 +10250,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 41,
+      "index": 44,
       "lines": [
         {
           "offset": 11037,
@@ -10154,7 +10274,7 @@
     },
     {
       "file": "SC2A.CMD",
-      "index": 42,
+      "index": 45,
       "lines": [
         {
           "offset": 11287,
@@ -10468,6 +10588,24 @@
       "index": 16,
       "lines": [
         {
+          "offset": 12674,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 12686,
+          "jp": "「な　なんだ？！",
+          "jp_len": 16,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 17,
+      "lines": [
+        {
           "offset": 12741,
           "jp": "スマッシュ",
           "jp_len": 10,
@@ -10485,7 +10623,13 @@
           "jp": "　急に〔火霊石〕が熱くなった",
           "jp_len": 28,
           "kr": "〔화령석〕이 갑자기 뜨겁다"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 12825,
           "jp": "ファーリン",
@@ -10567,7 +10711,13 @@
           "jp": "「カベに秘密か…",
           "jp_len": 16,
           "kr": "「벽에 비밀인가"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 19,
+      "lines": [
         {
           "offset": 13136,
           "jp": "ファーリン",
@@ -10586,7 +10736,13 @@
           "jp": "　なにも書かれてませんね",
           "jp_len": 24,
           "kr": "아무것도 안 써 있네요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 13220,
           "jp": "スマッシュ",
@@ -10672,7 +10828,7 @@
     },
     {
       "file": "SC2B.CMD",
-      "index": 17,
+      "index": 21,
       "lines": [
         {
           "offset": 13540,
@@ -10692,7 +10848,13 @@
           "jp": "　なのですが…",
           "jp_len": 14,
           "kr": "같은데요…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 22,
+      "lines": [
         {
           "offset": 13619,
           "jp": "スマッシュ",
@@ -10710,7 +10872,7 @@
     },
     {
       "file": "SC2B.CMD",
-      "index": 18,
+      "index": 23,
       "lines": [
         {
           "offset": 13716,
@@ -10777,7 +10939,13 @@
           "jp": "　乗り込んでくるとは",
           "jp_len": 20,
           "kr": "찾아올 줄이야…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 24,
+      "lines": [
         {
           "offset": 14004,
           "jp": "スマッシュ",
@@ -10869,7 +11037,13 @@
           "jp": "　愛の力を見せるときだっ！",
           "jp_len": 26,
           "kr": "사랑의 힘을 보여줄 때야"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 25,
+      "lines": [
         {
           "offset": 14372,
           "jp": "ファーリン",
@@ -10893,7 +11067,7 @@
     },
     {
       "file": "SC2B.CMD",
-      "index": 19,
+      "index": 26,
       "lines": [
         {
           "offset": 14473,
@@ -10907,7 +11081,13 @@
           "jp": "「じーさん　大丈夫か？",
           "jp_len": 22,
           "kr": "「할아범 괜찮아?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 27,
+      "lines": [
         {
           "offset": 14533,
           "jp": "長老",
@@ -11030,7 +11210,13 @@
           "jp": "　話は　それからじゃ",
           "jp_len": 20,
           "kr": "그러고 나서 함세"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2B.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 15011,
           "jp": "ファーリン",
@@ -11091,7 +11277,7 @@
     },
     {
       "file": "SC2B.CMD",
-      "index": 20,
+      "index": 29,
       "lines": [
         {
           "offset": 15262,
@@ -11116,7 +11302,7 @@
     },
     {
       "file": "SC2B.CMD",
-      "index": 21,
+      "index": 30,
       "lines": [
         {
           "offset": 15337,
@@ -11328,6 +11514,72 @@
       "index": 7,
       "lines": [
         {
+          "offset": 5672,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 5684,
+          "jp": "「どうにかして　ここの鍵を",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 5712,
+          "jp": "　開けないとなあ…",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 5734,
+          "jp": "「ケケケッ　ムリだよ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 5758,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 5770,
+          "jp": "「ゲッ！　見張りつきかよ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 5798,
+          "jp": "「逃げ出そうなんて　バカなことは",
+          "jp_len": 32,
+          "kr": "「도망치려는 바보 같은 생각은"
+        },
+        {
+          "offset": 5832,
+          "jp": "　考えないことだ　ケケッ",
+          "jp_len": 24,
+          "kr": "접어두는게 좋아 케케"
+        },
+        {
+          "offset": 5860,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 5872,
+          "jp": "「ちっ！",
+          "jp_len": 8,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 8,
+      "lines": [
+        {
           "offset": 5917,
           "jp": "スマッシュ",
           "jp_len": 10,
@@ -11448,7 +11700,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 6376,
@@ -11466,7 +11718,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 6459,
@@ -11521,7 +11773,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 6612,
@@ -11545,7 +11797,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 6707,
@@ -11563,7 +11815,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 6774,
@@ -11606,7 +11858,13 @@
           "jp": "　どういう了見してんのっ！",
           "jp_len": 26,
           "kr": "무슨 생각이야!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 14,
+      "lines": [
         {
           "offset": 6960,
           "jp": "スマッシュ",
@@ -11624,8 +11882,45 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 13,
+      "index": 15,
       "lines": [
+        {
+          "offset": 7044,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": "페톰",
+          "tag": "char"
+        },
+        {
+          "offset": 7054,
+          "jp": "「おや　この扉",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 7070,
+          "jp": "　魔法で　施錠されてますね",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 7100,
+          "jp": "　魔法となれば　私の専門",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7126,
+          "jp": "　おまかせください",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 7146,
+          "jp": "　いま　あけてあげますよ",
+          "jp_len": 24,
+          "kr": ""
+        },
         {
           "offset": 7185,
           "jp": "扉は　開かない",
@@ -11636,7 +11931,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 14,
+      "index": 16,
       "lines": [
         {
           "offset": 7210,
@@ -11696,7 +11991,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 15,
+      "index": 17,
       "lines": [
         {
           "offset": 7439,
@@ -11726,7 +12021,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 16,
+      "index": 18,
       "lines": [
         {
           "offset": 7582,
@@ -11805,7 +12100,13 @@
           "jp": "　よろしくなっ！",
           "jp_len": 16,
           "kr": "잘 부탁해!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 19,
+      "lines": [
         {
           "offset": 7924,
           "jp": "スマッシュ",
@@ -11829,7 +12130,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 17,
+      "index": 20,
       "lines": [
         {
           "offset": 8004,
@@ -11871,7 +12172,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 18,
+      "index": 21,
       "lines": [
         {
           "offset": 8181,
@@ -11901,7 +12202,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 19,
+      "index": 22,
       "lines": [
         {
           "offset": 8288,
@@ -11931,7 +12232,7 @@
     },
     {
       "file": "SC2C.CMD",
-      "index": 20,
+      "index": 23,
       "lines": [
         {
           "offset": 8431,
@@ -11974,7 +12275,13 @@
           "jp": "　いちおう　術師なんですよ",
           "jp_len": 26,
           "kr": "일단 마술사입니다"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 24,
+      "lines": [
         {
           "offset": 8637,
           "jp": "スマッシュ",
@@ -11993,7 +12300,13 @@
           "jp": "　まだ　いたとはな…",
           "jp_len": 20,
           "kr": "있었을 줄이야…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 25,
+      "lines": [
         {
           "offset": 8727,
           "jp": "キリ",
@@ -12080,7 +12393,13 @@
           "jp": "　好みなんだけどなあ",
           "jp_len": 20,
           "kr": "해치우는 게 좋은데"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2C.CMD",
+      "index": 26,
+      "lines": [
         {
           "offset": 9071,
           "jp": "スマッシュ",
@@ -13822,6 +14141,84 @@
       "index": 7,
       "lines": [
         {
+          "offset": 4671,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 4683,
+          "jp": "「この下に　ボスがいるのか…",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 8,
+      "lines": [
+        {
+          "offset": 4737,
+          "jp": "キリ",
+          "jp_len": 4,
+          "kr": ""
+        },
+        {
+          "offset": 4743,
+          "jp": "「でも　これじゃあ",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 4763,
+          "jp": "　どうしようもないね",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 4787,
+          "jp": "　ここから　飛び降りるわけにも",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 4819,
+          "jp": "　いかないし…",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 9,
+      "lines": [
+        {
+          "offset": 4859,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 4869,
+          "jp": "「私たちには",
+          "jp_len": 12,
+          "kr": ""
+        },
+        {
+          "offset": 4883,
+          "jp": "　翼がありませんからね",
+          "jp_len": 22,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 10,
+      "lines": [
+        {
           "offset": 4948,
           "jp": "スマッシュ",
           "jp_len": 10,
@@ -13833,7 +14230,13 @@
           "jp": "「準備は　いいか？",
           "jp_len": 18,
           "kr": "「준비는 됐어?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 5004,
           "jp": "ペトゥム",
@@ -13877,7 +14280,13 @@
           "jp": "　死にはしないと",
           "jp_len": 16,
           "kr": "죽지 않는다고"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 5160,
           "jp": "キリ",
@@ -13964,7 +14373,13 @@
           "jp": "　こ　心が動いてしまう",
           "jp_len": 22,
           "kr": "소 솔깃해졌어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 13,
+      "lines": [
         {
           "offset": 5458,
           "jp": "ペトゥム",
@@ -14044,7 +14459,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 8,
+      "index": 14,
       "lines": [
         {
           "offset": 5723,
@@ -14104,7 +14519,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 9,
+      "index": 15,
       "lines": [
         {
           "offset": 5950,
@@ -14116,7 +14531,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 10,
+      "index": 16,
       "lines": [
         {
           "offset": 6005,
@@ -14170,7 +14585,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 11,
+      "index": 17,
       "lines": [
         {
           "offset": 6254,
@@ -14195,7 +14610,13 @@
           "jp": "　なんだよ？",
           "jp_len": 12,
           "kr": "뭔데?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 6362,
           "jp": "ファーリン",
@@ -14280,7 +14701,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 12,
+      "index": 19,
       "lines": [
         {
           "offset": 6687,
@@ -14299,7 +14720,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 13,
+      "index": 20,
       "lines": [
         {
           "offset": 6754,
@@ -14335,7 +14756,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 14,
+      "index": 21,
       "lines": [
         {
           "offset": 6899,
@@ -14349,7 +14770,13 @@
           "jp": "「あの女が　ボスのようだね！",
           "jp_len": 28,
           "kr": "「저 여자가 보스인가봐! "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 22,
+      "lines": [
         {
           "offset": 6959,
           "jp": "スマッシュ",
@@ -14368,7 +14795,13 @@
           "jp": "　正解だったな",
           "jp_len": 14,
           "kr": "정답이었어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 23,
+      "lines": [
         {
           "offset": 7035,
           "jp": "キリ",
@@ -14404,7 +14837,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 15,
+      "index": 24,
       "lines": [
         {
           "offset": 7158,
@@ -14440,7 +14873,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 16,
+      "index": 25,
       "lines": [
         {
           "offset": 7317,
@@ -14459,7 +14892,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 17,
+      "index": 26,
       "lines": [
         {
           "offset": 7392,
@@ -14479,7 +14912,13 @@
           "jp": "　とどめをまだ…",
           "jp_len": 16,
           "kr": "아직 마무리가…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 27,
+      "lines": [
         {
           "offset": 7476,
           "jp": "ファーリン",
@@ -14590,7 +15029,7 @@
     },
     {
       "file": "SC2F.CMD",
-      "index": 18,
+      "index": 28,
       "lines": [
         {
           "offset": 7893,
@@ -14604,7 +15043,13 @@
           "jp": "「クンクン…",
           "jp_len": 12,
           "kr": "「킁킁…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 29,
+      "lines": [
         {
           "offset": 7943,
           "jp": "アリババ",
@@ -14716,7 +15161,13 @@
           "jp": "　開放して　列車を返してくれよ",
           "jp_len": 30,
           "kr": "풀어주고 열차를 돌려줘!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 30,
+      "lines": [
         {
           "offset": 8383,
           "jp": "ファーリン",
@@ -14817,7 +15268,13 @@
           "jp": "「よしっ！　これで一件落着だな",
           "jp_len": 30,
           "kr": "「좋아! 이걸로 한 건 해결"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 8753,
           "jp": "キリ",
@@ -14836,7 +15293,13 @@
           "jp": "　どうなったってんだい？",
           "jp_len": 24,
           "kr": "어떻게 된 거야?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC2F.CMD",
+      "index": 32,
+      "lines": [
         {
           "offset": 8829,
           "jp": "ペトゥム",
@@ -15974,7 +16437,13 @@
           "jp": "「えーと　ここに足を乗せてと…",
           "jp_len": 30,
           "kr": "「어디 여기에 발을 딛고…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 11971,
           "jp": "スマッシュ",
@@ -16005,7 +16474,13 @@
           "jp": "　俺は泳げないからなっ！",
           "jp_len": 24,
           "kr": "나는 수영을 못하거든!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 21,
+      "lines": [
         {
           "offset": 12123,
           "jp": "ファーリン",
@@ -16110,7 +16585,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 20,
+      "index": 22,
       "lines": [
         {
           "offset": 12558,
@@ -16140,7 +16615,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 21,
+      "index": 23,
       "lines": [
         {
           "offset": 12657,
@@ -16176,7 +16651,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 22,
+      "index": 24,
       "lines": [
         {
           "offset": 12782,
@@ -16212,7 +16687,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 23,
+      "index": 25,
       "lines": [
         {
           "offset": 12902,
@@ -16236,7 +16711,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 24,
+      "index": 26,
       "lines": [
         {
           "offset": 12980,
@@ -16266,7 +16741,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 25,
+      "index": 27,
       "lines": [
         {
           "offset": 13090,
@@ -16296,7 +16771,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 26,
+      "index": 28,
       "lines": [
         {
           "offset": 13195,
@@ -16344,7 +16819,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 27,
+      "index": 29,
       "lines": [
         {
           "offset": 13404,
@@ -16398,7 +16873,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 28,
+      "index": 30,
       "lines": [
         {
           "offset": 13641,
@@ -16446,7 +16921,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 29,
+      "index": 31,
       "lines": [
         {
           "offset": 13821,
@@ -16476,7 +16951,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 30,
+      "index": 32,
       "lines": [
         {
           "offset": 13944,
@@ -16512,7 +16987,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 31,
+      "index": 33,
       "lines": [
         {
           "offset": 14060,
@@ -16548,8 +17023,194 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 32,
+      "index": 34,
       "lines": [
+        {
+          "offset": 14225,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 14235,
+          "jp": "「おや　どうしたんです？",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 14261,
+          "jp": "　浮かない顔ですね",
+          "jp_len": 18,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 35,
+      "lines": [
+        {
+          "offset": 14305,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14317,
+          "jp": "「実はよ…",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14331,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 14341,
+          "jp": "「はあ　なんとかして",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14363,
+          "jp": "　川を渡りたいというのですね",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14395,
+          "jp": "　それならば　これを使うと",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 14423,
+          "jp": "　いいでしょう",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 14439,
+          "jp": "　私が東の国で買い求めた物です",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 14473,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14485,
+          "jp": "「こ　これ〔竹馬〕じゃねーか！",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 14519,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 14529,
+          "jp": "「おや　ご存じでしたか",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14553,
+          "jp": "　意外に博識ですね　スマッシュさん",
+          "jp_len": 34,
+          "kr": ""
+        },
+        {
+          "offset": 14591,
+          "jp": "　この〔竹馬〕を使えば",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14615,
+          "jp": "　水に入らず　川を渡れるでしょう",
+          "jp_len": 32,
+          "kr": ""
+        },
+        {
+          "offset": 14651,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14663,
+          "jp": "「た　たしかに",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 14679,
+          "jp": "　それはそうなんだが…",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 14705,
+          "jp": "　おまえ　こんな物を",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 14727,
+          "jp": "　いつも持ち歩いているのか？",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14759,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 14769,
+          "jp": "「そ　そんなことは",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 14789,
+          "jp": "　どうでもいいことでしょう！",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 14821,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 14833,
+          "jp": "「それもそうだな",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 14851,
+          "jp": "　じゃ　ありがたくいたたくぜ！",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 14888,
+          "jp": "〔竹馬〕を手に入れた",
+          "jp_len": 20,
+          "kr": ""
+        },
         {
           "offset": 14926,
           "jp": "ペトゥム",
@@ -16604,7 +17265,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 33,
+      "index": 36,
       "lines": [
         {
           "offset": 15143,
@@ -16634,7 +17295,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 34,
+      "index": 37,
       "lines": [
         {
           "offset": 15252,
@@ -16652,7 +17313,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 35,
+      "index": 38,
       "lines": [
         {
           "offset": 15306,
@@ -16706,7 +17367,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 36,
+      "index": 39,
       "lines": [
         {
           "offset": 15468,
@@ -16766,7 +17427,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 37,
+      "index": 40,
       "lines": [
         {
           "offset": 15717,
@@ -16808,7 +17469,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 38,
+      "index": 41,
       "lines": [
         {
           "offset": 15886,
@@ -16844,7 +17505,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 39,
+      "index": 42,
       "lines": [
         {
           "offset": 16034,
@@ -16924,7 +17585,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 40,
+      "index": 43,
       "lines": [
         {
           "offset": 16341,
@@ -16954,7 +17615,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 41,
+      "index": 44,
       "lines": [
         {
           "offset": 16469,
@@ -16996,7 +17657,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 42,
+      "index": 45,
       "lines": [
         {
           "offset": 16620,
@@ -17086,7 +17747,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 43,
+      "index": 46,
       "lines": [
         {
           "offset": 16960,
@@ -17116,7 +17777,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 44,
+      "index": 47,
       "lines": [
         {
           "offset": 17091,
@@ -17238,7 +17899,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 45,
+      "index": 48,
       "lines": [
         {
           "offset": 17565,
@@ -17251,7 +17912,13 @@
           "jp": "〔Ｈな本〕が隠されていた！",
           "jp_len": 26,
           "kr": "〔에로책〕이 숨겨져 있다!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 49,
+      "lines": [
         {
           "offset": 17633,
           "jp": "スマッシュ",
@@ -17281,7 +17948,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 46,
+      "index": 50,
       "lines": [
         {
           "offset": 17767,
@@ -17335,7 +18002,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 47,
+      "index": 51,
       "lines": [
         {
           "offset": 17996,
@@ -17371,7 +18038,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 48,
+      "index": 52,
       "lines": [
         {
           "offset": 18138,
@@ -17407,7 +18074,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 49,
+      "index": 53,
       "lines": [
         {
           "offset": 18300,
@@ -17437,7 +18104,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 50,
+      "index": 54,
       "lines": [
         {
           "offset": 18409,
@@ -17473,7 +18140,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 51,
+      "index": 55,
       "lines": [
         {
           "offset": 18531,
@@ -17521,7 +18188,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 52,
+      "index": 56,
       "lines": [
         {
           "offset": 18705,
@@ -17551,7 +18218,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 53,
+      "index": 57,
       "lines": [
         {
           "offset": 18814,
@@ -17587,7 +18254,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 54,
+      "index": 58,
       "lines": [
         {
           "offset": 18936,
@@ -17611,7 +18278,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 55,
+      "index": 59,
       "lines": [
         {
           "offset": 19005,
@@ -17647,7 +18314,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 56,
+      "index": 60,
       "lines": [
         {
           "offset": 19143,
@@ -17659,7 +18326,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 57,
+      "index": 61,
       "lines": [
         {
           "offset": 19249,
@@ -17677,7 +18344,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 58,
+      "index": 62,
       "lines": [
         {
           "offset": 19288,
@@ -17701,7 +18368,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 59,
+      "index": 63,
       "lines": [
         {
           "offset": 19371,
@@ -17731,7 +18398,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 60,
+      "index": 64,
       "lines": [
         {
           "offset": 19508,
@@ -17751,7 +18418,13 @@
           "jp": "　よかったですね",
           "jp_len": 16,
           "kr": "끝나서"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 65,
+      "lines": [
         {
           "offset": 19594,
           "jp": "スマッシュ",
@@ -18066,7 +18739,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 61,
+      "index": 66,
       "lines": [
         {
           "offset": 20797,
@@ -18098,7 +18771,13 @@
           "jp": "　ここの守りもあるしの",
           "jp_len": 22,
           "kr": "여기도 지켜야 하고"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 67,
+      "lines": [
         {
           "offset": 20941,
           "jp": "スマッシュ",
@@ -18117,7 +18796,13 @@
           "jp": "　知れん　気をつけろよ",
           "jp_len": 22,
           "kr": "바보같은 놈들이"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3A.CMD",
+      "index": 68,
+      "lines": [
         {
           "offset": 21029,
           "jp": "ファーリン",
@@ -18464,7 +19149,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 62,
+      "index": 69,
       "lines": [
         {
           "offset": 26539,
@@ -18488,7 +19173,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 63,
+      "index": 70,
       "lines": [
         {
           "offset": 26610,
@@ -18518,7 +19203,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 64,
+      "index": 71,
       "lines": [
         {
           "offset": 26697,
@@ -18548,7 +19233,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 65,
+      "index": 72,
       "lines": [
         {
           "offset": 26804,
@@ -18566,7 +19251,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 66,
+      "index": 73,
       "lines": [
         {
           "offset": 26847,
@@ -18602,7 +19287,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 67,
+      "index": 74,
       "lines": [
         {
           "offset": 26974,
@@ -18638,7 +19323,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 68,
+      "index": 75,
       "lines": [
         {
           "offset": 27086,
@@ -18674,7 +19359,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 69,
+      "index": 76,
       "lines": [
         {
           "offset": 27221,
@@ -18698,7 +19383,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 70,
+      "index": 77,
       "lines": [
         {
           "offset": 27324,
@@ -18723,7 +19408,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 71,
+      "index": 78,
       "lines": [
         {
           "offset": 27399,
@@ -18735,7 +19420,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 72,
+      "index": 79,
       "lines": [
         {
           "offset": 27424,
@@ -18777,7 +19462,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 73,
+      "index": 80,
       "lines": [
         {
           "offset": 27589,
@@ -18801,7 +19486,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 74,
+      "index": 81,
       "lines": [
         {
           "offset": 27680,
@@ -18837,7 +19522,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 75,
+      "index": 82,
       "lines": [
         {
           "offset": 27813,
@@ -18867,7 +19552,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 76,
+      "index": 83,
       "lines": [
         {
           "offset": 27936,
@@ -18891,7 +19576,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 77,
+      "index": 84,
       "lines": [
         {
           "offset": 28038,
@@ -18981,7 +19666,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 78,
+      "index": 85,
       "lines": [
         {
           "offset": 28456,
@@ -19017,7 +19702,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 79,
+      "index": 86,
       "lines": [
         {
           "offset": 28601,
@@ -19041,7 +19726,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 80,
+      "index": 87,
       "lines": [
         {
           "offset": 28688,
@@ -19083,7 +19768,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 81,
+      "index": 88,
       "lines": [
         {
           "offset": 28851,
@@ -19095,7 +19780,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 82,
+      "index": 89,
       "lines": [
         {
           "offset": 28888,
@@ -19143,7 +19828,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 83,
+      "index": 90,
       "lines": [
         {
           "offset": 29067,
@@ -19173,7 +19858,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 84,
+      "index": 91,
       "lines": [
         {
           "offset": 29176,
@@ -19209,7 +19894,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 85,
+      "index": 92,
       "lines": [
         {
           "offset": 29311,
@@ -19233,7 +19918,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 86,
+      "index": 93,
       "lines": [
         {
           "offset": 29396,
@@ -19257,7 +19942,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 87,
+      "index": 94,
       "lines": [
         {
           "offset": 29471,
@@ -19281,7 +19966,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 88,
+      "index": 95,
       "lines": [
         {
           "offset": 29560,
@@ -19305,7 +19990,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 89,
+      "index": 96,
       "lines": [
         {
           "offset": 29645,
@@ -19341,7 +20026,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 90,
+      "index": 97,
       "lines": [
         {
           "offset": 29784,
@@ -19371,7 +20056,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 91,
+      "index": 98,
       "lines": [
         {
           "offset": 29893,
@@ -19407,7 +20092,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 92,
+      "index": 99,
       "lines": [
         {
           "offset": 30018,
@@ -19437,7 +20122,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 93,
+      "index": 100,
       "lines": [
         {
           "offset": 30119,
@@ -19461,7 +20146,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 94,
+      "index": 101,
       "lines": [
         {
           "offset": 30189,
@@ -19503,7 +20188,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 95,
+      "index": 102,
       "lines": [
         {
           "offset": 30331,
@@ -19545,7 +20230,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 96,
+      "index": 103,
       "lines": [
         {
           "offset": 30484,
@@ -19623,7 +20308,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 97,
+      "index": 104,
       "lines": [
         {
           "offset": 30807,
@@ -19659,7 +20344,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 98,
+      "index": 105,
       "lines": [
         {
           "offset": 30936,
@@ -19695,7 +20380,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 99,
+      "index": 106,
       "lines": [
         {
           "offset": 31075,
@@ -19725,7 +20410,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 100,
+      "index": 107,
       "lines": [
         {
           "offset": 31197,
@@ -19743,7 +20428,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 101,
+      "index": 108,
       "lines": [
         {
           "offset": 31253,
@@ -19761,7 +20446,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 102,
+      "index": 109,
       "lines": [
         {
           "offset": 31316,
@@ -19779,7 +20464,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 103,
+      "index": 110,
       "lines": [
         {
           "offset": 31375,
@@ -19803,7 +20488,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 104,
+      "index": 111,
       "lines": [
         {
           "offset": 31467,
@@ -19833,7 +20518,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 105,
+      "index": 112,
       "lines": [
         {
           "offset": 31587,
@@ -19863,7 +20548,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 106,
+      "index": 113,
       "lines": [
         {
           "offset": 31698,
@@ -19911,7 +20596,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 107,
+      "index": 114,
       "lines": [
         {
           "offset": 31883,
@@ -19941,7 +20626,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 108,
+      "index": 115,
       "lines": [
         {
           "offset": 32002,
@@ -19971,7 +20656,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 109,
+      "index": 116,
       "lines": [
         {
           "offset": 32103,
@@ -20013,7 +20698,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 110,
+      "index": 117,
       "lines": [
         {
           "offset": 32273,
@@ -20043,7 +20728,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 111,
+      "index": 118,
       "lines": [
         {
           "offset": 32371,
@@ -20067,7 +20752,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 112,
+      "index": 119,
       "lines": [
         {
           "offset": 32454,
@@ -20085,7 +20770,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 113,
+      "index": 120,
       "lines": [
         {
           "offset": 32517,
@@ -20115,7 +20800,7 @@
     },
     {
       "file": "SC3A.CMD",
-      "index": 114,
+      "index": 121,
       "lines": [
         {
           "offset": 32630,
@@ -20356,7 +21041,13 @@
           "jp": "　やんでしもうたのか…",
           "jp_len": 22,
           "kr": "던 비가 멈춰버린"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 8,
+      "lines": [
         {
           "offset": 6030,
           "jp": "スマッシュ",
@@ -20412,7 +21103,13 @@
           "jp": "　カンタンに入ることができる",
           "jp_len": 28,
           "kr": "몰라! 평소엔 호수"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 9,
+      "lines": [
         {
           "offset": 6252,
           "jp": "ファーリン",
@@ -20436,7 +21133,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 8,
+      "index": 10,
       "lines": [
         {
           "offset": 6361,
@@ -20474,7 +21171,13 @@
           "jp": "　斜面なんですけど",
           "jp_len": 18,
           "kr": "경사가 아주"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 6517,
           "jp": "アターホー",
@@ -20530,7 +21233,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 9,
+      "index": 12,
       "lines": [
         {
           "offset": 6712,
@@ -20549,7 +21252,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 10,
+      "index": 13,
       "lines": [
         {
           "offset": 6779,
@@ -20574,7 +21277,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 11,
+      "index": 14,
       "lines": [
         {
           "offset": 6870,
@@ -20594,7 +21297,13 @@
           "jp": "　これは効きましたわ…",
           "jp_len": 22,
           "kr": "정신을 못차리겠어요."
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 6960,
           "jp": "アターホー",
@@ -20642,7 +21351,85 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 12,
+      "index": 16,
+      "lines": [
+        {
+          "offset": 7194,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 7206,
+          "jp": "「トラの顔をした岩…",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 17,
+      "lines": [
+        {
+          "offset": 7252,
+          "jp": "ファーリン",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 7264,
+          "jp": "「文字が　彫られてますね",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7292,
+          "jp": "『とらダ　とら！",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7310,
+          "jp": "　オマエハ　大とらニ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 7332,
+          "jp": "　ナルンダア！』",
+          "jp_len": 16,
+          "kr": ""
+        },
+        {
+          "offset": 7352,
+          "jp": "　…と書いてあります",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 7376,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 7388,
+          "jp": "「トラ？　どういうことだ",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 7414,
+          "jp": "　いったい？",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 18,
       "lines": [
         {
           "offset": 7471,
@@ -20668,7 +21455,13 @@
           "jp": "　どこかで手に入れないとな",
           "jp_len": 26,
           "kr": "어떻게든 구해야 하는데"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 19,
+      "lines": [
         {
           "offset": 7591,
           "jp": "ファーリン",
@@ -20699,7 +21492,13 @@
           "jp": "　どう使うんです？",
           "jp_len": 18,
           "kr": "알겠지만…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 7733,
           "jp": "スマッシュ",
@@ -20773,7 +21572,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 13,
+      "index": 21,
       "lines": [
         {
           "offset": 8018,
@@ -20792,7 +21591,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 14,
+      "index": 22,
       "lines": [
         {
           "offset": 8057,
@@ -20806,7 +21605,13 @@
           "jp": "「うお〜い　下ろしてくれ〜",
           "jp_len": 26,
           "kr": "「어이∼ 나 좀 내려줘∼"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 23,
+      "lines": [
         {
           "offset": 8121,
           "jp": "スマッシュ",
@@ -20819,7 +21624,13 @@
           "jp": "「んっ？　なんだぁ",
           "jp_len": 18,
           "kr": "「[스마슈] 응?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 24,
+      "lines": [
         {
           "offset": 8177,
           "jp": "ファーリン",
@@ -20856,7 +21667,61 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 15,
+      "index": 25,
+      "lines": [
+        {
+          "offset": 8319,
+          "jp": "アターホー",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 8331,
+          "jp": "「うお〜い　下ろしてくれ〜",
+          "jp_len": 26,
+          "kr": "「어이∼ 나 좀 내려줘∼"
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 26,
+      "lines": [
+        {
+          "offset": 8383,
+          "jp": "スマッシュ",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 8395,
+          "jp": "「下ろしてやろうにも",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 8417,
+          "jp": "　俺も　この状態だしなあ…",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 8447,
+          "jp": "　なんとか　このロープを",
+          "jp_len": 24,
+          "kr": "꽁꽁 묶어 놓다니!"
+        },
+        {
+          "offset": 8473,
+          "jp": "　ほどかないと",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 27,
       "lines": [
         {
           "offset": 8532,
@@ -20881,7 +21746,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 16,
+      "index": 28,
       "lines": [
         {
           "offset": 8625,
@@ -20942,14 +21807,20 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 17,
+      "index": 29,
       "lines": [
         {
           "offset": 8854,
           "jp": "「な　なんじゃい　おぬしらはっ？",
           "jp_len": 32,
           "kr": "「? 너희들! [화린] 갑자기"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 30,
+      "lines": [
         {
           "offset": 8912,
           "jp": "ファーリン",
@@ -21078,7 +21949,13 @@
           "jp": "　現れたというのか…",
           "jp_len": 20,
           "kr": "생긴 거야? 2개"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 9432,
           "jp": "スマッシュ",
@@ -21126,7 +22003,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 18,
+      "index": 32,
       "lines": [
         {
           "offset": 9657,
@@ -21145,7 +22022,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 19,
+      "index": 33,
       "lines": [
         {
           "offset": 9734,
@@ -21164,7 +22041,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 20,
+      "index": 34,
       "lines": [
         {
           "offset": 9793,
@@ -21183,7 +22060,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 21,
+      "index": 35,
       "lines": [
         {
           "offset": 9832,
@@ -21202,7 +22079,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 22,
+      "index": 36,
       "lines": [
         {
           "offset": 9891,
@@ -21216,7 +22093,13 @@
           "jp": "「な　なんだ？　体が…",
           "jp_len": 22,
           "kr": "「뭐 뭐야? 몸이…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 37,
+      "lines": [
         {
           "offset": 9951,
           "jp": "ファーリン",
@@ -21289,7 +22172,7 @@
     },
     {
       "file": "SC3B.CMD",
-      "index": 23,
+      "index": 38,
       "lines": [
         {
           "offset": 10242,
@@ -21309,7 +22192,13 @@
           "jp": "　手はないみたいだな",
           "jp_len": 20,
           "kr": "밖에 없어! [화린]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3B.CMD",
+      "index": 39,
+      "lines": [
         {
           "offset": 10332,
           "jp": "ファーリン",
@@ -21526,7 +22415,13 @@
           "jp": "　出るんじゃねーぞ！",
           "jp_len": 20,
           "kr": "되어 나타나는 일"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 9,
+      "lines": [
         {
           "offset": 9921,
           "jp": "アターホー",
@@ -21550,7 +22445,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 10011,
@@ -21562,7 +22457,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 10068,
@@ -21594,7 +22489,13 @@
           "jp": "　出るんじゃねーぞ！",
           "jp_len": 20,
           "kr": "유령이 되어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 10194,
           "jp": "アターホー",
@@ -21618,7 +22519,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 11,
+      "index": 13,
       "lines": [
         {
           "offset": 10280,
@@ -21630,7 +22531,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 12,
+      "index": 14,
       "lines": [
         {
           "offset": 10337,
@@ -21662,7 +22563,13 @@
           "jp": "　出るんじゃねーぞ！",
           "jp_len": 20,
           "kr": "유령이 되어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 10459,
           "jp": "アターホー",
@@ -21686,14 +22593,20 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 13,
+      "index": 16,
       "lines": [
         {
           "offset": 10534,
           "jp": "扉は　開かない",
           "jp_len": 14,
           "kr": "열리지 않는다"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 17,
+      "lines": [
         {
           "offset": 10574,
           "jp": "アターホー",
@@ -21747,7 +22660,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 14,
+      "index": 18,
       "lines": [
         {
           "offset": 10779,
@@ -21784,7 +22697,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 15,
+      "index": 19,
       "lines": [
         {
           "offset": 10930,
@@ -21821,7 +22734,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 16,
+      "index": 20,
       "lines": [
         {
           "offset": 11053,
@@ -21845,7 +22758,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 17,
+      "index": 21,
       "lines": [
         {
           "offset": 11148,
@@ -21863,7 +22776,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 18,
+      "index": 22,
       "lines": [
         {
           "offset": 11210,
@@ -21875,7 +22788,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 19,
+      "index": 23,
       "lines": [
         {
           "offset": 11242,
@@ -21893,7 +22806,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 20,
+      "index": 24,
       "lines": [
         {
           "offset": 11305,
@@ -21911,7 +22824,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 21,
+      "index": 25,
       "lines": [
         {
           "offset": 11373,
@@ -21929,7 +22842,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 22,
+      "index": 26,
       "lines": [
         {
           "offset": 11423,
@@ -21947,7 +22860,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 23,
+      "index": 27,
       "lines": [
         {
           "offset": 11478,
@@ -21965,7 +22878,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 24,
+      "index": 28,
       "lines": [
         {
           "offset": 11541,
@@ -21983,7 +22896,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 25,
+      "index": 29,
       "lines": [
         {
           "offset": 11604,
@@ -22001,7 +22914,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 26,
+      "index": 30,
       "lines": [
         {
           "offset": 11661,
@@ -22026,7 +22939,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 27,
+      "index": 31,
       "lines": [
         {
           "offset": 11728,
@@ -22044,7 +22957,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 28,
+      "index": 32,
       "lines": [
         {
           "offset": 11803,
@@ -22062,7 +22975,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 29,
+      "index": 33,
       "lines": [
         {
           "offset": 11874,
@@ -22087,7 +23000,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 30,
+      "index": 34,
       "lines": [
         {
           "offset": 11978,
@@ -22100,7 +23013,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 31,
+      "index": 35,
       "lines": [
         {
           "offset": 12024,
@@ -22124,7 +23037,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 32,
+      "index": 36,
       "lines": [
         {
           "offset": 12125,
@@ -22154,7 +23067,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 33,
+      "index": 37,
       "lines": [
         {
           "offset": 12237,
@@ -22166,7 +23079,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 34,
+      "index": 38,
       "lines": [
         {
           "offset": 12275,
@@ -22190,7 +23103,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 35,
+      "index": 39,
       "lines": [
         {
           "offset": 12380,
@@ -22220,7 +23133,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 36,
+      "index": 40,
       "lines": [
         {
           "offset": 12474,
@@ -22250,7 +23163,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 37,
+      "index": 41,
       "lines": [
         {
           "offset": 12564,
@@ -22268,7 +23181,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 38,
+      "index": 42,
       "lines": [
         {
           "offset": 12606,
@@ -22292,7 +23205,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 39,
+      "index": 43,
       "lines": [
         {
           "offset": 12676,
@@ -22310,7 +23223,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 40,
+      "index": 44,
       "lines": [
         {
           "offset": 12730,
@@ -22334,7 +23247,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 41,
+      "index": 45,
       "lines": [
         {
           "offset": 12800,
@@ -22352,7 +23265,55 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 42,
+      "index": 46,
+      "lines": [
+        {
+          "offset": 12889,
+          "jp": "アターホー",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 12901,
+          "jp": "「こいつに　その〔地酒〕を",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 12929,
+          "jp": "　そそぐんじゃ",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 12947,
+          "jp": "〔地酒〕を　ガイコツにそそいだ",
+          "jp_len": 30,
+          "kr": ""
+        },
+        {
+          "offset": 12981,
+          "jp": "アターホー",
+          "jp_len": 10,
+          "kr": ""
+        },
+        {
+          "offset": 12993,
+          "jp": "「うむ　これでリフトは",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 13017,
+          "jp": "　動くようになったハズじゃよ",
+          "jp_len": 28,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 47,
       "lines": [
         {
           "offset": 13079,
@@ -22402,7 +23363,13 @@
           "jp": "　動かすんじゃ？",
           "jp_len": 16,
           "kr": "층으로 리프트를"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 48,
+      "lines": [
         {
           "offset": 13301,
           "jp": "ファーリン",
@@ -22415,7 +23382,13 @@
           "jp": "「これは　なんですか？",
           "jp_len": 22,
           "kr": "「움직일 꺼야 [화린]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3C.CMD",
+      "index": 49,
+      "lines": [
         {
           "offset": 13361,
           "jp": "アターホー",
@@ -22463,7 +23436,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 43,
+      "index": 50,
       "lines": [
         {
           "offset": 13564,
@@ -22536,7 +23509,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 44,
+      "index": 51,
       "lines": [
         {
           "offset": 13837,
@@ -22590,7 +23563,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 45,
+      "index": 52,
       "lines": [
         {
           "offset": 14044,
@@ -22614,7 +23587,7 @@
     },
     {
       "file": "SC3C.CMD",
-      "index": 46,
+      "index": 53,
       "lines": [
         {
           "offset": 14375,
@@ -22815,7 +23788,13 @@
           "jp": "　異物を　とりのぞかんことを",
           "jp_len": 28,
           "kr": "사이에 낀 이물질을 제거해"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3D.CMD",
+      "index": 10,
+      "lines": [
         {
           "offset": 4662,
           "jp": "スマッシュ",
@@ -22863,7 +23842,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 4830,
@@ -22887,7 +23866,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 4911,
@@ -22905,7 +23884,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 4968,
@@ -22929,7 +23908,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 5060,
@@ -22941,7 +23920,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 5094,
@@ -22959,7 +23938,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 5151,
@@ -22977,7 +23956,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 5208,
@@ -22995,7 +23974,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 17,
+      "index": 18,
       "lines": [
         {
           "offset": 5275,
@@ -23013,7 +23992,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 5346,
@@ -23031,7 +24010,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 5446,
@@ -23104,7 +24083,13 @@
           "jp": "　おまえらが現れるとは…",
           "jp_len": 24,
           "kr": "잘못이었어. 나답지"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3D.CMD",
+      "index": 21,
+      "lines": [
         {
           "offset": 5752,
           "jp": "アターホー",
@@ -23158,7 +24143,7 @@
     },
     {
       "file": "SC3D.CMD",
-      "index": 20,
+      "index": 22,
       "lines": [
         {
           "offset": 5965,
@@ -23172,7 +24157,13 @@
           "jp": "「ふぅ　手こずらせおって",
           "jp_len": 24,
           "kr": "「후우, 갈수록 열"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC3D.CMD",
+      "index": 23,
+      "lines": [
         {
           "offset": 6027,
           "jp": "ファーリン",
@@ -24202,7 +25193,13 @@
           "jp": "「これから　どうする？",
           "jp_len": 22,
           "kr": "「이제부터 어떻게"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 9275,
           "jp": "ペトゥム",
@@ -24268,7 +25265,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 9512,
@@ -24328,7 +25325,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 9782,
@@ -24388,7 +25385,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 20,
+      "index": 21,
       "lines": [
         {
           "offset": 10017,
@@ -24412,7 +25409,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 21,
+      "index": 22,
       "lines": [
         {
           "offset": 10095,
@@ -24442,7 +25439,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 22,
+      "index": 23,
       "lines": [
         {
           "offset": 10217,
@@ -24484,7 +25481,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 23,
+      "index": 24,
       "lines": [
         {
           "offset": 10386,
@@ -24532,7 +25529,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 24,
+      "index": 25,
       "lines": [
         {
           "offset": 10562,
@@ -24568,7 +25565,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 25,
+      "index": 26,
       "lines": [
         {
           "offset": 10701,
@@ -24598,7 +25595,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 26,
+      "index": 27,
       "lines": [
         {
           "offset": 10799,
@@ -24622,7 +25619,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 27,
+      "index": 28,
       "lines": [
         {
           "offset": 10887,
@@ -24658,7 +25655,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 28,
+      "index": 29,
       "lines": [
         {
           "offset": 11030,
@@ -24676,7 +25673,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 29,
+      "index": 30,
       "lines": [
         {
           "offset": 11083,
@@ -24700,7 +25697,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 30,
+      "index": 31,
       "lines": [
         {
           "offset": 11179,
@@ -24718,7 +25715,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 31,
+      "index": 32,
       "lines": [
         {
           "offset": 11233,
@@ -24784,7 +25781,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 32,
+      "index": 33,
       "lines": [
         {
           "offset": 11490,
@@ -24808,7 +25805,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 33,
+      "index": 34,
       "lines": [
         {
           "offset": 11588,
@@ -24850,7 +25847,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 34,
+      "index": 35,
       "lines": [
         {
           "offset": 11733,
@@ -24868,7 +25865,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 35,
+      "index": 36,
       "lines": [
         {
           "offset": 11791,
@@ -24904,7 +25901,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 36,
+      "index": 37,
       "lines": [
         {
           "offset": 12052,
@@ -24958,7 +25955,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 37,
+      "index": 38,
       "lines": [
         {
           "offset": 12265,
@@ -25060,7 +26057,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 38,
+      "index": 39,
       "lines": [
         {
           "offset": 12692,
@@ -25078,7 +26075,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 39,
+      "index": 40,
       "lines": [
         {
           "offset": 12762,
@@ -25108,7 +26105,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 40,
+      "index": 41,
       "lines": [
         {
           "offset": 12861,
@@ -25144,7 +26141,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 41,
+      "index": 42,
       "lines": [
         {
           "offset": 12993,
@@ -25174,7 +26171,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 42,
+      "index": 43,
       "lines": [
         {
           "offset": 13114,
@@ -25224,7 +26221,13 @@
           "jp": "　お手伝いしましょうか",
           "jp_len": 22,
           "kr": "훤하지요. 도와"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 44,
+      "lines": [
         {
           "offset": 13338,
           "jp": "ファーリン",
@@ -25274,7 +26277,13 @@
           "jp": "　きっと　お役に立てますよ",
           "jp_len": 26,
           "kr": "이래봬도 발이 꽤"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 45,
+      "lines": [
         {
           "offset": 13540,
           "jp": "スマッシュ",
@@ -25365,7 +26374,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 43,
+      "index": 46,
       "lines": [
         {
           "offset": 13914,
@@ -25455,7 +26464,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 44,
+      "index": 47,
       "lines": [
         {
           "offset": 14303,
@@ -25497,7 +26506,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 45,
+      "index": 48,
       "lines": [
         {
           "offset": 14459,
@@ -25533,7 +26542,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 46,
+      "index": 49,
       "lines": [
         {
           "offset": 14610,
@@ -25611,7 +26620,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 47,
+      "index": 50,
       "lines": [
         {
           "offset": 14961,
@@ -25641,7 +26650,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 48,
+      "index": 51,
       "lines": [
         {
           "offset": 15073,
@@ -25659,7 +26668,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 49,
+      "index": 52,
       "lines": [
         {
           "offset": 15140,
@@ -25695,7 +26704,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 50,
+      "index": 53,
       "lines": [
         {
           "offset": 15263,
@@ -25737,7 +26746,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 51,
+      "index": 54,
       "lines": [
         {
           "offset": 15420,
@@ -25761,7 +26770,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 52,
+      "index": 55,
       "lines": [
         {
           "offset": 15499,
@@ -25797,7 +26806,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 53,
+      "index": 56,
       "lines": [
         {
           "offset": 15639,
@@ -25827,7 +26836,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 54,
+      "index": 57,
       "lines": [
         {
           "offset": 15754,
@@ -25851,7 +26860,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 55,
+      "index": 58,
       "lines": [
         {
           "offset": 15834,
@@ -25863,7 +26872,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 56,
+      "index": 59,
       "lines": [
         {
           "offset": 15881,
@@ -25881,7 +26890,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 57,
+      "index": 60,
       "lines": [
         {
           "offset": 15927,
@@ -25899,7 +26908,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 58,
+      "index": 61,
       "lines": [
         {
           "offset": 15967,
@@ -25941,7 +26950,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 59,
+      "index": 62,
       "lines": [
         {
           "offset": 16144,
@@ -25989,7 +26998,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 60,
+      "index": 63,
       "lines": [
         {
           "offset": 16328,
@@ -26025,7 +27034,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 61,
+      "index": 64,
       "lines": [
         {
           "offset": 16454,
@@ -26085,7 +27094,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 62,
+      "index": 65,
       "lines": [
         {
           "offset": 16700,
@@ -26121,7 +27130,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 63,
+      "index": 66,
       "lines": [
         {
           "offset": 16847,
@@ -26157,7 +27166,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 64,
+      "index": 67,
       "lines": [
         {
           "offset": 17009,
@@ -26211,7 +27220,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 65,
+      "index": 68,
       "lines": [
         {
           "offset": 17223,
@@ -26253,7 +27262,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 66,
+      "index": 69,
       "lines": [
         {
           "offset": 17392,
@@ -26301,7 +27310,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 67,
+      "index": 70,
       "lines": [
         {
           "offset": 17560,
@@ -26373,7 +27382,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 68,
+      "index": 71,
       "lines": [
         {
           "offset": 17867,
@@ -26427,7 +27436,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 69,
+      "index": 72,
       "lines": [
         {
           "offset": 18078,
@@ -26499,7 +27508,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 70,
+      "index": 73,
       "lines": [
         {
           "offset": 18368,
@@ -26541,7 +27550,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 71,
+      "index": 74,
       "lines": [
         {
           "offset": 18500,
@@ -26601,7 +27610,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 72,
+      "index": 75,
       "lines": [
         {
           "offset": 18730,
@@ -26655,7 +27664,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 73,
+      "index": 76,
       "lines": [
         {
           "offset": 18943,
@@ -26685,7 +27694,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 74,
+      "index": 77,
       "lines": [
         {
           "offset": 19045,
@@ -26727,7 +27736,7 @@
     },
     {
       "file": "SC4A.CMD",
-      "index": 75,
+      "index": 78,
       "lines": [
         {
           "offset": 19820,
@@ -27398,7 +28407,13 @@
           "jp": "　やるではないか　おまえら",
           "jp_len": 26,
           "kr": "없다고? 내 배려를"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 11177,
           "jp": "ペトゥム",
@@ -27465,7 +28480,13 @@
           "jp": "　なんの用じゃ？",
           "jp_len": 16,
           "kr": "헤맬래야 헤 맬"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 11453,
           "jp": "スマッシュ",
@@ -27520,7 +28541,13 @@
           "jp": "　ワシの不肖の弟子がそうじゃ",
           "jp_len": 28,
           "kr": "바자에게 무슨 용건으로"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 13,
+      "lines": [
         {
           "offset": 11697,
           "jp": "ペトゥム",
@@ -27696,7 +28723,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 11,
+      "index": 14,
       "lines": [
         {
           "offset": 12341,
@@ -27744,7 +28771,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 12,
+      "index": 15,
       "lines": [
         {
           "offset": 12527,
@@ -27774,7 +28801,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 13,
+      "index": 16,
       "lines": [
         {
           "offset": 12651,
@@ -27798,7 +28825,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 14,
+      "index": 17,
       "lines": [
         {
           "offset": 12747,
@@ -27822,7 +28849,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 15,
+      "index": 18,
       "lines": [
         {
           "offset": 12809,
@@ -27876,7 +28903,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 16,
+      "index": 19,
       "lines": [
         {
           "offset": 13016,
@@ -27894,7 +28921,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 17,
+      "index": 20,
       "lines": [
         {
           "offset": 13068,
@@ -27912,7 +28939,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 18,
+      "index": 21,
       "lines": [
         {
           "offset": 13124,
@@ -27930,7 +28957,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 19,
+      "index": 22,
       "lines": [
         {
           "offset": 13200,
@@ -27948,7 +28975,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 20,
+      "index": 23,
       "lines": [
         {
           "offset": 13242,
@@ -27966,7 +28993,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 21,
+      "index": 24,
       "lines": [
         {
           "offset": 13310,
@@ -27996,7 +29023,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 22,
+      "index": 25,
       "lines": [
         {
           "offset": 13427,
@@ -28026,7 +29053,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 23,
+      "index": 26,
       "lines": [
         {
           "offset": 13531,
@@ -28062,7 +29089,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 24,
+      "index": 27,
       "lines": [
         {
           "offset": 13673,
@@ -28086,7 +29113,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 25,
+      "index": 28,
       "lines": [
         {
           "offset": 13769,
@@ -28122,7 +29149,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 26,
+      "index": 29,
       "lines": [
         {
           "offset": 13908,
@@ -28140,7 +29167,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 27,
+      "index": 30,
       "lines": [
         {
           "offset": 13966,
@@ -28158,7 +29185,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 28,
+      "index": 31,
       "lines": [
         {
           "offset": 14043,
@@ -28182,7 +29209,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 29,
+      "index": 32,
       "lines": [
         {
           "offset": 14141,
@@ -28206,7 +29233,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 30,
+      "index": 33,
       "lines": [
         {
           "offset": 14244,
@@ -28230,7 +29257,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 31,
+      "index": 34,
       "lines": [
         {
           "offset": 14344,
@@ -28254,7 +29281,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 32,
+      "index": 35,
       "lines": [
         {
           "offset": 14424,
@@ -28278,7 +29305,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 33,
+      "index": 36,
       "lines": [
         {
           "offset": 14503,
@@ -28290,7 +29317,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 34,
+      "index": 37,
       "lines": [
         {
           "offset": 14547,
@@ -28302,7 +29329,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 35,
+      "index": 38,
       "lines": [
         {
           "offset": 14588,
@@ -28332,7 +29359,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 36,
+      "index": 39,
       "lines": [
         {
           "offset": 14713,
@@ -28374,7 +29401,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 37,
+      "index": 40,
       "lines": [
         {
           "offset": 14855,
@@ -28405,7 +29432,13 @@
           "jp": "　ですよ！",
           "jp_len": 10,
           "kr": "정말"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 41,
+      "lines": [
         {
           "offset": 14997,
           "jp": "シーラ",
@@ -28471,7 +29504,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 38,
+      "index": 42,
       "lines": [
         {
           "offset": 15246,
@@ -28495,7 +29528,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 39,
+      "index": 43,
       "lines": [
         {
           "offset": 15324,
@@ -28514,7 +29547,13 @@
           "jp": "　なさってるのですか",
           "jp_len": 20,
           "kr": "계신겁 니까?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 44,
+      "lines": [
         {
           "offset": 15420,
           "jp": "シーラ",
@@ -28550,7 +29589,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 40,
+      "index": 45,
       "lines": [
         {
           "offset": 15539,
@@ -28562,7 +29601,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 41,
+      "index": 46,
       "lines": [
         {
           "offset": 15570,
@@ -28586,7 +29625,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 42,
+      "index": 47,
       "lines": [
         {
           "offset": 15639,
@@ -28622,7 +29661,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 43,
+      "index": 48,
       "lines": [
         {
           "offset": 15790,
@@ -28640,7 +29679,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 44,
+      "index": 49,
       "lines": [
         {
           "offset": 15844,
@@ -28658,7 +29697,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 45,
+      "index": 50,
       "lines": [
         {
           "offset": 15896,
@@ -28712,7 +29751,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 46,
+      "index": 51,
       "lines": [
         {
           "offset": 16118,
@@ -28730,7 +29769,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 47,
+      "index": 52,
       "lines": [
         {
           "offset": 16193,
@@ -28744,7 +29783,13 @@
           "jp": "「あ…あら　私　いったい…",
           "jp_len": 26,
           "kr": "「어, 어머, 나,"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 53,
+      "lines": [
         {
           "offset": 16257,
           "jp": "スマッシュ",
@@ -28770,7 +29815,13 @@
           "jp": "「なんだか体が　すごく重い…",
           "jp_len": 28,
           "kr": "「이봐, 괜찮아? [화린]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 54,
+      "lines": [
         {
           "offset": 16357,
           "jp": "ペトゥム",
@@ -28820,7 +29871,13 @@
           "jp": "　なにがなにやら　さっぱり…",
           "jp_len": 28,
           "kr": "내 몸에 대체 뭔 일이"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 55,
+      "lines": [
         {
           "offset": 16557,
           "jp": "スマッシュ",
@@ -28923,7 +29980,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 48,
+      "index": 56,
       "lines": [
         {
           "offset": 16959,
@@ -28935,7 +29992,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 49,
+      "index": 57,
       "lines": [
         {
           "offset": 16998,
@@ -28990,7 +30047,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 50,
+      "index": 58,
       "lines": [
         {
           "offset": 17227,
@@ -29009,7 +30066,13 @@
           "jp": "　早いじゃない",
           "jp_len": 14,
           "kr": "생각했던 것"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 59,
+      "lines": [
         {
           "offset": 17313,
           "jp": "ペトゥム",
@@ -29095,7 +30158,13 @@
           "jp": "　吹き込んだのは？",
           "jp_len": 18,
           "kr": "바보같은 짓을…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 60,
+      "lines": [
         {
           "offset": 17653,
           "jp": "「吹き込んだ　とは人聞きの悪い",
@@ -29119,7 +30188,13 @@
           "jp": "　ただ　それだけだ",
           "jp_len": 18,
           "kr": "람이… 그 말은"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 61,
+      "lines": [
         {
           "offset": 17779,
           "jp": "スマッシュ",
@@ -29167,7 +30242,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 51,
+      "index": 62,
       "lines": [
         {
           "offset": 18018,
@@ -29181,7 +30256,13 @@
           "jp": "「どうした？　おじけづいたか",
           "jp_len": 28,
           "kr": "「왜 그래? 겁 먹은 거야?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 63,
+      "lines": [
         {
           "offset": 18084,
           "jp": "「ニヤリ",
@@ -29192,7 +30273,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 52,
+      "index": 64,
       "lines": [
         {
           "offset": 18139,
@@ -29212,7 +30293,13 @@
           "jp": "　思わず体が動いてしまった",
           "jp_len": 26,
           "kr": "(무의식중에 몸을"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 65,
+      "lines": [
         {
           "offset": 18229,
           "jp": "「み　味方を盾にするとは…",
@@ -29241,7 +30328,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 53,
+      "index": 66,
       "lines": [
         {
           "offset": 18374,
@@ -29260,7 +30347,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 54,
+      "index": 67,
       "lines": [
         {
           "offset": 18453,
@@ -29278,7 +30365,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 55,
+      "index": 68,
       "lines": [
         {
           "offset": 18542,
@@ -29292,7 +30379,13 @@
           "jp": "「観念するんですね　女王",
           "jp_len": 24,
           "kr": "「체념하시죠? 여왕님."
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 69,
+      "lines": [
         {
           "offset": 18602,
           "jp": "「あ〜あ　今回はうまく行くと",
@@ -29372,7 +30465,13 @@
           "jp": "「はいはい　わかりました",
           "jp_len": 24,
           "kr": "「저지른 일에 책임 을"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 70,
+      "lines": [
         {
           "offset": 18934,
           "jp": "スマッシュ",
@@ -29391,7 +30490,13 @@
           "jp": "　これじゃ　先に進めないぜ",
           "jp_len": 26,
           "kr": "알겠습니다. [스마슈]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 71,
+      "lines": [
         {
           "offset": 19018,
           "jp": "ペトゥム",
@@ -29415,7 +30520,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 56,
+      "index": 72,
       "lines": [
         {
           "offset": 19104,
@@ -29451,7 +30556,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 57,
+      "index": 73,
       "lines": [
         {
           "offset": 19233,
@@ -29487,7 +30592,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 58,
+      "index": 74,
       "lines": [
         {
           "offset": 19392,
@@ -29541,7 +30646,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 59,
+      "index": 75,
       "lines": [
         {
           "offset": 19621,
@@ -29567,7 +30672,13 @@
           "jp": "　いいよね　スマッシュ？",
           "jp_len": 24,
           "kr": "빠져도 괜찮겠지?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 76,
+      "lines": [
         {
           "offset": 19737,
           "jp": "スマッシュ",
@@ -29605,7 +30716,13 @@
           "jp": "「はいはい　わかりました",
           "jp_len": 24,
           "kr": "「네에, 알았습니다. 자아,"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4B.CMD",
+      "index": 77,
+      "lines": [
         {
           "offset": 19883,
           "jp": "「さて　次はワシの話を聞いて",
@@ -29737,7 +30854,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 60,
+      "index": 78,
       "lines": [
         {
           "offset": 20412,
@@ -29755,7 +30872,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 61,
+      "index": 79,
       "lines": [
         {
           "offset": 20475,
@@ -29773,7 +30890,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 62,
+      "index": 80,
       "lines": [
         {
           "offset": 20538,
@@ -29815,7 +30932,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 63,
+      "index": 81,
       "lines": [
         {
           "offset": 20719,
@@ -29857,7 +30974,7 @@
     },
     {
       "file": "SC4B.CMD",
-      "index": 64,
+      "index": 82,
       "lines": [
         {
           "offset": 20902,
@@ -30081,7 +31198,13 @@
           "jp": "　行けないよ",
           "jp_len": 12,
           "kr": "없잖아!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4C.CMD",
+      "index": 8,
+      "lines": [
         {
           "offset": 8900,
           "jp": "ペトゥム",
@@ -30129,7 +31252,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 9086,
@@ -30147,7 +31270,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 9194,
@@ -30167,7 +31290,13 @@
           "jp": "　装置だってーのか？",
           "jp_len": 20,
           "kr": "장치야? "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4C.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 9286,
           "jp": "ペトゥム",
@@ -30221,7 +31350,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 10,
+      "index": 12,
       "lines": [
         {
           "offset": 9511,
@@ -30241,7 +31370,13 @@
           "jp": "　なくなってるじゃないの！",
           "jp_len": 26,
           "kr": "없어져 버렸잖 아!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4C.CMD",
+      "index": 13,
+      "lines": [
         {
           "offset": 9593,
           "jp": "ペトゥム",
@@ -30301,7 +31436,31 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 11,
+      "index": 14,
+      "lines": [
+        {
+          "offset": 9858,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 9868,
+          "jp": "「これこれ　これですよ！",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 9894,
+          "jp": "　橋をかける装置はっ",
+          "jp_len": 20,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4C.CMD",
+      "index": 15,
       "lines": [
         {
           "offset": 9953,
@@ -30315,7 +31474,13 @@
           "jp": "「なんだ　こりゃ？",
           "jp_len": 18,
           "kr": "「뭐야, 이건?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4C.CMD",
+      "index": 16,
+      "lines": [
         {
           "offset": 10009,
           "jp": "ペトゥム",
@@ -30333,7 +31498,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 12,
+      "index": 17,
       "lines": [
         {
           "offset": 10066,
@@ -30351,7 +31516,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 13,
+      "index": 18,
       "lines": [
         {
           "offset": 10133,
@@ -30369,7 +31534,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 14,
+      "index": 19,
       "lines": [
         {
           "offset": 10204,
@@ -30387,7 +31552,7 @@
     },
     {
       "file": "SC4C.CMD",
-      "index": 15,
+      "index": 20,
       "lines": [
         {
           "offset": 10276,
@@ -30768,6 +31933,30 @@
       "index": 17,
       "lines": [
         {
+          "offset": 11124,
+          "jp": "「情けと思い　逃がしたのは",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 11152,
+          "jp": "　やはり間違いだったか",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 11178,
+          "jp": "　いいでしょう　今度は確実に",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 11208,
+          "jp": "　ほうむってさしあげます！",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
           "offset": 11248,
           "jp": "「いろいろと妨害工作を",
           "jp_len": 22,
@@ -30944,7 +32133,13 @@
           "jp": "「…　…　…",
           "jp_len": 12,
           "kr": "「………"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC4E.CMD",
+      "index": 2,
+      "lines": [
         {
           "offset": 5228,
           "jp": "スマッシュ",
@@ -31249,7 +32444,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 2,
+      "index": 3,
       "lines": [
         {
           "offset": 6343,
@@ -31286,7 +32481,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 3,
+      "index": 4,
       "lines": [
         {
           "offset": 6490,
@@ -31304,7 +32499,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 4,
+      "index": 5,
       "lines": [
         {
           "offset": 6547,
@@ -31334,7 +32529,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 5,
+      "index": 6,
       "lines": [
         {
           "offset": 6662,
@@ -31346,7 +32541,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 6,
+      "index": 7,
       "lines": [
         {
           "offset": 6693,
@@ -31382,7 +32577,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 7,
+      "index": 8,
       "lines": [
         {
           "offset": 6832,
@@ -31418,7 +32613,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 6988,
@@ -31448,7 +32643,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 7086,
@@ -31472,7 +32667,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 7169,
@@ -31490,7 +32685,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 7232,
@@ -31520,7 +32715,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 7343,
@@ -31556,7 +32751,7 @@
     },
     {
       "file": "SC4E.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 7645,
@@ -32163,7 +33358,13 @@
           "jp": "　諦めたのか",
           "jp_len": 12,
           "kr": "없겠지?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5A.CMD",
+      "index": 16,
+      "lines": [
         {
           "offset": 8102,
           "jp": "スマッシュ",
@@ -32187,7 +33388,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 8193,
@@ -32230,7 +33431,13 @@
           "jp": "　俺たちも急いで救命ボートへ！",
           "jp_len": 30,
           "kr": "밖에… 다른 사람들은 이미"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5A.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 8423,
           "jp": "スマッシュ",
@@ -32297,7 +33504,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 17,
+      "index": 19,
       "lines": [
         {
           "offset": 8636,
@@ -32339,7 +33546,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 18,
+      "index": 20,
       "lines": [
         {
           "offset": 8797,
@@ -32363,7 +33570,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 19,
+      "index": 21,
       "lines": [
         {
           "offset": 8876,
@@ -32382,7 +33589,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 20,
+      "index": 22,
       "lines": [
         {
           "offset": 8907,
@@ -32425,7 +33632,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 21,
+      "index": 23,
       "lines": [
         {
           "offset": 9070,
@@ -32456,7 +33663,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 22,
+      "index": 24,
       "lines": [
         {
           "offset": 9157,
@@ -32475,8 +33682,39 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 23,
+      "index": 25,
       "lines": [
+        {
+          "offset": 9223,
+          "jp": "ペトゥム",
+          "jp_len": 8,
+          "kr": "페톰",
+          "tag": "char"
+        },
+        {
+          "offset": 9233,
+          "jp": "「外は　すごい嵐だそうです",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9263,
+          "jp": "　こんなときは我々　素人は",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 9291,
+          "jp": "　出番がありません",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 9311,
+          "jp": "　専門家にまかせましょう",
+          "jp_len": 24,
+          "kr": ""
+        },
         {
           "offset": 9349,
           "jp": "ペトゥム",
@@ -32512,7 +33750,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 24,
+      "index": 26,
       "lines": [
         {
           "offset": 9480,
@@ -32536,14 +33774,20 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 25,
+      "index": 27,
       "lines": [
         {
           "offset": 9603,
           "jp": "〔すごくＨな本〕が入っていた！",
           "jp_len": 30,
           "kr": "〔엄청난에로책〕이 들어있다!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5A.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 9659,
           "jp": "スマッシュ",
@@ -32598,7 +33842,13 @@
           "jp": "　それまで　しまっておこう",
           "jp_len": 26,
           "kr": "그 때까지 잘 넣어 두자"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5A.CMD",
+      "index": 29,
+      "lines": [
         {
           "offset": 9918,
           "jp": "スマッシュ",
@@ -32623,7 +33873,13 @@
           "jp": "〔すごくＨな本〕が入っていた",
           "jp_len": 28,
           "kr": "〔엄청난에로책〕이 들어있다"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5A.CMD",
+      "index": 30,
+      "lines": [
         {
           "offset": 10046,
           "jp": "スマッシュ",
@@ -32653,7 +33909,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 26,
+      "index": 31,
       "lines": [
         {
           "offset": 10161,
@@ -32683,7 +33939,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 27,
+      "index": 32,
       "lines": [
         {
           "offset": 10282,
@@ -32708,7 +33964,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 28,
+      "index": 33,
       "lines": [
         {
           "offset": 10355,
@@ -32732,7 +33988,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 29,
+      "index": 34,
       "lines": [
         {
           "offset": 10427,
@@ -32756,7 +34012,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 30,
+      "index": 35,
       "lines": [
         {
           "offset": 10506,
@@ -32786,7 +34042,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 31,
+      "index": 36,
       "lines": [
         {
           "offset": 10612,
@@ -32828,7 +34084,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 32,
+      "index": 37,
       "lines": [
         {
           "offset": 10763,
@@ -32852,7 +34108,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 33,
+      "index": 38,
       "lines": [
         {
           "offset": 10851,
@@ -32870,7 +34126,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 34,
+      "index": 39,
       "lines": [
         {
           "offset": 10903,
@@ -32888,7 +34144,7 @@
     },
     {
       "file": "SC5A.CMD",
-      "index": 35,
+      "index": 40,
       "lines": [
         {
           "offset": 10982,
@@ -33144,7 +34400,13 @@
           "jp": "　地獄の法官が待つ山に登るのだ",
           "jp_len": 30,
           "kr": "된다. 이제 피의 강을 건너"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5B.CMD",
+      "index": 8,
+      "lines": [
         {
           "offset": 3474,
           "jp": "スマッシュ",
@@ -33204,7 +34466,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 3694,
@@ -33270,7 +34532,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 3952,
@@ -33300,7 +34562,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 4048,
@@ -33336,7 +34598,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 4187,
@@ -33396,7 +34658,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 4411,
@@ -33468,7 +34730,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 4696,
@@ -33510,7 +34772,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 4876,
@@ -33552,7 +34814,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 5022,
@@ -33594,7 +34856,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 5179,
@@ -33648,7 +34910,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 17,
+      "index": 18,
       "lines": [
         {
           "offset": 5387,
@@ -33702,7 +34964,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 5589,
@@ -33720,7 +34982,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 5634,
@@ -33738,7 +35000,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 20,
+      "index": 21,
       "lines": [
         {
           "offset": 5676,
@@ -33786,7 +35048,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 21,
+      "index": 22,
       "lines": [
         {
           "offset": 5866,
@@ -33822,7 +35084,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 22,
+      "index": 23,
       "lines": [
         {
           "offset": 5999,
@@ -33840,7 +35102,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 23,
+      "index": 24,
       "lines": [
         {
           "offset": 6058,
@@ -33870,7 +35132,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 24,
+      "index": 25,
       "lines": [
         {
           "offset": 6173,
@@ -33894,7 +35156,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 25,
+      "index": 26,
       "lines": [
         {
           "offset": 6256,
@@ -33930,7 +35192,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 26,
+      "index": 27,
       "lines": [
         {
           "offset": 6382,
@@ -34002,7 +35264,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 27,
+      "index": 28,
       "lines": [
         {
           "offset": 6638,
@@ -34044,7 +35306,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 28,
+      "index": 29,
       "lines": [
         {
           "offset": 6807,
@@ -34080,7 +35342,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 29,
+      "index": 30,
       "lines": [
         {
           "offset": 6943,
@@ -34104,7 +35366,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 30,
+      "index": 31,
       "lines": [
         {
           "offset": 7024,
@@ -34129,7 +35391,13 @@
           "jp": "　名と罪状をのべよ",
           "jp_len": 18,
           "kr": "겠다! 이름과"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5B.CMD",
+      "index": 32,
+      "lines": [
         {
           "offset": 7156,
           "jp": "スマッシュ",
@@ -34408,7 +35676,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 31,
+      "index": 33,
       "lines": [
         {
           "offset": 8229,
@@ -34450,7 +35718,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 32,
+      "index": 34,
       "lines": [
         {
           "offset": 8386,
@@ -34492,7 +35760,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 33,
+      "index": 35,
       "lines": [
         {
           "offset": 8545,
@@ -34516,7 +35784,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 34,
+      "index": 36,
       "lines": [
         {
           "offset": 8634,
@@ -34540,7 +35808,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 35,
+      "index": 37,
       "lines": [
         {
           "offset": 8717,
@@ -34564,7 +35832,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 36,
+      "index": 38,
       "lines": [
         {
           "offset": 8792,
@@ -34582,7 +35850,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 37,
+      "index": 39,
       "lines": [
         {
           "offset": 8853,
@@ -34619,7 +35887,13 @@
           "jp": "　まったく素晴らしい！",
           "jp_len": 22,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5B.CMD",
+      "index": 40,
+      "lines": [
         {
           "offset": 8991,
           "jp": "スマッシュ",
@@ -34643,7 +35917,7 @@
     },
     {
       "file": "SC5B.CMD",
-      "index": 38,
+      "index": 41,
       "lines": [
         {
           "offset": 9050,
@@ -34656,7 +35930,13 @@
           "jp": "　どうして　まだ地獄に…",
           "jp_len": 24,
           "kr": "어째서 아직 지옥에…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5B.CMD",
+      "index": 42,
+      "lines": [
         {
           "offset": 9120,
           "jp": "スマッシュ",
@@ -35017,7 +36297,13 @@
           "jp": "　変わりはてた姿に",
           "jp_len": 18,
           "kr": "그런 모습으로"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 10,
+      "lines": [
         {
           "offset": 5537,
           "jp": "キリ",
@@ -35115,7 +36401,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 5912,
@@ -35148,7 +36434,13 @@
           "jp": "「ば　化けて出たーっ！",
           "jp_len": 22,
           "kr": "「소리야? [패톰] 귀,"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 12,
+      "lines": [
         {
           "offset": 6036,
           "jp": "キリ",
@@ -35192,7 +36484,13 @@
           "jp": "　地獄からなっ！",
           "jp_len": 16,
           "kr": "쫄기는! 나는"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 13,
+      "lines": [
         {
           "offset": 6198,
           "jp": "ペトゥム＆キリ",
@@ -35209,7 +36507,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 11,
+      "index": 14,
       "lines": [
         {
           "offset": 6269,
@@ -35223,7 +36521,13 @@
           "jp": "「な　なんだ　いまのゆれ？",
           "jp_len": 26,
           "kr": "「뭐, 뭐야? 지금"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 6333,
           "jp": "キリ",
@@ -35316,7 +36620,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 12,
+      "index": 16,
       "lines": [
         {
           "offset": 6663,
@@ -35365,7 +36669,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 13,
+      "index": 17,
       "lines": [
         {
           "offset": 6802,
@@ -35413,7 +36717,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 14,
+      "index": 18,
       "lines": [
         {
           "offset": 6983,
@@ -35451,7 +36755,13 @@
           "jp": "　まあ　よかったではないか",
           "jp_len": 26,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 19,
+      "lines": [
         {
           "offset": 7137,
           "jp": "スマッシュ",
@@ -35531,7 +36841,13 @@
           "jp": "　見つけ出せぬよ",
           "jp_len": 16,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 7453,
           "jp": "キリ",
@@ -35605,7 +36921,13 @@
           "jp": "　新しい足も用意しておこう",
           "jp_len": 26,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 21,
+      "lines": [
         {
           "offset": 7755,
           "jp": "スマッシュ",
@@ -35618,7 +36940,13 @@
           "jp": "「よろしく　たのむぜ",
           "jp_len": 20,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 22,
+      "lines": [
         {
           "offset": 7813,
           "jp": "キリ",
@@ -35642,7 +36970,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 15,
+      "index": 23,
       "lines": [
         {
           "offset": 7891,
@@ -35660,7 +36988,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 16,
+      "index": 24,
       "lines": [
         {
           "offset": 7946,
@@ -35696,7 +37024,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 17,
+      "index": 25,
       "lines": [
         {
           "offset": 8080,
@@ -35740,7 +37068,13 @@
           "jp": "　巨大な亀裂のことだ",
           "jp_len": 20,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 26,
+      "lines": [
         {
           "offset": 8262,
           "jp": "「赤き荒野？",
@@ -35825,7 +37159,13 @@
           "jp": "〔導きの羽〕を手に入れた",
           "jp_len": 24,
           "kr": "〔인도의깃털〕을 얻었다"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 27,
+      "lines": [
         {
           "offset": 8609,
           "jp": "スマッシュ",
@@ -35894,7 +37234,13 @@
           "jp": "　…おっ　きたきたぁ！",
           "jp_len": 22,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 8863,
           "jp": "キリ",
@@ -35937,7 +37283,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 18,
+      "index": 29,
       "lines": [
         {
           "offset": 9004,
@@ -35962,7 +37308,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 19,
+      "index": 30,
       "lines": [
         {
           "offset": 9081,
@@ -35981,7 +37327,13 @@
           "jp": "　いただいたわ！",
           "jp_len": 16,
           "kr": "내가 갖기로 하지!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 9175,
           "jp": "スマッシュ",
@@ -35994,7 +37346,13 @@
           "jp": "「おお　美しいお姉さまが！",
           "jp_len": 26,
           "kr": "「앗! 섹시한 여자다!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 32,
+      "lines": [
         {
           "offset": 9239,
           "jp": "ペトゥム",
@@ -36013,7 +37371,13 @@
           "jp": "　ないでしょ！",
           "jp_len": 14,
           "kr": "아니잖아! "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 33,
+      "lines": [
         {
           "offset": 9315,
           "jp": "「ふーん　あなたたちが",
@@ -36043,7 +37407,13 @@
           "jp": "　見えないけど",
           "jp_len": 14,
           "kr": "없어 보이는 걸!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5C.CMD",
+      "index": 34,
+      "lines": [
         {
           "offset": 9451,
           "jp": "スマッシュ",
@@ -36194,7 +37564,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 20,
+      "index": 35,
       "lines": [
         {
           "offset": 10058,
@@ -36213,7 +37583,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 21,
+      "index": 36,
       "lines": [
         {
           "offset": 10108,
@@ -36267,7 +37637,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 22,
+      "index": 37,
       "lines": [
         {
           "offset": 10309,
@@ -36303,7 +37673,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 23,
+      "index": 38,
       "lines": [
         {
           "offset": 10436,
@@ -36369,7 +37739,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 24,
+      "index": 39,
       "lines": [
         {
           "offset": 10673,
@@ -36411,7 +37781,7 @@
     },
     {
       "file": "SC5C.CMD",
-      "index": 25,
+      "index": 40,
       "lines": [
         {
           "offset": 10832,
@@ -36603,7 +37973,13 @@
           "jp": "「ゲッ　牢の中に出ちまった",
           "jp_len": 26,
           "kr": "「으윽! 감옥으로 나와"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5D.CMD",
+      "index": 7,
+      "lines": [
         {
           "offset": 4452,
           "jp": "キリ",
@@ -36701,7 +38077,13 @@
           "jp": "　残っていたものでなあ",
           "jp_len": 22,
           "kr": "이 감옥이 너무"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5D.CMD",
+      "index": 8,
+      "lines": [
         {
           "offset": 4816,
           "jp": "ペトゥム",
@@ -36774,7 +38156,7 @@
     },
     {
       "file": "SC5D.CMD",
-      "index": 7,
+      "index": 9,
       "lines": [
         {
           "offset": 5075,
@@ -37242,7 +38624,13 @@
           "jp": "　わけじゃないだろ",
           "jp_len": 18,
           "kr": "아닐테고"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5E.CMD",
+      "index": 14,
+      "lines": [
         {
           "offset": 5883,
           "jp": "スマッシュ",
@@ -37444,7 +38832,13 @@
           "jp": "　行ったり来たりできるんだ",
           "jp_len": 26,
           "kr": "왔다갔다 할 수 있어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5E.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 6639,
           "jp": "ペトゥム",
@@ -37518,7 +38912,13 @@
           "jp": "　伝えられてたんだ",
           "jp_len": 18,
           "kr": "전해져 온 거야"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC5E.CMD",
+      "index": 16,
+      "lines": [
         {
           "offset": 6945,
           "jp": "スマッシュ",
@@ -37735,7 +39135,7 @@
     },
     {
       "file": "SC5E.CMD",
-      "index": 14,
+      "index": 17,
       "lines": [
         {
           "offset": 7698,
@@ -37789,7 +39189,7 @@
     },
     {
       "file": "SC5E.CMD",
-      "index": 15,
+      "index": 18,
       "lines": [
         {
           "offset": 7911,
@@ -37807,7 +39207,7 @@
     },
     {
       "file": "SC5E.CMD",
-      "index": 16,
+      "index": 19,
       "lines": [
         {
           "offset": 7978,
@@ -37861,7 +39261,7 @@
     },
     {
       "file": "SC5E.CMD",
-      "index": 17,
+      "index": 20,
       "lines": [
         {
           "offset": 8185,
@@ -37885,7 +39285,7 @@
     },
     {
       "file": "SC5E.CMD",
-      "index": 18,
+      "index": 21,
       "lines": [
         {
           "offset": 8516,
@@ -38954,7 +40354,13 @@
           "jp": "　入ってくだせえ",
           "jp_len": 16,
           "kr": "저 대포 안으로"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6A.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 13880,
           "jp": "キリ",
@@ -39033,7 +40439,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 31,
+      "index": 32,
       "lines": [
         {
           "offset": 14201,
@@ -39070,7 +40476,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 32,
+      "index": 33,
       "lines": [
         {
           "offset": 14342,
@@ -39090,7 +40496,13 @@
           "jp": "　するんだけどよ",
           "jp_len": 16,
           "kr": "예감이 드는"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6A.CMD",
+      "index": 34,
+      "lines": [
         {
           "offset": 14426,
           "jp": "ペトゥム",
@@ -39108,7 +40520,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 33,
+      "index": 35,
       "lines": [
         {
           "offset": 14511,
@@ -39127,7 +40539,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 34,
+      "index": 36,
       "lines": [
         {
           "offset": 14582,
@@ -39152,7 +40564,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 35,
+      "index": 37,
       "lines": [
         {
           "offset": 14645,
@@ -39170,7 +40582,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 36,
+      "index": 38,
       "lines": [
         {
           "offset": 14724,
@@ -39182,7 +40594,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 37,
+      "index": 39,
       "lines": [
         {
           "offset": 14792,
@@ -39202,7 +40614,13 @@
           "jp": "　あるよ",
           "jp_len": 8,
           "kr": "있어! "
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6A.CMD",
+      "index": 40,
+      "lines": [
         {
           "offset": 14858,
           "jp": "ペトゥム",
@@ -39244,7 +40662,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 38,
+      "index": 41,
       "lines": [
         {
           "offset": 15020,
@@ -39262,7 +40680,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 39,
+      "index": 42,
       "lines": [
         {
           "offset": 15069,
@@ -39280,7 +40698,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 40,
+      "index": 43,
       "lines": [
         {
           "offset": 15129,
@@ -39292,8 +40710,20 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 41,
+      "index": 44,
       "lines": [
+        {
+          "offset": 15193,
+          "jp": "「本日ハ忙シイ日ダ",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 15213,
+          "jp": "　再ビ　迎撃もーどヲ発動！",
+          "jp_len": 26,
+          "kr": ""
+        },
         {
           "offset": 15253,
           "jp": "「侵入者発見！",
@@ -39316,7 +40746,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 42,
+      "index": 45,
       "lines": [
         {
           "offset": 15358,
@@ -39366,7 +40796,13 @@
           "jp": "　素人でも大丈夫ですよ",
           "jp_len": 22,
           "kr": "이거 놀랍습니다."
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6A.CMD",
+      "index": 46,
+      "lines": [
         {
           "offset": 15574,
           "jp": "スマッシュ",
@@ -39414,7 +40850,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 43,
+      "index": 47,
       "lines": [
         {
           "offset": 15763,
@@ -39432,7 +40868,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 44,
+      "index": 48,
       "lines": [
         {
           "offset": 15811,
@@ -39450,7 +40886,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 45,
+      "index": 49,
       "lines": [
         {
           "offset": 15875,
@@ -39486,7 +40922,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 46,
+      "index": 50,
       "lines": [
         {
           "offset": 16009,
@@ -39504,7 +40940,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 47,
+      "index": 51,
       "lines": [
         {
           "offset": 16073,
@@ -39540,7 +40976,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 48,
+      "index": 52,
       "lines": [
         {
           "offset": 16201,
@@ -39558,7 +40994,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 49,
+      "index": 53,
       "lines": [
         {
           "offset": 16274,
@@ -39582,7 +41018,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 50,
+      "index": 54,
       "lines": [
         {
           "offset": 16364,
@@ -39606,7 +41042,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 51,
+      "index": 55,
       "lines": [
         {
           "offset": 16442,
@@ -39630,7 +41066,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 52,
+      "index": 56,
       "lines": [
         {
           "offset": 16526,
@@ -39666,7 +41102,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 53,
+      "index": 57,
       "lines": [
         {
           "offset": 16658,
@@ -39684,7 +41120,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 54,
+      "index": 58,
       "lines": [
         {
           "offset": 16725,
@@ -39702,7 +41138,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 55,
+      "index": 59,
       "lines": [
         {
           "offset": 16767,
@@ -39738,7 +41174,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 56,
+      "index": 60,
       "lines": [
         {
           "offset": 16917,
@@ -39756,7 +41192,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 57,
+      "index": 61,
       "lines": [
         {
           "offset": 16959,
@@ -39792,7 +41228,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 58,
+      "index": 62,
       "lines": [
         {
           "offset": 17095,
@@ -39810,7 +41246,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 59,
+      "index": 63,
       "lines": [
         {
           "offset": 17166,
@@ -39828,7 +41264,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 60,
+      "index": 64,
       "lines": [
         {
           "offset": 17233,
@@ -39846,7 +41282,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 61,
+      "index": 65,
       "lines": [
         {
           "offset": 17320,
@@ -39870,7 +41306,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 62,
+      "index": 66,
       "lines": [
         {
           "offset": 17407,
@@ -39894,7 +41330,7 @@
     },
     {
       "file": "SC6A.CMD",
-      "index": 63,
+      "index": 67,
       "lines": [
         {
           "offset": 18163,
@@ -40171,7 +41607,13 @@
           "jp": "　聞かないでおきますけど",
           "jp_len": 24,
           "kr": "마련했는 지는 묻지"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 14,
+      "lines": [
         {
           "offset": 9236,
           "jp": "アリババ",
@@ -40289,7 +41731,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 9639,
@@ -40344,7 +41786,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 9888,
@@ -40363,7 +41805,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 9967,
@@ -40377,7 +41819,13 @@
           "jp": "「ようすは　どうじゃ？",
           "jp_len": 22,
           "kr": "「낌새는 어때? [패톰]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 10027,
           "jp": "ペトゥム",
@@ -40445,7 +41893,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 17,
+      "index": 19,
       "lines": [
         {
           "offset": 10280,
@@ -40465,7 +41913,13 @@
           "jp": "　魂が戻られました！",
           "jp_len": 20,
           "kr": "돌아왔어요! [패톰]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 10362,
           "jp": "ペトゥム",
@@ -40489,7 +41943,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 18,
+      "index": 21,
       "lines": [
         {
           "offset": 10459,
@@ -40527,7 +41981,13 @@
           "jp": "　つかまっててください",
           "jp_len": 22,
           "kr": "해서 뭐든 꼭 잡고"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 22,
+      "lines": [
         {
           "offset": 10611,
           "jp": "スマッシュ",
@@ -40540,7 +42000,13 @@
           "jp": "「おいおい　なんだよ？",
           "jp_len": 22,
           "kr": "「계십시요."
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 23,
+      "lines": [
         {
           "offset": 10671,
           "jp": "キリ",
@@ -40572,7 +42038,13 @@
           "jp": "「ダイビング？　なにが？",
           "jp_len": 24,
           "kr": "「빨리 아무거나 잡아!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 24,
+      "lines": [
         {
           "offset": 10791,
           "jp": "ペトゥム",
@@ -40622,7 +42094,13 @@
           "jp": "　考えたーっ！？",
           "jp_len": 16,
           "kr": "합니다. 그렇게"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 25,
+      "lines": [
         {
           "offset": 10973,
           "jp": "キリ",
@@ -40671,7 +42149,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 19,
+      "index": 26,
       "lines": [
         {
           "offset": 11150,
@@ -40696,7 +42174,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 20,
+      "index": 27,
       "lines": [
         {
           "offset": 11245,
@@ -40710,7 +42188,13 @@
           "jp": "「作戦？　なんだそりゃ？",
           "jp_len": 24,
           "kr": "「작전? 그건 또 뭐야?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 11307,
           "jp": "アターホー",
@@ -40747,7 +42231,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 21,
+      "index": 29,
       "lines": [
         {
           "offset": 11415,
@@ -40831,7 +42315,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 22,
+      "index": 30,
       "lines": [
         {
           "offset": 11756,
@@ -40849,7 +42333,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 23,
+      "index": 31,
       "lines": [
         {
           "offset": 11829,
@@ -40867,7 +42351,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 24,
+      "index": 32,
       "lines": [
         {
           "offset": 11898,
@@ -40881,7 +42365,13 @@
           "jp": "「お…おい　生きてるか？",
           "jp_len": 24,
           "kr": "「우… 우리, 살아"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 33,
+      "lines": [
         {
           "offset": 11960,
           "jp": "ペトゥム",
@@ -40894,7 +42384,13 @@
           "jp": "「ええ　どうにか…",
           "jp_len": 18,
           "kr": "「있어? [패톰]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 34,
+      "lines": [
         {
           "offset": 12014,
           "jp": "キリ",
@@ -40949,7 +42445,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 25,
+      "index": 35,
       "lines": [
         {
           "offset": 12217,
@@ -40967,7 +42463,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 26,
+      "index": 36,
       "lines": [
         {
           "offset": 12274,
@@ -40985,7 +42481,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 27,
+      "index": 37,
       "lines": [
         {
           "offset": 12346,
@@ -41003,7 +42499,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 28,
+      "index": 38,
       "lines": [
         {
           "offset": 12403,
@@ -41021,7 +42517,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 29,
+      "index": 39,
       "lines": [
         {
           "offset": 12475,
@@ -41039,7 +42535,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 30,
+      "index": 40,
       "lines": [
         {
           "offset": 12527,
@@ -41057,7 +42553,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 31,
+      "index": 41,
       "lines": [
         {
           "offset": 12592,
@@ -41069,7 +42565,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 32,
+      "index": 42,
       "lines": [
         {
           "offset": 12649,
@@ -41094,7 +42590,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 33,
+      "index": 43,
       "lines": [
         {
           "offset": 12750,
@@ -41113,7 +42609,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 34,
+      "index": 44,
       "lines": [
         {
           "offset": 12811,
@@ -41138,7 +42634,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 35,
+      "index": 45,
       "lines": [
         {
           "offset": 12896,
@@ -41152,7 +42648,13 @@
           "jp": "「なに　いまの？",
           "jp_len": 16,
           "kr": "「뭐야? 지금 번쩍한 건?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 46,
+      "lines": [
         {
           "offset": 12944,
           "jp": "スマッシュ",
@@ -41202,8 +42704,32 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 36,
+      "index": 47,
       "lines": [
+        {
+          "offset": 13131,
+          "jp": "「とり逃がしたと思いきや",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 13157,
+          "jp": "　自ら　舞い戻ってくるとはな",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13189,
+          "jp": "　いいだろう　今度こそ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 13213,
+          "jp": "　引導を渡してやるっ！",
+          "jp_len": 22,
+          "kr": ""
+        },
         {
           "offset": 13249,
           "jp": "「我ら　闇の血族の再興を",
@@ -41244,7 +42770,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 37,
+      "index": 48,
       "lines": [
         {
           "offset": 13418,
@@ -41256,8 +42782,38 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 38,
+      "index": 49,
       "lines": [
+        {
+          "offset": 13482,
+          "jp": "「きさまらには超パワーを",
+          "jp_len": 24,
+          "kr": ""
+        },
+        {
+          "offset": 13508,
+          "jp": "　身につけた俺を倒すことなど",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13538,
+          "jp": "　できん",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 13550,
+          "jp": "　これ以上　ムダな努力をせず",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 13580,
+          "jp": "　いさぎよく死ね！",
+          "jp_len": 18,
+          "kr": ""
+        },
         {
           "offset": 13612,
           "jp": "「キキキッ　こんなにも早く",
@@ -41275,7 +42831,13 @@
           "jp": "　できるとは思わなかったぞ",
           "jp_len": 26,
           "kr": "몰랐는걸! [스마슈]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 50,
+      "lines": [
         {
           "offset": 13720,
           "jp": "スマッシュ",
@@ -41330,7 +42892,13 @@
           "jp": "　きさまに復讐するためにな！",
           "jp_len": 28,
           "kr": "다시 살 ?! 너희에게 복"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6B.CMD",
+      "index": 51,
+      "lines": [
         {
           "offset": 13972,
           "jp": "キリ",
@@ -41372,7 +42940,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 39,
+      "index": 52,
       "lines": [
         {
           "offset": 14139,
@@ -41444,7 +43012,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 40,
+      "index": 53,
       "lines": [
         {
           "offset": 14422,
@@ -41456,7 +43024,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 41,
+      "index": 54,
       "lines": [
         {
           "offset": 14459,
@@ -41540,7 +43108,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 42,
+      "index": 55,
       "lines": [
         {
           "offset": 14806,
@@ -41558,7 +43126,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 43,
+      "index": 56,
       "lines": [
         {
           "offset": 14866,
@@ -41576,7 +43144,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 44,
+      "index": 57,
       "lines": [
         {
           "offset": 14937,
@@ -41630,7 +43198,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 45,
+      "index": 58,
       "lines": [
         {
           "offset": 15144,
@@ -41654,7 +43222,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 46,
+      "index": 59,
       "lines": [
         {
           "offset": 15229,
@@ -41672,7 +43240,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 47,
+      "index": 60,
       "lines": [
         {
           "offset": 15308,
@@ -41692,7 +43260,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 48,
+      "index": 61,
       "lines": [
         {
           "offset": 15393,
@@ -41710,7 +43278,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 49,
+      "index": 62,
       "lines": [
         {
           "offset": 15458,
@@ -41730,7 +43298,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 50,
+      "index": 63,
       "lines": [
         {
           "offset": 15543,
@@ -41748,7 +43316,7 @@
     },
     {
       "file": "SC6B.CMD",
-      "index": 51,
+      "index": 64,
       "lines": [
         {
           "offset": 16259,
@@ -42212,7 +43780,13 @@
           "jp": "　破られるとは…",
           "jp_len": 16,
           "kr": "무너지다니…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 25,
+      "lines": [
         {
           "offset": 12209,
           "jp": "キリ",
@@ -42261,7 +43835,13 @@
           "jp": "　大きくなったものね",
           "jp_len": 20,
           "kr": "많이도 컸구나!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 26,
+      "lines": [
         {
           "offset": 12419,
           "jp": "ペトゥム",
@@ -42298,7 +43878,13 @@
           "jp": "　１０年ぶりの再会かしら",
           "jp_len": 24,
           "kr": "10년만의 재회이려나"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 27,
+      "lines": [
         {
           "offset": 12579,
           "jp": "キリ",
@@ -42402,7 +43988,13 @@
           "jp": "　あてられてるね",
           "jp_len": 16,
           "kr": "홀려버린거네"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 28,
+      "lines": [
         {
           "offset": 13027,
           "jp": "ペトゥム",
@@ -42433,7 +44025,13 @@
           "jp": "　女性化したんでしょう",
           "jp_len": 22,
           "kr": "여성화된 것이겠지요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 29,
+      "lines": [
         {
           "offset": 13167,
           "jp": "スマッシュ",
@@ -42505,7 +44103,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 25,
+      "index": 30,
       "lines": [
         {
           "offset": 13480,
@@ -42525,7 +44123,13 @@
           "jp": "　鏡…　鏡ねえ…",
           "jp_len": 16,
           "kr": ""
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 31,
+      "lines": [
         {
           "offset": 13566,
           "jp": "ペトゥム",
@@ -42574,7 +44178,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 26,
+      "index": 32,
       "lines": [
         {
           "offset": 13735,
@@ -42586,7 +44190,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 27,
+      "index": 33,
       "lines": [
         {
           "offset": 13766,
@@ -42640,7 +44244,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 28,
+      "index": 34,
       "lines": [
         {
           "offset": 13973,
@@ -42664,7 +44268,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 29,
+      "index": 35,
       "lines": [
         {
           "offset": 14058,
@@ -42676,7 +44280,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 30,
+      "index": 36,
       "lines": [
         {
           "offset": 14089,
@@ -42694,7 +44298,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 31,
+      "index": 37,
       "lines": [
         {
           "offset": 14143,
@@ -42706,7 +44310,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 32,
+      "index": 38,
       "lines": [
         {
           "offset": 14203,
@@ -42718,7 +44322,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 33,
+      "index": 39,
       "lines": [
         {
           "offset": 14231,
@@ -42736,7 +44340,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 34,
+      "index": 40,
       "lines": [
         {
           "offset": 14277,
@@ -42754,7 +44358,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 35,
+      "index": 41,
       "lines": [
         {
           "offset": 14358,
@@ -42779,7 +44383,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 36,
+      "index": 42,
       "lines": [
         {
           "offset": 14425,
@@ -42797,7 +44401,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 37,
+      "index": 43,
       "lines": [
         {
           "offset": 14483,
@@ -42815,7 +44419,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 38,
+      "index": 44,
       "lines": [
         {
           "offset": 14529,
@@ -42828,7 +44432,13 @@
           "jp": "すぐに戻ってしまう",
           "jp_len": 18,
           "kr": "좀 계세요. 지금"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6C.CMD",
+      "index": 45,
+      "lines": [
         {
           "offset": 14601,
           "jp": "スマッシュ",
@@ -42852,7 +44462,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 39,
+      "index": 46,
       "lines": [
         {
           "offset": 14711,
@@ -42889,7 +44499,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 40,
+      "index": 47,
       "lines": [
         {
           "offset": 14862,
@@ -42926,8 +44536,38 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 41,
+      "index": 48,
       "lines": [
+        {
+          "offset": 15031,
+          "jp": "アリババ",
+          "jp_len": 8,
+          "kr": ""
+        },
+        {
+          "offset": 15041,
+          "jp": "「おまえらを追って　大砲で",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 15069,
+          "jp": "　ここまで来たんだよ",
+          "jp_len": 20,
+          "kr": ""
+        },
+        {
+          "offset": 15093,
+          "jp": "　でも　オヤジがあのざまじゃ",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 15123,
+          "jp": "　手助けはできそうにないね",
+          "jp_len": 26,
+          "kr": ""
+        },
         {
           "offset": 15163,
           "jp": "アリババ",
@@ -43012,7 +44652,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 42,
+      "index": 49,
       "lines": [
         {
           "offset": 15473,
@@ -43036,8 +44676,20 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 43,
+      "index": 50,
       "lines": [
+        {
+          "offset": 15594,
+          "jp": "「コレ以上　キサマラノ",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15618,
+          "jp": "　好キニハサセン！",
+          "jp_len": 18,
+          "kr": ""
+        },
         {
           "offset": 15650,
           "jp": "「迎撃もーど再始動！",
@@ -43048,8 +44700,38 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 44,
+      "index": 51,
       "lines": [
+        {
+          "offset": 15718,
+          "jp": "「あのおかたの手を",
+          "jp_len": 18,
+          "kr": ""
+        },
+        {
+          "offset": 15738,
+          "jp": "　わずらわせるほどでもない",
+          "jp_len": 26,
+          "kr": ""
+        },
+        {
+          "offset": 15768,
+          "jp": "　こんどこそ　この私が",
+          "jp_len": 22,
+          "kr": ""
+        },
+        {
+          "offset": 15792,
+          "jp": "　おまえたちを",
+          "jp_len": 14,
+          "kr": ""
+        },
+        {
+          "offset": 15808,
+          "jp": "　血の海に沈めてあげます！",
+          "jp_len": 26,
+          "kr": ""
+        },
         {
           "offset": 15848,
           "jp": "「おまえたちの負けは必至",
@@ -43072,7 +44754,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 45,
+      "index": 52,
       "lines": [
         {
           "offset": 15964,
@@ -43108,7 +44790,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 46,
+      "index": 53,
       "lines": [
         {
           "offset": 16113,
@@ -43128,7 +44810,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 47,
+      "index": 54,
       "lines": [
         {
           "offset": 16198,
@@ -43146,7 +44828,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 48,
+      "index": 55,
       "lines": [
         {
           "offset": 16263,
@@ -43166,7 +44848,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 49,
+      "index": 56,
       "lines": [
         {
           "offset": 16348,
@@ -43184,7 +44866,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 50,
+      "index": 57,
       "lines": [
         {
           "offset": 16413,
@@ -43204,7 +44886,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 51,
+      "index": 58,
       "lines": [
         {
           "offset": 16498,
@@ -43222,7 +44904,7 @@
     },
     {
       "file": "SC6C.CMD",
-      "index": 52,
+      "index": 59,
       "lines": [
         {
           "offset": 17376,
@@ -43417,7 +45099,13 @@
           "jp": "　聞かないでおきますけど",
           "jp_len": 24,
           "kr": "않겠습니다만…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 7,
+      "lines": [
         {
           "offset": 5538,
           "jp": "アリババ",
@@ -43535,7 +45223,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 7,
+      "index": 8,
       "lines": [
         {
           "offset": 5943,
@@ -43590,7 +45278,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 6192,
@@ -43609,7 +45297,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 6271,
@@ -43623,7 +45311,13 @@
           "jp": "「ようすは　どうじゃ？",
           "jp_len": 22,
           "kr": "「상태는 어때? [패톰]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 11,
+      "lines": [
         {
           "offset": 6331,
           "jp": "ペトゥム",
@@ -43691,7 +45385,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 10,
+      "index": 12,
       "lines": [
         {
           "offset": 6584,
@@ -43711,7 +45405,13 @@
           "jp": "　魂が戻られました！",
           "jp_len": 20,
           "kr": "돌아왔어요! [패톰]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 13,
+      "lines": [
         {
           "offset": 6666,
           "jp": "ペトゥム",
@@ -43735,7 +45435,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 11,
+      "index": 14,
       "lines": [
         {
           "offset": 6763,
@@ -43773,7 +45473,13 @@
           "jp": "　つかまっててください",
           "jp_len": 22,
           "kr": "서 뭔가 꼭 붙잡고"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 15,
+      "lines": [
         {
           "offset": 6915,
           "jp": "スマッシュ",
@@ -43786,7 +45492,13 @@
           "jp": "「おいおい　なんだよ？",
           "jp_len": 22,
           "kr": "「계십시오. [스마슈]"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 16,
+      "lines": [
         {
           "offset": 6975,
           "jp": "キリ",
@@ -43818,7 +45530,13 @@
           "jp": "「ダイビング？　なにが？",
           "jp_len": 24,
           "kr": "「빨리 해! 지금부터"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 17,
+      "lines": [
         {
           "offset": 7095,
           "jp": "ペトゥム",
@@ -43868,7 +45586,13 @@
           "jp": "　考えたーっ！？",
           "jp_len": 16,
           "kr": "단숨에 적"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 18,
+      "lines": [
         {
           "offset": 7277,
           "jp": "キリ",
@@ -43917,7 +45641,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 12,
+      "index": 19,
       "lines": [
         {
           "offset": 7454,
@@ -43931,7 +45655,13 @@
           "jp": "「き　きいた〜！",
           "jp_len": 16,
           "kr": "「사, 살았다!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 20,
+      "lines": [
         {
           "offset": 7508,
           "jp": "ペトゥム",
@@ -43967,7 +45697,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 13,
+      "index": 21,
       "lines": [
         {
           "offset": 7655,
@@ -43992,7 +45722,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 14,
+      "index": 22,
       "lines": [
         {
           "offset": 7750,
@@ -44006,7 +45736,13 @@
           "jp": "「作戦？　なんだそりゃ？",
           "jp_len": 24,
           "kr": "「작전? 그건 또 뭐야?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC6D.CMD",
+      "index": 23,
+      "lines": [
         {
           "offset": 7812,
           "jp": "アターホー",
@@ -44061,7 +45797,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 15,
+      "index": 24,
       "lines": [
         {
           "offset": 7992,
@@ -44079,7 +45815,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 16,
+      "index": 25,
       "lines": [
         {
           "offset": 8073,
@@ -44110,7 +45846,7 @@
     },
     {
       "file": "SC6D.CMD",
-      "index": 17,
+      "index": 26,
       "lines": [
         {
           "offset": 8202,
@@ -45510,7 +47246,13 @@
           "jp": "　走ってるんだ？",
           "jp_len": 16,
           "kr": "달리는 거지?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 39,
+      "lines": [
         {
           "offset": 8827,
           "jp": "スマッシュ",
@@ -45523,7 +47265,13 @@
           "jp": "「列車が止まったぞ",
           "jp_len": 18,
           "kr": "「열차가 멈췄어"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 40,
+      "lines": [
         {
           "offset": 8883,
           "jp": "ファーリン",
@@ -45541,7 +47289,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 39,
+      "index": 41,
       "lines": [
         {
           "offset": 8946,
@@ -45553,7 +47301,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 40,
+      "index": 42,
       "lines": [
         {
           "offset": 8985,
@@ -45583,7 +47331,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 41,
+      "index": 43,
       "lines": [
         {
           "offset": 9100,
@@ -45632,7 +47380,13 @@
           "jp": "　引っぱっておいたのよ",
           "jp_len": 22,
           "kr": "끌어당겨 뒀거든"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 44,
+      "lines": [
         {
           "offset": 9314,
           "jp": "スマッシュ",
@@ -45741,7 +47495,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 42,
+      "index": 45,
       "lines": [
         {
           "offset": 9725,
@@ -45761,7 +47515,13 @@
           "jp": "　間に合いましたね",
           "jp_len": 18,
           "kr": "시간에 맞췄네요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "SC7A.CMD",
+      "index": 46,
+      "lines": [
         {
           "offset": 9795,
           "jp": "スマッシュ",
@@ -45834,7 +47594,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 43,
+      "index": 47,
       "lines": [
         {
           "offset": 10075,
@@ -45876,7 +47636,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 44,
+      "index": 48,
       "lines": [
         {
           "offset": 10217,
@@ -45918,7 +47678,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 45,
+      "index": 49,
       "lines": [
         {
           "offset": 10370,
@@ -45996,7 +47756,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 46,
+      "index": 50,
       "lines": [
         {
           "offset": 10693,
@@ -46032,7 +47792,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 47,
+      "index": 51,
       "lines": [
         {
           "offset": 10822,
@@ -46068,7 +47828,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 48,
+      "index": 52,
       "lines": [
         {
           "offset": 10961,
@@ -46098,7 +47858,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 49,
+      "index": 53,
       "lines": [
         {
           "offset": 11083,
@@ -46116,7 +47876,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 50,
+      "index": 54,
       "lines": [
         {
           "offset": 11139,
@@ -46134,7 +47894,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 51,
+      "index": 55,
       "lines": [
         {
           "offset": 11202,
@@ -46152,7 +47912,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 52,
+      "index": 56,
       "lines": [
         {
           "offset": 11261,
@@ -46176,7 +47936,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 53,
+      "index": 57,
       "lines": [
         {
           "offset": 11353,
@@ -46206,7 +47966,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 54,
+      "index": 58,
       "lines": [
         {
           "offset": 11473,
@@ -46236,7 +47996,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 55,
+      "index": 59,
       "lines": [
         {
           "offset": 11584,
@@ -46284,7 +48044,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 56,
+      "index": 60,
       "lines": [
         {
           "offset": 11769,
@@ -46314,7 +48074,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 57,
+      "index": 61,
       "lines": [
         {
           "offset": 11888,
@@ -46344,7 +48104,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 58,
+      "index": 62,
       "lines": [
         {
           "offset": 11989,
@@ -46386,7 +48146,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 59,
+      "index": 63,
       "lines": [
         {
           "offset": 12159,
@@ -46416,7 +48176,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 60,
+      "index": 64,
       "lines": [
         {
           "offset": 12257,
@@ -46440,7 +48200,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 61,
+      "index": 65,
       "lines": [
         {
           "offset": 12340,
@@ -46458,7 +48218,7 @@
     },
     {
       "file": "SC7A.CMD",
-      "index": 62,
+      "index": 66,
       "lines": [
         {
           "offset": 12758,
@@ -47669,7 +49429,13 @@
           "jp": "　てこずらせやがって",
           "jp_len": 20,
           "kr": "정말 성가시게 하네"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 41,
+      "lines": [
         {
           "offset": 10353,
           "jp": "ペトゥム",
@@ -47682,7 +49448,13 @@
           "jp": "「もう　なにもありませんよね？",
           "jp_len": 30,
           "kr": "「이제 다 끝난 거죠?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 42,
+      "lines": [
         {
           "offset": 10419,
           "jp": "キリ",
@@ -47700,7 +49472,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 41,
+      "index": 43,
       "lines": [
         {
           "offset": 10476,
@@ -47724,7 +49496,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 42,
+      "index": 44,
       "lines": [
         {
           "offset": 10573,
@@ -47736,7 +49508,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 43,
+      "index": 45,
       "lines": [
         {
           "offset": 10640,
@@ -47750,7 +49522,13 @@
           "jp": "「ゲッ　立ち上がるかな　ふつう",
           "jp_len": 30,
           "kr": "「웩! 다시 일어서다니"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 46,
+      "lines": [
         {
           "offset": 10702,
           "jp": "ペトゥム",
@@ -47780,7 +49558,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 44,
+      "index": 47,
       "lines": [
         {
           "offset": 10825,
@@ -47792,7 +49570,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 45,
+      "index": 48,
       "lines": [
         {
           "offset": 10874,
@@ -47811,7 +49589,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 46,
+      "index": 49,
       "lines": [
         {
           "offset": 10947,
@@ -47830,7 +49608,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 47,
+      "index": 50,
       "lines": [
         {
           "offset": 11010,
@@ -47855,7 +49633,13 @@
           "jp": "　改革しなければ…",
           "jp_len": 18,
           "kr": "개혁해야만 해…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 51,
+      "lines": [
         {
           "offset": 11122,
           "jp": "ペトゥム",
@@ -47873,7 +49657,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 48,
+      "index": 52,
       "lines": [
         {
           "offset": 11205,
@@ -47886,7 +49670,13 @@
           "jp": "　だまりやがれ",
           "jp_len": 14,
           "kr": "끼어들지마"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 53,
+      "lines": [
         {
           "offset": 11259,
           "jp": "キリ",
@@ -47916,7 +49706,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 49,
+      "index": 54,
       "lines": [
         {
           "offset": 11374,
@@ -47940,7 +49730,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 50,
+      "index": 55,
       "lines": [
         {
           "offset": 11477,
@@ -47958,7 +49748,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 51,
+      "index": 56,
       "lines": [
         {
           "offset": 11560,
@@ -47976,7 +49766,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 52,
+      "index": 57,
       "lines": [
         {
           "offset": 11621,
@@ -47988,7 +49778,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 53,
+      "index": 58,
       "lines": [
         {
           "offset": 11660,
@@ -48285,7 +50075,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 54,
+      "index": 59,
       "lines": [
         {
           "offset": 17132,
@@ -48310,7 +50100,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 55,
+      "index": 60,
       "lines": [
         {
           "offset": 17225,
@@ -48324,7 +50114,13 @@
           "jp": "「は　破壊光線？",
           "jp_len": 16,
           "kr": "「파 파괴광선?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 61,
+      "lines": [
         {
           "offset": 17277,
           "jp": "キリ",
@@ -48342,7 +50138,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 56,
+      "index": 62,
       "lines": [
         {
           "offset": 17348,
@@ -48362,7 +50158,13 @@
           "jp": "　あれじゃ当たらんぞ",
           "jp_len": 20,
           "kr": "그래선 어림도 없지"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 63,
+      "lines": [
         {
           "offset": 17432,
           "jp": "ペトゥム",
@@ -48386,7 +50188,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 57,
+      "index": 64,
       "lines": [
         {
           "offset": 17527,
@@ -48440,7 +50242,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 58,
+      "index": 65,
       "lines": [
         {
           "offset": 17771,
@@ -48465,7 +50267,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 59,
+      "index": 66,
       "lines": [
         {
           "offset": 17871,
@@ -48526,7 +50328,13 @@
           "jp": "　引導を渡してやるっ！",
           "jp_len": 22,
           "kr": "숨통을 끊어주마!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 67,
+      "lines": [
         {
           "offset": 18421,
           "jp": "「さすがに　しぶといわね",
@@ -48549,7 +50357,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 60,
+      "index": 68,
       "lines": [
         {
           "offset": 18530,
@@ -48598,7 +50406,13 @@
           "jp": "　相手をしてあげるわ！",
           "jp_len": 22,
           "kr": "직접 상대해 주마! "
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 69,
+      "lines": [
         {
           "offset": 18764,
           "jp": "スマッシュ",
@@ -48640,14 +50454,20 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 61,
+      "index": 70,
       "lines": [
         {
           "offset": 18929,
           "jp": "「思い出してもらえたかしら？",
           "jp_len": 28,
           "kr": "「이제 기억이 좀 나려나?"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 71,
+      "lines": [
         {
           "offset": 18983,
           "jp": "スマッシュ",
@@ -48701,7 +50521,7 @@
     },
     {
       "file": "ENDING.CMD",
-      "index": 62,
+      "index": 72,
       "lines": [
         {
           "offset": 19212,
@@ -48744,7 +50564,13 @@
           "jp": "　破られるとは…",
           "jp_len": 16,
           "kr": "무너지다니…"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 73,
+      "lines": [
         {
           "offset": 19432,
           "jp": "キリ",
@@ -48793,7 +50619,13 @@
           "jp": "　大きくなったものね",
           "jp_len": 20,
           "kr": "많이도 컸구나!"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 74,
+      "lines": [
         {
           "offset": 19642,
           "jp": "ペトゥム",
@@ -48830,7 +50662,13 @@
           "jp": "　１０年ぶりの再会かしら",
           "jp_len": 24,
           "kr": "10년만의 재회이려나"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 75,
+      "lines": [
         {
           "offset": 19802,
           "jp": "キリ",
@@ -48934,7 +50772,13 @@
           "jp": "　あてられてるね",
           "jp_len": 16,
           "kr": "홀려버린거네"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 76,
+      "lines": [
         {
           "offset": 20250,
           "jp": "ペトゥム",
@@ -48965,7 +50809,13 @@
           "jp": "　女性化したんでしょう",
           "jp_len": 22,
           "kr": "여성화된 것이겠지요"
-        },
+        }
+      ]
+    },
+    {
+      "file": "ENDING.CMD",
+      "index": 77,
+      "lines": [
         {
           "offset": 20390,
           "jp": "スマッシュ",
