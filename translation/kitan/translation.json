@@ -5558,6 +5558,128 @@
       ]
     },
     {
+      "file": "SC1A.CMD",
+      "index": 141,
+      "lines": [
+        {
+          "offset": 29644,
+          "jp": "蓬薬草",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 142,
+      "lines": [
+        {
+          "offset": 29713,
+          "jp": "蓬毒消し薬",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 143,
+      "lines": [
+        {
+          "offset": 29774,
+          "jp": "蓬リフレッシュの水",
+          "jp_len": 18,
+          "kr": "",
+          "halfwidth": true
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 144,
+      "lines": [
+        {
+          "offset": 29859,
+          "jp": "蓬蛮刀",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 145,
+      "lines": [
+        {
+          "offset": 29928,
+          "jp": "蓬鎖かたびら",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 146,
+      "lines": [
+        {
+          "offset": 30037,
+          "jp": "蓬薬草",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 147,
+      "lines": [
+        {
+          "offset": 30106,
+          "jp": "蓬毒消し薬",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 148,
+      "lines": [
+        {
+          "offset": 30167,
+          "jp": "蓬リフレッシュの水",
+          "jp_len": 18,
+          "kr": "",
+          "halfwidth": true
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 149,
+      "lines": [
+        {
+          "offset": 30252,
+          "jp": "蓬蛮刀",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC1A.CMD",
+      "index": 150,
+      "lines": [
+        {
+          "offset": 30321,
+          "jp": "蓬鎖かたびら",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
       "file": "SC1B.CMD",
       "index": 1,
       "lines": [
@@ -27981,6 +28103,18 @@
       "index": 79,
       "lines": [
         {
+          "offset": 19818,
+          "jp": "蓬薬草",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 80,
+      "lines": [
+        {
           "offset": 19820,
           "jp": "薬草",
           "jp_len": 4,
@@ -28274,6 +28408,115 @@
           "jp_len": 6,
           "kr": "나간다",
           "tag": "menu"
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 81,
+      "lines": [
+        {
+          "offset": 19887,
+          "jp": "蓬毒消し薬",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 82,
+      "lines": [
+        {
+          "offset": 19948,
+          "jp": "蓬リフレッシュの水",
+          "jp_len": 18,
+          "kr": "",
+          "halfwidth": true
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 83,
+      "lines": [
+        {
+          "offset": 20033,
+          "jp": "蓬蛮刀",
+          "jp_len": 6,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 84,
+      "lines": [
+        {
+          "offset": 20102,
+          "jp": "蓬鎖かたびら",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 85,
+      "lines": [
+        {
+          "offset": 20185,
+          "jp": "蓬鋼鉄の刀",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 86,
+      "lines": [
+        {
+          "offset": 20250,
+          "jp": "蓬上忍スーツ",
+          "jp_len": 12,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 87,
+      "lines": [
+        {
+          "offset": 20341,
+          "jp": "蓬鋼鉄のよろい",
+          "jp_len": 14,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 88,
+      "lines": [
+        {
+          "offset": 20412,
+          "jp": "蓬雲樹の杖",
+          "jp_len": 10,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4A.CMD",
+      "index": 89,
+      "lines": [
+        {
+          "offset": 20469,
+          "jp": "蓬賢者のローブ",
+          "jp_len": 14,
+          "kr": ""
         }
       ]
     },
@@ -31933,6 +32176,24 @@
       "index": 6,
       "lines": [
         {
+          "offset": 9971,
+          "jp": "しかし　もう持ち切れないので",
+          "jp_len": 28,
+          "kr": ""
+        },
+        {
+          "offset": 10001,
+          "jp": "あきらめて　宝箱に戻した",
+          "jp_len": 24,
+          "kr": ""
+        }
+      ]
+    },
+    {
+      "file": "SC4D.CMD",
+      "index": 7,
+      "lines": [
+        {
           "offset": 10036,
           "jp": "〔火霊石〕が入っていた！",
           "jp_len": 24,
@@ -31948,7 +32209,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 7,
+      "index": 8,
       "lines": [
         {
           "offset": 10103,
@@ -31968,7 +32229,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 8,
+      "index": 9,
       "lines": [
         {
           "offset": 10191,
@@ -31986,7 +32247,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 9,
+      "index": 10,
       "lines": [
         {
           "offset": 10298,
@@ -32054,7 +32315,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 10,
+      "index": 11,
       "lines": [
         {
           "offset": 10570,
@@ -32066,7 +32327,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 11,
+      "index": 12,
       "lines": [
         {
           "offset": 10653,
@@ -32078,7 +32339,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 12,
+      "index": 13,
       "lines": [
         {
           "offset": 10711,
@@ -32096,7 +32357,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 13,
+      "index": 14,
       "lines": [
         {
           "offset": 10775,
@@ -32116,7 +32377,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 14,
+      "index": 15,
       "lines": [
         {
           "offset": 10863,
@@ -32134,7 +32395,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 15,
+      "index": 16,
       "lines": [
         {
           "offset": 10934,
@@ -32152,7 +32413,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 16,
+      "index": 17,
       "lines": [
         {
           "offset": 11005,
@@ -32172,7 +32433,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 17,
+      "index": 18,
       "lines": [
         {
           "offset": 11124,
@@ -32256,7 +32517,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 18,
+      "index": 19,
       "lines": [
         {
           "offset": 11463,
@@ -32310,7 +32571,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 19,
+      "index": 20,
       "lines": [
         {
           "offset": 11670,
@@ -32334,7 +32595,7 @@
     },
     {
       "file": "SC4D.CMD",
-      "index": 20,
+      "index": 21,
       "lines": [
         {
           "offset": 12001,
