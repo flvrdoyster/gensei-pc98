@@ -9,17 +9,11 @@
 </head>
 <body>
   <div class="top-bar">
-    <button id="btn-disk" class="btn-icon" title="디스크 관리"><svg viewBox="0 0 54.72 55.89" height="22"><path fill="currentColor" d="M0,43.83V15.48C0,6.93,12.24,0,27.36,0s27.36,6.93,27.36,15.48v28.35c0,3.6-9.18,12.06-27.36,12.06S0,47.79,0,43.83ZM4.05,23.4v7.11c0,2.7,8.46,9,23.31,9s23.31-6.3,23.31-9v-7.11c-4.77,4.5-13.41,7.65-23.31,7.65s-18.54-3.15-23.31-7.65ZM4.05,37.08v5.85c0,2.7,8.46,9,23.31,9s23.31-6.3,23.31-9v-5.94c-4.32,3.24-12.15,6.48-23.31,6.48s-18.99-3.06-23.31-6.39ZM50.49,15.48c0-6.3-11.34-11.61-23.13-11.61C14.58,3.87,4.23,9.18,4.23,15.48s10.35,11.61,23.13,11.61c11.79,0,23.13-5.31,23.13-11.61Z"/></svg></button>
     <img src="img/logo-hukyou.png" height="42" alt="환세풍광전" class="logo">
     <div class="top-bar-right">
       <button id="btn-mute" class="btn-icon" title="음소거"><svg viewBox="0 0 49.13 70.14" height="22"><path fill="currentColor" d="M7.43,68.29c-2.31-1.26-4.13-3.01-5.45-5.25s-1.98-4.77-1.98-7.58.65-5.41,1.96-7.62c1.3-2.21,3.12-3.93,5.45-5.14,2.33-1.22,4.96-1.82,7.89-1.82s5.45.59,7.73,1.76l-.09-42.63h26.19v14.77h-18.72v40.69c0,2.81-.65,5.34-1.96,7.58-1.3,2.24-3.1,3.99-5.38,5.25s-4.88,1.87-7.78,1.85c-2.93.03-5.55-.59-7.87-1.85Z"/></svg></button>
       <button id="btn-fullscreen" class="btn-icon" title="전체화면"><svg viewBox="0 0 59.13 59.13" height="22"><path fill="currentColor" d="M0,22.05V3.69C0,1.62,1.62,0,3.69,0h18.36v4.5H6.75c-1.17,0-1.98.81-1.98,1.98v15.57H0ZM0,37.08h4.77v15.57c0,1.17.81,1.98,1.98,1.98h15.3v4.5H3.69c-2.07,0-3.69-1.62-3.69-3.69v-18.36ZM59.13,22.05h-4.77V6.48c0-1.17-.81-1.98-1.98-1.98h-15.3V0h18.36c2.07,0,3.69,1.62,3.69,3.69v18.36ZM59.13,37.08v18.36c0,2.07-1.62,3.69-3.69,3.69h-18.36v-4.5h15.3c1.17,0,1.98-.81,1.98-1.98v-15.57h4.77Z"/></svg></button>
     </div>
-  </div>
-  <div id="disk-panel" class="disk-panel hidden">
-    <button id="btn-disk-export">⤓ 내보내기</button>
-    <button id="btn-disk-import">⤒ 가져오기</button>
-    <input type="file" id="disk-file-input" accept=".fdi" hidden>
   </div>
 
   <div id="canvas-wrap">
@@ -58,11 +52,6 @@
     const MSG = {
       SAVE_RESTORED:  '세이브 데이터가 복원되었습니다.',
       SAVE_TIMEOUT:   '세이브 데이터 복원 실패, 원본으로 시작합니다.',
-      EXPORT_EMPTY:   '저장된 디스크가 없습니다.',
-      EXPORT_DONE:    '디스크 내보내기를 완료했습니다.',
-      EXPORT_FAIL:    '디스크 내보내기에 실패했습니다: ',
-      IMPORT_DONE:    '디스크 가져오기를 완료했습니다. 새로고침 하세요.',
-      IMPORT_FAIL:    '디스크 가져오기에 실패했습니다: ',
       JS_LOAD_FAIL:   '에뮬레이터 로드에 실패했습니다.',
     };
 
@@ -144,53 +133,6 @@
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
       startEmulator();
-    });
-
-    const diskPanel = document.getElementById('disk-panel');
-    const diskFileInput = document.getElementById('disk-file-input');
-
-    const btnDisk = document.getElementById('btn-disk');
-    btnDisk.addEventListener('click', () => {
-      diskPanel.classList.toggle('hidden');
-      btnDisk.classList.toggle('active');
-    });
-
-    document.getElementById('btn-disk-export').addEventListener('click', async () => {
-      diskPanel.classList.add('hidden');
-      btnDisk.classList.remove('active');
-      try {
-        const exportDb = db || await openDB();
-        const data = await idbGet(exportDb, IDB_KEY);
-        if (!data) { showToast(MSG.EXPORT_EMPTY); return; }
-        const a = document.createElement('a');
-        a.href = URL.createObjectURL(new Blob([data]));
-        a.download = IDB_KEY;
-        a.click();
-        URL.revokeObjectURL(a.href);
-        showToast(MSG.EXPORT_DONE);
-      } catch(e) {
-        showToast(MSG.EXPORT_FAIL + e);
-      }
-    });
-
-    document.getElementById('btn-disk-import').addEventListener('click', () => {
-      diskPanel.classList.add('hidden');
-      btnDisk.classList.remove('active');
-      diskFileInput.click();
-    });
-
-    diskFileInput.addEventListener('change', async (e) => {
-      const file = e.target.files[0];
-      if (!file) return;
-      try {
-        const buf = await file.arrayBuffer();
-        const importDb = db || await openDB();
-        await idbPut(importDb, IDB_KEY, buf);
-        showToast(MSG.IMPORT_DONE);
-      } catch(err) {
-        showToast(MSG.IMPORT_FAIL + err);
-      }
-      diskFileInput.value = '';
     });
 
     document.getElementById('btn-fullscreen').addEventListener('click', () => {

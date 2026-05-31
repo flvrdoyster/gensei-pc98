@@ -54,8 +54,13 @@
     const POLL_MS   = 10000;
 
     const MSG = {
-      JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
+      SAVE_RESTORED: '세이브 데이터가 복원되었습니다.',
+      SAVE_TIMEOUT:  '세이브 데이터 복원 실패, 원본으로 시작합니다.',
+      JS_LOAD_FAIL:  '에뮬레이터 로드에 실패했습니다.',
     };
+
+    // 디스크 경로 → IDB 키 (파일명)
+    const diskKey = path => path.split('/').pop();
 
     const canvas  = document.getElementById('canvas');
     const overlay = document.getElementById('overlay');
@@ -85,7 +90,55 @@
       });
     }
 
+    function idbGet(db, key) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(key);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbPut(db, key, value) {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(IDB_STORE, 'readwrite');
+        const req = tx.objectStore(IDB_STORE).put(value, key);
+        req.onsuccess = () => resolve();
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    // 체크섬 (변경 감지용)
+    function checksum(arr) {
+      let s = 0;
+      for (let i = 0; i < arr.length; i++) s = (s + arr[i]) >>> 0;
+      return s;
+    }
+
     let db = null;
+    const lastChecksum = {};   // 디스크 경로별 마지막 체크섬
+    let pollTimer = null;
+
+    // 변경된 디스크만 IDB에 저장
+    async function saveDisks() {
+      if (!db) return;
+      for (const disk of DISKS) {
+        try {
+          const data = Module.FS.readFile(disk);
+          const csum = checksum(data);
+          if (csum === lastChecksum[disk]) continue;
+          await idbPut(db, diskKey(disk),
+            data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
+          lastChecksum[disk] = csum;
+          log('[save] ' + diskKey(disk) + ' 동기화');
+        } catch (e) {
+          log('[save] 오류(' + diskKey(disk) + '): ' + e);
+        }
+      }
+    }
+
+    function startPolling() {
+      pollTimer = setInterval(saveDisks, POLL_MS);
+    }
 
     document.getElementById('btn-fullscreen').addEventListener('click', () => {
       const wrap = document.getElementById('canvas-wrap');
@@ -107,6 +160,15 @@
     async function startEmulator() {
       db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
 
+      // IDB에서 저장된 디스크 복원 데이터 로드
+      const saved = {};
+      if (db) {
+        for (const disk of DISKS) {
+          const d = await idbGet(db, diskKey(disk)).catch(() => null);
+          if (d) { saved[disk] = d; log('[save] ' + diskKey(disk) + ' 세이브 발견'); }
+        }
+      }
+
       window.Module = {
         canvas: canvas,
         arguments: DISKS,
@@ -116,13 +178,17 @@
           var attempts = 0;
           function trySetup() {
             try {
-              DISKS.forEach(d => { Module.FS.stat(d); Module.FS.chmod(d, 0o666); });
+              DISKS.forEach(d => {
+                Module.FS.stat(d); Module.FS.chmod(d, 0o666);
+                if (saved[d]) Module.FS.writeFile(d, new Uint8Array(saved[d]));
+              });
+              if (Object.keys(saved).length) showToast(MSG.SAVE_RESTORED);
               Module.removeRunDependency('disk-setup');
             } catch(e) {
               if (++attempts < 200) {
                 setTimeout(trySetup, 10);
               } else {
-                log('디스크 마운트 타임아웃, 원본으로 시작');
+                log(MSG.SAVE_TIMEOUT);
                 Module.removeRunDependency('disk-setup');
               }
             }
@@ -132,6 +198,8 @@
 
         postRun: [function() {
           document.title = '환세희담 : atah.io';
+          DISKS.forEach(d => { try { lastChecksum[d] = checksum(Module.FS.readFile(d)); } catch(e){} });
+          startPolling();
           showToast('준비 완료');
         }],
 
