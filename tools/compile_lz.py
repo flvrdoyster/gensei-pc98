@@ -43,47 +43,87 @@ def decompress(data, start=0):
 # LZ 압축
 # ─────────────────────────────────────
 
+def _find_match(data, i):
+    """위치 i에서 최장 매치 (length, dist). 매치 없으면 (0, 0)."""
+    best_len = 0
+    best_dist = 0
+    max_dist = min(i, 256)
+    max_len = min(len(data) - i, 130)
+    for dist in range(1, max_dist + 1):
+        ml = 0
+        while ml < max_len and data[i + ml] == data[i - dist + (ml % dist)]:
+            ml += 1
+        if ml > best_len:
+            best_len = ml
+            best_dist = dist
+    return best_len, best_dist
+
+
 def compress(data):
     """
-    decompress()의 역함수. 그리디 최장 매치.
+    decompress()의 역함수. Optimal parsing (DP).
     윈도우: 256바이트, 매치 길이: 3~130, 리터럴 런: 1~127.
+
+    각 위치에서 literal vs match 중 minimum-cost 선택을 DP 로 결정.
+    Literal run 헤더 오버헤드까지 정확히 모델링.
     """
-    result = bytearray()
-    literals = bytearray()
-    i = 0
+    n = len(data)
+    if n == 0:
+        return b'\x00'
 
-    def flush_literals():
-        nonlocal literals
-        while literals:
-            chunk = literals[:0x7F]
-            literals = literals[len(chunk):]
-            result.append(len(chunk))
-            result.extend(chunk)
+    # dp[i] = data[i:] 압축 minimum cost (terminator 제외)
+    # decision[i] = ('lit',) or ('match', length, dist)
+    INF = float('inf')
+    dp = [INF] * (n + 1)
+    decision = [None] * n
+    dp[n] = 0
 
-    while i < len(data):
-        best_len = 0
-        best_dist = 0
+    # 뒤에서 앞으로
+    for i in range(n - 1, -1, -1):
+        # 옵션 1: literal run of length L (L = 1..min(127, n-i))
+        # cost = 1 (header) + L + dp[i+L]
+        max_run = min(127, n - i)
+        for L in range(1, max_run + 1):
+            cost = 1 + L + dp[i + L]
+            if cost < dp[i]:
+                dp[i] = cost
+                decision[i] = ('lit', L)
+
+        # 옵션 2: match length k (k = 3..min(130, n-i)), 가장 짧은 dist
         max_dist = min(i, 256)
-        max_len = min(len(data) - i, 130)
-
+        max_len = min(n - i, 130)
+        best_len_for_dist = {}
         for dist in range(1, max_dist + 1):
             ml = 0
             while ml < max_len and data[i + ml] == data[i - dist + (ml % dist)]:
                 ml += 1
-            if ml > best_len:
-                best_len = ml
-                best_dist = dist
+            # 모든 길이 k (3..ml) 에 대해 가장 작은 dist 만 기록
+            for k in range(3, ml + 1):
+                if k not in best_len_for_dist:
+                    best_len_for_dist[k] = dist
 
-        if best_len >= 3:
-            flush_literals()
-            result.append(0x80 | (best_len - 3))
-            result.append(best_dist - 1)
-            i += best_len
+        for k, dist in best_len_for_dist.items():
+            cost = 2 + dp[i + k]
+            if cost < dp[i]:
+                dp[i] = cost
+                decision[i] = ('match', k, dist)
+
+    # Decision 따라 emit
+    result = bytearray()
+    i = 0
+    while i < n:
+        d = decision[i]
+        if d[0] == 'lit':
+            L = d[1]
+            result.append(L)
+            result.extend(data[i:i + L])
+            i += L
         else:
-            literals.append(data[i])
-            i += 1
+            _, k, dist = d
+            result.append(0x80 | (k - 3))
+            result.append(dist - 1)
+            i += k
 
-    flush_literals()
     result.append(0x00)
     return bytes(result)
 

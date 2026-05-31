@@ -146,6 +146,8 @@ def patch_fdi(fdi_data, build_dir):
             compressed = f.read()
 
         if len(compressed) > slot_size:
+            print(f'  ⚠ {fname}: 슬롯 초과 (+{len(compressed) - slot_size}B, '
+                  f'{len(compressed)} > {slot_size}) — 패치 스킵, 원본 유지')
             continue
 
         fdi[abs_start:abs_start + len(compressed)] = compressed

@@ -128,6 +128,36 @@ NP2kai는 텍스트 plane을 dot-by-dot 출력 (글자 굵게 처리 옵션 없�
 
 ---
 
+## compile_lz.py — Compile LZ 압축 / 해제
+
+희담·풍광전의 CMD·OVL·실행 파일에 쓰이는 Compile 자체 LZ 알고리즘.
+
+### 포맷
+
+```
+literal run : header (1B, 1~127) + N bytes
+back-ref    : header (0x80 | (length-3)) + (dist-1)
+              → length 3~130, dist 1~256
+terminator  : 0x00
+```
+
+### 압축 알고리즘
+
+`compress()` 는 **optimal parsing (DP)** 사용.
+
+- `dp[i]` = `data[i:]` 압축 최소 출력 byte 수
+- 각 위치에서 literal run (길이 1~127) vs match (길이 3~130) 중 minimum cost 결정
+- Literal run 헤더 오버헤드(1B per run)까지 cost 에 정확히 반영
+- 같은 길이의 match 가 여러 dist 에서 가능하면 가장 작은 dist 우선
+
+Greedy 대비 약 1~3% 더 압축. 빌드 시간은 데이터 크기에 비례 (10KB 파일 ~5초). 한 번 빌드라 허용 범위.
+
+### 슬롯 초과 처리 (희담)
+
+희담의 SC*.CMD 는 FDI 안 DISK_B 아카이브의 **고정 크기 슬롯**에 들어가며, 압축 결과가 슬롯 초과 시 `patch_fdi` 가 해당 파일을 스킵하고 경고 출력. 초과 byte 가 크지 않으면 (수십 byte) 보통 검수가 진행될수록 KR 이 짧아져 자연스럽게 해소됨. 그래도 안 들어가면 해당 파일의 KR 을 직접 줄여야 함.
+
+---
+
 ## pc98disk.py — PC-98 디스크 이미지 도구
 
 Editdisk 대체. FDI/HDI/IMG 생성·편집을 CLI에서 수행.

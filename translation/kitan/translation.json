@@ -48899,13 +48899,15 @@
           "offset": 14961,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 15211,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
