@@ -116,6 +116,14 @@ def extract_dialogs(data):
         cur_lines.clear()
 
     while i < len(data) - 1:
+        # 6a 01 : 2바이트 인수를 갖는 오피코드 (총 4바이트)
+        # 인수가 우연히 SJIS 쌍(예: 9d 42 = 截)을 이뤄 텍스트로 오인되는 것 방지
+        if data[i] == 0x6a and data[i + 1] == 0x01:
+            i += min(4, len(data) - i)
+            cur_text = ''
+            cur_offset = cur_end = i
+            continue
+
         # 6b 00 : 블록 경계 (이전 블록 종료 + 새 블록 시작)
         if data[i] == 0x6b and data[i + 1] == 0x00:
             if in_dialog:

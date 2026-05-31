@@ -331,13 +331,22 @@ const ASCII_FULLWIDTH = new Set([' ', '.', ',', '!', '?', '(', ')', '+', '=', '~
   'a','b','c','d','e','f','g','h','i','j','k','l','m','n','o','p','q','r','s','t','u','v','w','x','y','z']);
 
 function encodeByteLen(text, useHalfwidth) {
+  // 인서터 encode_korean_kitan과 동일 규칙.
+  // `/X` 반각 마커는 charmap에 '/X' 키가 있으면 한 쌍(2바이트)으로 계산.
   let len = 0;
-  for (const ch of text) {
+  const arr = [...text];
+  let i = 0;
+  while (i < arr.length) {
+    const ch = arr[i];
+    if (ch === '/' && i + 1 < arr.length && charmap['/' + arr[i + 1]]) {
+      len += 2; i += 2; continue;
+    }
     if (charmap[ch]) { len += 2; }
     else if (useHalfwidth) { len += 2; }
     else if (ASCII_FULLWIDTH.has(ch)) { len += 2; }
     else if (ch.charCodeAt(0) < 0x80) { len += 1; }
     else { len += 2; }
+    i += 1;
   }
   return len;
 }

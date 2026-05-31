@@ -55,9 +55,6 @@ python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
 python3 tools/kitan_parser.py  original/kitan/data    # 희담
 (추출 결과는 translation/<title>/translation.json 으로 생성)
 
-# 1-1. 한국어판 참고 텍스트 채우기 (희담 전용)
-python3 tools/kitan_kr_import.py original/kitan_kr translation/kitan/translation.json
-
 # 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
