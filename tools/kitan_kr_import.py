@@ -114,10 +114,51 @@ def extract_kr_dialogs(data):
         block_start = None
 
     while i < len(data) - 1:
+        # 6b 00 : 블록 경계
         if data[i] == 0x6b and data[i + 1] == 0x00:
             if in_dialog:
                 flush_dialog()
             in_dialog = has_text(i + 2)
+            i += 2
+            cur_text = ''
+            continue
+
+        # 6e 00 67 01 : 화자 prefix 블록 경계 (JP extract_dialogs 미러)
+        if (data[i] == 0x6e and i + 3 < len(data)
+                and data[i + 1] == 0x00 and data[i + 2] == 0x67
+                and data[i + 3] == 0x01):
+            if in_dialog:
+                flush_dialog()
+            in_dialog = has_text(i + 4)
+            i += 4
+            cur_text = ''
+            continue
+
+        # 01 02 [KR] : 감정/화자 코드 후 본문 진입 (블록 외부)
+        if (not in_dialog and i + 2 < len(data)
+                and data[i] == 0x01 and data[i + 1] == 0x02
+                and _is_kr(data, i + 2)):
+            in_dialog = True
+            i += 2
+            cur_text = ''
+            continue
+
+        # 76 1a [KR] : 화면 클리어 후 본문 진입 (블록 외부)
+        if (not in_dialog and i + 2 < len(data)
+                and data[i] == 0x76 and data[i + 1] == 0x1a
+                and _is_kr(data, i + 2)):
+            in_dialog = True
+            i += 2
+            cur_text = ''
+            continue
+
+        # 02 65 [KR] : 화자 체인 종료 후 본문 진입 (in_dialog 무관)
+        if (i + 2 < len(data)
+                and data[i] == 0x02 and data[i + 1] == 0x65
+                and _is_kr(data, i + 2)):
+            if in_dialog:
+                flush_line()
+            in_dialog = True
             i += 2
             cur_text = ''
             continue
