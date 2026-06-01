@@ -120,6 +120,19 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 
 .btn-icon:hover { color: rgba(204, 204, 204, 1); }
 
+/* 터치 미지원 기기에서 게임패드 버튼 숨김 */
+@media (hover: hover) and (pointer: fine) {
+  .btn-touch-only { display: none; }
+}
+
+/* 게임패드 활성 시 토글 버튼 숨김 */
+body.mobile-active .btn-touch-only { display: none; }
+
+/* 터치 기기에서 전체화면 버튼 숨김 */
+@media (hover: none), (pointer: coarse) {
+  #btn-fullscreen { display: none; }
+}
+
 #canvas-wrap {
   position: relative;
   display: inline-block;
@@ -297,13 +310,17 @@ button:hover { background: rgba(68, 68, 68, 1); }
 body.mobile-active #virtual-gamepad {
   display: flex;
   justify-content: space-between;
+  position: fixed;
+  bottom: 0;
+  left: 0;
   width: 100%;
   box-sizing: border-box;
   align-items: center;
-  padding: 16px 0;
+  padding: 16px;
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;
+  z-index: 100;
 }
 
 .gamepad-dpad {

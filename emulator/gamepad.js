@@ -11,6 +11,7 @@
   };
 
   var canvas = null;
+  var active = false;
 
   function dispatchKey(keyName, type) {
     var props = KEY_MAP[keyName];
@@ -27,24 +28,28 @@
     }));
   }
 
-  function isMobile() {
+  function activate() {
+    if (active) return;
+    active = true;
+    document.body.classList.add('mobile-active');
+  }
+
+  function updateUrl() {
+    var params = new URLSearchParams(location.search);
+    params.delete('gamepad');
+    var rest = params.toString();
+    history.replaceState(null, '', location.pathname + (rest ? '?gamepad&' + rest : '?gamepad'));
+  }
+
+  function shouldAutoActivate() {
     if (new URLSearchParams(location.search).has('gamepad')) return true;
     return ('ontouchstart' in window) && window.innerWidth <= 680;
   }
 
   function init() {
-    if (!isMobile()) return;
-
-    document.body.classList.add('mobile-active');
-
-    var fsBtn = document.getElementById('btn-fullscreen');
-    if (fsBtn) fsBtn.style.display = 'none';
-
     canvas = document.getElementById('canvas');
-    canvas.addEventListener('touchstart', function() {
-      if (typeof resumeAudio === 'function') resumeAudio();
-    });
 
+    // 터치 이벤트 바인딩 (활성화 여부와 무관하게 항상)
     var gamepad = document.getElementById('virtual-gamepad');
     if (!gamepad) return;
 
@@ -89,6 +94,18 @@
         activeKey = null;
       }
     }, { passive: false });
+
+    // 자동 활성화
+    if (shouldAutoActivate()) activate();
+
+    // 게임패드 활성화 버튼
+    var toggleBtn = document.getElementById('btn-gamepad');
+    if (toggleBtn) {
+      toggleBtn.addEventListener('click', function() {
+        activate();
+        updateUrl();
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);
