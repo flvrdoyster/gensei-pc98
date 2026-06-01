@@ -51,7 +51,7 @@
     const DISKS = ['/rom/kitan-demo.fdi', '/rom/kitan-data.fdi'];
 
     const MSG = {
-      JS_LOAD_FAIL: '에뮬레이터 로드에 실패했습니다.',
+      JS_LOAD_FAIL: '에뮬레이터를 불러오지 못했습니다.',
     };
 
     const canvas  = document.getElementById('canvas');
@@ -106,7 +106,7 @@
               if (++attempts < 200) {
                 setTimeout(trySetup, 10);
               } else {
-                log('디스크 마운트 타임아웃');
+                log('디스크 마운트에 실패해 원본으로 시작합니다.');
                 Module.removeRunDependency('disk-setup');
               }
             }
@@ -116,14 +116,14 @@
 
         postRun: [function() {
           document.title = '환세희담 데모 : atah.io';
-          showToast('준비 완료');
+          showToast('에뮬레이터를 불러왔습니다.');
         }],
 
         print:    t => log('[out] ' + t),
         printErr: t => log('[err] ' + t),
 
         setStatus(text) {
-          if (text) showToast(text);
+          if (text) log(text);
         },
 
         totalDependencies: 0,

@@ -55,9 +55,9 @@
     const POLL_MS   = 10000;
 
     const MSG = {
-      SAVE_RESTORED: '세이브 데이터가 복원되었습니다.',
-      SAVE_TIMEOUT:  '세이브 데이터 복원 실패, 원본으로 시작합니다.',
-      JS_LOAD_FAIL:  '에뮬레이터 로드에 실패했습니다.',
+      SAVE_RESTORED: '세이브 데이터를 복원했습니다.',
+      DISK_TIMEOUT:  '디스크 마운트에 실패해 원본으로 시작합니다.',
+      JS_LOAD_FAIL:  '에뮬레이터를 불러오지 못했습니다.',
     };
 
     // 디스크 경로 → IDB 키 (파일명)
@@ -183,13 +183,12 @@
                 Module.FS.stat(d); Module.FS.chmod(d, 0o666);
                 if (saved[d]) Module.FS.writeFile(d, new Uint8Array(saved[d]));
               });
-              if (Object.keys(saved).length) showToast(MSG.SAVE_RESTORED);
               Module.removeRunDependency('disk-setup');
             } catch(e) {
               if (++attempts < 200) {
                 setTimeout(trySetup, 10);
               } else {
-                log(MSG.SAVE_TIMEOUT);
+                log(MSG.DISK_TIMEOUT);
                 Module.removeRunDependency('disk-setup');
               }
             }
@@ -201,14 +200,14 @@
           document.title = '환세희담 : atah.io';
           DISKS.forEach(d => { try { lastChecksum[d] = checksum(Module.FS.readFile(d)); } catch(e){} });
           startPolling();
-          showToast('준비 완료');
+          showToast(Object.keys(saved).length ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
         }],
 
         print:    t => log('[out] ' + t),
         printErr: t => log('[err] ' + t),
 
         setStatus(text) {
-          if (text) showToast(text);
+          if (text) log(text);
         },
 
         totalDependencies: 0,
