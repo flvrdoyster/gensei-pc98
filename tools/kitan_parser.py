@@ -768,9 +768,12 @@ _GSOVL_OFFSETS = [
     (0x3539, 'battle'), (0x3556, 'battle'), (0x3575, 'battle'),
     (0x3592, 'battle'), (0x35AF, 'battle'), (0x35CE, 'battle'),
     (0x35ED, 'battle'), (0x3600, 'battle'), (0x3615, 'battle'),
+    # 전투 중 상태이상 라벨 (battle) — 毒 / 気絶
+    (0x45AF, 'battle'), (0x45BC, 'battle'),
     # 상태 표시 라벨 (status)
     (0x580C, 'status'), (0x5813, 'status'), (0x581A, 'status'),
-    (0x581F, 'status'), (0x5824, 'status'), (0x582E, 'status'),
+    (0x581F, 'status'), (0x5824, 'status'), (0x582B, 'status'),
+    (0x582E, 'status'),
     # 스테이터스 창 이름 (name)
     (0x5638, 'name'), (0x564F, 'name'), (0x5666, 'name'),
     (0x5677, 'name'), (0x568C, 'name'), (0x56A3, 'name'),

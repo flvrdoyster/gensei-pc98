@@ -292,12 +292,20 @@ result, patched = patch_fdi(fdi_data_data,   'build/kitan')  # → DISK_C_INDEX 
 `kitan_inserter.py`가 `translation['gsovl']`을 읽어 패치 후 `build/kitan/GS.OVL` 출력.  
 GS.OVL은 DISK_B_INDEX 0번 — `patch_fdi` 호출 시 system FDI에 자동 삽입.
 
+> **주의 — 고정 오프셋 누락 = 무번역**: gsovl 추출은 `_GSOVL_OFFSETS` 하드코딩 테이블에만
+> 의존한다(스캔 아님). 테이블에 없는 오프셋의 문자열은 추출조차 안 되어 게임에 일본어
+> 원문이 그대로 노출된다. 인서터는 json 기반이라, 누락 라벨은 파서 재실행 없이
+> translation.json `gsovl`에 `{offset, tag, jp, jp_len, kr}` 항목을 직접 추가하면 패치된다
+> (단, 다음 파서 재실행 시 보존되도록 `_GSOVL_OFFSETS`에도 같은 오프셋을 추가해 둘 것).
+> 실제 사례: 전투 중 상태이상 라벨 `毒`(0x45AF)·`気絶`(0x45BC)과 메뉴 상태목록의
+> `毒`(0x582B)이 테이블에서 빠져 무번역으로 남아 있었음 → 3건 추가로 해결.
+
 **패치 대상 분류 (tag)**:
 
 | tag | 내용 |
 |-----|------|
 | `battle` | 배틀 메뉴 (공격·마법·특기·도망·아이템, 스킬명) |
-| `status` | 상태 표시 라벨 (精神力·魔力·特技·魔法·正常·気絶) |
+| `status` | 상태 표시 라벨 (精神力·魔力·特技·魔法·正常·毒·気絶) |
 | `name` | 캐릭터 이름 — 스테이터스 창(0x5638) + HUD 상시 표시(0x58A8) 두 곳에 각각 |
 | `stat` | 스탯 창 라벨 (レベル·生命力·経験値·攻撃力·素早さ·防御力·武器·防具·道具·所持金) |
 | `misc` | 기타 (残金·誰が持つ？) |
