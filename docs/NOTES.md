@@ -19,6 +19,15 @@ WASM은 전 게임 공유, JS와 data는 게임별 분리:
 JS 내부에 `loadPackage({files:[...], remote_package_size:N})`로 번들 메타데이터가 하드코딩됨.  
 WASM은 NP2kai 소스 변경 시만 재빌드, JS/data는 ROM이나 BIOS 변경 시 재생성.
 
+공통 페이지 자산(전 페이지가 같은 방식으로 include):
+
+| 파일 | 역할 |
+|------|------|
+| `style.css` | 공통 스타일 |
+| `audio.js` | 뮤트·오디오 resume (`btn-mute` 자동 연결) |
+| `gamepad.js` | 가상 게임패드 |
+| `version.js` | 사이트 통합 버전 단일 소스. footer.js가 그린 푸터 마지막 줄(`.footer-credits`)에 `· vX.Y.Z` 주입. 배포 버전은 이 파일의 `VERSION` 한 곳만 수정 |
+
 ---
 
 ## 빌드
@@ -117,6 +126,9 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 저장 전략: 10초마다 FDI 바이트 합 체크섬 비교 → 변경 시에만 IDB 기록.  
 복원: 페이지 로드 시 IDB → `writeFile` → `chmod` → 에뮬레이터 시작.
 
+DB `gensei-saves` / store `disks`. 키는 **FDI 파일명**(`hukyou_kr.fdi`, `kitan-system.fdi` 등)이라 게임·디스크별로 분리 저장됨.  
+다중 디스크 게임(희담: system+data)은 디스크마다 체크섬을 따로 비교해 **변경된 디스크만** 기록한다. (희담 데모/오프닝은 세이브 대상 아님)
+
 ---
 
 ## 모바일/태블릿 대응
@@ -151,13 +163,6 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 `preRun`에서 `FS.stat()`으로 ROM 파일 마운트 여부를 폴링 (10ms 간격, 최대 2초).  
 첫 페이지 로드 시 .data 파일 처리가 느릴 수 있어 단순 `setTimeout(0)`으로는 부족.  
 타임아웃 시 세이브 없이 원본으로 시작.
-
-### 디스크 관리 (내보내기/가져오기)
-
-상단바 ⛁ 버튼 → 확장 패널에서 내보내기/가져오기 선택.
-- **내보내기**: IDB의 FDI를 Blob으로 다운로드
-- **가져오기**: `<input type="file">`로 FDI 선택 → IDB에 저장 → 새로고침 후 반영
-- 번역 패치 적용 시: 내보내기 → inserter 실행 → 가져오기 순서로 세이브 유지 + 새 번역 적용
 
 ### 제한 사항
 

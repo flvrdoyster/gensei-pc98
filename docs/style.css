@@ -218,6 +218,8 @@ button:hover { background: rgba(68, 68, 68, 1); }
 
 .hint { font-size: var(--font-sm); color: rgba(85, 85, 85, 1); }
 
+#footer .site-version { color: rgba(102, 102, 102, 1); letter-spacing: 0.05em; }
+
 #footer {
   font-size: var(--font-sm);
   color: rgba(85, 85, 85, 1);
