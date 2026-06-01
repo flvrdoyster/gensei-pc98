@@ -119,10 +119,13 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 
 ---
 
-## 모바일 대응
+## 모바일/태블릿 대응
 
-`('ontouchstart' in window) && window.innerWidth <= 680` → `body.mobile-active` 클래스 추가.  
-`?gamepad` URL 파라미터로 데스크톱에서도 강제 활성화 가능.
+### 오디오 (`audio.js`)
+
+- `Module.SDL2.audioContext`의 `suspend()/resume()`으로 뮤트 구현
+- `visibilitychange` · `click` · `keydown`에서 오디오 resume (뮤트 상태면 스킵)
+- 뮤트 버튼(`btn-mute`)은 에뮬레이션 시작 전에는 숨김 — AudioContext 생성 감지 시 표시
 
 ### 가상 게임패드 (`gamepad.js`)
 
@@ -131,8 +134,17 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 - 단일 터치만 처리 (PC-98 게임이라 멀티터치 불필요)
 - 3D 키캡 스타일 (CSS `border-bottom` + `translateY` active 효과)
 - 키 아이콘은 RasterForge 픽셀 폰트 기반 SVG (`img/key-*.svg`)
-- `Module.SDL2.audioContext` resume 처리 (모바일 오디오 정책 대응)
-- `visibilitychange` 감지 → 잠금/탭 전환 복귀 시 다음 터치에서 AudioContext resume
+- 자동 활성화: `?gamepad` URL 파라미터 또는 모바일(`ontouchstart` + `innerWidth <= 680`)
+- 태블릿 등 터치 기기에서는 상단바에 게임패드 활성화 버튼 표시 (`btn-gamepad`). 누르면 `?gamepad` 파라미터를 `history.replaceState`로 URL에 추가 (리로드 없음)
+- 활성화 시 `position: fixed; bottom: 0`으로 화면 하단 고정
+
+### 버튼 표시 규칙 (CSS 미디어쿼리)
+
+| 버튼 | PC (hover+fine) | 터치 기기 | 게임패드 활성 시 |
+|------|-----------------|-----------|-----------------|
+| 게임패드 (`btn-gamepad`) | 숨김 | 표시 | 숨김 |
+| 전체화면 (`btn-fullscreen`) | 표시 | 숨김 | — |
+| 뮤트 (`btn-mute`) | 에뮬레이션 시작 후 표시 | 동일 | 동일 |
 
 ### 세이브 복원 타이밍
 
@@ -149,7 +161,7 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 
 ### 제한 사항
 
-- iOS는 Fullscreen API 미지원 → 모바일에서 전체화면 버튼 숨김
+- 터치 기기에서 전체화면 버튼 숨김 (CSS `@media (hover: none), (pointer: coarse)`)
 - 풀스크린 시 게임패드는 canvas-wrap 바깥이므로 표시 안 됨 (의도된 동작)
 
 ---
