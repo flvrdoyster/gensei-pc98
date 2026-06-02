@@ -65,6 +65,15 @@
       var btn = e.target.closest('[data-key]');
       if (!btn) return;
       var key = btn.dataset.key;
+      // 시작 오버레이가 떠 있을 때 ENTER는 시작 버튼을 누른다
+      if (key === 'Enter') {
+        var startBtn = document.getElementById('btn-start');
+        var overlay = document.getElementById('overlay');
+        if (startBtn && overlay && !overlay.classList.contains('hidden')) {
+          startBtn.click();
+          return;
+        }
+      }
       if (activeKey && activeKey !== key) {
         dispatchKey(activeKey, 'keyup');
         var prev = gamepad.querySelector('[data-key="' + activeKey + '"]');
