@@ -348,30 +348,33 @@ body.mobile-active #virtual-gamepad {
   height: 140px;
 }
 
-.gamepad-dpad button {
-  position: absolute;
-  width: 48px;
-  height: 48px;
+/* 키캡 공통 (프로스티드 글래스) */
+#virtual-gamepad button {
   border-radius: 8px;
-  background: rgba(245, 245, 245, 1);
-  border: 1px solid rgba(211, 211, 211, 1);
-  border-bottom: 5px solid rgba(190, 190, 190, 1);
-  color: rgba(0, 0, 0, 1);
+  background: rgba(30, 30, 30, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: rgba(230, 230, 230, 0.95);
   display: flex;
   align-items: center;
   justify-content: center;
   touch-action: none;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -4px 0 rgba(0, 0, 0, 0.25), 0 3px 8px rgba(0, 0, 0, 0.35);
+  -webkit-backdrop-filter: blur(2px);
+  backdrop-filter: blur(2px);
   user-select: none;
   -webkit-tap-highlight-color: transparent;
-  transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
+  transition: transform 0.05s, box-shadow 0.05s;
 }
 
-
-.gamepad-dpad button.active {
+#virtual-gamepad button.active {
   transform: translateY(3px);
-  border-bottom-width: 2px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+  box-shadow: inset 0 -1px 0 rgba(0, 0, 0, 0.25), 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.gamepad-dpad button {
+  position: absolute;
+  width: 48px;
+  height: 48px;
 }
 
 .dpad-up    { top: 0;    left: 46px; }
@@ -389,34 +392,16 @@ body.mobile-active #virtual-gamepad {
   min-width: 48px;
   height: 48px;
   padding: 0 10px;
-  border-radius: 8px;
-  background: rgba(245, 245, 245, 1);
-  border: 1px solid rgba(211, 211, 211, 1);
-  border-bottom: 5px solid rgba(190, 190, 190, 1);
-  color: rgba(0, 0, 0, 1);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  touch-action: none;
-  box-shadow: 0 3px 5px rgba(0, 0, 0, 0.2);
-  user-select: none;
-  -webkit-tap-highlight-color: transparent;
-  transition: transform 0.05s, border-bottom-width 0.05s, box-shadow 0.05s;
 }
 
-#virtual-gamepad button img {
+#virtual-gamepad button svg {
   height: 50%;
+  width: auto;
   pointer-events: none;
 }
 
-#virtual-gamepad .gamepad-buttons button img {
+#virtual-gamepad .gamepad-buttons button svg {
   height: 30%;
-}
-
-.gamepad-buttons button.active {
-  transform: translateY(3px);
-  border-bottom-width: 2px;
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
 }
 
 /* Mobile responsive */
