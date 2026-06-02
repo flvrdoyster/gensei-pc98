@@ -106,6 +106,15 @@
         updateUrl();
       });
     }
+
+    // 상단바 접기 버튼
+    var collapseBtn = document.getElementById('btn-collapse');
+    if (collapseBtn) {
+      collapseBtn.addEventListener('click', function() {
+        document.body.classList.toggle('chrome-hidden');
+        collapseBtn.blur();
+      });
+    }
   }
 
   document.addEventListener('DOMContentLoaded', init);

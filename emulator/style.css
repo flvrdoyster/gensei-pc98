@@ -122,9 +122,10 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 
 .btn-icon:hover { color: rgba(204, 204, 204, 1); }
 
-/* 터치 미지원 기기에서 게임패드 버튼 숨김 */
+/* 데스크톱(마우스)에서는 게임패드·상단바 접기 버튼 숨김 */
 @media (hover: hover) and (pointer: fine) {
-  .btn-touch-only { display: none; }
+  .btn-touch-only,
+  #btn-collapse { display: none; }
 }
 
 /* 게임패드 활성 시 토글 버튼 숨김 */
@@ -134,6 +135,20 @@ body.mobile-active .btn-touch-only { display: none; }
 @media (hover: none), (pointer: coarse) {
   #btn-fullscreen { display: none; }
 }
+
+/* 상단바 접힘: 바를 0 높이로 클립하고, 접기 버튼만 화면 상단 중앙에 고정 */
+body.chrome-hidden { padding-top: 0; }
+body.chrome-hidden .top-bar { height: 0; overflow: hidden; }
+body.chrome-hidden .disk-panel { display: none; }
+body.chrome-hidden #canvas-wrap { margin-top: 0; }
+body.chrome-hidden #btn-collapse {
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 200;
+}
+body.chrome-hidden #btn-collapse svg { transform: rotate(180deg); }
 
 #canvas-wrap {
   position: relative;
@@ -214,7 +229,7 @@ button {
   transition: background 0.15s;
 }
 
-button:hover { background: rgba(68, 68, 68, 1); }
+.disk-panel button:hover { background: rgba(68, 68, 68, 1); }
 
 .hint { font-size: var(--font-sm); color: rgba(85, 85, 85, 1); }
 
