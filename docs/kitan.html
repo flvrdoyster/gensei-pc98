@@ -222,7 +222,9 @@
           document.title = '환세희담 : atah.io';
           DISKS.forEach(d => { try { lastChecksum[d] = checksum(Module.FS.readFile(d)); } catch(e){} });
           startPolling();
-          showToast(Object.keys(saved).length ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
+          var restored = Object.keys(saved).length > 0;
+          showToast(restored ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
+          if (restored) (window.dataLayer = window.dataLayer || []).push({ event: 'save_restored', game: 'kitan' });
         }],
 
         print:    t => log('[out] ' + t),
