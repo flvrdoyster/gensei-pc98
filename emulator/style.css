@@ -274,16 +274,32 @@ button {
 }
 
 .game-list li {
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-end;
   gap: 8px;
+  aspect-ratio: 1 / 1;
   padding: 20px 16px;
-  background: rgba(38, 38, 38, 1);
+  background-color: rgba(38, 38, 38, 1);
+  background-size: cover;
+  background-position: center;
   border: 1px solid rgba(68, 68, 68, 1);
-  transition: background 0.15s;
+  overflow: hidden;
+  transition: background-color 0.15s;
 }
+
+/* 일러스트 카드: 배경 위 가독성 스크림 (아래로 갈수록 진하게) */
+.game-list li.has-art::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(15, 15, 15, 0.15) 0%, rgba(15, 15, 15, 0.55) 55%, rgba(15, 15, 15, 0.9) 100%);
+  transition: opacity 0.15s;
+}
+
+.game-list li > * { position: relative; z-index: 1; }
 
 .game-list li a {
   display: flex;
@@ -296,7 +312,8 @@ button {
 
 .game-list li a:hover { text-decoration: none; }
 
-.game-list li:not(.unavailable):hover { background: rgba(51, 51, 51, 1); }
+.game-list li:not(.unavailable):hover { background-color: rgba(51, 51, 51, 1); }
+.game-list li.has-art:not(.unavailable):hover::before { opacity: 0.65; }
 
 .game-list li.unavailable { opacity: 0.45; }
 
@@ -304,7 +321,7 @@ button {
 
 .game-title { font-size: 1.6em; color: rgba(204, 204, 204, 1); }
 
-.game-sub { font-size: var(--font-sm); color: rgba(119, 119, 119, 1); }
+.game-sub { font-size: var(--font-sm); color: rgba(255, 255, 255, 1); }
 
 .badge {
   font-size: var(--font-sm);
