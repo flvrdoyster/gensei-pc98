@@ -12,7 +12,8 @@
           "offset": 7455,
           "jp": "毒",
           "jp_len": 2,
-          "kr": ""
+          "kr": "독",
+          "tag": "menu"
         },
         {
           "offset": 7468,
@@ -67,43 +68,50 @@
           "offset": 12154,
           "jp": "精神力",
           "jp_len": 6,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12161,
           "jp": "魔　力",
           "jp_len": 6,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12168,
           "jp": "特技",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12173,
           "jp": "魔法",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12178,
           "jp": "正常",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12185,
           "jp": "毒",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12188,
           "jp": "気絶",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 12310,
@@ -130,25 +138,29 @@
           "offset": 13850,
           "jp": "у舶",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 14042,
           "jp": "у舶",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 15063,
           "jp": "陟",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 15215,
           "jp": "笄",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -648,21 +660,15 @@
       "chunk": 0,
       "offset": 40051,
       "type": "def",
-      "jp": "爆炎の呪文(MP\n8)",
+      "jp": "爆炎の呪文(MP8)",
       "kr": "",
       "lines": [
         {
           "offset": 40053,
-          "jp": "爆炎の呪文(MP",
-          "jp_len": 13,
+          "jp": "爆炎の呪文(MP8)",
+          "jp_len": 15,
           "kr": "폭염의주문",
           "tag": "battle"
-        },
-        {
-          "offset": 40071,
-          "jp": "8)",
-          "jp_len": 2,
-          "kr": ""
         }
       ]
     },
@@ -671,21 +677,15 @@
       "chunk": 0,
       "offset": 40082,
       "type": "def",
-      "jp": "氷刃の呪文(MP\n9)",
+      "jp": "氷刃の呪文(MP9)",
       "kr": "",
       "lines": [
         {
           "offset": 40084,
-          "jp": "氷刃の呪文(MP",
-          "jp_len": 13,
+          "jp": "氷刃の呪文(MP9)",
+          "jp_len": 15,
           "kr": "빙인의주문",
           "tag": "battle"
-        },
-        {
-          "offset": 40102,
-          "jp": "9)",
-          "jp_len": 2,
-          "kr": ""
         }
       ]
     },
@@ -711,21 +711,15 @@
       "chunk": 0,
       "offset": 40144,
       "type": "def",
-      "jp": "回復の呪文(MP\n6)",
+      "jp": "回復の呪文(MP6)",
       "kr": "",
       "lines": [
         {
           "offset": 40146,
-          "jp": "回復の呪文(MP",
-          "jp_len": 13,
+          "jp": "回復の呪文(MP6)",
+          "jp_len": 15,
           "kr": "회복의주문",
           "tag": "battle"
-        },
-        {
-          "offset": 40164,
-          "jp": "6)",
-          "jp_len": 2,
-          "kr": ""
         }
       ]
     },
@@ -734,21 +728,15 @@
       "chunk": 0,
       "offset": 40175,
       "type": "def",
-      "jp": "解毒の呪文(MP\n4)",
+      "jp": "解毒の呪文(MP4)",
       "kr": "",
       "lines": [
         {
           "offset": 40177,
-          "jp": "解毒の呪文(MP",
-          "jp_len": 13,
+          "jp": "解毒の呪文(MP4)",
+          "jp_len": 15,
           "kr": "해독의주문",
           "tag": "battle"
-        },
-        {
-          "offset": 40195,
-          "jp": "4)",
-          "jp_len": 2,
-          "kr": ""
         }
       ]
     },
@@ -1846,13 +1834,13 @@
           "offset": 8971,
           "jp": "「まあ　たしかにそうなんだが…",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「뭐 확실히 그렇긴 한데…"
         },
         {
           "offset": 9003,
           "jp": "　ブツブツ…",
           "jp_len": 12,
-          "kr": ""
+          "kr": "투덜투덜…"
         }
       ]
     },
@@ -5319,13 +5307,15 @@
           "offset": 20480,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 20868,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -6488,7 +6478,8 @@
           "offset": 2537,
           "jp": "　燃える！　焼ける！　焦げる！",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "menu"
         },
         {
           "offset": 2569,
@@ -8613,7 +8604,8 @@
           "offset": 3874,
           "jp": "ｃ",
           "jp_len": 2,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -8629,13 +8621,15 @@
           "offset": 1766,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 2154,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 2281,
@@ -9650,13 +9644,15 @@
           "offset": 5820,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 6208,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 6335,
@@ -19896,13 +19892,15 @@
           "offset": 12134,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 12522,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -19918,7 +19916,8 @@
           "offset": 2774,
           "jp": "矮聿褂鉅矮聿鉅矮鉅鉅",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -20630,13 +20629,15 @@
           "offset": 6318,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 6706,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -46499,13 +46500,15 @@
           "offset": 27840,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 28228,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -46521,7 +46524,8 @@
           "offset": 3646,
           "jp": "矮聿褂鉅矮聿鉅矮鉅鉅",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },
@@ -54033,7 +54037,8 @@
           "offset": 19350,
           "jp": ",",
           "jp_len": 1,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 19354,
@@ -54060,13 +54065,15 @@
           "offset": 20313,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         },
         {
           "offset": 20701,
           "jp": "＄喪",
           "jp_len": 4,
-          "kr": ""
+          "kr": "",
+          "tag": "ignore"
         }
       ]
     },

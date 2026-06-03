@@ -192,6 +192,11 @@ def walk(data, spec=BASE_SPEC):
             continue
         # 64 XX (XX≠00): 메뉴 항목 경계 (64 00은 skip_opcodes에서 처리됨)
         if b == 0x64:
+            # 반각 문자열(0x85XX) 사이에 낀 64 XX는 인라인 제어 → 줄을 끊지 않고 스킵.
+            # 예: 코스트 라벨 (MP8) 의 'P'와 '8' 사이. (앞뒤가 둘 다 0x85 반각일 때만)
+            if i >= 2 and data[i - 2] == 0x85 and i + 2 < n and data[i + 2] == 0x85:
+                i += 2
+                continue
             flush_line()
             i += 2
             cur_offset = i
