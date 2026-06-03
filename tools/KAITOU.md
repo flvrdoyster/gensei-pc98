@@ -102,21 +102,34 @@ seeks.sort()
 
 ### 4. 파싱
 
-`kaitou_parser.py` 실행 → `translation/kaitou/translation.json` 생성.
+**공유 오피코드 워커 기반** — `tools/compile_script.py`의 `walk()`를 사용.  
+환세 시리즈(희담·쾌도전·포물장) 공통 스크립트 모델로, 청크를 오피코드 스트림으로 훑어
+텍스트만 캡처한다. (희담 `extract_dialogs`에서 검증된 모델을 일반화)
 
-추출기 실행 순서 (순서 중요 — `consumed` 셋으로 바이트 중복 방지):
-1. `extract_dialogue_blocks` — `6e 00 67` 앵커
-2. `extract_6b_dialogue_blocks` — `6b 00 80 77 00` 앵커
-3. `extract_simple_blocks` — `62 00 XX XX` 직접 텍스트
-4. `extract_72_labels` — `72 01 [반각]` / `72 02 [SJIS]` UI 라벨 (**name보다 먼저**)
-5. `extract_name_blocks` — `64 XX` 앵커
-6. `extract_6d_name_blocks` — `6d 08` 앵커
-7. `extract_title_labels` — `64 00/0a/0c` 앵커
-8. `extract_sjis_runs` — `62 00` 블록 내부 잔류 SJIS (폴백)
+`kaitou_parser.py`의 역할은 얇다:
+1. `DISK_B.DAT` 로드 → `parse_chunk_table` → 청크별 `decompress`
+2. `NOISE_CHUNKS` 제외 후 각 청크에 `walk()` 적용
+3. 워커 출력(블록·줄)을 `entries` 포맷으로 변환
+4. 기존 번역(kr) 무손실 이식
+
+**노이즈 필터 없음.** 오피코드를 인자 길이만큼 정확히 소비하므로 제어/인자/그래픽
+바이트를 텍스트로 오인하지 않는다 → 사후 필터 불필요. 찌꺼기가 나오면 *오피코드 모델이
+불완전하다는 신호*이며, 필터가 아니라 `compile_script.py`(모델)를 고친다.
+
+**청크 분류**: 워커 출력의 가나(히라/카타) 비율로 판정. 스크립트 청크는 88~98%,
+그래픽 청크(`NOISE_CHUNKS`)는 0~30%.
+
+**오프너 없는 맵 대화**: 청크 일부(예: 청크3 후반)는 `62 00`/`6b 00` 오프너 없이
+포인터 테이블로 참조되는 대화가 있다. 워커는 `implicit_text` 옵션으로, 제어/포인터
+바이트가 SJIS 쌍을 못 이루는 점을 이용해 2자+ SJIS 런이 나오면 텍스트로 암묵 재진입.
 
 `translation.json` 최상위 키: `entries`.  
-각 엔트리 필드: `file`, `chunk`, `offset`, `type`, `jp`, `kr`, `lines`.  
-`lines`는 엔트리 내 개별 줄 — 각각 `offset`, `jp`, `jp_len`, `kr`, `tag`.
+엔트리 필드: `file`, `chunk`, `offset`, `type`(dialog/speaker/def/name/text/carried),
+`jp`, `kr`, `lines`. `lines`: 각 줄 `offset`, `jp`, `jp_len`, `kr`, (`tag`).
+
+**기존 번역(kr) 무손실 이식**: 재파싱 시 옛 json의 kr을 ① 정확한 `(chunk, offset)`
+② 동일 청크·동일 JP 근접(±8) ③ 그래도 못 붙이면 옛 엔트리 통째로 carry-over(type
+`carried`) 순으로 보존 → **번역 손실 0 보장.**
 
 ### 5. 인서트
 
@@ -147,22 +160,24 @@ seeks.sort()
 
 ---
 
-## 파서 누락 보완 (2026-05-25)
+## 파서 재작성 — 공유 오피코드 워커 (2026-06-02)
 
-**기존 문제**:
-- `extract_dialogue_blocks`가 `73`(페이지)을 만나면 블록 종료 → 그 뒤 텍스트 누락
-- `extract_sjis_runs`가 `62 00` 블록 내부로만 제한 → 점프 테이블 직후 대화 누락 (chunk 3 `'まずは店の偵察でもするか'` 류)
+**배경**: 기존 파서는 패턴별 추출기 8종 + SJIS 폴백 + 사후 노이즈 필터 구조였다.
+노이즈 필터(`len(set)<=1`, `count>=3`, 불완전 화이트리스트)가 오피코드 인자/그래픽을
+텍스트로 오인한 모지바케를 거르려다, `「`·`…`·반복 글자가 든 **진짜 대사를 대량 누락**했다
+(히라가나 런 534개 누락 — `「やれやれ…`, `「ヤツはここにいるにちがいない！` 등).
 
-**적용 수정**:
-- `73`/`76` 만나도 라인 종결만 하고 블록 계속 (`65`/`6e`/`62`만 진짜 종료)
-- `extract_sjis_runs` 2차 pass — `block_ranges=None`, `min_chars=4`로 폴백
-- 신규 `extract_6b_xx_blocks` 함수 — `6b XX 81` 화자 prefix 시퀀스를 반복 skip 후 텍스트 시작점 정확히 잡음 (`〔＜리바바…` 식 잘못된 SJIS 정렬 디코딩 방지)
-- main()의 중복 제거 직후 전역 노이즈 필터:
-  - `U+FFFD` 포함, 모든 글자 동일, 비-CJK/카나 문자(키릴/그리스) 포함
-  - 동일 글자 3회 이상 반복 (`〔〔〔`, `矮聿矮聿`)
-  - 반각 카나 (U+FF61-U+FF9F) 포함 + 6자 이하 (`轄訣ｑモヨ` 류)
+**재작성**: 오피코드를 정확히 모델링하는 단일 워커(`compile_script.py`)로 교체.
+- 추출기 8종 + 폴백 + 노이즈 필터 → 워커 하나로 통합 (`kaitou_parser.py` ~1150줄 → 231줄)
+- 노이즈 필터 제거 (모델이 정확하면 불필요 — 완전 파싱 우선)
+- `65`는 1바이트 종료/구분자로 정정 (옛 `65 XX` 2바이트는 다음 텍스트 첫 글자를 먹었음)
+- 포인터 테이블 참조 맵 대화는 `implicit_text` 재진입으로 흡수
 
-**결과**: lines 3,829 → 5,659 (+48%). 노이즈 거의 0건, 진짜 텍스트 손실 없음.
+**결과**: lines 5,659 → 6,407. 히라가나 누락 534 → 6 (`「` 빈말풍선 포함 캡처).
+기존 번역 1,427개 무손실 이식. 공유 워커라 포물장에서 그대로 재사용.
+
+> 옛 추출기 8종(`extract_*`)·`find_block_ranges`·노이즈 필터는 제거됨.
+> 히스토리는 안전망 커밋 `0447644` 이전 참조.
 
 ## 디스어셈블 시도 흔적
 
