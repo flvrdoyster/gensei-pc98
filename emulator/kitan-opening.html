@@ -70,6 +70,8 @@
   <script src="gamepad.js"></script>
 
   <script>
+    window.GAME = 'kitan-opening';
+    function track(name) { (window.dataLayer = window.dataLayer || []).push({ event: name, game: window.GAME }); }
     const DISKS = ['/rom/kitan-demo.fdi', '/rom/kitan-data.fdi'];
 
     const MSG = {
@@ -109,6 +111,7 @@
 
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
+      track('emulator_start');
       startEmulator();
     });
 
@@ -156,7 +159,7 @@
 
       const s = document.createElement('script');
       s.src = 'kitan.js';
-      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); };
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); track('load_failed'); };
       document.body.appendChild(s);
     }
   </script>

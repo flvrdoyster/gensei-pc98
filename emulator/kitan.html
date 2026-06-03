@@ -70,6 +70,8 @@
   <script src="gamepad.js"></script>
 
   <script>
+    window.GAME = 'kitan';
+    function track(name) { (window.dataLayer = window.dataLayer || []).push({ event: name, game: window.GAME }); }
     const DISKS = ['/rom/kitan-system.fdi', '/rom/kitan-data.fdi'];
 
     const IDB_NAME  = 'gensei-saves';
@@ -140,6 +142,7 @@
     let db = null;
     const lastChecksum = {};   // 디스크 경로별 마지막 체크섬
     let pollTimer = null;
+    let savedOnce = false;     // save_created 이벤트 세션당 1회 가드
 
     // 변경된 디스크만 IDB에 저장
     async function saveDisks() {
@@ -153,6 +156,7 @@
             data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
           lastChecksum[disk] = csum;
           log('[save] ' + diskKey(disk) + ' 동기화');
+          if (!savedOnce) { savedOnce = true; track('save_created'); }
         } catch (e) {
           log('[save] 오류(' + diskKey(disk) + '): ' + e);
         }
@@ -177,6 +181,7 @@
 
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
+      track('emulator_start');
       startEmulator();
     });
 
@@ -224,7 +229,7 @@
           startPolling();
           var restored = Object.keys(saved).length > 0;
           showToast(restored ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
-          if (restored) (window.dataLayer = window.dataLayer || []).push({ event: 'save_restored', game: 'kitan' });
+          if (restored) track('save_restored');
         }],
 
         print:    t => log('[out] ' + t),
@@ -242,7 +247,7 @@
 
       const s = document.createElement('script');
       s.src = 'kitan.js';
-      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); };
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); track('load_failed'); };
       document.body.appendChild(s);
     }
   </script>

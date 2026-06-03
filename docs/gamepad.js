@@ -32,6 +32,7 @@
     if (active) return;
     active = true;
     document.body.classList.add('mobile-active');
+    (window.dataLayer = window.dataLayer || []).push({ event: 'gamepad_activate', game: window.GAME });
   }
 
   function updateUrl() {
