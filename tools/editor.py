@@ -48,7 +48,8 @@ CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
 HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
 HAS_EMULATOR = (
     (TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))) or
-    (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js')))
+    (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js'))) or
+    (TITLE == 'kaitou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kaitou.js')))
 )
 
 HTML = r"""<!DOCTYPE html>
@@ -1115,6 +1116,34 @@ class Handler(http.server.BaseHTTPRequestHandler):
             'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
         })
 
+    def _handle_emulator_update_kaitou(self):
+        import shutil
+        build_dir = os.path.join(PROJECT_ROOT, 'build', 'kaitou')
+        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+        build_fdi = os.path.join(build_dir, 'kaitou_kr.fdi')
+        if not os.path.exists(build_fdi):
+            self._send_json_error(f'빌드 결과 없음: {build_fdi} — 먼저 빌드하세요.', 400)
+            return
+
+        # 1. 패치 FDI(build/) → emulator/rom/
+        try:
+            shutil.copy(build_fdi, os.path.join(rom_dir, 'kaitou_kr.fdi'))
+        except Exception as e:
+            self._send_json_error(f'FDI 복사 실패: {e}', 500)
+            return
+
+        # 2. 번들 재생성 (공통)
+        try:
+            data_size = self._repackage_bundle('kaitou', ('kaitou_kr.fdi',))
+        except Exception as e:
+            self._send_json_error(f'번들 재생성 실패: {e}', 500)
+            return
+
+        self._send_json({
+            'ok': True,
+            'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
+        })
+
     def _send_json(self, data, code=200):
         body = json.dumps(data, ensure_ascii=False).encode()
         self.send_response(code)
@@ -1137,6 +1166,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             return
         if TITLE == 'kitan':
             self._handle_emulator_update_kitan()
+            return
+        if TITLE == 'kaitou':
+            self._handle_emulator_update_kaitou()
             return
 
         build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)

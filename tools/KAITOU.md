@@ -133,14 +133,37 @@ seeks.sort()
 
 ### 5. 인서트
 
-**미구현.** 설계 방침:
-- 패치된 청크를 LZ 재압축 (풍광전과 동일 알고리즘)
-- DISK_B.DAT 재조립: 청크 크기 변경 시 이후 모든 청크의 seek_pos 재계산 필요
-- 청크 0 스킬명+SP코스트 직결 구조 예외 처리 (아래 참고)
+`kaitou_inserter.py`. 컨벤션상 `run()`은 데이터만, FDI는 `patch_fdi()` 별도 (희담/풍광전과 동일).
 
-### 6. 빌드
+**`run()`**: `translation.json`의 KR을 청크별로 **JP 바이트 길이 안에서 in-place 패치**.
+청크 내부에 텍스트 오프셋을 가리키는 포인터 테이블(`6c 01 [ptr]` 스킬/맵 대사)이 있어
+**텍스트가 밀리면 깨지므로 길이 불변 필수** (희담/풍광전과 같은 제약). 패치된 청크만
+재압축(`multiprocessing` 병렬), 재조립 → `build/kaitou/DISK_B.DAT`.
+- v1: clean 전각 줄만 패치. 반각 섞인 라벨(코스트 `(MP8)` 등)은 접미사 보존 필요 → v2.
 
-미구현. 한글 폰트 패치 위치 미확인.
+**재조립**: `DISK_B.DAT` = `[0x400 청크 테이블]` + `[LZ 청크 순차]`. `entry[i]`(테이블 offset `i*4`)
+= 청크 `i` 시작 위치. 재압축 크기가 달라져도 청크를 순서대로 깔고 테이블 seek만 갱신 →
+내부 오프셋 보존. (검증: 패치 없이 재조립 시 65/65 청크 디컴프레스 동등)
+
+**`patch_fdi()`**: `build/kaitou/DISK_B.DAT`를 원본 `emulator/rom/kaitou.fdi`에 교체
+(`pc98disk add`, FAT12 재할당) → `build/kaitou/kaitou_kr.fdi`. + 아래 **CONFIG.SYS EMM386 제거**.
+
+### 6. 빌드 (웹 에뮬레이터)
+
+`kaitou.html`(풍광전 복제, 단일 FDI) + `kaitou.js`(로더) + `kaitou.data`(번들).
+`editor.py`의 빌드 버튼(`run_build`) + 에뮬레이터 업데이트(`_handle_emulator_update_kaitou`)가
+풍광전/희담과 동일하게 「인서터 → FDI → 번들」을 오케스트레이션.
+
+**웹 np2kai 적응 (실기/RetroArch와 다른 점 — Emscripten 빌드 한계):**
+- **1.44MB 디스크**: 쾌도전 FDI는 1.44MB(섹터 512B / 18spt)라 PC-98 기본(1.2MB)으로 못 읽음 →
+  `emulator/bios/np2kai.cfg`에 **`USE144FD = true`** 추가. (1.2MB hukyou/kitan은 자동 인식이라 공유 안전)
+- **EMM386 제거**: 쾌도전 `CONFIG.SYS`는 `himem.sys`+`emm386.exe`를 쓰는데, 우리 Emscripten
+  np2kai가 EMM386(386 보호/V86 모드)을 못 돌려 `HIMEM...done.` 직후 부팅이 멈춤 →
+  `patch_fdi`가 CONFIG.SYS에서 `emm386` 줄 제거 + `dos=umb,high`→`dos=high`. HIMEM/XMS는
+  유지하고 게임은 EMS 없이 동작. (실기/RetroArch는 EMM386 정상)
+
+**번들 생성**: `bios/`(font.bmp·bios.rom·np2kai.cfg) + `kaitou_kr.fdi`를 `file_packager.py`로 묶어
+`kaitou.data` 생성, `kaitou.js`의 `loadPackage` 메타데이터 교체. (`editor._repackage_bundle`)
 
 ---
 

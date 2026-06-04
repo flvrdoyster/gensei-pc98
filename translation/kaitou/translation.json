@@ -68,49 +68,49 @@
           "offset": 12154,
           "jp": "精神力",
           "jp_len": 6,
-          "kr": "",
+          "kr": "정신력",
           "tag": "menu"
         },
         {
           "offset": 12161,
           "jp": "魔　力",
           "jp_len": 6,
-          "kr": "",
+          "kr": "마 력",
           "tag": "menu"
         },
         {
           "offset": 12168,
           "jp": "特技",
           "jp_len": 4,
-          "kr": "",
+          "kr": "특기",
           "tag": "menu"
         },
         {
           "offset": 12173,
           "jp": "魔法",
           "jp_len": 4,
-          "kr": "",
+          "kr": "마법",
           "tag": "menu"
         },
         {
           "offset": 12178,
           "jp": "正常",
           "jp_len": 4,
-          "kr": "",
+          "kr": "정상",
           "tag": "menu"
         },
         {
           "offset": 12185,
           "jp": "毒",
           "jp_len": 2,
-          "kr": "",
+          "kr": "독",
           "tag": "menu"
         },
         {
           "offset": 12188,
           "jp": "気絶",
           "jp_len": 4,
-          "kr": "",
+          "kr": "기절",
           "tag": "menu"
         },
         {
