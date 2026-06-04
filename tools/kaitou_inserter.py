@@ -82,6 +82,22 @@ def reassemble(data, chunk_bytes):
 from hukyou_inserter import encode_korean, fit_length, load_charmap
 
 
+def _has_halfwidth_lead(data):
+    """SJIS 바이트열에 0x85 *lead* 바이트(반각 영역)가 있는지.
+    0x85가 trail 바이트인 경우(예: ュ = 0x83 0x85)는 반각이 아니므로 제외."""
+    i = 0
+    n = len(data)
+    while i < n:
+        b = data[i]
+        if b == 0x85:
+            return True
+        if (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and i + 1 < n:
+            i += 2  # SJIS 쌍 — trail 바이트 건너뜀
+        else:
+            i += 1
+    return False
+
+
 def collect_chunk_replacements(translation, charmap):
     """청크별 교체 목록: {chunk: [(offset, jp_len, new_bytes), ...]}.
 
@@ -106,7 +122,7 @@ def collect_chunk_replacements(translation, charmap):
             except UnicodeEncodeError:
                 old = None
             # round-trip 확인 (clean 전각만 안전)
-            if old is None or len(old) != jp_len or 0x85 in old:
+            if old is None or len(old) != jp_len or _has_halfwidth_lead(old):
                 skipped.append((ch, offset, jp, kr))
                 continue
             try:
