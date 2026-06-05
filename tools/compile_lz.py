@@ -89,24 +89,31 @@ def compress(data):
                 dp[i] = cost
                 decision[i] = ('lit', L)
 
-        # 옵션 2: match length k (k = 3..min(130, n-i)), 가장 짧은 dist
+        # 옵션 2: match. 매치 비용은 dist 와 무관(항상 2바이트)이므로
+        # 최장 매치 하나 + 그 dist 만 구하면 길이 k=3..best_ml 를 전부 커버한다.
+        # ml 이 max_len 에 도달하면 더 길어질 수 없으므로 조기 종료(break).
+        # (GS.OVL 처럼 반복 패턴이 많은 데이터에서 dist 전수 탐색을 건너뛰어
+        #  데이터 의존 폭발을 막는다. 압축 결과는 기존과 바이트 동일 — 검증됨.)
         max_dist = min(i, 256)
         max_len = min(n - i, 130)
-        best_len_for_dist = {}
+        best_ml = 0
+        best_dist = 0
         for dist in range(1, max_dist + 1):
             ml = 0
-            while ml < max_len and data[i + ml] == data[i - dist + (ml % dist)]:
+            base = i - dist
+            while ml < max_len and data[i + ml] == data[base + (ml % dist)]:
                 ml += 1
-            # 모든 길이 k (3..ml) 에 대해 가장 작은 dist 만 기록
-            for k in range(3, ml + 1):
-                if k not in best_len_for_dist:
-                    best_len_for_dist[k] = dist
+            if ml > best_ml:
+                best_ml = ml
+                best_dist = dist
+                if best_ml == max_len:
+                    break
 
-        for k, dist in best_len_for_dist.items():
+        for k in range(3, best_ml + 1):
             cost = 2 + dp[i + k]
             if cost < dp[i]:
                 dp[i] = cost
-                decision[i] = ('match', k, dist)
+                decision[i] = ('match', k, best_dist)
 
     # Decision 따라 emit
     result = bytearray()
