@@ -98,11 +98,45 @@ def _has_halfwidth_lead(data):
     return False
 
 
-def collect_chunk_replacements(translation, charmap):
-    """청크별 교체 목록: {chunk: [(offset, jp_len, new_bytes), ...]}.
+def _split_cost_suffix(buf, offset, jp_len):
+    """원본 바이트에서 이름(전각)/코스트(반각 0x85) 경계를 찾는다.
 
-    v1: 원본 바이트가 jp 인코딩과 정확히 일치(clean 전각)하는 줄만 패치.
-    반각(0x85XX) 섞인 라벨(코스트 등)은 접미사 보존이 필요해 v2로 미룸 → 경고.
+    스킬 라벨(`爆炎の呪文(MP8)`)은 전각 이름 + 반각 코스트 `(MP8)`(인라인 64 01 포함).
+    이름만 번역하고 코스트는 보존해야 하므로 경계를 잡아준다.
+    코스트가 있으면 (name_end, cost_end), 없으면 (None, None).
+    """
+    n = len(buf)
+    name_limit = min(offset + jp_len, n)
+    i = offset
+    name_end = None
+    while i < name_limit:
+        b = buf[i]
+        if b == 0x85:               # 반각 코스트 시작
+            name_end = i
+            break
+        if (0x81 <= b <= 0x9F or 0xE0 <= b <= 0xFC) and i + 1 < n:
+            i += 2                  # 전각 이름 SJIS 쌍
+        else:
+            return None, None       # 제어 바이트 — 코스트 라벨 아님
+    if name_end is None or name_end == offset:
+        return None, None
+    # 코스트 끝: 반각(0x85) 쌍 + 인라인 자릿수 제어(64 01), 종결자 전까지
+    j = name_end
+    while j < n:
+        b = buf[j]
+        if b == 0x85 and j + 1 < n:
+            j += 2
+        elif b == 0x64 and j + 1 < n and buf[j + 1] == 0x01:
+            j += 2
+        else:
+            break
+    return name_end, j
+
+
+def collect_chunk_replacements(translation, charmap):
+    """청크별 교체 목록: {chunk: [(offset, jp_len, kr_str), ...]}.
+
+    인코딩·접미사 보존은 patch_chunk(원본 바이트 접근 가능)에서 처리.
     """
     by_chunk = {}
     skipped = []
@@ -121,24 +155,33 @@ def collect_chunk_replacements(translation, charmap):
                 old = jp.encode('shift_jis')
             except UnicodeEncodeError:
                 old = None
-            # round-trip 확인 (clean 전각만 안전)
+            # jp 길이 불일치/인코딩 불가는 패치 위험 → 스킵 (0x85는 lead만 체크 — 코스트 라벨은
+            # jp 인코딩상 전각이라 통과하고, patch_chunk가 원본 바이트로 코스트 보존)
             if old is None or len(old) != jp_len or _has_halfwidth_lead(old):
                 skipped.append((ch, offset, jp, kr))
                 continue
-            try:
-                new = encode_korean(kr, charmap)
-            except UnicodeEncodeError:
-                new = encode_korean(kr, charmap, use_halfwidth=True)
-            new = fit_length(old, new, context=f'c{ch} 0x{offset:X}: {kr}')
-            by_chunk.setdefault(ch, []).append((offset, jp_len, new))
+            by_chunk.setdefault(ch, []).append((offset, jp_len, kr))
     return by_chunk, skipped
 
 
-def patch_chunk(dec, replacements):
-    """디컴프레스된 청크에 in-place 교체 적용 (길이 불변)."""
+def patch_chunk(dec, replacements, charmap):
+    """디컴프레스된 청크에 in-place 교체 (길이 불변). 코스트 접미사는 보존."""
     buf = bytearray(dec)
-    for offset, jp_len, new in sorted(replacements, key=lambda r: r[0], reverse=True):
-        buf[offset:offset + jp_len] = new
+    for offset, jp_len, kr in sorted(replacements, key=lambda r: r[0], reverse=True):
+        try:
+            kr_enc = encode_korean(kr, charmap)
+        except UnicodeEncodeError:
+            kr_enc = encode_korean(kr, charmap, use_halfwidth=True)
+        name_end, cost_end = _split_cost_suffix(buf, offset, jp_len)
+        if name_end is not None:
+            # 코스트 라벨: 이름 영역만 교체, 코스트(반각 + 인라인 64 01) 보존
+            name_bytes = bytes(buf[offset:name_end])
+            cost_bytes = bytes(buf[name_end:cost_end])
+            kr_fit = fit_length(name_bytes, kr_enc, context=f'0x{offset:X}: {kr}')
+            buf[offset:cost_end] = kr_fit + cost_bytes
+        else:
+            old = bytes(buf[offset:offset + jp_len])
+            buf[offset:offset + jp_len] = fit_length(old, kr_enc, context=f'0x{offset:X}: {kr}')
     return bytes(buf)
 
 
@@ -168,7 +211,7 @@ def run(game_dir):
         if idx not in by_chunk:
             continue
         dec = decompress(data, seek)
-        work.append((seek, patch_chunk(dec, by_chunk[idx])))
+        work.append((seek, patch_chunk(dec, by_chunk[idx], charmap)))
         n_lines += len(by_chunk[idx])
 
     # 재압축 병렬화 (청크는 서로 독립)
