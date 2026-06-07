@@ -1,8 +1,8 @@
 # 환세쾌도전 역공학 노트
 
 **대상**: 환세쾌도전 / 幻世快盗伝 (Compile, 1995, PC-98)  
-**상태**: 번역 진행 중, 인서터 미구현  
-**도구**: `kaitou_parser.py` (추출)
+**상태**: 번역 진행 중, 인서터·웹 에뮬레이터 완성  
+**도구**: `kaitou_parser.py` (추출) · `kaitou_inserter.py` (인서트)
 
 ---
 
@@ -139,14 +139,14 @@ seeks.sort()
 청크 내부에 텍스트 오프셋을 가리키는 포인터 테이블(`6c 01 [ptr]` 스킬/맵 대사)이 있어
 **텍스트가 밀리면 깨지므로 길이 불변 필수** (희담/풍광전과 같은 제약). 패치된 청크만
 재압축(`multiprocessing` 병렬), 재조립 → `build/kaitou/DISK_B.DAT`.
-- v1: clean 전각 줄만 패치. 반각 섞인 라벨(코스트 `(MP8)` 등)은 접미사 보존 필요 → v2.
+- 반각 섞인 라벨(코스트 `(MP8)` 등)은 `_split_cost_suffix()`로 이름/코스트 경계를 찾아 **이름만 패치하고 코스트는 보존**한다. (`爆炎の呪文(MP8)` → 이름만 번역)
 
 **재조립**: `DISK_B.DAT` = `[0x400 청크 테이블]` + `[LZ 청크 순차]`. `entry[i]`(테이블 offset `i*4`)
 = 청크 `i` 시작 위치. 재압축 크기가 달라져도 청크를 순서대로 깔고 테이블 seek만 갱신 →
 내부 오프셋 보존. (검증: 패치 없이 재조립 시 65/65 청크 디컴프레스 동등)
 
-**`patch_fdi()`**: `build/kaitou/DISK_B.DAT`를 원본 `emulator/rom/kaitou.fdi`에 교체
-(`pc98disk add`, FAT12 재할당) → `build/kaitou/kaitou_kr.fdi`. + 아래 **CONFIG.SYS EMM386 제거**.
+**`patch_fdi()`**: `build/kaitou/DISK_B.DAT`를 배포 FDI `emulator/rom/kaitou_kr.fdi`에 교체
+(`pc98disk add`, FAT12 재할당) → `build/kaitou/kaitou_kr.fdi`. + 아래 **CONFIG.SYS EMM386 제거**. (별도 원본 `kaitou.fdi`는 불필요해 삭제됨)
 
 ### 6. 빌드 (웹 에뮬레이터)
 
@@ -176,7 +176,7 @@ seeks.sort()
 62 00 0c 01
 [스킬명 SJIS][SP코스트 0x85XX…]
 ```
-인서터에서 첫 `0x85` 등장 위치를 경계로 앞부분만 교체, 뒤쪽 반각 바이트 보존.  
+인서터(`_split_cost_suffix`)가 `0x85` **lead** 바이트(trail 바이트 제외 — 예: ュ=`0x83 0x85`)를 경계로 이름과 코스트를 분리하고, 인라인 제어코드 `64 01`까지 코스트로 보존한다.  
 청크 3의 동일 스킬은 `64 XX`로 분리돼 있어 처리 방식 다름.
 
 **`6d 08` 엄격 모드**: SJIS 쌍만 허용, 32바이트 상한 — 혼합 블록 자동 제외.
