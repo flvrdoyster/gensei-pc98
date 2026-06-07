@@ -129,6 +129,18 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 DB `gensei-saves` / store `disks`. 키는 **FDI 파일명**(`hukyou_kr.fdi`, `kitan-system.fdi` 등)이라 게임·디스크별로 분리 저장됨.  
 다중 디스크 게임(희담: system+data)은 디스크마다 체크섬을 따로 비교해 **변경된 디스크만** 기록한다. (희담 데모/오프닝은 세이브 대상 아님)
 
+### IDB 디스크 추출/이식
+
+디버그용 export/import 버튼은 제거됨. 콘솔 불가 환경(아이패드 등)에선 **북마클릿**으로 IDB의 FDI를 파일로 추출한다. Safari 북마크 주소를 아래 코드로 교체 후, 게임 페이지에서 실행:
+
+```js
+javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gensei-saves');q.onsuccess=()=>r(q.result)});const ks=await new Promise(r=>{const q=db.transaction('disks').objectStore('disks').getAllKeys();q.onsuccess=()=>r(q.result)});for(const k of ks){const d=await new Promise(r=>{const q=db.transaction('disks').objectStore('disks').get(k);q.onsuccess=()=>r(q.result)});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([d],{type:'application/octet-stream'}));a.download=k;document.body.appendChild(a);a.click();a.remove();await new Promise(r=>setTimeout(r,800))}alert('추출 완료: '+ks.join(', '))})();
+```
+
+전 타이틀이 같은 origin(pc98.atah.io)·같은 DB(`gensei-saves`/`disks`)라, **아무 게임 페이지에서 1회 실행하면 저장된 전 타이틀 FDI가 한꺼번에** 추출된다.
+
+추출한 FDI에서 세이브(`PLAY*.INF`)를 다른 FDI로 이식: `pc98disk.py ls/get/add`. `PLAY*.INF`는 DISK_B 아카이브 *밖*의 루트 파일이라 인서터 빌드(`patch_fdi`)가 안 건드림 → **빌드해도 세이브는 보존**된다.
+
 ---
 
 ## 모바일/태블릿 대응
