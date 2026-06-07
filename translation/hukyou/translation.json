@@ -3182,8 +3182,8 @@
           "jp": "５０Gold",
           "jp_len": 12,
           "kr": "50G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 24740,
@@ -3211,8 +3211,8 @@
           "jp": "７０Gold",
           "jp_len": 12,
           "kr": "70G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 24816,
@@ -3247,8 +3247,8 @@
           "jp": "３０Gold",
           "jp_len": 12,
           "kr": "30G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 24906,
@@ -3276,8 +3276,8 @@
           "jp": "２００Gold",
           "jp_len": 14,
           "kr": "200G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 24982,
@@ -3305,8 +3305,8 @@
           "jp": "１５０Gold",
           "jp_len": 14,
           "kr": "150G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25060,
@@ -3590,67 +3590,67 @@
         },
         {
           "offset": 25644,
-          "jp": "ケイ��マン",
+          "jp": "ケイヴマン",
           "jp_len": 10,
           "kr": "/케/이/브/맨",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25658,
-          "jp": "スコー��オン",
+          "jp": "スコーピオン",
           "jp_len": 12,
           "kr": "/스/콜/피/온",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25674,
-          "jp": "アントソル��ャー",
+          "jp": "アントソルジャー",
           "jp_len": 16,
           "kr": "/앤/트/솔/져",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25694,
-          "jp": "��ニ��ニ",
+          "jp": "プニプニ",
           "jp_len": 8,
           "kr": "/푸/니/푸/니",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25706,
-          "jp": "リ��ン����ッ��",
+          "jp": "リビングデッド",
           "jp_len": 14,
           "kr": "/리/빙/데/드",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25724,
-          "jp": "イン��",
+          "jp": "インプ",
           "jp_len": 6,
           "kr": "/임/프",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25734,
-          "jp": "クイックシル��ァー",
+          "jp": "クイックシルヴァー",
           "jp_len": 18,
           "kr": "/퀵/실/버",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25756,
           "jp": "ナカチマロ",
           "jp_len": 10,
           "kr": "/나/카/치/마/로",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 25782,
@@ -8228,8 +8228,8 @@
           "jp": "５０Gold",
           "jp_len": 12,
           "kr": "50G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17215,
@@ -8257,8 +8257,8 @@
           "jp": "７０Gold",
           "jp_len": 12,
           "kr": "70G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17291,
@@ -8293,8 +8293,8 @@
           "jp": "３０Gold",
           "jp_len": 12,
           "kr": "30G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17381,
@@ -8322,8 +8322,8 @@
           "jp": "２００Gold",
           "jp_len": 14,
           "kr": "200G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17457,
@@ -8351,8 +8351,8 @@
           "jp": "１５０Gold",
           "jp_len": 14,
           "kr": "150G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17535,
@@ -8380,8 +8380,8 @@
           "jp": "３０００Gold",
           "jp_len": 16,
           "kr": "3000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17631,
@@ -8409,8 +8409,8 @@
           "jp": "５０００Gold",
           "jp_len": 16,
           "kr": "5000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17707,
@@ -8438,8 +8438,8 @@
           "jp": "２０００Gold",
           "jp_len": 16,
           "kr": "2000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17785,
@@ -8467,8 +8467,8 @@
           "jp": "２０００Gold",
           "jp_len": 16,
           "kr": "2000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17861,
@@ -8503,8 +8503,8 @@
           "jp": "５０００Gold",
           "jp_len": 16,
           "kr": "5000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 17955,
@@ -8837,8 +8837,8 @@
           "jp": "た杪色澁鶫伸年覩唹鶲蝋胆緞駛秦秦漏産Ф申馨蛙臣",
           "jp_len": 2930,
           "kr": "",
-          "tag": "ignore",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "ignore"
         }
       ]
     },
@@ -11786,8 +11786,8 @@
           "jp": "【リフレッシュの水】が入っていた！",
           "jp_len": 34,
           "kr": "【리프레시워터】가 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -11800,8 +11800,8 @@
           "jp": "【リフレッシュの水】を手に入れた！",
           "jp_len": 34,
           "kr": "【리프레시워터】를 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -11892,8 +11892,8 @@
           "jp": "【リフレッシュの水】が入っていた！",
           "jp_len": 34,
           "kr": "【리프레시워터】가 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -11906,8 +11906,8 @@
           "jp": "【リフレッシュの水】を手に入れた！",
           "jp_len": 34,
           "kr": "【리프레시워터】를 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -12391,8 +12391,8 @@
           "jp": "５０Gold",
           "jp_len": 12,
           "kr": "50G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25284,
@@ -12420,8 +12420,8 @@
           "jp": "７０Gold",
           "jp_len": 12,
           "kr": "70G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25360,
@@ -12456,8 +12456,8 @@
           "jp": "３０Gold",
           "jp_len": 12,
           "kr": "30G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25450,
@@ -12485,8 +12485,8 @@
           "jp": "２００Gold",
           "jp_len": 14,
           "kr": "200G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25526,
@@ -12514,8 +12514,8 @@
           "jp": "１５０Gold",
           "jp_len": 14,
           "kr": "150G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25604,
@@ -12543,8 +12543,8 @@
           "jp": "５０００Gold",
           "jp_len": 16,
           "kr": "5000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25702,
@@ -12572,8 +12572,8 @@
           "jp": "１００００Gold",
           "jp_len": 18,
           "kr": "10000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25782,
@@ -12601,8 +12601,8 @@
           "jp": "２０００Gold",
           "jp_len": 16,
           "kr": "2000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25864,
@@ -12630,8 +12630,8 @@
           "jp": "１００００Gold",
           "jp_len": 18,
           "kr": "10000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 25944,
@@ -12659,8 +12659,8 @@
           "jp": "８０００Gold",
           "jp_len": 16,
           "kr": "8000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 26034,
@@ -12979,67 +12979,67 @@
         },
         {
           "offset": 26700,
-          "jp": "カ��",
+          "jp": "カゲ",
           "jp_len": 4,
           "kr": "/카/게",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26708,
           "jp": "サエーナ",
           "jp_len": 8,
           "kr": "/사/에/나",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26720,
-          "jp": "��ロッ��",
+          "jp": "ブロッブ",
           "jp_len": 8,
           "kr": "/브/로/프",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26732,
-          "jp": "��ェーターラ",
+          "jp": "ヴェーターラ",
           "jp_len": 12,
           "kr": "/베/타/라",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26748,
           "jp": "フォレストG",
           "jp_len": 12,
           "kr": "/포/레/스/트G",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26764,
-          "jp": "ウッ��レン��ャー",
+          "jp": "ウッドレンジャー",
           "jp_len": 16,
           "kr": "/우/드/레/인/져",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26784,
           "jp": "エント",
           "jp_len": 6,
           "kr": "/앤/트",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26794,
           "jp": "ツチマロ",
           "jp_len": 8,
           "kr": "/츠/치/마/로",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 26818,
@@ -15106,8 +15106,8 @@
           "jp": "５０Gold",
           "jp_len": 12,
           "kr": "50G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 9925,
@@ -15135,8 +15135,8 @@
           "jp": "７０Gold",
           "jp_len": 12,
           "kr": "70G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10001,
@@ -15171,8 +15171,8 @@
           "jp": "３０Gold",
           "jp_len": 12,
           "kr": "30G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10091,
@@ -15200,8 +15200,8 @@
           "jp": "２００Gold",
           "jp_len": 14,
           "kr": "200G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10167,
@@ -15229,8 +15229,8 @@
           "jp": "１５０Gold",
           "jp_len": 14,
           "kr": "150G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10245,
@@ -15258,8 +15258,8 @@
           "jp": "５０００Gold",
           "jp_len": 16,
           "kr": "5000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10343,
@@ -15287,8 +15287,8 @@
           "jp": "１００００Gold",
           "jp_len": 18,
           "kr": "10000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10423,
@@ -15316,8 +15316,8 @@
           "jp": "２０００Gold",
           "jp_len": 16,
           "kr": "2000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10505,
@@ -15345,8 +15345,8 @@
           "jp": "１００００Gold",
           "jp_len": 18,
           "kr": "10000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10585,
@@ -15374,8 +15374,8 @@
           "jp": "８０００Gold",
           "jp_len": 16,
           "kr": "8000G",
-          "tag": "item",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "item"
         },
         {
           "offset": 10675,
@@ -16154,8 +16154,8 @@
           "jp": "拝拝拝拝拝拝拝拝揶揶捌捌揶u捌瑞u捌揶捌捌葬釘殍佝発僻徇",
           "jp_len": 2797,
           "kr": "",
-          "tag": "ignore",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "ignore"
         }
       ]
     },
@@ -18362,8 +18362,8 @@
           "jp": "【リフレッシュの水】が入っていた！",
           "jp_len": 34,
           "kr": "【리프레시워터】가 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18376,8 +18376,8 @@
           "jp": "【リフレッシュの水】を手に入れた！",
           "jp_len": 34,
           "kr": "【리프레시워터】를 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18519,11 +18519,11 @@
       "lines": [
         {
           "offset": 26161,
-          "jp": "【クイーンウィッ��】が入っていた！",
+          "jp": "【クイーンウィップ】が入っていた！",
           "jp_len": 34,
           "kr": "【여왕채찍】이 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18533,11 +18533,11 @@
       "lines": [
         {
           "offset": 26199,
-          "jp": "【クイーンウィッ��】を手に入れた！",
+          "jp": "【クイーンウィップ】を手に入れた！",
           "jp_len": 34,
           "kr": "【여왕채찍】을 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18547,11 +18547,11 @@
       "lines": [
         {
           "offset": 26237,
-          "jp": "しかし【クイーンウィッ��】は",
+          "jp": "しかし【クイーンウィップ】は",
           "jp_len": 28,
           "kr": "다만 【여왕채찍】은",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         },
         {
           "offset": 26267,
@@ -18666,11 +18666,11 @@
       "lines": [
         {
           "offset": 26511,
-          "jp": "【��レイツソー��】が入っていた！",
+          "jp": "【グレイツソード】が入っていた！",
           "jp_len": 32,
           "kr": "【그레이트소드】가 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18680,11 +18680,11 @@
       "lines": [
         {
           "offset": 26547,
-          "jp": "【��レイツソー��】を手に入れた！",
+          "jp": "【グレイツソード】を手に入れた！",
           "jp_len": 32,
           "kr": "【그레이트소드】를 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18694,11 +18694,11 @@
       "lines": [
         {
           "offset": 26583,
-          "jp": "しかし【��レイツソー��】は",
+          "jp": "しかし【グレイツソード】は",
           "jp_len": 26,
           "kr": "다만 【그레이트소드】는",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         },
         {
           "offset": 26611,
@@ -18738,8 +18738,8 @@
           "jp": "【リフレッシュの水】が入っていた！",
           "jp_len": 34,
           "kr": "【리프레시워터】가 들어있다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -18752,8 +18752,8 @@
           "jp": "【リフレッシュの水】を手に入れた！",
           "jp_len": 34,
           "kr": "【리프레시워터】를 얻었다!",
-          "tag": "dialog",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "dialog"
         }
       ]
     },
@@ -19051,83 +19051,83 @@
         },
         {
           "offset": 27357,
-          "jp": "��スニー��ル",
+          "jp": "デスニードル",
           "jp_len": 12,
           "kr": "/데/스/니/들",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27373,
           "jp": "ムリアン",
           "jp_len": 8,
           "kr": "/무/리/안",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27385,
           "jp": "スライム",
           "jp_len": 8,
           "kr": "/슬/라/임",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27397,
-          "jp": "����ース",
+          "jp": "ギガース",
           "jp_len": 8,
           "kr": "/기/가/스",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27409,
-          "jp": "クリー��ン��P",
+          "jp": "クリーピングP",
           "jp_len": 14,
           "kr": "/크/리/핑/P",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27427,
           "jp": "フールカス",
           "jp_len": 10,
           "kr": "/푸/르/카/스",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27441,
-          "jp": "ヘ��ィウォーリア",
+          "jp": "ヘヴィウォーリア",
           "jp_len": 16,
           "kr": "/헤/비/워/리/어",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27461,
-          "jp": "ツ��メ",
+          "jp": "ツバメ",
           "jp_len": 6,
           "kr": "/츠/바/메",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27471,
-          "jp": "��レー��・��ラ��マ",
+          "jp": "ブレード・プラズマ",
           "jp_len": 18,
           "kr": "/블/레/이/드/플/라/즈/마",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27493,
           "jp": "クラウモノ",
           "jp_len": 10,
           "kr": "/쿠/라/우/모/노",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 27519,
@@ -19395,8 +19395,8 @@
           "jp": "殖Ы=",
           "jp_len": 97,
           "kr": "",
-          "tag": "ignore",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "ignore"
         }
       ]
     },
@@ -20268,67 +20268,67 @@
         },
         {
           "offset": 17404,
-          "jp": "��イ��ハンター",
+          "jp": "ダイブハンター",
           "jp_len": 14,
           "kr": "/다/이/브/헌/터",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17422,
           "jp": "エリニュス",
           "jp_len": 10,
           "kr": "/에/리/니/스",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17436,
-          "jp": "ファン��ウルフ",
+          "jp": "ファングウルフ",
           "jp_len": 14,
           "kr": "/팡/울/프",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17454,
-          "jp": "ス��リット",
+          "jp": "スピリット",
           "jp_len": 10,
           "kr": "/스/피/릿",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17468,
           "jp": "ソーサラー",
           "jp_len": 10,
           "kr": "/소/서/러",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17482,
           "jp": "ムールムール",
           "jp_len": 12,
           "kr": "/무/루/무/루",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17498,
           "jp": "モーラ",
           "jp_len": 6,
           "kr": "/모/라",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17508,
           "jp": "タカサマロ",
           "jp_len": 10,
           "kr": "/타/카/사/마/로",
-          "tag": "enemy",
-          "halfwidth": true
+          "halfwidth": true,
+          "tag": "enemy"
         },
         {
           "offset": 17534,
