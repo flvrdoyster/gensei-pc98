@@ -168,6 +168,18 @@ _HW_KANA = (
     'ミムメモヤユヨラリルレロワン゛゜'
 )
 
+# PC-98 반각 폰트의 탁점/반탁점 합성 카나 (0x85E3~0x85FC).
+# _HW_KANA(0x859F~0x85DE, idx 0~63) 뒤에 이어지는 영역으로,
+# 표준 JIS X 0201 에는 없어 cp932 로는 U+FFFD 가 된다. 폰트 BMP 판독으로 확정.
+_HW_DAKUTEN = {
+    0xe3: 'ヴ',
+    0xe4: 'ガ', 0xe5: 'ギ', 0xe6: 'グ', 0xe7: 'ゲ', 0xe8: 'ゴ',
+    0xe9: 'ザ', 0xea: 'ジ', 0xeb: 'ズ', 0xec: 'ゼ', 0xed: 'ゾ',
+    0xee: 'ダ', 0xef: 'ヂ', 0xf0: 'ヅ', 0xf1: 'デ', 0xf2: 'ド',
+    0xf3: 'バ', 0xf4: 'パ', 0xf5: 'ビ', 0xf6: 'ピ', 0xf7: 'ブ',
+    0xf8: 'プ', 0xf9: 'ベ', 0xfa: 'ペ', 0xfb: 'ボ', 0xfc: 'ポ',
+}
+
 
 def read_sjis_char(data, i):
     s1, s2 = data[i], data[i + 1]
@@ -180,6 +192,8 @@ def read_sjis_char(data, i):
             idx = j2 - 0x21
             if 0 <= idx < len(_HW_KANA):
                 return _HW_KANA[idx]
+            if s2 in _HW_DAKUTEN:
+                return _HW_DAKUTEN[s2]
     return data[i:i + 2].decode('shift_jis', errors='replace')
 
 
