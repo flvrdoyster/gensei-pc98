@@ -49079,19 +49079,17 @@
       "lines": [
         {
           "offset": 5779,
-          "jp": "��ラックフライ",
+          "jp": "ブラックフライ",
           "jp_len": 14,
           "kr": "/블/랙/플/라/이",
-          "halfwidth": true,
-          "tag": "enemy"
+          "halfwidth": true
         },
         {
           "offset": 5796,
-          "jp": "��ォ��ャノーイ",
+          "jp": "ヴォジャノーイ",
           "jp_len": 14,
           "kr": "/보/댜/노/이",
-          "halfwidth": true,
-          "tag": "enemy"
+          "halfwidth": true
         },
         {
           "offset": 5813,
@@ -49202,13 +49200,15 @@
           "jp_len": 12,
           "kr": "베타라",
           "tag": "enemy"
-        }
-      ]
-    },
-    {
-      "file": "PARTY4.CMD",
-      "index": 2,
-      "lines": [
+        },
+        {
+          "offset": 4252,
+          "jp": "カルニヴェアン",
+          "jp_len": 14,
+          "kr": "/카/르/니/베/안",
+          "halfwidth": true,
+          "tag": "enemy"
+        },
         {
           "offset": 4269,
           "jp": "グラマテス",
@@ -49231,11 +49231,10 @@
         },
         {
           "offset": 9969,
-          "jp": "アーマーレ��ィ",
+          "jp": "アーマーレディ",
           "jp_len": 14,
           "kr": "/아/머/레/이/디",
-          "halfwidth": true,
-          "tag": "enemy"
+          "halfwidth": true
         },
         {
           "offset": 9986,
@@ -55856,48 +55855,6 @@
       "kr": "기절"
     },
     {
-      "offset": 22072,
-      "tag": "menu",
-      "jp": "スマッシュ",
-      "jp_len": 10,
-      "kr": "스마슈"
-    },
-    {
-      "offset": 22095,
-      "tag": "menu",
-      "jp": "ファーリン",
-      "jp_len": 10,
-      "kr": "화린"
-    },
-    {
-      "offset": 22118,
-      "tag": "menu",
-      "jp": "キリ",
-      "jp_len": 4,
-      "kr": "키리"
-    },
-    {
-      "offset": 22135,
-      "tag": "menu",
-      "jp": "ペトゥム",
-      "jp_len": 8,
-      "kr": "페톰"
-    },
-    {
-      "offset": 22156,
-      "tag": "menu",
-      "jp": "アターホー",
-      "jp_len": 10,
-      "kr": "아타호"
-    },
-    {
-      "offset": 22179,
-      "tag": "menu",
-      "jp": "シーラ",
-      "jp_len": 6,
-      "kr": "실라"
-    },
-    {
       "offset": 22540,
       "tag": "menu",
       "jp": "精神力",
@@ -55947,6 +55904,48 @@
       "kr": "기절"
     },
     {
+      "offset": 22072,
+      "tag": "menu",
+      "jp": "スマッシュ",
+      "jp_len": 10,
+      "kr": "스마슈"
+    },
+    {
+      "offset": 22095,
+      "tag": "menu",
+      "jp": "ファーリン",
+      "jp_len": 10,
+      "kr": "화린"
+    },
+    {
+      "offset": 22118,
+      "tag": "menu",
+      "jp": "キリ",
+      "jp_len": 4,
+      "kr": "키리"
+    },
+    {
+      "offset": 22135,
+      "tag": "menu",
+      "jp": "ペトゥム",
+      "jp_len": 8,
+      "kr": "페톰"
+    },
+    {
+      "offset": 22156,
+      "tag": "menu",
+      "jp": "アターホー",
+      "jp_len": 10,
+      "kr": "아타호"
+    },
+    {
+      "offset": 22179,
+      "tag": "menu",
+      "jp": "シーラ",
+      "jp_len": 6,
+      "kr": "실라"
+    },
+    {
       "offset": 22696,
       "tag": "menu",
       "jp": "スマッシュ",
@@ -55987,6 +55986,20 @@
       "jp": "シーラ",
       "jp_len": 6,
       "kr": "실라"
+    },
+    {
+      "offset": 55217,
+      "tag": "menu",
+      "jp": "残金　",
+      "jp_len": 6,
+      "kr": "잔금"
+    },
+    {
+      "offset": 55556,
+      "tag": "menu",
+      "jp": "誰が持つ？",
+      "jp_len": 10,
+      "kr": "누구에게?"
     },
     {
       "offset": 28246,
@@ -56078,20 +56091,6 @@
       "jp": "所持金",
       "jp_len": 6,
       "kr": "소지금"
-    },
-    {
-      "offset": 55217,
-      "tag": "menu",
-      "jp": "残金　",
-      "jp_len": 6,
-      "kr": "잔금"
-    },
-    {
-      "offset": 55556,
-      "tag": "menu",
-      "jp": "誰が持つ？",
-      "jp_len": 10,
-      "kr": "누구에게?"
     }
   ],
   "demo": [
