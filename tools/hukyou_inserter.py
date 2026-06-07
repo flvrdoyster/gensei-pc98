@@ -36,6 +36,7 @@ ASCII_TO_FULLWIDTH = {
     ')': b'\x81\x6A',  # ）
     '+': b'\x81\x7B',  # ＋
     '=': b'\x81\x81',  # ＝
+    '&': b'\x81\x95',  # ＆ (게임 렌더러가 반각 0x26 미표시 → 전각으로)
     '~': b'\x81\x60',  # ～ (Python shift_jis 코덱 미지원으로 직접 지정)
     '∼': b'\x81\x60',  # U+223C TILDE OPERATOR → ～
     '·': b'\x81\x45',  # U+00B7 MIDDLE DOT → ・
