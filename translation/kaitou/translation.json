@@ -1863,25 +1863,25 @@
           "offset": 9059,
           "jp": "「やれやれ…",
           "jp_len": 12,
-          "kr": ""
+          "kr": "「저런저런…"
         },
         {
           "offset": 9075,
           "jp": "　っと　オレはここでオサラバするぜ",
           "jp_len": 34,
-          "kr": ""
+          "kr": "자 나는 여기서 작별이야"
         },
         {
           "offset": 9111,
           "jp": "　次の冒険がオレを呼んでるからな",
           "jp_len": 32,
-          "kr": ""
+          "kr": "다음 모험이 날 부르고 있거든"
         },
         {
           "offset": 9145,
           "jp": "　…今度こそ主役だぜ！",
           "jp_len": 22,
-          "kr": ""
+          "kr": "…이번에는 주연이다!"
         }
       ]
     },
@@ -1904,13 +1904,13 @@
           "offset": 9222,
           "jp": "「…けっこう気にしてたみたいですね",
           "jp_len": 34,
-          "kr": ""
+          "kr": "「…제법 신경 쓰였던 모양이군요"
         },
         {
           "offset": 9258,
           "jp": "　脇役だったこと",
           "jp_len": 16,
-          "kr": ""
+          "kr": "조연이었다는게"
         }
       ]
     },
@@ -1933,19 +1933,19 @@
           "offset": 9310,
           "jp": "「主役…　か",
           "jp_len": 12,
-          "kr": ""
+          "kr": "「주연…인가"
         },
         {
           "offset": 9324,
           "jp": "　あたいはけっこう疲れたよ",
           "jp_len": 26,
-          "kr": ""
+          "kr": "나는 꽤나 지쳐버렸다고"
         },
         {
           "offset": 9354,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 9364,
@@ -2349,7 +2349,7 @@
           "offset": 10729,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 10739,
@@ -2775,7 +2775,7 @@
           "offset": 12217,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 12227,
@@ -4883,7 +4883,7 @@
           "offset": 18324,
           "jp": "「…たぶん」",
           "jp_len": 12,
-          "kr": ""
+          "kr": "「…아마도」"
         }
       ]
     },
@@ -4927,19 +4927,19 @@
           "offset": 18420,
           "jp": "すごい！　あなたはまさに盗賊中の盗賊",
           "jp_len": 36,
-          "kr": ""
+          "kr": "대단해! 그야말로 도적 중의 도적"
         },
         {
           "offset": 18458,
           "jp": "　真の『快盗』と呼ぶにふさわしい盗賊っぷりだ！",
           "jp_len": 46,
-          "kr": ""
+          "kr": "진정한 『쾌도』라 불릴 만한 도적이야!"
         },
         {
           "offset": 18506,
           "jp": "おめでとう",
           "jp_len": 10,
-          "kr": ""
+          "kr": "축하해"
         },
         {
           "offset": 18518,
@@ -4983,7 +4983,7 @@
           "offset": 18592,
           "jp": "　　どすこいＫ岡",
           "jp_len": 16,
-          "kr": "도스코이K오"
+          "kr": "도스코이K오카"
         }
       ]
     },
@@ -5005,7 +5005,7 @@
           "offset": 18625,
           "jp": "　　河内　夢太鼓",
           "jp_len": 16,
-          "kr": ""
+          "kr": "Y.카와치"
         }
       ]
     },
@@ -5027,7 +5027,7 @@
           "offset": 18658,
           "jp": "　　吉山　哲也",
           "jp_len": 14,
-          "kr": ""
+          "kr": "T.요시야마"
         }
       ]
     },
@@ -5049,7 +5049,7 @@
           "offset": 18687,
           "jp": "　　和田素輝美",
           "jp_len": 14,
-          "kr": ""
+          "kr": "와다 스키미"
         }
       ]
     },
@@ -5071,25 +5071,25 @@
           "offset": 18728,
           "jp": "　　うゑみぞ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "우에미조"
         },
         {
           "offset": 18742,
           "jp": "　　松本　学",
           "jp_len": 12,
-          "kr": ""
+          "kr": "M.마츠모토"
         },
         {
           "offset": 18756,
           "jp": "　　セニョール河北",
           "jp_len": 18,
-          "kr": ""
+          "kr": "세뇨르 카와키타"
         },
         {
           "offset": 18776,
           "jp": "　　橘　平安京",
           "jp_len": 14,
-          "kr": ""
+          "kr": "H.타치바나"
         }
       ]
     },
@@ -5111,13 +5111,13 @@
           "offset": 18815,
           "jp": "　　みがく",
           "jp_len": 10,
-          "kr": ""
+          "kr": "미가쿠"
         },
         {
           "offset": 18827,
           "jp": "　　　＆",
           "jp_len": 8,
-          "kr": ""
+          "kr": "&"
         },
         {
           "offset": 18837,
@@ -5145,7 +5145,7 @@
           "offset": 18876,
           "jp": "　　北野　不凡",
           "jp_len": 14,
-          "kr": ""
+          "kr": "키타노 후본"
         }
       ]
     },
@@ -5345,14 +5345,14 @@
           "offset": 167,
           "jp": "　こん身の力を込め　剣を",
           "jp_len": 24,
-          "kr": "",
+          "kr": "혼신의 힘을 담아 검을",
           "tag": "menu"
         },
         {
           "offset": 193,
           "jp": "　敵の脳天めがけて振り下ろす",
           "jp_len": 28,
-          "kr": "",
+          "kr": "적의 정수리에 내리친다",
           "tag": "menu"
         }
       ]
@@ -5383,14 +5383,14 @@
           "offset": 250,
           "jp": "　すさまじい剣圧で風を斬り",
           "jp_len": 26,
-          "kr": "",
+          "kr": "굉장한 검압으로 바람을",
           "tag": "menu"
         },
         {
           "offset": 278,
           "jp": "　目の前の敵すべてに攻撃する",
           "jp_len": 28,
-          "kr": "",
+          "kr": "베어 모든 적을 공격한다",
           "tag": "menu"
         }
       ]
@@ -5421,14 +5421,14 @@
           "offset": 337,
           "jp": "　敵の周囲を炎の壁で取り囲み",
           "jp_len": 28,
-          "kr": "",
+          "kr": "주위를 불꽃 벽으로 가둬",
           "tag": "menu"
         },
         {
           "offset": 367,
           "jp": "　ダメージを与える",
           "jp_len": 18,
-          "kr": "",
+          "kr": "데미지를 준다",
           "tag": "menu"
         }
       ]
@@ -5459,14 +5459,14 @@
           "offset": 416,
           "jp": "　敵の頭上に強力な雷撃を降らせ",
           "jp_len": 30,
-          "kr": "",
+          "kr": "머리 위로 강력한 뇌격을",
           "tag": "menu"
         },
         {
           "offset": 448,
           "jp": "　ダメージを与える",
           "jp_len": 18,
-          "kr": "",
+          "kr": "떨어뜨려 공격한다",
           "tag": "menu"
         }
       ]
@@ -5497,14 +5497,14 @@
           "offset": 497,
           "jp": "　敵の足下から氷の刃を生じさせ",
           "jp_len": 30,
-          "kr": "",
+          "kr": "발 아래에 얼음 칼날이 솟아",
           "tag": "menu"
         },
         {
           "offset": 529,
           "jp": "　ダメージを与える",
           "jp_len": 18,
-          "kr": "",
+          "kr": "데미지를 준다",
           "tag": "menu"
         }
       ]
@@ -5535,14 +5535,14 @@
           "offset": 578,
           "jp": "　仲間のキズをいやし",
           "jp_len": 20,
-          "kr": "",
+          "kr": "상처를 낫게 해",
           "tag": "menu"
         },
         {
           "offset": 600,
           "jp": "　ＨＰを回復させる",
           "jp_len": 18,
-          "kr": "",
+          "kr": "HP를 회복한다",
           "tag": "menu"
         }
       ]
@@ -5573,14 +5573,14 @@
           "offset": 651,
           "jp": "　毒をうけた仲間を正常な",
           "jp_len": 24,
-          "kr": "",
+          "kr": "독에 당한 동료를",
           "tag": "menu"
         },
         {
           "offset": 677,
           "jp": "　状態にする",
           "jp_len": 12,
-          "kr": "",
+          "kr": "낫게 한다",
           "tag": "menu"
         }
       ]
@@ -5611,14 +5611,14 @@
           "offset": 716,
           "jp": "　気力を込めた攻撃で",
           "jp_len": 20,
-          "kr": "",
+          "kr": "기력을 담은 공격",
           "tag": "menu"
         },
         {
           "offset": 738,
           "jp": "　通常よりも大ダメージを与える",
           "jp_len": 30,
-          "kr": "",
+          "kr": "통상보다 대타격이 된다",
           "tag": "menu"
         }
       ]
@@ -5649,14 +5649,14 @@
           "offset": 797,
           "jp": "　剣を超高速で振り回し",
           "jp_len": 22,
-          "kr": "",
+          "kr": "검을 고속으로 휘둘러",
           "tag": "menu"
         },
         {
           "offset": 821,
           "jp": "　敵全体にダメージを与える",
           "jp_len": 26,
-          "kr": "",
+          "kr": "적 전체에 데미지를 준다",
           "tag": "menu"
         }
       ]
@@ -7098,799 +7098,932 @@
           "offset": 4157,
           "jp": "まずは店の偵察でもするか",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4183,
           "jp": "動かぬ証拠ってヤツを",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4205,
           "jp": "手に入れて　さわやかに",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4229,
           "jp": "盗みに行きたいからな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4250,
           "jp": "まさかここまでボッタクるとは！",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4282,
           "jp": "用心棒がやっかいだな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4304,
           "jp": "どこかに隠れて夜を待ってから",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4334,
           "jp": "盗みに行くとするか",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4353,
           "jp": "暗くなったな",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4367,
           "jp": "よし　行くぞ！　",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4385,
           "jp": "悪徳商人め　覚悟しろ！",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4408,
           "jp": "義賊アリババ、ただいま参上！",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4438,
           "jp": "金よこせ　悪党め！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4457,
           "jp": "よし！長居は無用だ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4477,
           "jp": "こんなムカつくところからは",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4505,
           "jp": "さっさとおさらばしよう",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4528,
           "jp": "奥にいるのは誰だ？",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4548,
           "jp": "こんなところにいるとは",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4572,
           "jp": "タダ者じゃないな",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4589,
           "jp": "魔法使いか",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4601,
           "jp": "役に立ちそうだな",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4619,
           "jp": "しっかり働いてもらうか",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4642,
           "jp": "ずっと気になってたんだが",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4668,
           "jp": "な〜んか見覚えがあるんだよな",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4698,
           "jp": "この遺跡",
           "jp_len": 8,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4708,
           "jp": "はじめて来たはずなんだが…",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4735,
           "jp": "復活の儀式？　いったい何が",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4763,
           "jp": "復活するのか見てやるか",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4787,
           "jp": "ほんとは　こんな儀式",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4809,
           "jp": "やりたくはねえんだが…",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4832,
           "jp": "あたいはあんな格好で",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4854,
           "jp": "この世に復活するなんて",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4878,
           "jp": "まっぴらゴメンだね",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4898,
           "jp": "命は　帰ってこないから尊いんだ",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4929,
           "jp": "こんな謎解きがあるとは…",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4955,
           "jp": "あたい　こういうのは",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 4977,
           "jp": "ちょっとニガ手なんだよな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5002,
           "jp": "もうガマンならねえ！",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5024,
           "jp": "ぶち壊してでも　先へ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5046,
           "jp": "進んでやるぜ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5059,
           "jp": "いよいよお宝とご対面だな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5085,
           "jp": "楽しみだぜ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5096,
           "jp": "まさか　昔あたいが",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5116,
           "jp": "ここへ来てたなんてな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5138,
           "jp": "すっかり忘れてたぜ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5157,
           "jp": "まずは　偵察にでも行くか",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5183,
           "jp": "闘いは敵を知ることから始まる",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5213,
           "jp": "っていうからな",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5228,
           "jp": "養豚場でなんかやってるのか？",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5258,
           "jp": "おもしろそうじゃないか",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5282,
           "jp": "様子を見にいってみるか",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5305,
           "jp": "なんのワイロか知らんが",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5329,
           "jp": "全部イタダキだ！",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5347,
           "jp": "まってろよ　すぐに行くからな",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5376,
           "jp": "こりゃキリがねえな",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5396,
           "jp": "正面突破はやめて",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5414,
           "jp": "なにか別の方法を考えるか",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5439,
           "jp": "こっちはイヤに手薄だな",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5463,
           "jp": "ま　いいか",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5474,
           "jp": "くそう　犬のくせに強すぎるぞ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5504,
           "jp": "でも　なんとかしなきゃ",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5528,
           "jp": "中に入れんしなあ",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5545,
           "jp": "よし　これで中に入れる",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5569,
           "jp": "中に入っちまえば",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5587,
           "jp": "後はきっと楽勝だな",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5606,
           "jp": "く〜　ゴウカなメシだったな",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5634,
           "jp": "ちくしょ〜　ここのヤツらが",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5662,
           "jp": "うらやましいぜ",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5677,
           "jp": "くそう　あの部屋は",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5697,
           "jp": "見張りに見つからないように",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5725,
           "jp": "進まなきゃならないな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5746,
           "jp": "このカード　なんに使うんだ？",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5776,
           "jp": "大臣でも金を借りるコトが",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5802,
           "jp": "あるのか？",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5813,
           "jp": "よし　バッチリだ",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5831,
           "jp": "あたいも　ここから早く",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5855,
           "jp": "おさらばするとしよう",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5876,
           "jp": "ちっくしょ〜",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5890,
           "jp": "あたいは無実だ〜",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5908,
           "jp": "たしかにドロボ〜だけど",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5931,
           "jp": "さてと…",
           "jp_len": 8,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5941,
           "jp": "まずは手下どもを逃がしてやるか",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5972,
           "jp": "よし　あたいもさっさと",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 5996,
           "jp": "脱出するか！",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6009,
           "jp": "タマゴの数はたしか",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6029,
           "jp": "６コだったな",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6043,
           "jp": "６匹もあんな化けものが…",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6068,
           "jp": "あと４匹！",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6080,
           "jp": "絶対に全部見つけてやる",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6103,
           "jp": "残り３匹だな",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6117,
           "jp": "どこに隠れてもムダだ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6139,
           "jp": "おとなしく出てきやがれ！",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6164,
           "jp": "よし　あと残ってるのは２匹か",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6194,
           "jp": "もう少しだな",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6207,
           "jp": "最後の１匹　どこにいやがる",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6235,
           "jp": "とっとと姿を現せ！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6254,
           "jp": "とりあえず　その",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6272,
           "jp": "石造りの街ってトコへ行くか",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6299,
           "jp": "さて　先発の偵察隊は",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6321,
           "jp": "この街には来てないか？",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6344,
           "jp": "隠し扉の街か…",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6360,
           "jp": "メチャクチャ怪しいな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6382,
           "jp": "これは行くしかないな！",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6405,
           "jp": "実に　うさんくさい街だな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6431,
           "jp": "ま　情報収集も兼ねて",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6453,
           "jp": "いろいろ行ってみるか",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6474,
           "jp": "ふう　のどがかわいたな",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6498,
           "jp": "酒でも飲みにいくか",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6517,
           "jp": "スマッシュ…",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6531,
           "jp": "たしかに腕は立つんだが",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6555,
           "jp": "今一つ　ヌケてて頼りにならんな",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6586,
           "jp": "なるほど　こういう具合に",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6612,
           "jp": "入口がカモフラージュされて",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6640,
           "jp": "いたのか　気が付かなかったな",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6669,
           "jp": "施設の規模が小さいな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6691,
           "jp": "本当に　大手の盗賊団なのか？",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6720,
           "jp": "たしかにあの砦が気になるな",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6748,
           "jp": "もう１度攻めにいったほうが",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6776,
           "jp": "いいかもしれないな",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6795,
           "jp": "よっしゃ　これでいよいよ",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6821,
           "jp": "ヤツらのアジトへのりこめるぜ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6851,
           "jp": "待ってろよ　３００００Ｇ！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6878,
           "jp": "でてこい　金髪ロンゲの",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6902,
           "jp": "ドロボ〜野郎！",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6918,
           "jp": "３００００Ｇをかえしてもらいに",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6950,
           "jp": "アリババ様が参上したぜ！",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 6975,
           "jp": "せいせいどーどー勝負しろ！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7003,
           "jp": "いつまでも手下たちのカゲに",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7031,
           "jp": "隠れて　恥かしくねえのか！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7058,
           "jp": "ひょっとしてあの男",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7078,
           "jp": "けっこー弱いんじゃないか？",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7106,
           "jp": "あたいのような小娘のパンチで",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7136,
           "jp": "ノビちまうなんて！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         }
       ]
     },
@@ -7906,505 +8039,589 @@
           "offset": 7341,
           "jp": "そういえば",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7353,
           "jp": "アリババさんのアジトは",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7377,
           "jp": "この近くでしたね",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7394,
           "jp": "デジャブってヤツですか？",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7420,
           "jp": "まあ　よくあることです",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7444,
           "jp": "そんなに気にしなくても",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7468,
           "jp": "いいんじゃないですか",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7489,
           "jp": "やれやれ　イヤな感じですね",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7517,
           "jp": "なにも起きなければ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7537,
           "jp": "いいんですけど",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7552,
           "jp": "古代魔法には驚きです",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7574,
           "jp": "形はどうあれ　死んだ人を",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7600,
           "jp": "復活させるなんて！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7619,
           "jp": "割と簡単な謎ですね",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7639,
           "jp": "さっさと解いて　先へ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7661,
           "jp": "進んでしまいましょう",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7682,
           "jp": "ふう　ニガ手というより",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7706,
           "jp": "ぜんぜんダメじゃないですか",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7734,
           "jp": "少し考えればわかりそうですよ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7763,
           "jp": "そうですね",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7775,
           "jp": "さあ　はやく行きましょう！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7802,
           "jp": "ここの宝箱を開けてたのは",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7828,
           "jp": "昔のアリババさんなんですか？",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7858,
           "jp": "盗り残しがあってよかったですね",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7889,
           "jp": "今まで見たこともない",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7911,
           "jp": "不思議な虫ですね",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7929,
           "jp": "なんていう名前なんでしょう？",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7958,
           "jp": "ここも変わってないですねえ",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 7986,
           "jp": "私も昔から全然変わってないって",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8018,
           "jp": "よく言われるんですけど",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8041,
           "jp": "う〜ん　古代の神秘ですね",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8067,
           "jp": "岩を食べる虫ですか",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8087,
           "jp": "岩って　おいしいんですかねぇ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8116,
           "jp": "あと少しですね",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8132,
           "jp": "とりあえずがんばりましょう",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8159,
           "jp": "最後の１匹ですね",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8177,
           "jp": "どこでしょう？",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8193,
           "jp": "どうも　意外な所に",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8213,
           "jp": "現れそうな気がしますよ",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8236,
           "jp": "この山の東側にある",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8256,
           "jp": "石造りの街へ行きましょう",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8281,
           "jp": "平和そうな街ですね",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8301,
           "jp": "とても盗賊団のアジトが",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8325,
           "jp": "近くにあるとは思えませんね",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8352,
           "jp": "２本の杭が入口の目印ですか",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8380,
           "jp": "とりあえず行ってみましょう",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8408,
           "jp": "その街に　ウハウハ盗賊団の",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8436,
           "jp": "連中がいればラッキーですね",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8463,
           "jp": "たしかに　怪しい街ですが",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8489,
           "jp": "それなりに平和そうな",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8511,
           "jp": "雰囲気がしますね",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8528,
           "jp": "お酒ですか？",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8542,
           "jp": "いいですね　大賛成です",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8566,
           "jp": "さあ　早くいきましょう！",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8591,
           "jp": "スマッシュさんの見つけた",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8617,
           "jp": "怪しい場所ってところを",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8641,
           "jp": "探しましょう",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8654,
           "jp": "あちこちに　こういう隠し施設が",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8686,
           "jp": "あったんですね　どうりで",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8712,
           "jp": "討伐隊が　いつもこの辺りで連中",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8744,
           "jp": "を見失っていたわけです",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8767,
           "jp": "一つ一つは小さくても",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8789,
           "jp": "こういうのがたくさん",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8811,
           "jp": "あれば　けっこう大きいと",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8837,
           "jp": "思いますよ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8848,
           "jp": "そうですよ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8860,
           "jp": "きっと手がかりがあるはずです",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8890,
           "jp": "もう１度ちゃんと",
           "jp_len": 16,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8908,
           "jp": "チェックしましょう",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8927,
           "jp": "さあ　いよいよ大詰めですね",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8955,
           "jp": "準備が整いしだい　盗賊団の",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 8983,
           "jp": "アジトへのりこみましょう",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9008,
           "jp": "さあ　ウハウハ盗賊団も",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9032,
           "jp": "今日でおしまいです",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9052,
           "jp": "もう少ししたら　プラズマ君も",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9082,
           "jp": "兵士を連れて　やってきますしね",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9113,
           "jp": "いったい　どれだけ奥の手を",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9141,
           "jp": "用意してるんでしょう？",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9165,
           "jp": "ダテに大手盗賊団の首領を",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9191,
           "jp": "やってるわけじゃなさそうですね",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9222,
           "jp": "こむすめはこむすめでも",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9246,
           "jp": "虎娘のまちがいじゃないですか？",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9278,
           "jp": "アリババさんを普通の女の子と",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9308,
           "jp": "いっしょにしちゃいけませんよ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         }
       ]
     },
@@ -8420,175 +8637,204 @@
           "offset": 9397,
           "jp": "いかにも怪しいって場所が",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9423,
           "jp": "何ヶ所かあったはずだ",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9445,
           "jp": "手あたりしだい行ってみようぜ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9474,
           "jp": "入口は見つけたんだが",
           "jp_len": 20,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9496,
           "jp": "中には入れなかったんだよな",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9524,
           "jp": "まさか盗賊団の施設だったとは",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9553,
           "jp": "なるほど　廃鉱のうまい",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9577,
           "jp": "使い方だな　隠れるには",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9601,
           "jp": "ピッタリじゃないか",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9620,
           "jp": "まあ　いそがなくてもいいから",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9650,
           "jp": "もう１度　あの砦にいってみる",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9680,
           "jp": "ことにしようぜ　なにか",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9704,
           "jp": "見落しがあるかもしれんからな",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9733,
           "jp": "盗賊団退治か",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9747,
           "jp": "なんかワクワクしてきたな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9773,
           "jp": "ひさびさに大暴れできそうな",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9801,
           "jp": "予感がするぜ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9814,
           "jp": "ふふふ　腕がなるぜ",
           "jp_len": 18,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9834,
           "jp": "ここんとこ　大した戦闘も",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9860,
           "jp": "してなくて　欲求不満が",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9884,
           "jp": "たまってたところだからな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9909,
           "jp": "はっはっは",
           "jp_len": 10,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9921,
           "jp": "オレの見せ場がようやく",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9945,
           "jp": "まわってきたぜ",
           "jp_len": 14,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9961,
           "jp": "オレが噂のスマッシュ様だ！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 9988,
           "jp": "ペトゥムの言うとおりだ",
           "jp_len": 22,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 10012,
           "jp": "アリババちゃんのパンチは",
           "jp_len": 24,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 10038,
           "jp": "そんじょそこらの野郎より上だぜ",
           "jp_len": 30,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         },
         {
           "offset": 10070,
           "jp": "…よく死ななかったな　あの男",
           "jp_len": 28,
-          "kr": ""
+          "kr": "",
+          "tag": "monolog"
         }
       ]
     },
@@ -9100,7 +9346,7 @@
           "offset": 6729,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 6739,
@@ -9455,7 +9701,7 @@
           "offset": 7812,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 7822,
@@ -9479,7 +9725,7 @@
           "offset": 7898,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 7908,
@@ -9509,7 +9755,7 @@
           "offset": 7996,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 8006,
@@ -9918,7 +10164,7 @@
           "offset": 14661,
           "jp": "「お頭、会議のお時間でさぁ",
           "jp_len": 26,
-          "kr": "「회의 시간이 다 됐습죠"
+          "kr": "「회의 시간이 다 됐슴다"
         },
         {
           "offset": 14689,
@@ -9953,7 +10199,7 @@
           "offset": 14767,
           "jp": "　もうそんな時間か",
           "jp_len": 18,
-          "kr": "벌써 그런 시간이"
+          "kr": "벌써 시간이 됐나"
         }
       ]
     },
@@ -9982,7 +10228,7 @@
           "offset": 14850,
           "jp": "　つ　ついにあたいが主役っ！",
           "jp_len": 28,
-          "kr": "드 드디어 내가 주역!"
+          "kr": "드 드디어 내가 주연!"
         },
         {
           "offset": 14882,
@@ -9994,7 +10240,7 @@
           "offset": 14916,
           "jp": "　地味なヤツだなんて",
           "jp_len": 20,
-          "kr": "시시한 녀석이라곤"
+          "kr": "시시한 녀석이라고"
         },
         {
           "offset": 14938,
@@ -10051,7 +10297,7 @@
           "offset": 15083,
           "jp": "「先週の支出は８７５Ｇでさあ",
           "jp_len": 28,
-          "kr": "「지난주 지출 875G입죠"
+          "kr": "「지난주 지출 875G임다"
         }
       ]
     },
@@ -10109,13 +10355,13 @@
           "offset": 15238,
           "jp": "　先週だけで２０５Ｇも赤字なのか",
           "jp_len": 32,
-          "kr": "지난주만 205G 적자잖아"
+          "kr": "지난주만해도 205G 적자잖아"
         },
         {
           "offset": 15274,
           "jp": "　ヤバイじゃねえか",
           "jp_len": 18,
-          "kr": "큰일이잖아"
+          "kr": "큰일이지 않나"
         }
       ]
     },
@@ -10137,7 +10383,7 @@
           "offset": 15319,
           "jp": "　８７５から５７０引くと３０５ですよ",
           "jp_len": 36,
-          "kr": "875에서 570 빼면 305에요"
+          "kr": "875에서 570 빼면 305임다"
         }
       ]
     },
@@ -10190,7 +10436,7 @@
           "offset": 15538,
           "jp": "「…収支の報告は以上でさあ",
           "jp_len": 26,
-          "kr": "「…수지 보고는 이상입죠"
+          "kr": "「…수지 보고는 이상임다"
         }
       ]
     },
@@ -10248,13 +10494,13 @@
           "offset": 15699,
           "jp": "　ここしばらくロクな仕事をしてねえな",
           "jp_len": 36,
-          "kr": "최근 한동안 괜찮은 일이 없었군"
+          "kr": "최근 한동안은 괜찮은 일이 없었군"
         },
         {
           "offset": 15739,
           "jp": "　情報係　しっかりしろ！",
           "jp_len": 24,
-          "kr": "정보담당 똑바로 해!"
+          "kr": "정보담당 제대로 해!"
         },
         {
           "offset": 15765,
@@ -10266,13 +10512,13 @@
           "offset": 15801,
           "jp": "「へ　へえ",
           "jp_len": 10,
-          "kr": "「예 예에"
+          "kr": "「네 네잇"
         },
         {
           "offset": 15813,
           "jp": "　えーと　砂漠の中の田舎街で",
           "jp_len": 28,
-          "kr": "사막 한복판 시골 마을에서"
+          "kr": "사막 한복판의 시골에서"
         },
         {
           "offset": 15843,
@@ -10348,19 +10594,19 @@
           "offset": 16076,
           "jp": "　これなら　あたい一人でも楽勝だな",
           "jp_len": 34,
-          "kr": "이거면 나 혼자도 식은 죽이겠지"
+          "kr": "이거면 나 혼자서도 가뿐하겠지"
         },
         {
           "offset": 16114,
           "jp": "　人件費もバカにならねえし",
           "jp_len": 26,
-          "kr": "인건비도 무시 못 하니"
+          "kr": "인건비도 무시할 수 없고"
         },
         {
           "offset": 16142,
           "jp": "　一人で行くか",
           "jp_len": 14,
-          "kr": "혼자 가볼까"
+          "kr": "혼자서 가볼까"
         }
       ]
     },
@@ -10376,7 +10622,7 @@
           "offset": 16173,
           "jp": "「お頭ぁ　声がでてますよ",
           "jp_len": 24,
-          "kr": "「두목 다 들려요"
+          "kr": "「두목 다 들림다"
         }
       ]
     },
@@ -10411,7 +10657,7 @@
           "offset": 16298,
           "jp": "　今のは　お前らの社会勉強のために",
           "jp_len": 34,
-          "kr": "지금 건 너희의 사회생활을 위해"
+          "kr": "지금 건 너희의 사회경험을 위해"
         },
         {
           "offset": 16334,
@@ -10429,7 +10675,7 @@
           "offset": 16392,
           "jp": "「へ　へいっ",
           "jp_len": 12,
-          "kr": "「예 예엣"
+          "kr": "「네 네잇"
         },
         {
           "offset": 16406,
@@ -10563,19 +10809,19 @@
           "offset": 16860,
           "jp": "「わかりやした　お頭",
           "jp_len": 20,
-          "kr": "「알겠다요 두목"
+          "kr": "「알겠슴다 두목"
         },
         {
           "offset": 16882,
           "jp": "　お疲れさまでした",
           "jp_len": 18,
-          "kr": "수고하셨다요"
+          "kr": "수고 많으셨슴다"
         },
         {
           "offset": 16902,
           "jp": "　今日はゆっくり休んでくだせぇ",
           "jp_len": 30,
-          "kr": "오늘은 편히 쉬"
+          "kr": "오늘은 편히 쉬십쇼"
         }
       ]
     },
@@ -10598,7 +10844,7 @@
           "offset": 16975,
           "jp": "「うわあ！",
           "jp_len": 10,
-          "kr": ""
+          "kr": "「우와앗!"
         }
       ]
     },
@@ -10614,19 +10860,20 @@
           "offset": 17002,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 17008,
           "jp": "「お〜よ〜び〜で〜ございますか",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「부~르~셨~습~니까"
         },
         {
           "offset": 17040,
           "jp": "　新しいご主人様",
           "jp_len": 16,
-          "kr": ""
+          "kr": "새로운 주인님"
         }
       ]
     },
@@ -10649,25 +10896,26 @@
           "offset": 17092,
           "jp": "「誰だ　お前は？",
           "jp_len": 16,
-          "kr": ""
+          "kr": "「누구냐 넌?"
         },
         {
           "offset": 17118,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 17124,
           "jp": "「わ〜た〜し〜は〜",
           "jp_len": 18,
-          "kr": ""
+          "kr": "「저~는~"
         },
         {
           "offset": 17144,
           "jp": "　ランプの魔人でございます",
           "jp_len": 26,
-          "kr": ""
+          "kr": "램프의 마인이옵니다"
         }
       ]
     },
@@ -10690,25 +10938,26 @@
           "offset": 17206,
           "jp": "「どうでもいいが",
           "jp_len": 16,
-          "kr": ""
+          "kr": "「아무튼 됐고"
         },
         {
           "offset": 17224,
           "jp": "　そのしゃべりかたをなんとかしろ！",
           "jp_len": 34,
-          "kr": ""
+          "kr": "그 말투 좀 어떻게 해봐!"
         },
         {
           "offset": 17268,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 17274,
           "jp": "「承知しました　ご主人様",
           "jp_len": 24,
-          "kr": ""
+          "kr": "「알겠습니다 주인님"
         }
       ]
     },
@@ -10731,43 +10980,44 @@
           "offset": 17334,
           "jp": "「あたいをご主人様と呼んだね？",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「나를 주인님이라 불렀지?"
         },
         {
           "offset": 17374,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 17380,
           "jp": "「はい",
           "jp_len": 6,
-          "kr": ""
+          "kr": "「네"
         },
         {
           "offset": 17390,
           "jp": "　これから先　場所さえあれば",
           "jp_len": 28,
-          "kr": ""
+          "kr": "앞으로 장소만 있다면"
         },
         {
           "offset": 17420,
           "jp": "　ただちに参上いたしますので",
           "jp_len": 28,
-          "kr": ""
+          "kr": "즉시 달려오겠사오니"
         },
         {
           "offset": 17450,
           "jp": "　気軽にお呼びだしください",
           "jp_len": 26,
-          "kr": ""
+          "kr": "편히 불러주십시오"
         },
         {
           "offset": 17480,
           "jp": "　それでは失礼いたします",
           "jp_len": 24,
-          "kr": ""
+          "kr": "그럼 실례하겠습니다"
         }
       ]
     },
@@ -10790,25 +11040,25 @@
           "offset": 17547,
           "jp": "「なんだったんだ　今のは？",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「뭐였던거야 방금은?"
         },
         {
           "offset": 17577,
           "jp": "　あれが伝説に聞く",
           "jp_len": 18,
-          "kr": ""
+          "kr": "저게 전설로 듣던"
         },
         {
           "offset": 17597,
           "jp": "　ランプの魔人というヤツなのか？",
           "jp_len": 32,
-          "kr": ""
+          "kr": "램프의 마인이라는 녀석인가?"
         },
         {
           "offset": 17631,
           "jp": "　ヘンなヤツだ！",
           "jp_len": 16,
-          "kr": ""
+          "kr": "별난 녀석일세!"
         }
       ]
     },
@@ -10824,13 +11074,13 @@
           "offset": 17664,
           "jp": "「お頭　会議のお時間でさぁ",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「두목 회의 시간임다"
         },
         {
           "offset": 17692,
           "jp": "　起きてやすかぁ？",
           "jp_len": 18,
-          "kr": ""
+          "kr": "일어나셨슴까?"
         }
       ]
     },
@@ -10853,13 +11103,13 @@
           "offset": 17746,
           "jp": "「あ　当たり前だ！",
           "jp_len": 18,
-          "kr": ""
+          "kr": "「다 당연하지!"
         },
         {
           "offset": 17766,
           "jp": "　まってろ　すぐに行く！",
           "jp_len": 24,
-          "kr": ""
+          "kr": "기다려 금방 간다!"
         }
       ]
     },
@@ -10882,25 +11132,25 @@
           "offset": 17839,
           "jp": "「夢じゃない…",
           "jp_len": 14,
-          "kr": ""
+          "kr": "「꿈이 아냐…"
         },
         {
           "offset": 17855,
           "jp": "　あたいが本当に主役をやってるんだ",
           "jp_len": 34,
-          "kr": ""
+          "kr": "내가 정말로 주연을 하게 됐어"
         },
         {
           "offset": 17893,
           "jp": "「自分の思いどおりに動けるって",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「내 마음껏 움직인다는 건"
         },
         {
           "offset": 17925,
           "jp": "　き　気持ちいいな！",
           "jp_len": 20,
-          "kr": ""
+          "kr": "기 기분 좋구나!"
         }
       ]
     },
@@ -10916,7 +11166,7 @@
           "offset": 17962,
           "jp": "「先週の収入は１１６０Ｇでさあ",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「지난주 수입 1160G임다"
         }
       ]
     },
@@ -10932,7 +11182,7 @@
           "offset": 18003,
           "jp": "「先週の収入は１６６０Ｇでさあ",
           "jp_len": 30,
-          "kr": ""
+          "kr": "「지난주 수입 1660G임다"
         }
       ]
     },
@@ -10955,19 +11205,19 @@
           "offset": 18076,
           "jp": "「そうか　増えたな",
           "jp_len": 18,
-          "kr": ""
+          "kr": "「그런가 늘었구만"
         },
         {
           "offset": 18096,
           "jp": "　よしよし",
           "jp_len": 10,
-          "kr": ""
+          "kr": "좋아좋아"
         },
         {
           "offset": 18116,
           "jp": "「先週の支出は９９３Ｇでさあ",
           "jp_len": 28,
-          "kr": ""
+          "kr": "「지난주 지출 993G임다"
         }
       ]
     },
@@ -10990,7 +11240,7 @@
           "offset": 18180,
           "jp": "「そうか",
           "jp_len": 8,
-          "kr": ""
+          "kr": "「그런가"
         }
       ]
     },
@@ -11013,43 +11263,43 @@
           "offset": 18237,
           "jp": "「なんとか",
           "jp_len": 10,
-          "kr": ""
+          "kr": "「어쨌든"
         },
         {
           "offset": 18249,
           "jp": "　今回は黒字になったようだな",
           "jp_len": 28,
-          "kr": ""
+          "kr": "이번엔 흑자가 된 것 같네"
         },
         {
           "offset": 18281,
           "jp": "　だが　支出も増えて",
           "jp_len": 20,
-          "kr": ""
+          "kr": "다만 지출도 늘어서"
         },
         {
           "offset": 18303,
           "jp": "　あいかわらず苦しいことには",
           "jp_len": 28,
-          "kr": ""
+          "kr": "여전히 빡빡한 건"
         },
         {
           "offset": 18333,
           "jp": "　変わりはないぞ",
           "jp_len": 16,
-          "kr": ""
+          "kr": "마찬가지야"
         },
         {
           "offset": 18353,
           "jp": "　てめえら",
           "jp_len": 10,
-          "kr": ""
+          "kr": "너희들"
         },
         {
           "offset": 18365,
           "jp": "　気をゆるめるなよ！",
           "jp_len": 20,
-          "kr": ""
+          "kr": "방심하지 마!"
         }
       ]
     },
@@ -11065,25 +11315,25 @@
           "offset": 18402,
           "jp": "「お頭　確かにお頭の稼ぎが",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「확실히 두목님의 벌이가"
         },
         {
           "offset": 18430,
           "jp": "　一番良かったんですが",
           "jp_len": 22,
-          "kr": ""
+          "kr": "가장 좋았습니다만"
         },
         {
           "offset": 18454,
           "jp": "　支出もお頭がダントツでした",
           "jp_len": 28,
-          "kr": ""
+          "kr": "지출도 두목님이 단독 1위"
         },
         {
           "offset": 18486,
           "jp": "　気を引き締めてくだせぇ",
           "jp_len": 24,
-          "kr": ""
+          "kr": "신경 좀 쓰시지 말임다"
         }
       ]
     },
@@ -11106,19 +11356,19 @@
           "offset": 18553,
           "jp": "「そ　そうなのか",
           "jp_len": 16,
-          "kr": ""
+          "kr": "「그 그런 건가"
         },
         {
           "offset": 18571,
           "jp": "　すまん　気をつける",
           "jp_len": 20,
-          "kr": ""
+          "kr": "미안 신경 쓸게"
         },
         {
           "offset": 18601,
           "jp": "「収支の報告は以上でさあ",
           "jp_len": 24,
-          "kr": ""
+          "kr": "「수지 보고는 이상임다"
         }
       ]
     },
@@ -11141,7 +11391,7 @@
           "offset": 18661,
           "jp": "「よし　次　情報係ッ！",
           "jp_len": 22,
-          "kr": ""
+          "kr": "「좋아 다음 정보담당"
         }
       ]
     },
@@ -11157,31 +11407,31 @@
           "offset": 18700,
           "jp": "「今のところ",
           "jp_len": 12,
-          "kr": ""
+          "kr": "「지금으로선"
         },
         {
           "offset": 18714,
           "jp": "　目ぼしい情報は入ってきてやせん",
           "jp_len": 32,
-          "kr": ""
+          "kr": "눈에 띄는 정보는 없습죠"
         },
         {
           "offset": 18750,
           "jp": "　ですが　赤き荒野にある遺跡に",
           "jp_len": 30,
-          "kr": ""
+          "kr": "하지만 붉은황야의 유적에"
         },
         {
           "offset": 18782,
           "jp": "　お宝がわんさと眠っているという",
           "jp_len": 32,
-          "kr": ""
+          "kr": "보물이 잔뜩 잠들어 있다는"
         },
         {
           "offset": 18816,
           "jp": "　情報があります",
           "jp_len": 16,
-          "kr": ""
+          "kr": "정보가 있어요"
         }
       ]
     },
@@ -11204,7 +11454,7 @@
           "offset": 18868,
           "jp": "「ほ〜う　それはなかなか…",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「호오~ 그건 제법…"
         }
       ]
     },
@@ -11227,7 +11477,7 @@
           "offset": 18943,
           "jp": "『遺跡から古代のお宝を頂戴する",
           "jp_len": 30,
-          "kr": ""
+          "kr": "『"
         },
         {
           "offset": 18975,
@@ -11910,25 +12160,25 @@
           "offset": 21184,
           "jp": "「はあ　主役ってのは",
           "jp_len": 20,
-          "kr": ""
+          "kr": "「하아 주연이란 건"
         },
         {
           "offset": 21206,
           "jp": "　ケッコウ大変だな",
           "jp_len": 18,
-          "kr": ""
+          "kr": "꽤나 힘드네"
         },
         {
           "offset": 21228,
           "jp": "　少しくらい休ませろっ！！",
           "jp_len": 26,
-          "kr": ""
+          "kr": "조금은 쉬게 해줘!!"
         },
         {
           "offset": 21256,
           "jp": "　ブツブツ",
           "jp_len": 10,
-          "kr": ""
+          "kr": "투덜투덜"
         }
       ]
     },
@@ -12821,7 +13071,7 @@
           "offset": 24207,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 24217,
@@ -12857,7 +13107,7 @@
           "offset": 24323,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 24333,
@@ -13173,7 +13423,7 @@
           "offset": 25393,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 25403,
@@ -13197,7 +13447,7 @@
           "offset": 25473,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 25483,
@@ -13338,7 +13588,7 @@
           "offset": 25934,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 25944,
@@ -13989,7 +14239,7 @@
           "offset": 27814,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 27824,
@@ -14019,7 +14269,7 @@
           "offset": 27904,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 27914,
@@ -14466,7 +14716,7 @@
           "offset": 29295,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 29305,
@@ -15229,7 +15479,7 @@
           "offset": 4145,
           "jp": "「この宝石を買ってくれ！",
           "jp_len": 24,
-          "kr": "「이 보석을 사 줘!"
+          "kr": "「이 보석을 팔겠어!"
         },
         {
           "offset": 4179,
@@ -15242,7 +15492,7 @@
           "offset": 4189,
           "jp": "「…２００Ｇですね",
           "jp_len": 18,
-          "kr": "「…200G네요"
+          "kr": "「…200G입니다"
         }
       ]
     },
@@ -15265,7 +15515,7 @@
           "offset": 4243,
           "jp": "「そ　そんなに安いのか！",
           "jp_len": 24,
-          "kr": "「그 그렇게 싸다고!"
+          "kr": "「그 그렇게나 헐값에!"
         },
         {
           "offset": 4277,
@@ -15278,7 +15528,7 @@
           "offset": 4287,
           "jp": "「…おやめになりますか？",
           "jp_len": 24,
-          "kr": "「…그만 두실래요?"
+          "kr": "「…안 파시겠습니까?"
         }
       ]
     },
@@ -15307,7 +15557,7 @@
           "offset": 4369,
           "jp": "　それでいい　買ってくれ",
           "jp_len": 24,
-          "kr": "그걸로 좋아 사 줘"
+          "kr": "그걸로 됐어 팔게"
         },
         {
           "offset": 4406,
@@ -15336,13 +15586,13 @@
           "offset": 4473,
           "jp": "「くっそ〜",
           "jp_len": 10,
-          "kr": "「제길~"
+          "kr": "「젠장~"
         },
         {
           "offset": 4485,
           "jp": "　そろそろ金がヤバいな",
           "jp_len": 22,
-          "kr": "슬슬 돈이 빠듯하게"
+          "kr": "슬슬 돈이 빠듯하네"
         },
         {
           "offset": 4511,
@@ -15372,7 +15622,7 @@
           "offset": 4609,
           "jp": "　悪人どもまで　しけてやがる",
           "jp_len": 28,
-          "kr": "악인들까지 쪼들리고 있잖아"
+          "kr": "악인들까지 씨가 말랐고"
         }
       ]
     },
@@ -15395,7 +15645,7 @@
           "offset": 4686,
           "jp": "「はあ　どこかに腹黒い金持ちは",
           "jp_len": 30,
-          "kr": "「하 어디 속 시꺼먼 부자는"
+          "kr": "「하 어디 속 시커먼 부자는"
         },
         {
           "offset": 4718,
@@ -15424,13 +15674,13 @@
           "offset": 4795,
           "jp": "「え〜い　ムシャクシャする！",
           "jp_len": 28,
-          "kr": "「에잇 짜증나!"
+          "kr": "「에잇 열받아!"
         },
         {
           "offset": 4825,
           "jp": "　とっとと帰って寝るか！",
           "jp_len": 24,
-          "kr": "얼른 돌아가서 잘까!"
+          "kr": "냉큼 돌아가서 잘까!"
         }
       ]
     },
@@ -16988,19 +17238,19 @@
           "offset": 9987,
           "jp": "「ここか…",
           "jp_len": 10,
-          "kr": ""
+          "kr": "「여긴가…"
         },
         {
           "offset": 10001,
           "jp": "　ほんっっっとに田舎だな",
           "jp_len": 24,
-          "kr": ""
+          "kr": "정~~~말로 시골이구만"
         },
         {
           "offset": 10027,
           "jp": "　なんにもない所じゃないか",
           "jp_len": 26,
-          "kr": ""
+          "kr": "아무 것도 없는 곳이잖아"
         }
       ]
     },
@@ -17023,31 +17273,31 @@
           "offset": 10102,
           "jp": "「見てまわるようなところも",
           "jp_len": 26,
-          "kr": ""
+          "kr": "「구경할 거리도"
         },
         {
           "offset": 10130,
           "jp": "　なさそうだし",
           "jp_len": 14,
-          "kr": ""
+          "kr": "없어 보이고"
         },
         {
           "offset": 10148,
           "jp": "　さっさと",
           "jp_len": 10,
-          "kr": ""
+          "kr": "얼른 그"
         },
         {
           "offset": 10160,
           "jp": "　その悪徳商人の所にでも",
           "jp_len": 24,
-          "kr": ""
+          "kr": "악덕상인이 있는 곳에"
         },
         {
           "offset": 10186,
           "jp": "　偵察に行くとするか",
           "jp_len": 20,
-          "kr": ""
+          "kr": "정찰이라도 가볼까"
         }
       ]
     },
@@ -17982,7 +18232,7 @@
           "offset": 4529,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 4539,
@@ -18112,7 +18362,7 @@
           "offset": 4980,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 4990,
@@ -18172,7 +18422,7 @@
           "offset": 5216,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 5226,
@@ -18697,7 +18947,7 @@
           "offset": 6966,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 6976,
@@ -18751,7 +19001,7 @@
           "offset": 7168,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 7178,
@@ -19387,7 +19637,7 @@
           "offset": 9213,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 9223,
@@ -19534,7 +19784,7 @@
           "offset": 9707,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 9717,
@@ -19594,7 +19844,7 @@
           "offset": 9923,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 9933,
@@ -20023,7 +20273,7 @@
           "offset": 3081,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 3091,
@@ -20077,7 +20327,7 @@
           "offset": 3269,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 3279,
@@ -20101,7 +20351,7 @@
           "offset": 3357,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 3367,
@@ -20181,7 +20431,7 @@
           "offset": 3556,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 3566,
@@ -20281,7 +20531,7 @@
           "offset": 3879,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 3889,
@@ -20341,7 +20591,7 @@
           "offset": 4111,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 4121,
@@ -21177,7 +21427,7 @@
           "offset": 11915,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 11925,
@@ -21277,7 +21527,7 @@
           "offset": 12260,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 12270,
@@ -21383,7 +21633,7 @@
           "offset": 12627,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 12637,
@@ -21477,7 +21727,7 @@
           "offset": 12956,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 12966,
@@ -21576,7 +21826,7 @@
           "offset": 13246,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 13256,
@@ -21880,7 +22130,7 @@
           "offset": 14300,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 14310,
@@ -21916,7 +22166,7 @@
           "offset": 14410,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 14420,
@@ -22292,7 +22542,7 @@
           "offset": 15751,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 15761,
@@ -22346,7 +22596,7 @@
           "offset": 15949,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 15959,
@@ -22468,7 +22718,7 @@
           "offset": 16310,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 16320,
@@ -23129,7 +23379,7 @@
           "offset": 18281,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 18291,
@@ -23219,7 +23469,7 @@
           "offset": 18597,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 18607,
@@ -23255,7 +23505,7 @@
           "offset": 18715,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 18725,
@@ -23373,7 +23623,7 @@
           "offset": 19104,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 19114,
@@ -23597,7 +23847,7 @@
           "offset": 19795,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 19805,
@@ -23802,7 +24052,7 @@
           "offset": 20419,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 20429,
@@ -23886,7 +24136,7 @@
           "offset": 20729,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 20739,
@@ -23992,7 +24242,7 @@
           "offset": 21082,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 21092,
@@ -24307,7 +24557,7 @@
           "offset": 22035,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 22045,
@@ -24385,7 +24635,7 @@
           "offset": 22331,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 22341,
@@ -24451,7 +24701,7 @@
           "offset": 22561,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 22571,
@@ -24487,7 +24737,7 @@
           "offset": 22681,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 22691,
@@ -24645,7 +24895,7 @@
           "offset": 23164,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 23174,
@@ -24681,7 +24931,7 @@
           "offset": 23284,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 23294,
@@ -36094,7 +36344,7 @@
           "offset": 23351,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 23361,
@@ -36142,7 +36392,7 @@
           "offset": 23543,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰"
         },
         {
           "offset": 23553,
@@ -36753,7 +37003,8 @@
           "offset": 25686,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 25696,
@@ -43194,7 +43445,8 @@
           "offset": 16704,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 16714,
@@ -43236,7 +43488,8 @@
           "offset": 16832,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 16842,
@@ -43821,7 +44074,8 @@
           "offset": 18444,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 18454,
@@ -44214,7 +44468,8 @@
           "offset": 19634,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 19644,
@@ -44739,7 +44994,8 @@
           "offset": 21194,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 21204,
@@ -44793,7 +45049,8 @@
           "offset": 21396,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 21406,
@@ -47769,7 +48026,8 @@
           "offset": 6329,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 6339,
@@ -48499,7 +48757,8 @@
           "offset": 8457,
           "jp": "ペトゥム",
           "jp_len": 8,
-          "kr": ""
+          "kr": "페톰",
+          "tag": "char"
         },
         {
           "offset": 8467,
@@ -49691,7 +49950,8 @@
           "offset": 7764,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 7770,
@@ -49756,7 +50016,8 @@
           "offset": 7978,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 7984,
@@ -49850,7 +50111,8 @@
           "offset": 8247,
           "jp": "魔人",
           "jp_len": 4,
-          "kr": ""
+          "kr": "마인",
+          "tag": "char"
         },
         {
           "offset": 8253,
