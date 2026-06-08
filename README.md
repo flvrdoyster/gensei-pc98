@@ -61,7 +61,8 @@ python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan  original/kitan/data    # 희담
 
 # 3. 재삽입 
-python3 tools/hukyou_inserter.py original/hukyou
+python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
+python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
 python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 # 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
