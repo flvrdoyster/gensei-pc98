@@ -200,10 +200,26 @@ def main(game_dir: str) -> None:
 
         for chunk, lns in carry.items():
             for l in lns:
-                final_entries.append({
-                    'file': 'DISK_B.DAT', 'chunk': chunk, 'offset': l['offset'],
-                    'type': 'carried', 'jp': l['jp'], 'kr': l['kr'], 'lines': [l],
-                })
+                off = l['offset']
+                # 줄 offset 이 lines 범위에 드는 같은 청크 entry 를 찾아 그 안에 삽입한다.
+                # (별도 top-level carried 엔트리로 빼면 entry 단위 정렬에 밀려 위치가
+                #  어긋남 — 예: 「いた！(5688)가 같은 블록의 うおー(5697)보다 뒤로 감)
+                host = None
+                for e in final_entries:
+                    if e['chunk'] == chunk and e.get('lines'):
+                        offs = [x['offset'] for x in e['lines']]
+                        if min(offs) <= off <= max(offs):
+                            host = e
+                            break
+                if host is not None:
+                    host['lines'].append(l)
+                    host['lines'].sort(key=lambda x: x['offset'])
+                else:
+                    # 어느 블록 범위에도 안 들면 별도 carried 엔트리로 (기존 동작)
+                    final_entries.append({
+                        'file': 'DISK_B.DAT', 'chunk': chunk, 'offset': off,
+                        'type': 'carried', 'jp': l['jp'], 'kr': l['kr'], 'lines': [l],
+                    })
         final_entries.sort(key=lambda e: (e['chunk'], e['offset']))
         print(f'\nkr 이식: 총 {kr_total} → 부착 {n_attach} + carry-over {n_carry} '
               f'(손실 {kr_total - n_attach - n_carry})')
