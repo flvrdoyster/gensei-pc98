@@ -348,13 +348,29 @@
     {
       "file": "DISK_B.DAT",
       "chunk": 0,
+      "offset": 31464,
+      "type": "carried",
+      "jp": "運",
+      "kr": "운",
+      "lines": [
+        {
+          "offset": 31464,
+          "jp": "運",
+          "jp_len": 2,
+          "kr": "운"
+        }
+      ]
+    },
+    {
+      "file": "DISK_B.DAT",
+      "chunk": 0,
       "offset": 31470,
       "type": "carried",
       "jp": "武器",
       "kr": "무기",
       "lines": [
         {
-          "offset": 31470,
+          "offset": 31472,
           "jp": "武器",
           "jp_len": 4,
           "kr": "무기",

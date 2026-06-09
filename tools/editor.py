@@ -274,6 +274,10 @@ async function load() {
         });
       }
     }
+    // 표시 정렬: 청크 경계는 유지하고 청크 내에서만 line offset 순.
+    // 전역 offset = chunk*200000 + local 이라, 정렬하면 청크별로 묶이며 내부가 offset 순이 된다.
+    // (데이터/파서는 건드리지 않음 — 표시 단계에서만 정렬)
+    rows.sort((a, b) => a.offset - b.offset);
   } else {
     // hukyou 포맷: dialogs / items / ui 구조
     for (const dialog of data.dialogs) {
@@ -1218,13 +1222,21 @@ class Handler(http.server.BaseHTTPRequestHandler):
             output = (proc.stdout + proc.stderr).strip()
             if proc.returncode == 0:
                 lines = output.splitlines()
+                n_trunc = sum(1 for l in lines if '초과, 잘림' in l)
+                # 인서터별 출력 형식이 달라 두 가지 모두 인식:
+                #  hukyou/kitan: "<file>: N건 교체, ..." (파일별 여러 줄)
+                #  kaitou:       "패치: N줄 / M청크, ..."
                 file_lines = [l for l in lines if '건 교체' in l]
                 if file_lines:
                     n_files = len(file_lines)
                     n_items = sum(int(l.split('건 교체')[0].split()[-1]) for l in file_lines)
                     msg = f'빌드 완료 — {n_files}개 파일 {n_items}건 교체'
+                elif (m := re.search(r'패치:\s*(\d+)줄\s*/\s*(\d+)청크', output)):
+                    msg = f'빌드 완료 — {m.group(2)}개 청크 {m.group(1)}줄 교체'
                 else:
                     msg = '빌드 완료 (교체 항목 없음)'
+                if n_trunc:
+                    msg += f' · ⚠ {n_trunc}줄 길이초과 잘림'
                 return {'ok': True, 'message': msg}
             last = output.splitlines()[-1] if output else '빌드 실패'
             return {'ok': False, 'message': f'빌드 실패: {last}'}
