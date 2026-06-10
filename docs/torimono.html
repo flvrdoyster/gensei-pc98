@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <title>환세포물장 : atah.io</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="https://atah.io/favicon.ico">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="description" content="PC-98 환세포물장(Compile, 1996)의 한글화 웹 버전입니다.">
+  <meta name="keywords" content="환세포물장, 환세 시리즈, 幻世捕物帳, PC-98, 컴파일, 한글화, torimono, gensei">
+  <meta property="og:title" content="환세포물장 : atah.io">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://pc98.atah.io/torimono.html">
+  <meta property="og:image" content="https://pc98.atah.io/img/thumbnail-torimono.png">
+  <meta property="og:description" content="PC-98 환세포물장(Compile, 1996)의 한글화 웹 버전입니다.">
+  <meta property="og:site_name" content="atah.io">
+  <meta property="og:locale" content="ko_KR">
+  <!-- Google Tag Manager -->
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-PR4S897C');</script>
+  <!-- End Google Tag Manager -->
+</head>
+<body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PR4S897C" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+  <div class="top-bar">
+    <img src="img/logo-torimono.png" alt="환세포물장" class="logo">
+    <div class="top-bar-right">
+      <button id="btn-gamepad" class="btn-icon btn-touch-only" title="게임패드"><svg viewBox="0 0 16 16" height="22"><path fill="currentColor" d="M6.5 0A1.5 1.5 0 0 0 5 1.5v3a0.5 0.5 0 0 1 -0.5 0.5h-3A1.5 1.5 0 0 0 0 6.5v3A1.5 1.5 0 0 0 1.5 11h3a0.5 0.5 0 0 1 0.5 0.5v3A1.5 1.5 0 0 0 6.5 16h3a1.5 1.5 0 0 0 1.5 -1.5v-3a0.5 0.5 0 0 1 0.5 -0.5h3A1.5 1.5 0 0 0 16 9.5v-3A1.5 1.5 0 0 0 14.5 5h-3a0.5 0.5 0 0 1 -0.5 -0.5v-3A1.5 1.5 0 0 0 9.5 0zm1.288 2.34a0.25 0.25 0 0 1 0.424 0l0.799 1.278A0.25 0.25 0 0 1 8.799 4H7.201a0.25 0.25 0 0 1 -0.212 -0.382zm0 11.32 -0.799 -1.277A0.25 0.25 0 0 1 7.201 12H8.8a0.25 0.25 0 0 1 0.212 0.383l-0.799 1.278a0.25 0.25 0 0 1 -0.424 0Zm-4.17 -4.65 -1.279 -0.798a0.25 0.25 0 0 1 0 -0.424l1.279 -0.799A0.25 0.25 0 0 1 4 7.201V8.8a0.25 0.25 0 0 1 -0.382 0.212Zm10.043 -0.798 -1.278 0.799A0.25 0.25 0 0 1 12 8.799V7.2a0.25 0.25 0 0 1 0.383 -0.212l1.278 0.799a0.25 0.25 0 0 1 0 0.424Z"/></svg></button>
+      <button id="btn-mute" class="btn-icon" title="음소거" style="display:none"><svg viewBox="0 0 49.13 70.14" height="22"><path fill="currentColor" d="M7.43,68.29c-2.31-1.26-4.13-3.01-5.45-5.25s-1.98-4.77-1.98-7.58.65-5.41,1.96-7.62c1.3-2.21,3.12-3.93,5.45-5.14,2.33-1.22,4.96-1.82,7.89-1.82s5.45.59,7.73,1.76l-.09-42.63h26.19v14.77h-18.72v40.69c0,2.81-.65,5.34-1.96,7.58-1.3,2.24-3.1,3.99-5.38,5.25s-4.88,1.87-7.78,1.85c-2.93.03-5.55-.59-7.87-1.85Z"/></svg></button>
+      <button id="btn-fullscreen" class="btn-icon" title="전체화면"><svg viewBox="0 0 59.13 59.13" height="22"><path fill="currentColor" d="M0,22.05V3.69C0,1.62,1.62,0,3.69,0h18.36v4.5H6.75c-1.17,0-1.98.81-1.98,1.98v15.57H0ZM0,37.08h4.77v15.57c0,1.17.81,1.98,1.98,1.98h15.3v4.5H3.69c-2.07,0-3.69-1.62-3.69-3.69v-18.36ZM59.13,22.05h-4.77V6.48c0-1.17-.81-1.98-1.98-1.98h-15.3V0h18.36c2.07,0,3.69,1.62,3.69,3.69v18.36ZM59.13,37.08v18.36c0,2.07-1.62,3.69-3.69,3.69h-18.36v-4.5h15.3c1.17,0,1.98-.81,1.98-1.98v-15.57h4.77Z"/></svg></button>
+      <button id="btn-collapse" class="btn-icon" title="상단바 숨기기"><svg viewBox="0 0 16 16" height="22"><path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M3.5 10 L8 5.5 L12.5 10"/></svg></button>
+    </div>
+  </div>
+
+  <div id="canvas-wrap">
+    <canvas id="canvas"></canvas>
+    <div id="overlay">
+      <button id="btn-start">▶ 시작</button>
+    </div>
+    <div id="toast"></div>
+  </div>
+
+  <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+
+  <div id="virtual-gamepad">
+    <div class="gamepad-dpad">
+      <button data-key="ArrowUp" class="dpad-up"><svg viewBox="0 0 45.04 45.04" role="img" aria-label="↑"><path fill="currentColor" d="M0,18.01h9.01v9.01H0v-9.01ZM9.01,9.01h9.01V0h9.01v9.01h9.01v9.01h-9.01v27.02h-9.01v-27.02h-9.01v-9.01ZM36.03,18.01h9.01v9.01h-9.01v-9.01Z"/></svg></button>
+      <button data-key="ArrowLeft" class="dpad-left"><svg viewBox="0 0 45.04 45.04" role="img" aria-label="←" style="transform:rotate(-90deg)"><path fill="currentColor" d="M0,18.01h9.01v9.01H0v-9.01ZM9.01,9.01h9.01V0h9.01v9.01h9.01v9.01h-9.01v27.02h-9.01v-27.02h-9.01v-9.01ZM36.03,18.01h9.01v9.01h-9.01v-9.01Z"/></svg></button>
+      <button data-key="ArrowRight" class="dpad-right"><svg viewBox="0 0 45.04 45.04" role="img" aria-label="→" style="transform:rotate(90deg)"><path fill="currentColor" d="M0,18.01h9.01v9.01H0v-9.01ZM9.01,9.01h9.01V0h9.01v9.01h9.01v9.01h-9.01v27.02h-9.01v-27.02h-9.01v-9.01ZM36.03,18.01h9.01v9.01h-9.01v-9.01Z"/></svg></button>
+      <button data-key="ArrowDown" class="dpad-down"><svg viewBox="0 0 45.04 45.04" role="img" aria-label="↓" style="transform:rotate(180deg)"><path fill="currentColor" d="M0,18.01h9.01v9.01H0v-9.01ZM9.01,9.01h9.01V0h9.01v9.01h9.01v9.01h-9.01v27.02h-9.01v-27.02h-9.01v-9.01ZM36.03,18.01h9.01v9.01h-9.01v-9.01Z"/></svg></button>
+    </div>
+    <div class="gamepad-buttons">
+      <button data-key="Escape"><svg viewBox="0 0 153.12 45.04" role="img" aria-label="ESC"><path fill="currentColor" d="M0,36.03V0h45.04v9.01h-27.02v9.01h18.01v9.01h-18.01v9.01h27.02v9.01H0v-9.01Z"/><path fill="currentColor" d="M54.04,36.03h27.02v-9.01h-27.02V9.01h9.01V0h36.03v9.01h-27.02v9.01h27.02v18.01h-9.01v9.01h-36.03v-9.01Z"/><path fill="currentColor" d="M108.09,27.02V9.01h9.01V0h27.02v9.01h9.01v9.01h-18.01v-9.01h-9.01v27.02h9.01v-9.01h18.01v9.01h-9.01v9.01h-27.02v-9.01h-9.01v-9.01Z"/></svg></button>
+      <button data-key="Enter"><svg viewBox="0 0 261.21 45.04" role="img" aria-label="Enter"><path fill="currentColor" d="M0,36.03V0h45.04v9.01h-27.02v9.01h18.01v9.01h-18.01v9.01h27.02v9.01H0v-9.01Z"/><path fill="currentColor" d="M54.04,36.03V0h18.01v9.01h9.01v9.01h9.01V0h18.01v45.04h-18.01v-9.01h-9.01v-9.01h-9.01v18.01h-18.01v-9.01Z"/><path fill="currentColor" d="M117.1,0h36.03v9.01h-9.01v36.03h-18.01V9.01h-9.01V0Z"/><path fill="currentColor" d="M162.13,36.03V0h45.04v9.01h-27.02v9.01h18.01v9.01h-18.01v9.01h27.02v9.01h-45.04v-9.01Z"/><path fill="currentColor" d="M216.18,36.03V0h36.03v9.01h9.01v18.01h-9.01v9.01h9.01v9.01h-18.01v-9.01h-9.01v9.01h-18.02v-9.01ZM243.2,27.02V9.01h-9.01v18.01h9.01Z"/></svg></button>
+    </div>
+  </div>
+  <script src="audio.js"></script>
+  <script src="gamepad.js"></script>
+
+  <script>
+    window.GAME = 'torimono';
+    function track(name) { (window.dataLayer = window.dataLayer || []).push({ event: name, game: window.GAME }); }
+    // 포물장은 FDI가 아니라 HDI(부팅 가능한 PC-98 HDD 이미지)로 구동.
+    // np2kai 웹빌드의 커맨드라인 확장자 분기에 .hdi가 없어 arguments 로는 못 물리고,
+    // 번들 내 np2kai.cfg 에 HDD1FILE 을 주입해 SASI HDD 로 마운트한다 (preRun).
+    const DISK    = '/rom/torimono_kr.hdi';
+    const CFG     = '/emulator/np2kai/np2kai.cfg';
+    const IDB_NAME  = 'gensei-saves';
+    const IDB_STORE = 'disks';
+    const IDB_KEY   = 'torimono_kr.hdi';
+    const POLL_MS   = 10000;
+
+    // Toast messages
+    const MSG = {
+      SAVE_RESTORED:  '세이브 데이터를 복원했습니다.',
+      DISK_TIMEOUT:   '디스크 마운트에 실패해 원본으로 시작합니다.',
+      JS_LOAD_FAIL:   '에뮬레이터를 불러오지 못했습니다.',
+    };
+
+    const canvas  = document.getElementById('canvas');
+    const overlay = document.getElementById('overlay');
+    const toast   = document.getElementById('toast');
+
+    const logs = [];
+    let toastTimer = null;
+
+    function log(msg) {
+      logs.push('[' + new Date().toLocaleTimeString() + '] ' + msg);
+    }
+
+    function showToast(msg, duration = 2000) {
+      log(msg);
+      toast.textContent = msg;
+      toast.classList.add('visible');
+      clearTimeout(toastTimer);
+      toastTimer = setTimeout(() => toast.classList.remove('visible'), duration);
+    }
+
+    // IndexedDB helpers
+    function openDB() {
+      return new Promise((resolve, reject) => {
+        const req = indexedDB.open(IDB_NAME, 1);
+        req.onupgradeneeded = e => e.target.result.createObjectStore(IDB_STORE);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbGet(db, key) {
+      return new Promise((resolve, reject) => {
+        const req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(key);
+        req.onsuccess = e => resolve(e.target.result);
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    function idbPut(db, key, value) {
+      return new Promise((resolve, reject) => {
+        const tx  = db.transaction(IDB_STORE, 'readwrite');
+        const req = tx.objectStore(IDB_STORE).put(value, key);
+        req.onsuccess = () => resolve();
+        req.onerror   = e => reject(e.target.error);
+      });
+    }
+
+    // 체크섬 (변경 감지용)
+    function checksum(arr) {
+      let s = 0;
+      for (let i = 0; i < arr.length; i++) s = (s + arr[i]) >>> 0;
+      return s;
+    }
+
+    let db = null;
+    let lastChecksum = null;
+    let pollTimer = null;
+    let savedOnce = false;     // save_created 이벤트 세션당 1회 가드
+
+    async function saveDisk() {
+      if (!db) return;
+      try {
+        const data = Module.FS.readFile(DISK);
+        const csum = checksum(data);
+        if (csum === lastChecksum) return;
+        await idbPut(db, IDB_KEY, data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
+        lastChecksum = csum;
+        log('[save] 세이브 동기화 완료');
+        if (!savedOnce) { savedOnce = true; track('save_created'); }
+      } catch (e) {
+        log('[save] 오류: ' + e);
+      }
+    }
+
+    function startPolling() {
+      pollTimer = setInterval(saveDisk, POLL_MS);
+    }
+
+    document.getElementById('btn-start').addEventListener('click', function() {
+      overlay.classList.add('hidden');
+      track('emulator_start');
+      startEmulator();
+    });
+
+    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+      const wrap = document.getElementById('canvas-wrap');
+      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+    });
+
+    async function startEmulator() {
+      db = await openDB().catch(e => { log('[idb] 오류: ' + e); return null; });
+
+      // IDB에서 저장된 디스크 복원
+      let savedDisk = null;
+      if (db) {
+        savedDisk = await idbGet(db, IDB_KEY).catch(() => null);
+        if (savedDisk) log('[save] 저장된 세이브 데이터 발견');
+      }
+
+      window.Module = {
+        canvas: canvas,
+        arguments: [],
+
+        preRun: [function() {
+          Module.addRunDependency('disk-setup');
+          var attempts = 0;
+          function trySetup() {
+            try {
+              Module.FS.stat(DISK);
+              Module.FS.chmod(DISK, 0o666);
+              if (savedDisk) {
+                Module.FS.writeFile(DISK, new Uint8Array(savedDisk));
+              }
+              // np2kai.cfg 에 HDD1FILE 주입 (이 페이지의 번들 FS 안에서만 — 공유 원본 cfg 무영향)
+              var cfg = new TextDecoder().decode(Module.FS.readFile(CFG));
+              if (!/^HDD1FILE/m.test(cfg)) {
+                cfg += 'HDD1FILE = ' + DISK + '\n';
+                Module.FS.writeFile(CFG, new TextEncoder().encode(cfg));
+              }
+              Module.removeRunDependency('disk-setup');
+            } catch(e) {
+              if (++attempts < 200) {
+                setTimeout(trySetup, 10);
+              } else {
+                log(MSG.DISK_TIMEOUT);
+                Module.removeRunDependency('disk-setup');
+              }
+            }
+          }
+          setTimeout(trySetup, 0);
+        }],
+
+        postRun: [function() {
+          document.title = '환세포물장 웹 버전 : atah.io';
+          lastChecksum = checksum(Module.FS.readFile(DISK));
+          startPolling();
+          showToast(savedDisk ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
+          if (savedDisk) track('save_restored');
+        }],
+
+        print:    t => log('[out] ' + t),
+        printErr: t => log('[err] ' + t),
+
+        setStatus(text) {
+          if (text) log(text);
+        },
+
+        totalDependencies: 0,
+        monitorRunDependencies(left) {
+          this.totalDependencies = Math.max(this.totalDependencies, left);
+        }
+      };
+
+      const s = document.createElement('script');
+      s.src = 'torimono.js';
+      s.onerror = () => { showToast(MSG.JS_LOAD_FAIL, 5000); track('load_failed'); };
+      document.body.appendChild(s);
+    }
+  </script>
+  <script src="https://atah.io/footer.js" data-emulator></script>
+  <script src="version.js"></script>
+</body>
+</html>
