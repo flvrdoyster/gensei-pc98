@@ -12,7 +12,7 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 | 환세풍광전 (幻世風狂伝, 1994) | `hukyou` | 완료 |
 | 환세희담 (幻世喜譚, 1995) | `kitan` | 완료 |
 | 환세쾌도전 (幻世快盗伝, 1995) | `kaitou` | 완료 |
-| 환세포물장 (幻世捕物帳, 1996) | `torimono` | 작업 예정 |
+| 환세포물장 (幻世捕物帳, 1996) | `torimono` | 작업 중 |
 
 ### 구성
 
@@ -53,12 +53,14 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 python3 tools/hukyou_parser.py original/hukyou        # 풍광전
 python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
 python3 tools/kitan_parser.py  original/kitan/data    # 희담
+python3 tools/torimono_parser.py original/torimono    # 포물장
 # 추출 결과는 translation/<title>/translation.json 으로 생성
 
 # 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan  original/kitan/data    # 희담
+python3 tools/editor.py torimono                      # 포물장
 
 # 3. 재삽입 
 python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
@@ -67,7 +69,10 @@ python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 # 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
 
-# 4. 로컬 에뮬레이터 확인 → http://localhost:9801
+# 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)
+python3 tools/lint.py kaitou        # 요약 (-v 상세)
+
+# 5. 로컬 에뮬레이터 확인 → http://localhost:9801
 python3 -m http.server 9801 --directory emulator
 ```
 
@@ -80,6 +85,7 @@ python3 -m http.server 9801 --directory emulator
 - [`tools/HUKYOU.md`](tools/HUKYOU.md) — 풍광전
 - [`tools/KAITOU.md`](tools/KAITOU.md) — 쾌도전
 - [`tools/KITAN.md`](tools/KITAN.md) — 희담
+- [`tools/TORIMONO.md`](tools/TORIMONO.md) — 포물장
 - [`tools/NOTES.md`](tools/NOTES.md) — 한글화 도구
 - [`emulator/NOTES.md`](emulator/NOTES.md) — 에뮬레이터
 

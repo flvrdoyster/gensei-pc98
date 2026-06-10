@@ -27,6 +27,8 @@ TITLES = {
 }
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+import lint  # 빌드 시 검수(lint) 통합
 
 # emsdk file_packager.py 경로 (번들 재생성용)
 FILE_PACKAGER = os.path.expanduser(
@@ -237,6 +239,9 @@ let lastSearch = '';
 let lastEditedKey = null;
 
 function rowKey(r) { return r.type + ':' + r.file + ':' + r.offset; }
+// 입력 보조 정규화: 공백·약물·특수문자 제거, 글자(가나·한자·영숫자)만. lint.py _norm_jp 와 범위 일치.
+const NORM_KEEP_RE = /[0-9A-Za-z０-ｚ぀-ヿ一-鿿｡-ﾟ]/g;
+function normJp(s) { return ((s || '').match(NORM_KEEP_RE) || []).join(''); }
 
 function updateBulkBar() {
   const bar = document.getElementById('bulkBar');
@@ -246,12 +251,15 @@ function updateBulkBar() {
 }
 
 async function load() {
-  const [transRes, charmapRes] = await Promise.all([
+  const [transRes, charmapRes, glossRes] = await Promise.all([
     fetch('/api/translation'),
     fetch('/api/charmap'),
+    fetch('/api/series-glossary'),
   ]);
   const data = await transRes.json();
   charmap = await charmapRes.json();
+  // 입력 보조: 시리즈 전 타이틀의 jp→{kr,t} 용어집 (현재 타이틀 우선, 없으면 타 타이틀 제안)
+  window.__jpSuggest = await glossRes.json();
   rows = [];
 
   if (data.entries) {
@@ -433,7 +441,7 @@ function render() {
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.halfwidth ? '<span class="halfwidth-badge">반</span>' : ''}</td>
-      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="번역 입력..." rows="1">${escHtml(kr)}</textarea></td>
+      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="${(() => { const s = (!kr && window.__jpSuggest) ? window.__jpSuggest[normJp(r.jp)] : null; return s ? escAttr(s.kr + ' (' + ({hukyou:'풍',kitan:'희',kaitou:'쾌'}[s.t] || '?') + ')') : '번역 입력...'; })()}" rows="1">${escHtml(kr)}</textarea></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
     tbody.appendChild(tr);
@@ -858,6 +866,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_json_file(TRANS_PATH)
         elif self.path == '/api/charmap':
             self.send_json_file(CHARMAP_PATH)
+        elif self.path == '/api/series-glossary':
+            # 입력 보조용 시리즈 용어집 (현재 타이틀 우선)
+            self._send_json(lint.series_glossary(TITLE))
         else:
             self.send_error(404)
 
@@ -1237,7 +1248,22 @@ class Handler(http.server.BaseHTTPRequestHandler):
                     msg = '빌드 완료 (교체 항목 없음)'
                 if n_trunc:
                     msg += f' · ⚠ {n_trunc}줄 길이초과 잘림'
-                return {'ok': True, 'message': msg}
+                # 검수 lint 통합 (빠른 검사 — 무거운 offset 검사는 제외).
+                # 깨진문자·잘림은 버그라 토스트를 경고색(err)으로, 일관성은 정보만.
+                warn = n_trunc > 0
+                try:
+                    lr = lint.analyze(TITLE, check_offset=False)
+                    parts = []
+                    if lr.get('broken'):
+                        parts.append(f"깨진문자 {len(lr['broken'])}")
+                        warn = True
+                    if lr.get('conflicts'):
+                        parts.append(f"일관성 {len(lr['conflicts'])}")
+                    if parts:
+                        msg += ' · lint: ' + ' / '.join(parts)
+                except Exception:
+                    pass
+                return {'ok': not warn, 'message': msg}
             last = output.splitlines()[-1] if output else '빌드 실패'
             return {'ok': False, 'message': f'빌드 실패: {last}'}
         except Exception as e:
