@@ -51,7 +51,8 @@ HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inse
 HAS_EMULATOR = (
     (TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))) or
     (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js'))) or
-    (TITLE == 'kaitou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kaitou.js')))
+    (TITLE == 'kaitou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kaitou.js'))) or
+    (TITLE == 'torimono' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'torimono.js')))
 )
 
 HTML = r"""<!DOCTYPE html>
@@ -127,6 +128,7 @@ tr.row-selected { background: #1a2840 !important; }
 tr.range-start { background: #252000 !important; }
 #tbody tr { cursor: pointer; }
 #tbody tr td.kr-cell { cursor: default; }
+#tbody td.len.empty { cursor: pointer; }  /* 빈 KR — 클릭 시 placeholder 제안 채움 */
 .bulk-bar { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 6px; display: flex; gap: 10px; align-items: center; font-size: 13px; box-shadow: 0 4px 20px rgba(0,0,0,0.5); z-index: 200; white-space: nowrap; }
 .bulk-bar select { background: #333; color: #ccc; border: 1px solid #4a4a4a; padding: 4px 8px; border-radius: 4px; font-size: 12px; cursor: pointer; }
 .bulk-apply { background: #1a3d1a; color: #7dc87d; border: 1px solid #2d5c2d; padding: 4px 12px; border-radius: 4px; font-size: 12px; cursor: pointer; font-weight: 600; }
@@ -441,7 +443,7 @@ function render() {
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.halfwidth ? '<span class="halfwidth-badge">반</span>' : ''}</td>
-      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="${(() => { const s = (!kr && window.__jpSuggest) ? window.__jpSuggest[normJp(r.jp)] : null; return s ? escAttr(s.kr + ' (' + ({hukyou:'풍',kitan:'희',kaitou:'쾌'}[s.t] || '?') + ')') : '번역 입력...'; })()}" rows="1">${escHtml(kr)}</textarea></td>
+      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="${(() => { const s = (!kr && window.__jpSuggest) ? window.__jpSuggest[normJp(r.jp)] : null; return s ? escAttr(s.kr + ' (' + ({hukyou:'풍',kitan:'희',kaitou:'쾌',torimono:'포'}[s.t] || '?') + ')') : '번역 입력...'; })()}" rows="1">${escHtml(kr)}</textarea></td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
     tbody.appendChild(tr);
@@ -579,6 +581,21 @@ document.getElementById('bulkCancel').addEventListener('click', () => {
     tr.classList.remove('row-selected', 'range-start');
   });
   updateBulkBar();
+});
+
+// 바이트(len) 칸 클릭 → placeholder 제안을 KR에 채움 (빈 칸 + 시리즈 제안이 있을 때만).
+// 값 주입 후 input 이벤트를 버블링 디스패치해 아래의 기존 입력 경로(변경 추적·바이트 갱신)를 그대로 탄다.
+document.getElementById('tbody').addEventListener('click', e => {
+  const td = e.target.closest('td.len');
+  if (!td) return;
+  const tr = td.closest('tr');
+  const ta = tr && tr.querySelector('.kr-input');
+  if (!ta || ta.value.trim()) return;
+  const jp = (tr.querySelector('td.jp') || {}).dataset ? tr.querySelector('td.jp').dataset.jp : '';
+  const s = window.__jpSuggest && window.__jpSuggest[normJp(jp)];
+  if (!s) return;
+  ta.value = s.kr;
+  ta.dispatchEvent(new Event('input', { bubbles: true }));
 });
 
 document.getElementById('tbody').addEventListener('input', e => {
@@ -1131,25 +1148,27 @@ class Handler(http.server.BaseHTTPRequestHandler):
             'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
         })
 
-    def _handle_emulator_update_kaitou(self):
+    def _handle_emulator_update_disk(self, title, disk_name):
+        """단일 디스크 타이틀 공통: build/<title>/<disk> → emulator/rom/ 복사 후 번들 재생성.
+        kaitou(FDI)·torimono(HDI)가 사용. kitan은 2-디스크 FDI 패치라 별도 핸들러."""
         import shutil
-        build_dir = os.path.join(PROJECT_ROOT, 'build', 'kaitou')
-        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-        build_fdi = os.path.join(build_dir, 'kaitou_kr.fdi')
-        if not os.path.exists(build_fdi):
-            self._send_json_error(f'빌드 결과 없음: {build_fdi} — 먼저 빌드하세요.', 400)
+        build_dir  = os.path.join(PROJECT_ROOT, 'build', title)
+        rom_dir    = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+        build_disk = os.path.join(build_dir, disk_name)
+        if not os.path.exists(build_disk):
+            self._send_json_error(f'빌드 결과 없음: {build_disk} — 먼저 빌드하세요.', 400)
             return
 
-        # 1. 패치 FDI(build/) → emulator/rom/
+        # 1. 패치 디스크(build/) → emulator/rom/
         try:
-            shutil.copy(build_fdi, os.path.join(rom_dir, 'kaitou_kr.fdi'))
+            shutil.copy(build_disk, os.path.join(rom_dir, disk_name))
         except Exception as e:
-            self._send_json_error(f'FDI 복사 실패: {e}', 500)
+            self._send_json_error(f'디스크 복사 실패: {e}', 500)
             return
 
         # 2. 번들 재생성 (공통)
         try:
-            data_size = self._repackage_bundle('kaitou', ('kaitou_kr.fdi',))
+            data_size = self._repackage_bundle(title, (disk_name,))
         except Exception as e:
             self._send_json_error(f'번들 재생성 실패: {e}', 500)
             return
@@ -1183,7 +1202,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._handle_emulator_update_kitan()
             return
         if TITLE == 'kaitou':
-            self._handle_emulator_update_kaitou()
+            self._handle_emulator_update_disk('kaitou', 'kaitou_kr.fdi')
+            return
+        if TITLE == 'torimono':
+            self._handle_emulator_update_disk('torimono', 'torimono_kr.hdi')
             return
 
         build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)

@@ -1,8 +1,8 @@
 # 환세포물장 역공학 노트
 
 **대상**: 환세포물장 / 幻世捕物帳 (Compile, 1996, PC-98)  
-**상태**: 추출 완료, 번역 진행 중 (인서터·웹 에뮬레이터 미작성)  
-**도구**: `torimono_parser.py` (추출)
+**상태**: 추출 완료, 번역 진행 중 (인서터·웹 에뮬레이터 준비 완료)  
+**도구**: `torimono_parser.py` (추출) · `torimono_inserter.py` (인서트)
 
 ---
 
@@ -51,6 +51,20 @@ original/torimono/
    - **저밀도여도 정상인 것**: 적/캐릭터 이름 블록 (`ネコタマ`·`シノビ` 등,
      짧은 텍스트 + 스탯 바이너리라 밀도가 원래 낮음) — 밀도 기준만 쓰면 학살됨
 4. 확정 목록은 `torimono_parser.py` 의 `NOISE_CHUNKS` (단일 소스).
+
+## 배포 형태 — HDI (시리즈 유일)
+
+포물장은 DISK_C(그래픽)가 2HD 플로피 용량을 넘어 **부팅 가능한 PC-98 HDD 이미지(HDI)** 로
+구동한다 (다른 타이틀은 FDI). 베이스는 `emulator/rom/torimono_kr.hdi` —
+IPL1 부트코드 + `MS-DOS 6.20` 활성 파티션 + 게임 파일 전체.
+
+- **인서트**: `torimono_inserter.py` 가 DISK_B 청크 패치 후 `patch_hdi` 로 베이스 HDI에 교체.
+  `pc98disk.py` 가 PC-98 파티션 테이블을 해석해 파티션 내 FAT 파일을 교체한다 (`NOTES.md` 참조).
+  쾌도전과 달리 CONFIG.SYS 가 없어 EMM386 제거 단계도 없음.
+- **웹 에뮬**: np2kai 웹빌드의 커맨드라인 확장자 분기에 `.hdi` 가 없어 `arguments` 로는
+  못 물린다. `torimono.html` 이 preRun 에서 번들 내 `np2kai.cfg` 에 `HDD1FILE` 을 주입해
+  SASI HDD 로 마운트 (페이지 번들 FS 안에서만 — 공유 cfg 원본 무영향). 부팅·게임 기동 검증 완료.
+- 세이브: 다른 타이틀과 동일한 IDB 방식, 키는 `torimono_kr.hdi` (HDI 통째 저장).
 
 ### 잔여 리스크 (쾌도전에서 실증된 패턴 — 번역·검수 중 발견 대상)
 

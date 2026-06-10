@@ -263,6 +263,11 @@ class DiskImage:
             ss, spt, heads, cyls = _guess_img_geometry(len(raw))
 
         img.geo = _rebuild_geo(img.data, ss, spt, heads, cyls)
+        if not img.geo["is_fat"]:
+            # 섹터0이 BPB가 아니면 PC-98 파티션 HDD일 수 있음 → 파티션 테이블 스캔
+            part = _find_pc98_partition(img.data, ss, spt, heads)
+            if part is not None:
+                img.geo = _rebuild_geo(img.data, ss, spt, heads, cyls, base=part)
         return img
 
     def save(self, path=None):
@@ -272,11 +277,12 @@ class DiskImage:
     # -- FAT 접근 헬퍼 --
 
     def _fat_offset(self):
-        return self.geo["reserved"] * self.geo["sector_size"]
+        return self.geo.get("part_base", 0) + self.geo["reserved"] * self.geo["sector_size"]
 
     def _root_dir_offset(self):
         ss = self.geo["sector_size"]
-        return (self.geo["reserved"] + self.geo["num_fats"] * self.geo["spf"]) * ss
+        return (self.geo.get("part_base", 0)
+                + (self.geo["reserved"] + self.geo["num_fats"] * self.geo["spf"]) * ss)
 
     def _root_dir_sectors(self):
         ss = self.geo["sector_size"]
@@ -308,8 +314,9 @@ class DiskImage:
 
     def _write_fat_entry(self, cluster, value):
         ss = self.geo["sector_size"]
+        base = self.geo.get("part_base", 0)
         for fat_i in range(self.geo["num_fats"]):
-            fat_off = (self.geo["reserved"] + fat_i * self.geo["spf"]) * ss
+            fat_off = base + (self.geo["reserved"] + fat_i * self.geo["spf"]) * ss
             if self.geo["fat_type"] == 12:
                 byte_off = fat_off + (cluster * 3) // 2
                 pair = struct.unpack_from("<H", self.data, byte_off)[0]
@@ -323,9 +330,13 @@ class DiskImage:
                 struct.pack_into("<H", self.data, byte_off, value & 0xFFFF)
 
     def _find_free_cluster(self):
-        total = len(self.data) // self.geo["sector_size"]
-        data_sectors = total - (self._data_area_offset() // self.geo["sector_size"])
-        max_cluster = data_sectors // self.geo["spc"] + 2
+        if self.geo.get("total_clusters"):
+            # 파티션/BPB 기준 클러스터 수 (파티션 HDI에서 디스크 전체 크기로 넘치는 것 방지)
+            max_cluster = self.geo["total_clusters"] + 2
+        else:
+            total = len(self.data) // self.geo["sector_size"]
+            data_sectors = total - (self._data_area_offset() // self.geo["sector_size"])
+            max_cluster = data_sectors // self.geo["spc"] + 2
         for c in range(2, max_cluster):
             if self._read_fat_entry(c) == 0:
                 return c
@@ -551,10 +562,15 @@ def _has_valid_bpb(data):
     return True
 
 
-def _rebuild_geo(data, ss, spt, heads, cyls):
-    """BPB에서 FAT 파라미터를 읽어 geo dict 재구성 (BPB가 없으면 non-FAT)"""
-    if not _has_valid_bpb(data):
-        total_sectors = cyls * heads * spt
+def _rebuild_geo(data, ss, spt, heads, cyls, base=0):
+    """BPB에서 FAT 파라미터를 읽어 geo dict 재구성 (BPB가 없으면 non-FAT).
+
+    base: 파일시스템(BPB) 시작 바이트 오프셋. 0이면 종전과 동일(플로피/통짜 이미지),
+          PC-98 파티션 HDI는 파티션 시작 오프셋. FAT 파라미터는 디스크 CHS가 아니라
+          해당 BPB 자체 값(섹터 크기·총 섹터 수)으로 계산한다.
+    """
+    bpb = data[base:base + 64]
+    if not _has_valid_bpb(bpb):
         return {
             "cylinders": cyls,
             "heads": heads,
@@ -569,17 +585,22 @@ def _rebuild_geo(data, ss, spt, heads, cyls):
             "num_fats": 0,
             "fmt": "raw",
             "is_fat": False,
+            "part_base": 0,
         }
 
-    spc = data[13]
-    reserved = struct.unpack_from("<H", data, 14)[0]
-    num_fats = data[16]
-    root_entries = struct.unpack_from("<H", data, 17)[0]
-    media_byte = data[21]
-    spf = struct.unpack_from("<H", data, 22)[0]
+    bpb_ss = struct.unpack_from("<H", bpb, 11)[0]
+    spc = bpb[13]
+    reserved = struct.unpack_from("<H", bpb, 14)[0]
+    num_fats = bpb[16]
+    root_entries = struct.unpack_from("<H", bpb, 17)[0]
+    media_byte = bpb[21]
+    spf = struct.unpack_from("<H", bpb, 22)[0]
 
-    total_sectors = cyls * heads * spt
-    root_sectors = (root_entries * 32 + ss - 1) // ss
+    # 총 섹터: BPB 16-bit 값 우선(파티션이면 파티션 크기), 0이면 디스크 CHS에서 환산
+    total_sectors = struct.unpack_from("<H", bpb, 19)[0]
+    if total_sectors == 0:
+        total_sectors = (cyls * heads * spt * ss) // bpb_ss
+    root_sectors = (root_entries * 32 + bpb_ss - 1) // bpb_ss
     data_sectors = total_sectors - reserved - num_fats * spf - root_sectors
     total_clusters = data_sectors // spc
     fat_type = 12 if total_clusters < 4085 else 16
@@ -588,7 +609,7 @@ def _rebuild_geo(data, ss, spt, heads, cyls):
         "cylinders": cyls,
         "heads": heads,
         "spt": spt,
-        "sector_size": ss,
+        "sector_size": bpb_ss,
         "fat_type": fat_type,
         "media_byte": media_byte,
         "root_entries": root_entries,
@@ -598,7 +619,34 @@ def _rebuild_geo(data, ss, spt, heads, cyls):
         "num_fats": num_fats,
         "fmt": "raw",
         "is_fat": True,
+        "part_base": base,
+        "total_clusters": total_clusters,
     }
+
+
+def _find_pc98_partition(data, ss, spt, heads):
+    """PC-98 HDD 파티션 테이블에서 첫 FAT 파티션의 시작 바이트 오프셋을 찾는다.
+
+    레이아웃: 섹터0 = IPL(부트시그 55AA), 섹터1 = 파티션 테이블(32B 엔트리).
+    엔트리의 시작 CHS(ssect@8, shead@9, scyl@10-11)를 디스크 지오메트리(ss/spt/heads)로
+    바이트 오프셋으로 환산하고, 거기에 유효한 BPB가 있는 엔트리만 인정한다.
+    없으면 None.
+    """
+    if len(data) < ss * 2 or ss < 256:
+        return None
+    if data[ss - 2:ss] != b"\x55\xaa":
+        return None
+    for i in range(16):
+        off = ss + i * 32
+        e = data[off:off + 32]
+        if len(e) < 32 or e[0] == 0:
+            continue
+        ssect, shead = e[8], e[9]
+        scyl = struct.unpack_from("<H", e, 10)[0]
+        part = ((scyl * heads + shead) * spt + ssect) * ss
+        if part < len(data) and _has_valid_bpb(data[part:part + 64]):
+            return part
+    return None
 
 
 # ---------------------------------------------------------------------------

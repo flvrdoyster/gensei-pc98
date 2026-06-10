@@ -146,7 +146,7 @@ def iter_lines(d):
             yield from d.get(k, [])
 
 
-SERIES_TITLES = ['hukyou', 'kitan', 'kaitou']
+SERIES_TITLES = ['hukyou', 'kitan', 'kaitou', 'torimono']
 
 
 def series_glossary(prefer_title=None):
