@@ -195,7 +195,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 
 ## 새 타이틀 추가
 
-단일 디스크 게임(풍광전·쾌도전)은 `hukyou.html`, 멀티 디스크(희담)는 `kitan.html`을 복사 후 수정:
+단일 디스크 FDI(풍광전·쾌도전)는 `hukyou.html`, 멀티 디스크 FDI(희담)는 `kitan.html`, HDI(포물장)는 `torimono.html`을 복사 후 수정:
 
 | 항목 | 내용 |
 |------|------|
@@ -207,6 +207,8 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 
 멀티 디스크: `Module.arguments`에 FDI 경로를 순서대로, preRun에서 모두 chmod.  
 단, **런타임 디스크 교체는 불가** — NP2kai가 내부 메모리에 디스크를 캐싱하므로 `FS.writeFile()`이 무시됨.
+
+**HDI 게임(포물장)**: FDI가 아니라 부팅 가능한 PC-98 HDD 이미지. np2kai 웹빌드의 커맨드라인 확장자 분기에 `.hdi`가 없어 `Module.arguments`는 비우고, preRun에서 번들 내 `np2kai.cfg`에 `HDD1FILE`을 주입해 SASI HDD로 마운트한다(페이지 번들 FS 안에서만 — 공유 cfg 원본 무영향). 인서트·파티션 처리 상세는 `tools/TORIMONO.md` 참조.
 
 번들 생성: 게임별 bios + ROM으로 `<title>.data` 생성, `emnp2kai_sdl2.js` 복사 후 `<title>.js`로 메타데이터 교체.
 
