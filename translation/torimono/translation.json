@@ -7369,7 +7369,7 @@
           "offset": 2380,
           "jp": "秀刀　無銘",
           "jp_len": 10,
-          "kr": "수도 무명",
+          "kr": "무메이",
           "tag": "item"
         },
         {
@@ -7521,7 +7521,7 @@
           "offset": 2722,
           "jp": "神刀　草無",
           "jp_len": 10,
-          "kr": "신도 초무",
+          "kr": "쿠사나시",
           "tag": "item"
         },
         {
@@ -11580,826 +11580,826 @@
           "offset": 15965,
           "jp": "天井裏にでも登るのか？",
           "jp_len": 22,
-          "kr": "",
+          "kr": "천장을 올라야 하나?",
           "tag": "monolog"
         },
         {
           "offset": 15989,
           "jp": "さすがカラクリ屋敷",
           "jp_len": 18,
-          "kr": "",
+          "kr": "기계장치 저택은",
           "tag": "monolog"
         },
         {
           "offset": 16009,
           "jp": "一筋縄ではいかないな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "보통으론 안 되네",
           "tag": "monolog"
         },
         {
           "offset": 16030,
           "jp": "なるほど…",
           "jp_len": 10,
-          "kr": "",
+          "kr": "그렇군…",
           "tag": "monolog"
         },
         {
           "offset": 16042,
           "jp": "こういう仕組みになっていたのか",
           "jp_len": 30,
-          "kr": "",
+          "kr": "이런 구조로 되어 있었나",
           "tag": "monolog"
         },
         {
           "offset": 16073,
           "jp": "やれやれ",
           "jp_len": 8,
-          "kr": "",
+          "kr": "이런이런",
           "tag": "monolog"
         },
         {
           "offset": 16083,
           "jp": "人騒がせなジイさんだ",
           "jp_len": 20,
-          "kr": "",
+          "kr": "사람을 놀래키기는",
           "tag": "monolog"
         },
         {
           "offset": 16104,
           "jp": "そうだな",
           "jp_len": 8,
-          "kr": "",
+          "kr": "그렇지",
           "tag": "monolog"
         },
         {
           "offset": 16114,
           "jp": "誰か知っているえらいヤツに",
           "jp_len": 26,
-          "kr": "",
+          "kr": "누구 아는 높은 사람한테",
           "tag": "monolog"
         },
         {
           "offset": 16142,
           "jp": "相談してみたらどうだ？",
           "jp_len": 22,
-          "kr": "",
+          "kr": "상담해보는 게 어때?",
           "tag": "monolog"
         },
         {
           "offset": 16165,
           "jp": "さて　その泥棒とやらを",
           "jp_len": 22,
-          "kr": "",
+          "kr": "자 그 도둑이란 놈을",
           "tag": "monolog"
         },
         {
           "offset": 16189,
           "jp": "捕まえにいってやるか",
           "jp_len": 20,
-          "kr": "",
+          "kr": "잡으러 가볼까",
           "tag": "monolog"
         },
         {
           "offset": 16210,
           "jp": "天然の洞窟にしては",
           "jp_len": 18,
-          "kr": "",
+          "kr": "천연 동굴치고는",
           "tag": "monolog"
         },
         {
           "offset": 16230,
           "jp": "いやに整然としているな",
           "jp_len": 22,
-          "kr": "",
+          "kr": "유달리 가지런하네",
           "tag": "monolog"
         },
         {
           "offset": 16254,
           "jp": "…人工だな　これは",
           "jp_len": 18,
-          "kr": "",
+          "kr": "…인공이야 이건",
           "tag": "monolog"
         },
         {
           "offset": 16274,
           "jp": "いったい　誰がこんなものを…",
           "jp_len": 28,
-          "kr": "",
+          "kr": "도대체 누가 이런 걸…",
           "tag": "monolog"
         },
         {
           "offset": 16303,
           "jp": "まさか　こんな所で",
           "jp_len": 18,
-          "kr": "",
+          "kr": "설마 이런 곳에서",
           "tag": "monolog"
         },
         {
           "offset": 16323,
           "jp": "知った顔を見るとはな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "아는 얼굴을 보다니",
           "tag": "monolog"
         },
         {
           "offset": 16345,
           "jp": "世の中は",
           "jp_len": 8,
-          "kr": "",
+          "kr": "세상은",
           "tag": "monolog"
         },
         {
           "offset": 16355,
           "jp": "結構せまいものだな",
           "jp_len": 18,
-          "kr": "",
+          "kr": "꽤나 좁은 것이군",
           "tag": "monolog"
         },
         {
           "offset": 16374,
           "jp": "お守りってのは",
           "jp_len": 14,
-          "kr": "",
+          "kr": "부적이라는 건",
           "tag": "monolog"
         },
         {
           "offset": 16390,
           "jp": "それ自体には力はないが",
           "jp_len": 22,
-          "kr": "",
+          "kr": "자체에 힘은 없지만",
           "tag": "monolog"
         },
         {
           "offset": 16414,
           "jp": "それを持つ人の思いによって",
           "jp_len": 26,
-          "kr": "",
+          "kr": "가진 이의 마음에 따라",
           "tag": "monolog"
         },
         {
           "offset": 16442,
           "jp": "力が宿るものなのさ",
           "jp_len": 18,
-          "kr": "",
+          "kr": "힘이 깃드는 거야",
           "tag": "monolog"
         },
         {
           "offset": 16461,
           "jp": "ほんとだな",
           "jp_len": 10,
-          "kr": "",
+          "kr": "정말로",
           "tag": "monolog"
         },
         {
           "offset": 16473,
           "jp": "できれば来たくなかったよ",
           "jp_len": 24,
-          "kr": "",
+          "kr": "가능하면 오기 싫었어",
           "tag": "monolog"
         },
         {
           "offset": 16498,
           "jp": "スマッシュなんかの",
           "jp_len": 18,
-          "kr": "",
+          "kr": "스마슈 놈의 도움",
           "tag": "monolog"
         },
         {
           "offset": 16518,
           "jp": "手が足りなくても",
           "jp_len": 16,
-          "kr": "",
+          "kr": "따위 없어도",
           "tag": "monolog"
         },
         {
           "offset": 16536,
           "jp": "なんとかできるって！",
           "jp_len": 20,
-          "kr": "",
+          "kr": "어떻게든 된다고!",
           "tag": "monolog"
         },
         {
           "offset": 16557,
           "jp": "ミミズなら　山に行けば",
           "jp_len": 22,
-          "kr": "",
+          "kr": "지렁이라면 산에 가면",
           "tag": "monolog"
         },
         {
           "offset": 16581,
           "jp": "けっこうカンタンに",
           "jp_len": 18,
-          "kr": "",
+          "kr": "꽤 간단히",
           "tag": "monolog"
         },
         {
           "offset": 16601,
           "jp": "つかまえられると思うぞ",
           "jp_len": 22,
-          "kr": "",
+          "kr": "잡을 수 있을 거야",
           "tag": "monolog"
         },
         {
           "offset": 16624,
           "jp": "これを魚にやる",
           "jp_len": 14,
-          "kr": "",
+          "kr": "이걸 생선한테",
           "tag": "monolog"
         },
         {
           "offset": 16640,
           "jp": "約束をしてきたのさ",
           "jp_len": 18,
-          "kr": "",
+          "kr": "준다고 약속했어",
           "tag": "monolog"
         },
         {
           "offset": 16660,
           "jp": "もう１度竜宮城へ行くぞ",
           "jp_len": 22,
-          "kr": "",
+          "kr": "다시 용궁성에 가야지",
           "tag": "monolog"
         },
         {
           "offset": 16683,
           "jp": "でも　まあ",
           "jp_len": 10,
-          "kr": "",
+          "kr": "그래도 뭐",
           "tag": "monolog"
         },
         {
           "offset": 16695,
           "jp": "解決しただけ",
           "jp_len": 12,
-          "kr": "",
+          "kr": "해결한 건",
           "tag": "monolog"
         },
         {
           "offset": 16709,
           "jp": "よかったじゃないか",
           "jp_len": 18,
-          "kr": "",
+          "kr": "다행이잖아",
           "tag": "monolog"
         },
         {
           "offset": 16728,
           "jp": "ファーリンて",
           "jp_len": 12,
-          "kr": "",
+          "kr": "화린은",
           "tag": "monolog"
         },
         {
           "offset": 16742,
           "jp": "つくづくお人好しだな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "정말 착한 사람이네",
           "tag": "monolog"
         },
         {
           "offset": 16764,
           "jp": "ま　いいんだけどな",
           "jp_len": 18,
-          "kr": "",
+          "kr": "뭐 괜찮긴 하지만",
           "tag": "monolog"
         },
         {
           "offset": 16783,
           "jp": "ひょっとして",
           "jp_len": 12,
-          "kr": "",
+          "kr": "혹시",
           "tag": "monolog"
         },
         {
           "offset": 16797,
           "jp": "おれたちってヒマ人なのか？",
           "jp_len": 26,
-          "kr": "",
+          "kr": "우리들 한가한 사람이야?",
           "tag": "monolog"
         },
         {
           "offset": 16824,
           "jp": "このエロじじいと",
           "jp_len": 16,
-          "kr": "",
+          "kr": "이 에로 영감과",
           "tag": "monolog"
         },
         {
           "offset": 16842,
           "jp": "スケベ犬は…",
           "jp_len": 12,
-          "kr": "",
+          "kr": "변태개는…",
           "tag": "monolog"
         },
         {
           "offset": 16856,
           "jp": "どうして男は",
           "jp_len": 12,
-          "kr": "",
+          "kr": "왜 남자들은",
           "tag": "monolog"
         },
         {
           "offset": 16870,
           "jp": "こうなんだろうな　ったく",
           "jp_len": 24,
-          "kr": "",
+          "kr": "다 이런 건지 나 원",
           "tag": "monolog"
         },
         {
           "offset": 16895,
           "jp": "さすがに天狗だな",
           "jp_len": 16,
-          "kr": "",
+          "kr": "역시 텐구네",
           "tag": "monolog"
         },
         {
           "offset": 16913,
           "jp": "ひとすじなわでは",
           "jp_len": 16,
-          "kr": "",
+          "kr": "여간하지 않고선",
           "tag": "monolog"
         },
         {
           "offset": 16931,
           "jp": "いかないようだな",
           "jp_len": 16,
-          "kr": "",
+          "kr": "안 될 거 같아",
           "tag": "monolog"
         },
         {
           "offset": 16948,
           "jp": "そろそろ妖怪との決戦が",
           "jp_len": 22,
-          "kr": "",
+          "kr": "슬슬 요괴와의 결전이",
           "tag": "monolog"
         },
         {
           "offset": 16972,
           "jp": "近いらしいな",
           "jp_len": 12,
-          "kr": "",
+          "kr": "다가온 듯해",
           "tag": "monolog"
         },
         {
           "offset": 16986,
           "jp": "おれも　ちゃんと装備を",
           "jp_len": 22,
-          "kr": "",
+          "kr": "나도 제대로 장비를",
           "tag": "monolog"
         },
         {
           "offset": 17010,
           "jp": "整えてくるとするかな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "갖춰오는 게 좋겠군",
           "tag": "monolog"
         },
         {
           "offset": 17031,
           "jp": "伝家の宝刀『神刀　草無』と",
           "jp_len": 26,
-          "kr": "",
+          "kr": "가문의 검 『쿠사나시』와",
           "tag": "monolog"
         },
         {
           "offset": 17059,
           "jp": "家宝の衣裳『白装束』を",
           "jp_len": 22,
-          "kr": "",
+          "kr": "의상 『백장속』을",
           "tag": "monolog"
         },
         {
           "offset": 17083,
           "jp": "身につければ　バケモノにも",
           "jp_len": 26,
-          "kr": "",
+          "kr": "갖추면 괴물에게도 충분히",
           "tag": "monolog"
         },
         {
           "offset": 17111,
           "jp": "十分太刀打ちできるな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "맞서 싸울 수 있어",
           "tag": "monolog"
         },
         {
           "offset": 17132,
           "jp": "おれとしては　兄上を",
           "jp_len": 20,
-          "kr": "",
+          "kr": "나로선 형님을",
           "tag": "monolog"
         },
         {
           "offset": 17154,
           "jp": "捕まえにいきたいところだが",
           "jp_len": 26,
-          "kr": "",
+          "kr": "잡으러 가고 싶지만",
           "tag": "monolog"
         },
         {
           "offset": 17182,
           "jp": "わがままは言うまい",
           "jp_len": 18,
-          "kr": "",
+          "kr": "억지 부리진 않지",
           "tag": "monolog"
         },
         {
           "offset": 17202,
           "jp": "ファーリンが決めてくれ",
           "jp_len": 22,
-          "kr": "",
+          "kr": "화린이 정해줘",
           "tag": "monolog"
         },
         {
           "offset": 17225,
           "jp": "待ってろよ",
           "jp_len": 10,
-          "kr": "",
+          "kr": "기다려",
           "tag": "monolog"
         },
         {
           "offset": 17237,
           "jp": "兄上…",
           "jp_len": 6,
-          "kr": "",
+          "kr": "형님…",
           "tag": "monolog"
         },
         {
           "offset": 17245,
           "jp": "必ず連れ戻してやるからな",
           "jp_len": 24,
-          "kr": "",
+          "kr": "반드시 데려올 테니까",
           "tag": "monolog"
         },
         {
           "offset": 17270,
           "jp": "こんなに多くの妖怪どもと",
           "jp_len": 24,
-          "kr": "",
+          "kr": "이렇게나 많은 요괴들과",
           "tag": "monolog"
         },
         {
           "offset": 17296,
           "jp": "戦いまくったら　兄上も",
           "jp_len": 22,
-          "kr": "",
+          "kr": "싸워댔으면 형님도",
           "tag": "monolog"
         },
         {
           "offset": 17320,
           "jp": "さぞかし強くなって",
           "jp_len": 18,
-          "kr": "",
+          "kr": "분명 강해져",
           "tag": "monolog"
         },
         {
           "offset": 17340,
           "jp": "しまうであろうな…",
           "jp_len": 18,
-          "kr": "",
+          "kr": "버리고 말았겠지…",
           "tag": "monolog"
         },
         {
           "offset": 17359,
           "jp": "そうだな",
           "jp_len": 8,
-          "kr": "",
+          "kr": "그렇네",
           "tag": "monolog"
         },
         {
           "offset": 17369,
           "jp": "早く　封印を完全なものに",
           "jp_len": 24,
-          "kr": "",
+          "kr": "얼른 봉인을 완전하게",
           "tag": "monolog"
         },
         {
           "offset": 17395,
           "jp": "直してもらわないと",
           "jp_len": 18,
-          "kr": "",
+          "kr": "고쳐놓지 않으면",
           "tag": "monolog"
         },
         {
           "offset": 17415,
           "jp": "困ったことになるな",
           "jp_len": 18,
-          "kr": "",
+          "kr": "곤란해지겠어",
           "tag": "monolog"
         },
         {
           "offset": 17434,
           "jp": "兄上はそこか！",
           "jp_len": 14,
-          "kr": "",
+          "kr": "형님은 저긴가",
           "tag": "monolog"
         },
         {
           "offset": 17450,
           "jp": "積年のウラミ",
           "jp_len": 12,
-          "kr": "",
+          "kr": "오랜 원한은",
           "tag": "monolog"
         },
         {
           "offset": 17464,
           "jp": "今こそ晴らしてくれよう！",
           "jp_len": 24,
-          "kr": "",
+          "kr": "지금 풀도록 하겠어!",
           "tag": "monolog"
         },
         {
           "offset": 17489,
           "jp": "以前にも増して",
           "jp_len": 14,
-          "kr": "",
+          "kr": "예전보다 더",
           "tag": "monolog"
         },
         {
           "offset": 17505,
           "jp": "恐ろしい殺気だ",
           "jp_len": 14,
-          "kr": "",
+          "kr": "무서운 살기다",
           "tag": "monolog"
         },
         {
           "offset": 17521,
           "jp": "兄上…　剣の鬼と化したか？",
           "jp_len": 26,
-          "kr": "",
+          "kr": "형님… 검귀가 된 건가?",
           "tag": "monolog"
         },
         {
           "offset": 17548,
           "jp": "さすが兄上…",
           "jp_len": 12,
-          "kr": "",
+          "kr": "역시 형님…",
           "tag": "monolog"
         },
         {
           "offset": 17562,
           "jp": "剣の修業だけは",
           "jp_len": 14,
-          "kr": "",
+          "kr": "검 수련만큼은",
           "tag": "monolog"
         },
         {
           "offset": 17578,
           "jp": "おこたっていなかったようだ",
           "jp_len": 26,
-          "kr": "",
+          "kr": "게을리하지 않은 모양이다",
           "tag": "monolog"
         },
         {
           "offset": 17606,
           "jp": "おそるべき相手だ…",
           "jp_len": 18,
-          "kr": "",
+          "kr": "두려운 상대야…",
           "tag": "monolog"
         },
         {
           "offset": 17625,
           "jp": "兄上め…",
           "jp_len": 8,
-          "kr": "",
+          "kr": "형님…",
           "tag": "monolog"
         },
         {
           "offset": 17635,
           "jp": "あそこまで強くなっていたとは…",
           "jp_len": 30,
-          "kr": "",
+          "kr": "그렇게까지 강해졌을 줄은…",
           "tag": "monolog"
         },
         {
           "offset": 17667,
           "jp": "だが　あきらめるわけには",
           "jp_len": 24,
-          "kr": "",
+          "kr": "하지만 포기할 수는",
           "tag": "monolog"
         },
         {
           "offset": 17693,
           "jp": "いかない　もう１度勝負だ！",
           "jp_len": 26,
-          "kr": "",
+          "kr": "없어 다시 한번 승부다!",
           "tag": "monolog"
         },
         {
           "offset": 17720,
           "jp": "２人には世話になったな",
           "jp_len": 22,
-          "kr": "",
+          "kr": "둘에겐 신세를 졌군",
           "tag": "monolog"
         },
         {
           "offset": 17744,
           "jp": "およばずながら",
           "jp_len": 14,
-          "kr": "",
+          "kr": "미력하나마",
           "tag": "monolog"
         },
         {
           "offset": 17760,
           "jp": "手助けさせてもらうよ",
           "jp_len": 20,
-          "kr": "",
+          "kr": "거들 수 있게 해줘",
           "tag": "monolog"
         },
         {
           "offset": 17781,
           "jp": "ここはたしか",
           "jp_len": 12,
-          "kr": "",
+          "kr": "여기는 분명",
           "tag": "monolog"
         },
         {
           "offset": 17795,
           "jp": "地獄原といわれる場所だ",
           "jp_len": 22,
-          "kr": "",
+          "kr": "지옥들판이라는 곳이야",
           "tag": "monolog"
         },
         {
           "offset": 17819,
           "jp": "話だけは聞いたことがあるが",
           "jp_len": 26,
-          "kr": "",
+          "kr": "얘기는 들은 적이 있지만",
           "tag": "monolog"
         },
         {
           "offset": 17847,
           "jp": "本当にさびしい所だな",
           "jp_len": 20,
-          "kr": "",
+          "kr": "정말 쓸쓸한 곳이군",
           "tag": "monolog"
         },
         {
           "offset": 17868,
           "jp": "ここがあの有名な",
           "jp_len": 16,
-          "kr": "",
+          "kr": "여기가 유명한",
           "tag": "monolog"
         },
         {
           "offset": 17886,
           "jp": "地獄原修験場か",
           "jp_len": 14,
-          "kr": "",
+          "kr": "지옥들판의",
           "tag": "monolog"
         },
         {
           "offset": 17902,
           "jp": "えらい　さびれようだな",
           "jp_len": 22,
-          "kr": "",
+          "kr": "수련장인가 황폐하네",
           "tag": "monolog"
         },
         {
           "offset": 17926,
           "jp": "妖怪が原因か",
           "jp_len": 12,
-          "kr": "",
+          "kr": "요괴 탓인가",
           "tag": "monolog"
         },
         {
           "offset": 17939,
           "jp": "封印のアイテムがないのが",
           "jp_len": 24,
-          "kr": "",
+          "kr": "봉인 아이템이 없는 게",
           "tag": "monolog"
         },
         {
           "offset": 17965,
           "jp": "少し残念だが　やむを得ないな",
           "jp_len": 28,
-          "kr": "",
+          "kr": "좀 아쉽지만 어쩔 수 없지",
           "tag": "monolog"
         },
         {
           "offset": 17995,
           "jp": "全力で戦うまでだ",
           "jp_len": 16,
-          "kr": "",
+          "kr": "전력을 다할 뿐",
           "tag": "monolog"
         },
         {
           "offset": 18012,
           "jp": "たしかに　その作戦は",
           "jp_len": 20,
-          "kr": "",
+          "kr": "확실히 그 작전은",
           "tag": "monolog"
         },
         {
           "offset": 18034,
           "jp": "うまくいったけどな…",
           "jp_len": 20,
-          "kr": "",
+          "kr": "잘 풀렸지만…",
           "tag": "monolog"
         },
         {
           "offset": 18056,
           "jp": "長老も人が悪いな",
           "jp_len": 16,
-          "kr": "",
+          "kr": "장로도 짓궂군",
           "tag": "monolog"
         },
         {
           "offset": 18073,
           "jp": "封印のアイテムがあれば",
           "jp_len": 22,
-          "kr": "",
+          "kr": "봉인 아이템이 있으면",
           "tag": "monolog"
         },
         {
           "offset": 18097,
           "jp": "なんとかなるかもしれない",
           "jp_len": 24,
-          "kr": "",
+          "kr": "어떻게든 될지도 몰라",
           "tag": "monolog"
         },
         {
           "offset": 18123,
           "jp": "あきらめるには",
           "jp_len": 14,
-          "kr": "",
+          "kr": "포기하기엔",
           "tag": "monolog"
         },
         {
           "offset": 18139,
           "jp": "まだ早いと思うぞ",
           "jp_len": 16,
-          "kr": "",
+          "kr": "아직 이르다고",
           "tag": "monolog"
         },
         {
           "offset": 18156,
           "jp": "たしかにタマモは強い…",
           "jp_len": 22,
-          "kr": "",
+          "kr": "분명 타마모는 강해…",
           "tag": "monolog"
         },
         {
           "offset": 18180,
           "jp": "だが　完全に復活していない",
           "jp_len": 26,
-          "kr": "",
+          "kr": "허나 완전 부활은 못했어",
           "tag": "monolog"
         },
         {
           "offset": 18208,
           "jp": "今なら　きっと倒せるハズだ！",
           "jp_len": 28,
-          "kr": "",
+          "kr": "지금이라면 분명 이긴다!",
           "tag": "monolog"
         },
         {
           "offset": 18237,
           "jp": "バケモノめ…",
           "jp_len": 12,
-          "kr": "",
+          "kr": "괴물 녀석…",
           "tag": "monolog"
         },
         {
           "offset": 18251,
           "jp": "何かいい手はないのか？",
           "jp_len": 22,
-          "kr": "",
+          "kr": "뭔가 좋은 수 없나?",
           "tag": "monolog"
         },
         {
           "offset": 18275,
           "jp": "このままじゃ　勝ち目は",
           "jp_len": 22,
-          "kr": "",
+          "kr": "이대로는 승산이",
           "tag": "monolog"
         },
         {
           "offset": 18299,
           "jp": "ないかもしれない…",
           "jp_len": 18,
-          "kr": "",
+          "kr": "없을지도 몰라…",
           "tag": "monolog"
         },
         {
           "offset": 18318,
           "jp": "世話をかけてすまない",
           "jp_len": 20,
-          "kr": "",
+          "kr": "신세를 져 미안하다",
           "tag": "monolog"
         },
         {
           "offset": 18340,
           "jp": "とにかく兄上は強い…",
           "jp_len": 20,
-          "kr": "",
+          "kr": "어쨌든 형님은 강해",
           "tag": "monolog"
         },
         {
           "offset": 18362,
           "jp": "心してかかってくれ",
           "jp_len": 18,
-          "kr": "",
+          "kr": "각오하고 덤벼줘",
           "tag": "monolog"
         }
       ]
@@ -12447,19 +12447,19 @@
           "offset": 5191,
           "jp": "「はぁ…",
           "jp_len": 8,
-          "kr": ""
+          "kr": "「하아…"
         },
         {
           "offset": 5203,
           "jp": "　数日ほど船が無かったせいで",
           "jp_len": 28,
-          "kr": ""
+          "kr": "며칠간 배가 없던 탓에"
         },
         {
           "offset": 5233,
           "jp": "　出発がかなり遅れてしまいましたわね",
           "jp_len": 36,
-          "kr": ""
+          "kr": "출발이 꽤 늦어져 버렸어요"
         },
         {
           "offset": 5273,
@@ -75947,13 +75947,13 @@
           "offset": 23292,
           "jp": "〔神刀　草無〕が入っていた！",
           "jp_len": 28,
-          "kr": "〔신도 초무〕가 들어있다"
+          "kr": "〔쿠사나시〕가 들어있다"
         },
         {
           "offset": 23327,
           "jp": "〔神刀　草無〕を手に入れた",
           "jp_len": 26,
-          "kr": ""
+          "kr": "〔쿠사나시〕를 얻었다"
         }
       ]
     },
