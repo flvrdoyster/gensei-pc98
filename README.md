@@ -17,7 +17,7 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 ### 구성
 
 + **`tools/`** — 한글화 도구 모음.  
-`compile_lz.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
+`compile_lz.py` · `compile_script.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
 + **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분.
 + **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
 + **`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
@@ -67,6 +67,7 @@ python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
 python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
 python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
+python3 tools/torimono_inserter.py original/torimono      # 포물장
 # 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
 
 # 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)

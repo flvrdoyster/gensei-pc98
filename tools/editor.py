@@ -293,6 +293,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
 
 <script>
 let rows = [];
+let rowIndex = new Map();   // rowKey(r) → row, O(1) 조회용 (rows 적재 후 load()에서 1회 구축)
 let modified = {};
 let tagChanges = {};
 let charmap = {};
@@ -402,6 +403,9 @@ async function load() {
     opt.value = f; opt.textContent = f;
     sel.appendChild(opt);
   }
+
+  rowIndex = new Map();
+  for (const r of rows) rowIndex.set(rowKey(r), r);
 
   render();
 }
@@ -609,7 +613,7 @@ document.getElementById('tbody').addEventListener('click', e => {
 document.getElementById('bulkApply').addEventListener('click', () => {
   const tag = document.getElementById('bulkTag').value;
   for (const key of selection) {
-    const row = rows.find(r => rowKey(r) === key);
+    const row = rowIndex.get(key);
     if (!row) continue;
     row.tag = tag;
     tagChanges[row.file + ':' + row.offset] = tag;
@@ -629,7 +633,7 @@ document.getElementById('bulkApply').addEventListener('click', () => {
 function bulkCopyField(field, btn) {
   const texts = [];
   for (const key of selection) {
-    const row = rows.find(r => rowKey(r) === key);
+    const row = rowIndex.get(key);
     if (!row) continue;
     if (field === 'kr') {
       texts.push(key in modified ? modified[key] : (row.kr || ''));
@@ -673,7 +677,7 @@ document.getElementById('tbody').addEventListener('click', e => {
 document.getElementById('tbody').addEventListener('input', e => {
   if (!e.target.classList.contains('kr-input')) return;
   const key = e.target.dataset.key;
-  const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
+  const row = rowIndex.get(key);
   const val = e.target.value;
 
   if (val === (row.kr || '')) {
@@ -721,7 +725,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   // 저장 시 JP 텍스트도 함께 전송 — 서버에서 오프셋 일치 여부 검증용
   const jps = {};
   for (const key of Object.keys(modified)) {
-    const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
+    const row = rowIndex.get(key);
     if (row) jps[key] = row.jp;
   }
   const res = await fetch('/api/save', {
@@ -731,9 +735,24 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   });
   const result = await res.json();
 
+  const tbody = document.getElementById('tbody');
+  // 저장된 KR 행: in-memory 반영 + 해당 DOM만 콕 집어 갱신 (전체 행 순회 제거)
   for (const [key, val] of Object.entries(modified)) {
-    const row = rows.find(r => r.type + ':' + r.file + ':' + r.offset === key);
+    const row = rowIndex.get(key);
     if (row) row.kr = val;
+    const tr = tbody.querySelector(`tr[data-key="${key}"]`);  // 렌더된 경우만
+    if (!tr) continue;
+    const el = tr.querySelector('.kr-input.modified');
+    if (el) {
+      el.classList.remove('modified');
+      el.classList.add('saved');
+      setTimeout(() => el.classList.remove('saved'), 1500);
+    }
+    // kr이 채워졌으면 draft 버튼 제거
+    if (row && row.kr) {
+      const hint = tr.querySelector('.draft-hint');
+      if (hint) hint.remove();
+    }
   }
   // 태그 변경도 in-memory rows에 반영 (화면 즉시 갱신)
   for (const [key, tag] of Object.entries(tagChanges)) {
@@ -744,21 +763,6 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   }
   modified = {};
   tagChanges = {};
-
-  document.querySelectorAll('.kr-input.modified').forEach(el => {
-    el.classList.remove('modified');
-    el.classList.add('saved');
-    setTimeout(() => el.classList.remove('saved'), 1500);
-  });
-
-  // kr이 채워진 행의 draft 버튼 제거
-  document.querySelectorAll('#tbody tr').forEach(tr => {
-    const row = rows.find(r => rowKey(r) === tr.dataset.key);
-    if (row && row.kr) {
-      const hint = tr.querySelector('.draft-hint');
-      if (hint) hint.remove();
-    }
-  });
 
   btn.textContent = '저장';
   updateStats();
