@@ -48,6 +48,65 @@ TITLE_KR = TITLES[TITLE]
 TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
 CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
 HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
+DRAFT_DIR = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'draft')
+
+
+def load_draft_map():
+    """draft/ 폴더의 chunk_XX.md 파일을 파싱해 {globalOffset: {main, alt, star}} 반환.
+    globalOffset = chunk * 200000 + localOffset (JS rows 와 동일 규칙)."""
+    if not os.path.isdir(DRAFT_DIR):
+        return {}
+    CHUNK_BASE = 200000
+    result = {}
+    for fname in sorted(os.listdir(DRAFT_DIR)):
+        if not fname.endswith('.md'):
+            continue
+        m = re.match(r'chunk_(\d+)\.md$', fname)
+        if not m:
+            continue
+        chunk_num = int(m.group(1))
+        with open(os.path.join(DRAFT_DIR, fname), encoding='utf-8') as f:
+            lines = f.readlines()
+        last_star_global = None
+        for line in lines:
+            line = line.strip()
+            if not line.startswith('|') or line.startswith('|--') or line.startswith('|오프'):
+                continue
+            cells = [c.strip() for c in line.split('|')]
+            if len(cells) < 7:
+                continue
+            offset_str = cells[1]
+            translation = cells[5]
+            bytecount = cells[6] if len(cells) > 6 else ''
+
+            if offset_str == '':
+                if translation.startswith('↳압축') and last_star_global is not None:
+                    alt_text = translation[3:].strip()
+                    if last_star_global in result:
+                        result[last_star_global]['alt'] = alt_text
+                continue
+
+            if not offset_str.isdigit():
+                continue
+
+            local_offset = int(offset_str)
+            global_offset = chunk_num * CHUNK_BASE + local_offset
+
+            if '[확정]' in translation:
+                last_star_global = None
+                continue
+
+            if not translation:
+                last_star_global = None
+                continue
+
+            is_star = '★' in bytecount
+            result[global_offset] = {'main': translation, 'alt': None, 'star': is_star}
+            last_star_global = global_offset if is_star else None
+
+    return result
+
+
 HAS_EMULATOR = (
     (TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))) or
     (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js'))) or
@@ -146,6 +205,11 @@ tr.range-start { background: #252000 !important; }
 .over-nav button:hover { background: #2e2e2e; color: #ccc; }
 .over-nav .over-count { color: #c04040; font-weight: 600; }
 tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
+.draft-hint { display: flex; gap: 4px; margin-top: 4px; }
+.draft-btn { background: #1a2e40; color: #6aadcc; border: 1px solid #2a4560; padding: 2px 8px; border-radius: 3px; font-size: 11px; cursor: pointer; font-family: inherit; white-space: nowrap; }
+.draft-btn:hover { background: #1e3a52; color: #8ccce8; }
+.draft-alt { background: #1a2a1a; color: #6acc88; border-color: #2a452a; }
+.draft-alt:hover { background: #1e3a1e; color: #88e8aa; }
 
 </style>
 </head>
@@ -253,15 +317,17 @@ function updateBulkBar() {
 }
 
 async function load() {
-  const [transRes, charmapRes, glossRes] = await Promise.all([
+  const [transRes, charmapRes, glossRes, draftRes] = await Promise.all([
     fetch('/api/translation'),
     fetch('/api/charmap'),
     fetch('/api/series-glossary'),
+    fetch('/api/draft'),
   ]);
   const data = await transRes.json();
   charmap = await charmapRes.json();
   // 입력 보조: 시리즈 전 타이틀의 jp→{kr,t} 용어집 (현재 타이틀 우선, 없으면 타 타이틀 제안)
   window.__jpSuggest = await glossRes.json();
+  window.__draftMap = await draftRes.json();
   rows = [];
 
   if (data.entries) {
@@ -438,12 +504,18 @@ function render() {
     }
 
     const speakerHtml = r.speaker ? `<span style="font-size:11px;color:#999;display:block">${escHtml(r.speaker)}：</span>` : '';
+    const draft = !kr && window.__draftMap && window.__draftMap[r.offset];
+    const draftHtml = draft ? (() => {
+      const mainBtn = `<button class="draft-btn" data-kr="${escAttr(draft.main)}">${draft.star ? '★초벌' : '초벌'}</button>`;
+      const altBtn = draft.alt ? `<button class="draft-btn draft-alt" data-kr="${escAttr(draft.alt)}">압축안</button>` : '';
+      return `<div class="draft-hint">${mainBtn}${altBtn}</div>`;
+    })() : '';
     tr.innerHTML = `
       <td class="type">${typeLabel(r)}</td>
       <td class="file">${r.file}</td>
       <td class="off">${r.localOffset !== undefined ? r.localOffset : ''}</td>
       <td class="jp" title="클릭하여 복사" onclick="navigator.clipboard.writeText(this.dataset.jp);this.classList.add('copied');setTimeout(()=>this.classList.remove('copied'),600)" data-jp="${escAttr(r.jp)}">${speakerHtml}${escHtml(r.jp)}${r.halfwidth ? '<span class="halfwidth-badge">반</span>' : ''}</td>
-      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="${(() => { const s = (!kr && window.__jpSuggest) ? window.__jpSuggest[normJp(r.jp)] : null; return s ? escAttr(s.kr + ' (' + ({hukyou:'풍',kitan:'희',kaitou:'쾌',torimono:'포'}[s.t] || '?') + ')') : '번역 입력...'; })()}" rows="1">${escHtml(kr)}</textarea></td>
+      <td class="kr-cell"><textarea class="kr-input${key in modified ? ' modified' : ''}" data-key="${key}" placeholder="${(() => { const s = (!kr && window.__jpSuggest) ? window.__jpSuggest[normJp(r.jp)] : null; if (s) return escAttr(s.kr + ' (' + ({hukyou:'풍',kitan:'희',kaitou:'쾌',torimono:'포'}[s.t] || '?') + ')'); if (draft) return escAttr(draft.main); return '번역 입력...'; })()}" rows="1">${escHtml(kr)}</textarea>${draftHtml}</td>
       <td class="len ${lenClass}">${lenText}</td>
     `;
     tbody.appendChild(tr);
@@ -621,9 +693,20 @@ document.getElementById('tbody').addEventListener('input', e => {
   if (val) {
     lenTd.textContent = `${krLen}/${jpLen}`;
     lenTd.className = 'len ' + (krLen <= jpLen ? 'ok' : 'over');
+    // kr이 채워지면 draft 버튼 제거
+    const hint = e.target.closest('td.kr-cell').querySelector('.draft-hint');
+    if (hint) hint.remove();
   } else {
     lenTd.textContent = `${jpLen}`;
     lenTd.className = 'len empty';
+    // kr이 비워지면 draft 버튼 복원
+    const cell = e.target.closest('td.kr-cell');
+    if (!cell.querySelector('.draft-hint') && window.__draftMap && window.__draftMap[row.offset]) {
+      const draft = window.__draftMap[row.offset];
+      const mainBtn = `<button class="draft-btn" data-kr="${escAttr(draft.main)}">${draft.star ? '★초벌' : '초벌'}</button>`;
+      const altBtn = draft.alt ? `<button class="draft-btn draft-alt" data-kr="${escAttr(draft.alt)}">압축안</button>` : '';
+      cell.insertAdjacentHTML('beforeend', `<div class="draft-hint">${mainBtn}${altBtn}</div>`);
+    }
   }
 
   recomputeOverflow();
@@ -666,6 +749,15 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     el.classList.remove('modified');
     el.classList.add('saved');
     setTimeout(() => el.classList.remove('saved'), 1500);
+  });
+
+  // kr이 채워진 행의 draft 버튼 제거
+  document.querySelectorAll('#tbody tr').forEach(tr => {
+    const row = rows.find(r => rowKey(r) === tr.dataset.key);
+    if (row && row.kr) {
+      const hint = tr.querySelector('.draft-hint');
+      if (hint) hint.remove();
+    }
   });
 
   btn.textContent = '저장';
@@ -809,6 +901,15 @@ document.addEventListener('keydown', e => {
 });
 
 document.getElementById('tbody').addEventListener('click', e => {
+  const draftBtn = e.target.closest('.draft-btn');
+  if (draftBtn) {
+    e.stopPropagation();
+    const textarea = draftBtn.closest('td.kr-cell').querySelector('.kr-input');
+    textarea.value = draftBtn.dataset.kr;
+    textarea.dispatchEvent(new Event('input', { bubbles: true }));
+    textarea.focus();
+    return;
+  }
   const span = e.target.closest('.taggable');
   if (!span) return;
   e.stopPropagation();
@@ -886,6 +987,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
         elif self.path == '/api/series-glossary':
             # 입력 보조용 시리즈 용어집 (현재 타이틀 우선)
             self._send_json(lint.series_glossary(TITLE))
+        elif self.path == '/api/draft':
+            self._send_json(load_draft_map())
         else:
             self.send_error(404)
 
