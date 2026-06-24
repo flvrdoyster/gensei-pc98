@@ -33,7 +33,17 @@ from collections import Counter
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compile_lz import decompress
-from compile_script import walk as walk_script
+from compile_script import walk as walk_script, BASE_SPEC
+from dataclasses import replace
+
+# 엔딩 평가 화면의 랭크 제목 『…』 은 `63 fb 『…』 63 ff` 로 감싸여 있다.
+# BASE_SPEC 워커는 0x63 을 미지 바이트로 보고 누적 텍스트를 버려(cur_text='')
+# 제목 줄을 통째로 놓친다. 직후가 SJIS 일 때만 발동하는 마커로 처리해 캡처한다.
+# (BASE_SPEC 은 쾌도전과 공유하므로 건드리지 않고 포물장 전용 스펙으로 분기)
+TORI_SPEC = replace(
+    BASE_SPEC,
+    markers={**BASE_SPEC.markers, (0x63, 0xfb): 'text', (0x63, 0xff): 'text'},
+)
 
 # ── SJIS 유틸 ─────────────────────────────────────────────────────────────────
 
@@ -131,7 +141,7 @@ def main(game_dir: str) -> None:
     # 소비해 텍스트만 캡처한다. 사후 노이즈 필터 없음 — 완전 파싱이 목표.
     all_entries: list[dict] = []
     for idx, dec, density in text_chunks:
-        for blk in walk_script(dec):
+        for blk in walk_script(dec, TORI_SPEC):
             lines = []
             for ln in blk['lines']:
                 jp = ln['jp']

@@ -34,8 +34,17 @@ original/torimono/
 ## 파서
 
 `torimono_parser.py` 는 `kaitou_parser.py` 복제본 (게임별 파서 독립 컨벤션).
-오피코드 워킹은 `compile_script.walk` 공유 — **BASE_SPEC 무수정으로 동작 확인**
-(같은 엔진이라 오프너·마커·구분자 체계 동일).
+오피코드 워킹은 `compile_script.walk` 공유 — 대부분 BASE_SPEC 으로 동작하나,
+**엔딩 평가 랭크 제목만 전용 `TORI_SPEC` 으로 보강**한다(아래).
+
+### 엔딩 평가 랭크 제목 — `63 fb 『…』 63 ff`
+
+엔딩 평가(청크 2)의 랭크 제목 13종(`『名奉行』`·`『大泥棒』`·`『天下御免の風来坊』` 등)은
+`63 fb 『…』 63 ff` 로 감싸여 있다. BASE_SPEC 워커는 0x63 을 미지 바이트로 보고
+in_block 중 누적 텍스트를 버려(`cur_text=''`, `compile_script.walk` 6) 제목 줄을
+통째로 놓친다(주변 설명문은 정상 캡처). → `TORI_SPEC` 이 `(0x63,0xfb)`·`(0x63,0xff)`
+를 **직후가 SJIS 일 때만 발동하는 마커**로 처리해 제목·접두 문구를 캡처. 이 2바이트
+시퀀스는 평가 영역 고유라 다른 청크엔 부작용 없음.
 
 ### NOISE_CHUNKS 식별 절차 (재현 가능)
 
