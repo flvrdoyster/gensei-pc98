@@ -206,7 +206,7 @@
         }],
 
         postRun: [function() {
-          document.title = '환세쾌도전 웹 버전 : atah.io';
+          document.title = '환세쾌도전 : atah.io';
           lastChecksum = checksum(Module.FS.readFile(DISK));
           startPolling();
           showToast(savedDisk ? MSG.SAVE_RESTORED : '에뮬레이터를 불러왔습니다.');
