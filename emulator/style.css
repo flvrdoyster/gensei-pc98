@@ -445,6 +445,6 @@ body.mobile-active #virtual-gamepad {
   .disk-panel { width: 100%; }
   .hint { display: none; }
   #footer { width: 100%; padding: 16px; }
-  .game-list { width: auto; grid-template-columns: 1fr; }
+  .game-list { width: 100%; grid-template-columns: 1fr; }
   .desktop-only { display: none; }
 }
