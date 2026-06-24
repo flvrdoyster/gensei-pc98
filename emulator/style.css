@@ -335,6 +335,7 @@ button {
 }
 
 .badge.done { background: rgba(40, 80, 60, 1); color: rgba(120, 200, 150, 1); border: 1px solid rgba(60, 120, 90, 1); }
+.badge.wip  { background: rgba(60, 50, 15, 1); color: rgba(210, 165, 55, 1);  border: 1px solid rgba(90, 72, 22, 1); }
 .badge.todo { background: rgba(50, 50, 50, 1); color: rgba(120, 120, 120, 1); border: 1px solid rgba(70, 70, 70, 1); }
 
 /* Fullscreen */
