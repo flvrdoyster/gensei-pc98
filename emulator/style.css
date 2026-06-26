@@ -359,12 +359,29 @@ button {
   display: none;
 }
 
+body.mobile-active {
+  height: 100vh;
+  height: 100dvh;
+  min-height: unset;
+  overflow: hidden;
+  padding-bottom: 0;
+}
+
+body.mobile-active #canvas-wrap {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+}
+
+body.mobile-active #footer {
+  display: none;
+}
+
 body.mobile-active #virtual-gamepad {
   display: flex;
   justify-content: space-between;
-  position: fixed;
-  bottom: 0;
-  left: 0;
   width: 100%;
   box-sizing: border-box;
   align-items: center;
@@ -372,7 +389,6 @@ body.mobile-active #virtual-gamepad {
   touch-action: none;
   -webkit-user-select: none;
   user-select: none;
-  z-index: 100;
 }
 
 .gamepad-dpad {
