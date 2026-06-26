@@ -9,7 +9,7 @@ build/
 
 # 참고용 자료
 original/kitan_kr/
-translations/kaitou/review/
+translation/kaitou/review/
 
 # AI 툴
 .claude/
