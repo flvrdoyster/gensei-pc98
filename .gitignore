@@ -1,14 +1,16 @@
-# 빌드 출력
-build/
-
-# 원본 한국어판 (참고용, 배포 제외)
-original/kitan_kr/
+.DS_Store
 
 # 파이썬
 __pycache__/
 *.pyc
 
-.DS_Store
+# 빌드 출력
+build/
 
+# 참고용 자료
+original/kitan_kr/
+translations/kaitou/review/
+
+# AI 툴
 .claude/
 MEMORY.md
