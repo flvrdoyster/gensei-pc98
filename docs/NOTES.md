@@ -129,9 +129,16 @@ IndexedDB는 `ArrayBuffer`를 그대로 저장할 수 있고 용량 제한도 �
 DB `gensei-saves` / store `disks`. 키는 **FDI 파일명**(`hukyou_kr.fdi`, `kitan-system.fdi` 등)이라 게임·디스크별로 분리 저장됨.  
 다중 디스크 게임(희담: system+data)은 디스크마다 체크섬을 따로 비교해 **변경된 디스크만** 기록한다. (희담 데모/오프닝은 세이브 대상 아님)
 
-### IDB 디스크 추출/이식
+### IDB 디스크 교체/추출 (`debug.js`)
 
-디버그용 export/import 버튼은 제거됨. 콘솔 불가 환경(아이패드 등)에선 **북마클릿**으로 IDB의 FDI를 파일로 추출한다. 웹 브라우저 북마크 주소를 아래 코드로 교체 후, 게임 페이지에서 실행:
+디버그용 디스크 교체 패널. URL에 **`?debug`**가 있을 때만 동작하고, 평소엔 토글 버튼도 패널도 만들지 않는다. 전 게임 페이지 공통(`debug.js`, `audio.js`·`gamepad.js`와 같은 위치에 포함).
+
+- **노출**: 상단바 왼쪽에 토글 버튼(`#btn-debug`, `.btn-icon`). 누르면 고정 오버레이 패널 표시(하단 게임패드를 가리지 않음). 기존 `#btn-disk`가 있는 페이지(희담)는 그 옆에 나란히 둔다.
+- **가져오기**: 파일 선택 → IDB(`gensei-saves`/`disks`)에 저장. 캐시 키가 하나면 그 키를 덮어쓰고(파일명 무관), 없거나 여럿이면 파일명을 키로 쓴다. 새로고침하면 그 이미지로 구동(`?debug` 떼도 유지 — 게임 로드 경로가 같은 IDB를 읽음).
+- **내보내기**: 캐시된 디스크를 파일로 다운로드. **삭제**: 캐시에서 제거(원본 `/rom/...`으로 복귀).
+- FDI/HDI 모두 처리(`.fdi .hdi .hdm .xdf .d88`).
+
+콘솔 불가 환경(아이패드 등)에서 **전 타이틀을 한 번에** 추출하려면 아래 **북마클릿**이 더 편하다. 웹 브라우저 북마크 주소를 아래 코드로 교체 후, 게임 페이지에서 실행:
 
 ```js
 javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gensei-saves');q.onsuccess=()=>r(q.result)});const ks=await new Promise(r=>{const q=db.transaction('disks').objectStore('disks').getAllKeys();q.onsuccess=()=>r(q.result)});for(const k of ks){const d=await new Promise(r=>{const q=db.transaction('disks').objectStore('disks').get(k);q.onsuccess=()=>r(q.result)});const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([d],{type:'application/octet-stream'}));a.download=k;document.body.appendChild(a);a.click();a.remove();await new Promise(r=>setTimeout(r,800))}alert('추출 완료: '+ks.join(', '))})();
@@ -159,8 +166,9 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 - 3D 키캡 스타일 (CSS `border-bottom` + `translateY` active 효과)
 - 키 아이콘은 RasterForge 픽셀 폰트 기반 SVG (`img/key-*.svg`)
 - 자동 활성화: `?gamepad` URL 파라미터 또는 모바일(`ontouchstart` + `innerWidth <= 680`)
-- 태블릿 등 터치 기기에서는 상단바에 게임패드 활성화 버튼 표시 (`btn-gamepad`). 누르면 `?gamepad` 파라미터를 `history.replaceState`로 URL에 추가 (리로드 없음)
-- 활성화 시 `position: fixed; bottom: 0`으로 화면 하단 고정
+- 태블릿 등 터치 기기에서는 상단바에 게임패드 활성화 버튼 표시 (`btn-gamepad`). 누르면 `?gamepad` 파라미터를 `history.replaceState`로 URL에 추가 (리로드 없음). 이때 빈값 파라미터의 `=`는 떼어 `?gamepad&debug`처럼 정리
+- 활성화 시 `position: fixed; bottom: 0`으로 화면 하단 고정(캔버스 위에 떠 콘텐츠를 밀지 않음)
+- 게임 페이지(`body:has(#canvas-wrap)`)는 `min-height` 강제를 풀어 푸터 아래 빈 공간/스크롤이 생기지 않게 한다(허브는 `min-height:100vh` 유지)
 
 ### 상단바 접기 (`btn-collapse`)
 

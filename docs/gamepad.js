@@ -38,7 +38,7 @@
   function updateUrl() {
     var params = new URLSearchParams(location.search);
     params.delete('gamepad');
-    var rest = params.toString();
+    var rest = params.toString().replace(/=(?=&|$)/g, '');
     history.replaceState(null, '', location.pathname + (rest ? '?gamepad&' + rest : '?gamepad'));
   }
 
