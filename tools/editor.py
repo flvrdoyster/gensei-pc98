@@ -510,6 +510,11 @@ function computeSpeakers(rows) {
     const isKagi = trimmed.startsWith('「');
     const isCont = lead.test(jp);
 
+    // 새 엔트리가 '이어지는 줄'(선행 전각공백)이 아니면 현재화자 만료.
+    // → 이름표 없이 「로 시작하는 엔트리는 cur가 비어 미상이 된다(화자 없는 「 귀속 금지).
+    //   진짜 이름줄은 자기 「와 같은 엔트리에 있어(手下+「お頭) 이 리셋에 안 깨진다.
+    if (r.entryFirst && !isCont) cur = '';
+
     // 수동 화자 지정 (최우선). 빈 문자열 override 는 강제 미상.
     if (r.speakerOverride !== undefined && r.speakerOverride !== '') {
       r.speaker = r.speakerOverride; r.isName = false;
