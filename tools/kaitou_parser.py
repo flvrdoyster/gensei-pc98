@@ -162,11 +162,11 @@ def main(game_dir: str) -> None:
     if os.path.exists(out_path):
         with open(out_path, encoding='utf-8') as f:
             old_json = json.load(f)
-        old_lines = []   # (chunk, offset, jp, kr, tag)
+        old_lines = []   # (chunk, offset, jp, kr, tag, speaker)
         for e in old_json.get('entries', []):
             for l in e.get('lines', []):
                 old_lines.append((e['chunk'], l['offset'], l['jp'],
-                                  l.get('kr', ''), l.get('tag')))
+                                  l.get('kr', ''), l.get('tag'), l.get('speaker')))
 
         by_key, by_cjp = {}, {}
         for e in final_entries:
@@ -176,7 +176,7 @@ def main(game_dir: str) -> None:
 
         kr_total = n_attach = n_carry = 0
         carry: dict = {}
-        for chunk, off, jp, kr, tag in old_lines:
+        for chunk, off, jp, kr, tag, speaker in old_lines:
             target = by_key.get((chunk, off))
             if target is None:
                 cands = [l for l in by_cjp.get((chunk, jp), []) if abs(l['offset'] - off) <= 8]
@@ -187,6 +187,8 @@ def main(game_dir: str) -> None:
             if target is not None:
                 if tag is not None:
                     target['tag'] = tag
+                if speaker is not None:
+                    target['speaker'] = speaker
                 if kr.strip() and not target['kr']:
                     target['kr'] = kr
                     n_attach += 1
@@ -195,6 +197,8 @@ def main(game_dir: str) -> None:
                         'jp_len': len(jp.encode('shift_jis', errors='replace')), 'kr': kr}
                 if tag is not None:
                     line['tag'] = tag
+                if speaker is not None:
+                    line['speaker'] = speaker
                 carry.setdefault(chunk, []).append(line)
                 n_carry += 1
 

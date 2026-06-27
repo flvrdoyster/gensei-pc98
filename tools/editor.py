@@ -134,6 +134,7 @@ h1 { font-size: 15px; font-weight: 600; color: #bbb; }
 .toolbar label input[type="checkbox"] { accent-color: #999; width: 12px; height: 12px; }
 #filterType { width: 128px; }
 #filterFile { width: 128px; }
+#filterSpeaker { width: 120px; }
 #searchBox { width: 264px; }
 .stats { font-size: 12px; color: #666; }
 table { width: 768px; border-collapse: collapse; font-size: 13px; table-layout: fixed; }
@@ -242,6 +243,11 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   <select id="filterFile">
     <option value="">전체 파일</option>
   </select>
+  <span id="filterSpeakerWrap" style="display:none">
+  <select id="filterSpeaker">
+    <option value="">전체 화자</option>
+  </select>
+  </span>
   <label><input type="checkbox" id="filterUntranslated"> 미번역만</label>
   <label><input type="checkbox" id="filterHalfwidth"> 반각만</label>
   <label><input type="checkbox" id="filterShowIgnore"> 제외 포함</label>
@@ -274,19 +280,29 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   <span id="bulkCount"></span>
   <button class="bulk-apply" id="bulkCopyJp">JP 복사</button>
   <button class="bulk-apply" id="bulkCopyKr">KR 복사</button>
-  <select id="bulkTag">
-    <option value="dialog">대사</option>
-    <option value="monolog">독백</option>
-    <option value="cutscene">컷씬</option>
-    <option value="char">캐릭터</option>
-    <option value="enemy">적</option>
-    <option value="battle">전투</option>
-    <option value="item">아이템</option>
-    <option value="menu">메뉴</option>
-    <option value="location">장소</option>
-    <option value="system">시스템</option>
-    <option value="ignore">제외</option>
-  </select>
+  <span id="bulkModeWrap" style="display:none">
+    <label><input type="radio" name="bulkMode" value="tag" checked> 태그</label>
+    <label><input type="radio" name="bulkMode" value="speaker"> 화자</label>
+  </span>
+  <span id="bulkTagControls">
+    <select id="bulkTag">
+      <option value="dialog">대사</option>
+      <option value="monolog">독백</option>
+      <option value="cutscene">컷씬</option>
+      <option value="char">캐릭터</option>
+      <option value="enemy">적</option>
+      <option value="battle">전투</option>
+      <option value="item">아이템</option>
+      <option value="menu">메뉴</option>
+      <option value="location">장소</option>
+      <option value="system">시스템</option>
+      <option value="ignore">제외</option>
+    </select>
+  </span>
+  <span id="bulkSpeakerControls" style="display:none">
+    <input type="text" id="bulkSpeakerInput" list="speakerList" placeholder="화자명(빈칸=해제)" style="width:128px">
+    <datalist id="speakerList"></datalist>
+  </span>
   <button class="bulk-apply" id="bulkApply">적용</button>
   <button class="bulk-cancel" id="bulkCancel">취소</button>
 </div>
@@ -296,10 +312,12 @@ let rows = [];
 let rowIndex = new Map();   // rowKey(r) → row, O(1) 조회용 (rows 적재 후 load()에서 1회 구축)
 let modified = {};
 let tagChanges = {};
+let speakerChanges = {};   // file:offset → 수동 화자 지정값 (''=미상 override)
 let charmap = {};
 let selection = new Set();
 let filteredRows = [];
 let rangeStart = null;
+let hasSpeakers = false;   // entries 포맷(쾌도전·포물장)이면 화자 그룹핑 활성
 let overflowRows = [];   // filteredRows 중 초과 항목
 let overflowIdx = -1;
 let lastSearch = '';
@@ -340,14 +358,17 @@ async function load() {
 
     for (const entry of data.entries) {
       const base = entry.chunk * 200000;
-      const speaker = entry.speaker || '';
       const chunkLabel = '청크 ' + String(entry.chunk).padStart(2, '0');
-      for (const line of (entry.lines || [])) {
+      const elines = entry.lines || [];
+      for (let li = 0; li < elines.length; li++) {
+        const line = elines[li];
         rows.push({
           type: 'dialog', tag: line.tag || null, file: chunkLabel,
           chunk: entry.chunk, offset: base + line.offset, localOffset: line.offset,
           jp: line.jp, kr: line.kr, jp_len: line.jp_len,
-          halfwidth: false, taggable: true, speaker: speaker,
+          halfwidth: false, taggable: true, speaker: '',
+          speakerOverride: line.speaker || '',
+          entryType: entry.type, entryFirst: li === 0,
         });
       }
     }
@@ -404,6 +425,15 @@ async function load() {
     sel.appendChild(opt);
   }
 
+  // 화자 그룹핑 (entries 포맷 전용). json 비파괴 — 화면용 파생 라벨만 계산.
+  if (data.entries) {
+    hasSpeakers = true;
+    computeSpeakers(rows);
+    populateSpeakerDropdown(rows);
+    document.getElementById('filterSpeakerWrap').style.display = '';
+    document.getElementById('bulkModeWrap').style.display = '';
+  }
+
   rowIndex = new Map();
   for (const r of rows) rowIndex.set(rowKey(r), r);
 
@@ -458,9 +488,128 @@ function typeLabel(r) {
   return `<div class="${cls}"><span class="${taggable}" data-file="${r.file || ''}" data-offset="${r.offset}">${label}</span></div>`;
 }
 
+const UNKNOWN_SPEAKER = '(미상)';
+// 화자 그룹핑에서 제외할 비-대사 태그 (UI·라벨류). 미상에도 안 잡히고 집계서 빠짐.
+const NON_DIALOG_TAGS = new Set(['item', 'menu', 'enemy', 'system', 'battle', 'location', 'cutscene']);
+
+// 화자 귀속: rows(전역 offset 순 정렬됨)를 청크별로 상태 워크.
+//  - speaker 엔트리 첫 줄 = 화자명 → 현재화자 설정
+//  - 「로 시작 않고 선행 공백도 없는 짧은 줄인데 '다음 줄이 「' 면 이름으로 인정 (手下A·암거래상 등)
+//  - 「 대사·선행 공백(이어지는 줄)은 현재화자에 귀속, 화자 없이 「면 미상
+//  - 지문(def)·메뉴 등은 현재화자 미상으로 리셋
+// json 은 건드리지 않고 r.speaker(화면용)만 채운다.
+function computeSpeakers(rows) {
+  const lead = /^[\s　]+/;
+  let cur = '';
+  let prevChunk = null;
+  for (let i = 0; i < rows.length; i++) {
+    const r = rows[i];
+    if (r.chunk !== prevChunk) { cur = ''; prevChunk = r.chunk; }
+    const jp = r.jp || '';
+    const trimmed = jp.replace(lead, '');
+    const isKagi = trimmed.startsWith('「');
+    const isCont = lead.test(jp);
+
+    // 수동 화자 지정 (최우선). 빈 문자열 override 는 강제 미상.
+    if (r.speakerOverride !== undefined && r.speakerOverride !== '') {
+      r.speaker = r.speakerOverride; r.isName = false;
+      continue;
+    }
+
+    // UI·라벨류 태그는 대사가 아니므로 화자 그룹핑에서 제외 (미상에도 안 잡음).
+    // 장면 컨텍스트 끊김으로 보고 현재화자도 리셋.
+    if (NON_DIALOG_TAGS.has(r.tag)) {
+      cur = ''; r.speaker = ''; r.isName = false;
+      continue;
+    }
+
+    // char 태그 = 사용자 확정 화자명 (1순위, 무조건)
+    if (r.tag === 'char' && !isKagi) {
+      cur = (r.kr || r.jp || '').trim();
+      r.speaker = cur; r.isName = true;
+      continue;
+    }
+
+    if (r.entryType === 'speaker') {
+      if (r.entryFirst && !isKagi) {
+        cur = (r.kr || r.jp || '').trim();
+        r.speaker = cur; r.isName = true;
+      } else {
+        r.speaker = cur || UNKNOWN_SPEAKER;
+      }
+      continue;
+    }
+    // dialog 등에 섞인 이름줄 휴리스틱: 짧은 비-「 줄 + 다음 줄이 「
+    let isName = false;
+    if (!isKagi && !isCont && r.entryType !== 'def' && [...jp].length <= 8) {
+      const nx = rows[i + 1];
+      if (nx && nx.chunk === r.chunk && (nx.jp || '').replace(lead, '').startsWith('「')) isName = true;
+    }
+    if (isName) {
+      cur = (r.kr || r.jp || '').trim();
+      r.speaker = cur; r.isName = true;
+      continue;
+    }
+    if (isKagi || isCont) {
+      r.speaker = cur || UNKNOWN_SPEAKER;
+      continue;
+    }
+    cur = '';
+    r.speaker = UNKNOWN_SPEAKER;  // 지문·메뉴 등
+  }
+}
+
+function populateSpeakerDropdown(rows) {
+  const counts = new Map();
+  for (const r of rows) {
+    if (r.isName) continue;  // 이름표 자체는 집계 제외
+    const s = r.speaker;
+    if (!s) continue;
+    counts.set(s, (counts.get(s) || 0) + 1);
+  }
+  // 빈도순, (미상)은 맨 끝
+  const names = [...counts.keys()].sort((a, b) => {
+    if (a === UNKNOWN_SPEAKER) return 1;
+    if (b === UNKNOWN_SPEAKER) return -1;
+    return counts.get(b) - counts.get(a);
+  });
+  const sel = document.getElementById('filterSpeaker');
+  const prev = sel.value;   // 재계산 시 선택 유지
+  sel.innerHTML = '<option value="">전체 화자</option>';
+  for (const n of names) {
+    const opt = document.createElement('option');
+    opt.value = n; opt.textContent = `${n} (${counts.get(n)})`;
+    sel.appendChild(opt);
+  }
+  // 이전 선택이 아직 존재하면 복원 (사라진 화자면 '전체 화자'로)
+  sel.value = [...sel.options].some(o => o.value === prev) ? prev : '';
+
+  // 벌크바 화자 지정용 datalist. (미상)을 맨 위에 둬 강제 미상 지정도 가능.
+  const dl = document.getElementById('speakerList');
+  dl.innerHTML = '';
+  const unkOpt = document.createElement('option');
+  unkOpt.value = UNKNOWN_SPEAKER;
+  dl.appendChild(unkOpt);
+  for (const n of names) {
+    if (n === UNKNOWN_SPEAKER) continue;
+    const opt = document.createElement('option');
+    opt.value = n;
+    dl.appendChild(opt);
+  }
+}
+
+// 태그 변경 등으로 화자 라벨이 바뀐 뒤 재계산 (rows는 이미 offset 순 정렬·유지됨).
+// O(n) 한 번이라 태그 적용·저장마다 호출해도 가볍다.
+function refreshSpeakers() {
+  if (!hasSpeakers) return;
+  computeSpeakers(rows);
+  populateSpeakerDropdown(rows);
+}
+
 function render() {
   const filterType = document.getElementById('filterType').value;
   const filterFile = document.getElementById('filterFile').value;
+  const filterSpeaker = document.getElementById('filterSpeaker').value;
   const search = document.getElementById('searchBox').value.toLowerCase();
   const exactMatch = document.getElementById('filterExact').checked;
   const untranslatedOnly = document.getElementById('filterUntranslated').checked;
@@ -478,6 +627,7 @@ function render() {
       if (effective !== filterType) return false;
     }
     if (filterFile && r.file !== filterFile) return false;
+    if (filterSpeaker && r.speaker !== filterSpeaker) return false;
     if (search) {
       const jp = r.jp.toLowerCase(), kr = (r.kr || '').toLowerCase();
       if (exactMatch ? (jp !== search && kr !== search) : (!jp.includes(search) && !kr.includes(search))) return false;
@@ -571,14 +721,16 @@ function updateStats() {
   const done = rows.filter(r => (r.kr || '') || (modified[r.type+':'+r.file+':'+r.offset] || '')).length;
   const mod = Object.keys(modified).length;
   const tags = Object.keys(tagChanges).length;
-  const changes = mod + tags;
+  const spk = Object.keys(speakerChanges).length;
+  const changes = mod + tags + spk;
   const pct = total ? Math.round(100 * done / total) : 0;
   const circ = 2 * Math.PI * 14;
   document.getElementById('donutArc').setAttribute('stroke-dasharray', `${circ * pct / 100} ${circ}`);
   const filteredInfo = filteredRows.length < total ? ` | 표시: ${filteredRows.length}건` : '';
   const modInfo = mod ? ` | 수정: ${mod}건` : '';
   const tagInfo = tags ? ` | 분류: ${tags}건` : '';
-  document.getElementById('statsText').textContent = `${pct}% (${done}/${total})${filteredInfo}${modInfo}${tagInfo}`;
+  const spkInfo = spk ? ` | 화자: ${spk}건` : '';
+  document.getElementById('statsText').textContent = `${pct}% (${done}/${total})${filteredInfo}${modInfo}${tagInfo}${spkInfo}`;
   document.getElementById('saveBtn').disabled = changes === 0;
 }
 
@@ -610,23 +762,49 @@ document.getElementById('tbody').addEventListener('click', e => {
   }
 });
 
+// 모드 토글: 태그 ↔ 화자 (둘 중 하나만 적용 가능 — 섞임 방지)
+function bulkMode() {
+  const r = document.querySelector('input[name="bulkMode"]:checked');
+  return r ? r.value : 'tag';
+}
+for (const radio of document.querySelectorAll('input[name="bulkMode"]')) {
+  radio.addEventListener('change', () => {
+    const speaker = bulkMode() === 'speaker';
+    document.getElementById('bulkTagControls').style.display = speaker ? 'none' : '';
+    document.getElementById('bulkSpeakerControls').style.display = speaker ? '' : 'none';
+  });
+}
+
+// 적용: 현재 모드(태그/화자) 하나만 실행.
 document.getElementById('bulkApply').addEventListener('click', () => {
-  const tag = document.getElementById('bulkTag').value;
-  for (const key of selection) {
-    const row = rowIndex.get(key);
-    if (!row) continue;
-    row.tag = tag;
-    tagChanges[row.file + ':' + row.offset] = tag;
-    // 제외 태그면 KR도 비우기 (잘못 채워진 KR이 인서터에 닿지 않도록)
-    if (tag === 'ignore') {
-      modified[key] = '';
-      row.kr = '';
+  if (bulkMode() === 'speaker') {
+    const name = document.getElementById('bulkSpeakerInput').value.trim();
+    for (const key of selection) {
+      const row = rowIndex.get(key);
+      if (!row) continue;
+      row.speakerOverride = name;
+      speakerChanges[row.file + ':' + row.offset] = name;
+    }
+    document.getElementById('bulkSpeakerInput').value = '';
+  } else {
+    const tag = document.getElementById('bulkTag').value;
+    for (const key of selection) {
+      const row = rowIndex.get(key);
+      if (!row) continue;
+      row.tag = tag;
+      tagChanges[row.file + ':' + row.offset] = tag;
+      // 제외 태그면 KR도 비우기 (잘못 채워진 KR이 인서터에 닿지 않도록)
+      if (tag === 'ignore') {
+        modified[key] = '';
+        row.kr = '';
+      }
     }
   }
   selection.clear();
   rangeStart = null;
   updateBulkBar();
   updateStats();
+  refreshSpeakers();
   render();
 });
 
@@ -731,7 +909,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   const res = await fetch('/api/save', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ translations: modified, tags: tagChanges, jps }),
+    body: JSON.stringify({ translations: modified, tags: tagChanges, speakers: speakerChanges, jps }),
   });
   const result = await res.json();
 
@@ -761,8 +939,10 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
     const row = rows.find(r => r.file === file && r.offset === offset);
     if (row) row.tag = tag;
   }
+  refreshSpeakers();
   modified = {};
   tagChanges = {};
+  speakerChanges = {};
 
   btn.textContent = '저장';
   updateStats();
@@ -825,6 +1005,7 @@ document.getElementById('tbody').addEventListener('keydown', e => {
 
 document.getElementById('filterType').addEventListener('change', render);
 document.getElementById('filterFile').addEventListener('change', render);
+document.getElementById('filterSpeaker').addEventListener('change', render);
 document.getElementById('filterUntranslated').addEventListener('change', render);
 document.getElementById('filterHalfwidth').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
@@ -1030,6 +1211,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         translations = body.get('translations', {})
         tags = body.get('tags', {})
+        speakers = body.get('speakers', {})  # 수동 화자 지정 (kaitou 포맷 전용)
         jps = body.get('jps', {})  # JP 텍스트 검증용
 
         updated = skipped = 0
@@ -1078,6 +1260,18 @@ class Handler(http.server.BaseHTTPRequestHandler):
                         if container.get('offset') == local_off:
                             container['tag'] = tag
                             updated += 1
+
+            # 수동 화자 지정: line['speaker'] 에 기록. 빈값 = override 해제(필드 제거 → 자동 복귀)
+            for key, name in speakers.items():
+                file_name, offset_str = key.split(':', 1)
+                global_offset = int(offset_str)
+                line = _find_kaitou_seg(data['entries'], None, global_offset)
+                if line is not None:
+                    if name:
+                        line['speaker'] = name
+                    else:
+                        line.pop('speaker', None)
+                    updated += 1
 
         else:
             # hukyou 포맷: dialogs / items / ui 구조
