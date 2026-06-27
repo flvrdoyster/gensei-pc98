@@ -51709,18 +51709,12 @@
           "kr": "구려~ 오지 마!"
         },
         {
-          "offset": 7755,
-          "jp": "＜宴塔",
-          "jp_len": 6,
-          "kr": "",
-          "tag": "ignore"
-        },
-        {
-          "offset": 7764,
-          "jp": "魔人",
-          "jp_len": 4,
-          "kr": "마인",
-          "tag": "char"
+          "offset": 7756,
+          "jp": "ランプの魔人",
+          "jp_len": 12,
+          "kr": "램프의 마인",
+          "tag": "char",
+          "speaker": "마인"
         },
         {
           "offset": 7770,
@@ -51776,18 +51770,12 @@
           "kr": "일하고 있잖아요!"
         },
         {
-          "offset": 7969,
-          "jp": "＜宴塔",
-          "jp_len": 6,
-          "kr": "",
-          "tag": "ignore"
-        },
-        {
-          "offset": 7978,
-          "jp": "魔人",
-          "jp_len": 4,
-          "kr": "마인",
-          "tag": "char"
+          "offset": 7970,
+          "jp": "ランプの魔人",
+          "jp_len": 12,
+          "kr": "램프의 마인",
+          "tag": "char",
+          "speaker": "마인"
         },
         {
           "offset": 7984,
@@ -51875,18 +51863,12 @@
           "kr": "꽤~나 못된 녀석이잖아!"
         },
         {
-          "offset": 8238,
-          "jp": "＜宴塔",
-          "jp_len": 6,
-          "kr": "",
-          "tag": "ignore"
-        },
-        {
-          "offset": 8247,
-          "jp": "魔人",
-          "jp_len": 4,
-          "kr": "마인",
-          "tag": "char"
+          "offset": 8239,
+          "jp": "ランプの魔人",
+          "jp_len": 12,
+          "kr": "램프의 마인",
+          "tag": "char",
+          "speaker": "마인"
         },
         {
           "offset": 8253,
