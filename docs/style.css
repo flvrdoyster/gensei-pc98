@@ -38,6 +38,12 @@ body {
   text-size-adjust: 100%;
 }
 
+/* 게임 페이지(캔버스 있음)는 내용이 고정 크기라 viewport 채우기 불필요.
+   min-height:100vh를 풀어 푸터 아래 빈 공간/스크롤을 없앤다. 허브는 유지. */
+body:has(#canvas-wrap) {
+  min-height: 0;
+}
+
 a {
   text-decoration: none;
   color: rgba(123, 166, 222, 1);
