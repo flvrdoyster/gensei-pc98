@@ -223,6 +223,24 @@ python3 tools/lint.py <title>      # 요약 (-v 상세)
 
 ---
 
+## deploy-docs.sh — docs 배포 동기화·검사
+
+`emulator/` → `docs/` 복사 + 배포 정합 검사. **커밋·버전은 건드리지 않는다** (검사만).
+
+```bash
+./tools/deploy-docs.sh        # 신선도 → 복사 → 정합 검사
+./tools/deploy-docs.sh -f     # 빌드 신선도 경고 무시하고 진행
+```
+
+- **0) 빌드 신선도**: `translation/<title>/translation.json` 과 `emulator/<title>.data` 가 둘 다
+  커밋된(clean) 타이틀은 일관 가정해 스킵, 작업 중인 타이틀만 mtime 비교 — json 이 번들보다
+  최신이면 "편집 후 빌드 안 함"으로 보고 복사 전에 중단(`-f` 로 우회). git+mtime 혼합이라
+  단순 touch(내용 동일)나 커밋 완료분은 오탐하지 않는다.
+- **1) 복사** → **2) docs↔emulator 동일성** → **3) `<title>.js` remote_package_size ↔ `<title>.data` 크기**.
+- 하나라도 어긋나면 종료코드 1. CLAUDE.md docs 배포 체크리스트를 코드로 박은 것.
+
+---
+
 ## compile_lz.py — Compile LZ 압축 / 해제
 
 희담·풍광전의 CMD·OVL·실행 파일에 쓰이는 Compile 자체 LZ 알고리즘.
