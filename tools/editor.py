@@ -179,7 +179,8 @@ td.len { font-size: 12px; }
 .save-btn:disabled { background: #1e1e1e; color: #444; border-color: #2a2a2a; cursor: default; }
 .build-btn { background: transparent; color: #999; border: 1px solid #3a3a3a; height: 28px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: inherit; }
 #buildBtn { width: 56px; }
-#emulatorBtn { width: 80px; }
+#emulatorBtn { width: 56px; }
+#deployBtn { width: 56px; }
 #jumpEditBtn { width: 32px; padding: 0; font-size: 14px; }
 .build-btn:hover { background: #2a2a2a; color: #ddd; border-color: #555; }
 .toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 340px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); }
@@ -222,8 +223,9 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
     <span class="stats" id="stats"><svg id="donut" width="16" height="16" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#333" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
     <button class="build-btn" id="jumpEditBtn" title="마지막 편집 위치로 (Ctrl+D)" disabled>↩</button>
     <button class="save-btn" id="saveBtn" disabled>저장</button>
-    <button class="build-btn" id="buildBtn">빌드</button>
-    <button class="build-btn" id="emulatorBtn">번들 생성</button>
+    <button class="build-btn" id="buildBtn" title="번역을 디스크 이미지에 삽입 (build/)">빌드</button>
+    <button class="build-btn" id="emulatorBtn" title="웹 번들 재생성 (emulator 데이터)">번들</button>
+    <button class="build-btn" id="deployBtn" title="emulator → docs 동기화·정합 검사">배포</button>
   </div>
 </div>
 <div class="toolbar">
@@ -968,7 +970,18 @@ function showToast(msg, type) {
   _toastTimer = setTimeout(() => toast.classList.remove('show'), dur);
 }
 
+// 미저장 편집 여부 (메모리에만 있고 디스크 미반영). 빌드/번들/배포는 디스크 json을 읽으므로 가드.
+function hasUnsaved() {
+  return Object.keys(modified).length + Object.keys(tagChanges).length + Object.keys(speakerChanges).length > 0;
+}
+
+// 미저장 상태로 탭 닫기·새로고침 시 브라우저 경고
+window.addEventListener('beforeunload', e => {
+  if (hasUnsaved()) { e.preventDefault(); e.returnValue = ''; }
+});
+
 document.getElementById('buildBtn').addEventListener('click', async () => {
+  if (hasUnsaved()) { showToast('미저장 변경이 있습니다 — 저장 후 빌드하세요', 'err'); return; }
   const btn = document.getElementById('buildBtn');
   btn.disabled = true;
   btn.textContent = '빌드 중...';
@@ -1016,16 +1029,21 @@ document.getElementById('filterHalfwidth').addEventListener('change', render);
 document.getElementById('filterShowIgnore').addEventListener('change', render);
 document.getElementById('filterExact').addEventListener('change', render);
 
+let searchTimer = null;
 document.getElementById('searchBox').addEventListener('input', e => {
   const prev = lastSearch;
   lastSearch = e.target.value;
-  render();
-  // 검색 해제 시 단일 선택 항목으로 스크롤
-  if (prev && !lastSearch && selection.size === 1) {
-    const key = [...selection][0];
-    const tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
-    if (tr) tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  }
+  // 디바운스 — 대용량 타이틀(포물장 ~1.4만 행)에서 키 입력마다 전체 렌더 방지
+  clearTimeout(searchTimer);
+  searchTimer = setTimeout(() => {
+    render();
+    // 검색 해제 시 단일 선택 항목으로 스크롤
+    if (prev && !lastSearch && selection.size === 1) {
+      const key = [...selection][0];
+      const tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
+      if (tr) tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+    }
+  }, 130);
 });
 
 // ── 초과 항목 이동 ──
@@ -1117,9 +1135,10 @@ document.getElementById('tbody').addEventListener('click', e => {
 });
 
 document.getElementById('emulatorBtn').addEventListener('click', async () => {
+  if (hasUnsaved()) { showToast('미저장 변경이 있습니다 — 저장 후 진행하세요', 'err'); return; }
   const btn = document.getElementById('emulatorBtn');
   btn.disabled = true;
-  btn.textContent = '업데이트 중...';
+  btn.textContent = '생성 중...';
   btn.style.background = '#555';
 
   try {
@@ -1131,7 +1150,27 @@ document.getElementById('emulatorBtn').addEventListener('click', async () => {
   }
 
   btn.disabled = false;
-  btn.textContent = '번들 생성';
+  btn.textContent = '번들';
+  btn.style.background = '';
+});
+
+document.getElementById('deployBtn').addEventListener('click', async () => {
+  if (hasUnsaved()) { showToast('미저장 변경이 있습니다 — 저장 후 진행하세요', 'err'); return; }
+  const btn = document.getElementById('deployBtn');
+  btn.disabled = true;
+  btn.textContent = '배포 중...';
+  btn.style.background = '#555';
+
+  try {
+    const res = await fetch('/api/deploy-docs', { method: 'POST' });
+    const result = await res.json();
+    showToast(result.message, result.ok ? 'ok' : 'err');
+  } catch (e) {
+    showToast('오류: ' + e.message, 'err');
+  }
+
+  btn.disabled = false;
+  btn.textContent = '배포';
   btn.style.background = '';
 });
 
@@ -1144,11 +1183,13 @@ load().then(() => {
     btn.style.cursor = 'default';
   }
   if (!__HAS_EMULATOR__) {
-    const btn = document.getElementById('emulatorBtn');
-    btn.disabled = true;
-    btn.title = '에뮬레이터 없음';
-    btn.style.opacity = '0.35';
-    btn.style.cursor = 'default';
+    for (const id of ['emulatorBtn', 'deployBtn']) {
+      const btn = document.getElementById(id);
+      btn.disabled = true;
+      btn.title = '에뮬레이터 없음';
+      btn.style.opacity = '0.35';
+      btn.style.cursor = 'default';
+    }
   }
 });
 </script>
@@ -1199,6 +1240,12 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.wfile.write(json.dumps(result).encode())
         elif self.path == '/api/emulator-update':
             self.handle_emulator_update()
+        elif self.path == '/api/deploy-docs':
+            result = self.run_deploy_docs()
+            self.send_response(200)
+            self.send_header('Content-Type', 'application/json')
+            self.end_headers()
+            self.wfile.write(json.dumps(result).encode())
         else:
             self.send_error(404)
 
@@ -1594,6 +1641,26 @@ class Handler(http.server.BaseHTTPRequestHandler):
                 return {'ok': not warn, 'message': msg}
             last = output.splitlines()[-1] if output else '빌드 실패'
             return {'ok': False, 'message': f'빌드 실패: {last}'}
+        except Exception as e:
+            return {'ok': False, 'message': str(e)}
+
+    def run_deploy_docs(self):
+        """tools/deploy-docs.sh 실행 (emulator→docs 동기화 + 정합 검사). 커밋·버전 미변경."""
+        script = os.path.join(PROJECT_ROOT, 'tools', 'deploy-docs.sh')
+        try:
+            proc = subprocess.run(
+                ['bash', script],
+                capture_output=True, text=True, timeout=60,
+                cwd=PROJECT_ROOT,
+            )
+            out = (proc.stdout + proc.stderr).strip()
+            if proc.returncode == 0:
+                return {'ok': True, 'message': 'docs 동기화·정합 검사 통과'}
+            # 실패 — 경고·오류 줄만 추려 표시 (스크립트는 비-tty라 색코드 없음)
+            bad = [l.strip() for l in out.splitlines()
+                   if any(s in l for s in ('⚠', '✗', '실패', '의심'))]
+            msg = ' / '.join(bad) if bad else (out.splitlines()[-1] if out else 'docs 배포 실패')
+            return {'ok': False, 'message': 'docs 배포: ' + msg}
         except Exception as e:
             return {'ok': False, 'message': str(e)}
 
