@@ -48,6 +48,24 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 프로젝트 루트(`gensei-pc98/`)에서 실행.
 
+### 0. 원본 디스크 이미지 준비 (처음부터 직접 해보려면)
+
+이 저장소에는 원본 게임 자산이 포함되어 있지 않다(저작권). 아래 파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제로 하므로, 각자 정당하게 보유한 **원본(패치 전) 일본어 디스크 이미지**에서 먼저 파일을 뽑아야 한다.
+
+`emulator/rom/`·`docs/rom/`의 `*_kr.fdi`·`*_kr.hdi`는 이미 한글 패치가 적용된 배포용 결과물이라 이 단계의 원본이 될 수 없다.
+
+```bash
+# 디스크 이미지(FDI/HDI/D88) 안의 파일 목록 확인
+python3 tools/pc98disk.py ls <원본이미지.hdi>
+
+# 필요한 파일을 하나씩 추출 (일괄 추출 명령 없음 — ls 결과를 보고 반복)
+python3 tools/pc98disk.py get <원본이미지.hdi> DISK_B.DAT original/torimono/DISK_B.DAT
+python3 tools/pc98disk.py get <원본이미지.hdi> DISK_C.DAT original/torimono/DISK_C.DAT
+# ...
+```
+
+타이틀별로 필요한 정확한 파일 목록·디스크 매수·이미지 포맷(FDI/D88/HDI)은 각 기술 노트의 "파일 구성" 절 참조 — [`tools/HUKYOU.md`](tools/HUKYOU.md) · [`tools/KAITOU.md`](tools/KAITOU.md) · [`tools/KITAN.md`](tools/KITAN.md) · [`tools/TORIMONO.md`](tools/TORIMONO.md).
+
 ```bash
 # 1. 텍스트 추출 
 python3 tools/hukyou_parser.py original/hukyou        # 풍광전
