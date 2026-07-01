@@ -7,8 +7,10 @@ __pycache__/
 # 빌드 출력
 build/
 
+# 원본 게임 자산 (저작권)
+original/
+
 # 참고용 자료
-original/kitan_kr/
 translation/kaitou/review/
 
 # AI 툴

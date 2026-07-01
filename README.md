@@ -18,7 +18,7 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 + **`tools/`** — 한글화 도구 모음.  
 `compile_lz.py` · `compile_script.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
-+ **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분.
++ **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분 (저작권상 gitignore — 저장소에는 없음, 로컬에 직접 준비 필요).
 + **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
 + **`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
 타이틀별 HTML 페이지 + JS/데이터 번들로 구성.  
@@ -101,16 +101,16 @@ python3 -m http.server 9801 --directory emulator
 
 ## 소프트웨어 고지 / Software Notice
 
-본 저장소는 환세 시리즈의 한국어 번역판을 브라우저 환경에서 실행하기 위한 도구와 디스크 이미지를 포함합니다.
+본 저장소는 환세 시리즈의 한국어 번역판을 브라우저 환경에서 실행하기 위한 도구를 포함합니다. 원본 디스크 이미지(`original/`)는 저작권상 저장소에 포함하지 않으며, 로컬에서만 사용합니다. 배포용 웹 에뮬레이터(`emulator/`·`docs/`)에는 한글화가 반영된 게임 데이터 번들이 포함됩니다.
 
-원본 게임은 Compile이 개발하였으며, 디스크 이미지에는 게임 실행에 필요한 추가 시스템 소프트웨어가 포함될 수 있습니다. 게임 자산(디스크 이미지, 그래픽, 음악 등)의 모든 권리는 원저작권자에게 있습니다.
+원본 게임은 Compile이 개발하였으며, 게임 자산(그래픽, 음악 등)의 모든 권리는 원저작권자에게 있습니다.
 
 본 프로젝트는 비상업적 보존 및 한글화 목적으로만 운영됩니다.
 저작권자로서 자료 삭제를 원하실 경우 Issue를 열어주시면 즉시 대응하겠습니다.
 
-This repository contains tools and disk images for running Korean-localized versions of the Gensei (幻世) series for the PC-98 in a browser.
+This repository contains tools for running Korean-localized versions of the Gensei (幻世) series for the PC-98 in a browser. Original disk images (`original/`) are excluded from the repository for copyright reasons and are used locally only. The deployed web emulator (`emulator/`/`docs/`) includes the localized game data bundles.
 
-The games were originally developed by Compile. The disk images may include system software required to run them. All rights to the games and their assets (disk images, graphics, music, etc.) belong to their respective copyright holders.
+The games were originally developed by Compile. All rights to the games and their assets (graphics, music, etc.) belong to their respective copyright holders.
 
 This project exists solely for non-commercial preservation and Korean localization.
 If you are a rights holder and would like this material removed, please open an issue and it will be promptly addressed.
