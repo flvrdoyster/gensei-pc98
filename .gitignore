@@ -7,8 +7,10 @@ __pycache__/
 # 빌드 출력
 build/
 
-# 원본 게임 자산 (저작권)
+# 원본 게임 자산 (저작권) — .data 번들은 빌드 시 통째로 포함되므로 유지, 원본 디스크 이미지만 제외
 original/
+emulator/rom/
+docs/rom/
 
 # 참고용 자료
 translation/kaitou/review/
