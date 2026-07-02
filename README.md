@@ -46,11 +46,11 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 ## 사용법
 
-프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지**가 필요하다.
+프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지** 필요.
 
 ### 0. 원본 디스크 이미지에서 파일 추출 (공통, 최초 1회)
 
-파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제로 한다.
+파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제.
 
 ```bash
 # 디스크 이미지(FDI/HDI) 안의 파일 목록 확인
@@ -66,9 +66,9 @@ python3 tools/pc98disk.py get <원본이미지.hdi> DISK_C.DAT original/torimono
 
 ---
 
-### A. 이미 끝난 번역 결과를 내 롬에 적용만 하기
+### A. 저장소의 번역 결과를 이미지에 적용하기
 
-이 저장소의 `translation/<title>/translation.json`은 이미 번역이 완료된 상태(위 표 참조)다. 직접 번역할 필요 없이 바로 재삽입만 하면 된다.
+`translation/<title>/translation.json`은 이미 번역 완료 상태(위 표 참조). 직접 번역 없이 재삽입만 실행.
 
 ```bash
 # 1. 재삽입 (0단계에서 채운 original/<title>/ 대상으로 바로 실행)
@@ -86,7 +86,7 @@ python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_C.DAT
 # ... build/<title>/ 안의 파일마다 반복
 ```
 
-`<패치이미지.hdi>`를 실기나 다른 PC-98 에뮬레이터에 그대로 사용하면 된다. 아래 B의 5번(로컬 에뮬레이터)은 `emulator/`에 이미 들어있는 번들을 그대로 서빙할 뿐이라, 방금 만든 `build/` 결과물은 반영되지 않는다 — 웹 에뮬레이터에 반영하려면 별도의 번들 재생성(Emscripten `file_packager.py`) 작업이 필요하며 이 문서에 정리되어 있지 않다.
+`<패치이미지.hdi>`를 실기나 다른 PC-98 에뮬레이터에서 사용.
 
 ---
 
