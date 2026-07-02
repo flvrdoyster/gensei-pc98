@@ -315,8 +315,8 @@ def _patch_gsovl(game_dir, out_dir, charmap, translation):
 
     patched = 0
     for entry in translation.get('gsovl', []):
-        kr = entry.get('kr', '').strip()
-        if not kr:
+        kr = entry.get('kr', '')
+        if not kr.strip():
             continue
         offset = entry['offset']
         jp_len = entry['jp_len']

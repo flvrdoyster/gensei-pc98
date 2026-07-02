@@ -145,8 +145,8 @@ def collect_chunk_replacements(translation, charmap):
         for line in e.get('lines', []):
             if line.get('tag') == 'ignore':
                 continue
-            kr = line.get('kr', '').strip()
-            if not kr:
+            kr = line.get('kr', '')
+            if not kr.strip():
                 continue
             offset = line['offset']
             jp = line['jp']
