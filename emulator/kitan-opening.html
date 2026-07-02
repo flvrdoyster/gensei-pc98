@@ -52,7 +52,7 @@
     <div id="toast"></div>
   </div>
 
-  <p class="hint">화면을 클릭하면 마우스/키보드 캡처, ESC를 눌러 해제</p>
+  <p class="hint">화면을 클릭한 뒤 키보드로 조작 · 이동: 방향키, 결정: Enter/Space, 취소: ESC/Shift</p>
 
   <div id="virtual-gamepad">
     <div class="gamepad-dpad">
@@ -77,6 +77,7 @@
 
     const MSG = {
       JS_LOAD_FAIL: '에뮬레이터를 불러오지 못했습니다.',
+      FULLSCREEN_ESC: 'ESC를 길게 눌러 전체화면을 해제합니다.',
     };
 
     const canvas  = document.getElementById('canvas');
@@ -105,9 +106,18 @@
       btnDisk.classList.toggle('active');
     });
 
-    document.getElementById('btn-fullscreen').addEventListener('click', () => {
+    document.getElementById('btn-fullscreen').addEventListener('click', async () => {
       const wrap = document.getElementById('canvas-wrap');
-      (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+      await (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
+      // 전체화면 중 짧은 ESC는 에뮬레이터로 전달하고, 길게 눌러야 해제(Keyboard Lock, Chrome/Edge).
+      if (navigator.keyboard && navigator.keyboard.lock) {
+        try { await navigator.keyboard.lock(['Escape']); showToast(MSG.FULLSCREEN_ESC); } catch (e) {}
+      }
+    });
+    document.addEventListener('fullscreenchange', () => {
+      if (!document.fullscreenElement && navigator.keyboard && navigator.keyboard.unlock) {
+        navigator.keyboard.unlock();
+      }
     });
 
     document.getElementById('btn-start').addEventListener('click', function() {
