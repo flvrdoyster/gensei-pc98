@@ -1,6 +1,8 @@
 """환세포물장 인서터.
 
 translation/torimono/translation.json 의 KR 을 DISK_B.DAT 에 재삽입한다.
+DISK_C.DAT(그래픽 베이크드 텍스트)는 DISK_C_EDITS 에 등록된 청크만 별도로 재삽입
+(build_disk_c, tools/torimono_disk_c.py). 둘 다 patch_hdi() 에서 같은 HDI에 합쳐진다.
 
 구조
 ----
@@ -33,6 +35,13 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compile_lz import decompress, compress
 
 TABLE_SIZE = 0x400
+
+# DISK_C.DAT 스프라이트/타일 청크에 이미지로 베이크된 텍스트 편집분.
+# {청크 인덱스: 편집된 PNG 경로(PROJECT_ROOT 기준)}. 새 청크 편집 시 여기 추가.
+# 포맷·인코드 로직 상세는 tools/torimono_disk_c.py, tools/TORIMONO.md 참조.
+DISK_C_EDITS = {
+    31: 'translation/torimono/graphics/c31.png',
+}
 
 
 def read_table(data):
@@ -232,18 +241,42 @@ def run(game_dir):
     return out_path, skipped
 
 
+def build_disk_c(game_dir):
+    """DISK_C_EDITS 에 등록된 편집 PNG를 재삽입 → build/<title>/DISK_C.DAT.
+
+    등록된 편집이 없으면 아무 것도 하지 않고 None 반환(기존 배포 DISK_C.DAT 그대로 사용)."""
+    if not DISK_C_EDITS:
+        return None
+    import torimono_disk_c as tdc
+    path = os.path.join(game_dir, 'DISK_C.DAT')
+    data = open(path, 'rb').read()
+    edits = {idx: os.path.join(PROJECT_ROOT, rel) for idx, rel in DISK_C_EDITS.items()}
+    rebuilt = tdc.rebuild_disk_c(data, edits)
+
+    title = os.path.basename(game_dir.rstrip('/\\'))
+    out_dir = os.path.join(PROJECT_ROOT, 'build', title)
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, 'DISK_C.DAT')
+    with open(out_path, 'wb') as f:
+        f.write(rebuilt)
+    print(f'DISK_C.DAT: {len(data)} → {len(rebuilt)} bytes ({len(DISK_C_EDITS)}청크 편집)  →  {out_path}')
+    return out_path
+
+
 def patch_hdi(game_dir='original/torimono'):
-    """build/<title>/DISK_B.DAT 를 배포 HDI(emulator/rom/torimono_kr.hdi)에 교체 →
+    """build/<title>/DISK_B.DAT(+DISK_C.DAT)를 배포 HDI(emulator/rom/torimono_kr.hdi)에 교체 →
     build/<title>/torimono_kr.hdi 생성. 다른 타이틀의 patch_fdi 와 동일하게 run()과 분리.
 
     포물장은 FDI가 아니라 부팅 가능한 PC-98 HDD 이미지(HDI). 베이스는 배포 HDI 자체.
     DISK_B는 항상 원본 소스에서 새로 패치하므로 반복 패치해도 결과는 동일.
+    DISK_C는 build_disk_c() 가 만들어 뒀으면(DISK_C_EDITS 존재) 함께 삽입, 없으면 base 그대로.
     pc98disk 가 PC-98 파티션 테이블을 해석해 파티션 내 FAT 에 파일을 교체한다.
     (쾌도전과 달리 CONFIG.SYS 가 없어 EMM386 제거 단계도 없음)"""
     import shutil, subprocess
     title = os.path.basename(game_dir.rstrip('/\\'))
     out_dir = os.path.join(PROJECT_ROOT, 'build', title)
     disk_b = os.path.join(out_dir, 'DISK_B.DAT')
+    disk_c = os.path.join(out_dir, 'DISK_C.DAT')
     base_hdi = os.path.join(PROJECT_ROOT, 'emulator', 'rom', 'torimono_kr.hdi')
     if not os.path.exists(disk_b):
         raise FileNotFoundError(f'{disk_b} 없음 — run() 먼저 실행')
@@ -253,6 +286,8 @@ def patch_hdi(game_dir='original/torimono'):
     shutil.copy(base_hdi, out_hdi)
     pc98 = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pc98disk.py')
     subprocess.run([sys.executable, pc98, 'add', out_hdi, disk_b, 'DISK_B.DAT'], check=True)
+    if os.path.exists(disk_c):
+        subprocess.run([sys.executable, pc98, 'add', out_hdi, disk_c, 'DISK_C.DAT'], check=True)
     print(f'HDI: {out_hdi}')
     return out_hdi
 
@@ -293,5 +328,6 @@ if __name__ == '__main__':
         _selftest(game_dir)
     else:
         run(game_dir)
+        build_disk_c(game_dir)
         if '--no-fdi' not in sys.argv:
             patch_hdi(game_dir)

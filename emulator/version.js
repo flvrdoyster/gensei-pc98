@@ -1,7 +1,7 @@
 // 사이트 통합 버전 (단일 소스). 릴리스 시 이 값만 변경.
 // 외부 footer.js가 그리는 푸터 마지막 줄(.footer-credits)에 이어 붙인다.
 (function () {
-  var VERSION = 'v0.9.4';
+  var VERSION = 'v0.9.5';
 
   function inject() {
     if (document.querySelector('.site-version')) return true;
