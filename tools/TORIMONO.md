@@ -1,8 +1,8 @@
 # 환세포물장 역공학 노트
 
 **대상**: 환세포물장 / 幻世捕物帳 (Compile, 1996, PC-98)  
-**상태**: 검수 중 (추출·인서터·웹 에뮬레이터 구현 완료)  
-**도구**: `torimono_parser.py` (추출) · `torimono_inserter.py` (인서트)
+**상태**: 완료  
+**도구**: `torimono_parser.py` (추출) · `torimono_inserter.py` (재삽입)
 
 ---
 
@@ -31,13 +31,18 @@ original/torimono/
 
 ---
 
-## 파서
+## 작업 흐름
 
-`torimono_parser.py` 는 `kaitou_parser.py` 복제본 (게임별 파서 독립 컨벤션).
+### 1. 압축 해제
+
+쾌도전과 동일 — `compile_lz.decompress()` 재사용. 알고리즘 상세는 `KAITOU.md`/`HUKYOU.md` 참조.
+
+### 2. 제어코드
+
 오피코드 워킹은 `compile_script.walk` 공유 — 대부분 BASE_SPEC 으로 동작하나,
 **엔딩 평가 랭크 제목만 전용 `TORI_SPEC` 으로 보강**한다(아래).
 
-### 엔딩 평가 랭크 제목 — `63 fb 『…』 63 ff`
+**엔딩 평가 랭크 제목 — `63 fb 『…』 63 ff`**
 
 엔딩 평가(청크 2)의 랭크 제목 13종(`『名奉行』`·`『大泥棒』`·`『天下御免の風来坊』` 등)은
 `63 fb 『…』 63 ff` 로 감싸여 있다. BASE_SPEC 워커는 0x63 을 미지 바이트로 보고
@@ -46,7 +51,16 @@ in_block 중 누적 텍스트를 버려(`cur_text=''`, `compile_script.walk` 6) 
 를 **직후가 SJIS 일 때만 발동하는 마커**로 처리해 제목·접두 문구를 캡처. 이 2바이트
 시퀀스는 평가 영역 고유라 다른 청크엔 부작용 없음.
 
-### NOISE_CHUNKS 식별 절차 (재현 가능)
+### 3. 반각
+
+사용하지 않음 — 포물장 텍스트는 전 구간 전각 SJIS이며 반각 인코딩이 필요한 좁은 슬롯이 없다.
+
+### 4. 파싱
+
+`torimono_parser.py` 는 `kaitou_parser.py` 복제본 (게임별 파서 독립 컨벤션).
+오피코드 워커(`compile_script.walk`) 공유는 위 "제어코드" 참조.
+
+**NOISE_CHUNKS 식별 절차 (재현 가능)**
 
 쾌도전의 NOISE 목록은 **타이틀마다 청크 배치가 달라 재사용 불가**
 (예: 쾌도전 노이즈 42·44 가 포물장에선 SJIS 밀도 35~46% 의 텍스트 청크).
@@ -61,21 +75,27 @@ in_block 중 누적 텍스트를 버려(`cur_text=''`, `compile_script.walk` 6) 
      짧은 텍스트 + 스탯 바이너리라 밀도가 원래 낮음) — 밀도 기준만 쓰면 학살됨
 4. 확정 목록은 `torimono_parser.py` 의 `NOISE_CHUNKS` (단일 소스).
 
-## 배포 형태 — HDI (시리즈 유일)
+### 5. 재삽입
 
 포물장은 DISK_C(그래픽)가 2HD 플로피 용량을 넘어 **부팅 가능한 PC-98 HDD 이미지(HDI)** 로
-구동한다 (다른 타이틀은 FDI). 베이스는 `emulator/rom/torimono_kr.hdi` —
+구동한다 (다른 타이틀은 FDI, 시리즈 유일). 베이스는 `emulator/rom/torimono_kr.hdi` —
 IPL1 부트코드 + `MS-DOS 6.20` 활성 파티션 + 게임 파일 전체.
 
-- **인서트**: `torimono_inserter.py` 가 DISK_B 청크 패치 후 `patch_hdi` 로 베이스 HDI에 교체.
-  `pc98disk.py` 가 PC-98 파티션 테이블을 해석해 파티션 내 FAT 파일을 교체한다 (`NOTES.md` 참조).
-  쾌도전과 달리 CONFIG.SYS 가 없어 EMM386 제거 단계도 없음.
-- **웹 에뮬**: np2kai 웹빌드의 커맨드라인 확장자 분기에 `.hdi` 가 없어 `arguments` 로는
-  못 물린다. `torimono.html` 이 preRun 에서 번들 내 `np2kai.cfg` 에 `HDD1FILE` 을 주입해
-  SASI HDD 로 마운트 (페이지 번들 FS 안에서만 — 공유 cfg 원본 무영향). 부팅·게임 기동 검증 완료.
-- 세이브: 다른 타이틀과 동일한 IDB 방식, 키는 `torimono_kr.hdi` (HDI 통째 저장).
+`torimono_inserter.py` 가 DISK_B 청크 패치 후 `patch_hdi` 로 베이스 HDI에 교체.
+`pc98disk.py` 가 PC-98 파티션 테이블을 해석해 파티션 내 FAT 파일을 교체한다 (`NOTES.md` 참조).
+쾌도전과 달리 CONFIG.SYS 가 없어 EMM386 제거 단계도 없음.
 
-### 잔여 리스크 (쾌도전에서 실증된 패턴 — 번역·검수 중 발견 대상)
+세이브: 다른 타이틀과 동일한 IDB 방식, 키는 `torimono_kr.hdi` (HDI 통째 저장).
+
+### 6. 빌드 (웹 에뮬레이터)
+
+np2kai 웹빌드의 커맨드라인 확장자 분기에 `.hdi` 가 없어 `arguments` 로는
+못 물린다. `torimono.html` 이 preRun 에서 번들 내 `np2kai.cfg` 에 `HDD1FILE` 을 주입해
+SASI HDD 로 마운트 (페이지 번들 FS 안에서만 — 공유 cfg 원본 무영향). 부팅·게임 기동 검증 완료.
+
+---
+
+## 참고 (쾌도전에서 실증된 패턴 — 번역·검수 중 발견 대상)
 
 - **x86 임베드 라벨**: 코드 청크의 status 라벨은 walk 가 선행 글자를 놓치거나
   offset 이 어긋날 수 있음 (쾌도전 `運` 누락·`武器` 어긋남 사례, `KAITOU.md` 참조)
@@ -93,7 +113,7 @@ DISK_C.DAT은 SJIS 텍스트는 담지 않지만, 그래픽에 이미지로 베�
 | 크기(디컴프 후) | 청크 | 용도 |
 |---|---|---|
 | 32,000 B | 0, 51~70 | 640×400 1bpp 풀스크린. chunk 0=대화창 UI 프레임(단독). 51~70=타이틀 로고 5프레임 애니메이션(각 프레임=연속 4청크=4 bitplane) |
-| 168 B | 1 | "cs v1.4" 헤더 + 표준 원색 팔레트(로고 등에는 안 맞음, 용도 불명) |
+| 168 B | 1 | "cs v1.4" 헤더 + 4바이트×16 팔레트꼴 데이터 — 실제 팔레트 아님 확인됨(로고·스프라이트 어디에도 안 맞음, 용도 불명) |
 | 20,480 B | 3 | 미해결 |
 | 0 B | 4 | 빈 청크 |
 | 40,960 B | 2, 5~50 | **스프라이트/타일 시트** (아래 상세) |

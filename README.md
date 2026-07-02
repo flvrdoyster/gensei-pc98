@@ -18,12 +18,12 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 + **`tools/`** — 한글화 도구 모음.  
 `compile_lz.py` · `compile_script.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
-+ **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분 (저작권상 gitignore — 저장소에는 없음, 로컬에 직접 준비 필요).
++ **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분 (저장소에는 없음, 로컬에 직접 준비 필요).
 + **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
 + **`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
 타이틀별 HTML 페이지 + JS/데이터 번들로 구성.  
 `docs/`는 GitHub Pages 서빙용으로 `emulator/`를 그대로 복사한 것으로, `https://pc98.atah.io`에 배포됨.
-+ **`build/`** — 인서터 출력 디렉토리 (gitignore). 패치된 파일이 여기 생성됨.
++ **`build/`** — 인서터 출력 디렉토리. 패치된 파일이 여기에 생성.
 
 ### 작업 흐름
 
@@ -36,7 +36,7 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
          ↓
       번들 생성 → emulator/ 폴더의 번들을 갱신
          ↓
-      로컬 에뮬레이터로 확인
+      웹 에뮬레이터 또는 로컬 에뮬레이터로 확인
 ```
 
 에디터는 번역 입력부터 재삽입·번들 생성까지 GUI로 처리할 수 있는 통합 도구.  
@@ -46,16 +46,14 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 ## 사용법
 
-프로젝트 루트(`gensei-pc98/`)에서 실행.
+프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지**가 필요하다.
 
-### 0. 원본 디스크 이미지 준비 (처음부터 직접 해보려면)
+### 0. 원본 디스크 이미지에서 파일 추출 (공통, 최초 1회)
 
-이 저장소에는 원본 게임 자산이 포함되어 있지 않다(저작권). 아래 파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제로 하므로, 각자 정당하게 보유한 **원본(패치 전) 일본어 디스크 이미지**에서 먼저 파일을 뽑아야 한다.
-
-`emulator/rom/`·`docs/rom/`의 `*_kr.fdi`·`*_kr.hdi`는 이미 한글 패치가 적용된 배포용 결과물이라 이 단계의 원본이 될 수 없다.
+파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제로 한다.
 
 ```bash
-# 디스크 이미지(FDI/HDI/D88) 안의 파일 목록 확인
+# 디스크 이미지(FDI/HDI) 안의 파일 목록 확인
 python3 tools/pc98disk.py ls <원본이미지.hdi>
 
 # 필요한 파일을 하나씩 추출 (일괄 추출 명령 없음 — ls 결과를 보고 반복)
@@ -64,7 +62,35 @@ python3 tools/pc98disk.py get <원본이미지.hdi> DISK_C.DAT original/torimono
 # ...
 ```
 
-타이틀별로 필요한 정확한 파일 목록·디스크 매수·이미지 포맷(FDI/D88/HDI)은 각 기술 노트의 "파일 구성" 절 참조 — [`tools/HUKYOU.md`](tools/HUKYOU.md) · [`tools/KAITOU.md`](tools/KAITOU.md) · [`tools/KITAN.md`](tools/KITAN.md) · [`tools/TORIMONO.md`](tools/TORIMONO.md).
+타이틀별로 필요한 정확한 파일 목록·디스크 매수·이미지 포맷(FDI/HDI)은 각 기술 노트의 "파일 구성" 절 참조 — [`tools/HUKYOU.md`](tools/HUKYOU.md) · [`tools/KAITOU.md`](tools/KAITOU.md) · [`tools/KITAN.md`](tools/KITAN.md) · [`tools/TORIMONO.md`](tools/TORIMONO.md).
+
+---
+
+### A. 이미 끝난 번역 결과를 내 롬에 적용만 하기
+
+이 저장소의 `translation/<title>/translation.json`은 이미 번역이 완료된 상태(위 표 참조)다. 직접 번역할 필요 없이 바로 재삽입만 하면 된다.
+
+```bash
+# 1. 재삽입 (0단계에서 채운 original/<title>/ 대상으로 바로 실행)
+python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
+python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
+python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
+python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
+python3 tools/torimono_inserter.py original/torimono      # 포물장
+# 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
+
+# 2. 원본 디스크 이미지 복사본에 패치 파일 되돌려 쓰기 (원본은 보존 권장)
+cp <원본이미지.hdi> <패치이미지.hdi>
+python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_B.DAT
+python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_C.DAT
+# ... build/<title>/ 안의 파일마다 반복
+```
+
+`<패치이미지.hdi>`를 실기나 다른 PC-98 에뮬레이터에 그대로 사용하면 된다. 아래 B의 5번(로컬 에뮬레이터)은 `emulator/`에 이미 들어있는 번들을 그대로 서빙할 뿐이라, 방금 만든 `build/` 결과물은 반영되지 않는다 — 웹 에뮬레이터에 반영하려면 별도의 번들 재생성(Emscripten `file_packager.py`) 작업이 필요하며 이 문서에 정리되어 있지 않다.
+
+---
+
+### B. 처음부터 번역 작업 직접 해보기
 
 ```bash
 # 1. 텍스트 추출 
@@ -72,7 +98,7 @@ python3 tools/hukyou_parser.py original/hukyou        # 풍광전
 python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
 python3 tools/kitan_parser.py  original/kitan/data    # 희담
 python3 tools/torimono_parser.py original/torimono    # 포물장
-# 추출 결과는 translation/<title>/translation.json 으로 생성
+# 추출 결과는 translation/<title>/translation.json 으로 생성 (기존 파일을 덮어씀 — 주의)
 
 # 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou                        # 풍광전
@@ -80,13 +106,12 @@ python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan  original/kitan/data    # 희담
 python3 tools/editor.py torimono                      # 포물장
 
-# 3. 재삽입 
+# 3. 재삽입 (A의 1번과 동일)
 python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
 python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
 python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
 python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 python3 tools/torimono_inserter.py original/torimono      # 포물장
-# 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
 
 # 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)
 python3 tools/lint.py kaitou        # 요약 (-v 상세)

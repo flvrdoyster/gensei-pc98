@@ -102,7 +102,7 @@ GF2.COM 구조:
 각 항목 공통 필드: `file`, `offset`, `jp`, `jp_len`, `kr`, `tag`.  
 반각 포함 항목에는 `halfwidth: true`. 태그: `dialog` / `monolog` / `cutscene` / `char` / `battle` / `item` / `menu` / `location` / `system`.
 
-### 5. 인서트
+### 5. 재삽입
 
 `hukyou_inserter.py` 실행 → `build/hukyou/` 출력.
 
