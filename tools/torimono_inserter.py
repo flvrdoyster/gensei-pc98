@@ -41,7 +41,30 @@ TABLE_SIZE = 0x400
 # 포맷·인코드 로직 상세는 tools/torimono_disk_c.py, tools/TORIMONO.md 참조.
 DISK_C_EDITS = {
     31: 'translation/torimono/graphics/c31.png',
+    47: 'translation/torimono/graphics/c47.png',  # 스탭롤 글자 시트
 }
+
+# 스탭롤(엔딩 크레딧) 타일맵 — DISK_B chunk 2, 디컴프 오프셋 0x1d43부터 폭 19 그리드.
+# 각 셀 값 = chunk 47의 타일 인덱스. 화면 재구성·공유 타일 분석은 tools/TORIMONO.md 참조.
+# (x, y, 기대값, 새값) — 기대값 불일치 시 AssertionError로 즉시 중단(포맷 변경 감지).
+STAFFROLL_MAP_S = 0x1d43
+STAFFROLL_MAP_W = 19
+STAFFROLL_MAP_EDITS = [
+    (16, 27, 63, 167),   # お魚のみなさん: の(63)→기(신규 167, c47.png에 페인팅됨)
+    (15, 29, 63, 41),    # キツネの民のみなさん: 어순 보정
+    (15, 30, 41, 63),
+    (0, 89, 36, 168),    # コンパイル: ン(36, 신쥬로와 충돌) → 파(신규 168)
+    (0, 91, 64, 63),
+    (0, 92, 84, 63),
+    (12, 78, 62, 169),   # うゑみぞ: み(62, 여러분과 충돌) → み 사본(신규 169)
+    # お魚のみなさん: み·な·さ·ん(공유 62·72·79·86)을 전용 타일로 분리하고
+    # 순서를 [공백,여,러,분]으로 재배치해 "물고기" 뒤에 공백 확보
+    # (다른 열의 공유 여러분 표시엔 영향 없음)
+    (16, 28, 62, 42),    # み(공유 '여') → 42(기존 자유 공백 슬롯)
+    (16, 29, 72, 50),    # な(공유 '러') → 50(=62 사본 '여')
+    (16, 30, 79, 52),    # さ(공유 '분') → 52(=72 사본 '러')
+    (16, 31, 86, 65),    # ん(공유 공백) → 65(=79 사본 '분')
+]
 
 
 def read_table(data):
@@ -222,6 +245,22 @@ def run(game_dir):
         dec = decompress(data, seek)
         work.append((seek, patch_chunk(dec, by_chunk[idx], charmap)))
         n_lines += len(by_chunk[idx])
+
+    # 스탭롤 타일맵 패치 (chunk 2 — KR 텍스트 패치와 무관하게 항상 적용, chunk 47 편집과 짝)
+    if STAFFROLL_MAP_EDITS:
+        seek2 = chunks[2][0]
+        work_idx = next((i for i, (sk, _) in enumerate(work) if sk == seek2), None)
+        dec2 = bytearray(work[work_idx][1] if work_idx is not None else decompress(data, seek2))
+        for x, y, old, new in STAFFROLL_MAP_EDITS:
+            off = STAFFROLL_MAP_S + y * STAFFROLL_MAP_W + x
+            assert dec2[off] == old, (
+                f'스탭롤 맵 셀 (x{x},y{y}) 기대 {old}, 실제 {dec2[off]} — chunk 2 포맷 변경 의심'
+            )
+            dec2[off] = new
+        if work_idx is not None:
+            work[work_idx] = (seek2, bytes(dec2))
+        else:
+            work.append((seek2, bytes(dec2)))
 
     # 재압축 병렬화 (청크는 서로 독립)
     if work:
