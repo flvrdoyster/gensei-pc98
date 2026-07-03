@@ -180,7 +180,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 ### 전체화면 ESC (`btn-fullscreen`)
 
 - `canvas-wrap`을 `requestFullscreen`. 진입 직후 `navigator.keyboard.lock(['Escape'])`로 ESC를 잠근다.
-- 잠금 성공 시(**Chrome/Edge + 보안 컨텍스트=localhost/HTTPS 한정**): 짧은 ESC는 **에뮬레이터로 전달**(게임 키 유지), 전체화면은 **길게 눌러야** 해제. 진입 시 `MSG.FULLSCREEN_ESC` 토스트 1회.
+- 잠금 성공 시(**Chrome/Edge + 보안 컨텍스트=localhost/HTTPS 한정**): 짧은 ESC는 **에뮬레이터로 전달**(게임 키 유지), 전체화면은 **길게 눌러야** 해제. 전체화면 중 ESC(`keydown`)를 누를 때마다 `MSG.FULLSCREEN_ESC` 토스트로 안내(진입 시 1회 노출은 놓치기 쉬워 매회 노출로 변경).
 - 미지원(Safari·Firefox)·비보안 컨텍스트(LAN IP 등)에선 `lock`이 없거나 거부됨 → `catch`로 넘겨 기존 네이티브 동작(짧은 ESC로 종료) 유지.
 - `fullscreenchange`에서 전체화면이 풀리면 `keyboard.unlock()`.
 - 데스크톱 힌트(`.hint`, 모바일 숨김): `이동: 방향키, 결정: Enter/Space, 취소: ESC/Shift`.

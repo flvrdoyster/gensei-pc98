@@ -111,13 +111,17 @@
       await (wrap.requestFullscreen || wrap.webkitRequestFullscreen).call(wrap);
       // 전체화면 중 짧은 ESC는 에뮬레이터로 전달하고, 길게 눌러야 해제(Keyboard Lock, Chrome/Edge).
       if (navigator.keyboard && navigator.keyboard.lock) {
-        try { await navigator.keyboard.lock(['Escape']); showToast(MSG.FULLSCREEN_ESC); } catch (e) {}
+        try { await navigator.keyboard.lock(['Escape']); } catch (e) {}
       }
     });
     document.addEventListener('fullscreenchange', () => {
       if (!document.fullscreenElement && navigator.keyboard && navigator.keyboard.unlock) {
         navigator.keyboard.unlock();
       }
+    });
+    // 전체화면 중 ESC를 누를 때마다(짧게 눌러 페이지로 전달된 경우) 안내 토스트
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.fullscreenElement) showToast(MSG.FULLSCREEN_ESC);
     });
 
     document.getElementById('btn-start').addEventListener('click', function() {
