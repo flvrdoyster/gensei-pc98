@@ -360,6 +360,16 @@ button {
   image-rendering: pixelated;
 }
 
+/* 전체화면은 캔버스가 뷰포트 크기에 비례해 커지므로(위 width/height 공식과 동일 축)
+   토스트도 em이 아닌 vmin으로 스케일해야 체감 크기가 맞음 */
+#canvas-wrap:fullscreen #toast,
+#canvas-wrap:-webkit-full-screen #toast {
+  font-size: 2.4vmin;
+  padding: 1.2vmin 2.4vmin;
+  border-radius: 0.6vmin;
+  bottom: 2.4vmin;
+}
+
 /* Virtual Gamepad (mobile only) */
 #virtual-gamepad {
   display: none;

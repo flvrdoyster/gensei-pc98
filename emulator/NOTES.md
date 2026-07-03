@@ -184,6 +184,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 - 미지원(Safari·Firefox)·비보안 컨텍스트(LAN IP 등)에선 `lock`이 없거나 거부됨 → `catch`로 넘겨 기존 네이티브 동작(짧은 ESC로 종료) 유지.
 - `fullscreenchange`에서 전체화면이 풀리면 `keyboard.unlock()`.
 - 데스크톱 힌트(`.hint`, 모바일 숨김): `이동: 방향키, 결정: Enter/Space, 취소: ESC/Shift`.
+- 토스트(`#toast`)는 전체화면 중 `#canvas-wrap:fullscreen #toast`로 크기를 키움. 캔버스가 `min(100vw,160vh)` 등 뷰포트 비례로 커지는 것과 같은 축이라 `em`이 아닌 `vmin`으로 스케일(`font-size: 2.4vmin` 등) — `em`은 캔버스 확대량과 무관해 체감이 안 됨. 노출 시간은 전 페이지 공통 `showToast(msg, duration=2000)` 기본값(로드 실패만 5000ms 예외).
 
 ### 버튼 표시 규칙 (CSS 미디어쿼리)
 
