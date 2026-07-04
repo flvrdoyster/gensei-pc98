@@ -81,6 +81,7 @@
 
     const MSG = {
       SAVE_RESTORED: '세이브 데이터를 복원했습니다.',
+      SAVE_SAVED:    '세이브 데이터가 저장되었습니다.',
       DISK_TIMEOUT:  '디스크 마운트에 실패해 원본으로 시작합니다.',
       JS_LOAD_FAIL:  '에뮬레이터를 불러오지 못했습니다.',
       FULLSCREEN_ESC: 'ESC를 길게 눌러 전체화면을 해제합니다.',
@@ -149,6 +150,7 @@
     // 변경된 디스크만 IDB에 저장
     async function saveDisks() {
       if (!db) return;
+      let saved = false;
       for (const disk of DISKS) {
         try {
           const data = Module.FS.readFile(disk);
@@ -158,11 +160,13 @@
             data.buffer.slice(data.byteOffset, data.byteOffset + data.byteLength));
           lastChecksum[disk] = csum;
           log('[save] ' + diskKey(disk) + ' 동기화');
+          saved = true;
           if (!savedOnce) { savedOnce = true; track('save_created'); }
         } catch (e) {
           log('[save] 오류(' + diskKey(disk) + '): ' + e);
         }
       }
+      if (saved) showToast(MSG.SAVE_SAVED);
     }
 
     function startPolling() {
