@@ -89,8 +89,8 @@ python3 tools/pc98disk.py get <원본이미지.hdi> DISK_C.DAT original/torimono
 # 재삽입 (0단계에서 채운 original/<title>/ 대상으로 바로 실행)
 python3 tools/hukyou_inserter.py original/hukyou          # 풍광전 → build/hukyou/hukyou_kr.fdi
 python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전 → build/kaitou/kaitou_kr.fdi
-python3 tools/kitan_inserter.py  original/kitan/unpacked      # 희담 본편 → build/kitan/kitan-{system,data}.fdi
-python3 tools/kitan_demo_inserter.py original/kitan/unpacked  # 희담 오프닝 → build/kitan-demo/kitan-demo.fdi
+python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편 → build/kitan/kitan-{system,data}.fdi
+python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝 → build/kitan-demo/kitan-demo.fdi
 python3 tools/torimono_inserter.py original/torimono      # 포물장 → build/torimono/torimono_kr.hdi
 ```
 
@@ -104,8 +104,8 @@ python3 tools/torimono_inserter.py original/torimono      # 포물장 → build/
 ```bash
 python3 tools/hukyou_inserter.py original/hukyou --no-fdi
 python3 tools/kaitou_inserter.py  original/kaitou --no-fdi
-python3 tools/kitan_inserter.py  original/kitan/unpacked --no-fdi
-python3 tools/kitan_demo_inserter.py original/kitan/unpacked --no-fdi
+python3 tools/kitan_inserter.py  original/kitan/data --no-fdi
+python3 tools/kitan_demo_inserter.py original/kitan/data --no-fdi
 python3 tools/torimono_inserter.py original/torimono --no-fdi
 # build/<title>/ 에 패치된 CMD/DAT 파일만 생성 (디스크 이미지는 안 만듦)
 
@@ -123,21 +123,21 @@ python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_C.DAT
 # 1. 텍스트 추출 
 python3 tools/hukyou_parser.py original/hukyou        # 풍광전
 python3 tools/kaitou_parser.py original/kaitou        # 쾌도전
-python3 tools/kitan_parser.py  original/kitan/unpacked    # 희담
+python3 tools/kitan_parser.py  original/kitan/data    # 희담
 python3 tools/torimono_parser.py original/torimono    # 포물장
 # 추출 결과는 translation/<title>/translation.json 으로 생성 (기존 파일을 덮어씀 — 주의)
 
 # 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
-python3 tools/editor.py kitan  original/kitan/unpacked    # 희담
+python3 tools/editor.py kitan  original/kitan/data    # 희담
 python3 tools/editor.py torimono                      # 포물장
 
 # 3. 재삽입 (A와 동일 — emulator/rom/ 준비 여부에 따라 --no-fdi 여부 결정)
 python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
 python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
-python3 tools/kitan_inserter.py  original/kitan/unpacked      # 희담 본편
-python3 tools/kitan_demo_inserter.py original/kitan/unpacked  # 희담 오프닝
+python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
+python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
 python3 tools/torimono_inserter.py original/torimono      # 포물장
 
 # 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)

@@ -159,7 +159,7 @@ def patch_fdi(fdi_data, build_dir):
     return bytes(fdi), patched
 
 
-def build_fdis(game_dir='original/kitan/unpacked'):
+def build_fdis(game_dir='original/kitan/data'):
     """build/kitan/ 의 패치된 CMD 파일을 배포 FDI 2장(kitan-system.fdi, kitan-data.fdi)에
     삽입 → build/kitan/에 각각 저장. 쾌도전/포물장/풍광전과 동일하게 run()과 분리.
 
@@ -289,11 +289,11 @@ def run(game_dir):
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     _base = os.path.basename(os.path.normpath(game_dir))
-    if _base == 'unpacked':
+    if _base == 'data':
         title = os.path.basename(os.path.dirname(os.path.normpath(game_dir)))
     else:
         title = _base
-        game_dir = os.path.join(game_dir, 'unpacked')
+        game_dir = os.path.join(game_dir, 'data')
 
     trans_path = os.path.join(project_root, 'translation', title, 'translation.json')
     with open(trans_path, encoding='utf-8') as f:

@@ -12,16 +12,10 @@
 
 ```
 original/kitan/
-  unpacked/ 시스템 디스크 DISK_B 아카이브(CMD류) + 데이터 디스크 DISK_C·그래픽/음악 자산을
-            낱개 파일로 언패킹해 모아둔 작업 폴더 (파서·인서터가 여기서 읽고 씀)
-  system/   시스템 디스크에서 추출한 파일 (DISK_B.DAT 원본 아카이브 포함)
+  data/     데이터 디스크에서 추출한 CMD·CNS·DAT 등 게임 파일
+  system/   시스템 디스크에서 추출한 파일
   demo/     데모 디스크에서 추출한 파일
 ```
-
-`unpacked/`의 CMD 파일 중 상당수는 물리적으로 `system/DISK_B.DAT` 안에 패킹돼 있던 걸 풀어놓은
-것이라, 재삽입 시 다시 `kitan-system.fdi`(시스템 디스크)에 써넣는다 — 폴더 이름만 보고
-"data → kitan-data.fdi로만 감"이라고 오해하지 않도록 주의. 정확한 파일별 목적지는 아래
-"패치 대상 파일" 표 참조.
 
 에뮬레이터:
 - `emulator/kitan.html` — 게임 플레이 (system + data 디스크)
@@ -203,7 +197,7 @@ KR 텍스트에서 `/X` 형태로 시작하는 두 글자는 **반각 한글**�
 `tools/kitan_parser.py` — 위 포맷을 파싱해 `translation/kitan/translation.json` 생성.
 
 ```bash
-python3 tools/kitan_parser.py original/kitan/unpacked
+python3 tools/kitan_parser.py original/kitan/data
 ```
 
 출력 JSON 구조:
@@ -262,7 +256,7 @@ MESSAGE.CMD는 `extract_dialogs`를 `_MSG_DIALOG_START`(0x1290) 이전 영역만
 ```bash
 # 1. CMD 빌드 (build/kitan/ 생성)
 #    인수는 게임 파일 소스 디렉토리 (system/data 디스크 파일이 모두 여기 있음)
-python3 tools/kitan_inserter.py original/kitan/unpacked
+python3 tools/kitan_inserter.py original/kitan/data
 
 # 2. FDI 패치 — system·data 양쪽 FDI에 각각 호출 (editor.py "번들 생성"이 내부적으로 수행)
 #    patch_fdi()가 FDI 타입을 자동 감지해 해당 인덱스 맵 적용

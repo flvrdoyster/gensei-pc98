@@ -27,7 +27,7 @@ def run(game_dir, build_fdi=True):
 
     # game_dir 정규화
     base = os.path.basename(os.path.normpath(game_dir))
-    if base == 'unpacked':
+    if base == 'data':
         title_dir = os.path.dirname(os.path.normpath(game_dir))
     else:
         title_dir = game_dir
