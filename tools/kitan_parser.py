@@ -1111,9 +1111,9 @@ if __name__ == '__main__':
 
     game_dir = sys.argv[1]
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-    # 데이터가 original/kitan/data/ 하위에 있으므로 basename이 'data'가 됨 — 상위 디렉터리로 올라감
+    # 데이터가 original/kitan/unpacked/ 하위에 있으므로 basename이 'unpacked'가 됨 — 상위 디렉터리로 올라감
     _base = os.path.basename(os.path.normpath(game_dir))
-    title = os.path.basename(os.path.dirname(os.path.normpath(game_dir))) if _base == 'data' else _base
+    title = os.path.basename(os.path.dirname(os.path.normpath(game_dir))) if _base == 'unpacked' else _base
 
     if len(sys.argv) >= 3 and sys.argv[2] == 'dump':
         dump_decompressed(game_dir, os.path.join(project_root, 'build', title, '_decompressed'))

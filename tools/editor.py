@@ -1469,7 +1469,7 @@ class Handler(http.server.BaseHTTPRequestHandler):
         # 2. demo 디스크 패치 (희담 전용, build/kitan-demo/kitan-demo.fdi 생성)
         try:
             demo_inserter = os.path.join(PROJECT_ROOT, 'tools', 'kitan_demo_inserter.py')
-            game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'data')
+            game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'unpacked')
             subprocess.run(['python3', demo_inserter, game_dir],
                            capture_output=True, timeout=60, cwd=PROJECT_ROOT)
         except Exception:
