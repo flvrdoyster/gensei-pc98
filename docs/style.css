@@ -466,9 +466,11 @@ body.mobile-active #virtual-gamepad {
 }
 
 /* 터치 기기 가로 모드: 폭이 680px를 넘어가는 경우가 많아 위 규칙이 안 걸리면
-   고정 640x400로 남아 짧은 뷰포트에서 위아래가 잘림. 높이 기준(뷰포트 전체,
-   8:5 비율 폭)으로 몰아서 화면 전체를 보이게 한다. 세로 모드는 폭 기준 규칙 유지. */
+   고정 640x400로 남아 짧은 뷰포트에서 위아래가 잘린다. 높이 기준(8:5 비율)으로
+   몰아서 화면 전체를 보이게 하되, 갤럭시 폴드처럼 펼쳤을 때 화면비가 거의
+   정사각형(1:1대)인 기기는 높이 기준 폭이 실제 뷰포트 폭을 넘어 캔버스가
+   화면 밖으로 넘치므로 폭도 100vw로 함께 clamp(전체화면 규칙과 동일 패턴). */
 @media (orientation: landscape) and (pointer: coarse) {
-  canvas { width: calc(100vh * 8 / 5); height: 100vh; }
+  canvas { width: min(100vw, calc(100vh * 8 / 5)); height: min(100vh, calc(100vw * 5 / 8)); }
   #canvas-wrap { width: auto; }
 }

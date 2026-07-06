@@ -203,6 +203,8 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 `@media (orientation: landscape) and (pointer: coarse)`를 추가해 이 경우만 **높이 기준**(뷰포트 전체 높이, 폭은 8:5 비율로 계산)으로 몰아 화면 전체가 보이게 한다. 세로 모드는 기존 폭 기준 규칙 그대로 유지.  
 (suiko-web-v2에서 역이식. 그쪽은 640×480(4:3)이라 비율만 8:5로 환산)
 
+**갤럭시 폴드 등 정사각형에 가까운 화면비 대응**: 펼쳤을 때 화면비가 1:1대인 기기는 높이 기준 폭(`100vh*8/5`)이 실제 뷰포트 폭을 초과해 캔버스가 화면 밖으로 넘친다(제보: "화면이 엄청 커짐"). `width: min(100vw, calc(100vh*8/5))`, `height: min(100vh, calc(100vw*5/8))`로 양쪽 다 clamp — 전체화면 규칙(`#canvas-wrap:fullscreen canvas`)과 동일 패턴. 일반 폰(가로로 긴 화면)은 폭 clamp가 안 걸려 기존과 동일하게 동작. **실기 미보유로 로직 검증만 했고 실측 확인은 못함** — 문제 재발 시 우선 의심할 지점.
+
 ### 세이브 복원 타이밍
 
 `preRun`에서 `FS.stat()`으로 ROM 파일 마운트 여부를 폴링 (10ms 간격, 최대 2초).  
