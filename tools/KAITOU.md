@@ -18,6 +18,16 @@ original/kaitou/
   PLAY1~8.INF   3,193 B   스테이지 맵 데이터 (텍스트 없음)
 ```
 
+### 패치 대상 파일
+
+실제로 패치되는 건 **`DISK_B.DAT` 하나뿐** (텍스트 소스 단일 파일). `DISK_C.DAT`·`PLAY1~8.INF`·
+`GSC.COM`·`BPLAY.COM`·`FPLAY.COM`·`SONG.DAT`는 텍스트가 없어 그대로 둠.
+
+FDI 이미지 삽입 시 `CONFIG.SYS`도 함께 수정되는데, 이건 번역과 무관한 웹 에뮬 호환용
+EMM386 제거 처리다 ("### 6. 빌드 (웹 에뮬레이터)" 절의 "웹 np2kai 적응" 참조) —
+`pc98disk.py`로 직접 원본 이미지에 패치할 경우(README 방법 2) 이 처리는 자동으로 안 되니
+실기/RetroArch용이면 몰라도 웹 에뮬용으로 쓸 거면 수동으로 해야 함.
+
 **텍스트 소스**: DISK_B.DAT 단일 파일.
 
 ### DISK_B.DAT 청크 구조

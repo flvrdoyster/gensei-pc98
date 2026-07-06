@@ -1458,37 +1458,37 @@ class Handler(http.server.BaseHTTPRequestHandler):
         return os.path.getsize(data_path)
 
     def _handle_emulator_update_kitan(self):
+        # 1. build/kitan/ → system/data FDI (run_build 시 kitan_inserter.py가 이미 생성)
         build_dir = os.path.join(PROJECT_ROOT, 'build', 'kitan')
-        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-
-        # 1. build/kitan/ → system/data FDI 패치 (in-memory)
-        if os.path.isdir(build_dir) and os.listdir(build_dir):
-            try:
-                from kitan_inserter import patch_fdi
-                for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
-                    fdi_path = os.path.join(rom_dir, fdi_name)
-                    if not os.path.exists(fdi_path):
-                        continue
-                    with open(fdi_path, 'rb') as f:
-                        fdi_data = f.read()
-                    result, patched = patch_fdi(fdi_data, build_dir)
-                    if patched:
-                        with open(fdi_path, 'wb') as f:
-                            f.write(result)
-            except Exception as e:
-                self._send_json_error(f'FDI 패치 실패: {e}', 500)
+        for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
+            if not os.path.exists(os.path.join(build_dir, fdi_name)):
+                self._send_json_error(
+                    f'빌드 결과 없음: {os.path.join(build_dir, fdi_name)} — 먼저 빌드하세요.', 400)
                 return
 
-        # 2. demo 디스크 패치 (희담 전용)
+        # 2. demo 디스크 패치 (희담 전용, build/kitan-demo/kitan-demo.fdi 생성)
         try:
             demo_inserter = os.path.join(PROJECT_ROOT, 'tools', 'kitan_demo_inserter.py')
             game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'data')
             subprocess.run(['python3', demo_inserter, game_dir],
                            capture_output=True, timeout=60, cwd=PROJECT_ROOT)
         except Exception:
-            pass  # demo 패치 실패는 무시
+            pass  # demo 패치 실패는 무시(오프닝 미번역이면 build 자체가 안 나올 수 있음)
 
-        # 3. 번들 재생성 (공통)
+        # 3. build/ → emulator/rom/ 복사 (kitan-demo는 별도 build 디렉토리)
+        import shutil
+        rom_dir = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+        demo_build = os.path.join(PROJECT_ROOT, 'build', 'kitan-demo', 'kitan-demo.fdi')
+        try:
+            shutil.copy(os.path.join(build_dir, 'kitan-system.fdi'), rom_dir)
+            shutil.copy(os.path.join(build_dir, 'kitan-data.fdi'), rom_dir)
+            if os.path.exists(demo_build):
+                shutil.copy(demo_build, rom_dir)
+        except Exception as e:
+            self._send_json_error(f'디스크 복사 실패: {e}', 500)
+            return
+
+        # 4. 번들 재생성 (공통)
         try:
             data_size = self._repackage_bundle('kitan',
                 ('kitan-system.fdi', 'kitan-data.fdi', 'kitan-demo.fdi'))
@@ -1501,27 +1501,32 @@ class Handler(http.server.BaseHTTPRequestHandler):
             'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
         })
 
-    def _handle_emulator_update_disk(self, title, disk_name):
-        """단일 디스크 타이틀 공통: build/<title>/<disk> → emulator/rom/ 복사 후 번들 재생성.
-        kaitou(FDI)·torimono(HDI)가 사용. kitan은 2-디스크 FDI 패치라 별도 핸들러."""
+    def _handle_emulator_update_disk(self, title, disk_names):
+        """단일/복수 디스크 타이틀 공통: build/<title>/<disk> 들 → emulator/rom/ 복사 후 번들 재생성.
+        hukyou·kaitou(FDI)·torimono(HDI)가 사용. kitan은 build 디렉토리가 갈려 별도 핸들러."""
         import shutil
-        build_dir  = os.path.join(PROJECT_ROOT, 'build', title)
-        rom_dir    = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-        build_disk = os.path.join(build_dir, disk_name)
-        if not os.path.exists(build_disk):
-            self._send_json_error(f'빌드 결과 없음: {build_disk} — 먼저 빌드하세요.', 400)
-            return
+        if isinstance(disk_names, str):
+            disk_names = (disk_names,)
+        build_dir = os.path.join(PROJECT_ROOT, 'build', title)
+        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
+
+        for disk_name in disk_names:
+            build_disk = os.path.join(build_dir, disk_name)
+            if not os.path.exists(build_disk):
+                self._send_json_error(f'빌드 결과 없음: {build_disk} — 먼저 빌드하세요.', 400)
+                return
 
         # 1. 패치 디스크(build/) → emulator/rom/
         try:
-            shutil.copy(build_disk, os.path.join(rom_dir, disk_name))
+            for disk_name in disk_names:
+                shutil.copy(os.path.join(build_dir, disk_name), os.path.join(rom_dir, disk_name))
         except Exception as e:
             self._send_json_error(f'디스크 복사 실패: {e}', 500)
             return
 
         # 2. 번들 재생성 (공통)
         try:
-            data_size = self._repackage_bundle(title, (disk_name,))
+            data_size = self._repackage_bundle(title, disk_names)
         except Exception as e:
             self._send_json_error(f'번들 재생성 실패: {e}', 500)
             return
@@ -1560,41 +1565,9 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if TITLE == 'torimono':
             self._handle_emulator_update_disk('torimono', 'torimono_kr.hdi')
             return
-
-        build_dir = os.path.join(PROJECT_ROOT, 'build', TITLE)
-        if not os.path.isdir(build_dir):
-            self._send_json_error(f'빌드 결과 없음: {build_dir}', 400)
+        if TITLE == 'hukyou':
+            self._handle_emulator_update_disk('hukyou', 'hukyou_kr.fdi')
             return
-
-        build_files = [f for f in os.listdir(build_dir)
-                       if os.path.isfile(os.path.join(build_dir, f))
-                       and not f.startswith('.')]
-        if not build_files:
-            self._send_json_error('build/ 디렉토리가 비어 있습니다. 먼저 빌드하세요.', 400)
-            return
-
-        rom_dir  = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-        fdi_path = os.path.join(rom_dir, 'hukyou_kr.fdi')
-
-        # 1. FDI 패치 (path 직접 수정)
-        try:
-            from hukyou_inserter import patch_fdi
-            patch_fdi(fdi_path, build_dir)
-        except Exception as e:
-            self._send_json_error(f'FDI 패치 실패: {e}', 500)
-            return
-
-        # 2. 번들 재생성 (공통)
-        try:
-            data_size = self._repackage_bundle('hukyou', ('hukyou_kr.fdi',))
-        except Exception as e:
-            self._send_json_error(f'번들 재생성 실패: {e}', 500)
-            return
-
-        self._send_json({
-            'ok': True,
-            'message': f'완료 — FDI 패치 ({len(build_files)}개 파일), 번들 재생성 ({data_size:,} bytes)',
-        })
 
     def run_build(self):
         game_dir = os.path.join(PROJECT_ROOT, 'original', TITLE)

@@ -159,6 +159,37 @@ def patch_fdi(fdi_data, build_dir):
     return bytes(fdi), patched
 
 
+def build_fdis(game_dir='original/kitan/data'):
+    """build/kitan/ 의 패치된 CMD 파일을 배포 FDI 2장(kitan-system.fdi, kitan-data.fdi)에
+    삽입 → build/kitan/에 각각 저장. 쾌도전/포물장/풍광전과 동일하게 run()과 분리.
+
+    베이스는 배포 FDI 자체. build/ 파일은 항상 원본 소스에서 새로 패치하므로
+    반복 패치해도 결과는 동일."""
+    from pc98disk import prepare_output_copy
+    project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    title = 'kitan'
+    build_dir = os.path.join(project_root, 'build', title)
+    rom_dir = os.path.join(project_root, 'emulator', 'rom')
+    if not os.path.isdir(build_dir) or not os.listdir(build_dir):
+        raise FileNotFoundError(f'{build_dir} 없음 — run() 먼저 실행')
+
+    out_paths = []
+    for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
+        base_fdi = os.path.join(rom_dir, fdi_name)
+        if not os.path.exists(base_fdi):
+            continue
+        out_fdi = prepare_output_copy(base_fdi, build_dir, fdi_name)
+        with open(out_fdi, 'rb') as f:
+            fdi_data = f.read()
+        result, patched = patch_fdi(fdi_data, build_dir)
+        if patched:
+            with open(out_fdi, 'wb') as f:
+                f.write(result)
+        print(f'{fdi_name}: {len(patched)}건 삽입 → {out_fdi}')
+        out_paths.append(out_fdi)
+    return out_paths
+
+
 # ─────────────────────────────────────
 # 빌드 (build/ 출력)
 # ─────────────────────────────────────
@@ -368,4 +399,7 @@ if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('usage: python3 kitan_inserter.py <game_dir>')
         sys.exit(1)
-    run(sys.argv[1])
+    game_dir = sys.argv[1]
+    run(game_dir)
+    if '--no-fdi' not in sys.argv:
+        build_fdis(game_dir)

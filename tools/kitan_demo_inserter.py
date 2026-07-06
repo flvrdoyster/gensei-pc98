@@ -9,7 +9,7 @@
   1. translation/kitan/translation.json의 demo 섹션 로드
   2. original/kitan/demo/SP1.COM에 한글 바이트 치환
   3. 패치된 SP1.COM을 build/kitan-demo/ 에 저장
-  4. emulator/rom/kitan-demo.fdi에 삽입 후 저장
+  4. 배포 FDI(emulator/rom/kitan-demo.fdi)를 build/kitan-demo/kitan-demo.fdi 로 복사 후 삽입
 """
 
 import json
@@ -19,10 +19,10 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from hukyou_inserter import load_charmap
 from kitan_inserter import encode_korean_kitan
-from pc98disk import DiskImage
+from pc98disk import DiskImage, prepare_output_copy
 
 
-def run(game_dir):
+def run(game_dir, build_fdi=True):
     project_root = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
     # game_dir 정규화
@@ -39,8 +39,8 @@ def run(game_dir):
     if not os.path.exists(sp1_src):
         print(f'SP1.COM 없음: {sp1_src}')
         sys.exit(1)
-    if not os.path.exists(fdi_src):
-        print(f'kitan-demo.fdi 없음: {fdi_src}')
+    if build_fdi and not os.path.exists(fdi_src):
+        print(f'kitan-demo.fdi 없음: {fdi_src} (--no-fdi 로 디스크 이미지 생성 없이 SP1.COM만 패치 가능)')
         sys.exit(1)
 
     trans_path = os.path.join(project_root, 'translation', 'kitan', 'translation.json')
@@ -82,16 +82,20 @@ def run(game_dir):
     with open(os.path.join(build_dir, 'SP1.COM'), 'wb') as f:
         f.write(sp1)
 
-    # FDI에 삽입 → emulator/rom/ 에 바로 출력
-    disk = DiskImage.open(fdi_src)
+    if not build_fdi:
+        return
+
+    # 배포 FDI를 build/ 로 복사한 뒤 그 복사본에 삽입 (배포 FDI 자체는 건드리지 않음)
+    out_fdi = prepare_output_copy(fdi_src, build_dir, 'kitan-demo.fdi')
+    disk = DiskImage.open(out_fdi)
     disk.add_file('SP1.COM', bytes(sp1))
     disk.save()
 
-    print(f'저장: {fdi_src}')
+    print(f'FDI: {out_fdi}')
 
 
 if __name__ == '__main__':
     if len(sys.argv) < 2:
-        print('usage: python3 kitan_demo_inserter.py <game_dir>')
+        print('usage: python3 kitan_demo_inserter.py <game_dir> [--no-fdi]')
         sys.exit(1)
-    run(sys.argv[1])
+    run(sys.argv[1], build_fdi='--no-fdi' not in sys.argv)

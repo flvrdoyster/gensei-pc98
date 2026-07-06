@@ -294,14 +294,15 @@ def run(game_dir):
               f'{len(raw)} → {len(compressed)} bytes')
 
 
-def patch_fdi(fdi_path, build_dir):
-    """build/ 의 패치된 파일을 FAT12 FDI에 삽입. 변경된 파일 목록 반환."""
+def _apply_build_files(fdi_path, build_dir, skip=()):
+    """build/ 의 패치된 파일을 FAT12 FDI(fdi_path)에 직접 삽입. 변경된 파일 목록 반환.
+    skip: build_dir 안에 있지만 삽입 대상이 아닌 파일명(예: 결과 FDI 자신)."""
     sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
     from pc98disk import DiskImage
 
     build_files = [f for f in os.listdir(build_dir)
                    if os.path.isfile(os.path.join(build_dir, f))
-                   and not f.startswith('.')]
+                   and not f.startswith('.') and f not in skip]
     if not build_files:
         return []
 
@@ -312,8 +313,29 @@ def patch_fdi(fdi_path, build_dir):
     return build_files
 
 
+def patch_fdi(game_dir='original/hukyou'):
+    """build/<title>/ 의 패치된 파일을 배포 FDI(emulator/rom/hukyou_kr.fdi)에 삽입 →
+    build/<title>/hukyou_kr.fdi 생성. 쾌도전/포물장과 동일하게 run()과 분리.
+
+    베이스는 배포 FDI 자체. build/ 파일은 항상 원본 소스에서 새로 패치하므로
+    반복 패치해도 결과는 동일."""
+    from pc98disk import prepare_output_copy
+    title = os.path.basename(game_dir.rstrip('/\\'))
+    build_dir = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'build', title)
+    base_fdi = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), 'emulator', 'rom', 'hukyou_kr.fdi')
+    if not os.path.isdir(build_dir) or not os.listdir(build_dir):
+        raise FileNotFoundError(f'{build_dir} 없음 — run() 먼저 실행')
+    out_fdi = prepare_output_copy(base_fdi, build_dir, 'hukyou_kr.fdi')
+    _apply_build_files(out_fdi, build_dir, skip=('hukyou_kr.fdi',))
+    print(f'FDI: {out_fdi}')
+    return out_fdi
+
+
 if __name__ == '__main__':
     if len(sys.argv) < 2:
         print('usage: python3 hukyou_inserter.py <game_dir>')
         sys.exit(1)
-    run(sys.argv[1])
+    game_dir = sys.argv[1]
+    run(game_dir)
+    if '--no-fdi' not in sys.argv:
+        patch_fdi(game_dir)

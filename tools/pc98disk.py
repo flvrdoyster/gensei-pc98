@@ -3,6 +3,7 @@
 
 import argparse
 import os
+import shutil
 import struct
 import sys
 from pathlib import Path
@@ -499,6 +500,24 @@ class DiskImage:
             raise FileNotFoundError(f"{filename} not found in image")
         self._free_cluster_chain(entry["cluster"])
         self.data[entry["offset"]] = 0xE5
+
+
+# ---------------------------------------------------------------------------
+# 인서터 공용 헬퍼
+# ---------------------------------------------------------------------------
+
+def prepare_output_copy(base_path, out_dir, out_name=None):
+    """베이스 이미지(base_path)를 out_dir 아래로 복사하고 그 경로를 반환.
+
+    각 타이틀 인서터가 '배포용 베이스 이미지는 건드리지 않고 build/ 에 복사본을
+    만들어 패치'하는 동일한 절차를 반복 구현하던 것을 공통화한 것.
+    """
+    if not os.path.exists(base_path):
+        raise FileNotFoundError(f'{base_path} 없음')
+    os.makedirs(out_dir, exist_ok=True)
+    out_path = os.path.join(out_dir, out_name or os.path.basename(base_path))
+    shutil.copy(base_path, out_path)
+    return out_path
 
 
 # ---------------------------------------------------------------------------

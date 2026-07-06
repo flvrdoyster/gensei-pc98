@@ -8,15 +8,17 @@
 
 ## 개요
 
-### 파일 구성
+### 패치 대상 파일
+
+`original/hukyou/`에는 그래픽(`BG*.DAT`·`MONST*.DAT` 등)·음악·세이브(`PLAY*.INF`) 등
+다수 파일이 있으나, 텍스트가 있어 실제로 패치되는 파일은 아래가 전부:
 
 ```
-original/hukyou/
-  GF2.COM          로더 (자가 압축 해제 + CMD 로드)
-  STAGE1~8.CMD     메인 스크립트 (대화·메뉴)
-  OPEN.CMD         오프닝 컷씬
-  ENDING.CMD       엔딩 컷씬
-  MESSAGE.CMD      아이템 데이터
+GF2.COM          로더 (자가 압축 해제 + CMD 로드) — UI 문자열만 패치
+STAGE1~7.CMD     메인 스크립트 (대화·메뉴)
+OPEN.CMD         오프닝 컷씬
+ENDING.CMD       엔딩 컷씬
+MESSAGE.CMD      아이템 데이터 + 독백 대사
 ```
 
 **텍스트 소스**: CMD 파일 전체. GF2.COM은 UI 문자열만 (`extract_ui`, 하드코딩 오프셋).

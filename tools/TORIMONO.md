@@ -24,6 +24,14 @@ original/torimono/
 
 - FPLAY.COM·GSC.COM 에는 DOS 드라이버/플레이어 에러 메시지(일본어)가 있으나 **번역 대상 아님** (쾌도전과 동일 결정).
 
+### 패치 대상 파일
+
+- **`DISK_B.DAT`**: 텍스트 전부(95개 청크 중 텍스트 있는 청크).
+- **`DISK_C.DAT`**: 청크 전체가 아니라 `torimono_inserter.py`의 `DISK_C_EDITS`에 등록된
+  청크만 이미지로 재삽입. 현재는 청크 31(그래픽)·47(스탭롤 글자 시트) 2개뿐 — 새 베이크드 텍스트를
+  편집하려면 이 dict에 항목을 추가해야 patch 대상에 들어감.
+- `PLAY1~8.INF`·`SONG.DAT`·`FPLAY.COM`·`GSC.COM`은 패치 안 함.
+
 ### DISK_B.DAT 청크 구조
 
 쾌도전과 동일 — `0x000~0x3FF` 4-byte 엔트리 테이블, `compile_lz` 압축.

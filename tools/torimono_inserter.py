@@ -311,7 +311,8 @@ def patch_hdi(game_dir='original/torimono'):
     DISK_C는 build_disk_c() 가 만들어 뒀으면(DISK_C_EDITS 존재) 함께 삽입, 없으면 base 그대로.
     pc98disk 가 PC-98 파티션 테이블을 해석해 파티션 내 FAT 에 파일을 교체한다.
     (쾌도전과 달리 CONFIG.SYS 가 없어 EMM386 제거 단계도 없음)"""
-    import shutil, subprocess
+    import subprocess
+    from pc98disk import prepare_output_copy
     title = os.path.basename(game_dir.rstrip('/\\'))
     out_dir = os.path.join(PROJECT_ROOT, 'build', title)
     disk_b = os.path.join(out_dir, 'DISK_B.DAT')
@@ -319,10 +320,7 @@ def patch_hdi(game_dir='original/torimono'):
     base_hdi = os.path.join(PROJECT_ROOT, 'emulator', 'rom', 'torimono_kr.hdi')
     if not os.path.exists(disk_b):
         raise FileNotFoundError(f'{disk_b} 없음 — run() 먼저 실행')
-    if not os.path.exists(base_hdi):
-        raise FileNotFoundError(f'{base_hdi} 없음')
-    out_hdi = os.path.join(out_dir, 'torimono_kr.hdi')
-    shutil.copy(base_hdi, out_hdi)
+    out_hdi = prepare_output_copy(base_hdi, out_dir, 'torimono_kr.hdi')
     pc98 = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pc98disk.py')
     subprocess.run([sys.executable, pc98, 'add', out_hdi, disk_b, 'DISK_B.DAT'], check=True)
     if os.path.exists(disk_c):

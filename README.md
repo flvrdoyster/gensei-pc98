@@ -48,6 +48,10 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지** 필요.
 
+> ⚠ 이 한글화는 한글 글리프를 새로 그려 넣은 전용 폰트 이미지(`emulator/bios/font.bmp`)를
+> 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본 폰트 그대로 두면 한글이
+> 깨지거나 안 보인다.
+
 ### 0. 원본 디스크 이미지에서 파일 추출 (공통, 최초 1회)
 
 파서·에디터·인서터는 `original/<title>/`에 이미 **개별 파일로 추출된 상태**를 전제.
@@ -70,23 +74,46 @@ python3 tools/pc98disk.py get <원본이미지.hdi> DISK_C.DAT original/torimono
 
 `translation/<title>/translation.json`은 이미 번역 완료 상태(위 표 참조). 직접 번역 없이 재삽입만 실행.
 
-```bash
-# 1. 재삽입 (0단계에서 채운 original/<title>/ 대상으로 바로 실행)
-python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
-python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
-python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
-python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
-python3 tools/torimono_inserter.py original/torimono      # 포물장
-# 재삽입 결과는 build/<title>/ 에 같은 파일 이름으로 생성
+인서터는 재삽입한 파일들을 `build/<title>/`에 놓는 것과 별개로, 그 자리에서 바로 부팅 가능한
+완성된 디스크 이미지도 만들어준다. 이를 위해 아래 이름 그대로 **자신이 준비한 원본 디스크 이미지의
+사본**을 미리 두어야 한다 (파일명이 다르면 인식하지 못함):
 
-# 2. 원본 디스크 이미지 복사본에 패치 파일 되돌려 쓰기 (원본은 보존 권장)
-cp <원본이미지.hdi> <패치이미지.hdi>
-python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_B.DAT
-python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_C.DAT
-# ... build/<title>/ 안의 파일마다 반복
+| 타이틀 | 준비할 파일 | 비고 |
+|---|---|---|
+| 풍광전 | `emulator/rom/hukyou_kr.fdi` | 부팅 FDI 1장 |
+| 쾌도전 | `emulator/rom/kaitou_kr.fdi` | 부팅 FDI 1장 |
+| 희담 | `emulator/rom/kitan-system.fdi`<br>`emulator/rom/kitan-data.fdi`<br>`emulator/rom/kitan-demo.fdi` | 시스템·데이터·데모 FDI 3장 |
+| 포물장 | `emulator/rom/torimono_kr.hdi` | 부팅 HDI 1장 |
+
+```bash
+# 재삽입 (0단계에서 채운 original/<title>/ 대상으로 바로 실행)
+python3 tools/hukyou_inserter.py original/hukyou          # 풍광전 → build/hukyou/hukyou_kr.fdi
+python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전 → build/kaitou/kaitou_kr.fdi
+python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편 → build/kitan/kitan-{system,data}.fdi
+python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝 → build/kitan-demo/kitan-demo.fdi
+python3 tools/torimono_inserter.py original/torimono      # 포물장 → build/torimono/torimono_kr.hdi
 ```
 
-`<패치이미지.hdi>`를 실기나 다른 PC-98 에뮬레이터에서 사용.
+`build/<title>/` 안에 생성된 이미지를 실기나 다른 PC-98 에뮬레이터에서 바로 사용.
+
+#### 디스크 이미지 없이 패치 파일만 얻기
+
+`emulator/rom/`에 이미지를 준비하지 않았거나 다른 이미지에 직접 적용하고 싶다면 `--no-fdi`로
+디스크 이미지 생성을 끄고, `build/<title>/`에 나온 개별 파일을 원본 이미지 복사본에 직접 얹는다.
+
+```bash
+python3 tools/hukyou_inserter.py original/hukyou --no-fdi
+python3 tools/kaitou_inserter.py  original/kaitou --no-fdi
+python3 tools/kitan_inserter.py  original/kitan/data --no-fdi
+python3 tools/kitan_demo_inserter.py original/kitan/data --no-fdi
+python3 tools/torimono_inserter.py original/torimono --no-fdi
+# build/<title>/ 에 패치된 CMD/DAT 파일만 생성 (디스크 이미지는 안 만듦)
+
+cp <원본이미지.hdi> <패치이미지.hdi>   # 원본은 보존 권장
+python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_B.DAT
+python3 tools/pc98disk.py add <패치이미지.hdi> build/torimono/DISK_C.DAT
+# ... build/<title>/ 안의 파일마다 반복 (희담은 GS.OVL·CMD류는 시스템 이미지, PARTY7.CMD는 데이터 이미지)
+```
 
 ---
 
@@ -106,7 +133,7 @@ python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan  original/kitan/data    # 희담
 python3 tools/editor.py torimono                      # 포물장
 
-# 3. 재삽입 (A의 1번과 동일)
+# 3. 재삽입 (A와 동일 — emulator/rom/ 준비 여부에 따라 --no-fdi 여부 결정)
 python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
 python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
 python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편

@@ -240,16 +240,14 @@ def patch_fdi(game_dir='original/kaitou'):
     EMM386 제거도 멱등이라, 배포 FDI를 베이스로 반복 패치해도 결과는 동일.
     (별도 원본 kaitou.fdi 불필요)"""
     import shutil, subprocess
+    from pc98disk import prepare_output_copy
     title = os.path.basename(game_dir.rstrip('/\\'))
     out_dir = os.path.join(PROJECT_ROOT, 'build', title)
     disk_b = os.path.join(out_dir, 'DISK_B.DAT')
     base_fdi = os.path.join(PROJECT_ROOT, 'emulator', 'rom', 'kaitou_kr.fdi')
     if not os.path.exists(disk_b):
         raise FileNotFoundError(f'{disk_b} 없음 — run() 먼저 실행')
-    if not os.path.exists(base_fdi):
-        raise FileNotFoundError(f'{base_fdi} 없음')
-    out_fdi = os.path.join(out_dir, 'kaitou_kr.fdi')
-    shutil.copy(base_fdi, out_fdi)
+    out_fdi = prepare_output_copy(base_fdi, out_dir, 'kaitou_kr.fdi')
     pc98 = os.path.join(os.path.dirname(os.path.abspath(__file__)), 'pc98disk.py')
     subprocess.run([sys.executable, pc98, 'add', out_fdi, disk_b], check=True)
 

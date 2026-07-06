@@ -69,6 +69,34 @@ end_offset = high * 65536 + low   # 파일 N의 끝 = 파일 N+1의 시작
 FAT 없는 raw 파티션. FDI 파일 내 0x3C00 오프셋부터 DISK_C 데이터.  
 DISK_B.DAT의 동일 오프셋 표를 참조해 파일 범위를 계산, 그 범위를 DISK_C 데이터에서 읽음.
 
+### 패치 대상 파일 (아카이브 내 인덱스)
+
+`kitan_inserter.py`의 `DISK_B_INDEX`/`DISK_C_INDEX`가 파일명 ↔ 아카이브 엔트리 번호를 고정 매핑.
+번역 텍스트가 있는 CMD 파일은 이게 전부이며, 나머지 엔트리(약 130여 개 중 여기 없는 것)는
+그래픽·음악 등 비텍스트 데이터라 건드리지 않는다.
+
+**DISK_B.DAT (kitan-system.fdi)**:
+
+| 파일 | 인덱스 | 파일 | 인덱스 | 파일 | 인덱스 |
+|---|---:|---|---:|---|---:|
+| GS.OVL | 0 | SC2G.CMD | 20 | SC5A.CMD | 77 |
+| START.CMD | 2 | PARTY3.CMD | 29 | SC5B.CMD | 78 |
+| MESSAGE.CMD | 3 | PARTY4.CMD | 30 | SC5C.CMD | 79 |
+| PARTY2.CMD | 4 | PARTY6.CMD | 31 | SC6A.CMD | 89 |
+| BTL_PC.CMD | 6 | SC3A.CMD | 43 | SC6B.CMD | 90 |
+| SC1A.CMD | 11 | SC3B.CMD | 44 | SC6C.CMD | 91 |
+| SC1B.CMD | 12 | SC3C.CMD | 45 | SC6D.CMD | 93 |
+| SC2A.CMD | 14 | SC3D.CMD | 46 | SC7A.CMD | 115 |
+| SC2B.CMD | 15 | SC3E.CMD | 47 | SC4E.CMD | 116 |
+| SC2C.CMD | 16 | SC5D.CMD | 52 | ENDING.CMD | 119 |
+| SC2D.CMD | 17 | SC5E.CMD | 53 | | |
+| SC2E.CMD | 18 | SC5F.CMD | 54 | | |
+| SC2F.CMD | 19 | SC4A.CMD~SC4D.CMD | 57~60 | | |
+
+**DISK_C (kitan-data.fdi)**: `PARTY7.CMD` → 인덱스 81 (본편에서 유일하게 DISK_C에 있는 텍스트 파일).
+
+**demo 디스크**: `SP1.COM`만 별도 패치 (`kitan_demo_inserter.py`, "demo 디스크 파일 구성" 절 참조).
+
 ---
 
 ## 작업 흐름
