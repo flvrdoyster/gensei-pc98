@@ -254,3 +254,15 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 |------|------|
 | ScriptProcessorNode deprecated (오디오) | 경고만 — 기능 정상 |
 | 런타임 디스크 교체 불가 | NP2kai가 디스크를 내부 캐싱. `diskdrv_setfdd()` 등의 export가 필요 |
+
+---
+
+## 자매 프로젝트 (suiko-web-v2)
+
+`suiko-web-v2`(환세취호전, doswasmx 기반 Windows 95 에뮬레이터)는 이 프로젝트의 웹 에뮬레이터 UI를 바탕으로 만들어진 별도 리포. 같은 사이트 계열(atah.io)에서 서빙되지만 공유 패키지/서브모듈은 안 씀 — 정적 사이트라 빌드 파이프라인 도입 비용이 수동 이식 비용보다 크다고 판단(2026-07).
+
+`style.css`와 `suiko-web-v2`의 `suiko-overrides.css`는 구조를 맞춰 관리한다. 가로 모드 대응·세이브 토스트·`chrome-hidden` 접기·전체화면 등 **공용 UI/로직을 고칠 때는 다른 쪽에도 해당 사항이 있는지 확인**할 것. 그대로 복사는 안 되고 매번 다음을 맞춰 조정해야 한다:
+
+- 종횡비: 이쪽 640×400(8:5) vs suiko 640×480(4:3)
+- DOM id: `#canvas-wrap` vs `#canvasDiv`
+- 기능 적용 범위: 다중 디스크 여부, 버튼 유무 등 리포별 차이
