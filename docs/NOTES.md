@@ -175,6 +175,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 - 모바일 전용 토글 버튼(상단바 우측, 전체화면 자리). 클릭 시 `body.chrome-hidden` 토글
 - 게임 내 마우스 클릭과 겹치지 않도록 캔버스 탭이 아닌 전용 버튼 방식
 - 접힘 상태: `.top-bar`를 `height: 0; overflow: hidden`으로 클립(자식 버튼들 같이 숨김), body 위 패딩·캔버스 위 마진 제거로 캔버스를 화면 상단에 밀착
+- `#footer`·`.hint`도 `body.chrome-hidden`에서 숨김. 원래 미디어쿼리(`max-width:680px`)에서만 숨겨지던 게 아니라 `chrome-hidden` 자체에 규칙이 없어서, 접어도 안 사라지던 버그(suiko-web-v2에서 먼저 발견·수정 후 역이식)
 - 접기 버튼만 `position: fixed`로 클립을 벗어나 화면 상단 중앙에 잔류 (chevron 180° 회전)
 
 ### 전체화면 ESC (`btn-fullscreen`)

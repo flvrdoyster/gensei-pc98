@@ -158,6 +158,8 @@ body.chrome-hidden { padding-top: 0; }
 body.chrome-hidden .top-bar { height: 0; overflow: hidden; }
 body.chrome-hidden .disk-panel { display: none; }
 body.chrome-hidden #canvas-wrap { margin-top: 0; }
+body.chrome-hidden #footer { display: none; }
+body.chrome-hidden .hint { display: none; }
 body.chrome-hidden #btn-collapse {
   position: fixed;
   top: 16px;
