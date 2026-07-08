@@ -1417,8 +1417,10 @@ class Handler(http.server.BaseHTTPRequestHandler):
             tmp_rom  = os.path.join(tmpdir, 'rom')
             os.makedirs(tmp_bios)
             os.makedirs(tmp_rom)
+            # font_jp.bmp: 미지 반각 코드 글리프 판독용 로컬 참고 자료일 뿐, 번들에는 불필요
+            # (게임은 font.bmp만 참조 — 번들에 넣으면 524KB 낭비)
             for f in os.listdir(bios_dir):
-                if not f.startswith('.'):
+                if not f.startswith('.') and f != 'font_jp.bmp':
                     shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
             for fdi in fdi_names:
                 src = os.path.join(rom_dir, fdi)
