@@ -435,7 +435,7 @@ body.mobile-active #virtual-gamepad {
 
 .gamepad-buttons {
   display: flex;
-  gap: 16px;
+  gap: 6px;
   align-items: center;
 }
 
@@ -445,14 +445,27 @@ body.mobile-active #virtual-gamepad {
   padding: 0 10px;
 }
 
+/* Enter is the primary action, so it reads as a wider pill than the square ESC. */
+.gamepad-buttons button.gamepad-btn-enter {
+  width: 72px;
+  min-width: 72px;
+}
+
 #virtual-gamepad button svg {
   height: 50%;
   width: auto;
   pointer-events: none;
 }
 
+/* Face-button icons (ESC/Enter) are square glyphs; the dpad arrows are taller/narrower,
+   so each kind gets its own icon height to read as the same visual size on identical
+   48px buttons. Both need the "#virtual-gamepad" id prefix to outrank the base
+   "#virtual-gamepad button svg" rule above. */
 #virtual-gamepad .gamepad-buttons button svg {
   height: 30%;
+}
+#virtual-gamepad .gamepad-dpad button svg {
+  height: 40%;
 }
 
 /* Mobile responsive */
