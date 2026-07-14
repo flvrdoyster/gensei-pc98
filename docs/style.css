@@ -488,4 +488,12 @@ body.mobile-active #virtual-gamepad {
 @media (orientation: landscape) and (pointer: coarse) {
   canvas { width: min(100vw, calc(100vh * 8 / 5)); height: min(100vh, calc(100vw * 5 / 8)); }
   #canvas-wrap { width: auto; }
+  /* 100vh on mobile Safari/Chrome is the height as if the address/toolbar were hidden, not
+     the actually-visible viewport — with the toolbar showing, a canvas sized off 100vh
+     comes out taller than the real screen. 100dvh tracks the current visible viewport
+     instead; re-declaring the same property after the 100vh version above means
+     unsupported browsers just keep the vh fallback (an unparseable dvh value doesn't
+     overwrite the previous declaration), while supported ones (iOS Safari 15.4+/Chrome
+     108+) get the corrected size. */
+  canvas { width: min(100vw, calc(100dvh * 8 / 5)); height: min(100dvh, calc(100vw * 5 / 8)); }
 }
