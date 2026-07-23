@@ -48,9 +48,9 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지** 필요.
 
-> ⚠ 이 한글화는 한글 글리프를 새로 그려 넣은 전용 폰트 이미지(`emulator/bios/font.bmp`)를
-> 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본 폰트 그대로 두면 한글이
-> 깨지거나 안 보인다.
+> ⚠ 이 한글화는 한글 글리프를 새로 그려 넣은 전용 폰트 이미지(`emulator/bios/font.bmp`,
+> 도깨비DNR고딕 Light)를 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본
+> 폰트 그대로 두면 한글이 깨지거나 안 보인다.
 
 ### 0. 원본 디스크 이미지에서 파일 추출 (공통, 최초 1회)
 
@@ -165,6 +165,7 @@ python3 -m http.server 9801 --directory emulator
 ## 크레딧
 
 **에뮬레이터**: [NP2kai](https://github.com/AZO234/NP2kai) by AZO — MIT License  
+**게임 내 한글 폰트**: 도깨비DNR고딕 Light (도깨비디나루를 복원해 제작) by flvrdoyster  
 **번역 도구 및 웹 배포**: flvrdoyster
 
 ---
