@@ -165,7 +165,7 @@ python3 -m http.server 9801 --directory emulator
 ## 크레딧
 
 **에뮬레이터**: [NP2kai](https://github.com/AZO234/NP2kai) by AZO — MIT License  
-**게임 내 한글 폰트**: 도깨비DNR고딕 Light (도깨비디나루를 복원해 제작) by flvrdoyster  
+**게임 내 한글 폰트**: [도깨비DNR고딕](https://github.com/flvrdoyster/font) Light by flvrdoyster  
 **번역 도구 및 웹 배포**: flvrdoyster
 
 ---
