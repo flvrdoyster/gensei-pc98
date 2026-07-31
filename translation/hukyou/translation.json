@@ -21507,7 +21507,7 @@
           "offset": 4590,
           "jp": "　幸せな世界を築くのよ！",
           "jp_len": 24,
-          "kr": "행복한 세상을 만든다!",
+          "kr": "행복한 세상을 만들겠어",
           "tag": "cutscene"
         }
       ]
@@ -24605,7 +24605,7 @@
       "category": "battle",
       "jp": "アイテム",
       "jp_len": 8,
-      "kr": "/아/이/템",
+      "kr": "아이템",
       "tag": "battle"
     },
     {
@@ -24613,7 +24613,7 @@
       "category": "battle",
       "jp": "MISS",
       "jp_len": 8,
-      "kr": "/M/I/S/S"
+      "kr": "MISS"
     }
   ]
 }
