@@ -130,7 +130,7 @@ python3 tools/torimono_parser.py original/torimono    # 포물장
 # 2. 번역 에디터 → http://localhost:8182
 python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
-python3 tools/editor.py kitan  original/kitan/data    # 희담
+python3 tools/editor.py kitan                         # 희담
 python3 tools/editor.py torimono                      # 포물장
 
 # 3. 재삽입 (A와 동일 — emulator/rom/ 준비 여부에 따라 --no-fdi 여부 결정)
