@@ -10,8 +10,12 @@
 | 에뮬레이터 (`python3 -m http.server`) | **9801** | PC-9801 |
 
 ```bash
-# 번역 에디터
+# 인자 없이 실행하면 터미널에서 대상 선택 (기본 타이틀로 열지 않는다)
+python3 tools/editor.py
+
+# 바로 지정 — <title> 또는 dashboard
 python3 tools/editor.py <title>
+python3 tools/editor.py dashboard    # 같은 포트, 편집 서버와 동시 실행 불가
 # → http://localhost:8182
 
 # 에뮬레이터 (프로젝트 루트에서 실행)
@@ -131,7 +135,27 @@ NP2kai는 텍스트 plane을 dot-by-dot 출력 (글자 굵게 처리 옵션 없�
 
 ## editor.py — 번역 에디터
 
-웹 기반 번역 GUI. 800px 고정 폭, 다크 테마.
+웹 기반 번역 GUI. 800px 고정 폭, 다크 테마. 포트 8182는 고정이라 **한 번에 하나만** 뜬다
+(편집·대시보드 전환은 재기동).
+
+```bash
+python3 tools/editor.py             # 터미널 선택 UI (번호 또는 이름 입력, q=종료)
+python3 tools/editor.py <title>     # 번역 편집 (hukyou|kaitou|torimono|kitan)
+python3 tools/editor.py dashboard   # 4개 타이틀 빌드/번들/배포 대시보드
+python3 tools/editor.py <title> --no-open   # 브라우저 자동 실행 끄기
+```
+
+인자 없이 실행하면 **임의의 기본 타이틀을 열지 않고** 선택지를 띄운다. 비-tty(파이프·CI)면
+선택 UI 대신 사용법을 출력하고 종료코드 1 — 입력을 기다리며 멈추지 않는다.
+
+기동하면 **브라우저가 자동으로 열린다**(`--no-open` 으로 끔). 이때 `serve_forever()` 를
+메인 스레드에서 돌리면 브라우저가 연결 거부를 맞으므로, **서버를 데몬 스레드로 먼저 띄우고
+브라우저를 연 뒤 `join()`** 한다 (font 리포 `scripts/editor_server.py` 와 같은 패턴).
+포트가 이미 물려 있으면 트레이스백 대신 "이미 에디터가 떠 있는지 확인" 안내 후 종료코드 1.
+
+빌드/번들/배포 실행 로직은 `tools/pipeline.py`(title 인자 받는 공용 함수)에 있고,
+`editor.py`는 이걸 불러써 HTTP 라우팅만 담당한다. 편집 화면의 3버튼(빌드/번들/배포)과
+대시보드는 같은 `pipeline.py` 함수를 공유하므로 동작이 갈릴 일이 없다.
 
 ### 단축키
 
@@ -182,7 +206,8 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
 - `번들` — `emulator/<title>.data` 재생성 (emsdk 환경 필요).
 - `배포` — `deploy-docs.sh` 실행(emulator→docs 동기화 + 정합 검사). 결과 토스트, 커밋·버전 미변경.
 
-보통 `빌드 → 번들 → 배포` 순.
+보통 `빌드 → 번들 → 배포` 순. 타이틀 하나만 왕복할 땐 이 3버튼으로 충분 — 여러 타이틀을
+한꺼번에 처리하려면 아래 대시보드 참조.
 
 빌드 시 `lint.py` 빠른 검사(깨진문자·일관성)가 자동 실행돼 토스트에 합산 표시.
 깨진문자·잘림이 있으면 토스트가 경고색으로 바뀜.
@@ -206,6 +231,68 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
 `rowKey(type:file:offset)→row` 조회가 병목이 된다. **`rowIndex` Map 을 적재 후 1회 구축**해
 입력·클릭·저장의 행 조회를 O(1) 로, 저장 후처리도 변경된 행만 `tr[data-key]` 로 콕 집어
 갱신한다(전체 행 순회 금지). 이 Map 없이 선형 탐색하면 저장이 O(N²) 로 수 초씩 멈춘다.
+
+### 대시보드 (`dashboard` 모드)
+
+`python3 tools/editor.py dashboard` — 4개 타이틀의 빌드/번들/배포 상태를 한 화면에서.
+
+- **4단계 상태**: `translation.json → build/ → emulator/*.data → docs/` 각 단계를
+  mtime(빌드·번들) / 파일 비교(배포)로 판정해 `미빌드`·`빌드 필요`·`빌드됨` 식 배지로 표시.
+  희담은 데모 디스크(`kitan-demo.fdi`) 존재 여부를 별도 표시(없어도 빌드 실패로 안 봄 —
+  오프닝 미번역이면 정상).
+- **공용 파일 행**: `version.js`·`audio.js`·`bios/` 등은 어느 타이틀에도 안 묶이는데
+  `deploy-docs.sh` 는 `cp -r emulator/*` 로 통째 복사한다. 타이틀 배지만 보면 **버전만 올린
+  배포를 통째로 놓치므로**, 타이틀별 `<t>.data`/`<t>.js` 를 뺀 나머지 전체를 따로 비교해
+  어긋난 파일명을 나열한다 (`pipeline.shared_status()`).
+- **타이틀별 빌드/번들 버튼** + **전체 빌드+번들**(변경된 타이틀만 클라이언트가 순차 호출,
+  실패하면 그 자리에서 중단). 서버에 배치 엔드포인트는 없음 —
+  `HTTPServer` 가 단일 스레드라 서버측 배치는 진행 중 서버 전체를 블록시킨다.
+- **배포**는 페이지에 하나(= `deploy-docs.sh` 가 원래 전 타이틀을 한 번에 처리). 빌드 신선도
+  경고로 막힐 타이틀이 있으면 미리 배지에 표시하고, `-f` 강제 배포 버튼을 노출한다.
+- **실행 로그** 패널(접이식) — 인서터·file_packager·deploy 원문 출력을 그대로 보존.
+- **커밋**: `translation/`·`emulator/`·`docs/` 안의 git 변경 파일 목록 + 자동 작성된 커밋
+  메시지 초안을 보여준다(수정 가능한 textarea). 변경이 있을 때만 바(bar)가 뜬다.
+  **스코프는 이 세 디렉토리로 고정** — `tools/` 등 다른 작업 중인 코드 변경은 절대 같이
+  안 실린다(`pipeline.COMMIT_SCOPE`). 메시지 초안은 타이틀별로 어느 단계까지 갔는지
+  (`번역 작업` < `빌드 갱신` < `번역 반영 및 배포`) 보고 조합한다 — 완벽할 필요는 없고
+  출발점만 되면 됨. 스테이징된 게 없으면(빈 커밋 방지) 실패로 응답.
+- API: `GET /api/pipeline/status`(`{titles, shared}`), `GET /api/pipeline/commit-status`,
+  `POST /api/pipeline/{build,bundle,deploy}?title=<t>`, `POST /api/pipeline/commit`(body
+  `{message}`) — 전부 dashboard 모드 전용 라우트, 편집 모드의 `/api/build` 등과는 별개.
+- 실행 중 잠금은 `busy` 플래그 + `syncButtons()` 로 관리한다. **`render()` 가 행을 다시
+  그리므로 버튼의 `disabled` 를 직접 켜면 배치 도중 되살아난다** — 고유 비활성은
+  `data-off` 속성으로만 표시하고 최종 `disabled` 는 `syncButtons()` 가 `busy` 와 합쳐 계산.
+
+---
+
+## pipeline.py — 빌드/번들/배포 공용 모듈
+
+`editor.py`(편집 모드 3버튼)와 `dashboard` 모드가 공유하는 순수 함수. 전부 `title` 인자를
+받고 `{ok, message, output, warnings, ...}` dict 를 반환 — HTTP 응답은 호출자가 쓴다.
+
+| 함수 | 역할 |
+|------|------|
+| `build(title)` | 인서터 실행 (`<title>_inserter.py`) + `lint.analyze` 빠른 검사 |
+| `bundle(title)` | `build/` 디스크 → `emulator/rom/` 복사 → `file_packager` 로 `emulator/<title>.data` 재생성. 희담은 데모 인서터 선행(실패해도 `warnings`로만 보고, 계속 진행) |
+| `deploy(force=False)` | `deploy-docs.sh` 실행 (`force`→`-f`) |
+| `status()` | `{titles: {t: 4단계+deploy_blocked}, shared: 공용 파일 동기 여부}` |
+| `shared_status()` | 타이틀별 `<t>.data`/`<t>.js` 를 뺀 나머지 `emulator/` 전체의 docs 동기 여부 |
+| `predict_deploy_block(title)` | `deploy-docs.sh` 0단계(git-clean 스킵 + mtime)를 파이썬으로 재현 — 배포 전에 막힐 타이틀을 미리 예측 |
+| `commit_status()` | `COMMIT_SCOPE`(`translation/`·`emulator/`·`docs/`) 안의 git 변경 파일 + 자동 메시지 초안 |
+| `commit(message)` | 위 스코프만 `git add` 후 커밋. 스코프 밖은 절대 add 하지 않음. 스테이징 없으면 실패 응답(빈 커밋 방지) |
+
+타이틀별 함수 하나씩 있던 걸 통합한 게 아니라, 애초에 `_repackage_bundle` 은 이미 title
+인자를 받고 있었다 — editor.py 가 응답 작성(`_send_json`)과 로직을 한 메서드에 섞어뒀던
+걸 분리한 것에 가깝다.
+
+**실패 응답 규약**: `bundle()` 은 실패 시 `code`(400=빌드 결과 없음 / 500=복사·번들 실패)를
+같이 반환한다. 편집 모드 `/api/emulator-update` 는 이걸 `_send_json_error(msg, code)` 로
+바꿔 **기존 규약(실패 400·500 + `{message}`, 성공 200 + `{ok, message}`)을 그대로 유지**하고,
+대시보드 라우트는 `output`·`warnings` 까지 담은 dict 를 200 으로 그대로 넘긴다.
+
+파일 동기 판정(`_synced`)은 `cp -r` 특성상 동기 상태면 dst mtime ≥ src mtime 이라는 점을 이용해
+**크기+mtime 으로 먼저 거르고**, 어긋날 때만 내용을 전수 비교한다 (수 MB `.data` 4개를 매번
+읽지 않으려고).
 
 ---
 
@@ -242,6 +329,8 @@ python3 tools/lint.py <title>      # 요약 (-v 상세)
   단순 touch(내용 동일)나 커밋 완료분은 오탐하지 않는다.
 - **1) 복사** → **2) docs↔emulator 동일성** → **3) `<title>.js` remote_package_size ↔ `<title>.data` 크기**.
 - 하나라도 어긋나면 종료코드 1. CLAUDE.md docs 배포 체크리스트를 코드로 박은 것.
+- 대시보드의 `배포` 버튼(`pipeline.deploy()`)이 이 스크립트를 그대로 호출한다. `-f`도
+  대시보드에서 (배포 차단이 예측된 경우에만) 버튼으로 노출됨 — 터미널 없이도 가능.
 
 ---
 

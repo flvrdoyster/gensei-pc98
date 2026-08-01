@@ -3,52 +3,96 @@
 ==============
 
 사용법:
-  python3 tools/editor.py <title>
-  브라우저에서 http://localhost:8182 접속
+  python3 tools/editor.py                 # 터미널에서 대상 선택
+  python3 tools/editor.py <title>         # 바로 지정
+  python3 tools/editor.py <title> --no-open   # 브라우저 자동 실행 안 함
+  → http://localhost:8182 (기본적으로 브라우저가 자동으로 열린다)
 
-  <title>: hukyou | kaitou | torimono | kitan (기본값: hukyou)
+  <title>: hukyou | kaitou | torimono | kitan
+           dashboard — 4개 타이틀 빌드/번들/배포 대시보드
 
 translation.json의 kr 필드를 브라우저에서 편집, 저장.
+빌드/번들/배포 파이프라인 로직은 tools/pipeline.py 공용 모듈 참조.
 """
 
 import http.server
 import json
 import os
 import re
-import subprocess
 import sys
+import threading
 import urllib.parse
-
-TITLES = {
-    'hukyou':   '환세풍광전',
-    'kaitou':   '환세쾌도전',
-    'torimono': '환세포물장',
-    'kitan':    '환세희담',
-}
+import webbrowser
 
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
-import lint  # 빌드 시 검수(lint) 통합
+import lint      # 빌드 시 검수(lint) 통합
+import pipeline  # 빌드/번들/배포 공용 파이프라인
 
-# emsdk file_packager.py 경로 (번들 재생성용)
-FILE_PACKAGER = os.path.expanduser(
-    '~/GitHub/emsdk/upstream/emscripten/tools/file_packager.py'
-)
+TITLES = pipeline.TITLES
+
+CHOICES = list(TITLES) + ['dashboard']
+CHOICE_LABELS = dict(TITLES, dashboard='빌드·배포 대시보드')
+
+NO_OPEN = '--no-open' in sys.argv[1:]
+POSITIONAL = [a for a in sys.argv[1:] if not a.startswith('-')]
+
+
+def pick_title():
+    """인자 없이 실행됐을 때 터미널에서 대상 선택. 기본값으로 임의의 타이틀을 열지 않는다."""
+    if not sys.stdin.isatty():
+        print('대상을 지정하세요: python3 tools/editor.py <title>')
+        print(f'사용 가능: {", ".join(CHOICES)}')
+        sys.exit(1)
+
+    tty = sys.stdout.isatty()
+    B, D, N = ('\033[1m', '\033[2m', '\033[0m') if tty else ('', '', '')
+
+    # 키(ASCII)를 먼저 고정폭으로 — 한글은 터미널에서 2칸이라 글자 수로 정렬하면 어긋난다.
+    print(f'\n{B}환세 시리즈 번역 도구{N}\n')
+    for i, key in enumerate(CHOICES, 1):
+        sep = '\n' if key == 'dashboard' else ''
+        print(f'{sep}  {B}{i}{N}) {key:<10}{D}{CHOICE_LABELS[key]}{N}')
+
+    while True:
+        try:
+            raw = input(f'\n선택 {D}(1-{len(CHOICES)}, 이름 직접 입력 가능, q=종료){N}: ').strip()
+        except (EOFError, KeyboardInterrupt):
+            print()
+            sys.exit(0)
+        if raw.lower() in ('q', 'quit', 'exit'):
+            sys.exit(0)
+        if raw.isdigit() and 1 <= int(raw) <= len(CHOICES):
+            return CHOICES[int(raw) - 1]
+        if raw in CHOICES:
+            return raw
+        print('  잘못된 입력입니다.')
+
 
 def resolve_title():
-    title = sys.argv[1] if len(sys.argv) > 1 else 'hukyou'
-    if title not in TITLES:
+    if not POSITIONAL:
+        return pick_title()
+    title = POSITIONAL[0]
+    if title not in CHOICES:
         print(f'알 수 없는 타이틀: {title!r}')
-        print(f'사용 가능: {", ".join(TITLES)}')
+        print(f'사용 가능: {", ".join(CHOICES)}')
         sys.exit(1)
     return title
 
 TITLE = resolve_title()
-TITLE_KR = TITLES[TITLE]
-TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
-CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
-HAS_INSERTER = os.path.exists(os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py'))
-DRAFT_DIR = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'draft')
+DASHBOARD_MODE = (TITLE == 'dashboard')
+
+if DASHBOARD_MODE:
+    TITLE_KR = '빌드·배포 대시보드'
+    TRANS_PATH = CHARMAP_PATH = DRAFT_DIR = None
+    HAS_INSERTER = HAS_EMULATOR = False
+else:
+    TITLE_KR = TITLES[TITLE]
+    TRANS_PATH = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'translation.json')
+    CHARMAP_PATH = os.path.join(PROJECT_ROOT, 'tools', 'charmap.json')
+    HAS_INSERTER = pipeline.has_inserter(TITLE)
+    DRAFT_DIR = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'draft')
+    HAS_EMULATOR = pipeline.has_emulator(TITLE)
 
 
 def load_draft_map():
@@ -106,13 +150,6 @@ def load_draft_map():
 
     return result
 
-
-HAS_EMULATOR = (
-    (TITLE == 'hukyou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'emnp2kai_sdl2.js'))) or
-    (TITLE == 'kitan'  and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kitan.js'))) or
-    (TITLE == 'kaitou' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'kaitou.js'))) or
-    (TITLE == 'torimono' and os.path.exists(os.path.join(PROJECT_ROOT, 'emulator', 'torimono.js')))
-)
 
 HTML = r"""<!DOCTYPE html>
 <html lang="ko">
@@ -1197,11 +1234,370 @@ load().then(() => {
 </html>"""
 
 
+DASHBOARD_HTML = r"""<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<title>빌드·배포 대시보드</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: 'Malgun Gothic', sans-serif; background: #1e1e1e; color: #d4d4d4; padding: 16px; font-size: 14px; width: 800px; }
+h1 { font-size: 15px; font-weight: 600; color: #bbb; margin-bottom: 12px; }
+.topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+.btn { background: transparent; color: #999; border: 1px solid #3a3a3a; height: 28px; padding: 0 14px; border-radius: 4px; cursor: pointer; font-size: 12px; font-family: inherit; }
+.btn:hover { background: #2a2a2a; color: #ddd; border-color: #555; }
+.btn:disabled { opacity: 0.35; cursor: default; }
+.btn.primary { background: #1a3d1a; color: #7dc87d; border-color: #2d5c2d; }
+.btn.primary:hover { background: #234d23; }
+.btn.danger { background: #3d1a1a; color: #e08080; border-color: #5c2d2d; }
+.btn.danger:hover { background: #4d2323; }
+table { width: 100%; border-collapse: collapse; margin-bottom: 14px; }
+th { text-align: left; padding: 6px 8px; font-size: 11px; color: #666; border-bottom: 1px solid #333; font-weight: 600; }
+td { padding: 8px; border-bottom: 1px solid #252525; vertical-align: middle; }
+tr:last-child td { border-bottom: none; }
+.title-name { color: #ccc; font-weight: 600; white-space: nowrap; }
+.stage { display: flex; align-items: center; gap: 8px; }
+.badge { display: inline-block; padding: 2px 8px; border-radius: 4px; font-size: 11px; font-weight: 600; white-space: nowrap; }
+.badge-ok { background: #1a3520; color: #70c880; }
+.badge-stale { background: #332800; color: #d4b060; }
+.badge-missing { background: #2a2a2a; color: #777; }
+.badge-err { background: #3a1a1a; color: #e08080; }
+.hint { font-size: 11px; color: #666; margin-left: 4px; }
+.stage-btn { background: #2e2e2e; color: #ccc; border: 1px solid #4a4a4a; height: 24px; padding: 0 10px; border-radius: 4px; cursor: pointer; font-size: 11px; font-family: inherit; }
+.stage-btn:hover { background: #3a3a3a; color: #fff; }
+.stage-btn:disabled { background: #1e1e1e; color: #444; border-color: #2a2a2a; cursor: default; }
+.deploy-bar { background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 8px; }
+.deploy-row { display: flex; align-items: center; gap: 10px; }
+.deploy-warn { font-size: 12px; color: #d4b060; }
+.deploy-warn b { color: #e0a060; }
+.commit-bar { background: #1a1a1a; border: 1px solid #2e2e2e; border-radius: 4px; padding: 12px; display: flex; flex-direction: column; gap: 8px; margin-top: 10px; }
+#commitFiles { font-family: monospace; font-size: 11px; color: #777; white-space: pre-wrap; max-height: 100px; overflow-y: auto; background: #141414; border: 1px solid #2a2a2a; border-radius: 4px; padding: 6px 8px; }
+#commitMsg { width: 100%; background: #252525; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 6px 8px; border-radius: 4px; font-size: 13px; font-family: inherit; resize: vertical; }
+#commitMsg:focus { outline: none; border-color: #555; }
+details.log { margin-top: 14px; }
+summary { cursor: pointer; font-size: 12px; color: #888; padding: 4px 0; }
+summary:hover { color: #bbb; }
+#logContent { background: #141414; border: 1px solid #2a2a2a; border-radius: 4px; padding: 10px; margin-top: 6px; font-family: monospace; font-size: 11px; color: #999; white-space: pre-wrap; word-break: break-all; max-height: 320px; overflow-y: auto; }
+.toast { position: fixed; bottom: 24px; right: 24px; background: #2a2a2a; color: #d4d4d4; border: 1px solid #3a3a3a; padding: 9px 16px; border-radius: 4px; font-size: 13px; opacity: 0; pointer-events: none; transition: opacity 0.2s; max-width: 340px; box-shadow: 0 4px 16px rgba(0,0,0,0.5); z-index: 100; }
+.toast.show { opacity: 1; }
+</style>
+</head>
+<body>
+<div class="topbar">
+  <h1>빌드·배포 대시보드</h1>
+  <button class="btn primary" id="runAllBtn">전체 빌드+번들</button>
+</div>
+<table>
+<thead><tr>
+  <th style="width:90px">타이틀</th>
+  <th>빌드</th>
+  <th>번들</th>
+  <th>배포</th>
+</tr></thead>
+<tbody id="tbody"></tbody>
+</table>
+<div class="deploy-bar">
+  <div class="deploy-row">
+    <button class="btn primary" id="deployBtn">배포</button>
+    <span id="deployHint" class="hint">emulator → docs 동기화 + 정합 검사 (전 타이틀 공용)</span>
+  </div>
+  <div class="deploy-row" id="sharedStatus"></div>
+  <div id="deployWarn" style="display:none"></div>
+</div>
+<div class="commit-bar" id="commitBar" style="display:none">
+  <div class="deploy-row">
+    <span class="hint" style="margin-left:0">커밋 대상 (translation/·emulator/·docs/ — tools/ 등 다른 작업 중인 변경은 포함 안 함)</span>
+  </div>
+  <div id="commitFiles"></div>
+  <textarea id="commitMsg" rows="2" placeholder="커밋 메시지 (자동 작성됨, 수정 가능)"></textarea>
+  <div class="deploy-row">
+    <button class="btn primary" id="commitBtn">커밋</button>
+  </div>
+</div>
+<details class="log" id="logPanel">
+  <summary>실행 로그</summary>
+  <div id="logContent"></div>
+</details>
+<div class="toast" id="toast"></div>
+
+<script>
+const TITLE_ORDER = ['hukyou', 'kaitou', 'torimono', 'kitan'];
+const STAGE_LABELS = {
+  build:  { missing: '미빌드',   stale: '빌드 필요',   ok: '빌드됨' },
+  bundle: { missing: '미번들',   stale: '번들 필요',   ok: '번들됨' },
+  deploy: { missing: '미배포',   stale: '배포 필요',   ok: '배포됨' },
+};
+let statusData = {};
+let sharedData = { state: 'ok', files: [] };
+let commitData = { files: [], message: '' };
+// 배치·단일 실행 중 잠금. render() 가 행을 다시 그려도 이 플래그로 잠금이 복원된다
+// (안 그러면 배치 도중 loadStatus→render 마다 버튼이 되살아나 중복 실행됨).
+let busy = false;
+
+function badge(kind, stage) {
+  const cls = stage === 'ok' ? 'badge-ok' : stage === 'stale' ? 'badge-stale' : 'badge-missing';
+  const label = STAGE_LABELS[kind][stage] || stage;
+  return `<span class="badge ${cls}">${label}</span>`;
+}
+
+function showToast(msg, type) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.borderColor = type === 'err' ? '#5c2d2d' : '#3a3a3a';
+  t.style.color = type === 'err' ? '#e08080' : '#d4d4d4';
+  t.classList.add('show');
+  clearTimeout(t._timer);
+  t._timer = setTimeout(() => t.classList.remove('show'), 3200);
+}
+
+function appendLog(titleKr, action, result) {
+  const el = document.getElementById('logContent');
+  const time = new Date().toLocaleTimeString('ko-KR', { hour12: false });
+  let line = `[${time}] ${titleKr} · ${action} — ${result.ok ? 'OK' : 'FAIL'} : ${result.message}`;
+  if (result.warnings && result.warnings.length) line += `\n  ⚠ ${result.warnings.join(' / ')}`;
+  if (result.output) line += `\n${result.output.trim()}`;
+  el.textContent = (el.textContent ? el.textContent + '\n\n' : '') + line;
+  el.scrollTop = el.scrollHeight;
+  document.getElementById('logPanel').open = true;
+}
+
+async function loadStatus() {
+  const [statusRes, commitRes] = await Promise.all([
+    fetch('/api/pipeline/status'),
+    fetch('/api/pipeline/commit-status'),
+  ]);
+  const data = await statusRes.json();
+  statusData = data.titles;
+  sharedData = data.shared;
+  commitData = await commitRes.json();
+  render();
+}
+
+function render() {
+  const tbody = document.getElementById('tbody');
+  tbody.innerHTML = '';
+  let anyBlocked = [];
+
+  for (const t of TITLE_ORDER) {
+    const s = statusData[t];
+    if (!s) continue;
+    if (s.deploy_blocked) anyBlocked.push(s.title_kr);
+
+    const tr = document.createElement('tr');
+
+    // 고유 비활성(인서터·에뮬 없음 등)은 data-off 로 표시만 하고, 최종 disabled 는
+    // syncButtons() 가 busy 와 함께 계산한다.
+    const buildOff = !s.has_inserter ? 'data-off="1"' : '';
+    const bundleOff = (!s.has_emulator || s.build === 'missing') ? 'data-off="1"' : '';
+
+    let bundleExtra = '';
+    if (t === 'kitan' && s.demo === 'missing') {
+      bundleExtra = '<span class="hint">데모 스킵됨</span>';
+    }
+
+    tr.innerHTML = `
+      <td class="title-name">${s.title_kr}</td>
+      <td><div class="stage">${badge('build', s.build)}<button class="stage-btn" data-action="build" data-title="${t}" ${buildOff}>빌드</button></div></td>
+      <td><div class="stage">${badge('bundle', s.bundle)}<button class="stage-btn" data-action="bundle" data-title="${t}" ${bundleOff}>번들</button>${bundleExtra}</div></td>
+      <td><div class="stage">${badge('deploy', s.deploy)}${s.deploy_blocked ? '<span class="hint">⚠ 배포 시 이 타이틀에서 막힘</span>' : ''}</div></td>
+    `;
+    tbody.appendChild(tr);
+  }
+
+  // 공용 파일(version.js·audio.js·bios/ 등) — 어느 타이틀에도 안 묶이지만 배포 대상.
+  const sharedEl = document.getElementById('sharedStatus');
+  if (sharedData.state === 'ok') {
+    sharedEl.innerHTML = `공용 파일 ${badge('deploy', 'ok')}`;
+  } else {
+    const list = sharedData.files.length ? ` <span class="hint">${sharedData.files.join(', ')}</span>` : '';
+    sharedEl.innerHTML = `공용 파일 ${badge('deploy', sharedData.state)}${list}`;
+  }
+
+  const warnEl = document.getElementById('deployWarn');
+  if (anyBlocked.length) {
+    warnEl.style.display = 'block';
+    warnEl.innerHTML = `<span class="deploy-warn">⚠ <b>${anyBlocked.join(', ')}</b> 빌드 신선도 경고로 배포가 막힐 수 있습니다.
+      <button class="btn danger" id="forceDeployBtn" style="margin-left:8px">경고 무시하고 배포(-f)</button></span>`;
+    document.getElementById('forceDeployBtn').addEventListener('click', () => runDeploy(true));
+  } else {
+    warnEl.style.display = 'none';
+    warnEl.innerHTML = '';
+  }
+
+  renderCommit();
+  syncButtons();
+}
+
+function renderCommit() {
+  const bar = document.getElementById('commitBar');
+  const msgEl = document.getElementById('commitMsg');
+  if (!commitData.files || !commitData.files.length) {
+    bar.style.display = 'none';
+    return;
+  }
+  bar.style.display = 'flex';
+  document.getElementById('commitFiles').textContent =
+    commitData.files.map(f => `${f.status}  ${f.path}`).join('\n');
+  // 사용자가 편집 중이면 자동 갱신으로 덮어쓰지 않는다.
+  if (msgEl.dataset.dirty !== '1') msgEl.value = commitData.message;
+}
+
+function syncButtons() {
+  document.querySelectorAll('.stage-btn, #runAllBtn, #deployBtn, #forceDeployBtn, #commitBtn').forEach(b => {
+    b.disabled = busy || b.dataset.off === '1';
+  });
+}
+
+function setBusy(v) { busy = v; syncButtons(); }
+
+// fetch/파싱 예외까지 결과 객체로 흡수 — 호출부가 항상 {ok, message} 를 받게 해
+// 예외로 흐름이 끊겨 잠금이 안 풀리는 일을 막는다.
+async function callStage(action, title) {
+  const label = action === 'build' ? '빌드' : '번들';
+  try {
+    const res = await fetch(`/api/pipeline/${action}?title=${title}`, { method: 'POST' });
+    const result = await res.json();
+    appendLog(statusData[title] ? statusData[title].title_kr : title, label, result);
+    return result;
+  } catch (e) {
+    const result = { ok: false, message: `${label} 실패: ${e.message}` };
+    appendLog(statusData[title] ? statusData[title].title_kr : title, label, result);
+    return result;
+  }
+}
+
+async function runDeploy(force) {
+  setBusy(true);
+  const btn = document.getElementById('deployBtn');
+  const origText = btn.textContent;
+  btn.textContent = '배포 중...';
+  try {
+    const res = await fetch(`/api/pipeline/deploy${force ? '?force=1' : ''}`, { method: 'POST' });
+    const result = await res.json();
+    appendLog('전체', force ? '배포(-f)' : '배포', result);
+    showToast(result.message, result.ok ? 'ok' : 'err');
+  } catch (e) {
+    showToast('오류: ' + e.message, 'err');
+  } finally {
+    btn.textContent = origText;
+    try { await loadStatus(); } catch (e) {}
+    setBusy(false);
+  }
+}
+
+document.getElementById('tbody').addEventListener('click', async (e) => {
+  const btn = e.target.closest('.stage-btn');
+  if (!btn || btn.disabled) return;
+  const { action, title } = btn.dataset;
+  setBusy(true);
+  const origText = btn.textContent;
+  btn.textContent = action === 'build' ? '빌드 중...' : '번들 중...';
+  try {
+    const result = await callStage(action, title);
+    showToast(result.message, result.ok ? 'ok' : 'err');
+  } finally {
+    btn.textContent = origText;
+    try { await loadStatus(); } catch (e) {}
+    setBusy(false);
+  }
+});
+
+document.getElementById('deployBtn').addEventListener('click', () => runDeploy(false));
+
+document.getElementById('runAllBtn').addEventListener('click', async () => {
+  setBusy(true);
+  const runBtn = document.getElementById('runAllBtn');
+  const origText = runBtn.textContent;
+  try {
+    await loadStatus();
+
+    for (const t of TITLE_ORDER) {
+      const s = statusData[t];
+      if (!s || !s.has_inserter || s.build === 'ok') continue;
+      runBtn.textContent = `${s.title_kr} 빌드 중...`;
+      const r = await callStage('build', t);
+      await loadStatus();
+      if (!r.ok) { showToast(`${s.title_kr} 빌드 실패 — 중단`, 'err'); return; }
+    }
+
+    for (const t of TITLE_ORDER) {
+      const s = statusData[t];
+      if (!s || !s.has_emulator || s.bundle === 'ok') continue;
+      runBtn.textContent = `${s.title_kr} 번들 중...`;
+      const r = await callStage('bundle', t);
+      await loadStatus();
+      if (!r.ok) { showToast(`${s.title_kr} 번들 실패 — 중단`, 'err'); return; }
+    }
+
+    showToast('전체 빌드+번들 완료', 'ok');
+  } catch (e) {
+    showToast('오류: ' + e.message, 'err');
+  } finally {
+    runBtn.textContent = origText;
+    setBusy(false);
+  }
+});
+
+document.getElementById('commitMsg').addEventListener('input', (e) => {
+  e.target.dataset.dirty = '1';
+});
+
+document.getElementById('commitBtn').addEventListener('click', async () => {
+  const msgEl = document.getElementById('commitMsg');
+  const message = msgEl.value.trim();
+  if (!message) { showToast('커밋 메시지를 입력하세요', 'err'); return; }
+
+  setBusy(true);
+  const btn = document.getElementById('commitBtn');
+  const origText = btn.textContent;
+  btn.textContent = '커밋 중...';
+  try {
+    const res = await fetch('/api/pipeline/commit', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ message }),
+    });
+    const result = await res.json();
+    appendLog('전체', '커밋', result);
+    showToast(result.message, result.ok ? 'ok' : 'err');
+    if (result.ok) {
+      delete msgEl.dataset.dirty;
+      await loadStatus();
+    }
+  } catch (e) {
+    showToast('오류: ' + e.message, 'err');
+  } finally {
+    btn.textContent = origText;
+    setBusy(false);
+  }
+});
+
+loadStatus();
+</script>
+</body>
+</html>"""
+
+
 class Handler(http.server.BaseHTTPRequestHandler):
     def log_message(self, fmt, *args):
         pass
 
     def do_GET(self):
+        if DASHBOARD_MODE:
+            parsed = urllib.parse.urlparse(self.path)
+            if parsed.path == '/':
+                self.send_response(200)
+                self.send_header('Content-Type', 'text/html; charset=utf-8')
+                self.end_headers()
+                self.wfile.write(DASHBOARD_HTML.encode())
+            elif parsed.path == '/api/pipeline/status':
+                self._send_json(pipeline.status())
+            elif parsed.path == '/api/pipeline/commit-status':
+                self._send_json(pipeline.commit_status())
+            else:
+                self.send_error(404)
+            return
+
         if self.path == '/':
             self.send_response(200)
             self.send_header('Content-Type', 'text/html; charset=utf-8')
@@ -1224,6 +1620,34 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self.send_error(404)
 
     def do_POST(self):
+        if DASHBOARD_MODE:
+            parsed = urllib.parse.urlparse(self.path)
+            qs = urllib.parse.parse_qs(parsed.query)
+            title = qs.get('title', [''])[0]
+            if parsed.path == '/api/pipeline/build':
+                if title not in pipeline.TITLES:
+                    self._send_json_error('알 수 없는 타이틀', 400)
+                    return
+                self._send_json(pipeline.build(title))
+            elif parsed.path == '/api/pipeline/bundle':
+                if title not in pipeline.TITLES:
+                    self._send_json_error('알 수 없는 타이틀', 400)
+                    return
+                self._send_json(pipeline.bundle(title))
+            elif parsed.path == '/api/pipeline/deploy':
+                force = qs.get('force', ['0'])[0] in ('1', 'true')
+                self._send_json(pipeline.deploy(force=force))
+            elif parsed.path == '/api/pipeline/commit':
+                length = int(self.headers.get('Content-Length', 0))
+                try:
+                    body = json.loads(self.rfile.read(length)) if length else {}
+                except Exception:
+                    body = {}
+                self._send_json(pipeline.commit(body.get('message', '')))
+            else:
+                self.send_error(404)
+            return
+
         if self.path == '/api/save':
             length = int(self.headers.get('Content-Length', 0))
             body = json.loads(self.rfile.read(length))
@@ -1396,148 +1820,6 @@ class Handler(http.server.BaseHTTPRequestHandler):
 
         return {'updated': updated, 'skipped': skipped}
 
-    def _repackage_bundle(self, title, fdi_names):
-        """공통 번들 재생성: emulator/bios + 지정 FDI들 → file_packager로 묶고
-        emulator/<title>.js의 loadPackage 메타데이터 갱신. data_size 반환.
-        실패 시 RuntimeError raise."""
-        import tempfile, shutil, re
-        emulator_dir = os.path.join(PROJECT_ROOT, 'emulator')
-        rom_dir      = os.path.join(emulator_dir, 'rom')
-        bios_dir     = os.path.join(emulator_dir, 'bios')
-        data_path    = os.path.join(emulator_dir, f'{title}.data')
-        js_path      = os.path.join(emulator_dir, f'{title}.js')
-
-        if not os.path.exists(FILE_PACKAGER):
-            raise RuntimeError(f'file_packager.py 없음: {FILE_PACKAGER}')
-
-        tmpdir = tempfile.mkdtemp(prefix=f'{title}-bundle-')
-        loader_js = os.path.join(tmpdir, 'loader.js')
-        try:
-            tmp_bios = os.path.join(tmpdir, 'bios')
-            tmp_rom  = os.path.join(tmpdir, 'rom')
-            os.makedirs(tmp_bios)
-            os.makedirs(tmp_rom)
-            # font_jp.bmp: 미지 반각 코드 글리프 판독용 로컬 참고 자료일 뿐, 번들에는 불필요
-            # (게임은 font.bmp만 참조 — 번들에 넣으면 524KB 낭비)
-            for f in os.listdir(bios_dir):
-                if not f.startswith('.') and f != 'font_jp.bmp':
-                    shutil.copy2(os.path.join(bios_dir, f), tmp_bios)
-            for fdi in fdi_names:
-                src = os.path.join(rom_dir, fdi)
-                if os.path.exists(src):
-                    shutil.copy2(src, tmp_rom)
-
-            proc = subprocess.run(
-                ['python3', FILE_PACKAGER, data_path,
-                 '--js-output=' + loader_js,
-                 '--preload', 'bios@/emulator/np2kai',
-                 '--preload', 'rom@/rom'],
-                capture_output=True, text=True, timeout=120, cwd=tmpdir,
-            )
-            if proc.returncode != 0:
-                raise RuntimeError(f'file_packager 실패: {proc.stderr.strip()[-300:]}')
-
-            with open(loader_js, 'r') as f:
-                loader_content = f.read()
-            meta_match = re.search(r'"files":\s*(\[.*?\]),\s*"remote_package_size":\s*(\d+)', loader_content)
-            if not meta_match:
-                raise RuntimeError('메타데이터 추출 실패')
-            new_files = meta_match.group(1)
-            new_size  = meta_match.group(2)
-
-            with open(js_path, 'r') as f:
-                js_content = f.read()
-            js_content = re.sub(
-                r'loadPackage\(\{(?:"files"|files):\s*\[.*?\],\s*(?:"remote_package_size"|remote_package_size):\s*\d+\}\)',
-                f'loadPackage({{"files":{new_files},"remote_package_size":{new_size}}})',
-                js_content,
-            )
-            with open(js_path, 'w') as f:
-                f.write(js_content)
-        finally:
-            shutil.rmtree(tmpdir, ignore_errors=True)
-
-        return os.path.getsize(data_path)
-
-    def _handle_emulator_update_kitan(self):
-        # 1. build/kitan/ → system/data FDI (run_build 시 kitan_inserter.py가 이미 생성)
-        build_dir = os.path.join(PROJECT_ROOT, 'build', 'kitan')
-        for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
-            if not os.path.exists(os.path.join(build_dir, fdi_name)):
-                self._send_json_error(
-                    f'빌드 결과 없음: {os.path.join(build_dir, fdi_name)} — 먼저 빌드하세요.', 400)
-                return
-
-        # 2. demo 디스크 패치 (희담 전용, build/kitan-demo/kitan-demo.fdi 생성)
-        try:
-            demo_inserter = os.path.join(PROJECT_ROOT, 'tools', 'kitan_demo_inserter.py')
-            game_dir = os.path.join(PROJECT_ROOT, 'original', 'kitan', 'data')
-            subprocess.run(['python3', demo_inserter, game_dir],
-                           capture_output=True, timeout=60, cwd=PROJECT_ROOT)
-        except Exception:
-            pass  # demo 패치 실패는 무시(오프닝 미번역이면 build 자체가 안 나올 수 있음)
-
-        # 3. build/ → emulator/rom/ 복사 (kitan-demo는 별도 build 디렉토리)
-        import shutil
-        rom_dir = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-        demo_build = os.path.join(PROJECT_ROOT, 'build', 'kitan-demo', 'kitan-demo.fdi')
-        try:
-            shutil.copy(os.path.join(build_dir, 'kitan-system.fdi'), rom_dir)
-            shutil.copy(os.path.join(build_dir, 'kitan-data.fdi'), rom_dir)
-            if os.path.exists(demo_build):
-                shutil.copy(demo_build, rom_dir)
-        except Exception as e:
-            self._send_json_error(f'디스크 복사 실패: {e}', 500)
-            return
-
-        # 4. 번들 재생성 (공통)
-        try:
-            data_size = self._repackage_bundle('kitan',
-                ('kitan-system.fdi', 'kitan-data.fdi', 'kitan-demo.fdi'))
-        except Exception as e:
-            self._send_json_error(f'번들 재생성 실패: {e}', 500)
-            return
-
-        self._send_json({
-            'ok': True,
-            'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
-        })
-
-    def _handle_emulator_update_disk(self, title, disk_names):
-        """단일/복수 디스크 타이틀 공통: build/<title>/<disk> 들 → emulator/rom/ 복사 후 번들 재생성.
-        hukyou·kaitou(FDI)·torimono(HDI)가 사용. kitan은 build 디렉토리가 갈려 별도 핸들러."""
-        import shutil
-        if isinstance(disk_names, str):
-            disk_names = (disk_names,)
-        build_dir = os.path.join(PROJECT_ROOT, 'build', title)
-        rom_dir   = os.path.join(PROJECT_ROOT, 'emulator', 'rom')
-
-        for disk_name in disk_names:
-            build_disk = os.path.join(build_dir, disk_name)
-            if not os.path.exists(build_disk):
-                self._send_json_error(f'빌드 결과 없음: {build_disk} — 먼저 빌드하세요.', 400)
-                return
-
-        # 1. 패치 디스크(build/) → emulator/rom/
-        try:
-            for disk_name in disk_names:
-                shutil.copy(os.path.join(build_dir, disk_name), os.path.join(rom_dir, disk_name))
-        except Exception as e:
-            self._send_json_error(f'디스크 복사 실패: {e}', 500)
-            return
-
-        # 2. 번들 재생성 (공통)
-        try:
-            data_size = self._repackage_bundle(title, disk_names)
-        except Exception as e:
-            self._send_json_error(f'번들 재생성 실패: {e}', 500)
-            return
-
-        self._send_json({
-            'ok': True,
-            'message': f'에뮬레이터 업데이트 완료 — 번들 재생성 ({data_size:,} bytes)',
-        })
-
     def _send_json(self, data, code=200):
         body = json.dumps(data, ensure_ascii=False).encode()
         self.send_response(code)
@@ -1558,94 +1840,47 @@ class Handler(http.server.BaseHTTPRequestHandler):
         if not HAS_EMULATOR:
             self._send_json_error('에뮬레이터 업데이트 미지원', 400)
             return
-        if TITLE == 'kitan':
-            self._handle_emulator_update_kitan()
+        result = pipeline.bundle(TITLE)
+        # 편집 화면의 기존 규약 유지: 실패는 400/500 + {message}, 성공은 200 + {ok, message}.
+        # (대시보드는 같은 pipeline.bundle 을 쓰되 output·warnings 까지 그대로 받아 간다)
+        if not result.get('ok'):
+            self._send_json_error(result['message'], result.get('code', 500))
             return
-        if TITLE == 'kaitou':
-            self._handle_emulator_update_disk('kaitou', 'kaitou_kr.fdi')
-            return
-        if TITLE == 'torimono':
-            self._handle_emulator_update_disk('torimono', 'torimono_kr.hdi')
-            return
-        if TITLE == 'hukyou':
-            self._handle_emulator_update_disk('hukyou', 'hukyou_kr.fdi')
-            return
+        self._send_json({'ok': True, 'message': result['message']})
 
     def run_build(self):
-        game_dir = os.path.join(PROJECT_ROOT, 'original', TITLE)
-        inserter = os.path.join(PROJECT_ROOT, 'tools', f'{TITLE}_inserter.py')
-        try:
-            proc = subprocess.run(
-                ['python3', inserter, game_dir],
-                capture_output=True, text=True, timeout=60,
-                cwd=PROJECT_ROOT,
-            )
-            output = (proc.stdout + proc.stderr).strip()
-            if proc.returncode == 0:
-                lines = output.splitlines()
-                n_trunc = sum(1 for l in lines if '초과, 잘림' in l)
-                # 인서터별 출력 형식이 달라 두 가지 모두 인식:
-                #  hukyou/kitan: "<file>: N건 교체, ..." (파일별 여러 줄)
-                #  kaitou:       "패치: N줄 / M청크, ..."
-                file_lines = [l for l in lines if '건 교체' in l]
-                if file_lines:
-                    n_files = len(file_lines)
-                    n_items = sum(int(l.split('건 교체')[0].split()[-1]) for l in file_lines)
-                    msg = f'빌드 완료 — {n_files}개 파일 {n_items}건 교체'
-                elif (m := re.search(r'패치:\s*(\d+)줄\s*/\s*(\d+)청크', output)):
-                    msg = f'빌드 완료 — {m.group(2)}개 청크 {m.group(1)}줄 교체'
-                else:
-                    msg = '빌드 완료 (교체 항목 없음)'
-                if n_trunc:
-                    msg += f' · ⚠ {n_trunc}줄 길이초과 잘림'
-                # 검수 lint 통합 (빠른 검사 — 무거운 offset 검사는 제외).
-                # 깨진문자·잘림은 버그라 토스트를 경고색(err)으로, 일관성은 정보만.
-                warn = n_trunc > 0
-                try:
-                    lr = lint.analyze(TITLE, check_offset=False)
-                    parts = []
-                    if lr.get('broken'):
-                        parts.append(f"깨진문자 {len(lr['broken'])}")
-                        warn = True
-                    if lr.get('conflicts'):
-                        parts.append(f"일관성 {len(lr['conflicts'])}")
-                    if parts:
-                        msg += ' · lint: ' + ' / '.join(parts)
-                except Exception:
-                    pass
-                return {'ok': not warn, 'message': msg}
-            last = output.splitlines()[-1] if output else '빌드 실패'
-            return {'ok': False, 'message': f'빌드 실패: {last}'}
-        except Exception as e:
-            return {'ok': False, 'message': str(e)}
+        return pipeline.build(TITLE)
 
     def run_deploy_docs(self):
-        """tools/deploy-docs.sh 실행 (emulator→docs 동기화 + 정합 검사). 커밋·버전 미변경."""
-        script = os.path.join(PROJECT_ROOT, 'tools', 'deploy-docs.sh')
-        try:
-            proc = subprocess.run(
-                ['bash', script],
-                capture_output=True, text=True, timeout=60,
-                cwd=PROJECT_ROOT,
-            )
-            out = (proc.stdout + proc.stderr).strip()
-            if proc.returncode == 0:
-                return {'ok': True, 'message': 'docs 동기화·정합 검사 통과'}
-            # 실패 — 경고·오류 줄만 추려 표시 (스크립트는 비-tty라 색코드 없음)
-            bad = [l.strip() for l in out.splitlines()
-                   if any(s in l for s in ('⚠', '✗', '실패', '의심'))]
-            msg = ' / '.join(bad) if bad else (out.splitlines()[-1] if out else 'docs 배포 실패')
-            return {'ok': False, 'message': 'docs 배포: ' + msg}
-        except Exception as e:
-            return {'ok': False, 'message': str(e)}
+        return pipeline.deploy()
 
 
 if __name__ == '__main__':
     port = 8182  # JP(81) → KR(82)
-    server = http.server.HTTPServer(('127.0.0.1', port), Handler)
-    print(f'[{TITLE_KR}] 번역 에디터: http://localhost:{port}')
-    print('종료: Ctrl+C')
+    url = f'http://localhost:{port}'
     try:
-        server.serve_forever()
+        server = http.server.HTTPServer(('127.0.0.1', port), Handler)
+    except OSError as e:
+        print(f'포트 {port} 를 열 수 없습니다: {e}')
+        print('이미 에디터가 떠 있지 않은지 확인하세요 (편집·대시보드는 한 번에 하나만).')
+        sys.exit(1)
+
+    label = TITLE_KR if DASHBOARD_MODE else f'[{TITLE_KR}] 번역 에디터'
+    print(f'{label}: {url}')
+    print('종료: Ctrl+C')
+
+    # 서버를 백그라운드로 먼저 띄운다 — serve_forever() 전에 브라우저를 열면
+    # 연결 거부를 맞는다.
+    server_thread = threading.Thread(target=server.serve_forever, daemon=True)
+    server_thread.start()
+
+    if not NO_OPEN:
+        try:
+            webbrowser.open(url)
+        except Exception as e:
+            print(f'(브라우저 자동 실행 실패 — 직접 열어주세요: {e})')
+
+    try:
+        server_thread.join()
     except KeyboardInterrupt:
         pass
