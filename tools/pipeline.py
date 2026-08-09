@@ -478,12 +478,36 @@ def _title_of_path(rel_path):
     return None, None
 
 
+def _short_title(title_kr):
+    """커밋 메시지 초안용 — 시리즈 전체가 '환세'로 시작해 나열하면 반복이라 뗀다.
+    타이틀 배지 등 다른 표시에는 title_kr(TITLES 값) 그대로 씀, 이건 초안 전용."""
+    return title_kr[2:] if title_kr.startswith('환세') else title_kr
+
+
+def _count_changed_kr(rel_path):
+    """translation/<t>/translation.json 의 git diff(HEAD 대비, 스테이징 여부 무관)에서
+    실제로 바뀐 kr 줄 수. 포맷이 한 줄에 kr 하나(pretty-printed) 라 +로 시작하는
+    "kr": 줄 개수 = 바뀐/새로 채운 항목 수와 일치한다(교체든 신규든 +쪽에 한 번 찍힘)."""
+    try:
+        proc = subprocess.run(
+            ['git', 'diff', 'HEAD', '--', rel_path],
+            cwd=PROJECT_ROOT, capture_output=True, text=True, timeout=15,
+        )
+    except Exception:
+        return 0
+    return sum(
+        1 for line in proc.stdout.splitlines()
+        if line.startswith('+') and not line.startswith('+++') and '"kr":' in line
+    )
+
+
 def _draft_commit_message(files):
     """변경 파일 목록에서 커밋 메시지 초안 생성. 사용자가 대시보드에서 그대로 쓰거나
     고쳐 쓴다 — 완벽할 필요는 없고 출발점만 되면 된다."""
     paths = [f['path'] for f in files]
     stage = {}  # title -> 'docs' > 'bundle' > 'json' (가장 진행된 단계로 표시)
     rank = {'json': 0, 'bundle': 1, 'docs': 2}
+    json_changed = set()  # translation.json 자체가 바뀐 타이틀 (stage 랭킹과 별개로 추적)
     shared = []
 
     for p in paths:
@@ -491,12 +515,19 @@ def _draft_commit_message(files):
         if t is None:
             shared.append(p)
             continue
+        if kind == 'json':
+            json_changed.add(t)
         if t not in stage or rank[kind] > rank[stage[t]]:
             stage[t] = kind
 
     by_stage = {'json': [], 'bundle': [], 'docs': []}
     for t, kind in stage.items():
-        by_stage[kind].append(TITLES[t])
+        label = _short_title(TITLES[t])
+        if t in json_changed:
+            n = _count_changed_kr(f'translation/{t}/translation.json')
+            if n:
+                label = f'{label} {n}줄'
+        by_stage[kind].append(label)
 
     parts = []
     if by_stage['docs']:

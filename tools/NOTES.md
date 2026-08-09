@@ -261,6 +261,11 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
   안 실린다(`pipeline.COMMIT_SCOPE`). 메시지 초안은 타이틀별로 어느 단계까지 갔는지
   (`번역 작업` < `빌드 갱신` < `번역 반영 및 배포`) 보고 조합한다 — 완벽할 필요는 없고
   출발점만 되면 됨. 스테이징된 게 없으면(빈 커밋 방지) 실패로 응답.
+  - 타이틀 이름에서 `환세` 접두어는 뗀다(`_short_title`) — 시리즈 전체가 공유하는
+    접두어라 나열하면 반복일 뿐. 배지 등 다른 표시는 `TITLES` 원본(`환세풍광전` 등) 그대로.
+  - `translation.json` 이 바뀐 타이틀은 `git diff HEAD` 에서 실제로 바뀐 `kr` 줄 수를
+    세어 `"{타이틀} {N}줄 ..."` 로 붙인다(`_count_changed_kr`). 포맷이 한 줄에 `"kr"`
+    하나(pretty-printed)라 `+`로 시작하는 `"kr":` 줄 개수 = 교체·신규 채움 건수와 일치.
 - API: `GET /api/pipeline/status`(`{titles, shared}`), `GET /api/pipeline/commit-status`,
   `POST /api/pipeline/{build,bundle,deploy}?title=<t>`, `POST /api/pipeline/commit`(body
   `{message}`) — 전부 dashboard 모드 전용 라우트, 편집 모드의 `/api/build` 등과는 별개.
@@ -284,6 +289,7 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
 | `shared_status()` | 타이틀별 `<t>.data`/`<t>.js` 를 뺀 나머지 `emulator/` 전체의 docs 동기 여부 |
 | `_bundle_shared_input_paths()` | `emulator/bios/*`(폰트 등, `font_jp.bmp` 제외) — 모든 타이틀 번들에 공통으로 들어가는 입력. `_repackage_bundle` 의 복사 필터와 반드시 동일해야 함 |
 | `predict_deploy_block(title)` | `deploy-docs.sh` 0단계(git-clean 스킵 + mtime)를 파이썬으로 재현 — 배포 전에 막힐 타이틀을 미리 예측 |
+| `_count_changed_kr(rel_path)` | `translation/<t>/translation.json` 의 `git diff HEAD`에서 실제로 바뀐 `kr` 줄 수 (커밋 메시지 초안용) |
 | `commit_status()` | `COMMIT_SCOPE`(`translation/`·`emulator/`·`docs/`) 안의 git 변경 파일 + 자동 메시지 초안 |
 | `commit(message)` | 위 스코프만 `git add` 후 커밋. 스코프 밖은 절대 add 하지 않음. 스테이징 없으면 실패 응답(빈 커밋 방지) |
 
