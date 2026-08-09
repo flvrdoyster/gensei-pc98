@@ -196,6 +196,20 @@ def _build_disk_full_paths(title):
     return core, []
 
 
+def _bundle_shared_input_paths():
+    """모든 타이틀 번들에 공통으로 들어가는 입력(폰트 등 emulator/bios/*) —
+    _repackage_bundle 의 복사 대상 필터와 반드시 동일해야 한다. 이 목록이 번들 신선도
+    판정에서 빠지면, 폰트만 바뀌고 어떤 타이틀의 build/ 디스크도 안 바뀐 경우 —
+    실제로는 모든 타이틀의 .data 가 구식 폰트를 담은 채인데도 '번들됨'으로 잘못 표시된다."""
+    bios_dir = os.path.join(PROJECT_ROOT, 'emulator', 'bios')
+    if not os.path.isdir(bios_dir):
+        return []
+    return [
+        os.path.join(bios_dir, f) for f in os.listdir(bios_dir)
+        if not f.startswith('.') and f != 'font_jp.bmp'
+    ]
+
+
 def bundle(title):
     """build/ 의 패치 디스크를 emulator/rom/ 에 복사하고 emulator/<title>.data 재생성.
     희담은 데모 디스크 패치를 먼저 시도(실패해도 계속 진행 — 오프닝 미번역이면 정상).
@@ -398,8 +412,12 @@ def title_status(title):
         oldest_build_mtime = min(os.path.getmtime(p) for p in core)
         build_stage = 'stale' if os.path.getmtime(json_path) > oldest_build_mtime else 'ok'
 
-    # 번들 비교엔 존재하는 선택 디스크(희담 데모)도 포함 — 데모만 새로 빌드된 경우를 놓치지 않게.
-    bundle_stage = _stage(core + [p for p in optional if os.path.exists(p)], data_path)
+    # 번들 비교엔 존재하는 선택 디스크(희담 데모) + 공용 입력(폰트 등 bios/*)도 포함 —
+    # 데모만 새로 빌드됐거나, 어느 타이틀 build/ 도 안 바뀌었지만 폰트만 바뀐 경우를 놓치지 않게.
+    bundle_stage = _stage(
+        core + [p for p in optional if os.path.exists(p)] + _bundle_shared_input_paths(),
+        data_path,
+    )
 
     # 배포는 <t>.data 와 <t>.js(loadPackage 메타) 둘 다 봐야 한다.
     js_path = os.path.join(PROJECT_ROOT, 'emulator', f'{title}.js')

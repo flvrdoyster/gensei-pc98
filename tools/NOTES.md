@@ -240,6 +240,11 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
   mtime(빌드·번들) / 파일 비교(배포)로 판정해 `미빌드`·`빌드 필요`·`빌드됨` 식 배지로 표시.
   희담은 데모 디스크(`kitan-demo.fdi`) 존재 여부를 별도 표시(없어도 빌드 실패로 안 봄 —
   오프닝 미번역이면 정상).
+- **번들 신선도엔 공용 입력(폰트 등)도 들어간다**: `번들` 단계는 타이틀별 `build/<t>/` 디스크
+  뿐 아니라 `emulator/bios/*`(`_bundle_shared_input_paths()`)도 같이 비교한다.
+  `_repackage_bundle` 이 실제로 매번 `bios/` 전체를 통째로 챙겨 패키징하기 때문 — 이걸
+  안 보면 **어느 타이틀의 build/ 도 안 바뀌었지만 폰트만 바뀐 경우**, 4개 타이틀 `.data`
+  전부 구식 폰트를 담은 채인데도 `번들됨`으로 잘못 표시된다(실사고로 발견).
 - **공용 파일 행**: `version.js`·`audio.js`·`bios/` 등은 어느 타이틀에도 안 묶이는데
   `deploy-docs.sh` 는 `cp -r emulator/*` 로 통째 복사한다. 타이틀 배지만 보면 **버전만 올린
   배포를 통째로 놓치므로**, 타이틀별 `<t>.data`/`<t>.js` 를 뺀 나머지 전체를 따로 비교해
@@ -277,6 +282,7 @@ dialogs/items/ui 포맷(풍광전·희담)에선 비활성(드롭다운·모드 
 | `deploy(force=False)` | `deploy-docs.sh` 실행 (`force`→`-f`) |
 | `status()` | `{titles: {t: 4단계+deploy_blocked}, shared: 공용 파일 동기 여부}` |
 | `shared_status()` | 타이틀별 `<t>.data`/`<t>.js` 를 뺀 나머지 `emulator/` 전체의 docs 동기 여부 |
+| `_bundle_shared_input_paths()` | `emulator/bios/*`(폰트 등, `font_jp.bmp` 제외) — 모든 타이틀 번들에 공통으로 들어가는 입력. `_repackage_bundle` 의 복사 필터와 반드시 동일해야 함 |
 | `predict_deploy_block(title)` | `deploy-docs.sh` 0단계(git-clean 스킵 + mtime)를 파이썬으로 재현 — 배포 전에 막힐 타이틀을 미리 예측 |
 | `commit_status()` | `COMMIT_SCOPE`(`translation/`·`emulator/`·`docs/`) 안의 git 변경 파일 + 자동 메시지 초안 |
 | `commit(message)` | 위 스코프만 `git add` 후 커밋. 스코프 밖은 절대 add 하지 않음. 스테이징 없으면 실패 응답(빈 커밋 방지) |
