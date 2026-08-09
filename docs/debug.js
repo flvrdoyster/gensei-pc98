@@ -17,14 +17,6 @@
     });
   }
 
-  function idbKeys(db) {
-    return new Promise(function (resolve, reject) {
-      var req = db.transaction(IDB_STORE).objectStore(IDB_STORE).getAllKeys();
-      req.onsuccess = function () { resolve(req.result || []); };
-      req.onerror   = function () { reject(req.error); };
-    });
-  }
-
   function idbGet(db, key) {
     return new Promise(function (resolve, reject) {
       var req = db.transaction(IDB_STORE).objectStore(IDB_STORE).get(key);
@@ -51,8 +43,21 @@
     });
   }
 
-  // 고정 오버레이 패널. 페이지 팔레트(어두운 패널·#444 보더·KoddiUD 폰트)에 맞추고,
-  // 액션 버튼은 기존 button 스타일을 그대로 쓴다. 상단 좌측에 떠서 하단 게임패드는 안 가린다.
+  // 이 페이지가 실제로 다루는 디스크 키만 대상으로 삼는다 — IDB store는 전 타이틀
+  // 공유라서 스코프를 안 좁히면 다른 타이틀에서 넣어둔 캐시까지 같이 나열/내보내기/
+  // 삭제 대상이 되어버린다(실사고: 쾌도전 페이지에서 내보내기 눌렀는데 예전에
+  // 캐시해둔 포물장 이미지가 같이 나옴). 페이지의 IDB_KEY(단일) 또는 DISKS(다중,
+  // 희담류)를 읽어 현재 페이지 소유 키 목록만 구성.
+  function pageKeys() {
+    if (typeof DISKS !== 'undefined' && Array.isArray(DISKS)) {
+      return DISKS.map(function (p) { return p.split('/').pop(); });
+    }
+    if (typeof IDB_KEY !== 'undefined') {
+      return [IDB_KEY];
+    }
+    return [];
+  }
+
   var STYLE =
     '#debug-panel{position:fixed;top:56px;left:8px;z-index:300;' +
     'background:rgba(38,38,38,0.97);border:1px solid rgba(68,68,68,1);border-radius:6px;' +
@@ -62,16 +67,16 @@
     '-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}' +
     '#debug-panel.hidden{display:none}' +
     '#debug-panel h4{margin:0 0 8px;font-size:var(--font-md);color:rgba(170,170,170,1)}' +
-    '#debug-panel .dbg-key{margin:2px 0;word-break:break-all}' +
-    '#debug-panel .dbg-actions{display:flex;gap:8px;margin-top:10px}' +
+    '#debug-panel .dbg-row{display:flex;align-items:center;gap:6px;margin:4px 0;flex-wrap:wrap}' +
+    '#debug-panel .dbg-key{flex:1;min-width:120px;word-break:break-all}' +
+    '#debug-panel .dbg-key.dbg-empty{color:rgba(119,119,119,1)}' +
     '#debug-panel button{font-size:var(--font-sm);padding:3px 10px}' +
     '#debug-panel button:disabled{opacity:0.4;cursor:default}' +
     '#debug-panel .dbg-msg{margin-top:8px;color:rgba(119,119,119,1);min-height:1.4em;word-break:break-all}';
 
   var db = null;
-  var panel, listEl, msgEl, fileInput, btnToggle, btnExport, btnDelete;
+  var panel, listEl, msgEl, fileInput, btnToggle;
   var pendingKey = null;
-  var currentKeys = [];
 
   function setMsg(text) { if (msgEl) msgEl.textContent = text || ''; }
 
@@ -94,50 +99,55 @@
   }
 
   function refreshKeys() {
-    idbKeys(db).then(function (keys) {
-      currentKeys = keys;
-      listEl.innerHTML = '';
-      keys.forEach(function (key) {
-        var d = document.createElement('div');
-        d.className = 'dbg-key';
-        d.textContent = key;
-        listEl.appendChild(d);
+    var keys = pageKeys();
+    listEl.innerHTML = '';
+    if (!keys.length) {
+      var none = document.createElement('div');
+      none.className = 'dbg-key';
+      none.textContent = '이 페이지의 디스크 키를 확인할 수 없음';
+      listEl.appendChild(none);
+      return;
+    }
+    keys.forEach(function (key) {
+      idbGet(db, key).then(function (buf) {
+        var row = document.createElement('div');
+        row.className = 'dbg-row';
+        var label = document.createElement('span');
+        label.className = 'dbg-key' + (buf ? '' : ' dbg-empty');
+        label.textContent = key + (buf ? '' : ' (캐시 없음)');
+        row.appendChild(label);
+        row.appendChild(makeBtn('가져오기', function () { pickFile(key); }, '파일 선택 → 이 키로 저장(덮어쓰기)'));
+        var exp = makeBtn('내보내기', function () {
+          idbGet(db, key).then(function (b) {
+            if (!b) { setMsg(key + ': 캐시 없음'); return; }
+            download(key, b);
+            setMsg(key + ' 내보냄');
+          });
+        });
+        var del = makeBtn('삭제', function () {
+          idbDelete(db, key).then(function () {
+            setMsg(key + ' 삭제됨 — 새로고침하면 원본으로');
+            refreshKeys();
+          });
+        }, '캐시에서 제거(원본 복귀)');
+        exp.disabled = del.disabled = !buf;
+        row.appendChild(exp);
+        row.appendChild(del);
+        listEl.appendChild(row);
       });
-      if (!keys.length) {
-        var none = document.createElement('div');
-        none.className = 'dbg-key';
-        none.textContent = '캐시된 디스크 없음';
-        listEl.appendChild(none);
-      }
-      btnExport.disabled = btnDelete.disabled = !keys.length;
     });
   }
 
-  // 가져오기: 캐시에 키가 하나면 그 키를 덮어쓰고, 없거나 여럿이면 파일명을 키로 쓴다.
-  function doImport() {
-    pendingKey = currentKeys.length === 1 ? currentKeys[0] : null;
+  function pickFile(key) {
+    pendingKey = key;
     fileInput.click();
-  }
-
-  function doExport() {
-    currentKeys.forEach(function (key) {
-      idbGet(db, key).then(function (buf) { if (buf) download(key, buf); });
-    });
-    setMsg('내보내기: ' + currentKeys.join(', '));
-  }
-
-  function doDelete() {
-    Promise.all(currentKeys.map(function (k) { return idbDelete(db, k); })).then(function () {
-      setMsg('삭제됨 — 새로고침하면 원본으로');
-      refreshKeys();
-    });
   }
 
   function onFile(e) {
     var file = e.target.files[0];
     fileInput.value = '';
-    if (!file) return;
-    var key = pendingKey || file.name;
+    if (!file || !pendingKey) return;
+    var key = pendingKey;
     file.arrayBuffer().then(function (buf) {
       return idbPut(db, key, buf);
     }).then(function () {
@@ -163,6 +173,7 @@
     btnToggle.title = 'DEBUG 디스크';
     btnToggle.innerHTML =
       '<svg viewBox="2 4 28 24" height="22"><path fill="currentColor" d="M29,15h-5.1c-0.1-1.2-0.5-2.4-1-3.5c1.9-1.5,3.1-3.7,3.1-6.1V5c0-0.6-0.4-1-1-1s-1,0.4-1,1v0.4c0,1.8-0.8,3.4-2.2,4.5c-0.5-0.7-1.2-1.2-1.9-1.7c0-0.1,0-0.1,0-0.2c0-2.2-1.8-4-4-4s-4,1.8-4,4c0,0.1,0,0.1,0,0.2c-0.7,0.5-1.3,1-1.9,1.7C8.8,8.8,8,7.2,8,5.4V5c0-0.6-0.4-1-1-1S6,4.4,6,5v0.4c0,2.4,1.1,4.7,3.1,6.1c-0.5,1-0.9,2.2-1,3.5H3c-0.6,0-1,0.4-1,1s0.4,1,1,1h5.1c0.1,1.2,0.5,2.4,1,3.5C7.1,21.9,6,24.2,6,26.6V27c0,0.6,0.4,1,1,1s1-0.4,1-1v-0.4c0-1.8,0.8-3.4,2.2-4.5c1.5,1.8,3.5,2.9,5.8,2.9s4.4-1.1,5.8-2.9c1.4,1.1,2.2,2.7,2.2,4.5V27c0,0.6,0.4,1,1,1s1-0.4,1-1v-0.4c0-2.4-1.1-4.7-3.1-6.1c0.5-1,0.9-2.2,1-3.5H29c0.6,0,1-0.4,1-1S29.6,15,29,15z"/></svg>';
+
     // 상단바 왼쪽(grid col1) flex 컨테이너. kitan 처럼 #btn-disk 가 이미 있으면 나란히 둔다.
     var wrap = document.createElement('div');
     wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
@@ -184,22 +195,12 @@
     var h = document.createElement('h4');
     h.textContent = 'DEBUG · 디스크';
     listEl = document.createElement('div');
-    listEl.className = 'dbg-list';
-
-    var actions = document.createElement('div');
-    actions.className = 'dbg-actions';
-    actions.appendChild(makeBtn('가져오기', doImport, '파일 선택 → 캐시에 저장(키=단일 캐시키 또는 파일명)'));
-    btnExport = makeBtn('내보내기', doExport, '캐시된 디스크를 파일로 저장');
-    btnDelete = makeBtn('삭제', doDelete, '캐시에서 제거(원본 복귀)');
-    actions.appendChild(btnExport);
-    actions.appendChild(btnDelete);
 
     msgEl = document.createElement('div');
     msgEl.className = 'dbg-msg';
 
     panel.appendChild(h);
     panel.appendChild(listEl);
-    panel.appendChild(actions);
     panel.appendChild(msgEl);
     document.body.appendChild(panel);
 
