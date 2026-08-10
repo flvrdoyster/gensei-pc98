@@ -17,7 +17,8 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 ### 구성
 
 + **`tools/`** — 한글화 도구 모음.  
-`compile_lz.py` · `compile_script.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).
+`compile_lz.py`(Shift-JIS 유틸 + compile-gfx LZ 위임) · `compile_script.py` · `pc98disk.py`는 공통 라이브러리. 나머지는 타이틀별 파서·인서터와 공용 웹 에디터(`editor.py`).  
+그래픽 **추출** 쪽 코덱·컨테이너는 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)에 있고, 여기엔 재삽입·번역 관련 로직만 둔다.
 + **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분 (저장소에는 없음, 로컬에 직접 준비 필요).
 + **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.
 + **`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
@@ -47,6 +48,15 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 ## 사용법
 
 프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지** 필요.
+
+### 사전 준비: compile-gfx 설치
+
+그래픽 코덱·컨테이너는 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)에 모아 두고
+이 저장소는 그걸 가져다 쓴다 (LZ 압축/해제, 타일시트 디코딩, 청크 테이블 파싱).
+
+```bash
+pip install git+https://github.com/flvrdoyster/compile-gfx
+```
 
 > ⚠ 이 한글화는 한글 글리프를 새로 그려 넣은 전용 폰트 이미지(`emulator/bios/font.bmp`,
 > 도깨비DNR고딕 Light)를 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본

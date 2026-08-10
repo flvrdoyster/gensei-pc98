@@ -4,135 +4,30 @@ Compile社 PC-98 게임 공통 LZ 압축/해제 + Shift-JIS 유틸
 환세풍광전, 환세쾌도전, 환세포물장 등 동일 엔진 타이틀에서 공유.
 
 COM 파일 시그니처: 0x100이 FC(CLD)로 시작, 0x113~0x114가 F3 A5(REP MOVSW).
+
+LZ 코덱 자체는 compile-gfx(`compilegfx.codec.pc98lz`)로 옮겼다 — 추출용
+코덱/컨테이너 지식은 그쪽에 모으고, 이 파일은 재삽입·번역 쪽 유틸만 남긴다.
+아래 두 함수는 호출부 호환을 위한 얇은 위임이며, 실제 게임 청크 30개 +
+랜덤/엣지케이스로 기존 구현과 바이트 단위 동일함을 확인했다.
 """
 
+from compilegfx.codec import pc98lz
 
-# ─────────────────────────────────────
-# LZ 압축 해제
-# ─────────────────────────────────────
 
 def decompress(data, start=0):
+    """스트림 **하나**를 해제 (0x00 종료까지).
+
+    `pc98lz.decompress()`가 아니라 `decompress_stream()`에 위임하는 게
+    중요하다 — 전자는 파일에 이어 붙은 스트림을 전부 연결해서 돌려주므로,
+    4플레인 화면(640x400)에서 32,000이 아니라 128,000바이트가 나온다.
+    이 파일의 기존 호출부는 전부 단일 스트림을 가정하고 있다.
     """
-    al = *src++
-    if al == 0: 종료
-    if al & 0x80: back-reference (length = (al & 0x7f) + 3, offset = *src++ + 1)
-    else: literal copy (length = al)
-    """
-    output = bytearray()
-    i = start
-    while i < len(data):
-        al = data[i]; i += 1
-        if al == 0:
-            break
-        if al & 0x80:
-            length = (al & 0x7f) + 3
-            if i >= len(data):
-                break
-            offset = data[i] + 1; i += 1
-            for _ in range(length):
-                pos = len(output) - offset
-                output.append(output[pos] if pos >= 0 else 0)
-        else:
-            length = al
-            output.extend(data[i:i + length])
-            i += length
-    return output
-
-
-# ─────────────────────────────────────
-# LZ 압축
-# ─────────────────────────────────────
-
-def _find_match(data, i):
-    """위치 i에서 최장 매치 (length, dist). 매치 없으면 (0, 0)."""
-    best_len = 0
-    best_dist = 0
-    max_dist = min(i, 256)
-    max_len = min(len(data) - i, 130)
-    for dist in range(1, max_dist + 1):
-        ml = 0
-        while ml < max_len and data[i + ml] == data[i - dist + (ml % dist)]:
-            ml += 1
-        if ml > best_len:
-            best_len = ml
-            best_dist = dist
-    return best_len, best_dist
+    return bytearray(pc98lz.decompress_stream(data, start)[0])
 
 
 def compress(data):
-    """
-    decompress()의 역함수. Optimal parsing (DP).
-    윈도우: 256바이트, 매치 길이: 3~130, 리터럴 런: 1~127.
-
-    각 위치에서 literal vs match 중 minimum-cost 선택을 DP 로 결정.
-    Literal run 헤더 오버헤드까지 정확히 모델링.
-    """
-    n = len(data)
-    if n == 0:
-        return b'\x00'
-
-    # dp[i] = data[i:] 압축 minimum cost (terminator 제외)
-    # decision[i] = ('lit',) or ('match', length, dist)
-    INF = float('inf')
-    dp = [INF] * (n + 1)
-    decision = [None] * n
-    dp[n] = 0
-
-    # 뒤에서 앞으로
-    for i in range(n - 1, -1, -1):
-        # 옵션 1: literal run of length L (L = 1..min(127, n-i))
-        # cost = 1 (header) + L + dp[i+L]
-        max_run = min(127, n - i)
-        for L in range(1, max_run + 1):
-            cost = 1 + L + dp[i + L]
-            if cost < dp[i]:
-                dp[i] = cost
-                decision[i] = ('lit', L)
-
-        # 옵션 2: match. 매치 비용은 dist 와 무관(항상 2바이트)이므로
-        # 최장 매치 하나 + 그 dist 만 구하면 길이 k=3..best_ml 를 전부 커버한다.
-        # ml 이 max_len 에 도달하면 더 길어질 수 없으므로 조기 종료(break).
-        # (GS.OVL 처럼 반복 패턴이 많은 데이터에서 dist 전수 탐색을 건너뛰어
-        #  데이터 의존 폭발을 막는다. 압축 결과는 기존과 바이트 동일 — 검증됨.)
-        max_dist = min(i, 256)
-        max_len = min(n - i, 130)
-        best_ml = 0
-        best_dist = 0
-        for dist in range(1, max_dist + 1):
-            ml = 0
-            base = i - dist
-            while ml < max_len and data[i + ml] == data[base + (ml % dist)]:
-                ml += 1
-            if ml > best_ml:
-                best_ml = ml
-                best_dist = dist
-                if best_ml == max_len:
-                    break
-
-        for k in range(3, best_ml + 1):
-            cost = 2 + dp[i + k]
-            if cost < dp[i]:
-                dp[i] = cost
-                decision[i] = ('match', k, best_dist)
-
-    # Decision 따라 emit
-    result = bytearray()
-    i = 0
-    while i < n:
-        d = decision[i]
-        if d[0] == 'lit':
-            L = d[1]
-            result.append(L)
-            result.extend(data[i:i + L])
-            i += L
-        else:
-            _, k, dist = d
-            result.append(0x80 | (k - 3))
-            result.append(dist - 1)
-            i += k
-
-    result.append(0x00)
-    return bytes(result)
+    """decompress()의 역함수 (DP 최적 파싱). 상세는 pc98lz.compress 참조."""
+    return pc98lz.compress(data)
 
 
 # ─────────────────────────────────────

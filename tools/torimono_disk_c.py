@@ -13,6 +13,7 @@ import argparse
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compile_lz import decompress, compress
+from compilegfx.container import chunked, tilesheet
 from PIL import Image
 
 PAL0 = [(0, 0, 0), (153, 170, 204), (85, 119, 136), (0, 85, 255), (0, 17, 170), (119, 187, 153),
@@ -25,38 +26,23 @@ NATIVE_SIZE = 256
 
 
 def parse_chunk_table(data: bytes) -> list[int]:
-    """0x000~0x3FF 테이블의 0이 아닌 seek 값을 슬롯 순서 그대로 반환.
-    마지막 원소는 실제 청크가 아니라 EOF 경계(파일 크기)."""
-    seeks = []
-    for off in range(0, 0x400, 4):
-        cx = struct.unpack_from('<H', data, off)[0]
-        dx = struct.unpack_from('<H', data, off + 2)[0]
-        seek = (cx << 16) | dx
-        if seek:
-            seeks.append(seek)
-    return seeks
+    """0x000~0x3FF 테이블의 0이 아닌 seek 값 (마지막 원소는 EOF 경계).
+
+    포맷은 幻世 엔진 공통이라 compile-gfx로 옮겼다.
+    """
+    return chunked.chunk_offsets(data)
 
 
 def decode_tile_chunk(raw: bytes, palette=PAL0) -> Image.Image:
+    """청크 하나(256타일)를 256x256 RGBA로. 디코딩은 compile-gfx가 담당.
+
+    포맷 자체(5플레인 타일, plane 0 = 투명 마스크)는 이 타이틀 고유가 아니라
+    幻世 엔진 공통이라 `compilegfx.container.tilesheet`로 옮겼다. 여기 남은 건
+    이 프로젝트의 편집 워크플로 제약 — 청크는 정확히 256타일이어야 하고
+    (인코더가 같은 크기로 되돌려놔야 재삽입이 성립), 기본 팔레트는 PAL0.
+    """
     assert len(raw) == CHUNK_BYTES, f'청크 크기 {len(raw)} != {CHUNK_BYTES} (스프라이트/타일 포맷 아님)'
-    img = Image.new('RGBA', (NATIVE_SIZE, NATIVE_SIZE), (0, 0, 0, 0))
-    px = img.load()
-    for tile in range(256):
-        tr, tc = divmod(tile, 16)
-        base = tile * TILE_BYTES
-        for ry in range(16):
-            words = [(raw[base + p * 32 + ry * 2] << 8) | raw[base + p * 32 + ry * 2 + 1] for p in range(5)]
-            w0, w1, w2, w3, w4 = words
-            for bit in range(16):
-                shift = 15 - bit  # MSB=좌측 픽셀
-                x, y = tc * 16 + bit, tr * 16 + ry
-                if not (w0 >> shift) & 1:
-                    continue  # p0=0 → 이미 투명(alpha=0)으로 초기화됨
-                idx4 = ((w1 >> shift) & 1) | (((w2 >> shift) & 1) << 1) | \
-                       (((w3 >> shift) & 1) << 2) | (((w4 >> shift) & 1) << 3)
-                r, g, b = palette[idx4]
-                px[x, y] = (r, g, b, 255)
-    return img
+    return tilesheet.decode(raw, palette, cols=16)
 
 
 def _nearest_palette_index(rgb, palette) -> int:
