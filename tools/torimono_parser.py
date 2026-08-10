@@ -33,6 +33,7 @@ from collections import Counter
 PROJECT_ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from compile_lz import decompress
+from compilegfx.container import chunked
 from compile_script import walk as walk_script, BASE_SPEC
 from dataclasses import replace
 
@@ -75,30 +76,13 @@ def sjis_density(data: bytes) -> float:
 # ── 청크 테이블 파싱 ──────────────────────────────────────────────────────────
 
 def parse_chunk_table(data: bytes) -> list[tuple[int, int]]:
-    """
-    파일 앞부분 (0x000~0x3FF) 4-byte 엔트리 파싱.
-    엔트리: [CX(2 LE), DX(2 LE)] → seek_pos = (CX<<16)|DX
-    반환: [(seek_pos, compressed_size), ...] (seek 순 정렬)
-    """
-    seeks = []
-    for off in range(0, 0x400, 4):
-        if off + 4 > len(data):
-            break
-        cx = struct.unpack_from('<H', data, off)[0]
-        dx = struct.unpack_from('<H', data, off + 2)[0]
-        seek = (cx << 16) | dx
-        if seek == 0:
-            continue
-        if seek >= len(data):
-            continue
-        seeks.append(seek)
+    """청크 테이블 → [(seek_pos, compressed_size), ...] (seek 순 정렬).
 
-    seeks = sorted(set(seeks))
-    result = []
-    for j, seek in enumerate(seeks):
-        end = seeks[j + 1] if j + 1 < len(seeks) else len(data)
-        result.append((seek, end - seek))
-    return result
+    테이블 포맷(0x000~0x3FF, 4바이트 엔트리)은 幻世 엔진 공통이라
+    compile-gfx가 들고 있다. 여기서는 압축 크기까지 붙여 돌려준다.
+    """
+    offsets = chunked.chunk_offsets(data)
+    return [(offsets[i], offsets[i + 1] - offsets[i]) for i in range(len(offsets) - 1)]
 
 # ── 메인 ──────────────────────────────────────────────────────────────────────
 
