@@ -1,10 +1,19 @@
-"""포물장 DISK_C.DAT 스프라이트/타일 청크(2, 5~50) 디코드·인코드·재조립.
+"""포물장 DISK_C.DAT 스프라이트/타일 청크(2, 5~50) **편집 왕복** 전용 도구.
 
 포맷 상세는 tools/TORIMONO.md "DISK_C.DAT 그래픽 포맷" 참조.
 - 청크 1개 = 256타일 × 160바이트(5블록×32바이트), 디코드 시 256×256 RGBA.
 - 편집용 PNG는 512×512(2배 최근접 확대)로 내보내고, 인코드 시 다시 2배 축소.
 - 팔레트: 기본 PAL0(청크 2, 5~44, 47 등 대부분). 다른 팔레트가 필요한 청크(45·46·48~50)는
   --palette 로 R,G,B 16개를 직접 전달.
+
+**그냥 그래픽만 보고 싶으면 여기 말고 compile-gfx를 쓸 것**:
+
+    compile-gfx chunks original/torimono/DISK_C.DAT out/
+    compile-gfx palettes original/torimono/DISK_B.DAT   # 청크별 팔레트 후보
+
+여기 `decode`는 512×512 2배 확대본을 내보내고 `encode`가 정확히 그 포맷을 되받는,
+재삽입을 전제로 한 짝이다. 포맷 해석 자체(타일 디코딩·청크 테이블·기본 팔레트)는
+compile-gfx에 있고 이 파일은 그걸 호출한다.
 """
 import sys
 import os
@@ -16,9 +25,9 @@ from compile_lz import decompress, compress
 from compilegfx.container import chunked, tilesheet
 from PIL import Image
 
-PAL0 = [(0, 0, 0), (153, 170, 204), (85, 119, 136), (0, 85, 255), (0, 17, 170), (119, 187, 153),
-        (51, 136, 68), (255, 187, 153), (221, 136, 102), (255, 0, 0), (136, 68, 34), (255, 238, 0),
-        (187, 170, 17), (255, 221, 204), (255, 119, 187), (255, 255, 255)]
+# 대부분의 청크에 쓰이는 팔레트. 상수가 아니라 DISK_B에서 스캔해 얻은 값이며
+# (`compile-gfx palettes` 가 같은 값을 재현), compile-gfx가 기본값으로 들고 있다.
+PAL0 = list(tilesheet.DEFAULT_PALETTE)
 
 TILE_BYTES = 160
 CHUNK_BYTES = 256 * TILE_BYTES  # 40960
@@ -177,7 +186,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__)
     sub = ap.add_subparsers(dest='cmd', required=True)
 
-    p_dec = sub.add_parser('decode', help='청크를 편집용 PNG로 추출')
+    p_dec = sub.add_parser('decode',
+                            help='청크를 편집용 512x512 PNG로 (그냥 보기용은 compile-gfx chunks)')
     p_dec.add_argument('chunk', type=int)
     p_dec.add_argument('out', nargs='?')
     p_dec.add_argument('--src', default='original/torimono/DISK_C.DAT')
