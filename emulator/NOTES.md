@@ -106,13 +106,46 @@ sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
 
 **폰트**: `font.bmp`는 도깨비DNR고딕 Light(도깨비디나루를 복원해 제작, flvrdoyster). 4타이틀 모두 한글화 완료된 뒤로는 전 타이틀이 `font.bmp` 하나만 사용 — `font_jp.bmp`(미완료 타이틀용 일본어 원본 대체)는 더 이상 안 씀, 리포에서도 제거됨.
 
+### BIOS 번들 구성
+
+`bios/` 전체가 4타이틀 공용으로 번들에 들어감 — 하나라도 바꾸면 **4타이틀 전부 재번들** 필요.
+
+| 파일 | 없으면 |
+|---|---|
+| `bios.rom` | 부팅 불가 |
+| `font.bmp` | 한글 안 나옴 (커스텀 폰트 — 덮어쓰지 말 것) |
+| `np2kai.cfg` | 아래 오디오 설정 미적용 |
+| `sound.rom` | 9바이트 스텁으로 대체(시그니처+`0xcb` RETF). 칩을 직접 제어하는 게임엔 무관하나 넣어두는 게 정확 |
+| `2608_bd/sd/top/hh/tom/rim.wav` | **OPNA 리듬(퍼커션) 완전 무음** |
+
+리듬 WAV는 **6개 중 하나라도 없으면 6개 전부 무효**가 된다 — fmgen `LoadRhythmSample()`이 실패 시 `if (i != 6)` 분기에서 전체를 해제하고, `RhythmMix()`는 `rhythm[0].sample == NULL`이면 통째로 건너뛴다(`sound/fmgen/fmgen_opna.cpp`). 크래시 없이 조용히 사라지므로 눈치채기 어려움. 출처는 NP2kai README가 안내하는 `Abdess/retroarch_system`의 `NEC - PC-98`.
+
 ### 오디오 튜닝 (`np2kai.cfg`)
 
-`np2kai.cfg`도 bios·font와 같이 4타이틀 공용으로 번들에 들어감 — 값 바꾸면 4타이틀 전부 재번들 필요.
+#### 채널 볼륨 — 총량이 아니라 **비율**이 핵심 (2026-08 해결)
 
-- **`volume_F/S/A/P/R = 100`** (FM·SSG·ADPCM·PCM·리듬, 기본값 128=풀스케일): NP2kai의 최종 믹스다운(`sound/sound.c`, `common/parts.c`의 `satuation_s16`)은 여러 채널 합이 16비트 풀스케일(±32767)을 넘으면 그냥 하드클립한다 — 헤드룸이 없으면 겹치는 순간 찢어지는 소리가 날 수 있음. 128→100(약 -2dB)로 낮춰 예방 목적으로 여유를 둠. **브라우저(Emscripten SDL2) 경로는 SDL3의 마스터 게인 스케일링(`SetAudioStreamGain`)이 안 걸리므로 이 채널 볼륨이 유일한 헤드룸 조절 수단.**
-- **`Latencys = 40`** (기본 `0`, 실제로는 최소 20ms로 클램프됨 — `sdl/soundmng.c` `soundmng_create()`): 브라우저 오디오 콜백(ScriptProcessorNode, deprecated)은 네이티브보다 타이밍이 덜 정밀해서 버퍼가 너무 얇으면 언더런 클릭이 날 수 있음. 40ms로 늘려 여유 확보, 체감 지연은 거의 없음.
-- 둘 다 **예방 조치**일 뿐, 확인된 버그(예: 효과음이 시작/끝날 때 나는 클릭음)를 고치는 건 아님 — 그건 별도 원인(PCM86 믹서 `sound/pcm86g.c`에 샘플 경계 페이드/램프가 없음, `BYVOLUME` 매크로로 직접 스케일만 함)으로 추정되나 미해결. 원작 실기에도 있던 특성인지(진짜 버그 아님) 실기 녹음 등으로 대조 검증이 필요해 보류 중.
+**증상**: 웹 빌드 소리가 원작과 다르게 거칠고 "째지는" 느낌. 같은 기기 RetroArch(libretro np2kai)에서는 부드러움 → 에뮬레이션·원작 문제가 아니라 웹 빌드 설정 문제로 확정.
+
+**원인**: 채널 볼륨을 전부 같은 값으로 맞춰 **SSG가 FM 대비 과다**했음. SSG는 구형파·노이즈 채널이라 본질적으로 거칠어서, 비율이 틀어지면 바로 음색이 망가진다.
+
+```
+volume_F = 64    (FM)
+volume_S = 28    (SSG)  ← FM의 44%. 이 비율이 핵심
+volume_A = 64    (ADPCM)
+volume_P = 92    (PCM)
+volume_R = 64    (리듬)
+DAVOLUME = 128
+```
+
+이 값들은 임의 조정이 아니라 **NP2kai가 하드코딩해둔 정규 기본값**이다 — `sdl/libretro/libretro_core_options.h`의 각 `np2kai_volume_*` 항목 끝에 default 문자열로 박혀 있음. libretro 경로는 이 값을 자동으로 쓰지만 **SDL/Emscripten 경로는 cfg에 명시하지 않으면 이 밸런스가 적용되지 않는다.** 임의로 만지지 말 것.
+
+> 교훈: "헤드룸 확보"라며 전부 100으로 통일했다가 SSG를 2.3배로 부풀려 증상을 악화시킨 적 있음. 클리핑(총량) 관점과 음색(비율) 관점은 별개다.
+
+#### 그 밖
+
+- **`Latencys = 40`** (기본 `0`, 실제로는 최소 20ms로 클램프 — `sdl/soundmng.c` `soundmng_create()`): 브라우저 오디오 콜백(ScriptProcessorNode, deprecated)은 타이밍이 덜 정밀해 버퍼가 얇으면 언더런 클릭이 날 수 있어 여유를 둔 **예방 조치**. 음색과는 무관.
+- **`SampleHz = 44100`**: 48000(=브라우저 AudioContext 기본값)으로 올리면 SDL 리샘플링 단계가 사라지지만 **체감 차이 없었음**. 기기마다 AudioContext 레이트가 달라(44100인 기기도 있음) 고정값을 올리면 오히려 그쪽에 리샘플링이 생기므로 44100 유지.
+- **참고(검증 안 된 것)**: 효과음 시작/끝 클릭음은 PCM86 믹서(`sound/pcm86g.c`)에 샘플 경계 페이드/램프가 없는 것과 관련 있어 보이나, 위 볼륨 수정으로 체감 문제가 해소되어 더 파지 않음.
 
 ---
 
