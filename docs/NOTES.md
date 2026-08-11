@@ -24,9 +24,26 @@ WASM은 NP2kai 소스 변경 시만 재빌드, JS/data는 ROM이나 BIOS 변경 
 | 파일 | 역할 |
 |------|------|
 | `style.css` | 공통 스타일 |
+| `icons.js` | 인라인 SVG 아이콘 단일 소스 (`data-icon` 자동 주입) |
 | `audio.js` | 뮤트·오디오 resume (`btn-mute` 자동 연결) |
 | `gamepad.js` | 가상 게임패드 |
 | `version.js` | 사이트 통합 버전 단일 소스. footer.js가 그린 푸터 마지막 줄(`.footer-credits`)에 `· vX.Y.Z` 주입. 배포 버전은 이 파일의 `VERSION` 한 곳만 수정 |
+
+### 아이콘 (`icons.js`)
+
+전 페이지가 쓰는 인라인 SVG(음소거·게임패드·전체화면·상단바 접기·가상 D-pad·ESC/Enter·
+디스크 선택·디버그 패널 토글)를 `window.ICONS = {key: '<svg>...</svg>', ...}` 한 곳에 모아둠.
+HTML은 `<button data-icon="mute">` 처럼 키만 쓰고, `icons.js`가 `DOMContentLoaded`에 `innerHTML`
+로 주입한다. `audio.js`(음소거 on/off 토글)·`debug.js`(디버그 버튼 생성)도 자체 SVG 없이
+`window.ICONS.mute` / `.muteOff` / `.debug`를 직접 참조.
+
+- **로드 순서**: `<script src="icons.js">`를 `audio.js`보다 먼저 include (5페이지 전부 동일).
+  두 스크립트 모두 동기 `<script src>`라 실행 순서 자체는 `DOMContentLoaded` 시점엔 상관없지만,
+  관례상 먼저 둔다.
+- **아이콘 추가/수정은 이 파일만** 고치면 5개 게임 페이지 전부에 반영됨 — 예전처럼 페이지마다
+  복붙하지 말 것 (2026-08, 파편화 방지 목적으로 통합).
+- 디스크 선택(`disk`) 아이콘은 희담(`kitan.html`·`kitan-opening.html`)만 씀 — 다른 타이틀은
+  인게임 디스크 교체 UI가 없어 해당 키를 안 씀. 정의는 다른 아이콘과 마찬가지로 `icons.js`에.
 
 ---
 
