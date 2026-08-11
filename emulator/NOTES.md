@@ -169,7 +169,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 
 ### 피드백 패널 (`feedback.js`)
 
-전 게임 페이지 + 허브(index)에 상시 노출되는 "의견 보내기" 패널(오류/번역 개선/감상 3분류). Google Apps Script 웹앱(`tools/feedback-appsscript.gs`)으로 POST → 구글 시트에 기록, 스크린샷은 Drive에 저장 후 링크만 시트에 남긴다.
+게임 페이지 전용 "의견 보내기" 패널(오류 제보/번역 개선/감상 3분류). Google Apps Script 웹앱(`tools/feedback-appsscript.gs`)으로 POST → 구글 시트에 기록, 스크린샷은 Drive에 저장 후 링크만 시트에 남긴다.
 
 - **문구·항목·엔드포인트는 `feedback.js` 상단 `CONFIG` 한 곳에만** — 그 아래 동작 코드는 거의 안 건드릴 일. `CONFIG.endpoint`가 비어 있으면 버튼 자체를 안 만든다.
 - **Content-Type은 반드시 `text/plain`** — Apps Script는 preflight(OPTIONS)를 못 받아서 `application/json`이면 CORS로 실패한다. `mode:'no-cors'`도 쓰면 안 됨 — 응답을 못 읽어 실패해도 "전송됨"으로 보인다.
@@ -177,8 +177,8 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 - **스크린샷**: 캔버스 `toDataURL()`로 캡처, 체크박스로 동의 받은 뒤에만 전송. 시트 셀 5만 자 제한 때문에 base64를 시트에 안 넣고 Drive에 파일로 저장 후 URL만 기록.
 - **키 이벤트 전파 차단**: 에뮬레이터가 `document` keydown을 canvas로 넘기므로, 오버레이 안 끊으면 패널에 타이핑한 게 게임에도 입력된다. `overlay`에서 `keydown/keyup/keypress`를 `stopPropagation()`.
 - **상단바 배치**: `#topbar-left`를 `debug.js`와 공유(스크립트 로드 순서 무관하게 먼저 만든 쪽이 컨테이너를 만들고 나머지가 재사용). 피드백은 항상 보이므로 맨 왼쪽 고정, 디스크(희담)/디버그(`?debug`)는 조건부라 그 오른쪽.
-- **허브(index)**: 상단바가 없어서 게임 목록 아래에 단독 배치.
 - **doGet 없음**: 의도적. doGet으로 시트를 반환하게 두면 URL만 알아도 남의 제보를 읽을 수 있어서, 쓰기 전용으로 유지.
+- **허브(index)는 피드백 패널 대신 블로그 링크**: `init()`이 `.top-bar` 유무로 먼저 분기 — 허브는 상단바가 없는 별도 레이아웃이라 패널을 아예 안 만들고, `CONFIG.blog.url`로 나가는 단순 `<a>` 링크(`buildBlogLink()`)만 게임 목록 아래에 둔다. 아이콘은 `window.ICONS.blog`(티스토리 로고). 원형 로고라 사각 실루엣 아이콘들과 같은 22px면 광학적으로 작아 보여서 `height=25`로 살짝 키움(원형 아이콘 관례).
 
 ---
 

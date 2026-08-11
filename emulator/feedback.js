@@ -1,5 +1,6 @@
-// 피드백(버그 신고·번역 오류·감상) 패널 — 전 게임 페이지 + 허브(index) 공통.
+// 피드백(버그 신고·번역 오류·감상) 패널 — 게임 페이지 전용.
 // Google Apps Script 웹앱으로 POST → 구글 시트 (수신 쪽은 tools/feedback-appsscript.gs).
+// 허브(index)는 상단바가 없어 성격이 달라, 패널 대신 블로그 링크(CONFIG.blog)만 띄운다.
 //
 // 문구·항목·수치·치수는 전부 아래 CONFIG 에만 있다. 그 아래 동작 코드는 건드릴 일이 거의 없다.
 //
@@ -17,6 +18,13 @@
     // 배포한 Apps Script 웹앱 URL (…/exec). 비어 있으면 버튼 자체를 만들지 않는다.
     endpoint: 'https://script.google.com/macros/s/AKfycbynrg-9ZMAgheqUp9-cGcfMKfOCSFd4m4pp4SwXU2ZmzcEJgG-qW9A0P4A9C_cGdYkW/exec',
 
+    // 허브(index)는 상단바가 없는 별도 레이아웃이라, 피드백 패널 대신
+    // 블로그로 나가는 단순 링크 버튼을 둔다(게임 페이지는 기존 피드백 패널 그대로).
+    blog: {
+      url: 'https://oysterbay.tistory.com/129',
+      title: '블로그'
+    },
+
     maxLength: 2000,          // 메시지 최대 글자수
     cooldownMs: 10 * 1000,    // 연속 전송 방지 간격 (localStorage 기준)
     attachShotByDefault: true, // 스크린샷 첨부 체크박스 기본값
@@ -24,9 +32,9 @@
     // ['시트에 기록될 값', '화면에 보일 이름']
     // ⚠ 왼쪽 값을 바꾸면 시트에 이미 쌓인 분류와 안 맞는다. 표시 이름만 바꾸는 건 안전.
     categories: [
-      ['bug', '오류'],
+      ['impression', '감상'],
+      ['bug', '오류 제보'],
       ['translation', '번역 개선'],
-      ['impression', '감상·응원']
     ],
 
     text: {
@@ -208,6 +216,27 @@
 
   function isOpen() { return !overlay.classList.contains('hidden'); }
 
+  // 허브(index)는 상단바가 없는 별도 레이아웃 — 피드백 패널 대신 블로그로 나가는
+  // 단순 링크 하나만 목록 아래에 둔다. 게임 페이지의 build()와는 완전히 별개 경로.
+  function buildBlogLink() {
+    var a = document.createElement('a');
+    a.className = 'btn-icon';
+    a.id = 'btn-blog';
+    a.href = CONFIG.blog.url;
+    a.target = '_blank';
+    a.rel = 'noopener';
+    a.title = CONFIG.blog.title;
+    a.innerHTML = window.ICONS.blog;
+
+    var host = document.createElement('div');
+    host.style.cssText = 'display:flex;justify-content:center;margin:4px 0 8px';
+    host.appendChild(a);
+
+    var list = document.querySelector('.game-list');
+    if (list && list.parentNode) list.parentNode.insertBefore(host, list.nextSibling);
+    else document.body.appendChild(host);
+  }
+
   function build() {
     var style = document.createElement('style');
     style.textContent = STYLE;
@@ -220,36 +249,26 @@
     btnToggle.innerHTML = window.ICONS.feedback;
 
     var topbar = document.querySelector('.top-bar');
-    if (topbar) {
-      // 상단바 왼쪽(grid col1) 공유 컨테이너 `#topbar-left` — debug.js 와 같은 id 를 쓴다.
-      // 스크립트마다 따로 만들면 grid-column:1 에 div 가 둘이 되어 상단바가 2행으로 깨진다.
-      // (로드 순서는 debug.js → feedback.js 지만, 어느 쪽이 먼저 와도 동작하게 양쪽 다 생성 가능)
-      var wrap = document.getElementById('topbar-left');
-      if (!wrap) {
-        wrap = document.createElement('div');
-        wrap.id = 'topbar-left';
-        wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
-        var existingLeft = document.getElementById('btn-disk');
-        if (existingLeft) {
-          topbar.insertBefore(wrap, existingLeft);
-          wrap.appendChild(existingLeft);   // 기존 버튼을 컨테이너 안으로 흡수
-          existingLeft.style.gridColumn = '';
-        } else {
-          topbar.insertBefore(wrap, topbar.firstChild);
-        }
+    // 상단바 왼쪽(grid col1) 공유 컨테이너 `#topbar-left` — debug.js 와 같은 id 를 쓴다.
+    // 스크립트마다 따로 만들면 grid-column:1 에 div 가 둘이 되어 상단바가 2행으로 깨진다.
+    // (로드 순서는 debug.js → feedback.js 지만, 어느 쪽이 먼저 와도 동작하게 양쪽 다 생성 가능)
+    var wrap = document.getElementById('topbar-left');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.id = 'topbar-left';
+      wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
+      var existingLeft = document.getElementById('btn-disk');
+      if (existingLeft) {
+        topbar.insertBefore(wrap, existingLeft);
+        wrap.appendChild(existingLeft);   // 기존 버튼을 컨테이너 안으로 흡수
+        existingLeft.style.gridColumn = '';
+      } else {
+        topbar.insertBefore(wrap, topbar.firstChild);
       }
-      // 항상 보이는 건 피드백뿐이고 디스크(희담)·디버그(?debug)는 조건부라,
-      // 피드백을 맨 왼쪽에 고정해 페이지마다 위치가 흔들리지 않게 한다.
-      wrap.insertBefore(btnToggle, wrap.firstChild);
-    } else {
-      // 허브(index) — 상단바가 없으므로 목록 아래에 단독 배치
-      var host = document.createElement('div');
-      host.style.cssText = 'display:flex;justify-content:center;margin:4px 0 8px';
-      host.appendChild(btnToggle);
-      var list = document.querySelector('.game-list');
-      if (list && list.parentNode) list.parentNode.insertBefore(host, list.nextSibling);
-      else document.body.appendChild(host);
     }
+    // 항상 보이는 건 피드백뿐이고 디스크(희담)·디버그(?debug)는 조건부라,
+    // 피드백을 맨 왼쪽에 고정해 페이지마다 위치가 흔들리지 않게 한다.
+    wrap.insertBefore(btnToggle, wrap.firstChild);
 
     overlay = document.createElement('div');
     overlay.id = 'fb-overlay';
@@ -354,6 +373,14 @@
   }
 
   function init() {
+    var isHub = !document.querySelector('.top-bar');
+    if (isHub) {
+      if (!CONFIG.blog.url) return;
+      if (!window.ICONS || !window.ICONS.blog) return;
+      if (document.getElementById('btn-blog')) return;   // 중복 초기화 방지
+      buildBlogLink();
+      return;
+    }
     if (!CONFIG.endpoint) return;       // 엔드포인트 미설정 — 버튼도 안 만든다
     if (!window.ICONS || !window.ICONS.feedback) return;
     if (document.getElementById('btn-feedback')) return;   // 중복 초기화 방지
