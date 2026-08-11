@@ -214,6 +214,10 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 
 - **문구·항목·엔드포인트는 `feedback.js` 상단 `CONFIG` 한 곳에만** — 그 아래 동작 코드는 거의 안 건드릴 일. `CONFIG.endpoint`가 비어 있으면 버튼 자체를 안 만든다.
 - **Content-Type은 반드시 `text/plain`** — Apps Script는 preflight(OPTIONS)를 못 받아서 `application/json`이면 CORS로 실패한다. `mode:'no-cors'`도 쓰면 안 됨 — 응답을 못 읽어 실패해도 "전송됨"으로 보인다.
+- **응답을 반드시 검사한다** (`res.ok` + 본문이 정확히 `'ok'`). 검사를 빼면 권한 오류로 로그인 HTML이 오든 스크립트가 `'error'`를 뱉든 전부 "감사합니다"로 보여 실패가 드러나지 않는다. 실제로 그 상태로 방치됐다가, 시트에 안 쌓이는 원인을 추적할 때 아무 단서가 없어 애먹은 적 있음.
+- **`'ok'` 응답이 기록을 보장하지는 않는다** — 수신 스크립트는 허니팟 적중·빈 메시지·본문 없음 세 갈래에서도 기록 없이 `'ok'`를 반환한다. 시트에 안 쌓일 땐 Apps Script의 **실행(Executions) 로그**를 먼저 볼 것.
+- **`appendRow`는 "내용이 있는 마지막 행" 다음에 쓴다** — 시트 아래쪽(예: 1000행 근처)에 눈에 안 보이는 잔여 내용이 있으면 1001행부터 쌓여서 안 들어가는 것처럼 보인다. 시트에서 빈 행을 *삭제*(내용 지우기 아님)하면 해결.
+- **curl로 엔드포인트를 테스트할 땐** `-X POST`나 `--post30x`를 쓰지 말 것. Apps Script는 POST를 302로 `googleusercontent/echo`에 넘기는데 그 주소는 GET만 받는다 — 메서드를 강제하면 405가 나서 엔드포인트가 죽은 것처럼 보인다. `curl -sS -L -d '...'`처럼 curl이 알아서 GET으로 전환하게 둬야 정상 응답(`ok`)을 본다.
 - **허니팟**: 숨겨진 입력칸(`fb-hp`)에 값이 있으면 봇으로 간주해 조용히 성공 응답(재시도 유도 안 함).
 - **스크린샷**: 캔버스 `toDataURL()`로 캡처, 체크박스로 동의 받은 뒤에만 전송. 시트 셀 5만 자 제한 때문에 base64를 시트에 안 넣고 Drive에 파일로 저장 후 URL만 기록.
 - **키 이벤트 전파 차단**: 에뮬레이터가 `document` keydown을 canvas로 넘기므로, 오버레이 안 끊으면 패널에 타이핑한 게 게임에도 입력된다. `overlay`에서 `keydown/keyup/keypress`를 `stopPropagation()`.

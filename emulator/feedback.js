@@ -8,6 +8,8 @@
 //  - Content-Type 은 반드시 'text/plain'. Apps Script 는 preflight(OPTIONS)를 처리 못 해
 //    application/json 이면 CORS 로 실패한다. mode:'no-cors' 도 쓰면 안 됨 — 응답을 못 읽어
 //    실패해도 "전송됨"이 떠버린다.
+//  - 응답은 반드시 검사한다(res.ok + 본문이 정확히 'ok'). 검사를 빼면 어떤 실패든
+//    성공처럼 보여서 디버깅이 불가능해진다 — 실제로 그 상태로 한동안 방치된 적 있음.
 //  - 오버레이 안 키 이벤트는 전파를 끊는다. 에뮬레이터가 document keydown 을 canvas 로
 //    넘기므로 안 끊으면 타이핑이 게임에도 입력된다.
 (function () {
@@ -178,8 +180,14 @@
       headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     }).then(function (res) {
+      // 응답을 반드시 검사한다. 예전엔 res.text() 결과를 버리고 무조건 성공 처리해서,
+      // 권한 오류로 로그인 HTML 이 오든 스크립트가 'error' 를 뱉든 사용자에겐 똑같이
+      // "감사합니다" 가 떴다 — 실패가 드러나지 않아 원인 파악이 불가능했음.
+      // Apps Script 는 정상 처리 시 본문에 'ok' 만 반환한다 (tools/feedback-appsscript.gs).
+      if (!res.ok) throw new Error('HTTP ' + res.status);
       return res.text();
-    }).then(function () {
+    }).then(function (text) {
+      if (text.trim() !== 'ok') throw new Error('unexpected response: ' + text.slice(0, 80));
       try { localStorage.setItem(LS_KEY, String(Date.now())); } catch (e) {}
       textEl.value = '';
       updateCount();
