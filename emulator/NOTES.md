@@ -106,6 +106,14 @@ sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
 
 **폰트**: `font.bmp`는 도깨비DNR고딕 Light(도깨비디나루를 복원해 제작, flvrdoyster). 4타이틀 모두 한글화 완료된 뒤로는 전 타이틀이 `font.bmp` 하나만 사용 — `font_jp.bmp`(미완료 타이틀용 일본어 원본 대체)는 더 이상 안 씀, 리포에서도 제거됨.
 
+### 오디오 튜닝 (`np2kai.cfg`)
+
+`np2kai.cfg`도 bios·font와 같이 4타이틀 공용으로 번들에 들어감 — 값 바꾸면 4타이틀 전부 재번들 필요.
+
+- **`volume_F/S/A/P/R = 100`** (FM·SSG·ADPCM·PCM·리듬, 기본값 128=풀스케일): NP2kai의 최종 믹스다운(`sound/sound.c`, `common/parts.c`의 `satuation_s16`)은 여러 채널 합이 16비트 풀스케일(±32767)을 넘으면 그냥 하드클립한다 — 헤드룸이 없으면 겹치는 순간 찢어지는 소리가 날 수 있음. 128→100(약 -2dB)로 낮춰 예방 목적으로 여유를 둠. **브라우저(Emscripten SDL2) 경로는 SDL3의 마스터 게인 스케일링(`SetAudioStreamGain`)이 안 걸리므로 이 채널 볼륨이 유일한 헤드룸 조절 수단.**
+- **`Latencys = 40`** (기본 `0`, 실제로는 최소 20ms로 클램프됨 — `sdl/soundmng.c` `soundmng_create()`): 브라우저 오디오 콜백(ScriptProcessorNode, deprecated)은 네이티브보다 타이밍이 덜 정밀해서 버퍼가 너무 얇으면 언더런 클릭이 날 수 있음. 40ms로 늘려 여유 확보, 체감 지연은 거의 없음.
+- 둘 다 **예방 조치**일 뿐, 확인된 버그(예: 효과음이 시작/끝날 때 나는 클릭음)를 고치는 건 아님 — 그건 별도 원인(PCM86 믹서 `sound/pcm86g.c`에 샘플 경계 페이드/램프가 없음, `BYVOLUME` 매크로로 직접 스케일만 함)으로 추정되나 미해결. 원작 실기에도 있던 특성인지(진짜 버그 아님) 실기 녹음 등으로 대조 검증이 필요해 보류 중.
+
 ---
 
 ## 세이브 지속성

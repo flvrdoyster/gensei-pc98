@@ -66,7 +66,7 @@ for data in emulator/*.data; do
   js="docs/$t.js"; dd="docs/$t.data"
   [ -f "$js" ] || { echo "  ${R}✗ $t: $js 없음${N}"; fail=1; continue; }
   ds=$(wc -c < "$dd" | tr -d ' ')
-  ms=$(grep -o '"remote_package_size":[0-9]*' "$js" | head -1 | grep -o '[0-9]*')
+  ms=$(grep -o '"remote_package_size":[[:space:]]*[0-9]*' "$js" | head -1 | grep -o '[0-9]*')
   if [ "$ds" = "$ms" ]; then
     echo "  ${G}✓ $t: $ds${N}"
   else

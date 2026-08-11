@@ -106,6 +106,14 @@ sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
 
 **폰트**: `font.bmp`는 도깨비DNR고딕 Light(도깨비디나루를 복원해 제작, flvrdoyster). 4타이틀 모두 한글화 완료된 뒤로는 전 타이틀이 `font.bmp` 하나만 사용 — `font_jp.bmp`(미완료 타이틀용 일본어 원본 대체)는 더 이상 안 씀, 리포에서도 제거됨.
 
+### 오디오 튜닝 (`np2kai.cfg`)
+
+`np2kai.cfg`도 bios·font와 같이 4타이틀 공용으로 번들에 들어감 — 값 바꾸면 4타이틀 전부 재번들 필요.
+
+- **`volume_F/S/A/P/R = 100`** (FM·SSG·ADPCM·PCM·리듬, 기본값 128=풀스케일): NP2kai의 최종 믹스다운(`sound/sound.c`, `common/parts.c`의 `satuation_s16`)은 여러 채널 합이 16비트 풀스케일(±32767)을 넘으면 그냥 하드클립한다 — 헤드룸이 없으면 겹치는 순간 찢어지는 소리가 날 수 있음. 128→100(약 -2dB)로 낮춰 예방 목적으로 여유를 둠. **브라우저(Emscripten SDL2) 경로는 SDL3의 마스터 게인 스케일링(`SetAudioStreamGain`)이 안 걸리므로 이 채널 볼륨이 유일한 헤드룸 조절 수단.**
+- **`Latencys = 40`** (기본 `0`, 실제로는 최소 20ms로 클램프됨 — `sdl/soundmng.c` `soundmng_create()`): 브라우저 오디오 콜백(ScriptProcessorNode, deprecated)은 네이티브보다 타이밍이 덜 정밀해서 버퍼가 너무 얇으면 언더런 클릭이 날 수 있음. 40ms로 늘려 여유 확보, 체감 지연은 거의 없음.
+- 둘 다 **예방 조치**일 뿐, 확인된 버그(예: 효과음이 시작/끝날 때 나는 클릭음)를 고치는 건 아님 — 그건 별도 원인(PCM86 믹서 `sound/pcm86g.c`에 샘플 경계 페이드/램프가 없음, `BYVOLUME` 매크로로 직접 스케일만 함)으로 추정되나 미해결. 원작 실기에도 있던 특성인지(진짜 버그 아님) 실기 녹음 등으로 대조 검증이 필요해 보류 중.
+
 ---
 
 ## 세이브 지속성
@@ -169,7 +177,7 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 
 ### 피드백 패널 (`feedback.js`)
 
-전 게임 페이지 + 허브(index)에 상시 노출되는 "의견 보내기" 패널(오류/번역 개선/감상 3분류). Google Apps Script 웹앱(`tools/feedback-appsscript.gs`)으로 POST → 구글 시트에 기록, 스크린샷은 Drive에 저장 후 링크만 시트에 남긴다.
+게임 페이지 전용 "의견 보내기" 패널(오류 제보/번역 개선/감상 3분류). Google Apps Script 웹앱(`tools/feedback-appsscript.gs`)으로 POST → 구글 시트에 기록, 스크린샷은 Drive에 저장 후 링크만 시트에 남긴다.
 
 - **문구·항목·엔드포인트는 `feedback.js` 상단 `CONFIG` 한 곳에만** — 그 아래 동작 코드는 거의 안 건드릴 일. `CONFIG.endpoint`가 비어 있으면 버튼 자체를 안 만든다.
 - **Content-Type은 반드시 `text/plain`** — Apps Script는 preflight(OPTIONS)를 못 받아서 `application/json`이면 CORS로 실패한다. `mode:'no-cors'`도 쓰면 안 됨 — 응답을 못 읽어 실패해도 "전송됨"으로 보인다.
@@ -177,8 +185,8 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 - **스크린샷**: 캔버스 `toDataURL()`로 캡처, 체크박스로 동의 받은 뒤에만 전송. 시트 셀 5만 자 제한 때문에 base64를 시트에 안 넣고 Drive에 파일로 저장 후 URL만 기록.
 - **키 이벤트 전파 차단**: 에뮬레이터가 `document` keydown을 canvas로 넘기므로, 오버레이 안 끊으면 패널에 타이핑한 게 게임에도 입력된다. `overlay`에서 `keydown/keyup/keypress`를 `stopPropagation()`.
 - **상단바 배치**: `#topbar-left`를 `debug.js`와 공유(스크립트 로드 순서 무관하게 먼저 만든 쪽이 컨테이너를 만들고 나머지가 재사용). 피드백은 항상 보이므로 맨 왼쪽 고정, 디스크(희담)/디버그(`?debug`)는 조건부라 그 오른쪽.
-- **허브(index)**: 상단바가 없어서 게임 목록 아래에 단독 배치.
 - **doGet 없음**: 의도적. doGet으로 시트를 반환하게 두면 URL만 알아도 남의 제보를 읽을 수 있어서, 쓰기 전용으로 유지.
+- **허브(index)는 피드백 패널 대신 블로그 링크**: `init()`이 `.top-bar` 유무로 먼저 분기 — 허브는 상단바가 없는 별도 레이아웃이라 패널을 아예 안 만들고, `CONFIG.blog.url`로 나가는 단순 `<a>` 링크(`buildBlogLink()`)만 게임 목록 아래에 둔다. 아이콘은 `window.ICONS.blog`(티스토리 로고). 원형 로고라 사각 실루엣 아이콘들과 같은 22px면 광학적으로 작아 보여서 `height=25`로 살짝 키움(원형 아이콘 관례).
 
 ---
 
