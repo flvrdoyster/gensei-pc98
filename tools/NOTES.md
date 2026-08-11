@@ -7,7 +7,7 @@
 | 용도 | 포트 | 연상 |
 |------|------|------|
 | 번역 에디터 (`editor.py`) | **8182** | JP(81) → KR(82) |
-| 에뮬레이터 (`python3 -m http.server`) | **9801** | PC-9801 |
+| 에뮬레이터 (`serve_emulator.py`) | **9801** | PC-9801 |
 
 ```bash
 # 인자 없이 실행하면 터미널에서 대상 선택 (기본 타이틀로 열지 않는다)
@@ -18,8 +18,8 @@ python3 tools/editor.py <title>
 python3 tools/editor.py dashboard    # 같은 포트, 편집 서버와 동시 실행 불가
 # → http://localhost:8182
 
-# 에뮬레이터 (프로젝트 루트에서 실행)
-python3 -m http.server 9801 --directory emulator
+# 에뮬레이터 (프로젝트 루트에서 실행) — 뜨면 인덱스 페이지가 브라우저로 자동 열림
+python3 tools/serve_emulator.py [--port 9801] [--no-open]
 # → http://localhost:9801
 ```
 
@@ -343,6 +343,22 @@ python3 tools/lint.py <title>      # 요약 (-v 상세)
 - 하나라도 어긋나면 종료코드 1. CLAUDE.md docs 배포 체크리스트를 코드로 박은 것.
 - 대시보드의 `배포` 버튼(`pipeline.deploy()`)이 이 스크립트를 그대로 호출한다. `-f`도
   대시보드에서 (배포 차단이 예측된 경우에만) 버튼으로 노출됨 — 터미널 없이도 가능.
+
+---
+
+## serve_emulator.py — 로컬 에뮬레이터 서버
+
+`emulator/` 정적 서빙 + 인덱스 페이지 브라우저 자동 실행. `editor.py`와 같은 패턴(서버를
+데몬 스레드로 먼저 띄운 뒤 브라우저 오픈 — 순서 바뀌면 연결 거부).
+
+```bash
+python3 tools/serve_emulator.py               # → http://localhost:9801, 브라우저 자동 실행
+python3 tools/serve_emulator.py --no-open      # 서버만
+python3 tools/serve_emulator.py --port 1234    # 포트 지정
+```
+
+포트 충돌 시 트레이스백 대신 안내 후 종료코드 1(`editor.py`와 동일). 번역 에디터(8182)와는
+별개 — 이쪽은 산출물을 실제로 눈으로 확인하는 용도.
 
 ---
 

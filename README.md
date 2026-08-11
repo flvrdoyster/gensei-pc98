@@ -153,8 +153,8 @@ python3 tools/torimono_inserter.py original/torimono      # 포물장
 # 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)
 python3 tools/lint.py kaitou        # 요약 (-v 상세)
 
-# 5. 로컬 에뮬레이터 확인 → http://localhost:9801
-python3 -m http.server 9801 --directory emulator
+# 5. 로컬 에뮬레이터 확인 → http://localhost:9801 (브라우저 자동 실행)
+python3 tools/serve_emulator.py
 ```
 
 ---
