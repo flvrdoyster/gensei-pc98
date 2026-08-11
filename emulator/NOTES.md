@@ -32,10 +32,11 @@ WASM은 NP2kai 소스 변경 시만 재빌드, JS/data는 ROM이나 BIOS 변경 
 ### 아이콘 (`icons.js`)
 
 전 페이지가 쓰는 인라인 SVG(음소거·게임패드·전체화면·상단바 접기·가상 D-pad·ESC/Enter·
-디스크 선택·디버그 패널 토글)를 `window.ICONS = {key: '<svg>...</svg>', ...}` 한 곳에 모아둠.
-HTML은 `<button data-icon="mute">` 처럼 키만 쓰고, `icons.js`가 `DOMContentLoaded`에 `innerHTML`
-로 주입한다. `audio.js`(음소거 on/off 토글)·`debug.js`(디버그 버튼 생성)도 자체 SVG 없이
-`window.ICONS.mute` / `.muteOff` / `.debug`를 직접 참조.
+디스크 선택·디버그 패널 토글·피드백 패널 토글)를 `window.ICONS = {key: '<svg>...</svg>', ...}`
+한 곳에 모아둠. HTML은 `<button data-icon="mute">` 처럼 키만 쓰고, `icons.js`가
+`DOMContentLoaded`에 `innerHTML`로 주입한다. `audio.js`(음소거 on/off 토글)·`debug.js`
+(디버그 버튼 생성)·`feedback.js`(피드백 버튼 생성)도 자체 SVG 없이 `window.ICONS.mute` /
+`.muteOff` / `.debug` / `.feedback`을 직접 참조.
 
 - **로드 순서**: `<script src="icons.js">`를 `audio.js`보다 먼저 include (5페이지 전부 동일).
   두 스크립트 모두 동기 `<script src>`라 실행 순서 자체는 `DOMContentLoaded` 시점엔 상관없지만,
@@ -150,9 +151,10 @@ DB `gensei-saves` / store `disks`. 키는 **FDI 파일명**(`hukyou_kr.fdi`, `ki
 
 디버그용 디스크 교체 패널. URL에 **`?debug`**가 있을 때만 동작하고, 평소엔 토글 버튼도 패널도 만들지 않는다. 전 게임 페이지 공통(`debug.js`, `audio.js`·`gamepad.js`와 같은 위치에 포함).
 
-- **노출**: 상단바 왼쪽에 토글 버튼(`#btn-debug`, `.btn-icon`). 누르면 고정 오버레이 패널 표시(하단 게임패드를 가리지 않음). 기존 `#btn-disk`가 있는 페이지(희담)는 그 옆에 나란히 둔다.
-- **가져오기**: 파일 선택 → IDB(`gensei-saves`/`disks`)에 저장. 캐시 키가 하나면 그 키를 덮어쓰고(파일명 무관), 없거나 여럿이면 파일명을 키로 쓴다. 새로고침하면 그 이미지로 구동(`?debug` 떼도 유지 — 게임 로드 경로가 같은 IDB를 읽음).
-- **내보내기**: 캐시된 디스크를 파일로 다운로드. **삭제**: 캐시에서 제거(원본 `/rom/...`으로 복귀).
+- **노출**: 상단바 왼쪽 공유 컨테이너(`#topbar-left`, `feedback.js`와 공유)에 토글 버튼(`#btn-debug`, `.btn-icon`). 누르면 고정 오버레이 패널 표시(하단 게임패드를 가리지 않음). 기존 `#btn-disk`가 있는 페이지(희담)는 그 옆에 나란히 둔다.
+- **스코프**: IDB(`gensei-saves`/`disks`)는 전 타이틀 공유 store라, 스코프를 안 좁히면 다른 타이틀 캐시까지 같이 나열·조작된다(실사고: 쾌도전 페이지에서 조작했는데 포물장 캐시가 같이 나옴). 페이지의 `IDB_KEY`(단일)/`DISKS`(다중, 희담류→파일명 추출)만 읽어 **현재 페이지 소유 키만** 대상으로 삼는다.
+- **키별 개별 행**: 각 키마다 `[가져오기] [내보내기] [삭제]`. 다중 디스크(희담)도 어느 키에 들어갈지 애매하지 않음. 가져오기는 해당 키를 덮어씀(파일명 무관), 새로고침하면 반영(`?debug` 떼도 유지 — 게임 로드 경로가 같은 IDB를 읽음).
+- **내보내기 동시 다운로드 주의**: 여러 개를 한꺼번에 트리거하면 브라우저가 "자동 다운로드 차단"으로 뒤쪽 일부를 조용히 누락시킨다 — 지금은 키별 버튼이라 한 번에 하나씩이라 문제 없음(북마클릿처럼 여러 개를 자동 순회하는 코드를 새로 짤 땐 순차+딜레이 필수).
 - FDI/HDI 모두 처리(`.fdi .hdi .hdm .xdf .d88`).
 
 콘솔 불가 환경(아이패드 등)에서 **전 타이틀을 한 번에** 추출하려면 아래 **북마클릿**이 더 편하다. 웹 브라우저 북마크 주소를 아래 코드로 교체 후, 게임 페이지에서 실행:
@@ -164,6 +166,19 @@ javascript:(async()=>{const db=await new Promise(r=>{const q=indexedDB.open('gen
 전 타이틀이 같은 origin(pc98.atah.io)·같은 DB(`gensei-saves`/`disks`)라, **아무 게임 페이지에서 1회 실행하면 저장된 전 타이틀 FDI가 한꺼번에** 추출된다.
 
 추출한 FDI에서 세이브(`PLAY*.INF`)를 다른 FDI로 이식: `pc98disk.py ls/get/add`. `PLAY*.INF`는 DISK_B 아카이브 *밖*의 루트 파일이라 인서터 빌드(`patch_fdi`)가 안 건드림 → **빌드해도 세이브는 보존**된다.
+
+### 피드백 패널 (`feedback.js`)
+
+전 게임 페이지 + 허브(index)에 상시 노출되는 "의견 보내기" 패널(오류/번역 개선/감상 3분류). Google Apps Script 웹앱(`tools/feedback-appsscript.gs`)으로 POST → 구글 시트에 기록, 스크린샷은 Drive에 저장 후 링크만 시트에 남긴다.
+
+- **문구·항목·엔드포인트는 `feedback.js` 상단 `CONFIG` 한 곳에만** — 그 아래 동작 코드는 거의 안 건드릴 일. `CONFIG.endpoint`가 비어 있으면 버튼 자체를 안 만든다.
+- **Content-Type은 반드시 `text/plain`** — Apps Script는 preflight(OPTIONS)를 못 받아서 `application/json`이면 CORS로 실패한다. `mode:'no-cors'`도 쓰면 안 됨 — 응답을 못 읽어 실패해도 "전송됨"으로 보인다.
+- **허니팟**: 숨겨진 입력칸(`fb-hp`)에 값이 있으면 봇으로 간주해 조용히 성공 응답(재시도 유도 안 함).
+- **스크린샷**: 캔버스 `toDataURL()`로 캡처, 체크박스로 동의 받은 뒤에만 전송. 시트 셀 5만 자 제한 때문에 base64를 시트에 안 넣고 Drive에 파일로 저장 후 URL만 기록.
+- **키 이벤트 전파 차단**: 에뮬레이터가 `document` keydown을 canvas로 넘기므로, 오버레이 안 끊으면 패널에 타이핑한 게 게임에도 입력된다. `overlay`에서 `keydown/keyup/keypress`를 `stopPropagation()`.
+- **상단바 배치**: `#topbar-left`를 `debug.js`와 공유(스크립트 로드 순서 무관하게 먼저 만든 쪽이 컨테이너를 만들고 나머지가 재사용). 피드백은 항상 보이므로 맨 왼쪽 고정, 디스크(희담)/디버그(`?debug`)는 조건부라 그 오른쪽.
+- **허브(index)**: 상단바가 없어서 게임 목록 아래에 단독 배치.
+- **doGet 없음**: 의도적. doGet으로 시트를 반환하게 두면 URL만 알아도 남의 제보를 읽을 수 있어서, 쓰기 전용으로 유지.
 
 ---
 

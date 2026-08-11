@@ -174,16 +174,22 @@
     // 아이콘 정의는 icons.js(window.ICONS) 단일 소스 — 여기선 안 둠.
     btnToggle.innerHTML = window.ICONS.debug;
 
-    // 상단바 왼쪽(grid col1) flex 컨테이너. kitan 처럼 #btn-disk 가 이미 있으면 나란히 둔다.
-    var wrap = document.createElement('div');
-    wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
-    var existingLeft = document.getElementById('btn-disk');
-    if (existingLeft) {
-      topbar.insertBefore(wrap, existingLeft);
-      wrap.appendChild(existingLeft);
-      existingLeft.style.gridColumn = '';
-    } else {
-      topbar.insertBefore(wrap, topbar.firstChild);
+    // 상단바 왼쪽(grid col1) 공유 flex 컨테이너 `#topbar-left`.
+    // feedback.js 도 같은 id 로 이 컨테이너를 재사용한다 — 스크립트마다 따로 만들면
+    // grid-column:1 에 div 가 둘이 되어 상단바가 2행으로 깨진다.
+    var wrap = document.getElementById('topbar-left');
+    if (!wrap) {
+      wrap = document.createElement('div');
+      wrap.id = 'topbar-left';
+      wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
+      var existingLeft = document.getElementById('btn-disk');
+      if (existingLeft) {
+        topbar.insertBefore(wrap, existingLeft);
+        wrap.appendChild(existingLeft);   // 기존 버튼을 컨테이너 안으로 흡수
+        existingLeft.style.gridColumn = '';
+      } else {
+        topbar.insertBefore(wrap, topbar.firstChild);
+      }
     }
     wrap.appendChild(btnToggle);
 
