@@ -81,8 +81,10 @@
     'color:rgba(204,204,204,1);' +
     'box-shadow:0 8px 28px rgba(0,0,0,0.55)}' +
     '#fb-panel h4{margin:0 0 8px;font-size:var(--font-md);color:rgba(204,204,204,1)}' +
+    // color-scheme:dark 를 줘야 네이티브 위젯이 다크로 그려진다 — 없으면 select 의
+    // 드롭다운 화살표가 검게 나와 어두운 배경에서 안 보이고, 펼친 목록도 흰 바탕이 된다.
     '#fb-panel select,#fb-panel textarea{width:100%;box-sizing:border-box;' +
-    'background:rgba(30,30,30,1);color:rgba(204,204,204,1);' +
+    'background:rgba(30,30,30,1);color:rgba(204,204,204,1);color-scheme:dark;' +
     'border:1px solid rgba(68,68,68,1);border-radius:4px;padding:5px 7px;' +
     'font-family:inherit;font-size:var(--font-sm)}' +
     '#fb-panel textarea{margin-top:6px;resize:vertical;line-height:1.5;' +
