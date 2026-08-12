@@ -31,7 +31,7 @@ function doPost(e) {
       }
     }
 
-    SpreadsheetApp.getActiveSpreadsheet().getSheets()[0].appendRow([
+    _append(SpreadsheetApp.getActiveSpreadsheet().getSheets()[0], [
       new Date(),
       String(d.category || ''),
       String(d.game || ''),
@@ -51,6 +51,29 @@ function doPost(e) {
 
 function _ok() {
   return ContentService.createTextOutput('ok').setMimeType(ContentService.MimeType.TEXT);
+}
+
+/**
+ * 한 행 추가.
+ *
+ * appendRow 를 안 쓰는 이유: appendRow 는 "내용이 있는 마지막 행" 다음에 쓰는데,
+ * 시트 아래쪽(예: 1000행 근처)에 눈에 안 띄는 잔여 내용이나 서식이 있으면
+ * 1001행부터 쌓여서 기록이 안 되는 것처럼 보인다 (실제로 겪음).
+ * A열(타임스탬프 — 정상 행이면 반드시 값이 있음)을 아래에서부터 훑어
+ * 진짜 마지막 데이터 행을 찾고 그 다음 줄에 직접 쓴다.
+ */
+function _append(sheet, values) {
+  sheet.getRange(_nextRow(sheet), 1, 1, values.length).setValues([values]);
+}
+
+function _nextRow(sheet) {
+  var last = sheet.getLastRow();
+  if (last < 1) return 1;
+  var colA = sheet.getRange(1, 1, last, 1).getValues();
+  for (var i = colA.length - 1; i >= 0; i--) {
+    if (String(colA[i][0]).trim() !== '') return i + 2;
+  }
+  return 1;   // A열이 전부 비어 있으면 첫 줄부터
 }
 
 function _saveShot(dataUrl, game) {
