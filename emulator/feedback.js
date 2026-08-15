@@ -120,6 +120,35 @@
     return el ? el.textContent.trim() : '';
   }
 
+  /**
+   * 캔버스 캡처를 가능하게 하는 준비 작업. **에뮬레이터 전역 렌더링에 영향을 준다.**
+   *
+   * SDL 이 WebGL 렌더러를 고르면 캔버스가 WebGL 컨텍스트가 되는데, WebGL 은 컴포지팅 직후
+   * 드로잉 버퍼를 비운다(preserveDrawingBuffer 기본 false). 그래서 나중에(버튼 클릭 시점)
+   * toDataURL 을 부르면 새까만 이미지가 나온다 — 화면엔 보이지만 버퍼엔 없는 상태.
+   * 이 속성은 **컨텍스트 생성 시점에만** 지정 가능해서, 에뮬레이터가 컨텍스트를 만들기 전에
+   * canvas.getContext 를 감싸 강제 주입한다. (글루 emnp2kai_sdl2.js 를 패치하면 NP2kai
+   * 재빌드 때마다 날아가므로 이 방식을 택함)
+   *
+   * 비용: 프레임마다 버퍼 swap 대신 복사가 일어난다. 640x400 이라 프레임당 1MB 수준으로,
+   * CPU 에뮬레이션 부하에 비하면 무시할 만하다(실기 체감 차이 없음 확인).
+   *
+   * SDL 이 2D 렌더러를 고른 경우엔 이 래퍼가 아무 일도 하지 않는다(2D 는 원래 캡처됨).
+   * 실제로 같은 코드에서 환경에 따라 캡처가 되기도/안 되기도 했던 이유로 추정된다.
+   */
+  function enableCanvasCapture() {
+    var c = document.getElementById('canvas');
+    if (!c || c._captureReady) return;
+    var orig = c.getContext;
+    c.getContext = function (type, attrs) {
+      if (type === 'webgl' || type === 'webgl2' || type === 'experimental-webgl') {
+        attrs = Object.assign({}, attrs || {}, { preserveDrawingBuffer: true });
+      }
+      return orig.call(this, type, attrs);
+    };
+    c._captureReady = true;
+  }
+
   // 캔버스 스냅샷. 게임 페이지에만 캔버스가 있고, 시작 전이면 빈 화면이라 의미 없다.
   function captureShot() {
     var c = document.getElementById('canvas');
@@ -127,7 +156,7 @@
     try {
       return c.toDataURL('image/png');
     } catch (e) {
-      return null;   // WebGL 컨텍스트 등으로 실패하면 스크린샷 없이 진행
+      return null;   // 크로스오리진 오염 등으로 실패하면 스크린샷 없이 진행
     }
   }
 
@@ -399,6 +428,10 @@
     if (!CONFIG.endpoint) return;       // 엔드포인트 미설정 — 버튼도 안 만든다
     if (!window.ICONS || !window.ICONS.feedback) return;
     if (document.getElementById('btn-feedback')) return;   // 중복 초기화 방지
+    // 에뮬레이터가 WebGL 컨텍스트를 만들기 전에 실행돼야 한다 —
+    // init 은 DOMContentLoaded, 컨텍스트 생성은 ▶시작 클릭 이후라 순서가 보장된다.
+    // 피드백이 꺼져 있으면(위 return) 캡처도 불필요하므로 렌더링 비용도 안 진다.
+    enableCanvasCapture();
     build();
   }
 

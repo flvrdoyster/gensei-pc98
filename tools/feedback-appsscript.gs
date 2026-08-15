@@ -7,8 +7,8 @@
  * - 스크린샷을 Drive 로 빼는 이유: 시트 셀은 5만 자 제한이라 base64 가 안 들어간다.
  */
 
-// 스크린샷을 담을 Drive 폴더 이름 (없으면 자동 생성)
-var FOLDER_NAME = 'gensei-pc98 피드백 스크린샷';
+// 스크린샷을 저장할 Drive 폴더 ID (그 폴더를 Drive에서 열었을 때 URL의 folders/ 뒤 부분)
+var FOLDER_ID = '1QFm9ICGGH3VYYlx0xYLjxDcYWC3nbTnH';
 var MAX_LEN = 2000;
 
 function doPost(e) {
@@ -83,8 +83,6 @@ function _saveShot(dataUrl, game) {
              '-' + (game || 'unknown') + '.png';
   var blob = Utilities.newBlob(bytes, 'image/png', name);
 
-  var it = DriveApp.getFoldersByName(FOLDER_NAME);
-  var folder = it.hasNext() ? it.next() : DriveApp.createFolder(FOLDER_NAME);
   // 공개 공유하지 않는다 — 소유자만 열람 (기본 권한 그대로 둠)
-  return folder.createFile(blob).getUrl();
+  return DriveApp.getFolderById(FOLDER_ID).createFile(blob).getUrl();
 }
