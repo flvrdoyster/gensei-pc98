@@ -10,6 +10,8 @@
 
 ### 파일 구성
 
+**FDI 이미지 1장.** `original/kaitou/`에 그 안의 파일을 개별로 추출해 둔다.
+
 ```
 original/kaitou/
   GSC.COM       3,936 B   로더 (DISK_*.DAT 로드 + LZ 해제)
@@ -20,15 +22,14 @@ original/kaitou/
 
 ### 패치 대상 파일
 
-실제로 패치되는 건 **`DISK_B.DAT` 하나뿐** (텍스트 소스 단일 파일). `DISK_C.DAT`·`PLAY1~8.INF`·
-`GSC.COM`·`BPLAY.COM`·`FPLAY.COM`·`SONG.DAT`는 텍스트가 없어 그대로 둠.
+실제로 패치되는 건 `DISK_B.DAT` 하나뿐이다 — 텍스트가 있는 파일이 그것뿐이다.
+`DISK_C.DAT`·`PLAY1~8.INF`·`GSC.COM`·`BPLAY.COM`·`FPLAY.COM`·`SONG.DAT`는 텍스트가 없어
+그대로 둔다.
 
-FDI 이미지 삽입 시 `CONFIG.SYS`도 함께 수정되는데, 이건 번역과 무관한 웹 에뮬 호환용
-EMM386 제거 처리다 ("### 6. 빌드 (웹 에뮬레이터)" 절의 "웹 np2kai 적응" 참조) —
-`pc98disk.py`로 직접 원본 이미지에 패치할 경우(README 방법 2) 이 처리는 자동으로 안 되니
-실기/RetroArch용이면 몰라도 웹 에뮬용으로 쓸 거면 수동으로 해야 함.
-
-**텍스트 소스**: DISK_B.DAT 단일 파일.
+FDI 이미지에 삽입할 때 `CONFIG.SYS`도 같이 수정되는데, 이건 번역과 무관하게 웹 에뮬
+호환을 위한 EMM386 제거 처리다(아래 "6. 빌드" 절의 "웹 np2kai 적응" 참조). `pc98disk.py`로
+직접 원본 이미지에 패치하는 경로(README의 방법 2)를 쓰면 이 처리가 자동으로 안 되므로,
+실기나 RetroArch용이면 상관없지만 웹 에뮬용으로 쓸 거면 수동으로 해줘야 한다.
 
 ### DISK_B.DAT 청크 구조
 
@@ -59,9 +60,9 @@ EMM386 제거 처리다 ("### 6. 빌드 (웹 에뮬레이터)" 절의 "웹 np2ka
 
 ### 1. 압축 해제
 
-LZ 알고리즘은 풍광전과 동일 — `compile_lz.decompress()` 재사용. 알고리즘 상세는 `HUKYOU.md` 참조.
+LZ 알고리즘은 풍광전과 같아 `compile_lz.decompress()`를 그대로 재사용한다(상세는
+`HUKYOU.md` 참조). 쾌도전에만 있는 건 DISK_B.DAT 청크 테이블 파싱이다.
 
-쾌도전 고유 구조 — DISK_B.DAT 청크 테이블 파싱:
 ```python
 seeks = []
 for off in range(0, 0x400, 4):
@@ -93,7 +94,8 @@ seeks.sort()
 | `72 XX` | 줄바꿈 | 1바이트 |
 | `73 XX` | 대화 블록 종료 | 1바이트 |
 
-`62 00` 블록 예시 (청크 3 스킬):
+`62 00` 블록 예시(청크 3의 스킬):
+
 ```
 62 00 0f 03
 脳天砕            ← 스킬명 SJIS
@@ -105,110 +107,121 @@ seeks.sort()
 
 ### 3. 반각 (0x85XX)
 
-풍광전과 동일 체계. `compile_lz.read_sjis_char()` / `encode_halfwidth_char()` 재사용.
-
-쾌도전 특이점: `72 01 85XX [85XX…]` 패턴으로 UI 컬럼 헤더(H・P, S・P, M・P, EXP 등)에 사용.  
-인서터 구현 시 반각→SJIS 교체 가능 (풍광전과 동일 방식).
+풍광전과 같은 체계로 `compile_lz.read_sjis_char()`/`encode_halfwidth_char()`를 재사용한다.
+쾌도전만의 특이점은 `72 01 85XX [85XX…]` 패턴으로 UI 컬럼 헤더(H・P, S・P, M・P, EXP 등)에
+반각을 쓴다는 것이고, 인서터에서 반각→SJIS 교체도 풍광전과 같은 방식으로 처리한다.
 
 ### 4. 파싱
 
-**공유 오피코드 워커 기반** — `tools/compile_script.py`의 `walk()`를 사용.  
-환세 시리즈(희담·쾌도전·포물장) 공통 스크립트 모델로, 청크를 오피코드 스트림으로 훑어
-텍스트만 캡처한다. (희담 `extract_dialogs`에서 검증된 모델을 일반화)
+`tools/compile_script.py`의 공유 오피코드 워커 `walk()`를 쓴다. 환세 시리즈(희담·쾌도전·
+포물장)가 공유하는 스크립트 모델로, 청크를 오피코드 스트림으로 훑어 텍스트만 캡처한다
+(희담 `extract_dialogs`에서 검증한 모델을 일반화한 것). `kaitou_parser.py`가 하는 일은
+그래서 얇다 — `DISK_B.DAT`를 로드해 `parse_chunk_table`로 나눈 뒤 청크별로
+`decompress`하고, `NOISE_CHUNKS`를 뺀 나머지에 `walk()`를 적용해서 나온 블록·줄을
+`entries` 포맷으로 바꾸고, 기존 번역(kr)을 무손실로 이식한다.
 
-`kaitou_parser.py`의 역할은 얇다:
-1. `DISK_B.DAT` 로드 → `parse_chunk_table` → 청크별 `decompress`
-2. `NOISE_CHUNKS` 제외 후 각 청크에 `walk()` 적용
-3. 워커 출력(블록·줄)을 `entries` 포맷으로 변환
-4. 기존 번역(kr) 무손실 이식
+노이즈 필터는 안 쓴다. 오피코드를 인자 길이만큼 정확히 소비하기 때문에 제어·인자·그래픽
+바이트를 텍스트로 오인할 일이 없어서 사후 필터가 필요 없고, 찌꺼기가 나온다면 그건
+오피코드 모델이 불완전하다는 신호로 보고 필터가 아니라 `compile_script.py` 자체를
+고친다. 청크가 텍스트인지 그래픽인지는 워커 출력의 가나(히라/카타) 비율로 판정하는데,
+스크립트 청크는 88~98%, `NOISE_CHUNKS`로 분류되는 그래픽 청크는 0~30%다.
 
-**노이즈 필터 없음.** 오피코드를 인자 길이만큼 정확히 소비하므로 제어/인자/그래픽
-바이트를 텍스트로 오인하지 않는다 → 사후 필터 불필요. 찌꺼기가 나오면 *오피코드 모델이
-불완전하다는 신호*이며, 필터가 아니라 `compile_script.py`(모델)를 고친다.
+일부 청크(예: 청크3 후반)는 `62 00`/`6b 00` 같은 오프너 없이 포인터 테이블로만 참조되는
+맵 대화가 있다. 워커의 `implicit_text` 옵션이 이걸 처리한다 — 제어·포인터 바이트는 SJIS
+쌍을 못 이룬다는 점을 이용해서, 2자 이상 SJIS 런이 나오면 텍스트로 암묵 재진입한다.
 
-**청크 분류**: 워커 출력의 가나(히라/카타) 비율로 판정. 스크립트 청크는 88~98%,
-그래픽 청크(`NOISE_CHUNKS`)는 0~30%.
-
-**오프너 없는 맵 대화**: 청크 일부(예: 청크3 후반)는 `62 00`/`6b 00` 오프너 없이
-포인터 테이블로 참조되는 대화가 있다. 워커는 `implicit_text` 옵션으로, 제어/포인터
-바이트가 SJIS 쌍을 못 이루는 점을 이용해 2자+ SJIS 런이 나오면 텍스트로 암묵 재진입.
-
-`translation.json` 최상위 키: `entries`.  
-엔트리 필드: `file`, `chunk`, `offset`, `type`(dialog/speaker/def/name/text/carried),
-`jp`, `kr`, `lines`. `lines`: 각 줄 `offset`, `jp`, `jp_len`, `kr`, (`tag`).
-
-**기존 번역(kr) 무손실 이식**: 재파싱 시 옛 json의 kr을 ① 정확한 `(chunk, offset)`
-② 동일 청크·동일 JP 근접(±8) ③ 그래도 못 붙이면 옛 엔트리 통째로 carry-over(type
-`carried`) 순으로 보존 → **번역 손실 0 보장.**
+`translation.json`의 최상위 키는 `entries` 하나다. 엔트리 필드는 `file`, `chunk`,
+`offset`, `type`(dialog/speaker/def/name/text/carried), `jp`, `kr`, `lines`이고 `lines`
+안에는 줄마다 `offset`, `jp`, `jp_len`, `kr`, (`tag`)가 들어간다. 재파싱할 때 옛 json의
+kr을 보존하는 순서는 ① 정확한 `(chunk, offset)` 매칭 → ② 같은 청크·같은 JP가 근접(±8)한
+경우 → ③ 그래도 못 붙이면 옛 엔트리를 통째로 carry-over(type `carried`)하는 식이라,
+번역이 유실되는 경우는 없다.
 
 ### 5. 재삽입
 
-`kaitou_inserter.py`. 컨벤션상 `run()`은 데이터만, FDI는 `patch_fdi()` 별도 (희담/풍광전과 동일).
+`kaitou_inserter.py`를 쓴다. `run()`은 데이터만 다루고 FDI 삽입은 `patch_fdi()`가 따로
+맡는 컨벤션은 희담·풍광전과 같다.
 
-**`run()`**: `translation.json`의 KR을 청크별로 **JP 바이트 길이 안에서 in-place 패치**.
-청크 내부에 텍스트 오프셋을 가리키는 포인터 테이블(`6c 01 [ptr]` 스킬/맵 대사)이 있어
-**텍스트가 밀리면 깨지므로 길이 불변 필수** (희담/풍광전과 같은 제약). 패치된 청크만
-재압축(`multiprocessing` 병렬), 재조립 → `build/kaitou/DISK_B.DAT`.
-- 반각 섞인 라벨(코스트 `(MP8)` 등)은 `_split_cost_suffix()`로 이름/코스트 경계를 찾아 **이름만 패치하고 코스트는 보존**한다. (`爆炎の呪文(MP8)` → 이름만 번역)
+`run()`은 `translation.json`의 KR을 청크별로 JP 바이트 길이 안에서 in-place 패치한다.
+청크 내부에 텍스트 오프셋을 가리키는 포인터 테이블(`6c 01 [ptr]`, 스킬/맵 대사)이 있어서
+텍스트가 밀리면 깨지기 때문에 길이가 안 바뀌어야 한다(희담·풍광전과 같은 제약). 패치된
+청크만 재압축하고(`multiprocessing`으로 병렬 처리) 재조립해서 `build/kaitou/DISK_B.DAT`를
+만든다. 반각이 섞인 라벨(예: 코스트 `(MP8)`가 붙은 스킬명)은 `_split_cost_suffix()`가
+이름과 코스트의 경계를 찾아 이름만 패치하고 코스트는 그대로 둔다(`爆炎の呪文(MP8)` →
+이름만 번역).
 
-**재조립**: `DISK_B.DAT` = `[0x400 청크 테이블]` + `[LZ 청크 순차]`. `entry[i]`(테이블 offset `i*4`)
-= 청크 `i` 시작 위치. 재압축 크기가 달라져도 청크를 순서대로 깔고 테이블 seek만 갱신 →
-내부 오프셋 보존. (검증: 패치 없이 재조립 시 65/65 청크 디컴프레스 동등)
+재조립 규칙은 `DISK_B.DAT` = `[0x400 청크 테이블]` + `[LZ 청크 순차]`이고, `entry[i]`
+(테이블 offset `i*4`)가 청크 `i`의 시작 위치를 가리킨다. 재압축 후 크기가 달라져도 청크를
+순서대로 배치하고 테이블의 seek 값만 갱신하면 내부 오프셋이 보존된다(패치 없이 재조립해도
+65/65 청크의 디컴프레스가 원본과 같다는 걸로 검증했다).
 
-**`patch_fdi()`**: `build/kaitou/DISK_B.DAT`를 배포 FDI `emulator/rom/kaitou_kr.fdi`에 교체
-(`pc98disk add`, FAT12 재할당) → `build/kaitou/kaitou_kr.fdi`. + 아래 **CONFIG.SYS EMM386 제거**. (별도 원본 `kaitou.fdi`는 불필요해 삭제됨)
+`patch_fdi()`는 `build/kaitou/DISK_B.DAT`를 배포 FDI(`emulator/rom/kaitou_kr.fdi`)에
+`pc98disk add`로 교체하고(FAT12 재할당) `build/kaitou/kaitou_kr.fdi`를 만든다. 이때
+CONFIG.SYS의 EMM386 제거도 같이 한다(아래 참조). 별도로 두던 원본 `kaitou.fdi`는 이제
+필요 없어서 지웠다.
 
 ### 6. 빌드 (웹 에뮬레이터)
 
-`kaitou.html`(풍광전 복제, 단일 FDI) + `kaitou.js`(로더) + `kaitou.data`(번들).
-`editor.py`의 빌드 버튼(`run_build`) + 에뮬레이터 업데이트(`_handle_emulator_update_kaitou`)가
-풍광전/희담과 동일하게 「인서터 → FDI → 번들」을 오케스트레이션.
+`kaitou.html`(풍광전을 복제한 단일 FDI 구조) + `kaitou.js`(로더) + `kaitou.data`(번들)로
+구성한다. `editor.py`의 빌드 버튼(`run_build`)과 에뮬레이터 업데이트가 인서터→FDI→번들
+순서를 풍광전·희담과 동일하게 오케스트레이션한다.
 
-**웹 np2kai 적응 (실기/RetroArch와 다른 점 — Emscripten 빌드 한계):**
-- **1.44MB 디스크**: 쾌도전 FDI는 1.44MB(섹터 512B / 18spt)라 PC-98 기본(1.2MB)으로 못 읽음 →
-  `emulator/bios/np2kai.cfg`에 **`USE144FD = true`** 추가. (1.2MB hukyou/kitan은 자동 인식이라 공유 안전)
-- **EMM386 제거**: 쾌도전 `CONFIG.SYS`는 `himem.sys`+`emm386.exe`를 쓰는데, 우리 Emscripten
-  np2kai가 EMM386(386 보호/V86 모드)을 못 돌려 `HIMEM...done.` 직후 부팅이 멈춤 →
-  `patch_fdi`가 CONFIG.SYS에서 `emm386` 줄 제거 + `dos=umb,high`→`dos=high`. HIMEM/XMS는
-  유지하고 게임은 EMS 없이 동작. (실기/RetroArch는 EMM386 정상)
+웹 np2kai(Emscripten)는 실기·RetroArch와 다른 제약이 두 가지 있다.
 
-**번들 생성**: `bios/`(font.bmp·bios.rom·np2kai.cfg) + `kaitou_kr.fdi`를 `file_packager.py`로 묶어
-`kaitou.data` 생성, `kaitou.js`의 `loadPackage` 메타데이터 교체. (`editor._repackage_bundle`)
+- **1.44MB 디스크**: 쾌도전 FDI는 1.44MB(섹터 512B / 18spt)라 PC-98 기본값인 1.2MB
+  포맷으로는 못 읽는다. `emulator/bios/np2kai.cfg`에 `USE144FD = true`를 추가해
+  해결했다(1.2MB인 hukyou/kitan은 자동 인식이라 이 설정을 공유해도 안전하다).
+- **EMM386 제거**: 쾌도전 `CONFIG.SYS`는 `himem.sys`+`emm386.exe`를 쓰는데, 우리
+  Emscripten np2kai가 EMM386(386 보호/V86 모드)을 처리하지 못해서 `HIMEM...done.`
+  직후 부팅이 멈춘다. `patch_fdi`가 CONFIG.SYS에서 `emm386` 줄을 지우고
+  `dos=umb,high`를 `dos=high`로 바꿔서 우회한다. HIMEM/XMS는 유지되고 게임은 EMS
+  없이 동작한다(실기·RetroArch에서는 EMM386이 정상 동작한다).
+
+번들은 `bios/`(font.bmp·bios.rom·np2kai.cfg)와 `kaitou_kr.fdi`를 `file_packager.py`로
+묶어 `kaitou.data`를 만들고 `kaitou.js`의 `loadPackage` 메타데이터를 교체해서 만든다
+(`editor._repackage_bundle`).
 
 ---
 
 ## 참고
 
-**청크 0 노이즈**: x86 인터프리터 코드가 혼재 → `0xe0~0xef` 표준 SJIS 범위로 제한 (`is_sjis_pair`), `NOISE_CHUNKS` 별도 관리. `64 0a`/`64 0c` 오인식 방지를 위해 첫 콘텐츠 바이트가 SJIS 선행 바이트인지 확인.
+청크 0에는 x86 인터프리터 코드가 텍스트와 섞여 있어서, `is_sjis_pair`가 `0xe0~0xef`
+표준 SJIS 범위로만 제한하고 `NOISE_CHUNKS`를 따로 관리한다. `64 0a`/`64 0c`를 잘못
+인식하지 않도록 첫 콘텐츠 바이트가 SJIS 선행 바이트인지도 확인한다.
 
-**청크 0 스킬명+SP코스트 직결**: 스킬명 SJIS + SP코스트 반각(`0x85XX`)가 구분자 없이 붙어 있음.
+청크 0에는 스킬명과 SP 코스트가 구분자 없이 붙어 있는 경우도 있다.
+
 ```
 62 00 0c 01
 [스킬명 SJIS][SP코스트 0x85XX…]
 ```
-인서터(`_split_cost_suffix`)가 `0x85` **lead** 바이트(trail 바이트 제외 — 예: ュ=`0x83 0x85`)를 경계로 이름과 코스트를 분리하고, 인라인 제어코드 `64 01`까지 코스트로 보존한다.  
-청크 3의 동일 스킬은 `64 XX`로 분리돼 있어 처리 방식 다름.
 
-**`6d 08` 엄격 모드**: SJIS 쌍만 허용, 32바이트 상한 — 혼합 블록 자동 제외.
+인서터의 `_split_cost_suffix`가 `0x85` **lead** 바이트(trail 바이트는 제외 — 예를 들어
+ュ는 `0x83 0x85`라 lead가 아니다)를 경계로 이름과 코스트를 나누고, 인라인 제어코드
+`64 01`까지 코스트 쪽으로 보존한다. 청크 3의 같은 스킬은 `64 XX`로 이미 나뉘어 있어
+처리 방식이 다르다.
 
----
+`6d 08` 블록은 SJIS 쌍만 허용하고 32바이트 상한을 둬서, 혼합된 블록은 엄격 모드로
+자동 제외한다.
 
-## 파서 재작성 — 공유 오피코드 워커 (2026-06-02)
+### 파서 재작성 — 공유 오피코드 워커로 전환한 이유 (2026-06)
 
-**배경**: 기존 파서는 패턴별 추출기 8종 + SJIS 폴백 + 사후 노이즈 필터 구조였다.
-노이즈 필터(`len(set)<=1`, `count>=3`, 불완전 화이트리스트)가 오피코드 인자/그래픽을
-텍스트로 오인한 모지바케를 거르려다, `「`·`…`·반복 글자가 든 **진짜 대사를 대량 누락**했다
-(히라가나 런 534개 누락 — `「やれやれ…`, `「ヤツはここにいるにちがいない！` 등).
+원래 파서는 패턴별 추출기 8종 + SJIS 폴백 + 사후 노이즈 필터 구조였다. 이 노이즈
+필터(`len(set)<=1`, `count>=3`, 불완전 화이트리스트)가 오피코드 인자나 그래픽을 텍스트로
+오인한 모지바케를 걸러내려다가, 「나 말줄임표·반복 글자가 든 진짜 대사를 대량으로
+같이 걸러냈다 — 히라가나 런 534개가 이렇게 누락됐다(`「やれやれ…`,
+`「ヤツはここにいるにちがいない！` 등).
 
-**재작성**: 오피코드를 정확히 모델링하는 단일 워커(`compile_script.py`)로 교체.
-- 추출기 8종 + 폴백 + 노이즈 필터 → 워커 하나로 통합 (`kaitou_parser.py` ~1150줄 → 231줄)
-- 노이즈 필터 제거 (모델이 정확하면 불필요 — 완전 파싱 우선)
-- `65`는 1바이트 종료/구분자로 정정 (옛 `65 XX` 2바이트는 다음 텍스트 첫 글자를 먹었음)
-- 포인터 테이블 참조 맵 대화는 `implicit_text` 재진입으로 흡수
+그래서 오피코드를 정확히 모델링하는 단일 워커(`compile_script.py`)로 교체했다. 추출기
+8종과 폴백, 노이즈 필터를 워커 하나로 통합했고(`kaitou_parser.py`가 약 1150줄에서
+231줄로 줄었다), 모델이 정확하면 노이즈 필터 자체가 필요 없어서 완전히 뺐다. `65`도
+1바이트 종료/구분자로 정정했다(예전엔 `65 XX`를 2바이트로 봐서 다음 텍스트의 첫 글자를
+먹었다). 포인터 테이블로 참조되는 맵 대화는 `implicit_text` 재진입으로 흡수했다.
 
-**결과**: 히라가나 누락이 대폭 해소(`「` 빈말풍선까지 완전 캡처)되고, 기존 번역을 무손실 이식. 공유 워커라 포물장에서 그대로 재사용.
+결과적으로 히라가나 누락이 대부분 해소돼서 「 하나짜리 빈 말풍선까지 완전히 캡처되고,
+기존 번역은 무손실로 이식됐다. 공유 워커라 포물장에서도 그대로 재사용했다. 옛 추출기
+8종(`extract_*`)과 `find_block_ranges`, 노이즈 필터는 이제 지웠고, 필요하면 안전망
+커밋 `0447644` 이전 히스토리에서 볼 수 있다.
 
-> 옛 추출기 8종(`extract_*`)·`find_block_ranges`·노이즈 필터는 제거됨.
-> 히스토리는 안전망 커밋 `0447644` 이전 참조.
-
-GSC.COM(로더, 3,936B)은 INT 21h/18h만 호출하는 단순 로더로 텍스트 처리가 없다 — 번역 대상 아님.
+GSC.COM(로더, 3,936B)은 INT 21h/18h만 호출하는 단순 로더라 텍스트 처리가 없고, 번역
+대상이 아니다.

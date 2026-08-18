@@ -146,14 +146,12 @@ python3 tools/editor.py hukyou                        # 풍광전
 python3 tools/editor.py kaitou                        # 쾌도전
 python3 tools/editor.py kitan                         # 희담
 python3 tools/editor.py torimono                      # 포물장
+```
 
-# 3. 재삽입 (A와 동일 — emulator/rom/ 준비 여부에 따라 --no-fdi 여부 결정)
-python3 tools/hukyou_inserter.py original/hukyou          # 풍광전
-python3 tools/kaitou_inserter.py  original/kaitou         # 쾌도전
-python3 tools/kitan_inserter.py  original/kitan/data      # 희담 본편
-python3 tools/kitan_demo_inserter.py original/kitan/data  # 희담 오프닝
-python3 tools/torimono_inserter.py original/torimono      # 포물장
+3단계 재삽입은 [A절](#a-저장소의-번역-결과를-이미지에-적용하기)의 명령어와 완전히 같다
+(`emulator/rom/` 준비 여부에 따라 `--no-fdi` 여부만 그때그때 결정).
 
+```bash
 # 4. 번역 검수 lint (미번역·잘림·깨진문자·일관성·offset 정합)
 python3 tools/lint.py kaitou        # 요약 (-v 상세)
 
