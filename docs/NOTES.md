@@ -104,7 +104,7 @@ sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
 # loadPackage({files:[...]}) 부분도 loader.js에서 추출한 메타데이터로 교체
 ```
 
-**폰트**: `font.bmp`는 도깨비DNR고딕 Light(도깨비디나루를 복원해 제작, flvrdoyster). 4타이틀 모두 한글화 완료된 뒤로는 전 타이틀이 `font.bmp` 하나만 사용 — `font_jp.bmp`(미완료 타이틀용 일본어 원본 대체)는 더 이상 안 씀, 리포에서도 제거됨.
+**폰트**: `font.bmp`는 도깨비DNR고딕 Regular(도깨비디나루를 복원해 제작, flvrdoyster). 4타이틀 모두 한글화 완료된 뒤로는 전 타이틀이 `font.bmp` 하나만 사용 — `font_jp.bmp`(미완료 타이틀용 일본어 원본 대체)는 더 이상 안 씀, 리포에서도 제거됨.
 
 ### BIOS 번들 구성
 

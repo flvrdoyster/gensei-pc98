@@ -49,17 +49,21 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 
 프로젝트 루트(`gensei-pc98/`)에서 실행. 아래 두 경로 모두 **원본 일본어 디스크 이미지** 필요.
 
-### 사전 준비: compile-gfx 설치
+### 사전 준비: 의존 패키지 설치
 
 그래픽 코덱·컨테이너는 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)에 모아 두고
 이 저장소는 그걸 가져다 쓴다 (LZ 압축/해제, 타일시트 디코딩, 청크 테이블 파싱).
 
 ```bash
 pip install git+https://github.com/flvrdoyster/compile-gfx
+pip install Pillow      # 포물장 인서터가 DISK_C 그래픽 재삽입에 사용
 ```
 
+`Pillow`는 포물장(`torimono_inserter.py`)에만 필요하다 — DISK_C의 베이크드 텍스트 이미지를
+PNG로 다시 넣는 경로에서 쓴다. 다른 타이틀만 다룬다면 없어도 된다.
+
 > ⚠ 이 한글화는 한글 글리프를 새로 그려 넣은 전용 폰트 이미지(`emulator/bios/font.bmp`,
-> 도깨비DNR고딕 Light)를 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본
+> 도깨비DNR고딕 Regular)를 함께 사용해야 정상적으로 보인다. 디스크 이미지만 패치하고 원본
 > 폰트 그대로 두면 한글이 깨지거나 안 보인다.
 
 ### 0. 원본 디스크 이미지에서 파일 추출 (공통, 최초 1회)

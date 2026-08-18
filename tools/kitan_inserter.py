@@ -177,6 +177,9 @@ def build_fdis(game_dir='original/kitan/data'):
     for fdi_name in ('kitan-system.fdi', 'kitan-data.fdi'):
         base_fdi = os.path.join(rom_dir, fdi_name)
         if not os.path.exists(base_fdi):
+            # 조용히 넘기면 "에러도 없는데 결과물도 없는" 상태가 되어 원인을 못 찾는다.
+            print(f'⚠ {fdi_name}: {base_fdi} 없음 — 디스크 이미지 생성 건너뜀 '
+                  f'(원본 사본을 이 이름으로 두거나, --no-fdi 로 패치 파일만 생성)')
             continue
         out_fdi = prepare_output_copy(base_fdi, build_dir, fdi_name)
         with open(out_fdi, 'rb') as f:
