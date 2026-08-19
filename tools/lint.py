@@ -5,12 +5,15 @@
   python3 tools/lint.py <title>          # 요약
   python3 tools/lint.py <title> -v       # 상세(각 항목 위치까지)
 
+4타이틀 전부 지원한다. entries 포맷(kaitou·torimono)과 dialogs 포맷(hukyou·kitan)의
+구조 차이는 walk_lines() 가 흡수한다.
+
 검사 항목:
-  미번역      : 카나 포함 2자+ 원문인데 kr이 빈 줄
+  미번역      : 카나 포함 2자+ 원문인데 kr이 빈 줄 (tag=ignore는 의도적 제외라 안 셈)
   잘림        : encode_korean(kr) 가 jp_len(슬롯)을 초과 → 인서트 시 잘림
   깨진문자    : kr 에 U+FFFD 포함
   일관성      : 같은 jp 에 서로 다른 kr (용어/표현 불일치 후보)
-  offset 정합 : (kaitou) jp 가 실제 디컴프 위치에 없음(어긋남) / 선행 글자 누락
+  offset 정합 : (kaitou 전용) jp 가 실제 디컴프 위치에 없음(어긋남) / 선행 글자 누락
 
 종료코드: 버그류(잘림·깨진문자·offset)가 하나라도 있으면 1, 아니면 0.
   → 배포/빌드 전 게이트로 쓸 수 있다. 미번역·일관성은 검수 정보라 코드에 반영 안 함.
@@ -37,10 +40,17 @@ def kana(s):
 
 
 def enc_len(kr, cm):
-    try:
-        return len(encode_korean(kr, cm))
-    except UnicodeEncodeError:
-        return len(encode_korean(kr, cm, use_halfwidth=True))
+    """인코딩 후 바이트 길이. 인코딩 불가 문자가 있으면 None(잘림 검사 skip).
+
+    U+FFFD 같은 문자는 전각·반각 어느 쪽으로도 인코딩이 안 된다. 그 줄은 어차피
+    '깨진문자'로 따로 잡히므로, 여기서 예외를 터뜨려 검사 전체를 죽이지 않는다.
+    """
+    for kwargs in ({}, {'use_halfwidth': True}):
+        try:
+            return len(encode_korean(kr, cm, **kwargs))
+        except UnicodeEncodeError:
+            continue
+    return None
 
 
 def _textchar(pair):
@@ -125,25 +135,43 @@ def _norm_jp(s):
     return ''.join(_NORM_KEEP.findall(s or ''))
 
 
-def iter_lines(d):
-    """포맷 무관하게 번역 line dict(jp/kr 보유)를 산출.
+def walk_lines(d):
+    """포맷 무관하게 (위치라벨, 번역 line dict) 를 산출.
 
-    kaitou: entries[].lines / hukyou·kitan: dialogs[].lines + items[].name·stat·desc + ui·gsovl·demo[]
+    kaitou·torimono: entries[].lines
+    hukyou·kitan   : dialogs[].lines + items[].name·stat·desc + ui·gsovl·demo[]
+
+    위치라벨은 청크 기반이면 `c12:3456`, 파일 기반이면 `STAGE1.CMD:3456`,
+    파일이 없는 묶음은 `items:3456`·`ui:3456` 처럼 섹션명을 쓴다.
     """
+    def emit(prefix, line):
+        return f"{prefix}:{line.get('offset', '?')}", line
+
     if 'entries' in d:
         for e in d['entries']:
-            yield from e.get('lines', [])
+            prefix = f"c{e['chunk']}" if 'chunk' in e else str(e.get('file', '?'))
+            for l in e.get('lines', []):
+                yield emit(prefix, l)
     else:
         for dl in d.get('dialogs', []):
-            yield from dl.get('lines', [])
+            prefix = str(dl.get('file', 'dialogs'))
+            for l in dl.get('lines', []):
+                yield emit(prefix, l)
         for it in d.get('items', []):
-            if it.get('name'):
-                yield it['name']
-            if it.get('stat'):
-                yield it['stat']
-            yield from it.get('desc', [])
+            for l in (it.get('name'), it.get('stat')):
+                if l:
+                    yield emit('items', l)
+            for l in it.get('desc', []):
+                yield emit('items', l)
         for k in ('ui', 'gsovl', 'demo'):
-            yield from d.get(k, [])
+            for l in d.get(k, []):
+                yield emit(k, l)
+
+
+def iter_lines(d):
+    """walk_lines 의 line 부분만 (용어집 등 위치가 필요 없는 곳에서 사용)."""
+    for _, l in walk_lines(d):
+        yield l
 
 
 SERIES_TITLES = ['hukyou', 'kitan', 'kaitou', 'torimono']
@@ -180,30 +208,24 @@ def analyze(title, check_offset=True):
     if not os.path.exists(path):
         return {'error': f'{path} 없음'}
     d = json.load(open(path, encoding='utf-8'))
-    if 'entries' not in d:
-        return {'unsupported': True}
     cm = load_charmap()
 
     untrans, trunc, broken = [], [], []
     jp_kr = defaultdict(lambda: defaultdict(list))
-    for e in d['entries']:
-        ch = e.get('chunk', e.get('file', '?'))
-        tag = 'c' if 'chunk' in e else ''
-        for l in e['lines']:
-            jp = l.get('jp', '')
-            kr = l.get('kr', '')
-            loc = f"{tag}{ch}:{l['offset']}"
-            if kr.strip():
-                if '�' in kr:
-                    broken.append((loc, kr))
-                jl = l.get('jp_len')
-                if jl:
-                    el = enc_len(kr.strip(), cm)
-                    if el > jl:
-                        trunc.append((loc, kr, el, jl))
-                jp_kr[jp.strip()][kr.strip()].append(loc)
-            elif kana(jp) and len(jp) >= 2:
-                untrans.append((loc, jp))
+    for loc, l in walk_lines(d):
+        jp = l.get('jp') or ''
+        kr = l.get('kr') or ''
+        if kr.strip():
+            if '�' in kr:
+                broken.append((loc, kr))
+            jl = l.get('jp_len')
+            if jl:
+                el = enc_len(kr.strip(), cm)
+                if el is not None and el > jl:
+                    trunc.append((loc, kr, el, jl))
+            jp_kr[jp.strip()][kr.strip()].append(loc)
+        elif kana(jp) and len(jp) >= 2 and l.get('tag') != 'ignore':
+            untrans.append((loc, jp))
 
     conflicts = [(jp, dict(krs)) for jp, krs in jp_kr.items() if jp and len(krs) >= 2]
     mismatch = leading = None
@@ -222,10 +244,6 @@ def main(title, verbose=False):
     r = analyze(title, check_offset=True)
     if r.get('error'):
         print('오류:', r['error']); return 2
-    if r.get('unsupported'):
-        print(f"=== lint: {title} ===")
-        print("  (현재 entries 포맷(kaitou)만 지원 — hukyou/kitan의 dialogs 포맷은 추후)")
-        return 0
 
     untrans, trunc, broken = r['untrans'], r['trunc'], r['broken']
     conflicts, mismatch, leading = r['conflicts'], r['mismatch'], r['leading']
