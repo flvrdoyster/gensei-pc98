@@ -335,6 +335,8 @@ button {
 
 .game-list li.unavailable { opacity: 0.45; }
 
+.hub-links { display: flex; justify-content: center; margin: 4px 0 8px; }
+
 .game-logo { width: 160px; height: 48px; object-fit: contain; }
 
 .game-title { font-size: 1.6em; color: rgba(204, 204, 204, 1); }

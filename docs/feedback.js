@@ -5,11 +5,6 @@
     endpoint: 'https://script.google.com/macros/s/AKfycbynrg-9ZMAgheqUp9-cGcfMKfOCSFd4m4pp4SwXU2ZmzcEJgG-qW9A0P4A9C_cGdYkW/exec',
     showButton: false,
 
-    blog: {
-      url: 'https://oysterbay.tistory.com/129',
-      title: '블로그'
-    },
-
     maxLength: 2000,
     cooldownMs: 10 * 1000,
     attachShotByDefault: true,
@@ -229,26 +224,6 @@
 
   function isOpen() { return !overlay.classList.contains('hidden'); }
 
-  function buildBlogLink() {
-    var a = document.createElement('a');
-    a.className = 'btn-icon';
-    a.id = 'btn-blog';
-    a.href = CONFIG.blog.url;
-    a.target = '_blank';
-    a.rel = 'noopener';
-    a.title = CONFIG.blog.title;
-    a.setAttribute('aria-label', CONFIG.blog.title);
-    a.innerHTML = window.ICONS.blog;
-
-    var host = document.createElement('div');
-    host.style.cssText = 'display:flex;justify-content:center;margin:4px 0 8px';
-    host.appendChild(a);
-
-    var list = document.querySelector('.game-list');
-    if (list && list.parentNode) list.parentNode.insertBefore(host, list.nextSibling);
-    else document.body.appendChild(host);
-  }
-
   function build() {
     var style = document.createElement('style');
     style.textContent = STYLE;
@@ -363,14 +338,7 @@
   }
 
   function init() {
-    var isHub = !document.querySelector('.top-bar');
-    if (isHub) {
-      if (!CONFIG.blog.url) return;
-      if (!window.ICONS || !window.ICONS.blog) return;
-      if (document.getElementById('btn-blog')) return;
-      buildBlogLink();
-      return;
-    }
+    if (!document.getElementById('topbar-left')) return;
     if (!CONFIG.endpoint || !CONFIG.showButton) return;
     if (!window.ICONS || !window.ICONS.feedback) return;
     if (document.getElementById('btn-feedback')) return;
