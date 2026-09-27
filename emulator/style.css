@@ -280,7 +280,8 @@ button {
 /* Hub page — game list */
 .game-list {
   list-style: none;
-  width: 640px;
+  width: 100%;
+  max-width: 960px;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 8px;
@@ -293,11 +294,11 @@ button {
   align-items: center;
   justify-content: flex-end;
   gap: 8px;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 3 / 2;
   padding: 20px 16px;
   background-color: rgba(38, 38, 38, 1);
-  background-size: cover;
-  background-position: center;
+  background-size: calc(100% * 1200 / 630) auto;
+  background-position: center 25%;
   border: 1px solid rgba(68, 68, 68, 1);
   overflow: hidden;
   transition: background-color 0.15s;
@@ -308,7 +309,7 @@ button {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(15, 15, 15, 0) 0%, rgba(15, 15, 15, 0.05) 50%, rgba(15, 15, 15, 0.85) 100%);
+  background: linear-gradient(to bottom, rgba(15, 15, 15, 0) 40%, rgba(15, 15, 15, 0.55) 70%, rgba(15, 15, 15, 0.9) 100%);
   transition: opacity 0.15s;
 }
 
@@ -338,18 +339,7 @@ button {
 
 .game-title { font-size: 1.6em; color: rgba(204, 204, 204, 1); }
 
-.game-sub { font-size: var(--font-sm); color: rgba(255, 255, 255, 1); }
-
-.badge {
-  font-size: var(--font-sm);
-  padding: 2px 8px;
-  border-radius: 2px;
-  white-space: nowrap;
-}
-
-.badge.done { background: rgba(40, 80, 60, 1); color: rgba(120, 200, 150, 1); border: 1px solid rgba(60, 120, 90, 1); }
-.badge.wip  { background: rgba(60, 50, 15, 1); color: rgba(210, 165, 55, 1);  border: 1px solid rgba(90, 72, 22, 1); }
-.badge.todo { background: rgba(50, 50, 50, 1); color: rgba(120, 120, 120, 1); border: 1px solid rgba(70, 70, 70, 1); }
+.game-sub { font-size: var(--font-sm); color: rgba(255, 255, 255, 1); text-shadow: 0 1px 3px rgba(0, 0, 0, 0.9); }
 
 /* Fullscreen */
 #canvas-wrap:fullscreen,
