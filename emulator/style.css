@@ -69,9 +69,11 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
   height: 44px;
 }
 
-#btn-disk {
+#topbar-left {
   grid-column: 1;
   justify-self: start;
+  display: flex;
+  align-items: center;
 }
 
 .top-bar .logo {
@@ -138,6 +140,9 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 }
 
 .btn-icon:hover { color: rgba(204, 204, 204, 1); }
+a.btn-icon:link,
+a.btn-icon:visited { color: rgba(119, 119, 119, 1); }
+a.btn-icon:hover { color: rgba(204, 204, 204, 1); text-decoration: none; }
 
 /* 데스크톱(마우스)에서는 게임패드·상단바 접기 버튼 숨김 */
 @media (hover: hover) and (pointer: fine) {

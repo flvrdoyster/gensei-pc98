@@ -1,10 +1,8 @@
 (function () {
   'use strict';
 
-  // ?debug 가 있을 때만 동작. 평소엔 토글 버튼도 패널도 안 만든다.
   if (!new URLSearchParams(location.search).has('debug')) return;
 
-  // 게임 페이지가 디스크를 읽고 쓰는 IDB (gensei-saves/disks). 키 = 디스크 파일명.
   var IDB_NAME  = 'gensei-saves';
   var IDB_STORE = 'disks';
 
@@ -43,11 +41,6 @@
     });
   }
 
-  // 이 페이지가 실제로 다루는 디스크 키만 대상으로 삼는다 — IDB store는 전 타이틀
-  // 공유라서 스코프를 안 좁히면 다른 타이틀에서 넣어둔 캐시까지 같이 나열/내보내기/
-  // 삭제 대상이 되어버린다(실사고: 쾌도전 페이지에서 내보내기 눌렀는데 예전에
-  // 캐시해둔 포물장 이미지가 같이 나옴). 페이지의 IDB_KEY(단일) 또는 DISKS(다중,
-  // 희담류)를 읽어 현재 페이지 소유 키 목록만 구성.
   function pageKeys() {
     if (typeof DISKS !== 'undefined' && Array.isArray(DISKS)) {
       return DISKS.map(function (p) { return p.split('/').pop(); });
@@ -159,41 +152,24 @@
   }
 
   function build() {
-    var topbar = document.querySelector('.top-bar');
-    if (!topbar) return;
+    var wrap = document.getElementById('topbar-left');
+    if (!wrap) return;
 
     var style = document.createElement('style');
     style.textContent = STYLE;
     document.head.appendChild(style);
 
-    // 토글 버튼 — 기존 .btn-icon 그대로, 상단바 왼쪽(grid col1)
     btnToggle = document.createElement('button');
     btnToggle.className = 'btn-icon';
     btnToggle.id = 'btn-debug';
     btnToggle.title = 'DEBUG 디스크';
-    // 아이콘 정의는 icons.js(window.ICONS) 단일 소스 — 여기선 안 둠.
+    btnToggle.setAttribute('aria-label', btnToggle.title);
+    btnToggle.setAttribute('aria-expanded', 'false');
+    btnToggle.setAttribute('aria-controls', 'debug-panel');
     btnToggle.innerHTML = window.ICONS.debug;
 
-    // 상단바 왼쪽(grid col1) 공유 flex 컨테이너 `#topbar-left`.
-    // feedback.js 도 같은 id 로 이 컨테이너를 재사용한다 — 스크립트마다 따로 만들면
-    // grid-column:1 에 div 가 둘이 되어 상단바가 2행으로 깨진다.
-    var wrap = document.getElementById('topbar-left');
-    if (!wrap) {
-      wrap = document.createElement('div');
-      wrap.id = 'topbar-left';
-      wrap.style.cssText = 'grid-column:1;justify-self:start;display:flex;align-items:center';
-      var existingLeft = document.getElementById('btn-disk');
-      if (existingLeft) {
-        topbar.insertBefore(wrap, existingLeft);
-        wrap.appendChild(existingLeft);   // 기존 버튼을 컨테이너 안으로 흡수
-        existingLeft.style.gridColumn = '';
-      } else {
-        topbar.insertBefore(wrap, topbar.firstChild);
-      }
-    }
     wrap.appendChild(btnToggle);
 
-    // 패널 — 고정 오버레이. 기본 숨김, 토글로만 표시.
     panel = document.createElement('div');
     panel.id = 'debug-panel';
     panel.className = 'hidden';
@@ -220,6 +196,7 @@
     btnToggle.addEventListener('click', function () {
       panel.classList.toggle('hidden');
       btnToggle.classList.toggle('active');
+      btnToggle.setAttribute('aria-expanded', String(!panel.classList.contains('hidden')));
     });
 
     openDB().then(function (d) { db = d; refreshKeys(); })

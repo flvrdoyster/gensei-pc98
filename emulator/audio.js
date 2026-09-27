@@ -42,10 +42,10 @@
   function initMute() {
     var btn = document.getElementById('btn-mute');
     if (!btn) return;
-    // 아이콘 정의는 icons.js(window.ICONS) 단일 소스 — 여기선 안 둠.
     btn.addEventListener('click', function() {
       muted = !muted;
       btn.innerHTML = window.ICONS[muted ? 'muteOff' : 'mute'];
+      btn.setAttribute('aria-pressed', String(muted));
       var ctx = getAudioContext();
       if (ctx) (muted ? ctx.suspend() : ctx.resume()).catch(function(){});
       btn.blur();

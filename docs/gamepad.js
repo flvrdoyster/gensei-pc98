@@ -50,7 +50,6 @@
   function init() {
     canvas = document.getElementById('canvas');
 
-    // 터치 이벤트 바인딩 (활성화 여부와 무관하게 항상)
     var gamepad = document.getElementById('virtual-gamepad');
     if (!gamepad) return;
 
@@ -66,7 +65,6 @@
       var btn = e.target.closest('[data-key]');
       if (!btn) return;
       var key = btn.dataset.key;
-      // 시작 오버레이가 떠 있을 때 ENTER는 시작 버튼을 누른다
       if (key === 'Enter') {
         var startBtn = document.getElementById('btn-start');
         var overlay = document.getElementById('overlay');
@@ -105,10 +103,8 @@
       }
     }, { passive: false });
 
-    // 자동 활성화
     if (shouldAutoActivate()) activate();
 
-    // 게임패드 활성화 버튼
     var toggleBtn = document.getElementById('btn-gamepad');
     if (toggleBtn) {
       toggleBtn.addEventListener('click', function() {
@@ -117,11 +113,11 @@
       });
     }
 
-    // 상단바 접기 버튼
     var collapseBtn = document.getElementById('btn-collapse');
     if (collapseBtn) {
       collapseBtn.addEventListener('click', function() {
-        document.body.classList.toggle('chrome-hidden');
+        var hidden = document.body.classList.toggle('chrome-hidden');
+        collapseBtn.setAttribute('aria-pressed', String(hidden));
         collapseBtn.blur();
       });
     }
