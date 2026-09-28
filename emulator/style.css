@@ -370,8 +370,8 @@ button {
 .hub-hint { display: none; }
 
 @keyframes hub-bob {
-  0%, 100% { margin-bottom: 0; }
-  50% { margin-bottom: -6px; }
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 6px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -528,17 +528,25 @@ body.mobile-active #virtual-gamepad {
   .hint { display: none; }
   #footer { width: 100%; padding: 16px; }
   .hub-select { height: calc(100vh + (var(--hub-count, 4) - 1) * 35vh); height: calc(100svh + (var(--hub-count, 4) - 1) * 35svh); }
-  .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; }
-  .hub-stage { order: -2; flex: none; align-self: stretch; }
+  body:has(.hub-select) { padding-top: 0; }
+  .spacer { display: none; }
+  .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 0; }
+  .hub-stage { order: -2; flex: none; align-self: center; width: clamp(120px, (100vh - 452px) * 1.5, 100%); width: clamp(120px, (100svh - 452px) * 1.5, 100%); }
   .hub-dots { order: -1; display: flex; justify-content: center; gap: 6px; }
   .hub-dots b { width: 18px; height: 3px; border-radius: 2px; background: rgba(68, 68, 68, 1); transition: width 0.2s, background-color 0.2s; }
   .hub-dots b.on { width: 28px; background: rgba(204, 204, 204, 1); }
   .hub-menu { --sel-inset: 12px; gap: 2px; }
   .hub-menu a { padding: 10px 16px; gap: 6px; }
-  .hub-hint { display: flex; position: fixed; left: 50%; bottom: max(16px, env(safe-area-inset-bottom)); transform: translateX(-50%) rotate(180deg); color: rgba(119, 119, 119, 1); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
+  .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: rgba(119, 119, 119, 1); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
   .hub-hint svg { height: 20px; }
   .hub-hint.gone { opacity: 0; }
   .desktop-only { display: none; }
+}
+
+@media (max-width: 680px) and (max-height: 640px) {
+  .hub-stage { width: clamp(120px, (100vh - 412px) * 1.5, 100%); width: clamp(120px, (100svh - 412px) * 1.5, 100%); }
+  .hub-menu { --sel-inset: 8px; }
+  .hub-menu a { padding: 6px 16px; gap: 4px; }
 }
 
 /* 터치 기기 가로 모드: 폭이 680px를 넘어가는 경우가 많아 위 규칙이 안 걸리면
