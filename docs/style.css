@@ -19,6 +19,7 @@
   --font-lg: 1.2em;
   --font-md: 0.9em;
   --font-sm: 0.75em;
+  --font-xs: 0.65em;
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
@@ -336,6 +337,20 @@ button {
 .game-list li.unavailable { opacity: 0.45; }
 
 .hub-links { display: flex; justify-content: center; margin: 4px 0 8px; }
+
+.hub-notice {
+  width: 100%;
+  max-width: 640px;
+  font-size: var(--font-xs);
+  line-height: 1.6;
+  color: rgba(102, 102, 102, 1);
+  text-align: center;
+  word-break: keep-all;
+}
+.hub-notice p + p { margin-top: 4px; }
+.hub-notice a:link,
+.hub-notice a:visited { color: rgba(119, 119, 119, 1); }
+.hub-notice a:hover { color: rgba(170, 170, 170, 1); }
 
 .game-logo { width: 160px; height: 48px; object-fit: contain; }
 
