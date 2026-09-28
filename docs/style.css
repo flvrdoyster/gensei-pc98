@@ -527,7 +527,7 @@ body.mobile-active #virtual-gamepad {
   .disk-panel { width: 100%; }
   .hint { display: none; }
   #footer { width: 100%; padding: 16px; }
-  .hub-select { height: calc(100vh + (var(--hub-count, 4) - 1) * 35vh); height: calc(100svh + (var(--hub-count, 4) - 1) * 35svh); }
+  .hub-select { height: calc(100vh + (var(--hub-count, 4) - 1) * 75vh); height: calc(100svh + (var(--hub-count, 4) - 1) * 75svh); }
   body:has(.hub-select) { padding-top: 0; }
   .spacer { display: none; }
   .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 0; }
