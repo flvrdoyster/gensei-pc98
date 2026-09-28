@@ -363,7 +363,7 @@ button {
   display: block;
   aspect-ratio: 3 / 2;
   background-size: calc(100% * 1200 / 630) auto;
-  background-position: center 25%;
+  background-position: center 8%;
 }
 
 .hub-dots,
