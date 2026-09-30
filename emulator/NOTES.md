@@ -612,6 +612,9 @@ preRun에서 번들 안 `np2kai.cfg`에 `HDD1FILE`을 주입해 SASI HDD로 마�
 따로 둔다(사이트맵은 같은 호스트 주소만 담을 수 있고, 네이버는 서브도메인을 따로 등록한다).
 사이트맵은 손으로 관리하고, 주소는 각 페이지의 canonical과 같은 모양으로 쓴다.
 
+네이버 서치어드바이저 소유 확인은 HTML 파일 방식이라 `naver6bce5b0a25c0fed529b1ee578ae813cb.html`이
+`emulator/`와 `docs/` 양쪽에 있다. 사이트맵에는 넣지 않는다.
+
 모든 페이지에 절대 주소 canonical을 둔다. GitHub Pages가 `/hukyou`와 `/hukyou.html`,
 `/`와 `/index.html`을 모두 200으로 응답해서, canonical이 없으면 같은 페이지가 두 주소로 잡힌다.
 
