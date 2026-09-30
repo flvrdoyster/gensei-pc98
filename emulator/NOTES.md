@@ -555,6 +555,8 @@ HDI(포물장)는 `torimono.html`을 복사해서 시작하면 된다. 고칠 �
 | `document.title` | 타이틀명 |
 | `logo` img src/height | `img/logo-<title>.png`, 높이 기준 (풍광전 42px, 희담 54px) |
 | `s.src` | `<title>.js` |
+| `<head>` 메타 | title·description·keywords·og:*·canonical을 새 주소와 타이틀로 |
+| `sitemap.xml` | 새 페이지 주소 한 줄 추가 |
 
 멀티 디스크는 `Module.arguments`에 FDI 경로를 순서대로 넣고 preRun에서 전부 chmod한다.
 다만 런타임 중 디스크를 바꿔 끼우는 건 안 된다 — NP2kai가 디스크를 내부 메모리에
@@ -570,6 +572,20 @@ preRun에서 번들 안 `np2kai.cfg`에 `HDD1FILE`을 주입해 SASI HDD로 마�
 `<title>.js`로 메타데이터를 교체하면 된다. 마지막으로 `index.html`의 `.hub-menu`에
 항목 한 줄(`<a href data-art>` + 로고 + 부제)을 추가하면 끝이다 — 무대 원화와 진행 표시는
 `hub.js`가 거기서 만든다(썸네일 조건은 위 "허브" 절 참고).
+
+---
+
+## 검색 노출 (SEO)
+
+검색엔진은 서브도메인을 atah.io와 별개 사이트로 보므로 `robots.txt`·`sitemap.xml`을 이 레포에
+따로 둔다(사이트맵은 같은 호스트 주소만 담을 수 있고, 네이버는 서브도메인을 따로 등록한다).
+사이트맵은 손으로 관리하고, 주소는 각 페이지의 canonical과 같은 모양으로 쓴다.
+
+모든 페이지에 절대 주소 canonical을 둔다. GitHub Pages가 `/hukyou`와 `/hukyou.html`,
+`/`와 `/index.html`을 모두 200으로 응답해서, canonical이 없으면 같은 페이지가 두 주소로 잡힌다.
+
+허브의 og:image는 비워 둔다. 전용 썸네일(1200×630)이 생기면 `img/`에 넣고 연결한다. 게임
+페이지는 `img/thumbnail-<title>.png`를 쓴다.
 
 ---
 
