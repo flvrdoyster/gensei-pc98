@@ -59,6 +59,11 @@ a:hover {
   text-decoration-style: dotted;
 }
 
+:focus-visible {
+  outline: 2px solid rgba(204, 204, 204, 1);
+  outline-offset: 2px;
+}
+
 h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; }
 
 /* 좌(디스크) · 중앙(로고) · 우(버튼) 3분할. 좌측 요소 유무와 무관하게 로고는 항상 정중앙 */
@@ -333,6 +338,7 @@ button {
   padding: 14px 20px;
   color: inherit;
   opacity: 0.45;
+  border-radius: 6px;
   transition: opacity 0.2s;
 }
 
