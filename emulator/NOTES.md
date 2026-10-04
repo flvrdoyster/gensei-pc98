@@ -266,6 +266,16 @@ sed -i '' -e 's/emnp2kai_sdl2.data/hukyou.data/g' \
 모두 한글화를 마친 뒤로는 전 타이틀이 이 폰트 하나만 쓴다 — 미완료 타이틀용으로 일본어
 원본을 대체하던 `font_jp.bmp`는 이제 안 쓰고 리포에서도 지웠다.
 
+폰트 저장소(font)의 산출물 `build/font_light.bmp`가 이 파일의 원본이다. 이름에 `light`가
+붙어 있지만 그 저장소 README 기준으로 얇은 쪽, 곧 Regular(1px)다. 새로 받으면 헤더·팔레트가
+현재 `font.bmp`와 같은지(0=잉크, 1=배경, 2048×2048 1bpp)와 바뀐 셀이 의도한 글리프뿐인지
+먼저 대조하고, `emulator/bios/font.bmp`를 덮어쓴 뒤 4타이틀 번들을 전부 다시 만든다.
+대시보드의 번들 동작(`pipeline.bundle`)은 `build/`의 디스크를 `emulator/rom/`에 복사하는
+단계까지 포함하므로 폰트만 바꿀 땐 쓰지 말고, `emulator/rom/`의 디스크를 그대로 두는
+`pipeline._repackage_bundle(title, 디스크 목록)`을 타이틀마다 호출한다. 이 도구는 폰트를 바꾸기
+전 상태에서 커밋된 4개 번들을 바이트 단위로 그대로 재현하므로, 폰트 파일 크기가 같으면
+`.js`의 메타데이터는 안 바뀌고 `.data`에서 폰트 구간(`font.bmp`의 `start`~`end`)만 달라진다.
+
 ### BIOS 번들 구성
 
 `bios/` 전체가 4타이틀 공용으로 번들에 들어가서, 하나만 바꿔도 4타이틀 전부 재번들해야
