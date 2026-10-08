@@ -259,6 +259,8 @@ canvas {
   width: 640px;
   height: 400px;
   image-rendering: pixelated;
+  /* 시작 전엔 캔버스가 투명이라 오버레이(85% 검정) 뒤로 페이지 배경이 비친다. 테마와 무관하게 검정 */
+  background: rgba(0, 0, 0, 1);
 }
 
 #overlay {
