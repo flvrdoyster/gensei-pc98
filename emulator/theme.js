@@ -20,13 +20,10 @@
     root.setAttribute('data-theme', theme);
     var btn = document.getElementById('btn-theme');
     if (!btn) return;
-    // 아이콘·라벨은 누르면 바뀔 테마를 보여준다
-    var light = theme !== 'light';
-    var label = light ? '라이트 모드' : '다크 모드';
-    btn.setAttribute('data-icon', light ? 'themeLight' : 'themeDark');
+    // 아이콘은 하나(반쪽 원)로 고정, 라벨만 누르면 바뀔 테마를 알려준다
+    var label = theme === 'light' ? '다크 모드' : '라이트 모드';
     btn.title = label;
     btn.setAttribute('aria-label', label);
-    if (window.ICONS) btn.innerHTML = window.ICONS[btn.getAttribute('data-icon')];
   }
 
   apply();
@@ -37,7 +34,6 @@
     else if (media.addListener) media.addListener(onChange);
   }
 
-  // icons.js보다 먼저 등록되므로 data-icon만 정해 두면 icons.js가 그린다
   document.addEventListener('DOMContentLoaded', function () {
     var btn = document.getElementById('btn-theme');
     if (!btn) return;
