@@ -25,7 +25,8 @@
      전체화면 배경은 테마와 무관하게 어둡게 유지하므로 토큰을 쓰지 않는다. */
   color-scheme: dark;
   --bg: rgba(26, 26, 26, 1);
-  --text: rgba(204, 204, 204, 1);
+  --text: rgba(204, 204, 204, 1);       /* 읽는 글자: 본문·패널 내용 */
+  --ui-active: rgba(204, 204, 204, 1);  /* UI 강조: 아이콘 호버·포커스 링·선택 표시·버튼 라벨 */
   --text-strong: rgba(170, 170, 170, 1);
   --text-muted: rgba(136, 136, 136, 1);
   --text-icon: rgba(119, 119, 119, 1);
@@ -53,9 +54,11 @@
 :root[data-theme="light"] {
   color-scheme: light;
   --bg: rgba(247, 247, 245, 1);
-  /* 주 텍스트 = 다크 모드 바탕색(26). 두 테마가 같은 잉크/종이를 맞바꿔 쓰고,
-     atah 아이콘 타일(블로그 스킨 .ico_atah)과도 같은 색 */
-  --text: rgba(26, 26, 26, 1);
+  /* 읽는 글자는 흰 바탕 위 검정에 익숙한 눈에 맞춰 #000.
+     UI 강조는 다크 모드 바탕색(26)으로 한 단계 물려 글자보다 앞서지 않게 하고,
+     atah 아이콘 타일(블로그 스킨 .ico_atah)과 같은 색을 쓴다 */
+  --text: rgba(0, 0, 0, 1);
+  --ui-active: rgba(26, 26, 26, 1);
   --text-strong: rgba(68, 68, 68, 1);
   --text-muted: rgba(102, 102, 102, 1);
   --text-icon: rgba(102, 102, 102, 1);
@@ -129,7 +132,7 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid var(--text);
+  outline: 2px solid var(--ui-active);
   outline-offset: 2px;
 }
 
@@ -191,7 +194,7 @@ h1 { font-size: var(--font-lg); color: var(--text-strong); margin-top: 8px; }
 
 .disk-panel button:hover {
   background: var(--btn-bg);
-  color: var(--text);
+  color: var(--ui-active);
 }
 
 .disk-panel.hidden {
@@ -214,10 +217,10 @@ h1 { font-size: var(--font-lg); color: var(--text-strong); margin-top: 8px; }
   justify-content: center;
 }
 
-.btn-icon:hover { color: var(--text); }
+.btn-icon:hover { color: var(--ui-active); }
 a.btn-icon:link,
 a.btn-icon:visited { color: var(--text-icon); }
-a.btn-icon:hover { color: var(--text); text-decoration: none; }
+a.btn-icon:hover { color: var(--ui-active); text-decoration: none; }
 
 /* 데스크톱(마우스)에서는 게임패드·상단바 접기 버튼 숨김 */
 @media (hover: hover) and (pointer: fine) {
@@ -322,7 +325,7 @@ canvas {
 button {
   background: var(--btn-bg);
   border: 1px solid var(--btn-border);
-  color: var(--text);
+  color: var(--ui-active);
   padding: 6px 14px;
   cursor: pointer;
   font-family: 'KoddiUDOnGothic', sans-serif;
@@ -396,7 +399,7 @@ button {
   height: max(0px, calc(var(--sel-h) - 2 * var(--sel-inset)));
   width: 3px;
   border-radius: 2px;
-  background: var(--text);
+  background: var(--ui-active);
 }
 
 .hub-menu li { position: relative; z-index: 1; }
@@ -611,7 +614,7 @@ body.mobile-active #virtual-gamepad {
   .hub-stage { order: -2; flex: none; align-self: center; width: clamp(120px, (100vh - 452px) * 1.5, 100%); width: clamp(120px, (100svh - 452px) * 1.5, 100%); }
   .hub-dots { order: -1; display: flex; justify-content: center; gap: 6px; }
   .hub-dots b { width: 18px; height: 3px; border-radius: 2px; background: var(--dot); transition: width 0.2s, background-color 0.2s; }
-  .hub-dots b.on { width: 28px; background: var(--text); }
+  .hub-dots b.on { width: 28px; background: var(--ui-active); }
   .hub-menu { --sel-inset: 12px; gap: 2px; }
   .hub-menu a { padding: 10px 16px; gap: 6px; }
   .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: var(--text-icon); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
