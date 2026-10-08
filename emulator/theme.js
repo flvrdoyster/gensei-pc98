@@ -11,8 +11,19 @@
     try { return localStorage.getItem(LS_KEY); } catch (e) { return null; }
   }
 
+  function system() {
+    return media && media.matches ? 'light' : 'dark';
+  }
+
   function current() {
-    return forced || saved() || (media && media.matches ? 'light' : 'dark');
+    return forced || saved() || system();
+  }
+
+  function store(theme) {
+    try {
+      if (theme === system()) localStorage.removeItem(LS_KEY);
+      else localStorage.setItem(LS_KEY, theme);
+    } catch (e) {}
   }
 
   function apply() {
@@ -29,7 +40,10 @@
   apply();
 
   if (media) {
-    var onChange = function () { if (!forced && !saved()) apply(); };
+    var onChange = function () {
+      if (saved() === system()) store(system());
+      if (!forced && !saved()) apply();
+    };
     if (media.addEventListener) media.addEventListener('change', onChange);
     else if (media.addListener) media.addListener(onChange);
   }
@@ -40,7 +54,7 @@
     apply();
     btn.addEventListener('click', function () {
       var next = current() === 'light' ? 'dark' : 'light';
-      try { localStorage.setItem(LS_KEY, next); } catch (e) {}
+      store(next);
       forced = null;
       apply();
     });
