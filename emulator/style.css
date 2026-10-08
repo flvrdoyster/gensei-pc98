@@ -26,7 +26,7 @@
   color-scheme: dark;
   --bg: rgba(26, 26, 26, 1);
   --text: rgba(204, 204, 204, 1);       /* 읽는 글자: 본문·패널 내용 */
-  --ui-active: rgba(204, 204, 204, 1);  /* UI 강조: 아이콘 호버·포커스 링·선택 표시·버튼 라벨 */
+  --ui-active: rgba(204, 204, 204, 1);  /* UI 상태 강조: 호버·포커스 링·선택 막대·현재 위치 점 */
   --text-strong: rgba(170, 170, 170, 1);
   --text-muted: rgba(136, 136, 136, 1);
   --text-icon: rgba(119, 119, 119, 1);
@@ -55,16 +55,17 @@
   color-scheme: light;
   --bg: rgba(247, 247, 245, 1);
   /* 읽는 글자는 흰 바탕 위 검정에 익숙한 눈에 맞춰 #000.
-     UI 강조는 다크 모드 바탕색(26)으로 한 단계 물려 글자보다 앞서지 않게 하고,
-     atah 아이콘 타일(블로그 스킨 .ico_atah)과 같은 색을 쓴다 */
+     UI 강조·링크는 atah.io design-tokens.css의 --accent/--link(#0068da):
+     사이트 주색 --brand(#7ca6de = 다크 모드 링크색)와 같은 색상각의 진한 형제로,
+     밝은 바탕에서 선·글자에 쓸 수 있는 대비(약 5:1)를 갖춘 값 */
   --text: rgba(0, 0, 0, 1);
-  --ui-active: rgba(26, 26, 26, 1);
+  --ui-active: rgba(0, 104, 218, 1);
   --text-strong: rgba(68, 68, 68, 1);
   --text-muted: rgba(102, 102, 102, 1);
   --text-icon: rgba(102, 102, 102, 1);
   --text-dim: rgba(110, 110, 110, 1);
   --text-faint: rgba(122, 122, 122, 1);
-  --link: rgba(30, 90, 170, 1);
+  --link: rgba(0, 104, 218, 1);
   --link-visited: rgba(74, 95, 150, 1);
   --surface: rgba(232, 232, 228, 1);
   --surface-sel: rgba(234, 234, 230, 1);
@@ -325,7 +326,7 @@ canvas {
 button {
   background: var(--btn-bg);
   border: 1px solid var(--btn-border);
-  color: var(--ui-active);
+  color: var(--text);
   padding: 6px 14px;
   cursor: pointer;
   font-family: 'KoddiUDOnGothic', sans-serif;
