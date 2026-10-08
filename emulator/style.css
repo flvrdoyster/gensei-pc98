@@ -238,6 +238,7 @@ body.chrome-hidden .top-bar { height: 0; overflow: hidden; }
 body.chrome-hidden .disk-panel { display: none; }
 body.chrome-hidden #canvas-wrap { margin-top: 0; }
 body.chrome-hidden #footer { display: none; }
+body.chrome-hidden .theme-switch { display: none; }
 body.chrome-hidden .hint { display: none; }
 body.chrome-hidden #btn-collapse {
   position: fixed;
@@ -348,6 +349,10 @@ button {
 #footer a:hover { color: var(--text); }
 
 .footer-sep { margin: 0 4px; }
+
+/* 테마 전환 버튼: HTML에선 footer.js보다 앞에 있지만 body가 세로 flex라
+   order로 푸터(footer.js가 body 끝에 붙임) 아래에 놓는다. 푸터 로드 실패와 무관하게 표시 */
+.theme-switch { order: 1; display: flex; justify-content: center; margin-top: 4px; }
 
 .spacer { height: 16px; }
 
