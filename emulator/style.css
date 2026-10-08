@@ -352,7 +352,9 @@ button {
 
 /* 테마 전환 버튼: HTML에선 footer.js보다 앞에 있지만 body가 세로 flex라
    order로 푸터(footer.js가 body 끝에 붙임) 아래에 놓는다. 푸터 로드 실패와 무관하게 표시 */
-.theme-switch { order: 1; display: flex; justify-content: center; margin-top: 4px; }
+.theme-switch { order: 1; display: flex; justify-content: center; margin-top: 0; }
+.theme-switch .btn-icon { min-width: 32px; min-height: 32px; padding: 0; }
+.theme-switch .btn-icon svg { height: 14px; width: auto; }
 
 .spacer { height: 16px; }
 
