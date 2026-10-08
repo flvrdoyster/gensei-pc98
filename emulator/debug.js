@@ -53,19 +53,19 @@
 
   var STYLE =
     '#debug-panel{position:fixed;top:56px;left:8px;z-index:300;' +
-    'background:rgba(38,38,38,0.97);border:1px solid rgba(68,68,68,1);border-radius:6px;' +
+    'background:var(--panel-bg);border:1px solid var(--field-border);border-radius:6px;' +
     'padding:12px 14px;max-width:min(360px,calc(100vw - 16px));' +
-    'color:rgba(204,204,204,1);font-size:var(--font-sm);' +
-    'box-shadow:0 6px 20px rgba(0,0,0,0.45);' +
+    'color:var(--text);font-size:var(--font-sm);' +
+    'box-shadow:0 6px 20px var(--shadow);' +
     '-webkit-backdrop-filter:blur(3px);backdrop-filter:blur(3px)}' +
     '#debug-panel.hidden{display:none}' +
-    '#debug-panel h4{margin:0 0 8px;font-size:var(--font-md);color:rgba(170,170,170,1)}' +
+    '#debug-panel h4{margin:0 0 8px;font-size:var(--font-md);color:var(--text-strong)}' +
     '#debug-panel .dbg-row{display:flex;align-items:center;gap:6px;margin:4px 0;flex-wrap:wrap}' +
     '#debug-panel .dbg-key{flex:1;min-width:120px;word-break:break-all}' +
-    '#debug-panel .dbg-key.dbg-empty{color:rgba(119,119,119,1)}' +
+    '#debug-panel .dbg-key.dbg-empty{color:var(--text-icon)}' +
     '#debug-panel button{font-size:var(--font-sm);padding:3px 10px}' +
     '#debug-panel button:disabled{opacity:0.4;cursor:default}' +
-    '#debug-panel .dbg-msg{margin-top:8px;color:rgba(119,119,119,1);min-height:1.4em;word-break:break-all}';
+    '#debug-panel .dbg-msg{margin-top:8px;color:var(--text-icon);min-height:1.4em;word-break:break-all}';
 
   var db = null;
   var panel, listEl, msgEl, fileInput, btnToggle;
