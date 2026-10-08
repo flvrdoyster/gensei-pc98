@@ -20,13 +20,81 @@
   --font-md: 0.9em;
   --font-sm: 0.75em;
   --font-xs: 0.65em;
+
+  /* ── 색상 토큰 (다크 기본값, 라이트는 아래에서 재정의) ──────────────
+     역할별로만 둔다. 같은 역할에 비슷한 값을 따로 두지 않는다.
+     면  : --bg(바탕·입력칸처럼 파인 면) / --surface(선택 칸·스테이지·패널) / --surface-2(버튼·호버 면)
+     선  : --border (버튼·입력칸·구분선·비활성 점). 양 테마 모두 반투명 잉크
+     글자: --text(본문) / --text-2(보조: 제목·부제·글 속 링크) / --text-3(흐린: 메타·힌트·푸터·아이콘 기본)
+           글 속 링크는 바탕 글자보다 한 단계 위, 호버하면 한 단계 더 위로 올린다
+     강조: --accent(호버·포커스 링·선택 막대·현재 위치 점) / --link(본문 링크) */
+  color-scheme: dark;
+  --bg: rgba(26, 26, 26, 1);
+  --surface: rgba(38, 38, 38, 1);
+  --surface-2: rgba(51, 51, 51, 1);
+  --border: rgba(255, 255, 255, 0.22);
+  --text: rgba(204, 204, 204, 1);
+  --text-2: rgba(170, 170, 170, 1);
+  --text-3: rgba(119, 119, 119, 1);
+  --accent: rgba(204, 204, 204, 1);
+  --link: rgba(123, 166, 222, 1);
+  --danger: rgba(224, 128, 128, 1);
+  --shadow: rgba(0, 0, 0, 0.5);
+  --backdrop: rgba(0, 0, 0, 0.5);
+
+  /* ── 스테이지(테마 무관 고정 다크) ────────────────────────────────
+     게임 화면 위에 얹히는 요소(오버레이·토스트·전체화면)와 atah 아이콘 타일.
+     라이트 모드에서도 재정의하지 않는다. 가상 게임패드는 재질(유리) 표현이라 자체 값 유지 */
+  --stage-bg: rgba(0, 0, 0, 1);
+  --stage-scrim: rgba(0, 0, 0, 0.85);
+  --stage-toast: rgba(0, 0, 0, 0.7);
+  --stage-tile: rgba(26, 26, 26, 1);
+  --stage-btn: rgba(51, 51, 51, 1);
+  --stage-btn-hover: rgba(68, 68, 68, 1);
+  --stage-btn-border: rgba(102, 102, 102, 1);
+  --stage-text: rgba(238, 238, 238, 1);
+  --stage-text-2: rgba(204, 204, 204, 1);
 }
+
+/* 라이트 모드: theme.js가 <html data-theme>을 정한다
+   (주소의 ?theme=light|dark, 없으면 시스템 prefers-color-scheme).
+   면·선·보조 글자·강조는 atah.io design-tokens.css(밝은 화면용 공유 토큰)를 따른다 */
+:root[data-theme="light"] {
+  color-scheme: light;
+  --bg: rgba(248, 248, 248, 1);          /* atah --plane */
+  --surface: rgba(255, 255, 255, 1);     /* atah --surface */
+  --surface-2: rgba(234, 237, 241, 1);   /* atah --surface-2 */
+  --border: rgba(0, 0, 0, 0.10);         /* atah --border */
+  --text: rgba(0, 0, 0, 1);              /* 흰 바탕 위 검정에 익숙한 눈 기준 */
+  --text-2: rgba(77, 77, 77, 1);         /* atah --text-secondary, 8.0:1 */
+  --text-3: rgba(102, 102, 102, 1);      /* 5.4:1. atah --text-muted(#767676)는 이 바탕에서 4.3:1이라 한 단계 진하게 */
+  /* 강조·링크 = atah --accent/--link: 사이트 주색 --brand(#7ca6de, 다크 링크색)와
+     같은 색상각의 진한 형제로 밝은 바탕에서 선·글자에 쓸 대비(4.9:1)를 갖춘 값 */
+  --accent: rgba(0, 104, 218, 1);
+  --link: rgba(0, 104, 218, 1);
+  --danger: rgba(190, 50, 50, 1);
+  --shadow: rgba(0, 0, 0, 0.2);
+  --backdrop: rgba(0, 0, 0, 0.35);
+}
+
+/* 로고 PNG는 어두운 배경용 밝은 회색조 이미지라 반전해서 쓴다 */
+[data-theme="light"] .top-bar .logo,
+[data-theme="light"] .hub-menu img { filter: invert(1); }
+
+/* atah 아이콘은 어두운 배경 기준 픽셀아트(밝기=불투명도)라 밝은 배경에선 음화처럼 보인다.
+   블로그 스킨(.ico_atah)과 같이 스테이지 타일을 깔아 원래 모습을 유지 */
+[data-theme="light"] #btn-atah svg {
+  border-radius: 4px;
+  background: var(--stage-tile);
+  color: var(--stage-text-2);
+}
+[data-theme="light"] #btn-atah:hover svg { color: var(--stage-text); }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
 body {
-  background: rgba(26, 26, 26, 1);
-  color: rgba(204, 204, 204, 1);
+  background: var(--bg);
+  color: var(--text);
   font-family: 'KoddiUDOnGothic', sans-serif;
   display: flex;
   flex-direction: column;
@@ -47,11 +115,11 @@ body:has(#canvas-wrap) {
 
 a {
   text-decoration: none;
-  color: rgba(123, 166, 222, 1);
+  color: var(--link);
 }
 
 a:visited {
-  color: rgba(90, 133, 185, 1);
+  color: var(--link);
 }
 
 a:hover {
@@ -60,11 +128,11 @@ a:hover {
 }
 
 :focus-visible {
-  outline: 2px solid rgba(204, 204, 204, 1);
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
-h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; }
+h1 { font-size: var(--font-lg); color: var(--text-2); margin-top: 8px; }
 
 /* 좌(디스크) · 중앙(로고) · 우(버튼) 3분할. 좌측 요소 유무와 무관하게 로고는 항상 정중앙 */
 .top-bar {
@@ -92,7 +160,7 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
   height: auto;
 }
 
-#btn-disk.active { background: rgba(38, 38, 38, 1); }
+#btn-disk.active { background: var(--surface); }
 
 .top-bar-right {
   grid-column: 3;
@@ -115,14 +183,14 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 .disk-panel button {
   font-size: var(--font-sm);
   padding: 4px 12px;
-  background: rgba(38, 38, 38, 1);
+  background: var(--surface);
   border: none;
-  color: rgba(119, 119, 119, 1);
+  color: var(--text-3);
 }
 
 .disk-panel button:hover {
-  background: rgba(51, 51, 51, 1);
-  color: rgba(204, 204, 204, 1);
+  background: var(--surface-2);
+  color: var(--accent);
 }
 
 .disk-panel.hidden {
@@ -134,7 +202,7 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
 .btn-icon {
   background: none;
   border: none;
-  color: rgba(119, 119, 119, 1);
+  color: var(--text-3);
   font-size: 1.6em;
   min-width: 44px;
   min-height: 44px;
@@ -145,10 +213,10 @@ h1 { font-size: var(--font-lg); color: rgba(170, 170, 170, 1); margin-top: 8px; 
   justify-content: center;
 }
 
-.btn-icon:hover { color: rgba(204, 204, 204, 1); }
+.btn-icon:hover { color: var(--accent); }
 a.btn-icon:link,
-a.btn-icon:visited { color: rgba(119, 119, 119, 1); }
-a.btn-icon:hover { color: rgba(204, 204, 204, 1); text-decoration: none; }
+a.btn-icon:visited { color: var(--text-3); }
+a.btn-icon:hover { color: var(--accent); text-decoration: none; }
 
 /* 데스크톱(마우스)에서는 게임패드·상단바 접기 버튼 숨김 */
 @media (hover: hover) and (pointer: fine) {
@@ -170,6 +238,7 @@ body.chrome-hidden .top-bar { height: 0; overflow: hidden; }
 body.chrome-hidden .disk-panel { display: none; }
 body.chrome-hidden #canvas-wrap { margin-top: 0; }
 body.chrome-hidden #footer { display: none; }
+body.chrome-hidden .theme-switch { display: none; }
 body.chrome-hidden .hint { display: none; }
 body.chrome-hidden #btn-collapse {
   position: fixed;
@@ -192,18 +261,20 @@ canvas {
   width: 640px;
   height: 400px;
   image-rendering: pixelated;
+  /* 시작 전엔 캔버스가 투명이라 오버레이(스크림) 뒤로 페이지 배경이 비친다. 테마와 무관하게 스테이지 바탕 */
+  background: var(--stage-bg);
 }
 
 #overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.85);
+  background: var(--stage-scrim);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   gap: 16px;
-  color: rgba(238, 238, 238, 1);
+  color: var(--stage-text);
   opacity: 1;
   visibility: visible;
   transition: opacity 0.3s, visibility 0s 0.3s;
@@ -218,15 +289,15 @@ canvas {
 #overlay button {
   font-size: var(--font-lg);
   padding: 10px 28px;
-  background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(102, 102, 102, 1);
-  color: rgba(238, 238, 238, 1);
+  background: var(--stage-btn);
+  border: 1px solid var(--stage-btn-border);
+  color: var(--stage-text);
   cursor: pointer;
   font-family: 'KoddiUDOnGothic', sans-serif;
   transition: background 0.15s;
 }
 
-#overlay button:hover { background: rgba(68, 68, 68, 1); }
+#overlay button:hover { background: var(--stage-btn-hover); }
 
 
 #toast {
@@ -234,8 +305,8 @@ canvas {
   bottom: 16px;
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(0, 0, 0, 0.7);
-  color: rgba(204, 204, 204, 1);
+  background: var(--stage-toast);
+  color: var(--stage-text-2);
   font-size: var(--font-sm);
   padding: 6px 16px;
   border-radius: 4px;
@@ -249,9 +320,9 @@ canvas {
 #toast.visible { opacity: 1; }
 
 button {
-  background: rgba(51, 51, 51, 1);
-  border: 1px solid rgba(85, 85, 85, 1);
-  color: rgba(204, 204, 204, 1);
+  background: var(--surface-2);
+  border: 1px solid var(--border);
+  color: var(--text);
   padding: 6px 14px;
   cursor: pointer;
   font-family: 'KoddiUDOnGothic', sans-serif;
@@ -259,27 +330,29 @@ button {
   transition: background 0.15s;
 }
 
-.disk-panel button:hover { background: rgba(68, 68, 68, 1); }
+.hint { font-size: var(--font-sm); color: var(--text-3); }
 
-.hint { font-size: var(--font-sm); color: rgba(85, 85, 85, 1); }
-
-#footer .site-version { color: rgba(102, 102, 102, 1); letter-spacing: 0.05em; }
+#footer .site-version { color: var(--text-3); letter-spacing: 0.05em; }
 
 #footer {
   font-size: var(--font-sm);
-  color: rgba(85, 85, 85, 1);
+  color: var(--text-3);
   text-align: center;
   margin-top: 20px;
   padding-top: 16px;
   width: 640px;
   border-top: 1px solid;
-  border-image: linear-gradient(to right, transparent, rgba(85, 85, 85, 0.5), transparent) 1;
+  border-image: linear-gradient(to right, transparent, var(--border), transparent) 1;
 }
 
-#footer a { color: rgba(119, 119, 119, 1); }
-#footer a:hover { color: rgba(170, 170, 170, 1); }
+#footer a { color: var(--text-2); }
+#footer a:hover { color: var(--text); }
 
 .footer-sep { margin: 0 4px; }
+
+/* 테마 전환 버튼: HTML에선 footer.js보다 앞에 있지만 body가 세로 flex라
+   order로 푸터(footer.js가 body 끝에 붙임) 아래에 놓는다. 푸터 로드 실패와 무관하게 표시 */
+.theme-switch { order: 1; display: flex; justify-content: center; margin-top: 4px; }
 
 .spacer { height: 16px; }
 
@@ -317,7 +390,7 @@ button {
   top: var(--sel-top);
   height: var(--sel-h);
   border-radius: 8px;
-  background: rgba(35, 35, 35, 1);
+  background: var(--surface);
 }
 
 .hub-menu::after {
@@ -325,7 +398,7 @@ button {
   height: max(0px, calc(var(--sel-h) - 2 * var(--sel-inset)));
   width: 3px;
   border-radius: 2px;
-  background: rgba(204, 204, 204, 1);
+  background: var(--accent);
 }
 
 .hub-menu li { position: relative; z-index: 1; }
@@ -345,7 +418,7 @@ button {
 .hub-menu a.on { opacity: 1; }
 .hub-menu a:hover { text-decoration: none; }
 .hub-menu img { width: 160px; height: 48px; object-fit: contain; object-position: left center; }
-.hub-menu span { font-size: var(--font-sm); color: rgba(136, 136, 136, 1); }
+.hub-menu span { font-size: var(--font-sm); color: var(--text-2); }
 
 .hub-stage {
   position: relative;
@@ -354,7 +427,7 @@ button {
   aspect-ratio: 3 / 2;
   border-radius: 10px;
   overflow: hidden;
-  background: rgba(38, 38, 38, 1);
+  background: var(--surface);
 }
 
 .hub-strip {
@@ -394,14 +467,14 @@ button {
   max-width: 640px;
   font-size: var(--font-xs);
   line-height: 1.6;
-  color: rgba(102, 102, 102, 1);
+  color: var(--text-3);
   text-align: center;
   word-break: keep-all;
 }
 .hub-notice p + p { margin-top: 4px; }
 .hub-notice a:link,
-.hub-notice a:visited { color: rgba(119, 119, 119, 1); }
-.hub-notice a:hover { color: rgba(170, 170, 170, 1); }
+.hub-notice a:visited { color: var(--text-2); }
+.hub-notice a:hover { color: var(--text); }
 
 /* Fullscreen */
 #canvas-wrap:fullscreen,
@@ -409,7 +482,7 @@ button {
   display: flex;
   align-items: center;
   justify-content: center;
-  background: rgba(0, 0, 0, 1);
+  background: var(--stage-bg);
 }
 
 #canvas-wrap:fullscreen canvas,
@@ -539,11 +612,11 @@ body.mobile-active #virtual-gamepad {
   .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 0; }
   .hub-stage { order: -2; flex: none; align-self: center; width: clamp(120px, (100vh - 452px) * 1.5, 100%); width: clamp(120px, (100svh - 452px) * 1.5, 100%); }
   .hub-dots { order: -1; display: flex; justify-content: center; gap: 6px; }
-  .hub-dots b { width: 18px; height: 3px; border-radius: 2px; background: rgba(68, 68, 68, 1); transition: width 0.2s, background-color 0.2s; }
-  .hub-dots b.on { width: 28px; background: rgba(204, 204, 204, 1); }
+  .hub-dots b { width: 18px; height: 3px; border-radius: 2px; background: var(--border); transition: width 0.2s, background-color 0.2s; }
+  .hub-dots b.on { width: 28px; background: var(--accent); }
   .hub-menu { --sel-inset: 12px; gap: 2px; }
   .hub-menu a { padding: 10px 16px; gap: 6px; }
-  .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: rgba(119, 119, 119, 1); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
+  .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: var(--text-3); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
   .hub-hint svg { height: 20px; }
   .hub-hint.gone { opacity: 0; }
   .desktop-only { display: none; }
