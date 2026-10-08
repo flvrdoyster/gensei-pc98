@@ -48,32 +48,32 @@
     '#fb-overlay.hidden{display:none}' +
     // 패널에 font-size 를 두면 자식들의 em 이 이중으로 곱해진다.
     '#fb-panel{' +
-    'background:var(--panel-bg);border-radius:6px;' +
+    'background:var(--surface);border-radius:6px;' +
     'padding:14px 16px;width:min(' + CONFIG.style.panelWidth + ',100%);' +
     'max-height:calc(100vh - 32px);overflow-y:auto;' +
     'color:var(--text);' +
     'box-shadow:0 8px 28px var(--shadow)}' +
     '#fb-panel h4{margin:0 0 8px;font-size:var(--font-md);color:var(--text)}' +
     '#fb-panel select,#fb-panel textarea{width:100%;box-sizing:border-box;' +
-    'background:var(--field-bg);color:var(--text);' +
-    'border:1px solid var(--field-border);border-radius:4px;padding:5px 7px;' +
+    'background:var(--bg);color:var(--text);' +
+    'border:1px solid var(--border);border-radius:4px;padding:5px 7px;' +
     'font-family:inherit;font-size:var(--font-sm)}' +
     '#fb-panel textarea{margin-top:6px;resize:vertical;line-height:1.5;' +
     'min-height:' + CONFIG.style.textareaMinHeight + '}' +
-    '#fb-panel select:focus,#fb-panel textarea:focus{outline:none;border-color:var(--text-icon)}' +
+    '#fb-panel select:focus,#fb-panel textarea:focus{outline:none;border-color:var(--accent)}' +
     '#fb-panel .fb-shot{display:flex;align-items:center;gap:6px;margin-top:8px;cursor:pointer;' +
-    'user-select:none;color:var(--text-muted);font-size:var(--font-sm)}' +
-    '#fb-panel .fb-shot img{width:64px;height:40px;object-fit:cover;border:1px solid var(--field-border);' +
+    'user-select:none;color:var(--text-2);font-size:var(--font-sm)}' +
+    '#fb-panel .fb-shot img{width:64px;height:40px;object-fit:cover;border:1px solid var(--border);' +
     'border-radius:3px;image-rendering:pixelated}' +
     '#fb-panel .fb-actions{display:flex;align-items:center;gap:8px;margin-top:10px}' +
-    '#fb-panel .fb-count{margin-left:auto;color:var(--text-icon);font-size:var(--font-sm);' +
+    '#fb-panel .fb-count{margin-left:auto;color:var(--text-3);font-size:var(--font-sm);' +
     'font-variant-numeric:tabular-nums}' +
     '#fb-panel .fb-count.over{color:var(--danger)}' +
     '#fb-panel button{font-size:var(--font-sm);padding:3px 12px}' +
     '#fb-panel button:disabled{opacity:0.4;cursor:default}' +
-    '#fb-panel .fb-msg{margin-top:8px;color:var(--text-icon);font-size:var(--font-sm);' +
+    '#fb-panel .fb-msg{margin-top:8px;color:var(--text-3);font-size:var(--font-sm);' +
     'min-height:1.4em;word-break:break-all}' +
-    '#fb-panel .fb-note{margin-top:6px;color:var(--text-icon);font-size:var(--font-sm);line-height:1.5}';
+    '#fb-panel .fb-note{margin-top:6px;color:var(--text-3);font-size:var(--font-sm);line-height:1.5}';
 
   var overlay, panel, msgEl, textEl, selEl, countEl, shotWrap, shotChk, shotImg, btnSend, btnToggle;
   var shotData = null;
