@@ -79,6 +79,15 @@
   /* 로고 PNG는 어두운 배경용 밝은 회색조 이미지라 반전해서 쓴다 */
   .top-bar .logo,
   .hub-menu img { filter: invert(1); }
+
+  /* atah 아이콘은 어두운 배경 기준 픽셀아트(밝기=불투명도)라 밝은 배경에선 음화처럼 보인다.
+     블로그 스킨(.ico_atah)과 같이 다크 타일을 깔아 원래 모습을 유지 */
+  #btn-atah svg {
+    border-radius: 4px;
+    background: rgba(26, 26, 26, 1);
+    color: rgba(204, 204, 204, 1);
+  }
+  #btn-atah:hover svg { color: rgba(238, 238, 238, 1); }
 }
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
