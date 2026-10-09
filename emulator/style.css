@@ -47,6 +47,8 @@
 
 * { box-sizing: border-box; margin: 0; padding: 0; }
 
+html { touch-action: manipulation; }
+
 body {
   background: var(--bg);
   color: var(--text);
@@ -311,10 +313,13 @@ button {
 .hub-pin {
   display: grid;
   grid-template-columns: 300px 1fr;
-  gap: 24px;
+  gap: 0 24px;
 }
 
+.hub-pin .hub-links { grid-column: 1 / -1; }
+
 .hub-menu {
+  grid-area: 1 / 1;
   --sel-top: 0px;
   --sel-h: 0px;
   --sel-inset: 14px;
@@ -367,12 +372,20 @@ button {
 .hub-menu a.on { opacity: 1; }
 .hub-menu a:hover { text-decoration: none; }
 .hub-menu img { width: 160px; height: 48px; object-fit: contain; object-position: left center; }
-.hub-menu span { font-size: var(--font-sm); color: var(--text-2); }
+.hub-menu span { font-size: var(--font-sm); color: var(--text-3); }
+.hub-menu b,
+.hub-sub b { font-weight: 400; color: var(--text-2); }
+
+.hub-stage-wrap {
+  grid-area: 1 / 2;
+  align-self: center;
+}
+
+.hub-frame { position: relative; }
 
 .hub-stage {
   position: relative;
   display: block;
-  align-self: center;
   aspect-ratio: 3 / 2;
   border-radius: 10px;
   overflow: hidden;
@@ -394,7 +407,8 @@ button {
   background-position: center 8%;
 }
 
-.hub-dots,
+.hub-go,
+.hub-sub,
 .hub-hint { display: none; }
 
 @keyframes hub-bob {
@@ -555,26 +569,48 @@ body.mobile-active #virtual-gamepad {
   .disk-panel { width: 100%; }
   .hint { display: none; }
   #footer { width: 100%; padding: 16px; }
-  .hub-select { height: calc(100vh + (var(--hub-count, 4) - 1) * 75vh); height: calc(100svh + (var(--hub-count, 4) - 1) * 75svh); }
-  body:has(.hub-select) { padding-top: 0; }
-  .spacer { display: none; }
-  .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 0; }
-  .hub-stage { order: -2; flex: none; align-self: center; width: clamp(120px, (100vh - 452px) * 1.5, 100%); width: clamp(120px, (100svh - 452px) * 1.5, 100%); }
-  .hub-dots { order: -1; display: flex; justify-content: center; gap: 6px; }
-  .hub-dots b { width: 18px; height: 3px; border-radius: 2px; background: var(--border); transition: width 0.2s, background-color 0.2s; }
-  .hub-dots b.on { width: 28px; background: var(--accent); }
-  .hub-menu { --sel-inset: 12px; gap: 2px; }
-  .hub-menu a { padding: 10px 16px; gap: 6px; }
-  .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: var(--text-3); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
-  .hub-hint svg { height: 20px; }
-  .hub-hint.gone { opacity: 0; }
   .desktop-only { display: none; }
 }
 
-@media (max-width: 680px) and (max-height: 640px) {
-  .hub-stage { width: clamp(120px, (100vh - 412px) * 1.5, 100%); width: clamp(120px, (100svh - 412px) * 1.5, 100%); }
+@media (max-width: 680px), (max-height: 540px) {
+  body:has(.hub-select) { padding-top: 0; }
+  .spacer { display: none; }
+  .hub-stage-wrap { align-self: stretch; display: flex; justify-content: center; min-height: 80px; container-type: size; }
+  .hub-frame { width: min(100cqw, 150cqh); }
+  .hub-sub { display: block; font-size: var(--font-sm); color: var(--text-3); text-align: center; }
+  .hub-menu span { display: none; }
+}
+
+@media (max-width: 680px) and (min-height: 541px) {
+  .hub-select { height: calc(100vh + (var(--hub-count, 4) - 1) * 75vh); height: calc(100svh + (var(--hub-count, 4) - 1) * 75svh); }
+  .hub-pin { position: sticky; top: 0; height: 100vh; height: 100svh; display: flex; flex-direction: column; justify-content: center; gap: 10px; padding: 12px 0; container-type: inline-size; }
+  .hub-stage-wrap { flex: 0 1 calc(100cqw * 2 / 3); }
+  .hub-menu { --sel-inset: 12px; gap: 2px; }
+  .hub-menu a { padding: 10px 16px; gap: 6px; }
+  .hub-links { margin: 0; }
+  .hub-hint { display: flex; align-self: center; transform: rotate(180deg); color: var(--text-3); transition: opacity 0.3s; animation: hub-bob 1.6s ease-in-out infinite; }
+  .hub-hint svg { height: 20px; }
+  .hub-hint.gone { opacity: 0; }
+}
+
+@media (max-width: 680px) and (min-height: 541px) and (max-height: 640px) {
   .hub-menu { --sel-inset: 8px; }
   .hub-menu a { padding: 6px 16px; gap: 4px; }
+}
+
+@media (max-height: 540px) {
+  .hub-pin { height: 100vh; height: 100svh; grid-template-columns: auto 1fr; grid-template-rows: minmax(0, 1fr) auto auto; row-gap: 8px; padding-top: 12px; }
+  .hub-menu { grid-area: 1 / 1 / 3 / 2; --sel-inset: 10px; gap: 4px; }
+  .hub-menu a { padding: 6px 16px; }
+  .hub-stage-wrap { align-items: flex-end; }
+  .hub-sub { grid-area: 2 / 2; }
+  .hub-links { margin: 0 0 8px; }
+}
+
+@media (hover: none), (max-width: 680px) and (min-height: 541px) {
+  .hub-stage { pointer-events: none; }
+  .hub-go { display: flex; position: absolute; right: 12px; bottom: 12px; width: 64px; height: 52px; border-radius: 8px; align-items: center; justify-content: center; background: var(--stage-toast); color: var(--stage-text); -webkit-backdrop-filter: blur(4px); backdrop-filter: blur(4px); box-shadow: 0 2px 10px var(--shadow); }
+  .hub-go svg { height: 26px; width: auto; }
 }
 
 /* 터치 기기 가로 모드: 폭이 680px를 넘어가는 경우가 많아 위 규칙이 안 걸리면
