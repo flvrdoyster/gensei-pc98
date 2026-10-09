@@ -3,14 +3,14 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-  <title>PC98 웹 에뮬레이터 : atah.io</title>
+  <title>PC-98 환세 시리즈 웹 에뮬레이터 : atah.io</title>
   <link rel="stylesheet" href="style.css">
   <link rel="icon" href="https://atah.io/favicon.ico">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="description" content="PC-98로 발매된 환세 시리즈를 한글화 하고 웹 에뮬레이터로 배포하는 프로젝트입니다.">
   <meta name="keywords" content="환세 시리즈, PC-98, 컴파일, 웹 에뮬레이터, 한글화, 환세풍광전, 환세희담, gensei, compile">
-  <meta property="og:title" content="PC98 웹 에뮬레이터 : atah.io">
+  <meta property="og:title" content="PC-98 환세 시리즈 웹 에뮬레이터 : atah.io">
   <meta property="og:type" content="website">
   <link rel="canonical" href="https://pc98.atah.io/">
   <meta property="og:url" content="https://pc98.atah.io/">
@@ -32,21 +32,26 @@
   <div class="spacer"></div>
   <div class="hub-select">
     <div class="hub-pin">
+      <div class="hub-stage-wrap">
+        <div class="hub-frame">
+          <a class="hub-stage" href="hukyou.html" aria-hidden="true" tabindex="-1"><div class="hub-strip"></div></a>
+          <a class="hub-go" href="hukyou.html" aria-label="환세풍광전으로 이동" data-icon="enterKey"></a>
+        </div>
+      </div>
+      <p class="hub-sub"></p>
       <ul class="hub-menu">
-        <li><a href="hukyou.html" class="on" data-art="img/thumbnail-hukyou.png"><img src="img/logo-hukyou.png" alt="환세풍광전"><span>환세풍광전 (1994) ∙ Disc Station 4호 수록</span></a></li>
-        <li><a href="kitan.html" data-art="img/thumbnail-kitan.png"><img src="img/logo-kitan.png" alt="환세희담"><span>환세희담 (1995) ∙ 단독 발매</span></a></li>
-        <li><a href="kaitou.html" data-art="img/thumbnail-kaitou.png"><img src="img/logo-kaitou.png" alt="환세쾌도전"><span>환세쾌도전 (1995) ∙ Disc Station 8호 수록</span></a></li>
-        <li><a href="torimono.html" data-art="img/thumbnail-torimono.png"><img src="img/logo-torimono.png" alt="환세포물장"><span>환세포물장 (1996) ∙ Disc Station 10호 수록</span></a></li>
+        <li><a href="hukyou.html" class="on" data-art="img/thumbnail-hukyou.png"><img src="img/logo-hukyou.png" alt="환세풍광전"><span><b>환세풍광전</b> (1994)<br>PC-98 ∙ Disc Station 4호 수록 ∙ 한글화</span></a></li>
+        <li><a href="kitan.html" data-art="img/thumbnail-kitan.png"><img src="img/logo-kitan.png" alt="환세희담"><span><b>환세희담</b> (1995)<br>PC-98 ∙ 단독 발매 ∙ 한글화</span></a></li>
+        <li><a href="kaitou.html" data-art="img/thumbnail-kaitou.png"><img src="img/logo-kaitou.png" alt="환세쾌도전"><span><b>환세쾌도전</b> (1995)<br>PC-98 ∙ Disc Station 8호 수록 ∙ 한글화</span></a></li>
+        <li><a href="torimono.html" data-art="img/thumbnail-torimono.png"><img src="img/logo-torimono.png" alt="환세포물장"><span><b>환세포물장</b> (1996)<br>PC-98 ∙ Disc Station 10호 수록 ∙ 한글화</span></a></li>
       </ul>
-      <a class="hub-stage" href="hukyou.html" aria-hidden="true" tabindex="-1"><div class="hub-strip"></div></a>
-      <div class="hub-dots" aria-hidden="true"></div>
       <span class="hub-hint" aria-hidden="true" data-icon="collapse"></span>
+      <div class="hub-links">
+        <a id="btn-atah" class="btn-icon" href="https://atah.io/" target="_blank" rel="noopener" title="atah.io" aria-label="atah.io" data-icon="atah"></a>
+        <a id="btn-blog" class="btn-icon" href="https://oysterbay.tistory.com/129" target="_blank" rel="noopener" title="블로그" aria-label="블로그" data-icon="blog"></a>
+        <a id="btn-github" class="btn-icon" href="https://github.com/flvrdoyster/gensei-pc98" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub" data-icon="github"></a>
+      </div>
     </div>
-  </div>
-  <div class="hub-links">
-    <a id="btn-atah" class="btn-icon" href="https://atah.io/" target="_blank" rel="noopener" title="atah.io" aria-label="atah.io" data-icon="atah"></a>
-    <a id="btn-blog" class="btn-icon" href="https://oysterbay.tistory.com/129" target="_blank" rel="noopener" title="블로그" aria-label="블로그" data-icon="blog"></a>
-    <a id="btn-github" class="btn-icon" href="https://github.com/flvrdoyster/gensei-pc98" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub" data-icon="github"></a>
   </div>
   <div class="hub-notice">
     <p>본 프로젝트는 비상업적 보존 및 한글화 목적으로만 운영되며, 원본 게임과 자산의 모든 권리는 원저작권자에게 있습니다.<br>저작권자로서 자료 삭제를 원하실 경우 <a href="https://github.com/flvrdoyster/gensei-pc98/issues" target="_blank" rel="noopener" tabindex="-1">GitHub Issue</a>를 열어주시면 즉시 대응하겠습니다.</p>
