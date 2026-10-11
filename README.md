@@ -21,7 +21,7 @@ Compile이 PC-98로 발매한 환세 시리즈를 한국어로 번역하는 프�
 그래픽 **추출** 쪽 코덱·컨테이너는 [compile-gfx](https://github.com/flvrdoyster/compile-gfx)에 있고, 여기엔 재삽입·번역 관련 로직만 둔다.
 + **`original/`** — 원본 디스크에서 추출한 파일. 타이틀별 서브디렉토리로 구분 (저장소에는 없음, 로컬에 직접 준비 필요).
 + **`translation/`** — 번역 데이터. 파서가 생성하고 에디터가 읽고 쓰는 `translation.json`이 타이틀별로 있음. JP·KR 쌍 + 오프셋 정보를 담음.  
-`translation/review/`에는 타이틀별 번역 검토 리포트와 판정 기준표(`CHECKLIST.md`)가 있음.
+`translation/review/`에는 타이틀별 번역 검토 리포트(장면 문맥 포함)와 기준표(`CHECKLIST.md`), 기계 검사 목록(`auto/`)이 있음. 에디터의 `검토` 패널에서 지적 목록을 보며 해당 줄로 이동할 수 있음.
 + **`emulator/`** — 웹 에뮬레이터. NP2kai + Emscripten SDL2 빌드.  
 타이틀별 HTML 페이지 + JS/데이터 번들로 구성.  
 `docs/`는 GitHub Pages 서빙용으로 `emulator/`를 그대로 복사한 것으로, `https://pc98.atah.io`에 배포됨.

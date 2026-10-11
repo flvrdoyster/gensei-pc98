@@ -19,6 +19,7 @@ import http.server
 import json
 import os
 import re
+import subprocess
 import sys
 import threading
 import urllib.parse
@@ -93,6 +94,103 @@ else:
     HAS_INSERTER = pipeline.has_inserter(TITLE)
     DRAFT_DIR = os.path.join(PROJECT_ROOT, 'translation', TITLE, 'draft')
     HAS_EMULATOR = pipeline.has_emulator(TITLE)
+
+
+def review_keys(data, with_kr=False):
+    keys = {}
+
+    def put(loc, key, line):
+        if with_kr:
+            keys[key] = line.get('kr') or ''
+        else:
+            keys[loc] = key
+    if 'entries' in data:
+        for e in data['entries']:
+            for l in e.get('lines', []):
+                put((f"c{e['chunk']}", l['offset']), f"dialog:청크 {e['chunk']:02d}:{e['chunk'] * 200000 + l['offset']}", l)
+    else:
+        for d in data.get('dialogs', []):
+            for l in d['lines']:
+                put((d['file'], l['offset']), f"dialog:{d['file']}:{l['offset']}", l)
+        for it in data.get('items', []):
+            for l in [x for x in (it.get('name'), it.get('stat')) if x] + it.get('desc', []):
+                put(('items', l['offset']), f"item:MESSAGE.CMD:{l['offset']}", l)
+        for k, typ, fname in (('ui', 'ui', 'GF2.COM'), ('gsovl', 'gsovl', 'GS.OVL'), ('demo', 'demo', 'SP1.COM')):
+            for l in data.get(k, []):
+                put((k, l['offset']), f"{typ}:{fname}:{l['offset']}", l)
+    return keys
+
+
+def load_review():
+    path = os.path.join(PROJECT_ROOT, 'translation', 'review', f'{TITLE}.md')
+    if not os.path.exists(path):
+        return {'items': []}
+    with open(TRANS_PATH, encoding='utf-8') as f:
+        keys = review_keys(json.load(f))
+    head_kr = {}
+    try:
+        rel = os.path.relpath(TRANS_PATH, PROJECT_ROOT)
+        out = subprocess.run(['git', 'show', f'HEAD:{rel}'], cwd=PROJECT_ROOT, capture_output=True, check=True).stdout
+        head_kr = review_keys(json.loads(out), with_kr=True)
+    except (subprocess.CalledProcessError, OSError, ValueError):
+        pass
+    pres = {p for p, _ in keys}
+
+    def norm(p):
+        return p if p in pres else (p + '.CMD' if p + '.CMD' in pres else None)
+
+    def to_keys(loc):
+        out = []
+        for p, a, b in re.findall(r'([A-Za-z][A-Za-z0-9_.]*):(\d+)~(\d+)', loc):
+            p = norm(p)
+            out += [v for (q, o), v in keys.items() if q == p and int(a) <= o <= int(b)]
+        loc = re.sub(r'([A-Za-z][A-Za-z0-9_.]*):(\d+)~(\d+)', '', loc)
+        for p, offs in re.findall(r'([A-Za-z][A-Za-z0-9_.]*):(\d+(?:·\d+)*)', loc):
+            p = norm(p)
+            for o in offs.split('·'):
+                if (p, int(o)) in keys:
+                    out.append(keys[(p, int(o))])
+        return list(dict.fromkeys(out))
+
+    items, cur = [], None
+    fields = {'현재': 'current', '수정 전': 'current', '제안': 'suggestion', '다른 줄의 표기': 'suggestion', '근거': 'basis', '결과': 'result'}
+    with open(path, encoding='utf-8') as f:
+        for line in f:
+            m = re.match(r'^\*\*`(.+?)`\*\* · (.*?) · `([상중하])`', line)
+            if m:
+                ks = to_keys(m.group(1))
+                cur = {'loc': m.group(1), 'speaker': m.group(2), 'grade': m.group(3), 'keys': ks,
+                       'head': {k: head_kr[k] for k in ks if k in head_kr}}
+                items.append(cur)
+                continue
+            if line.startswith('#'):
+                cur = None
+            m = re.match(r'^- (현재|수정 전|제안|다른 줄의 표기|근거|결과): (.*)', line)
+            if cur and m:
+                cur[fields[m.group(1)]] = m.group(2).strip()
+                if m.group(1) == '다른 줄의 표기':
+                    cur['otherLine'] = True
+    auto = os.path.join(PROJECT_ROOT, 'translation', 'review', 'auto', f'{TITLE}.md')
+    if os.path.exists(auto):
+        hdr = None
+        with open(auto, encoding='utf-8') as f:
+            for line in f:
+                if line.startswith('#'):
+                    hdr = [] if line.startswith('### 띄어쓰기·맞춤법 목록') else None
+                    continue
+                if hdr is None or not line.startswith('|') or line.startswith('|---'):
+                    continue
+                cells = [c.strip() for c in line.strip().strip('|').split('|')]
+                if not hdr:
+                    hdr = cells
+                    continue
+                r = dict(zip(hdr, cells))
+                ks = to_keys(r.get('위치', ''))
+                items.append({'loc': r.get('위치', ''), 'speaker': r.get('유형', ''), 'grade': '맞춤법', 'keys': ks,
+                              'head': {k: head_kr[k] for k in ks if k in head_kr},
+                              'current': r.get('현재', ''), 'suggestion': r.get('제안', ''),
+                              'basis': r.get('비고', ''), **({'result': r['결과']} if r.get('결과') else {})})
+    return {'items': items}
 
 
 def load_draft_map():
@@ -249,6 +347,41 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
 .draft-btn:hover { background: #1e3a52; color: #8ccce8; }
 .draft-alt { background: #1a2a1a; color: #6acc88; border-color: #2a452a; }
 .draft-alt:hover { background: #1e3a1e; color: #88e8aa; }
+#reviewBtn { width: 56px; }
+#reviewBtn.active { background: #2a2a2a; color: #ddd; border-color: #555; }
+tr.review-focus { outline: 2px solid #4a90c0; outline-offset: -2px; }
+.review-panel { position: fixed; top: 0; right: 0; width: 400px; height: 100vh; background: #1b1b1b; border-left: 1px solid #333; z-index: 150; display: none; flex-direction: column; font-size: 12px; }
+.review-panel.open { display: flex; }
+.rv-top { background: #181818; border-bottom: 1px solid #333; padding: 10px 12px 8px; display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.rv-top h2 { flex: 1; margin: 0; font-size: 13px; font-weight: 600; color: #ccc; }
+.rv-top .rv-count { color: #666; }
+.rv-top label { display: inline-flex; align-items: center; gap: 4px; color: #999; }
+.rv-top input { accent-color: #999; margin: 0; }
+.rv-close { background: transparent; border: 1px solid #3a3a3a; color: #999; border-radius: 4px; width: 28px; height: 28px; cursor: pointer; font-family: inherit; }
+.rv-close:hover { background: #2a2a2a; color: #ddd; }
+.rv-filters { width: 100%; display: flex; gap: 12px; }
+#reviewList { flex: 1; overflow-y: auto; padding: 8px; }
+.rv-card { background: #202020; border: 1px solid #2e2e2e; border-radius: 4px; padding: 8px; margin-bottom: 8px; cursor: pointer; }
+.rv-card:hover { border-color: #555; }
+.rv-card.done { opacity: 0.45; }
+.rv-card.nokey { cursor: default; }
+.rv-head { display: flex; gap: 6px; align-items: center; margin-bottom: 4px; }
+.rv-grade { padding: 0 5px; border-radius: 3px; font-weight: 700; }
+.rv-grade.g-상 { background: #4a2020; color: #e88; }
+.rv-grade.g-중 { background: #4a3a1a; color: #eb8; }
+.rv-grade.g-하 { background: #2a2a2a; color: #aaa; }
+.rv-grade.g-맞춤법 { background: #1e2a33; color: #8ab; font-weight: 400; }
+.rv-loc { color: #8ab; font-family: monospace; }
+.rv-sp { color: #777; }
+.rv-tail { margin-left: auto; display: inline-flex; gap: 4px; align-items: center; }
+.rv-done { color: #408040; }
+.rv-rej { color: #a06060; }
+.rv-jump { background: #252525; border: 1px solid #3a3a3a; color: #999; border-radius: 3px; font-size: 11px; padding: 0 5px; cursor: pointer; font-family: inherit; }
+.rv-jump:hover { color: #ddd; border-color: #555; }
+.rv-line { color: #ccc; margin: 2px 0; word-break: break-all; }
+.rv-lbl { display: inline-block; width: 40px; color: #666; }
+.rv-basis { color: #888; margin-top: 4px; word-break: break-all; }
+.rv-empty { color: #666; padding: 16px; text-align: center; }
 
 </style>
 </head>
@@ -259,6 +392,7 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   <div class="topbar-actions">
     <span class="stats" id="stats"><svg id="donut" width="16" height="16" viewBox="0 0 36 36" style="vertical-align:middle;margin-right:4px"><circle cx="18" cy="18" r="14" fill="none" stroke="#333" stroke-width="5"/><circle id="donutArc" cx="18" cy="18" r="14" fill="none" stroke="#22c55e" stroke-width="5" stroke-dasharray="0 88" stroke-linecap="round" transform="rotate(-90 18 18)"/></svg><span id="statsText"></span></span>
     <button class="build-btn" id="jumpEditBtn" title="마지막 편집 위치로 (Ctrl+D)" disabled>↩</button>
+    <button class="build-btn" id="reviewBtn" title="검토 리포트 지적 목록" style="display:none">검토</button>
     <button class="save-btn" id="saveBtn" disabled>저장</button>
     <button class="build-btn" id="buildBtn" title="번역을 디스크 이미지에 삽입 (build/)">빌드</button>
     <button class="build-btn" id="emulatorBtn" title="웹 번들 재생성 (emulator 데이터)">번들</button>
@@ -301,6 +435,20 @@ tr.overflow-focus { outline: 2px solid #c04040; outline-offset: -2px; }
   <span class="fill-info" id="fillInfo"></span>
   <input type="text" id="fillInput" placeholder="KR 입력...">
   <button id="fillApply">전체 적용</button>
+</div>
+<div class="review-panel" id="reviewPanel">
+  <div class="rv-top">
+    <h2>검토 <span class="rv-count" id="reviewCount"></span></h2>
+    <button class="rv-close" id="reviewClose" title="닫기">×</button>
+    <div class="rv-filters">
+      <label><input type="checkbox" id="reviewG상" checked> 상</label>
+      <label><input type="checkbox" id="reviewG중" checked> 중</label>
+      <label><input type="checkbox" id="reviewG하" checked> 하</label>
+      <label><input type="checkbox" id="reviewG맞춤법"> 맞춤법</label>
+      <label><input type="checkbox" id="reviewHideDone"> 처리된 것 숨기기</label>
+    </div>
+  </div>
+  <div id="reviewList"></div>
 </div>
 <table>
 <thead><tr>
@@ -911,6 +1059,7 @@ document.getElementById('tbody').addEventListener('input', e => {
   }
   lastEditedKey = key;
   document.getElementById('jumpEditBtn').disabled = false;
+  scheduleReviewRefresh();
 
   const isHalfwidth = row.halfwidth || row.type === 'ui';
   const jpLen = getJpLen(row);
@@ -987,6 +1136,7 @@ document.getElementById('saveBtn').addEventListener('click', async () => {
   modified = {};
   tagChanges = {};
   speakerChanges = {};
+  renderReview();
 
   btn.textContent = '저장';
   updateStats();
@@ -1211,7 +1361,138 @@ document.getElementById('deployBtn').addEventListener('click', async () => {
   btn.style.background = '';
 });
 
+// ── 검토 패널: translation/review/<title>.md 지적 목록 ──
+let reviewItems = [];
+let reviewOpen = false;
+let reviewTimer = null;
+
+function reviewNorm(s) { return (s || '').replace(/`/g, '').replace(/^[「\s]+/, '').trim(); }
+
+function reviewCurKr(key) {
+  if (key in modified) return modified[key];
+  const r = rowIndex.get(key);
+  return r ? (r.kr || '') : null;
+}
+
+let reviewPos = null;
+function reviewNeighbors(key) {
+  if (!reviewPos) reviewPos = new Map(rows.map((r, i) => [rowKey(r), i]));
+  const i = reviewPos.get(key);
+  if (i === undefined) return [];
+  const out = [];
+  for (let j = i - 2; j <= i + 2; j++) {
+    if (rows[j] && rows[j].file === rows[i].file) out.push(rowKey(rows[j]));
+  }
+  return out;
+}
+
+function reviewState(it) {
+  if (it.result) return it.result.startsWith('기각') ? '기각' : '반영';
+  return reviewChanged(it) ? '반영' : '';
+}
+
+function reviewChanged(it) {
+  if (!it.keys.length || it.keys.some(k => reviewCurKr(k) === null)) return false;
+  if (it.head && it.keys.some(k => k in it.head && reviewCurKr(k) !== it.head[k])) return true;
+  if (it.current == null) return false;
+  const squash = s => reviewNorm(s).replace(/\s+/g, ' ');
+  const near = [...new Set(it.keys.flatMap(reviewNeighbors))];
+  const hay = near.map(k => squash(reviewCurKr(k))).join(' ');
+  const cur = it.current === '(빈칸)' ? '' : it.current;
+  let pieces = cur.split(/ \/ | … /).map(squash).filter(Boolean);
+  if (it.loc.includes('외')) pieces = pieces.slice(0, it.keys.length);
+  if (!pieces.length) return it.keys.some(k => reviewCurKr(k).trim() !== '');
+  return pieces.some(p => !hay.includes(p));
+}
+
+function renderReview() {
+  if (!reviewOpen) return;
+  const grades = ['상', '중', '하', '맞춤법'].filter(g => document.getElementById('reviewG' + g).checked);
+  const hideDone = document.getElementById('reviewHideDone').checked;
+  let done = 0, total = 0;
+  const html = [];
+  reviewItems.forEach((it, idx) => {
+    if (!grades.includes(it.grade)) return;
+    const st = reviewState(it);
+    const d = st !== '';
+    total++;
+    if (d) done++;
+    if (hideDone && d) return;
+    const jumps = it.keys.length > 1
+      ? it.keys.map((k, i) => `<button class="rv-jump" data-idx="${idx}" data-k="${i}">${i + 1}</button>`).join('')
+      : '';
+    const clean = s => escHtml((s || '').replace(/`/g, ''));
+    html.push(`<div class="rv-card${d ? ' done' : ''}${it.keys.length ? '' : ' nokey'}" data-idx="${idx}">
+<div class="rv-head"><span class="rv-grade g-${it.grade}">${it.grade}</span><span class="rv-loc">${clean(it.loc)}</span><span class="rv-sp">${clean(it.speaker)}</span><span class="rv-tail">${d ? `<span class="${st === '기각' ? 'rv-rej' : 'rv-done'}">${st}</span>` : ''}${jumps}</span></div>
+<div class="rv-line"><span class="rv-lbl">현재</span>${clean(it.current)}</div>
+<div class="rv-line"><span class="rv-lbl">${it.otherLine ? '다른 줄' : '제안'}</span>${clean(it.suggestion)}</div>
+<div class="rv-basis">${clean(it.basis)}</div>
+</div>`);
+  });
+  document.getElementById('reviewList').innerHTML = html.join('') || '<div class="rv-empty">표시할 지적이 없습니다</div>';
+  document.getElementById('reviewCount').textContent = `처리 ${done}/${total}`;
+}
+
+function scheduleReviewRefresh() {
+  if (!reviewOpen) return;
+  clearTimeout(reviewTimer);
+  reviewTimer = setTimeout(renderReview, 300);
+}
+
+function reviewJump(key) {
+  const row = rowIndex.get(key);
+  if (!row) { showToast('해당 행을 찾을 수 없습니다', 'error'); return; }
+  let tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
+  if (!tr) {
+    for (const id of ['filterType', 'filterFile', 'filterSpeaker']) document.getElementById(id).value = '';
+    document.getElementById('searchBox').value = '';
+    lastSearch = '';
+    for (const id of ['filterUntranslated', 'filterHalfwidth']) document.getElementById(id).checked = false;
+    if ((row.tag || row.type) === 'ignore') document.getElementById('filterShowIgnore').checked = true;
+    render();
+    tr = document.querySelector(`#tbody tr[data-key="${CSS.escape(key)}"]`);
+  }
+  if (!tr) return;
+  document.querySelectorAll('#tbody tr.review-focus').forEach(x => x.classList.remove('review-focus'));
+  tr.classList.add('review-focus');
+  tr.scrollIntoView({ block: 'center', behavior: 'smooth' });
+  const ta = tr.querySelector('.kr-input');
+  if (ta) ta.focus({ preventScroll: true });
+}
+
+function toggleReview(open) {
+  reviewOpen = open;
+  document.getElementById('reviewPanel').classList.toggle('open', open);
+  document.getElementById('reviewBtn').classList.toggle('active', open);
+  if (open) renderReview();
+}
+
+async function loadReview() {
+  try {
+    const res = await fetch('/api/review');
+    reviewItems = (await res.json()).items || [];
+  } catch (e) {
+    reviewItems = [];
+  }
+  if (reviewItems.length) document.getElementById('reviewBtn').style.display = '';
+}
+
+document.getElementById('reviewBtn').addEventListener('click', () => toggleReview(!reviewOpen));
+document.getElementById('reviewClose').addEventListener('click', () => toggleReview(false));
+for (const id of ['reviewG상', 'reviewG중', 'reviewG하', 'reviewG맞춤법', 'reviewHideDone']) {
+  document.getElementById(id).addEventListener('change', renderReview);
+}
+document.getElementById('reviewList').addEventListener('click', e => {
+  const jump = e.target.closest('.rv-jump');
+  const card = e.target.closest('.rv-card');
+  if (!card) return;
+  const it = reviewItems[+card.dataset.idx];
+  if (!it || !it.keys.length) return;
+  reviewJump(it.keys[jump ? +jump.dataset.k : 0]);
+});
+
 load().then(() => {
+  loadReview();
   if (!__HAS_INSERTER__) {
     const btn = document.getElementById('buildBtn');
     btn.disabled = true;
@@ -1616,6 +1897,8 @@ class Handler(http.server.BaseHTTPRequestHandler):
             self._send_json(lint.series_glossary(TITLE))
         elif self.path == '/api/draft':
             self._send_json(load_draft_map())
+        elif self.path == '/api/review':
+            self._send_json(load_review())
         else:
             self.send_error(404)
 
