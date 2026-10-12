@@ -7,6 +7,17 @@
     return name + (batchim && batchim !== 8 ? '으로' : '로');
   }
 
+  var ART_W = 1200;
+  var ART_H = 630;
+  var STAGE_RATIO = 1.5;
+
+  function applyCrop(el, crop) {
+    var c = crop.split(/\s+/).map(Number);
+    var h = c[2] / STAGE_RATIO;
+    el.style.backgroundSize = (ART_W / c[2] * 100) + '% auto';
+    el.style.backgroundPosition = (ART_W > c[2] ? c[0] / (ART_W - c[2]) * 100 : 0) + '% ' + (ART_H > h ? c[1] / (ART_H - h) * 100 : 0) + '%';
+  }
+
   function init() {
     var track = document.querySelector('.hub-select');
     if (!track) return;
@@ -29,6 +40,7 @@
     items.forEach(function (a) {
       var art = document.createElement('i');
       art.style.backgroundImage = "url('" + a.getAttribute('data-art') + "')";
+      if (a.hasAttribute('data-art-crop')) applyCrop(art, a.getAttribute('data-art-crop'));
       strip.appendChild(art);
     });
 
