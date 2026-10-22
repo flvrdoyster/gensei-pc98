@@ -75,6 +75,7 @@
   <script src="gamepad.js"></script>
   <script src="debug.js"></script>
   <script src="feedback.js"></script>
+  <script src="play-time.js"></script>
 
   <script>
     window.GAME = 'kitan-opening';
@@ -134,6 +135,7 @@
     document.getElementById('btn-start').addEventListener('click', function() {
       overlay.classList.add('hidden');
       track('emulator_start');
+      PlayTime.start();
       startEmulator();
     });
 

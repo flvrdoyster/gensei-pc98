@@ -28,6 +28,7 @@ WASM 바이너리는 전 게임이 공유하고, JS 로더와 데이터 번들�
 | `icons.js` | 인라인 SVG 아이콘 단일 소스 (`data-icon` 자동 주입) |
 | `audio.js` | 뮤트·오디오 resume (`btn-mute` 자동 연결) |
 | `gamepad.js` | 가상 게임패드 |
+| `play-time.js` | 실제 입력이 있던 플레이 시간을 단계별 이벤트로 보냄 (아래 "분석 이벤트") |
 | `version.js` | 사이트 통합 버전 단일 소스. footer.js가 그린 푸터 마지막 줄(`.footer-credits`)에 `· vX.Y.Z`를 주입한다. 배포 버전은 이 파일의 `VERSION` 한 곳만 고치면 된다 |
 
 ### 색상 토큰 (`style.css` `:root`)
@@ -708,6 +709,7 @@ HDI(포물장)는 `torimono.html`을 복사해서 시작하면 된다. 고칠 �
 | `s.src` | `<title>.js` |
 | `<head>` 메타 | title·description·keywords·og:*·canonical을 새 주소와 타이틀로 |
 | `sitemap.xml` | 새 페이지 주소 한 줄 추가 |
+| `window.GAME` | 분석 이벤트의 게임 이름. `play-time.js`를 넣고 시작 버튼에서 `PlayTime.start()` 호출 |
 
 멀티 디스크는 `Module.arguments`에 FDI 경로를 순서대로 넣고 preRun에서 전부 chmod한다.
 다만 런타임 중 디스크를 바꿔 끼우는 건 안 된다 — NP2kai가 디스크를 내부 메모리에
@@ -725,6 +727,27 @@ preRun에서 번들 안 `np2kai.cfg`에 `HDD1FILE`을 주입해 SASI HDD로 마�
 `hub.js`가 거기서 만든다(썸네일 조건은 위 "허브" 절 참고).
 
 ---
+
+## 분석 이벤트
+
+게임 페이지는 GTM(`GTM-PR4S897C`)의 `dataLayer`로 이벤트를 보내고, GTM이 GA4로 넘긴다. 모든 이벤트에
+`game`(`window.GAME`, 예: `kitan`)이 붙고, GA4에 맞춤 측정기준으로 등록돼 있다.
+
+| 이벤트 | 시점 |
+|---|---|
+| `emulator_start` | 시작 버튼 |
+| `save_created` | 세이브가 바뀌어 IndexedDB에 처음 쓴 순간, 페이지당 1회 |
+| `save_restored` | 저장된 세이브로 부팅 |
+| `load_failed` | 게임 JS 로드 실패 |
+| `gamepad_activate` | 가상 게임패드를 켬 (`gamepad.js`) |
+| `feedback_sent` | 피드백 전송 (`feedback.js`, 버튼이 꺼져 있어 지금은 안 나감) |
+| `play_milestone` | 실제 플레이 5·15·30·60·120분에 도달할 때마다 1회. 매개변수 `minutes` |
+
+`play_milestone`은 탭이 보이는 상태에서 키보드·터치·게임패드 입력이 있던 1분만 센다(`play-time.js`).
+켜 두고 자리를 비운 시간이나 입력 없이 보는 장면은 빠진다. 카운트는 페이지마다 새로 시작해서,
+새로고침하면 0부터 다시 센다. 가장 오래 한 사람은 GA4 탐색의 사용자 탐색기에서 120분 단계에
+간 사용자를 열어 보면 된다. `minutes`를 보고서에 쓰려면 GA4에 맞춤 측정기준으로 등록하고,
+GTM의 GA4 이벤트 태그가 이 매개변수를 넘기도록 해 둬야 한다.
 
 ## 검색 노출 (SEO)
 
