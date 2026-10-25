@@ -168,7 +168,11 @@
           lastChecksum[disk] = csum;
           log('[save] ' + diskKey(disk) + ' 동기화');
           saved = true;
-          if (!savedOnce) { savedOnce = true; track('save_created'); }
+          if (!savedOnce) {
+            savedOnce = true;
+            track('save_created');
+            if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+          }
         } catch (e) {
           log('[save] 오류(' + diskKey(disk) + '): ' + e);
         }
@@ -178,6 +182,8 @@
 
     function startPolling() {
       pollTimer = setInterval(saveDisks, POLL_MS);
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveDisks(); });
+      window.addEventListener('pagehide', saveDisks);
     }
 
     document.getElementById('btn-fullscreen').addEventListener('click', async () => {

@@ -158,7 +158,11 @@
         lastChecksum = csum;
         log('[save] 세이브 동기화 완료');
         showToast(MSG.SAVE_SAVED);
-        if (!savedOnce) { savedOnce = true; track('save_created'); }
+        if (!savedOnce) {
+          savedOnce = true;
+          track('save_created');
+          if (navigator.storage && navigator.storage.persist) navigator.storage.persist();
+        }
       } catch (e) {
         log('[save] 오류: ' + e);
       }
@@ -166,6 +170,8 @@
 
     function startPolling() {
       pollTimer = setInterval(saveDisk, POLL_MS);
+      document.addEventListener('visibilitychange', () => { if (document.visibilityState === 'hidden') saveDisk(); });
+      window.addEventListener('pagehide', saveDisk);
     }
 
     document.getElementById('btn-start').addEventListener('click', function() {
