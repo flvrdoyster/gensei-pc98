@@ -797,3 +797,7 @@ GTM의 GA4 이벤트 태그가 이 매개변수를 넘기도록 해 둬야 한�
 해당 사항이 있는지 확인해야 한다. 그대로 복사는 안 되고 그때마다 다음을 맞춰 조정해야
 한다: 종횡비(이쪽 640×400=8:5, suiko는 640×480=4:3), DOM id(`#canvas-wrap` vs
 `#canvasDiv`), 그리고 다중 디스크 여부·버튼 유무 같은 리포별 기능 적용 범위.
+
+`style.css`의 `:root` 토큰, `body`·`a`·`:focus-visible`·`h1`, `.btn-icon`·`a.btn-icon`, `.hint`,
+`#footer`, `.hub-links`·`.hub-notice`는 `suiko-web-v2/docs/style.css`에 똑같이 옮겨 쓴다(suiko의 패치
+페이지 `patch.html`이 허브와 같은 모양을 쓴다). 이 부분을 고치면 그쪽에도 그대로 옮긴다.
