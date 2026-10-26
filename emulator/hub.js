@@ -23,7 +23,7 @@
     if (!track) return;
     var pin = track.querySelector('.hub-pin');
     var menu = track.querySelector('.hub-menu');
-    var items = [].slice.call(menu.querySelectorAll('a'));
+    var items = [].slice.call(menu.querySelectorAll('li > a'));
     var stage = track.querySelector('.hub-stage');
     var strip = track.querySelector('.hub-strip');
     var go = track.querySelector('.hub-go');

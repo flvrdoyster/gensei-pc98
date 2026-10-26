@@ -373,6 +373,12 @@ button {
 .hub-menu a:hover { text-decoration: none; }
 .hub-menu img { width: 160px; height: 48px; object-fit: contain; object-position: left center; }
 .hub-menu span { font-size: var(--font-sm); color: var(--text-3); }
+.hub-menu .hub-docs { position: absolute; right: 20px; bottom: 14px; display: flex; gap: 10px; font-size: var(--font-sm); opacity: 0.45; transition: opacity 0.2s; }
+.hub-menu li:has(> a.on) .hub-docs { opacity: 1; }
+.hub-menu .hub-docs a { display: block; padding: 0; opacity: 1; white-space: nowrap; }
+.hub-menu .hub-docs a:link,
+.hub-menu .hub-docs a:visited { color: var(--text-2); }
+.hub-menu .hub-docs a:hover { color: var(--text); }
 .hub-menu b,
 .hub-sub b { font-weight: 400; color: var(--text-2); }
 
@@ -579,6 +585,9 @@ body.mobile-active #virtual-gamepad {
   .hub-frame { width: min(100cqw, 150cqh); }
   .hub-sub { display: block; font-size: var(--font-sm); color: var(--text-3); text-align: center; }
   .hub-menu span { display: none; }
+  .hub-menu li { display: flex; align-items: center; }
+  .hub-menu li > a { flex: 1; min-width: 0; }
+  .hub-menu .hub-docs { position: static; flex-direction: column; align-items: flex-end; gap: 6px; padding-right: 16px; }
 }
 
 @media (max-width: 680px) and (min-height: 541px) {
