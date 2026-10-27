@@ -20,6 +20,7 @@
   --font-md: 0.9em;
   --font-sm: 0.75em;
   --font-xs: 0.65em;
+  --line-height: 1.6;
 
   color-scheme: dark;
   --bg: rgba(26, 26, 26, 1);
@@ -435,7 +436,7 @@ button {
   width: 100%;
   max-width: 640px;
   font-size: var(--font-xs);
-  line-height: 1.6;
+  line-height: var(--line-height);
   color: var(--text-3);
   text-align: center;
   word-break: keep-all;

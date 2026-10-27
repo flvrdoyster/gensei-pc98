@@ -58,6 +58,10 @@ WASM 바이너리는 전 게임이 공유하고, JS 로더와 데이터 번들�
 `:root`에 `color-scheme: dark`를 둬서 select 드롭다운 화살표·펼친 목록 같은 브라우저 기본 위젯도
 어둡게 그려지게 한다.
 
+글자 크기는 `--font-lg`·`--font-md`·`--font-sm`·`--font-xs`, 줄 간격은 `--line-height`(1.6) 하나만 쓴다.
+`--line-height`는 atah.io `design-tokens.css`와 이름·값을 맞췄다. 글자 크기 토큰은 `em`이라 겹쳐 걸면
+곱해지므로, 글자가 들어 있는 맨 안쪽 요소에 건다.
+
 ### 아이콘 (`icons.js`)
 
 전 페이지가 쓰는 인라인 SVG(음소거, 게임패드, 전체화면, 상단바 접기, 가상 D-pad, ESC/Enter,
