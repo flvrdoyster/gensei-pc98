@@ -5,9 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <title>PC-98 환세 시리즈 웹 에뮬레이터 : atah.io</title>
   <link rel="stylesheet" href="style.css">
-  <link rel="icon" href="https://atah.io/favicon.ico">
+  <link rel="icon" type="image/png" href="icons/favicon.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="PC-98 환세 시리즈">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <meta name="description" content="PC-98로 발매된 환세 시리즈를 한글화 하고 웹 에뮬레이터로 배포하는 프로젝트입니다.">
   <meta name="keywords" content="환세 시리즈, PC-98, 컴파일, 웹 에뮬레이터, 한글화, 환세풍광전, 환세희담, gensei, compile">
   <meta property="og:title" content="PC-98 환세 시리즈 웹 에뮬레이터 : atah.io">
@@ -50,6 +53,8 @@
         <a id="btn-atah" class="btn-icon" href="https://atah.io/" target="_blank" rel="noopener" title="atah.io" aria-label="atah.io" data-icon="atah"></a>
         <a id="btn-blog" class="btn-icon" href="https://oysterbay.tistory.com/129" target="_blank" rel="noopener" title="블로그" aria-label="블로그" data-icon="blog"></a>
         <a id="btn-github" class="btn-icon" href="https://github.com/flvrdoyster/gensei-pc98" target="_blank" rel="noopener" title="GitHub" aria-label="GitHub" data-icon="github"></a>
+        <p class="hub-install"><a href="#" id="install-link" role="button" hidden>홈 화면에 추가</a></p>
+        <p id="install-hint" hidden>공유 버튼을 누르고 '홈 화면에 추가'를 선택하세요.</p>
       </div>
     </div>
   </div>
@@ -60,6 +65,7 @@
 
   <script src="icons.js"></script>
   <script src="hub.js"></script>
+  <script src="install.js"></script>
   <script src="https://atah.io/footer.js" data-emulator></script>
 </body>
 </html>

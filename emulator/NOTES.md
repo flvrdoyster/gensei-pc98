@@ -313,6 +313,27 @@ HTML에 정적으로 들어 있다. 왼쪽 칸 맨 앞은 허브로 돌아가는
 
 ---
 
+## 웹 앱 (홈 화면에 추가)
+
+허브(`index.html`) 하나를 앱으로 본다. 매니페스트는 `manifest.webmanifest` 하나이고 `start_url`·`scope`는
+`./`라서 게임 페이지는 같은 범위 안에서 열린다. 게임 페이지에는 매니페스트를 연결하지 않는다.
+서비스 워커는 없다(오프라인 실행 미지원).
+
+- `name`은 허브 제목에서 ` : atah.io`만 뗀 것, `short_name`·`apple-mobile-web-app-title`은
+  `PC-98 환세 시리즈`. `background_color`·`theme_color`는 `--bg`와 같은 `#1a1a1a`.
+- 아이콘은 `icons/`에 `icon-192`·`icon-512`(any), `icon-maskable-192`·`icon-maskable-512`,
+  `apple-touch-icon`(180). 140px 도트 원본(투명)을 최근접으로 확대해 `#1a1a1a` 바탕 가운데에 둔다.
+  any 512는 3배, maskable 512는 2배(안전 영역 원 안에 들어가는 최대 정수 배율), any 192와
+  apple-touch-icon은 1배. maskable 192는 maskable 512를 축소한 것(1배는 안전 영역을 넘는다).
+- 탭 아이콘은 모든 페이지가 `icons/favicon.png`(투명 140px 원본에 흰 외곽선 4px을 두른 148px. 어두운 탭에서 묻히지 않게)를 쓴다.
+- 설치 링크(`install.js`, 허브 링크 아이콘 줄 아래 `#install-link`)는 `beforeinstallprompt`가 온
+  브라우저와 iOS(앱 내 브라우저 제외)에서만 보이고, 홈 화면 앱으로 실행 중이면 숨는다. iOS는 누르면
+  `#install-hint` 안내를 펼친다.
+- iOS 홈 화면 앱은 Safari와 저장소가 분리되어, Safari에서 쌓은 세이브(IndexedDB)가 보이지 않는다.
+- 실제 Android Chrome 설치 인식과 iOS 홈 화면 동작은 기기로 확인하지 못했다.
+
+---
+
 ## 빌드
 
 ### CMake 플래그

@@ -430,7 +430,19 @@ button {
   .hub-hint { animation: none; }
 }
 
-.hub-links { display: flex; justify-content: center; margin: 4px 0 8px; }
+.hub-links { display: flex; flex-wrap: wrap; justify-content: center; margin: 4px 0 8px; }
+
+.hub-install,
+#install-hint {
+  flex: 0 0 100%;
+  margin: 4px 0 0;
+  text-align: center;
+  font-size: var(--font-sm);
+  line-height: var(--line-height);
+  word-break: keep-all;
+}
+.hub-install:has(#install-link[hidden]) { display: none; }
+#install-hint { color: var(--text-2); }
 
 .hub-notice {
   width: 100%;
@@ -443,8 +455,11 @@ button {
 }
 .hub-notice p + p { margin-top: 4px; }
 .hub-notice a:link,
-.hub-notice a:visited { color: var(--text-2); }
-.hub-notice a:hover { color: var(--text); }
+.hub-notice a:visited,
+#install-link:link,
+#install-link:visited { color: var(--text-2); }
+.hub-notice a:hover,
+#install-link:hover { color: var(--text); }
 
 /* Fullscreen */
 #canvas-wrap:fullscreen,
